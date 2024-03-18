@@ -89,7 +89,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
     /**
      * <p>
      * Specifies the location for the output files from a custom classifier job.
-     * This parameter is required for a request that creates a native classifier
+     * This parameter is required for a request that creates a native document
      * model.
      * </p>
      */
@@ -584,14 +584,14 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
     /**
      * <p>
      * Specifies the location for the output files from a custom classifier job.
-     * This parameter is required for a request that creates a native classifier
+     * This parameter is required for a request that creates a native document
      * model.
      * </p>
      *
      * @return <p>
      *         Specifies the location for the output files from a custom
      *         classifier job. This parameter is required for a request that
-     *         creates a native classifier model.
+     *         creates a native document model.
      *         </p>
      */
     public DocumentClassifierOutputDataConfig getOutputDataConfig() {
@@ -601,14 +601,14 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
     /**
      * <p>
      * Specifies the location for the output files from a custom classifier job.
-     * This parameter is required for a request that creates a native classifier
+     * This parameter is required for a request that creates a native document
      * model.
      * </p>
      *
      * @param outputDataConfig <p>
      *            Specifies the location for the output files from a custom
      *            classifier job. This parameter is required for a request that
-     *            creates a native classifier model.
+     *            creates a native document model.
      *            </p>
      */
     public void setOutputDataConfig(DocumentClassifierOutputDataConfig outputDataConfig) {
@@ -618,7 +618,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
     /**
      * <p>
      * Specifies the location for the output files from a custom classifier job.
-     * This parameter is required for a request that creates a native classifier
+     * This parameter is required for a request that creates a native document
      * model.
      * </p>
      * <p>
@@ -628,7 +628,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * @param outputDataConfig <p>
      *            Specifies the location for the output files from a custom
      *            classifier job. This parameter is required for a request that
-     *            creates a native classifier model.
+     *            creates a native document model.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

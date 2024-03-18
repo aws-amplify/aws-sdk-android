@@ -20,7 +20,7 @@ import java.io.Serializable;
 /**
  * <p>
  * The location of the training documents. This parameter is required in a
- * request to create a native classifier model.
+ * request to create a semi-structured document classification model.
  * </p>
  */
 public class DocumentClassifierDocuments implements Serializable {

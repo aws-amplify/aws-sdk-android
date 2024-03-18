@@ -20,7 +20,7 @@ import java.io.Serializable;
 /**
  * <p>
  * Provide the location for output data from a custom classifier job. This field
- * is mandatory if you are training a native classifier model.
+ * is mandatory if you are training a native document model.
  * </p>
  */
 public class DocumentClassifierOutputDataConfig implements Serializable {

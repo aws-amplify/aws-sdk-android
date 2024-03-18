@@ -648,7 +648,7 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
      * <p>
      * For more information about targeted sentiment, see <a href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
-     * >Targeted sentiment</a>.
+     * >Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.
      * </p>
      * 
      * @param batchDetectTargetedSentimentRequest
@@ -701,14 +701,32 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
-     * Creates a new document classification request to analyze a single
-     * document in real-time, using a previously created and trained custom
-     * model and an endpoint.
+     * Creates a classification request to analyze a single document in
+     * real-time. <code>ClassifyDocument</code> supports the following model
+     * types:
      * </p>
+     * <ul>
+     * <li>
      * <p>
-     * You can input plain text or you can upload a single-page input document
-     * (text, PDF, Word, or image).
+     * Custom classifier - a custom model that you have created and trained. For
+     * input, you can provide plain text, a single-page document (PDF, Word, or
+     * image), or Textract API output. For more information, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html"
+     * >Custom classification</a> in the <i>Amazon Comprehend Developer
+     * Guide</i>.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Prompt classifier - Amazon Comprehend provides a model for classifying
+     * prompts. For input, you provide English plain text input. For prompt
+     * classification, the response includes only the <code>Classes</code>
+     * field. For more information about prompt classifiers, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/prompt-classification.html"
+     * >Prompt classifiers</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * If the system detects errors while processing a page in the input
      * document, the API response includes an entry in <code>Errors</code> that
@@ -2607,7 +2625,7 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
      * <p>
      * For more information about targeted sentiment, see <a href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
-     * >Targeted sentiment</a>.
+     * >Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.
      * </p>
      * 
      * @param detectTargetedSentimentRequest
@@ -2646,6 +2664,63 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<DetectTargetedSentimentResult, JsonUnmarshallerContext> unmarshaller = new DetectTargetedSentimentResultJsonUnmarshaller();
             JsonResponseHandler<DetectTargetedSentimentResult> responseHandler = new JsonResponseHandler<DetectTargetedSentimentResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Performs toxicity analysis on the list of text strings that you provide
+     * as input. The analysis uses the order of strings in the list to determine
+     * context when predicting toxicity. The API response contains a results
+     * list that matches the size of the input list. For more information about
+     * toxicity detection, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/toxicity-detection.html"
+     * >Toxicity detection</a> in the <i>Amazon Comprehend Developer Guide</i>
+     * </p>
+     * 
+     * @param detectToxicContentRequest
+     * @return detectToxicContentResult The response from the DetectToxicContent
+     *         service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DetectToxicContentResult detectToxicContent(
+            DetectToxicContentRequest detectToxicContentRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(detectToxicContentRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DetectToxicContentRequest> request = null;
+        Response<DetectToxicContentResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DetectToxicContentRequestMarshaller()
+                        .marshall(detectToxicContentRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DetectToxicContentResult, JsonUnmarshallerContext> unmarshaller = new DetectToxicContentResultJsonUnmarshaller();
+            JsonResponseHandler<DetectToxicContentResult> responseHandler = new JsonResponseHandler<DetectToxicContentResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

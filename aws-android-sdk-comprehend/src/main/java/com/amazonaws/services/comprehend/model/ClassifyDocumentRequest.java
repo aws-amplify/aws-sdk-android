@@ -21,14 +21,30 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a new document classification request to analyze a single document in
- * real-time, using a previously created and trained custom model and an
- * endpoint.
+ * Creates a classification request to analyze a single document in real-time.
+ * <code>ClassifyDocument</code> supports the following model types:
  * </p>
+ * <ul>
+ * <li>
  * <p>
- * You can input plain text or you can upload a single-page input document
- * (text, PDF, Word, or image).
+ * Custom classifier - a custom model that you have created and trained. For
+ * input, you can provide plain text, a single-page document (PDF, Word, or
+ * image), or Textract API output. For more information, see <a href=
+ * "https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html"
+ * >Custom classification</a> in the <i>Amazon Comprehend Developer Guide</i>.
  * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Prompt classifier - Amazon Comprehend provides a model for classifying
+ * prompts. For input, you provide English plain text input. For prompt
+ * classification, the response includes only the <code>Classes</code> field.
+ * For more information about prompt classifiers, see <a href=
+ * "https://docs.aws.amazon.com/comprehend/latest/dg/prompt-classification.html"
+ * >Prompt classifiers</a> in the <i>Amazon Comprehend Developer Guide</i>.
+ * </p>
+ * </li>
+ * </ul>
  * <p>
  * If the system detects errors while processing a page in the input document,
  * the API response includes an entry in <code>Errors</code> that describes the
@@ -56,26 +72,41 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) of the endpoint. For information about
-     * endpoints, see <a href=
-     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
-     * >Managing endpoints</a>.
+     * The Amazon Resource Number (ARN) of the endpoint.
+     * </p>
+     * <p>
+     * For prompt classification, Amazon Comprehend provides the endpoint ARN:
+     * <code>zzz</code>.
+     * </p>
+     * <p>
+     * For custom classification, you create an endpoint for your custom model.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/using-endpoints.html"
+     * >Using Amazon Comprehend endpoints</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:([0-9]{12}|aws):
+     * document-classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      */
     private String endpointArn;
 
     /**
      * <p>
      * Use the <code>Bytes</code> parameter to input a text, PDF, Word or image
-     * file. You can also use the <code>Bytes</code> parameter to input an
-     * Amazon Textract <code>DetectDocumentText</code> or
-     * <code>AnalyzeDocument</code> output file.
+     * file.
+     * </p>
+     * <p>
+     * When you classify a document using a custom model, you can also use the
+     * <code>Bytes</code> parameter to input an Amazon Textract
+     * <code>DetectDocumentText</code> or <code>AnalyzeDocument</code> output
+     * file.
+     * </p>
+     * <p>
+     * To classify a document using the prompt classifier, use the
+     * <code>Text</code> parameter for input.
      * </p>
      * <p>
      * Provide the input document as a sequence of base64-encoded bytes. If your
@@ -169,23 +200,37 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) of the endpoint. For information about
-     * endpoints, see <a href=
-     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
-     * >Managing endpoints</a>.
+     * The Amazon Resource Number (ARN) of the endpoint.
+     * </p>
+     * <p>
+     * For prompt classification, Amazon Comprehend provides the endpoint ARN:
+     * <code>zzz</code>.
+     * </p>
+     * <p>
+     * For custom classification, you create an endpoint for your custom model.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/using-endpoints.html"
+     * >Using Amazon Comprehend endpoints</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:([0-9]{12}|aws):
+     * document-classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      *
      * @return <p>
-     *         The Amazon Resource Number (ARN) of the endpoint. For information
-     *         about endpoints, see <a href=
-     *         "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
-     *         >Managing endpoints</a>.
+     *         The Amazon Resource Number (ARN) of the endpoint.
+     *         </p>
+     *         <p>
+     *         For prompt classification, Amazon Comprehend provides the
+     *         endpoint ARN: <code>zzz</code>.
+     *         </p>
+     *         <p>
+     *         For custom classification, you create an endpoint for your custom
+     *         model. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/comprehend/latest/dg/using-endpoints.html"
+     *         >Using Amazon Comprehend endpoints</a>.
      *         </p>
      */
     public String getEndpointArn() {
@@ -194,23 +239,37 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) of the endpoint. For information about
-     * endpoints, see <a href=
-     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
-     * >Managing endpoints</a>.
+     * The Amazon Resource Number (ARN) of the endpoint.
+     * </p>
+     * <p>
+     * For prompt classification, Amazon Comprehend provides the endpoint ARN:
+     * <code>zzz</code>.
+     * </p>
+     * <p>
+     * For custom classification, you create an endpoint for your custom model.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/using-endpoints.html"
+     * >Using Amazon Comprehend endpoints</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:([0-9]{12}|aws):
+     * document-classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      *
      * @param endpointArn <p>
-     *            The Amazon Resource Number (ARN) of the endpoint. For
-     *            information about endpoints, see <a href=
-     *            "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
-     *            >Managing endpoints</a>.
+     *            The Amazon Resource Number (ARN) of the endpoint.
+     *            </p>
+     *            <p>
+     *            For prompt classification, Amazon Comprehend provides the
+     *            endpoint ARN: <code>zzz</code>.
+     *            </p>
+     *            <p>
+     *            For custom classification, you create an endpoint for your
+     *            custom model. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/comprehend/latest/dg/using-endpoints.html"
+     *            >Using Amazon Comprehend endpoints</a>.
      *            </p>
      */
     public void setEndpointArn(String endpointArn) {
@@ -219,10 +278,17 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) of the endpoint. For information about
-     * endpoints, see <a href=
-     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
-     * >Managing endpoints</a>.
+     * The Amazon Resource Number (ARN) of the endpoint.
+     * </p>
+     * <p>
+     * For prompt classification, Amazon Comprehend provides the endpoint ARN:
+     * <code>zzz</code>.
+     * </p>
+     * <p>
+     * For custom classification, you create an endpoint for your custom model.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/using-endpoints.html"
+     * >Using Amazon Comprehend endpoints</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -231,14 +297,21 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:([0-9]{12}|aws):
+     * document-classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      *
      * @param endpointArn <p>
-     *            The Amazon Resource Number (ARN) of the endpoint. For
-     *            information about endpoints, see <a href=
-     *            "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
-     *            >Managing endpoints</a>.
+     *            The Amazon Resource Number (ARN) of the endpoint.
+     *            </p>
+     *            <p>
+     *            For prompt classification, Amazon Comprehend provides the
+     *            endpoint ARN: <code>zzz</code>.
+     *            </p>
+     *            <p>
+     *            For custom classification, you create an endpoint for your
+     *            custom model. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/comprehend/latest/dg/using-endpoints.html"
+     *            >Using Amazon Comprehend endpoints</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -251,9 +324,17 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * Use the <code>Bytes</code> parameter to input a text, PDF, Word or image
-     * file. You can also use the <code>Bytes</code> parameter to input an
-     * Amazon Textract <code>DetectDocumentText</code> or
-     * <code>AnalyzeDocument</code> output file.
+     * file.
+     * </p>
+     * <p>
+     * When you classify a document using a custom model, you can also use the
+     * <code>Bytes</code> parameter to input an Amazon Textract
+     * <code>DetectDocumentText</code> or <code>AnalyzeDocument</code> output
+     * file.
+     * </p>
+     * <p>
+     * To classify a document using the prompt classifier, use the
+     * <code>Text</code> parameter for input.
      * </p>
      * <p>
      * Provide the input document as a sequence of base64-encoded bytes. If your
@@ -277,9 +358,17 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
      *
      * @return <p>
      *         Use the <code>Bytes</code> parameter to input a text, PDF, Word
-     *         or image file. You can also use the <code>Bytes</code> parameter
-     *         to input an Amazon Textract <code>DetectDocumentText</code> or
-     *         <code>AnalyzeDocument</code> output file.
+     *         or image file.
+     *         </p>
+     *         <p>
+     *         When you classify a document using a custom model, you can also
+     *         use the <code>Bytes</code> parameter to input an Amazon Textract
+     *         <code>DetectDocumentText</code> or <code>AnalyzeDocument</code>
+     *         output file.
+     *         </p>
+     *         <p>
+     *         To classify a document using the prompt classifier, use the
+     *         <code>Text</code> parameter for input.
      *         </p>
      *         <p>
      *         Provide the input document as a sequence of base64-encoded bytes.
@@ -305,9 +394,17 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * Use the <code>Bytes</code> parameter to input a text, PDF, Word or image
-     * file. You can also use the <code>Bytes</code> parameter to input an
-     * Amazon Textract <code>DetectDocumentText</code> or
-     * <code>AnalyzeDocument</code> output file.
+     * file.
+     * </p>
+     * <p>
+     * When you classify a document using a custom model, you can also use the
+     * <code>Bytes</code> parameter to input an Amazon Textract
+     * <code>DetectDocumentText</code> or <code>AnalyzeDocument</code> output
+     * file.
+     * </p>
+     * <p>
+     * To classify a document using the prompt classifier, use the
+     * <code>Text</code> parameter for input.
      * </p>
      * <p>
      * Provide the input document as a sequence of base64-encoded bytes. If your
@@ -331,10 +428,17 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
      *
      * @param bytes <p>
      *            Use the <code>Bytes</code> parameter to input a text, PDF,
-     *            Word or image file. You can also use the <code>Bytes</code>
-     *            parameter to input an Amazon Textract
-     *            <code>DetectDocumentText</code> or
+     *            Word or image file.
+     *            </p>
+     *            <p>
+     *            When you classify a document using a custom model, you can
+     *            also use the <code>Bytes</code> parameter to input an Amazon
+     *            Textract <code>DetectDocumentText</code> or
      *            <code>AnalyzeDocument</code> output file.
+     *            </p>
+     *            <p>
+     *            To classify a document using the prompt classifier, use the
+     *            <code>Text</code> parameter for input.
      *            </p>
      *            <p>
      *            Provide the input document as a sequence of base64-encoded
@@ -361,9 +465,17 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * Use the <code>Bytes</code> parameter to input a text, PDF, Word or image
-     * file. You can also use the <code>Bytes</code> parameter to input an
-     * Amazon Textract <code>DetectDocumentText</code> or
-     * <code>AnalyzeDocument</code> output file.
+     * file.
+     * </p>
+     * <p>
+     * When you classify a document using a custom model, you can also use the
+     * <code>Bytes</code> parameter to input an Amazon Textract
+     * <code>DetectDocumentText</code> or <code>AnalyzeDocument</code> output
+     * file.
+     * </p>
+     * <p>
+     * To classify a document using the prompt classifier, use the
+     * <code>Text</code> parameter for input.
      * </p>
      * <p>
      * Provide the input document as a sequence of base64-encoded bytes. If your
@@ -390,10 +502,17 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
      *
      * @param bytes <p>
      *            Use the <code>Bytes</code> parameter to input a text, PDF,
-     *            Word or image file. You can also use the <code>Bytes</code>
-     *            parameter to input an Amazon Textract
-     *            <code>DetectDocumentText</code> or
+     *            Word or image file.
+     *            </p>
+     *            <p>
+     *            When you classify a document using a custom model, you can
+     *            also use the <code>Bytes</code> parameter to input an Amazon
+     *            Textract <code>DetectDocumentText</code> or
      *            <code>AnalyzeDocument</code> output file.
+     *            </p>
+     *            <p>
+     *            To classify a document using the prompt classifier, use the
+     *            <code>Text</code> parameter for input.
      *            </p>
      *            <p>
      *            Provide the input document as a sequence of base64-encoded
