@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,9 +21,9 @@ import com.amazonaws.AmazonServiceException;
  * <p>
  * The request was rejected because the concatenation of the
  * <code>XksProxyUriEndpoint</code> and <code>XksProxyUriPath</code> is already
- * associated with an external key store in the Amazon Web Services account and
- * Region. Each external key store in an account and Region must use a unique
- * external key store proxy API address.
+ * associated with another external key store in this Amazon Web Services
+ * Region. Each external key store in a Region must use a unique external key
+ * store proxy API address.
  * </p>
  */
 public class XksProxyUriInUseException extends AmazonServiceException {

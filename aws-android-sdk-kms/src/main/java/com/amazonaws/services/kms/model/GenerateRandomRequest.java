@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -62,6 +62,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <b>Required permissions</b>: <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
  * >kms:GenerateRandom</a> (IAM policy)
+ * </p>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
  * </p>
  */
 public class GenerateRandomRequest extends AmazonWebServiceRequest implements Serializable {

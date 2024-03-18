@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,9 +35,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Deleting a KMS key is a destructive and potentially dangerous operation. When
  * a KMS key is deleted, all data that was encrypted under the KMS key is
- * unrecoverable. (The only exception is a <a
- * href="kms/latest/developerguide/multi-region-keys-delete.html">multi-Region
- * replica key</a>, or an <a href=
+ * unrecoverable. (The only exception is a <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-delete.html"
+ * >multi-Region replica key</a>, or an <a href=
  * "kms/latest/developerguide/importing-keys-managing.html#import-delete-key"
  * >asymmetric or HMAC KMS key with imported key material</a>.) To prevent the
  * use of a KMS key without deleting it, use <a>DisableKey</a>.
@@ -108,6 +108,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </li>
  * </ul>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
+ * </p>
  */
 public class ScheduleKeyDeletionRequest extends AmazonWebServiceRequest implements Serializable {
     /**

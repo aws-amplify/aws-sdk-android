@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Deletes the specified grant. You revoke a grant to terminate the permissions
  * that the grant allows. For more information, see <a href=
- * "https://docs.aws.amazon.com/kms/latest/developerguide/managing-grants.html#grant-delete"
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#grant-delete"
  * >Retiring and revoking grants</a> in the <i> <i>Key Management Service
  * Developer Guide</i> </i>.
  * </p>
@@ -80,6 +80,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </li>
  * </ul>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
+ * </p>
  */
 public class RevokeGrantRequest extends AmazonWebServiceRequest implements Serializable {
     /**
