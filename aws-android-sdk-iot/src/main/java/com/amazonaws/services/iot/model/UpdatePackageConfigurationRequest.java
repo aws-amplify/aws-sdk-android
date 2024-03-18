@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates the package configuration.
+ * Updates the software package configuration.
  * </p>
  * <p>
  * Requires permission to access the <a href=

@@ -52,6 +52,11 @@ class KafkaActionJsonUnmarshaller implements Unmarshaller<KafkaAction, JsonUnmar
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("headers")) {
+                kafkaAction.setHeaders(new ListUnmarshaller<KafkaActionHeader>(
+                        KafkaActionHeaderJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

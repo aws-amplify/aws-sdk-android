@@ -56,6 +56,12 @@ public class Behavior implements Serializable {
      * The criteria that determine if a device is behaving normally in regard to
      * the <code>metric</code>.
      * </p>
+     * <note>
+     * <p>
+     * In the IoT console, you can choose to be sent an alert through Amazon SNS
+     * when IoT Device Defender detects that a device is behaving anomalously.
+     * </p>
+     * </note>
      */
     private BehaviorCriteria criteria;
 
@@ -239,11 +245,24 @@ public class Behavior implements Serializable {
      * The criteria that determine if a device is behaving normally in regard to
      * the <code>metric</code>.
      * </p>
+     * <note>
+     * <p>
+     * In the IoT console, you can choose to be sent an alert through Amazon SNS
+     * when IoT Device Defender detects that a device is behaving anomalously.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         The criteria that determine if a device is behaving normally in
      *         regard to the <code>metric</code>.
      *         </p>
+     *         <note>
+     *         <p>
+     *         In the IoT console, you can choose to be sent an alert through
+     *         Amazon SNS when IoT Device Defender detects that a device is
+     *         behaving anomalously.
+     *         </p>
+     *         </note>
      */
     public BehaviorCriteria getCriteria() {
         return criteria;
@@ -254,11 +273,24 @@ public class Behavior implements Serializable {
      * The criteria that determine if a device is behaving normally in regard to
      * the <code>metric</code>.
      * </p>
+     * <note>
+     * <p>
+     * In the IoT console, you can choose to be sent an alert through Amazon SNS
+     * when IoT Device Defender detects that a device is behaving anomalously.
+     * </p>
+     * </note>
      *
      * @param criteria <p>
      *            The criteria that determine if a device is behaving normally
      *            in regard to the <code>metric</code>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            In the IoT console, you can choose to be sent an alert through
+     *            Amazon SNS when IoT Device Defender detects that a device is
+     *            behaving anomalously.
+     *            </p>
+     *            </note>
      */
     public void setCriteria(BehaviorCriteria criteria) {
         this.criteria = criteria;
@@ -269,6 +301,12 @@ public class Behavior implements Serializable {
      * The criteria that determine if a device is behaving normally in regard to
      * the <code>metric</code>.
      * </p>
+     * <note>
+     * <p>
+     * In the IoT console, you can choose to be sent an alert through Amazon SNS
+     * when IoT Device Defender detects that a device is behaving anomalously.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -277,6 +315,13 @@ public class Behavior implements Serializable {
      *            The criteria that determine if a device is behaving normally
      *            in regard to the <code>metric</code>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            In the IoT console, you can choose to be sent an alert through
+     *            Amazon SNS when IoT Device Defender detects that a device is
+     *            behaving anomalously.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
