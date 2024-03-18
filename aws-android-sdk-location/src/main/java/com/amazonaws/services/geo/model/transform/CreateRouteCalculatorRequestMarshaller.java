@@ -108,7 +108,7 @@ public class CreateRouteCalculatorRequestMarshaller implements
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.1");
         }
-        request.setHostPrefix("routes.");
+        request.setHostPrefix("cp.routes.");
 
         return request;
     }
