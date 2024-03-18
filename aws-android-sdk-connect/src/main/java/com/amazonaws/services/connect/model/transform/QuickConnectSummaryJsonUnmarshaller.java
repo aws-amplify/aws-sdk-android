@@ -48,6 +48,12 @@ class QuickConnectSummaryJsonUnmarshaller implements
             } else if (name.equals("QuickConnectType")) {
                 quickConnectSummary.setQuickConnectType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                quickConnectSummary.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                quickConnectSummary.setLastModifiedRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
