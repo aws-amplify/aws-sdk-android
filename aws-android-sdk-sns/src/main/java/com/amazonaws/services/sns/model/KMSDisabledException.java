@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request was rejected because the specified customer master key (CMK)
+ * The request was rejected because the specified Amazon Web Services KMS key
  * isn't enabled.
  * </p>
  */

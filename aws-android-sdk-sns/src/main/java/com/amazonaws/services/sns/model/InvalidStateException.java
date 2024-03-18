@@ -19,23 +19,18 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request was rejected because the state of the specified resource isn't
- * valid for this request. For more information, see <a
- * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >Key states of Amazon Web Services KMS keys</a> in the <i>Key Management
- * Service Developer Guide</i>.
+ * Indicates that the specified state is not a valid state for an event source.
  * </p>
  */
-public class KMSInvalidStateException extends AmazonServiceException {
+public class InvalidStateException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new KMSInvalidStateException with the specified error
-     * message.
+     * Constructs a new InvalidStateException with the specified error message.
      *
      * @param message Describes the error encountered.
      */
-    public KMSInvalidStateException(String message) {
+    public InvalidStateException(String message) {
         super(message);
     }
 }
