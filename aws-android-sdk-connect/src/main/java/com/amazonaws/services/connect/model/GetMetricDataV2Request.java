@@ -29,7 +29,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >GetMetricData</a>, the previous version of this API. It has new metrics,
  * offers filtering at a metric level, and offers the ability to filter and
  * group data by channels, queues, routing profiles, agents, and agent hierarchy
- * levels. It can retrieve historical data for the last 35 days, in 24-hour
+ * levels. It can retrieve historical data for the last 3 months, at varying
  * intervals.
  * </p>
  * <p>
@@ -53,10 +53,10 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <p>
      * The timestamp, in UNIX Epoch time format, at which to start the reporting
      * interval for the retrieval of historical metrics data. The time must be
-     * before the end time timestamp. The time range between the start and end
-     * time must be less than 24 hours. The start time cannot be earlier than 35
-     * days before the time of the request. Historical metrics are available for
-     * 35 days.
+     * before the end time timestamp. The start and end time depends on the
+     * <code>IntervalPeriod</code> selected. By default the time range between
+     * start and end time is 35 days. Historical metrics are available for 3
+     * months.
      * </p>
      */
     private java.util.Date startTime;
@@ -68,11 +68,81 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * later than the start time timestamp. It cannot be later than the current
      * timestamp.
      * </p>
-     * <p>
-     * The time range between the start and end time must be less than 24 hours.
-     * </p>
      */
     private java.util.Date endTime;
+
+    /**
+     * <p>
+     * The interval period and timezone to apply to returned metrics.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>IntervalPeriod</code>: An aggregated grouping applied to request
+     * metrics. Valid <code>IntervalPeriod</code> values are:
+     * <code>FIFTEEN_MIN</code> | <code>THIRTY_MIN</code> | <code>HOUR</code> |
+     * <code>DAY</code> | <code>WEEK</code> | <code>TOTAL</code>.
+     * </p>
+     * <p>
+     * For example, if <code>IntervalPeriod</code> is selected
+     * <code>THIRTY_MIN</code>, <code>StartTime</code> and <code>EndTime</code>
+     * differs by 1 day, then Amazon Connect returns 48 results in the response.
+     * Each result is aggregated by the THIRTY_MIN period. By default Amazon
+     * Connect aggregates results based on the <code>TOTAL</code> interval
+     * period.
+     * </p>
+     * <p>
+     * The following list describes restrictions on <code>StartTime</code> and
+     * <code>EndTime</code> based on which <code>IntervalPeriod</code> is
+     * requested.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>FIFTEEN_MIN</code>: The difference between <code>StartTime</code>
+     * and <code>EndTime</code> must be less than 3 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>THIRTY_MIN</code>: The difference between <code>StartTime</code>
+     * and <code>EndTime</code> must be less than 3 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>HOUR</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 3 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DAY</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 35 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>WEEK</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 35 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>TOTAL</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 35 days.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>TimeZone</code>: The timezone applied to requested metrics.
+     * </p>
+     * </li>
+     * </ul>
+     */
+    private IntervalDetails interval;
 
     /**
      * <p>
@@ -188,6 +258,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Administrator's Guide</i>.
      * </p>
      * <dl>
+     * <dt>ABANDONMENT_RATE</dt>
+     * <dd>
+     * <p>
+     * Unit: Percent
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
      * <dt>AGENT_ADHERENT_TIME</dt>
      * <dd>
      * <p>
@@ -212,6 +292,20 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
      * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AGENT_NON_RESPONSE_WITHOUT_CUSTOMER_ABANDONS</dt>
+     * <dd>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * <p>
+     * Data for this metric is available starting from October 1, 2023 0:00:00
+     * GMT.
      * </p>
      * </dd>
      * <dt>AGENT_OCCUPANCY</dt>
@@ -294,23 +388,12 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
      * Agent Hierarchy
      * </p>
-     * </dd>
-     * <dt>AVG_AGENT_CONNECTING_TIME</dt>
-     * <dd>
+     * <note>
      * <p>
-     * Unit: Seconds
+     * The <code>Negate</code> key in Metric Level Filters is not applicable for
+     * this metric.
      * </p>
-     * <p>
-     * Valid metric filter key: <code>INITIATION_METHOD</code>. For now, this
-     * metric only supports the following as <code>INITIATION_METHOD</code>:
-     * <code>INBOUND</code> | <code>OUTBOUND</code> | <code>CALLBACK</code> |
-     * <code>API</code>
-     * </p>
-     * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
-     * </p>
-     * </dd>
+     * </note></dd>
      * <dt>AVG_CONTACT_DURATION</dt>
      * <dd>
      * <p>
@@ -377,6 +460,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Feature is a valid filter but not a valid grouping.
      * </p>
      * </note></dd>
+     * <dt>AVG_HOLD_TIME_ALL_CONTACTS</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
      * <dt>AVG_HOLDS</dt>
      * <dd>
      * <p>
@@ -469,6 +562,15 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Feature is a valid filter but not a valid grouping.
      * </p>
      * </note></dd>
+     * <dt>AVG_RESOLUTION_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * </p>
+     * </dd>
      * <dt>AVG_TALK_TIME</dt>
      * <dd>
      * <p>
@@ -575,6 +677,20 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Agent Hierarchy
      * </p>
      * </dd>
+     * <dt>CONTACTS_RESOLVED_IN_X</dt>
+     * <dd>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * </p>
+     * <p>
+     * Threshold: For <code>ThresholdValue</code> enter any whole number from 1
+     * to 604800 (inclusive), in seconds. For <code>Comparison</code>, you must
+     * enter <code>LT</code> (for "Less than").
+     * </p>
+     * </dd>
      * <dt>CONTACTS_TRANSFERRED_OUT</dt>
      * <dd>
      * <p>
@@ -613,6 +729,62 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <dd>
      * <p>
      * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_NON_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_TALK_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_TALK_TIME_CUSTOMER</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
@@ -766,19 +938,19 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <p>
      * The timestamp, in UNIX Epoch time format, at which to start the reporting
      * interval for the retrieval of historical metrics data. The time must be
-     * before the end time timestamp. The time range between the start and end
-     * time must be less than 24 hours. The start time cannot be earlier than 35
-     * days before the time of the request. Historical metrics are available for
-     * 35 days.
+     * before the end time timestamp. The start and end time depends on the
+     * <code>IntervalPeriod</code> selected. By default the time range between
+     * start and end time is 35 days. Historical metrics are available for 3
+     * months.
      * </p>
      *
      * @return <p>
      *         The timestamp, in UNIX Epoch time format, at which to start the
      *         reporting interval for the retrieval of historical metrics data.
-     *         The time must be before the end time timestamp. The time range
-     *         between the start and end time must be less than 24 hours. The
-     *         start time cannot be earlier than 35 days before the time of the
-     *         request. Historical metrics are available for 35 days.
+     *         The time must be before the end time timestamp. The start and end
+     *         time depends on the <code>IntervalPeriod</code> selected. By
+     *         default the time range between start and end time is 35 days.
+     *         Historical metrics are available for 3 months.
      *         </p>
      */
     public java.util.Date getStartTime() {
@@ -789,20 +961,19 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <p>
      * The timestamp, in UNIX Epoch time format, at which to start the reporting
      * interval for the retrieval of historical metrics data. The time must be
-     * before the end time timestamp. The time range between the start and end
-     * time must be less than 24 hours. The start time cannot be earlier than 35
-     * days before the time of the request. Historical metrics are available for
-     * 35 days.
+     * before the end time timestamp. The start and end time depends on the
+     * <code>IntervalPeriod</code> selected. By default the time range between
+     * start and end time is 35 days. Historical metrics are available for 3
+     * months.
      * </p>
      *
      * @param startTime <p>
      *            The timestamp, in UNIX Epoch time format, at which to start
      *            the reporting interval for the retrieval of historical metrics
-     *            data. The time must be before the end time timestamp. The time
-     *            range between the start and end time must be less than 24
-     *            hours. The start time cannot be earlier than 35 days before
-     *            the time of the request. Historical metrics are available for
-     *            35 days.
+     *            data. The time must be before the end time timestamp. The
+     *            start and end time depends on the <code>IntervalPeriod</code>
+     *            selected. By default the time range between start and end time
+     *            is 35 days. Historical metrics are available for 3 months.
      *            </p>
      */
     public void setStartTime(java.util.Date startTime) {
@@ -813,10 +984,10 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <p>
      * The timestamp, in UNIX Epoch time format, at which to start the reporting
      * interval for the retrieval of historical metrics data. The time must be
-     * before the end time timestamp. The time range between the start and end
-     * time must be less than 24 hours. The start time cannot be earlier than 35
-     * days before the time of the request. Historical metrics are available for
-     * 35 days.
+     * before the end time timestamp. The start and end time depends on the
+     * <code>IntervalPeriod</code> selected. By default the time range between
+     * start and end time is 35 days. Historical metrics are available for 3
+     * months.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -825,11 +996,10 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * @param startTime <p>
      *            The timestamp, in UNIX Epoch time format, at which to start
      *            the reporting interval for the retrieval of historical metrics
-     *            data. The time must be before the end time timestamp. The time
-     *            range between the start and end time must be less than 24
-     *            hours. The start time cannot be earlier than 35 days before
-     *            the time of the request. Historical metrics are available for
-     *            35 days.
+     *            data. The time must be before the end time timestamp. The
+     *            start and end time depends on the <code>IntervalPeriod</code>
+     *            selected. By default the time range between start and end time
+     *            is 35 days. Historical metrics are available for 3 months.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -846,19 +1016,12 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * later than the start time timestamp. It cannot be later than the current
      * timestamp.
      * </p>
-     * <p>
-     * The time range between the start and end time must be less than 24 hours.
-     * </p>
      *
      * @return <p>
      *         The timestamp, in UNIX Epoch time format, at which to end the
      *         reporting interval for the retrieval of historical metrics data.
      *         The time must be later than the start time timestamp. It cannot
      *         be later than the current timestamp.
-     *         </p>
-     *         <p>
-     *         The time range between the start and end time must be less than
-     *         24 hours.
      *         </p>
      */
     public java.util.Date getEndTime() {
@@ -872,19 +1035,12 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * later than the start time timestamp. It cannot be later than the current
      * timestamp.
      * </p>
-     * <p>
-     * The time range between the start and end time must be less than 24 hours.
-     * </p>
      *
      * @param endTime <p>
      *            The timestamp, in UNIX Epoch time format, at which to end the
      *            reporting interval for the retrieval of historical metrics
      *            data. The time must be later than the start time timestamp. It
      *            cannot be later than the current timestamp.
-     *            </p>
-     *            <p>
-     *            The time range between the start and end time must be less
-     *            than 24 hours.
      *            </p>
      */
     public void setEndTime(java.util.Date endTime) {
@@ -899,9 +1055,6 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * timestamp.
      * </p>
      * <p>
-     * The time range between the start and end time must be less than 24 hours.
-     * </p>
-     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -911,15 +1064,471 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            data. The time must be later than the start time timestamp. It
      *            cannot be later than the current timestamp.
      *            </p>
-     *            <p>
-     *            The time range between the start and end time must be less
-     *            than 24 hours.
-     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public GetMetricDataV2Request withEndTime(java.util.Date endTime) {
         this.endTime = endTime;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The interval period and timezone to apply to returned metrics.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>IntervalPeriod</code>: An aggregated grouping applied to request
+     * metrics. Valid <code>IntervalPeriod</code> values are:
+     * <code>FIFTEEN_MIN</code> | <code>THIRTY_MIN</code> | <code>HOUR</code> |
+     * <code>DAY</code> | <code>WEEK</code> | <code>TOTAL</code>.
+     * </p>
+     * <p>
+     * For example, if <code>IntervalPeriod</code> is selected
+     * <code>THIRTY_MIN</code>, <code>StartTime</code> and <code>EndTime</code>
+     * differs by 1 day, then Amazon Connect returns 48 results in the response.
+     * Each result is aggregated by the THIRTY_MIN period. By default Amazon
+     * Connect aggregates results based on the <code>TOTAL</code> interval
+     * period.
+     * </p>
+     * <p>
+     * The following list describes restrictions on <code>StartTime</code> and
+     * <code>EndTime</code> based on which <code>IntervalPeriod</code> is
+     * requested.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>FIFTEEN_MIN</code>: The difference between <code>StartTime</code>
+     * and <code>EndTime</code> must be less than 3 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>THIRTY_MIN</code>: The difference between <code>StartTime</code>
+     * and <code>EndTime</code> must be less than 3 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>HOUR</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 3 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DAY</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 35 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>WEEK</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 35 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>TOTAL</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 35 days.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>TimeZone</code>: The timezone applied to requested metrics.
+     * </p>
+     * </li>
+     * </ul>
+     *
+     * @return <p>
+     *         The interval period and timezone to apply to returned metrics.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>IntervalPeriod</code>: An aggregated grouping applied to
+     *         request metrics. Valid <code>IntervalPeriod</code> values are:
+     *         <code>FIFTEEN_MIN</code> | <code>THIRTY_MIN</code> |
+     *         <code>HOUR</code> | <code>DAY</code> | <code>WEEK</code> |
+     *         <code>TOTAL</code>.
+     *         </p>
+     *         <p>
+     *         For example, if <code>IntervalPeriod</code> is selected
+     *         <code>THIRTY_MIN</code>, <code>StartTime</code> and
+     *         <code>EndTime</code> differs by 1 day, then Amazon Connect
+     *         returns 48 results in the response. Each result is aggregated by
+     *         the THIRTY_MIN period. By default Amazon Connect aggregates
+     *         results based on the <code>TOTAL</code> interval period.
+     *         </p>
+     *         <p>
+     *         The following list describes restrictions on
+     *         <code>StartTime</code> and <code>EndTime</code> based on which
+     *         <code>IntervalPeriod</code> is requested.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>FIFTEEN_MIN</code>: The difference between
+     *         <code>StartTime</code> and <code>EndTime</code> must be less than
+     *         3 days.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>THIRTY_MIN</code>: The difference between
+     *         <code>StartTime</code> and <code>EndTime</code> must be less than
+     *         3 days.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>HOUR</code>: The difference between <code>StartTime</code>
+     *         and <code>EndTime</code> must be less than 3 days.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>DAY</code>: The difference between <code>StartTime</code>
+     *         and <code>EndTime</code> must be less than 35 days.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>WEEK</code>: The difference between <code>StartTime</code>
+     *         and <code>EndTime</code> must be less than 35 days.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>TOTAL</code>: The difference between <code>StartTime</code>
+     *         and <code>EndTime</code> must be less than 35 days.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>TimeZone</code>: The timezone applied to requested metrics.
+     *         </p>
+     *         </li>
+     *         </ul>
+     */
+    public IntervalDetails getInterval() {
+        return interval;
+    }
+
+    /**
+     * <p>
+     * The interval period and timezone to apply to returned metrics.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>IntervalPeriod</code>: An aggregated grouping applied to request
+     * metrics. Valid <code>IntervalPeriod</code> values are:
+     * <code>FIFTEEN_MIN</code> | <code>THIRTY_MIN</code> | <code>HOUR</code> |
+     * <code>DAY</code> | <code>WEEK</code> | <code>TOTAL</code>.
+     * </p>
+     * <p>
+     * For example, if <code>IntervalPeriod</code> is selected
+     * <code>THIRTY_MIN</code>, <code>StartTime</code> and <code>EndTime</code>
+     * differs by 1 day, then Amazon Connect returns 48 results in the response.
+     * Each result is aggregated by the THIRTY_MIN period. By default Amazon
+     * Connect aggregates results based on the <code>TOTAL</code> interval
+     * period.
+     * </p>
+     * <p>
+     * The following list describes restrictions on <code>StartTime</code> and
+     * <code>EndTime</code> based on which <code>IntervalPeriod</code> is
+     * requested.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>FIFTEEN_MIN</code>: The difference between <code>StartTime</code>
+     * and <code>EndTime</code> must be less than 3 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>THIRTY_MIN</code>: The difference between <code>StartTime</code>
+     * and <code>EndTime</code> must be less than 3 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>HOUR</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 3 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DAY</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 35 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>WEEK</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 35 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>TOTAL</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 35 days.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>TimeZone</code>: The timezone applied to requested metrics.
+     * </p>
+     * </li>
+     * </ul>
+     *
+     * @param interval <p>
+     *            The interval period and timezone to apply to returned metrics.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>IntervalPeriod</code>: An aggregated grouping applied to
+     *            request metrics. Valid <code>IntervalPeriod</code> values are:
+     *            <code>FIFTEEN_MIN</code> | <code>THIRTY_MIN</code> |
+     *            <code>HOUR</code> | <code>DAY</code> | <code>WEEK</code> |
+     *            <code>TOTAL</code>.
+     *            </p>
+     *            <p>
+     *            For example, if <code>IntervalPeriod</code> is selected
+     *            <code>THIRTY_MIN</code>, <code>StartTime</code> and
+     *            <code>EndTime</code> differs by 1 day, then Amazon Connect
+     *            returns 48 results in the response. Each result is aggregated
+     *            by the THIRTY_MIN period. By default Amazon Connect aggregates
+     *            results based on the <code>TOTAL</code> interval period.
+     *            </p>
+     *            <p>
+     *            The following list describes restrictions on
+     *            <code>StartTime</code> and <code>EndTime</code> based on which
+     *            <code>IntervalPeriod</code> is requested.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>FIFTEEN_MIN</code>: The difference between
+     *            <code>StartTime</code> and <code>EndTime</code> must be less
+     *            than 3 days.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>THIRTY_MIN</code>: The difference between
+     *            <code>StartTime</code> and <code>EndTime</code> must be less
+     *            than 3 days.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>HOUR</code>: The difference between
+     *            <code>StartTime</code> and <code>EndTime</code> must be less
+     *            than 3 days.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DAY</code>: The difference between
+     *            <code>StartTime</code> and <code>EndTime</code> must be less
+     *            than 35 days.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>WEEK</code>: The difference between
+     *            <code>StartTime</code> and <code>EndTime</code> must be less
+     *            than 35 days.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>TOTAL</code>: The difference between
+     *            <code>StartTime</code> and <code>EndTime</code> must be less
+     *            than 35 days.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>TimeZone</code>: The timezone applied to requested
+     *            metrics.
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setInterval(IntervalDetails interval) {
+        this.interval = interval;
+    }
+
+    /**
+     * <p>
+     * The interval period and timezone to apply to returned metrics.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>IntervalPeriod</code>: An aggregated grouping applied to request
+     * metrics. Valid <code>IntervalPeriod</code> values are:
+     * <code>FIFTEEN_MIN</code> | <code>THIRTY_MIN</code> | <code>HOUR</code> |
+     * <code>DAY</code> | <code>WEEK</code> | <code>TOTAL</code>.
+     * </p>
+     * <p>
+     * For example, if <code>IntervalPeriod</code> is selected
+     * <code>THIRTY_MIN</code>, <code>StartTime</code> and <code>EndTime</code>
+     * differs by 1 day, then Amazon Connect returns 48 results in the response.
+     * Each result is aggregated by the THIRTY_MIN period. By default Amazon
+     * Connect aggregates results based on the <code>TOTAL</code> interval
+     * period.
+     * </p>
+     * <p>
+     * The following list describes restrictions on <code>StartTime</code> and
+     * <code>EndTime</code> based on which <code>IntervalPeriod</code> is
+     * requested.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>FIFTEEN_MIN</code>: The difference between <code>StartTime</code>
+     * and <code>EndTime</code> must be less than 3 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>THIRTY_MIN</code>: The difference between <code>StartTime</code>
+     * and <code>EndTime</code> must be less than 3 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>HOUR</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 3 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DAY</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 35 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>WEEK</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 35 days.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>TOTAL</code>: The difference between <code>StartTime</code> and
+     * <code>EndTime</code> must be less than 35 days.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>TimeZone</code>: The timezone applied to requested metrics.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param interval <p>
+     *            The interval period and timezone to apply to returned metrics.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>IntervalPeriod</code>: An aggregated grouping applied to
+     *            request metrics. Valid <code>IntervalPeriod</code> values are:
+     *            <code>FIFTEEN_MIN</code> | <code>THIRTY_MIN</code> |
+     *            <code>HOUR</code> | <code>DAY</code> | <code>WEEK</code> |
+     *            <code>TOTAL</code>.
+     *            </p>
+     *            <p>
+     *            For example, if <code>IntervalPeriod</code> is selected
+     *            <code>THIRTY_MIN</code>, <code>StartTime</code> and
+     *            <code>EndTime</code> differs by 1 day, then Amazon Connect
+     *            returns 48 results in the response. Each result is aggregated
+     *            by the THIRTY_MIN period. By default Amazon Connect aggregates
+     *            results based on the <code>TOTAL</code> interval period.
+     *            </p>
+     *            <p>
+     *            The following list describes restrictions on
+     *            <code>StartTime</code> and <code>EndTime</code> based on which
+     *            <code>IntervalPeriod</code> is requested.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>FIFTEEN_MIN</code>: The difference between
+     *            <code>StartTime</code> and <code>EndTime</code> must be less
+     *            than 3 days.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>THIRTY_MIN</code>: The difference between
+     *            <code>StartTime</code> and <code>EndTime</code> must be less
+     *            than 3 days.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>HOUR</code>: The difference between
+     *            <code>StartTime</code> and <code>EndTime</code> must be less
+     *            than 3 days.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DAY</code>: The difference between
+     *            <code>StartTime</code> and <code>EndTime</code> must be less
+     *            than 35 days.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>WEEK</code>: The difference between
+     *            <code>StartTime</code> and <code>EndTime</code> must be less
+     *            than 35 days.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>TOTAL</code>: The difference between
+     *            <code>StartTime</code> and <code>EndTime</code> must be less
+     *            than 35 days.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>TimeZone</code>: The timezone applied to requested
+     *            metrics.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetMetricDataV2Request withInterval(IntervalDetails interval) {
+        this.interval = interval;
         return this;
     }
 
@@ -1816,6 +2425,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Administrator's Guide</i>.
      * </p>
      * <dl>
+     * <dt>ABANDONMENT_RATE</dt>
+     * <dd>
+     * <p>
+     * Unit: Percent
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
      * <dt>AGENT_ADHERENT_TIME</dt>
      * <dd>
      * <p>
@@ -1840,6 +2459,20 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
      * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AGENT_NON_RESPONSE_WITHOUT_CUSTOMER_ABANDONS</dt>
+     * <dd>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * <p>
+     * Data for this metric is available starting from October 1, 2023 0:00:00
+     * GMT.
      * </p>
      * </dd>
      * <dt>AGENT_OCCUPANCY</dt>
@@ -1922,23 +2555,12 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
      * Agent Hierarchy
      * </p>
-     * </dd>
-     * <dt>AVG_AGENT_CONNECTING_TIME</dt>
-     * <dd>
+     * <note>
      * <p>
-     * Unit: Seconds
+     * The <code>Negate</code> key in Metric Level Filters is not applicable for
+     * this metric.
      * </p>
-     * <p>
-     * Valid metric filter key: <code>INITIATION_METHOD</code>. For now, this
-     * metric only supports the following as <code>INITIATION_METHOD</code>:
-     * <code>INBOUND</code> | <code>OUTBOUND</code> | <code>CALLBACK</code> |
-     * <code>API</code>
-     * </p>
-     * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
-     * </p>
-     * </dd>
+     * </note></dd>
      * <dt>AVG_CONTACT_DURATION</dt>
      * <dd>
      * <p>
@@ -2005,6 +2627,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Feature is a valid filter but not a valid grouping.
      * </p>
      * </note></dd>
+     * <dt>AVG_HOLD_TIME_ALL_CONTACTS</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
      * <dt>AVG_HOLDS</dt>
      * <dd>
      * <p>
@@ -2097,6 +2729,15 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Feature is a valid filter but not a valid grouping.
      * </p>
      * </note></dd>
+     * <dt>AVG_RESOLUTION_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * </p>
+     * </dd>
      * <dt>AVG_TALK_TIME</dt>
      * <dd>
      * <p>
@@ -2203,6 +2844,20 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Agent Hierarchy
      * </p>
      * </dd>
+     * <dt>CONTACTS_RESOLVED_IN_X</dt>
+     * <dd>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * </p>
+     * <p>
+     * Threshold: For <code>ThresholdValue</code> enter any whole number from 1
+     * to 604800 (inclusive), in seconds. For <code>Comparison</code>, you must
+     * enter <code>LT</code> (for "Less than").
+     * </p>
+     * </dd>
      * <dt>CONTACTS_TRANSFERRED_OUT</dt>
      * <dd>
      * <p>
@@ -2241,6 +2896,62 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <dd>
      * <p>
      * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_NON_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_TALK_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_TALK_TIME_CUSTOMER</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
@@ -2324,6 +3035,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         Administrator's Guide</i>.
      *         </p>
      *         <dl>
+     *         <dt>ABANDONMENT_RATE</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: Percent
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy
+     *         </p>
+     *         </dd>
      *         <dt>AGENT_ADHERENT_TIME</dt>
      *         <dd>
      *         <p>
@@ -2348,6 +3069,20 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         <p>
      *         Valid groupings and filters: Queue, Channel, Routing Profile,
      *         Agent, Agent Hierarchy
+     *         </p>
+     *         </dd>
+     *         <dt>AGENT_NON_RESPONSE_WITHOUT_CUSTOMER_ABANDONS</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: Count
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy
+     *         </p>
+     *         <p>
+     *         Data for this metric is available starting from October 1, 2023
+     *         0:00:00 GMT.
      *         </p>
      *         </dd>
      *         <dt>AGENT_OCCUPANCY</dt>
@@ -2431,23 +3166,12 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         Valid groupings and filters: Queue, Channel, Routing Profile,
      *         Agent, Agent Hierarchy
      *         </p>
-     *         </dd>
-     *         <dt>AVG_AGENT_CONNECTING_TIME</dt>
-     *         <dd>
+     *         <note>
      *         <p>
-     *         Unit: Seconds
+     *         The <code>Negate</code> key in Metric Level Filters is not
+     *         applicable for this metric.
      *         </p>
-     *         <p>
-     *         Valid metric filter key: <code>INITIATION_METHOD</code>. For now,
-     *         this metric only supports the following as
-     *         <code>INITIATION_METHOD</code>: <code>INBOUND</code> |
-     *         <code>OUTBOUND</code> | <code>CALLBACK</code> | <code>API</code>
-     *         </p>
-     *         <p>
-     *         Valid groupings and filters: Queue, Channel, Routing Profile,
-     *         Agent, Agent Hierarchy
-     *         </p>
-     *         </dd>
+     *         </note></dd>
      *         <dt>AVG_CONTACT_DURATION</dt>
      *         <dd>
      *         <p>
@@ -2514,6 +3238,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         Feature is a valid filter but not a valid grouping.
      *         </p>
      *         </note></dd>
+     *         <dt>AVG_HOLD_TIME_ALL_CONTACTS</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: Seconds
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy
+     *         </p>
+     *         </dd>
      *         <dt>AVG_HOLDS</dt>
      *         <dd>
      *         <p>
@@ -2608,6 +3342,15 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         Feature is a valid filter but not a valid grouping.
      *         </p>
      *         </note></dd>
+     *         <dt>AVG_RESOLUTION_TIME</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: Seconds
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile
+     *         </p>
+     *         </dd>
      *         <dt>AVG_TALK_TIME</dt>
      *         <dd>
      *         <p>
@@ -2715,6 +3458,21 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         Agent, Agent Hierarchy
      *         </p>
      *         </dd>
+     *         <dt>CONTACTS_RESOLVED_IN_X</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: Count
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile
+     *         </p>
+     *         <p>
+     *         Threshold: For <code>ThresholdValue</code> enter any whole number
+     *         from 1 to 604800 (inclusive), in seconds. For
+     *         <code>Comparison</code>, you must enter <code>LT</code> (for
+     *         "Less than").
+     *         </p>
+     *         </dd>
      *         <dt>CONTACTS_TRANSFERRED_OUT</dt>
      *         <dd>
      *         <p>
@@ -2753,6 +3511,62 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         <dd>
      *         <p>
      *         Unit: Seconds
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy
+     *         </p>
+     *         </dd>
+     *         <dt>PERCENT_NON_TALK_TIME</dt>
+     *         <dd>
+     *         <p>
+     *         This metric is available only for contacts analyzed by Contact
+     *         Lens conversational analytics.
+     *         </p>
+     *         <p>
+     *         Unit: Percentage
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy
+     *         </p>
+     *         </dd>
+     *         <dt>PERCENT_TALK_TIME</dt>
+     *         <dd>
+     *         <p>
+     *         This metric is available only for contacts analyzed by Contact
+     *         Lens conversational analytics.
+     *         </p>
+     *         <p>
+     *         Unit: Percentage
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy
+     *         </p>
+     *         </dd>
+     *         <dt>PERCENT_TALK_TIME_AGENT</dt>
+     *         <dd>
+     *         <p>
+     *         This metric is available only for contacts analyzed by Contact
+     *         Lens conversational analytics.
+     *         </p>
+     *         <p>
+     *         Unit: Percentage
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy
+     *         </p>
+     *         </dd>
+     *         <dt>PERCENT_TALK_TIME_CUSTOMER</dt>
+     *         <dd>
+     *         <p>
+     *         This metric is available only for contacts analyzed by Contact
+     *         Lens conversational analytics.
+     *         </p>
+     *         <p>
+     *         Unit: Percentage
      *         </p>
      *         <p>
      *         Valid groupings and filters: Queue, Channel, Routing Profile,
@@ -2844,6 +3658,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Administrator's Guide</i>.
      * </p>
      * <dl>
+     * <dt>ABANDONMENT_RATE</dt>
+     * <dd>
+     * <p>
+     * Unit: Percent
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
      * <dt>AGENT_ADHERENT_TIME</dt>
      * <dd>
      * <p>
@@ -2868,6 +3692,20 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
      * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AGENT_NON_RESPONSE_WITHOUT_CUSTOMER_ABANDONS</dt>
+     * <dd>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * <p>
+     * Data for this metric is available starting from October 1, 2023 0:00:00
+     * GMT.
      * </p>
      * </dd>
      * <dt>AGENT_OCCUPANCY</dt>
@@ -2950,23 +3788,12 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
      * Agent Hierarchy
      * </p>
-     * </dd>
-     * <dt>AVG_AGENT_CONNECTING_TIME</dt>
-     * <dd>
+     * <note>
      * <p>
-     * Unit: Seconds
+     * The <code>Negate</code> key in Metric Level Filters is not applicable for
+     * this metric.
      * </p>
-     * <p>
-     * Valid metric filter key: <code>INITIATION_METHOD</code>. For now, this
-     * metric only supports the following as <code>INITIATION_METHOD</code>:
-     * <code>INBOUND</code> | <code>OUTBOUND</code> | <code>CALLBACK</code> |
-     * <code>API</code>
-     * </p>
-     * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
-     * </p>
-     * </dd>
+     * </note></dd>
      * <dt>AVG_CONTACT_DURATION</dt>
      * <dd>
      * <p>
@@ -3033,6 +3860,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Feature is a valid filter but not a valid grouping.
      * </p>
      * </note></dd>
+     * <dt>AVG_HOLD_TIME_ALL_CONTACTS</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
      * <dt>AVG_HOLDS</dt>
      * <dd>
      * <p>
@@ -3125,6 +3962,15 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Feature is a valid filter but not a valid grouping.
      * </p>
      * </note></dd>
+     * <dt>AVG_RESOLUTION_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * </p>
+     * </dd>
      * <dt>AVG_TALK_TIME</dt>
      * <dd>
      * <p>
@@ -3231,6 +4077,20 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Agent Hierarchy
      * </p>
      * </dd>
+     * <dt>CONTACTS_RESOLVED_IN_X</dt>
+     * <dd>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * </p>
+     * <p>
+     * Threshold: For <code>ThresholdValue</code> enter any whole number from 1
+     * to 604800 (inclusive), in seconds. For <code>Comparison</code>, you must
+     * enter <code>LT</code> (for "Less than").
+     * </p>
+     * </dd>
      * <dt>CONTACTS_TRANSFERRED_OUT</dt>
      * <dd>
      * <p>
@@ -3269,6 +4129,62 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <dd>
      * <p>
      * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_NON_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_TALK_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_TALK_TIME_CUSTOMER</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
@@ -3352,6 +4268,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Administrator's Guide</i>.
      *            </p>
      *            <dl>
+     *            <dt>ABANDONMENT_RATE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Percent
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
      *            <dt>AGENT_ADHERENT_TIME</dt>
      *            <dd>
      *            <p>
@@ -3377,6 +4303,20 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
      *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AGENT_NON_RESPONSE_WITHOUT_CUSTOMER_ABANDONS</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Count
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            <p>
+     *            Data for this metric is available starting from October 1,
+     *            2023 0:00:00 GMT.
      *            </p>
      *            </dd>
      *            <dt>AGENT_OCCUPANCY</dt>
@@ -3463,24 +4403,12 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
      *            Agent, Agent Hierarchy
      *            </p>
-     *            </dd>
-     *            <dt>AVG_AGENT_CONNECTING_TIME</dt>
-     *            <dd>
+     *            <note>
      *            <p>
-     *            Unit: Seconds
+     *            The <code>Negate</code> key in Metric Level Filters is not
+     *            applicable for this metric.
      *            </p>
-     *            <p>
-     *            Valid metric filter key: <code>INITIATION_METHOD</code>. For
-     *            now, this metric only supports the following as
-     *            <code>INITIATION_METHOD</code>: <code>INBOUND</code> |
-     *            <code>OUTBOUND</code> | <code>CALLBACK</code> |
-     *            <code>API</code>
-     *            </p>
-     *            <p>
-     *            Valid groupings and filters: Queue, Channel, Routing Profile,
-     *            Agent, Agent Hierarchy
-     *            </p>
-     *            </dd>
+     *            </note></dd>
      *            <dt>AVG_CONTACT_DURATION</dt>
      *            <dd>
      *            <p>
@@ -3547,6 +4475,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Feature is a valid filter but not a valid grouping.
      *            </p>
      *            </note></dd>
+     *            <dt>AVG_HOLD_TIME_ALL_CONTACTS</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
      *            <dt>AVG_HOLDS</dt>
      *            <dd>
      *            <p>
@@ -3641,6 +4579,15 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Feature is a valid filter but not a valid grouping.
      *            </p>
      *            </note></dd>
+     *            <dt>AVG_RESOLUTION_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile
+     *            </p>
+     *            </dd>
      *            <dt>AVG_TALK_TIME</dt>
      *            <dd>
      *            <p>
@@ -3748,6 +4695,21 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Agent, Agent Hierarchy
      *            </p>
      *            </dd>
+     *            <dt>CONTACTS_RESOLVED_IN_X</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Count
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile
+     *            </p>
+     *            <p>
+     *            Threshold: For <code>ThresholdValue</code> enter any whole
+     *            number from 1 to 604800 (inclusive), in seconds. For
+     *            <code>Comparison</code>, you must enter <code>LT</code> (for
+     *            "Less than").
+     *            </p>
+     *            </dd>
      *            <dt>CONTACTS_TRANSFERRED_OUT</dt>
      *            <dd>
      *            <p>
@@ -3786,6 +4748,62 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            <dd>
      *            <p>
      *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>PERCENT_NON_TALK_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Percentage
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>PERCENT_TALK_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Percentage
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>PERCENT_TALK_TIME_AGENT</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Percentage
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>PERCENT_TALK_TIME_CUSTOMER</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Percentage
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
@@ -3882,6 +4900,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Administrator's Guide</i>.
      * </p>
      * <dl>
+     * <dt>ABANDONMENT_RATE</dt>
+     * <dd>
+     * <p>
+     * Unit: Percent
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
      * <dt>AGENT_ADHERENT_TIME</dt>
      * <dd>
      * <p>
@@ -3906,6 +4934,20 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
      * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AGENT_NON_RESPONSE_WITHOUT_CUSTOMER_ABANDONS</dt>
+     * <dd>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * <p>
+     * Data for this metric is available starting from October 1, 2023 0:00:00
+     * GMT.
      * </p>
      * </dd>
      * <dt>AGENT_OCCUPANCY</dt>
@@ -3988,23 +5030,12 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
      * Agent Hierarchy
      * </p>
-     * </dd>
-     * <dt>AVG_AGENT_CONNECTING_TIME</dt>
-     * <dd>
+     * <note>
      * <p>
-     * Unit: Seconds
+     * The <code>Negate</code> key in Metric Level Filters is not applicable for
+     * this metric.
      * </p>
-     * <p>
-     * Valid metric filter key: <code>INITIATION_METHOD</code>. For now, this
-     * metric only supports the following as <code>INITIATION_METHOD</code>:
-     * <code>INBOUND</code> | <code>OUTBOUND</code> | <code>CALLBACK</code> |
-     * <code>API</code>
-     * </p>
-     * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
-     * </p>
-     * </dd>
+     * </note></dd>
      * <dt>AVG_CONTACT_DURATION</dt>
      * <dd>
      * <p>
@@ -4071,6 +5102,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Feature is a valid filter but not a valid grouping.
      * </p>
      * </note></dd>
+     * <dt>AVG_HOLD_TIME_ALL_CONTACTS</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
      * <dt>AVG_HOLDS</dt>
      * <dd>
      * <p>
@@ -4163,6 +5204,15 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Feature is a valid filter but not a valid grouping.
      * </p>
      * </note></dd>
+     * <dt>AVG_RESOLUTION_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * </p>
+     * </dd>
      * <dt>AVG_TALK_TIME</dt>
      * <dd>
      * <p>
@@ -4269,6 +5319,20 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Agent Hierarchy
      * </p>
      * </dd>
+     * <dt>CONTACTS_RESOLVED_IN_X</dt>
+     * <dd>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * </p>
+     * <p>
+     * Threshold: For <code>ThresholdValue</code> enter any whole number from 1
+     * to 604800 (inclusive), in seconds. For <code>Comparison</code>, you must
+     * enter <code>LT</code> (for "Less than").
+     * </p>
+     * </dd>
      * <dt>CONTACTS_TRANSFERRED_OUT</dt>
      * <dd>
      * <p>
@@ -4307,6 +5371,62 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <dd>
      * <p>
      * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_NON_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_TALK_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_TALK_TIME_CUSTOMER</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
@@ -4393,6 +5513,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Administrator's Guide</i>.
      *            </p>
      *            <dl>
+     *            <dt>ABANDONMENT_RATE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Percent
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
      *            <dt>AGENT_ADHERENT_TIME</dt>
      *            <dd>
      *            <p>
@@ -4418,6 +5548,20 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
      *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AGENT_NON_RESPONSE_WITHOUT_CUSTOMER_ABANDONS</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Count
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            <p>
+     *            Data for this metric is available starting from October 1,
+     *            2023 0:00:00 GMT.
      *            </p>
      *            </dd>
      *            <dt>AGENT_OCCUPANCY</dt>
@@ -4504,24 +5648,12 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
      *            Agent, Agent Hierarchy
      *            </p>
-     *            </dd>
-     *            <dt>AVG_AGENT_CONNECTING_TIME</dt>
-     *            <dd>
+     *            <note>
      *            <p>
-     *            Unit: Seconds
+     *            The <code>Negate</code> key in Metric Level Filters is not
+     *            applicable for this metric.
      *            </p>
-     *            <p>
-     *            Valid metric filter key: <code>INITIATION_METHOD</code>. For
-     *            now, this metric only supports the following as
-     *            <code>INITIATION_METHOD</code>: <code>INBOUND</code> |
-     *            <code>OUTBOUND</code> | <code>CALLBACK</code> |
-     *            <code>API</code>
-     *            </p>
-     *            <p>
-     *            Valid groupings and filters: Queue, Channel, Routing Profile,
-     *            Agent, Agent Hierarchy
-     *            </p>
-     *            </dd>
+     *            </note></dd>
      *            <dt>AVG_CONTACT_DURATION</dt>
      *            <dd>
      *            <p>
@@ -4588,6 +5720,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Feature is a valid filter but not a valid grouping.
      *            </p>
      *            </note></dd>
+     *            <dt>AVG_HOLD_TIME_ALL_CONTACTS</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
      *            <dt>AVG_HOLDS</dt>
      *            <dd>
      *            <p>
@@ -4682,6 +5824,15 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Feature is a valid filter but not a valid grouping.
      *            </p>
      *            </note></dd>
+     *            <dt>AVG_RESOLUTION_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile
+     *            </p>
+     *            </dd>
      *            <dt>AVG_TALK_TIME</dt>
      *            <dd>
      *            <p>
@@ -4789,6 +5940,21 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Agent, Agent Hierarchy
      *            </p>
      *            </dd>
+     *            <dt>CONTACTS_RESOLVED_IN_X</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Count
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile
+     *            </p>
+     *            <p>
+     *            Threshold: For <code>ThresholdValue</code> enter any whole
+     *            number from 1 to 604800 (inclusive), in seconds. For
+     *            <code>Comparison</code>, you must enter <code>LT</code> (for
+     *            "Less than").
+     *            </p>
+     *            </dd>
      *            <dt>CONTACTS_TRANSFERRED_OUT</dt>
      *            <dd>
      *            <p>
@@ -4827,6 +5993,62 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            <dd>
      *            <p>
      *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>PERCENT_NON_TALK_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Percentage
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>PERCENT_TALK_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Percentage
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>PERCENT_TALK_TIME_AGENT</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Percentage
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>PERCENT_TALK_TIME_CUSTOMER</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Percentage
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
@@ -4926,6 +6148,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Administrator's Guide</i>.
      * </p>
      * <dl>
+     * <dt>ABANDONMENT_RATE</dt>
+     * <dd>
+     * <p>
+     * Unit: Percent
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
      * <dt>AGENT_ADHERENT_TIME</dt>
      * <dd>
      * <p>
@@ -4950,6 +6182,20 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
      * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AGENT_NON_RESPONSE_WITHOUT_CUSTOMER_ABANDONS</dt>
+     * <dd>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * <p>
+     * Data for this metric is available starting from October 1, 2023 0:00:00
+     * GMT.
      * </p>
      * </dd>
      * <dt>AGENT_OCCUPANCY</dt>
@@ -5032,23 +6278,12 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
      * Agent Hierarchy
      * </p>
-     * </dd>
-     * <dt>AVG_AGENT_CONNECTING_TIME</dt>
-     * <dd>
+     * <note>
      * <p>
-     * Unit: Seconds
+     * The <code>Negate</code> key in Metric Level Filters is not applicable for
+     * this metric.
      * </p>
-     * <p>
-     * Valid metric filter key: <code>INITIATION_METHOD</code>. For now, this
-     * metric only supports the following as <code>INITIATION_METHOD</code>:
-     * <code>INBOUND</code> | <code>OUTBOUND</code> | <code>CALLBACK</code> |
-     * <code>API</code>
-     * </p>
-     * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
-     * </p>
-     * </dd>
+     * </note></dd>
      * <dt>AVG_CONTACT_DURATION</dt>
      * <dd>
      * <p>
@@ -5115,6 +6350,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Feature is a valid filter but not a valid grouping.
      * </p>
      * </note></dd>
+     * <dt>AVG_HOLD_TIME_ALL_CONTACTS</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
      * <dt>AVG_HOLDS</dt>
      * <dd>
      * <p>
@@ -5207,6 +6452,15 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Feature is a valid filter but not a valid grouping.
      * </p>
      * </note></dd>
+     * <dt>AVG_RESOLUTION_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * </p>
+     * </dd>
      * <dt>AVG_TALK_TIME</dt>
      * <dd>
      * <p>
@@ -5313,6 +6567,20 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Agent Hierarchy
      * </p>
      * </dd>
+     * <dt>CONTACTS_RESOLVED_IN_X</dt>
+     * <dd>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * </p>
+     * <p>
+     * Threshold: For <code>ThresholdValue</code> enter any whole number from 1
+     * to 604800 (inclusive), in seconds. For <code>Comparison</code>, you must
+     * enter <code>LT</code> (for "Less than").
+     * </p>
+     * </dd>
      * <dt>CONTACTS_TRANSFERRED_OUT</dt>
      * <dd>
      * <p>
@@ -5351,6 +6619,62 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <dd>
      * <p>
      * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_NON_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_TALK_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>PERCENT_TALK_TIME_CUSTOMER</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Percentage
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
@@ -5437,6 +6761,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Administrator's Guide</i>.
      *            </p>
      *            <dl>
+     *            <dt>ABANDONMENT_RATE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Percent
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
      *            <dt>AGENT_ADHERENT_TIME</dt>
      *            <dd>
      *            <p>
@@ -5462,6 +6796,20 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
      *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AGENT_NON_RESPONSE_WITHOUT_CUSTOMER_ABANDONS</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Count
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            <p>
+     *            Data for this metric is available starting from October 1,
+     *            2023 0:00:00 GMT.
      *            </p>
      *            </dd>
      *            <dt>AGENT_OCCUPANCY</dt>
@@ -5548,24 +6896,12 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
      *            Agent, Agent Hierarchy
      *            </p>
-     *            </dd>
-     *            <dt>AVG_AGENT_CONNECTING_TIME</dt>
-     *            <dd>
+     *            <note>
      *            <p>
-     *            Unit: Seconds
+     *            The <code>Negate</code> key in Metric Level Filters is not
+     *            applicable for this metric.
      *            </p>
-     *            <p>
-     *            Valid metric filter key: <code>INITIATION_METHOD</code>. For
-     *            now, this metric only supports the following as
-     *            <code>INITIATION_METHOD</code>: <code>INBOUND</code> |
-     *            <code>OUTBOUND</code> | <code>CALLBACK</code> |
-     *            <code>API</code>
-     *            </p>
-     *            <p>
-     *            Valid groupings and filters: Queue, Channel, Routing Profile,
-     *            Agent, Agent Hierarchy
-     *            </p>
-     *            </dd>
+     *            </note></dd>
      *            <dt>AVG_CONTACT_DURATION</dt>
      *            <dd>
      *            <p>
@@ -5632,6 +6968,16 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Feature is a valid filter but not a valid grouping.
      *            </p>
      *            </note></dd>
+     *            <dt>AVG_HOLD_TIME_ALL_CONTACTS</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
      *            <dt>AVG_HOLDS</dt>
      *            <dd>
      *            <p>
@@ -5726,6 +7072,15 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Feature is a valid filter but not a valid grouping.
      *            </p>
      *            </note></dd>
+     *            <dt>AVG_RESOLUTION_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile
+     *            </p>
+     *            </dd>
      *            <dt>AVG_TALK_TIME</dt>
      *            <dd>
      *            <p>
@@ -5833,6 +7188,21 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Agent, Agent Hierarchy
      *            </p>
      *            </dd>
+     *            <dt>CONTACTS_RESOLVED_IN_X</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Count
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile
+     *            </p>
+     *            <p>
+     *            Threshold: For <code>ThresholdValue</code> enter any whole
+     *            number from 1 to 604800 (inclusive), in seconds. For
+     *            <code>Comparison</code>, you must enter <code>LT</code> (for
+     *            "Less than").
+     *            </p>
+     *            </dd>
      *            <dt>CONTACTS_TRANSFERRED_OUT</dt>
      *            <dd>
      *            <p>
@@ -5871,6 +7241,62 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            <dd>
      *            <p>
      *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>PERCENT_NON_TALK_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Percentage
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>PERCENT_TALK_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Percentage
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>PERCENT_TALK_TIME_AGENT</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Percentage
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>PERCENT_TALK_TIME_CUSTOMER</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Percentage
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
@@ -6092,6 +7518,8 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
             sb.append("StartTime: " + getStartTime() + ",");
         if (getEndTime() != null)
             sb.append("EndTime: " + getEndTime() + ",");
+        if (getInterval() != null)
+            sb.append("Interval: " + getInterval() + ",");
         if (getFilters() != null)
             sb.append("Filters: " + getFilters() + ",");
         if (getGroupings() != null)
@@ -6115,6 +7543,7 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
                 + ((getResourceArn() == null) ? 0 : getResourceArn().hashCode());
         hashCode = prime * hashCode + ((getStartTime() == null) ? 0 : getStartTime().hashCode());
         hashCode = prime * hashCode + ((getEndTime() == null) ? 0 : getEndTime().hashCode());
+        hashCode = prime * hashCode + ((getInterval() == null) ? 0 : getInterval().hashCode());
         hashCode = prime * hashCode + ((getFilters() == null) ? 0 : getFilters().hashCode());
         hashCode = prime * hashCode + ((getGroupings() == null) ? 0 : getGroupings().hashCode());
         hashCode = prime * hashCode + ((getMetrics() == null) ? 0 : getMetrics().hashCode());
@@ -6147,6 +7576,10 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
         if (other.getEndTime() == null ^ this.getEndTime() == null)
             return false;
         if (other.getEndTime() != null && other.getEndTime().equals(this.getEndTime()) == false)
+            return false;
+        if (other.getInterval() == null ^ this.getInterval() == null)
+            return false;
+        if (other.getInterval() != null && other.getInterval().equals(this.getInterval()) == false)
             return false;
         if (other.getFilters() == null ^ this.getFilters() == null)
             return false;

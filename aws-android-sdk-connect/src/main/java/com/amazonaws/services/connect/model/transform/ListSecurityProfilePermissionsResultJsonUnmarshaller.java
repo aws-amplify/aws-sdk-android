@@ -43,6 +43,14 @@ public class ListSecurityProfilePermissionsResultJsonUnmarshaller implements
                 listSecurityProfilePermissionsResult.setNextToken(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                listSecurityProfilePermissionsResult.setLastModifiedTime(DateJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                listSecurityProfilePermissionsResult.setLastModifiedRegion(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
