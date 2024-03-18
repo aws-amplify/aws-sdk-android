@@ -78,6 +78,10 @@ public class DescribeSecurityProfileResultJsonUnmarshaller implements
                 describeSecurityProfileResult.setLastModifiedDate(DateJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("metricsExportConfig")) {
+                describeSecurityProfileResult
+                        .setMetricsExportConfig(MetricsExportConfigJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

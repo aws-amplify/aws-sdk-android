@@ -21,43 +21,40 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO MetricToRetain
+ * JSON unmarshaller for POJO GeoLocationTarget
  */
-class MetricToRetainJsonUnmarshaller implements
-        Unmarshaller<MetricToRetain, JsonUnmarshallerContext> {
+class GeoLocationTargetJsonUnmarshaller implements
+        Unmarshaller<GeoLocationTarget, JsonUnmarshallerContext> {
 
-    public MetricToRetain unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public GeoLocationTarget unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        MetricToRetain metricToRetain = new MetricToRetain();
+        GeoLocationTarget geoLocationTarget = new GeoLocationTarget();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("metric")) {
-                metricToRetain.setMetric(StringJsonUnmarshaller.getInstance()
+            if (name.equals("name")) {
+                geoLocationTarget.setName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("metricDimension")) {
-                metricToRetain.setMetricDimension(MetricDimensionJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("exportMetric")) {
-                metricToRetain.setExportMetric(BooleanJsonUnmarshaller.getInstance()
+            } else if (name.equals("order")) {
+                geoLocationTarget.setOrder(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return metricToRetain;
+        return geoLocationTarget;
     }
 
-    private static MetricToRetainJsonUnmarshaller instance;
+    private static GeoLocationTargetJsonUnmarshaller instance;
 
-    public static MetricToRetainJsonUnmarshaller getInstance() {
+    public static GeoLocationTargetJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new MetricToRetainJsonUnmarshaller();
+            instance = new GeoLocationTargetJsonUnmarshaller();
         return instance;
     }
 }

@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class CreatePackageResult implements Serializable {
     /**
      * <p>
-     * The name of the package.
+     * The name of the software package.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,7 +49,7 @@ public class CreatePackageResult implements Serializable {
 
     /**
      * <p>
-     * The name of the package.
+     * The name of the software package.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -57,7 +57,7 @@ public class CreatePackageResult implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9-_.]+<br/>
      *
      * @return <p>
-     *         The name of the package.
+     *         The name of the software package.
      *         </p>
      */
     public String getPackageName() {
@@ -66,7 +66,7 @@ public class CreatePackageResult implements Serializable {
 
     /**
      * <p>
-     * The name of the package.
+     * The name of the software package.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -74,7 +74,7 @@ public class CreatePackageResult implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9-_.]+<br/>
      *
      * @param packageName <p>
-     *            The name of the package.
+     *            The name of the software package.
      *            </p>
      */
     public void setPackageName(String packageName) {
@@ -83,7 +83,7 @@ public class CreatePackageResult implements Serializable {
 
     /**
      * <p>
-     * The name of the package.
+     * The name of the software package.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -94,7 +94,7 @@ public class CreatePackageResult implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9-_.]+<br/>
      *
      * @param packageName <p>
-     *            The name of the package.
+     *            The name of the software package.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

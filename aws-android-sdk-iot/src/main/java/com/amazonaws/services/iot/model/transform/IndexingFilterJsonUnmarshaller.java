@@ -41,6 +41,11 @@ class IndexingFilterJsonUnmarshaller implements
                         StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("geoLocations")) {
+                indexingFilter.setGeoLocations(new ListUnmarshaller<GeoLocationTarget>(
+                        GeoLocationTargetJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
