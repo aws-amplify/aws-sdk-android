@@ -20,12 +20,17 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
+ * <note>
+ * <p>
+ * This operation applies only to Amazon Rekognition Custom Labels.
+ * </p>
+ * </note>
  * <p>
  * Attaches a project policy to a Amazon Rekognition Custom Labels project in a
  * trusting AWS account. A project policy specifies that a trusted AWS account
  * can copy a model version from a trusting AWS account to a project in the
  * trusted AWS account. To copy a model version you use the
- * <a>CopyProjectVersion</a> operation.
+ * <a>CopyProjectVersion</a> operation. Only applies to Custom Labels projects.
  * </p>
  * <p>
  * For more information about the format of a project policy document, see

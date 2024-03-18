@@ -34,7 +34,9 @@ public enum ProjectVersionStatus {
     DELETING("DELETING"),
     COPYING_IN_PROGRESS("COPYING_IN_PROGRESS"),
     COPYING_COMPLETED("COPYING_COMPLETED"),
-    COPYING_FAILED("COPYING_FAILED");
+    COPYING_FAILED("COPYING_FAILED"),
+    DEPRECATED("DEPRECATED"),
+    EXPIRED("EXPIRED");
 
     private String value;
 
@@ -62,6 +64,8 @@ public enum ProjectVersionStatus {
         enumMap.put("COPYING_IN_PROGRESS", COPYING_IN_PROGRESS);
         enumMap.put("COPYING_COMPLETED", COPYING_COMPLETED);
         enumMap.put("COPYING_FAILED", COPYING_FAILED);
+        enumMap.put("DEPRECATED", DEPRECATED);
+        enumMap.put("EXPIRED", EXPIRED);
     }
 
     /**

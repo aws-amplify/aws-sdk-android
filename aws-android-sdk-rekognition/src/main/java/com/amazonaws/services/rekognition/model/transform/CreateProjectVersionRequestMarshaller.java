@@ -106,6 +106,18 @@ public class CreateProjectVersionRequestMarshaller implements
                 jsonWriter.name("KmsKeyId");
                 jsonWriter.value(kmsKeyId);
             }
+            if (createProjectVersionRequest.getVersionDescription() != null) {
+                String versionDescription = createProjectVersionRequest.getVersionDescription();
+                jsonWriter.name("VersionDescription");
+                jsonWriter.value(versionDescription);
+            }
+            if (createProjectVersionRequest.getFeatureConfig() != null) {
+                CustomizationFeatureConfig featureConfig = createProjectVersionRequest
+                        .getFeatureConfig();
+                jsonWriter.name("FeatureConfig");
+                CustomizationFeatureConfigJsonMarshaller.getInstance().marshall(featureConfig,
+                        jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

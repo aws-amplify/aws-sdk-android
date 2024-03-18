@@ -28,8 +28,8 @@ public class DetectModerationLabelsResult implements Serializable {
 
     /**
      * <p>
-     * Version number of the moderation detection model that was used to detect
-     * unsafe content.
+     * Version number of the base moderation detection model that was used to
+     * detect unsafe content.
      * </p>
      */
     private String moderationModelVersion;
@@ -40,6 +40,22 @@ public class DetectModerationLabelsResult implements Serializable {
      * </p>
      */
     private HumanLoopActivationOutput humanLoopActivationOutput;
+
+    /**
+     * <p>
+     * Identifier of the custom adapter that was used during inference. If
+     * during inference the adapter was EXPIRED, then the parameter will not be
+     * returned, indicating that a base moderation detection project version was
+     * used.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     */
+    private String projectVersion;
 
     /**
      * <p>
@@ -127,13 +143,13 @@ public class DetectModerationLabelsResult implements Serializable {
 
     /**
      * <p>
-     * Version number of the moderation detection model that was used to detect
-     * unsafe content.
+     * Version number of the base moderation detection model that was used to
+     * detect unsafe content.
      * </p>
      *
      * @return <p>
-     *         Version number of the moderation detection model that was used to
-     *         detect unsafe content.
+     *         Version number of the base moderation detection model that was
+     *         used to detect unsafe content.
      *         </p>
      */
     public String getModerationModelVersion() {
@@ -142,13 +158,13 @@ public class DetectModerationLabelsResult implements Serializable {
 
     /**
      * <p>
-     * Version number of the moderation detection model that was used to detect
-     * unsafe content.
+     * Version number of the base moderation detection model that was used to
+     * detect unsafe content.
      * </p>
      *
      * @param moderationModelVersion <p>
-     *            Version number of the moderation detection model that was used
-     *            to detect unsafe content.
+     *            Version number of the base moderation detection model that was
+     *            used to detect unsafe content.
      *            </p>
      */
     public void setModerationModelVersion(String moderationModelVersion) {
@@ -157,16 +173,16 @@ public class DetectModerationLabelsResult implements Serializable {
 
     /**
      * <p>
-     * Version number of the moderation detection model that was used to detect
-     * unsafe content.
+     * Version number of the base moderation detection model that was used to
+     * detect unsafe content.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param moderationModelVersion <p>
-     *            Version number of the moderation detection model that was used
-     *            to detect unsafe content.
+     *            Version number of the base moderation detection model that was
+     *            used to detect unsafe content.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -223,6 +239,87 @@ public class DetectModerationLabelsResult implements Serializable {
     }
 
     /**
+     * <p>
+     * Identifier of the custom adapter that was used during inference. If
+     * during inference the adapter was EXPIRED, then the parameter will not be
+     * returned, indicating that a base moderation detection project version was
+     * used.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     *
+     * @return <p>
+     *         Identifier of the custom adapter that was used during inference.
+     *         If during inference the adapter was EXPIRED, then the parameter
+     *         will not be returned, indicating that a base moderation detection
+     *         project version was used.
+     *         </p>
+     */
+    public String getProjectVersion() {
+        return projectVersion;
+    }
+
+    /**
+     * <p>
+     * Identifier of the custom adapter that was used during inference. If
+     * during inference the adapter was EXPIRED, then the parameter will not be
+     * returned, indicating that a base moderation detection project version was
+     * used.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     *
+     * @param projectVersion <p>
+     *            Identifier of the custom adapter that was used during
+     *            inference. If during inference the adapter was EXPIRED, then
+     *            the parameter will not be returned, indicating that a base
+     *            moderation detection project version was used.
+     *            </p>
+     */
+    public void setProjectVersion(String projectVersion) {
+        this.projectVersion = projectVersion;
+    }
+
+    /**
+     * <p>
+     * Identifier of the custom adapter that was used during inference. If
+     * during inference the adapter was EXPIRED, then the parameter will not be
+     * returned, indicating that a base moderation detection project version was
+     * used.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     *
+     * @param projectVersion <p>
+     *            Identifier of the custom adapter that was used during
+     *            inference. If during inference the adapter was EXPIRED, then
+     *            the parameter will not be returned, indicating that a base
+     *            moderation detection project version was used.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DetectModerationLabelsResult withProjectVersion(String projectVersion) {
+        this.projectVersion = projectVersion;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -238,7 +335,9 @@ public class DetectModerationLabelsResult implements Serializable {
         if (getModerationModelVersion() != null)
             sb.append("ModerationModelVersion: " + getModerationModelVersion() + ",");
         if (getHumanLoopActivationOutput() != null)
-            sb.append("HumanLoopActivationOutput: " + getHumanLoopActivationOutput());
+            sb.append("HumanLoopActivationOutput: " + getHumanLoopActivationOutput() + ",");
+        if (getProjectVersion() != null)
+            sb.append("ProjectVersion: " + getProjectVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -258,6 +357,8 @@ public class DetectModerationLabelsResult implements Serializable {
                 * hashCode
                 + ((getHumanLoopActivationOutput() == null) ? 0 : getHumanLoopActivationOutput()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getProjectVersion() == null) ? 0 : getProjectVersion().hashCode());
         return hashCode;
     }
 
@@ -287,6 +388,11 @@ public class DetectModerationLabelsResult implements Serializable {
             return false;
         if (other.getHumanLoopActivationOutput() != null
                 && other.getHumanLoopActivationOutput().equals(this.getHumanLoopActivationOutput()) == false)
+            return false;
+        if (other.getProjectVersion() == null ^ this.getProjectVersion() == null)
+            return false;
+        if (other.getProjectVersion() != null
+                && other.getProjectVersion().equals(this.getProjectVersion()) == false)
             return false;
         return true;
     }

@@ -20,9 +20,15 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
+ * <note>
+ * <p>
+ * This operation applies only to Amazon Rekognition Custom Labels.
+ * </p>
+ * </note>
  * <p>
  * Stops a running model. The operation might take a while to complete. To check
- * the current status, call <a>DescribeProjectVersions</a>.
+ * the current status, call <a>DescribeProjectVersions</a>. Only applies to
+ * Custom Labels projects.
  * </p>
  * <p>
  * This operation requires permissions to perform the
@@ -33,7 +39,7 @@ public class StopProjectVersionRequest extends AmazonWebServiceRequest implement
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the model version that you want to
-     * delete.
+     * stop.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -51,7 +57,7 @@ public class StopProjectVersionRequest extends AmazonWebServiceRequest implement
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the model version that you want to
-     * delete.
+     * stop.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -66,7 +72,7 @@ public class StopProjectVersionRequest extends AmazonWebServiceRequest implement
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the model version that you want
-     *         to delete.
+     *         to stop.
      *         </p>
      *         <p>
      *         This operation requires permissions to perform the
@@ -80,7 +86,7 @@ public class StopProjectVersionRequest extends AmazonWebServiceRequest implement
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the model version that you want to
-     * delete.
+     * stop.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -95,7 +101,7 @@ public class StopProjectVersionRequest extends AmazonWebServiceRequest implement
      *
      * @param projectVersionArn <p>
      *            The Amazon Resource Name (ARN) of the model version that you
-     *            want to delete.
+     *            want to stop.
      *            </p>
      *            <p>
      *            This operation requires permissions to perform the
@@ -109,7 +115,7 @@ public class StopProjectVersionRequest extends AmazonWebServiceRequest implement
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the model version that you want to
-     * delete.
+     * stop.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -127,7 +133,7 @@ public class StopProjectVersionRequest extends AmazonWebServiceRequest implement
      *
      * @param projectVersionArn <p>
      *            The Amazon Resource Name (ARN) of the model version that you
-     *            want to delete.
+     *            want to stop.
      *            </p>
      *            <p>
      *            This operation requires permissions to perform the

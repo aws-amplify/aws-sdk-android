@@ -79,6 +79,11 @@ public class DetectModerationLabelsRequestMarshaller implements
                 jsonWriter.name("HumanLoopConfig");
                 HumanLoopConfigJsonMarshaller.getInstance().marshall(humanLoopConfig, jsonWriter);
             }
+            if (detectModerationLabelsRequest.getProjectVersion() != null) {
+                String projectVersion = detectModerationLabelsRequest.getProjectVersion();
+                jsonWriter.name("ProjectVersion");
+                jsonWriter.value(projectVersion);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

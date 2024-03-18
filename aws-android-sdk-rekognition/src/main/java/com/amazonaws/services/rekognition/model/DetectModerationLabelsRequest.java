@@ -41,6 +41,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Amazon Rekognition operations, passing image bytes is not supported. The
  * image must be either a PNG or JPEG formatted file.
  * </p>
+ * <p>
+ * You can specify an adapter to use when retrieving label predictions by
+ * providing a <code>ProjectVersionArn</code> to the <code>ProjectVersion</code>
+ * argument.
+ * </p>
  */
 public class DetectModerationLabelsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -81,6 +86,21 @@ public class DetectModerationLabelsRequest extends AmazonWebServiceRequest imple
      * </p>
      */
     private HumanLoopConfig humanLoopConfig;
+
+    /**
+     * <p>
+     * Identifier for the custom adapter. Expects the ProjectVersionArn as a
+     * value. Use the CreateProject or CreateProjectVersion APIs to create a
+     * custom adapter.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     */
+    private String projectVersion;
 
     /**
      * Default constructor for DetectModerationLabelsRequest object. Callers
@@ -349,6 +369,81 @@ public class DetectModerationLabelsRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * <p>
+     * Identifier for the custom adapter. Expects the ProjectVersionArn as a
+     * value. Use the CreateProject or CreateProjectVersion APIs to create a
+     * custom adapter.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     *
+     * @return <p>
+     *         Identifier for the custom adapter. Expects the ProjectVersionArn
+     *         as a value. Use the CreateProject or CreateProjectVersion APIs to
+     *         create a custom adapter.
+     *         </p>
+     */
+    public String getProjectVersion() {
+        return projectVersion;
+    }
+
+    /**
+     * <p>
+     * Identifier for the custom adapter. Expects the ProjectVersionArn as a
+     * value. Use the CreateProject or CreateProjectVersion APIs to create a
+     * custom adapter.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     *
+     * @param projectVersion <p>
+     *            Identifier for the custom adapter. Expects the
+     *            ProjectVersionArn as a value. Use the CreateProject or
+     *            CreateProjectVersion APIs to create a custom adapter.
+     *            </p>
+     */
+    public void setProjectVersion(String projectVersion) {
+        this.projectVersion = projectVersion;
+    }
+
+    /**
+     * <p>
+     * Identifier for the custom adapter. Expects the ProjectVersionArn as a
+     * value. Use the CreateProject or CreateProjectVersion APIs to create a
+     * custom adapter.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     *
+     * @param projectVersion <p>
+     *            Identifier for the custom adapter. Expects the
+     *            ProjectVersionArn as a value. Use the CreateProject or
+     *            CreateProjectVersion APIs to create a custom adapter.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DetectModerationLabelsRequest withProjectVersion(String projectVersion) {
+        this.projectVersion = projectVersion;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -364,7 +459,9 @@ public class DetectModerationLabelsRequest extends AmazonWebServiceRequest imple
         if (getMinConfidence() != null)
             sb.append("MinConfidence: " + getMinConfidence() + ",");
         if (getHumanLoopConfig() != null)
-            sb.append("HumanLoopConfig: " + getHumanLoopConfig());
+            sb.append("HumanLoopConfig: " + getHumanLoopConfig() + ",");
+        if (getProjectVersion() != null)
+            sb.append("ProjectVersion: " + getProjectVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -379,6 +476,8 @@ public class DetectModerationLabelsRequest extends AmazonWebServiceRequest imple
                 + ((getMinConfidence() == null) ? 0 : getMinConfidence().hashCode());
         hashCode = prime * hashCode
                 + ((getHumanLoopConfig() == null) ? 0 : getHumanLoopConfig().hashCode());
+        hashCode = prime * hashCode
+                + ((getProjectVersion() == null) ? 0 : getProjectVersion().hashCode());
         return hashCode;
     }
 
@@ -406,6 +505,11 @@ public class DetectModerationLabelsRequest extends AmazonWebServiceRequest imple
             return false;
         if (other.getHumanLoopConfig() != null
                 && other.getHumanLoopConfig().equals(this.getHumanLoopConfig()) == false)
+            return false;
+        if (other.getProjectVersion() == null ^ this.getProjectVersion() == null)
+            return false;
+        if (other.getProjectVersion() != null
+                && other.getProjectVersion().equals(this.getProjectVersion()) == false)
             return false;
         return true;
     }

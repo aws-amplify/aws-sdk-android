@@ -20,6 +20,11 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
+ * <note>
+ * <p>
+ * This operation applies only to Amazon Rekognition Custom Labels.
+ * </p>
+ * </note>
  * <p>
  * Creates a new Amazon Rekognition Custom Labels dataset. You can create a
  * dataset by using an Amazon Sagemaker format manifest file or by copying an
