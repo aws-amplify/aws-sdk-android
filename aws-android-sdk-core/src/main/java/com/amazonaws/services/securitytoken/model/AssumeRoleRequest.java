@@ -276,7 +276,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2048<br/>
+     * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[ -\u00FF]+<br/>
      */
     private String policy;
@@ -1115,7 +1115,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2048<br/>
+     * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[ -\u00FF]+<br/>
      *
      * @return <p>
@@ -1196,7 +1196,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2048<br/>
+     * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[ -\u00FF]+<br/>
      *
      * @param policy <p>
@@ -1280,7 +1280,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2048<br/>
+     * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[ -\u00FF]+<br/>
      *
      * @param policy <p>
