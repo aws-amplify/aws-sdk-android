@@ -60,7 +60,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN, APPLICATION
      */
     private String integrationType;
 
@@ -287,7 +287,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN, APPLICATION
      *
      * @return <p>
      *         The integration type.
@@ -305,7 +305,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN, APPLICATION
      *
      * @param integrationType <p>
      *            The integration type.
@@ -326,7 +326,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN, APPLICATION
      *
      * @param integrationType <p>
      *            The integration type.
@@ -347,7 +347,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN, APPLICATION
      *
      * @param integrationType <p>
      *            The integration type.
@@ -368,7 +368,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN, APPLICATION
      *
      * @param integrationType <p>
      *            The integration type.

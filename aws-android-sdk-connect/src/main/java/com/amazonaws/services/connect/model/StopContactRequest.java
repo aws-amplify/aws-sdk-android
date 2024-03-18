@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Ends the specified contact. This call does not work for the following
- * initiation methods:
+ * Ends the specified contact. This call does not work for voice contacts that
+ * use the following initiation methods:
  * </p>
  * <ul>
  * <li>
@@ -41,6 +41,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </li>
  * </ul>
+ * <p>
+ * Chat and task contacts, however, can be terminated in any state, regardless
+ * of initiation method.
+ * </p>
  */
 public class StopContactRequest extends AmazonWebServiceRequest implements Serializable {
     /**

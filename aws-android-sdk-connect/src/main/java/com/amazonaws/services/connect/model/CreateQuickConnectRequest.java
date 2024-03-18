@@ -40,7 +40,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the quick connect.
+     * A unique name of the quick connect.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -149,14 +149,14 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the quick connect.
+     * A unique name of the quick connect.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 127<br/>
      *
      * @return <p>
-     *         The name of the quick connect.
+     *         A unique name of the quick connect.
      *         </p>
      */
     public String getName() {
@@ -165,14 +165,14 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the quick connect.
+     * A unique name of the quick connect.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 127<br/>
      *
      * @param name <p>
-     *            The name of the quick connect.
+     *            A unique name of the quick connect.
      *            </p>
      */
     public void setName(String name) {
@@ -181,7 +181,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the quick connect.
+     * A unique name of the quick connect.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -191,7 +191,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      * <b>Length: </b>1 - 127<br/>
      *
      * @param name <p>
-     *            The name of the quick connect.
+     *            A unique name of the quick connect.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

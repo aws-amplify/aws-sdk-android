@@ -29,7 +29,8 @@ public enum EventSourceName {
     OnZendeskTicketCreate("OnZendeskTicketCreate"),
     OnZendeskTicketStatusUpdate("OnZendeskTicketStatusUpdate"),
     OnSalesforceCaseCreate("OnSalesforceCaseCreate"),
-    OnContactEvaluationSubmit("OnContactEvaluationSubmit");
+    OnContactEvaluationSubmit("OnContactEvaluationSubmit"),
+    OnMetricDataUpdate("OnMetricDataUpdate");
 
     private String value;
 
@@ -52,6 +53,7 @@ public enum EventSourceName {
         enumMap.put("OnZendeskTicketStatusUpdate", OnZendeskTicketStatusUpdate);
         enumMap.put("OnSalesforceCaseCreate", OnSalesforceCaseCreate);
         enumMap.put("OnContactEvaluationSubmit", OnContactEvaluationSubmit);
+        enumMap.put("OnMetricDataUpdate", OnMetricDataUpdate);
     }
 
     /**

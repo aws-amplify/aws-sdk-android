@@ -62,6 +62,11 @@ class ClaimedPhoneNumberSummaryJsonMarshaller {
             jsonWriter.name("TargetArn");
             jsonWriter.value(targetArn);
         }
+        if (claimedPhoneNumberSummary.getInstanceId() != null) {
+            String instanceId = claimedPhoneNumberSummary.getInstanceId();
+            jsonWriter.name("InstanceId");
+            jsonWriter.value(instanceId);
+        }
         if (claimedPhoneNumberSummary.getTags() != null) {
             java.util.Map<String, String> tags = claimedPhoneNumberSummary.getTags();
             jsonWriter.name("Tags");
