@@ -355,6 +355,14 @@ public interface AWSKinesisVideo {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * <important>
+     * <p>
+     * This API is related to <a href=
+     * "https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/webrtc-ingestion.html"
+     * >WebRTC Ingestion</a> and is only available in the <code>us-west-2</code>
+     * region.
+     * </p>
+     * </important>
      * <p>
      * Returns the most current information about the channel. Specify the
      * <code>ChannelName</code> or <code>ChannelARN</code> in the input.
@@ -689,6 +697,12 @@ public interface AWSKinesisVideo {
      * the Edge Agent will be retried for 15 minutes. After 15 minutes, the
      * status will transition into the <code>SYNC_FAILED</code> state.
      * </p>
+     * <p>
+     * To move an edge configuration from one device to another, use
+     * <a>DeleteEdgeConfiguration</a> to delete the current edge configuration.
+     * You can then invoke StartEdgeConfigurationUpdate with an updated Hub
+     * Device ARN.
+     * </p>
      * 
      * @param startEdgeConfigurationUpdateRequest
      * @return startEdgeConfigurationUpdateResult The response from the
@@ -932,6 +946,14 @@ public interface AWSKinesisVideo {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * <important>
+     * <p>
+     * This API is related to <a href=
+     * "https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/webrtc-ingestion.html"
+     * >WebRTC Ingestion</a> and is only available in the <code>us-west-2</code>
+     * region.
+     * </p>
+     * </important>
      * <p>
      * Associates a <code>SignalingChannel</code> to a stream to store the
      * media. There are two signaling modes that can specified :
