@@ -24,7 +24,8 @@ import java.util.Map;
 public enum Engine {
 
     Standard("standard"),
-    Neural("neural");
+    Neural("neural"),
+    LongForm("long-form");
 
     private String value;
 
@@ -42,6 +43,7 @@ public enum Engine {
         enumMap = new HashMap<String, Engine>();
         enumMap.put("standard", Standard);
         enumMap.put("neural", Neural);
+        enumMap.put("long-form", LongForm);
     }
 
     /**
