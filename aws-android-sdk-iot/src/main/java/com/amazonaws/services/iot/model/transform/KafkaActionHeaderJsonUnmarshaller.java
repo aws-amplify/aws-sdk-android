@@ -21,43 +21,40 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO MetricToRetain
+ * JSON unmarshaller for POJO KafkaActionHeader
  */
-class MetricToRetainJsonUnmarshaller implements
-        Unmarshaller<MetricToRetain, JsonUnmarshallerContext> {
+class KafkaActionHeaderJsonUnmarshaller implements
+        Unmarshaller<KafkaActionHeader, JsonUnmarshallerContext> {
 
-    public MetricToRetain unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public KafkaActionHeader unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        MetricToRetain metricToRetain = new MetricToRetain();
+        KafkaActionHeader kafkaActionHeader = new KafkaActionHeader();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("metric")) {
-                metricToRetain.setMetric(StringJsonUnmarshaller.getInstance()
+            if (name.equals("key")) {
+                kafkaActionHeader.setKey(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("metricDimension")) {
-                metricToRetain.setMetricDimension(MetricDimensionJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("exportMetric")) {
-                metricToRetain.setExportMetric(BooleanJsonUnmarshaller.getInstance()
+            } else if (name.equals("value")) {
+                kafkaActionHeader.setValue(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return metricToRetain;
+        return kafkaActionHeader;
     }
 
-    private static MetricToRetainJsonUnmarshaller instance;
+    private static KafkaActionHeaderJsonUnmarshaller instance;
 
-    public static MetricToRetainJsonUnmarshaller getInstance() {
+    public static KafkaActionHeaderJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new MetricToRetainJsonUnmarshaller();
+            instance = new KafkaActionHeaderJsonUnmarshaller();
         return instance;
     }
 }

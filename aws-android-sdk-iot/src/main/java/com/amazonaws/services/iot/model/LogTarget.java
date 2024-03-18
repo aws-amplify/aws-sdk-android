@@ -30,7 +30,7 @@ public class LogTarget implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEFAULT, THING_GROUP, CLIENT_ID, SOURCE_IP,
-     * PRINCIPAL_ID
+     * PRINCIPAL_ID, EVENT_TYPE, DEVICE_DEFENDER
      */
     private String targetType;
 
@@ -48,7 +48,7 @@ public class LogTarget implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEFAULT, THING_GROUP, CLIENT_ID, SOURCE_IP,
-     * PRINCIPAL_ID
+     * PRINCIPAL_ID, EVENT_TYPE, DEVICE_DEFENDER
      *
      * @return <p>
      *         The target type.
@@ -66,7 +66,7 @@ public class LogTarget implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEFAULT, THING_GROUP, CLIENT_ID, SOURCE_IP,
-     * PRINCIPAL_ID
+     * PRINCIPAL_ID, EVENT_TYPE, DEVICE_DEFENDER
      *
      * @param targetType <p>
      *            The target type.
@@ -87,7 +87,7 @@ public class LogTarget implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEFAULT, THING_GROUP, CLIENT_ID, SOURCE_IP,
-     * PRINCIPAL_ID
+     * PRINCIPAL_ID, EVENT_TYPE, DEVICE_DEFENDER
      *
      * @param targetType <p>
      *            The target type.
@@ -108,7 +108,7 @@ public class LogTarget implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEFAULT, THING_GROUP, CLIENT_ID, SOURCE_IP,
-     * PRINCIPAL_ID
+     * PRINCIPAL_ID, EVENT_TYPE, DEVICE_DEFENDER
      *
      * @param targetType <p>
      *            The target type.
@@ -129,7 +129,7 @@ public class LogTarget implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEFAULT, THING_GROUP, CLIENT_ID, SOURCE_IP,
-     * PRINCIPAL_ID
+     * PRINCIPAL_ID, EVENT_TYPE, DEVICE_DEFENDER
      *
      * @param targetType <p>
      *            The target type.

@@ -135,8 +135,17 @@ public class ThingIndexingConfiguration implements Serializable {
     /**
      * <p>
      * Contains fields that are indexed and whose types are already known by the
-     * Fleet Indexing service.
+     * Fleet Indexing service. This is an optional field. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field"
+     * >Managed fields</a> in the <i>Amazon Web Services IoT Core Developer
+     * Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * You can't modify managed fields by updating fleet indexing configuration.
+     * </p>
+     * </note>
      */
     private java.util.List<Field> managedFields;
 
@@ -1245,13 +1254,32 @@ public class ThingIndexingConfiguration implements Serializable {
     /**
      * <p>
      * Contains fields that are indexed and whose types are already known by the
-     * Fleet Indexing service.
+     * Fleet Indexing service. This is an optional field. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field"
+     * >Managed fields</a> in the <i>Amazon Web Services IoT Core Developer
+     * Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * You can't modify managed fields by updating fleet indexing configuration.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         Contains fields that are indexed and whose types are already
-     *         known by the Fleet Indexing service.
+     *         known by the Fleet Indexing service. This is an optional field.
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field"
+     *         >Managed fields</a> in the <i>Amazon Web Services IoT Core
+     *         Developer Guide</i>.
      *         </p>
+     *         <note>
+     *         <p>
+     *         You can't modify managed fields by updating fleet indexing
+     *         configuration.
+     *         </p>
+     *         </note>
      */
     public java.util.List<Field> getManagedFields() {
         return managedFields;
@@ -1260,13 +1288,32 @@ public class ThingIndexingConfiguration implements Serializable {
     /**
      * <p>
      * Contains fields that are indexed and whose types are already known by the
-     * Fleet Indexing service.
+     * Fleet Indexing service. This is an optional field. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field"
+     * >Managed fields</a> in the <i>Amazon Web Services IoT Core Developer
+     * Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * You can't modify managed fields by updating fleet indexing configuration.
+     * </p>
+     * </note>
      *
      * @param managedFields <p>
      *            Contains fields that are indexed and whose types are already
-     *            known by the Fleet Indexing service.
+     *            known by the Fleet Indexing service. This is an optional
+     *            field. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field"
+     *            >Managed fields</a> in the <i>Amazon Web Services IoT Core
+     *            Developer Guide</i>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            You can't modify managed fields by updating fleet indexing
+     *            configuration.
+     *            </p>
+     *            </note>
      */
     public void setManagedFields(java.util.Collection<Field> managedFields) {
         if (managedFields == null) {
@@ -1280,16 +1327,35 @@ public class ThingIndexingConfiguration implements Serializable {
     /**
      * <p>
      * Contains fields that are indexed and whose types are already known by the
-     * Fleet Indexing service.
+     * Fleet Indexing service. This is an optional field. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field"
+     * >Managed fields</a> in the <i>Amazon Web Services IoT Core Developer
+     * Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * You can't modify managed fields by updating fleet indexing configuration.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param managedFields <p>
      *            Contains fields that are indexed and whose types are already
-     *            known by the Fleet Indexing service.
+     *            known by the Fleet Indexing service. This is an optional
+     *            field. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field"
+     *            >Managed fields</a> in the <i>Amazon Web Services IoT Core
+     *            Developer Guide</i>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            You can't modify managed fields by updating fleet indexing
+     *            configuration.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1306,16 +1372,35 @@ public class ThingIndexingConfiguration implements Serializable {
     /**
      * <p>
      * Contains fields that are indexed and whose types are already known by the
-     * Fleet Indexing service.
+     * Fleet Indexing service. This is an optional field. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field"
+     * >Managed fields</a> in the <i>Amazon Web Services IoT Core Developer
+     * Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * You can't modify managed fields by updating fleet indexing configuration.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param managedFields <p>
      *            Contains fields that are indexed and whose types are already
-     *            known by the Fleet Indexing service.
+     *            known by the Fleet Indexing service. This is an optional
+     *            field. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field"
+     *            >Managed fields</a> in the <i>Amazon Web Services IoT Core
+     *            Developer Guide</i>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            You can't modify managed fields by updating fleet indexing
+     *            configuration.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
