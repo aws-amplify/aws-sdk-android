@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,10 @@ public enum ActionType {
     CREATE_TASK("CREATE_TASK"),
     ASSIGN_CONTACT_CATEGORY("ASSIGN_CONTACT_CATEGORY"),
     GENERATE_EVENTBRIDGE_EVENT("GENERATE_EVENTBRIDGE_EVENT"),
-    SEND_NOTIFICATION("SEND_NOTIFICATION");
+    SEND_NOTIFICATION("SEND_NOTIFICATION"),
+    CREATE_CASE("CREATE_CASE"),
+    UPDATE_CASE("UPDATE_CASE"),
+    END_ASSOCIATED_TASKS("END_ASSOCIATED_TASKS");
 
     private String value;
 
@@ -46,6 +49,9 @@ public enum ActionType {
         enumMap.put("ASSIGN_CONTACT_CATEGORY", ASSIGN_CONTACT_CATEGORY);
         enumMap.put("GENERATE_EVENTBRIDGE_EVENT", GENERATE_EVENTBRIDGE_EVENT);
         enumMap.put("SEND_NOTIFICATION", SEND_NOTIFICATION);
+        enumMap.put("CREATE_CASE", CREATE_CASE);
+        enumMap.put("UPDATE_CASE", UPDATE_CASE);
+        enumMap.put("END_ASSOCIATED_TASKS", END_ASSOCIATED_TASKS);
     }
 
     /**

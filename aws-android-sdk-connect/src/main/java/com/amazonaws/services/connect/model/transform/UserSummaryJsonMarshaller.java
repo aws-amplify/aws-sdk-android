@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,6 +40,16 @@ class UserSummaryJsonMarshaller {
             String username = userSummary.getUsername();
             jsonWriter.name("Username");
             jsonWriter.value(username);
+        }
+        if (userSummary.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = userSummary.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (userSummary.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = userSummary.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
         }
         jsonWriter.endObject();
     }

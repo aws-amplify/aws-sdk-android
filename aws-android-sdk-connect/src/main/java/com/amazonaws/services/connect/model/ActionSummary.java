@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,7 +30,8 @@ public class ActionSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATE_TASK, ASSIGN_CONTACT_CATEGORY,
-     * GENERATE_EVENTBRIDGE_EVENT, SEND_NOTIFICATION
+     * GENERATE_EVENTBRIDGE_EVENT, SEND_NOTIFICATION, CREATE_CASE, UPDATE_CASE,
+     * END_ASSOCIATED_TASKS
      */
     private String actionType;
 
@@ -41,7 +42,8 @@ public class ActionSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATE_TASK, ASSIGN_CONTACT_CATEGORY,
-     * GENERATE_EVENTBRIDGE_EVENT, SEND_NOTIFICATION
+     * GENERATE_EVENTBRIDGE_EVENT, SEND_NOTIFICATION, CREATE_CASE, UPDATE_CASE,
+     * END_ASSOCIATED_TASKS
      *
      * @return <p>
      *         The action type.
@@ -59,7 +61,8 @@ public class ActionSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATE_TASK, ASSIGN_CONTACT_CATEGORY,
-     * GENERATE_EVENTBRIDGE_EVENT, SEND_NOTIFICATION
+     * GENERATE_EVENTBRIDGE_EVENT, SEND_NOTIFICATION, CREATE_CASE, UPDATE_CASE,
+     * END_ASSOCIATED_TASKS
      *
      * @param actionType <p>
      *            The action type.
@@ -80,7 +83,8 @@ public class ActionSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATE_TASK, ASSIGN_CONTACT_CATEGORY,
-     * GENERATE_EVENTBRIDGE_EVENT, SEND_NOTIFICATION
+     * GENERATE_EVENTBRIDGE_EVENT, SEND_NOTIFICATION, CREATE_CASE, UPDATE_CASE,
+     * END_ASSOCIATED_TASKS
      *
      * @param actionType <p>
      *            The action type.
@@ -101,7 +105,8 @@ public class ActionSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATE_TASK, ASSIGN_CONTACT_CATEGORY,
-     * GENERATE_EVENTBRIDGE_EVENT, SEND_NOTIFICATION
+     * GENERATE_EVENTBRIDGE_EVENT, SEND_NOTIFICATION, CREATE_CASE, UPDATE_CASE,
+     * END_ASSOCIATED_TASKS
      *
      * @param actionType <p>
      *            The action type.
@@ -122,7 +127,8 @@ public class ActionSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATE_TASK, ASSIGN_CONTACT_CATEGORY,
-     * GENERATE_EVENTBRIDGE_EVENT, SEND_NOTIFICATION
+     * GENERATE_EVENTBRIDGE_EVENT, SEND_NOTIFICATION, CREATE_CASE, UPDATE_CASE,
+     * END_ASSOCIATED_TASKS
      *
      * @param actionType <p>
      *            The action type.
