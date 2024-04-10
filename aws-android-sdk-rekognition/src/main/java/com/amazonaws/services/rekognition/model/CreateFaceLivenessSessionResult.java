@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,12 @@ import java.io.Serializable;
 public class CreateFaceLivenessSessionResult implements Serializable {
     /**
      * <p>
-     * A unique 128-bit UUID identifying a Face Liveness session.
+     * A unique 128-bit UUID identifying a Face Liveness session. A new
+     * sessionID must be used for every Face Liveness check. If a given
+     * sessionID is used for subsequent Face Liveness checks, the checks will
+     * fail. Additionally, a SessionId expires 3 minutes after it's sent, making
+     * all Liveness data associated with the session (e.g., sessionID, reference
+     * image, audit images, etc.) unavailable.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -32,7 +37,12 @@ public class CreateFaceLivenessSessionResult implements Serializable {
 
     /**
      * <p>
-     * A unique 128-bit UUID identifying a Face Liveness session.
+     * A unique 128-bit UUID identifying a Face Liveness session. A new
+     * sessionID must be used for every Face Liveness check. If a given
+     * sessionID is used for subsequent Face Liveness checks, the checks will
+     * fail. Additionally, a SessionId expires 3 minutes after it's sent, making
+     * all Liveness data associated with the session (e.g., sessionID, reference
+     * image, audit images, etc.) unavailable.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -41,7 +51,12 @@ public class CreateFaceLivenessSessionResult implements Serializable {
      * </b>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}<br/>
      *
      * @return <p>
-     *         A unique 128-bit UUID identifying a Face Liveness session.
+     *         A unique 128-bit UUID identifying a Face Liveness session. A new
+     *         sessionID must be used for every Face Liveness check. If a given
+     *         sessionID is used for subsequent Face Liveness checks, the checks
+     *         will fail. Additionally, a SessionId expires 3 minutes after it's
+     *         sent, making all Liveness data associated with the session (e.g.,
+     *         sessionID, reference image, audit images, etc.) unavailable.
      *         </p>
      */
     public String getSessionId() {
@@ -50,7 +65,12 @@ public class CreateFaceLivenessSessionResult implements Serializable {
 
     /**
      * <p>
-     * A unique 128-bit UUID identifying a Face Liveness session.
+     * A unique 128-bit UUID identifying a Face Liveness session. A new
+     * sessionID must be used for every Face Liveness check. If a given
+     * sessionID is used for subsequent Face Liveness checks, the checks will
+     * fail. Additionally, a SessionId expires 3 minutes after it's sent, making
+     * all Liveness data associated with the session (e.g., sessionID, reference
+     * image, audit images, etc.) unavailable.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,7 +79,13 @@ public class CreateFaceLivenessSessionResult implements Serializable {
      * </b>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}<br/>
      *
      * @param sessionId <p>
-     *            A unique 128-bit UUID identifying a Face Liveness session.
+     *            A unique 128-bit UUID identifying a Face Liveness session. A
+     *            new sessionID must be used for every Face Liveness check. If a
+     *            given sessionID is used for subsequent Face Liveness checks,
+     *            the checks will fail. Additionally, a SessionId expires 3
+     *            minutes after it's sent, making all Liveness data associated
+     *            with the session (e.g., sessionID, reference image, audit
+     *            images, etc.) unavailable.
      *            </p>
      */
     public void setSessionId(String sessionId) {
@@ -68,7 +94,12 @@ public class CreateFaceLivenessSessionResult implements Serializable {
 
     /**
      * <p>
-     * A unique 128-bit UUID identifying a Face Liveness session.
+     * A unique 128-bit UUID identifying a Face Liveness session. A new
+     * sessionID must be used for every Face Liveness check. If a given
+     * sessionID is used for subsequent Face Liveness checks, the checks will
+     * fail. Additionally, a SessionId expires 3 minutes after it's sent, making
+     * all Liveness data associated with the session (e.g., sessionID, reference
+     * image, audit images, etc.) unavailable.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -80,7 +111,13 @@ public class CreateFaceLivenessSessionResult implements Serializable {
      * </b>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}<br/>
      *
      * @param sessionId <p>
-     *            A unique 128-bit UUID identifying a Face Liveness session.
+     *            A unique 128-bit UUID identifying a Face Liveness session. A
+     *            new sessionID must be used for every Face Liveness check. If a
+     *            given sessionID is used for subsequent Face Liveness checks,
+     *            the checks will fail. Additionally, a SessionId expires 3
+     *            minutes after it's sent, making all Liveness data associated
+     *            with the session (e.g., sessionID, reference image, audit
+     *            images, etc.) unavailable.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
