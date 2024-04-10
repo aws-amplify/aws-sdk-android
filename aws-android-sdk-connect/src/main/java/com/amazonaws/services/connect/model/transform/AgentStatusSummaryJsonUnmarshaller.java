@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -47,6 +47,12 @@ class AgentStatusSummaryJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("Type")) {
                 agentStatusSummary.setType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                agentStatusSummary.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                agentStatusSummary.setLastModifiedRegion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
