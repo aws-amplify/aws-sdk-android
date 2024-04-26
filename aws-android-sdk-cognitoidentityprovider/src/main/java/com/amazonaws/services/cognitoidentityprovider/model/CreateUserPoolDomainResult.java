@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,10 @@ public class CreateUserPoolDomainResult implements Serializable {
     /**
      * <p>
      * The Amazon CloudFront endpoint that you use as the target of the alias
-     * that you set up with your Domain Name Service (DNS) provider.
+     * that you set up with your Domain Name Service (DNS) provider. Amazon
+     * Cognito returns this value if you set a custom domain with
+     * <code>CustomDomainConfig</code>. If you set an Amazon Cognito prefix
+     * domain, this operation returns a blank response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -33,7 +36,10 @@ public class CreateUserPoolDomainResult implements Serializable {
     /**
      * <p>
      * The Amazon CloudFront endpoint that you use as the target of the alias
-     * that you set up with your Domain Name Service (DNS) provider.
+     * that you set up with your Domain Name Service (DNS) provider. Amazon
+     * Cognito returns this value if you set a custom domain with
+     * <code>CustomDomainConfig</code>. If you set an Amazon Cognito prefix
+     * domain, this operation returns a blank response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -43,7 +49,9 @@ public class CreateUserPoolDomainResult implements Serializable {
      * @return <p>
      *         The Amazon CloudFront endpoint that you use as the target of the
      *         alias that you set up with your Domain Name Service (DNS)
-     *         provider.
+     *         provider. Amazon Cognito returns this value if you set a custom
+     *         domain with <code>CustomDomainConfig</code>. If you set an Amazon
+     *         Cognito prefix domain, this operation returns a blank response.
      *         </p>
      */
     public String getCloudFrontDomain() {
@@ -53,7 +61,10 @@ public class CreateUserPoolDomainResult implements Serializable {
     /**
      * <p>
      * The Amazon CloudFront endpoint that you use as the target of the alias
-     * that you set up with your Domain Name Service (DNS) provider.
+     * that you set up with your Domain Name Service (DNS) provider. Amazon
+     * Cognito returns this value if you set a custom domain with
+     * <code>CustomDomainConfig</code>. If you set an Amazon Cognito prefix
+     * domain, this operation returns a blank response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,7 +74,10 @@ public class CreateUserPoolDomainResult implements Serializable {
      * @param cloudFrontDomain <p>
      *            The Amazon CloudFront endpoint that you use as the target of
      *            the alias that you set up with your Domain Name Service (DNS)
-     *            provider.
+     *            provider. Amazon Cognito returns this value if you set a
+     *            custom domain with <code>CustomDomainConfig</code>. If you set
+     *            an Amazon Cognito prefix domain, this operation returns a
+     *            blank response.
      *            </p>
      */
     public void setCloudFrontDomain(String cloudFrontDomain) {
@@ -73,7 +87,10 @@ public class CreateUserPoolDomainResult implements Serializable {
     /**
      * <p>
      * The Amazon CloudFront endpoint that you use as the target of the alias
-     * that you set up with your Domain Name Service (DNS) provider.
+     * that you set up with your Domain Name Service (DNS) provider. Amazon
+     * Cognito returns this value if you set a custom domain with
+     * <code>CustomDomainConfig</code>. If you set an Amazon Cognito prefix
+     * domain, this operation returns a blank response.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -86,7 +103,10 @@ public class CreateUserPoolDomainResult implements Serializable {
      * @param cloudFrontDomain <p>
      *            The Amazon CloudFront endpoint that you use as the target of
      *            the alias that you set up with your Domain Name Service (DNS)
-     *            provider.
+     *            provider. Amazon Cognito returns this value if you set a
+     *            custom domain with <code>CustomDomainConfig</code>. If you set
+     *            an Amazon Cognito prefix domain, this operation returns a
+     *            blank response.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

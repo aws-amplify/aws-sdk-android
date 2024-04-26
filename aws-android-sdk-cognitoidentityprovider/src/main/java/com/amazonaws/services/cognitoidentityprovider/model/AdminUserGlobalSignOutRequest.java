@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,16 +21,46 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Signs out a user from all devices. <code>AdminUserGlobalSignOut</code>
- * invalidates all identity, access and refresh tokens that Amazon Cognito has
- * issued to a user. A user can still use a hosted UI cookie to retrieve new
- * tokens for the duration of the 1-hour cookie validity period.
+ * Invalidates the identity, access, and refresh tokens that Amazon Cognito
+ * issued to a user. Call this operation with your administrative credentials
+ * when your user signs out of your app. This results in the following behavior.
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * Amazon Cognito no longer accepts <i>token-authorized</i> user operations that
+ * you authorize with a signed-out user's access tokens. For more information,
+ * see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
+ * >Using the Amazon Cognito user pools API and user pool endpoints</a>.
  * </p>
  * <p>
- * Your app isn't aware that a user's access token is revoked unless it attempts
- * to authorize a user pools API request with an access token that contains the
- * scope <code>aws.cognito.signin.user.admin</code>. Your app might otherwise
- * accept access tokens until they expire.
+ * Amazon Cognito returns an <code>Access Token has been revoked</code> error
+ * when your app attempts to authorize a user pools API request with a revoked
+ * access token that contains the scope
+ * <code>aws.cognito.signin.user.admin</code>.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Amazon Cognito no longer accepts a signed-out user's ID token in a <a href=
+ * "https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetId.html"
+ * >GetId </a> request to an identity pool with
+ * <code>ServerSideTokenCheck</code> enabled for its user pool IdP configuration
+ * in <a href=
+ * "https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_CognitoIdentityProvider.html"
+ * >CognitoIdentityProvider</a>.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Amazon Cognito no longer accepts a signed-out user's refresh tokens in
+ * refresh requests.
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * Other requests might be valid until your user's token expires.
  * </p>
  * <note>
  * <p>
@@ -74,7 +104,11 @@ public class AdminUserGlobalSignOutRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The user name.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, this value must be the <code>sub</code> of a local
+     * user or the username of a user from a third-party IdP.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -142,7 +176,11 @@ public class AdminUserGlobalSignOutRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The user name.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, this value must be the <code>sub</code> of a local
+     * user or the username of a user from a third-party IdP.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -150,7 +188,12 @@ public class AdminUserGlobalSignOutRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The user name.
+     *         The username of the user that you want to query or modify. The
+     *         value of this parameter is typically your user's username, but it
+     *         can be any of their alias attributes. If <code>username</code>
+     *         isn't an alias attribute in your user pool, this value must be
+     *         the <code>sub</code> of a local user or the username of a user
+     *         from a third-party IdP.
      *         </p>
      */
     public String getUsername() {
@@ -159,7 +202,11 @@ public class AdminUserGlobalSignOutRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The user name.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, this value must be the <code>sub</code> of a local
+     * user or the username of a user from a third-party IdP.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -167,7 +214,12 @@ public class AdminUserGlobalSignOutRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name.
+     *            The username of the user that you want to query or modify. The
+     *            value of this parameter is typically your user's username, but
+     *            it can be any of their alias attributes. If
+     *            <code>username</code> isn't an alias attribute in your user
+     *            pool, this value must be the <code>sub</code> of a local user
+     *            or the username of a user from a third-party IdP.
      *            </p>
      */
     public void setUsername(String username) {
@@ -176,7 +228,11 @@ public class AdminUserGlobalSignOutRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The user name.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, this value must be the <code>sub</code> of a local
+     * user or the username of a user from a third-party IdP.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -187,7 +243,12 @@ public class AdminUserGlobalSignOutRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name.
+     *            The username of the user that you want to query or modify. The
+     *            value of this parameter is typically your user's username, but
+     *            it can be any of their alias attributes. If
+     *            <code>username</code> isn't an alias attribute in your user
+     *            pool, this value must be the <code>sub</code> of a local user
+     *            or the username of a user from a third-party IdP.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
