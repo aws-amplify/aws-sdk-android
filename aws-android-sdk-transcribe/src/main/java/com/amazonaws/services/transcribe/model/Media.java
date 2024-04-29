@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,9 +23,8 @@ import java.io.Serializable;
  * request.
  * </p>
  * <p>
- * For information on supported media formats, refer to the <a href=
- * "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
- * >MediaFormat</a> parameter or the <a href=
+ * For information on supported media formats, refer to the
+ * <code>MediaFormat</code> parameter or the <a href=
  * "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
  * >Media formats</a> section in the Amazon S3 Developer Guide.
  * </p>

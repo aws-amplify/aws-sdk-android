@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <p>
      * Returns only custom language models with the specified status. Language
      * models are ordered by creation date, with the newest model first. If you
-     * don't include <code>StatusEquals</code>, all custom language models are
+     * do not include <code>StatusEquals</code>, all custom language models are
      * returned.
      * </p>
      * <p>
@@ -74,7 +74,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <p>
      * The maximum number of custom language models to return in each page of
      * results. If there are fewer results than the value that you specify, only
-     * the actual results are returned. If you don't specify a value, a default
+     * the actual results are returned. If you do not specify a value, a default
      * of 5 is used.
      * </p>
      * <p>
@@ -87,7 +87,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <p>
      * Returns only custom language models with the specified status. Language
      * models are ordered by creation date, with the newest model first. If you
-     * don't include <code>StatusEquals</code>, all custom language models are
+     * do not include <code>StatusEquals</code>, all custom language models are
      * returned.
      * </p>
      * <p>
@@ -97,7 +97,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * @return <p>
      *         Returns only custom language models with the specified status.
      *         Language models are ordered by creation date, with the newest
-     *         model first. If you don't include <code>StatusEquals</code>, all
+     *         model first. If you do not include <code>StatusEquals</code>, all
      *         custom language models are returned.
      *         </p>
      * @see ModelStatus
@@ -110,7 +110,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <p>
      * Returns only custom language models with the specified status. Language
      * models are ordered by creation date, with the newest model first. If you
-     * don't include <code>StatusEquals</code>, all custom language models are
+     * do not include <code>StatusEquals</code>, all custom language models are
      * returned.
      * </p>
      * <p>
@@ -120,7 +120,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * @param statusEquals <p>
      *            Returns only custom language models with the specified status.
      *            Language models are ordered by creation date, with the newest
-     *            model first. If you don't include <code>StatusEquals</code>,
+     *            model first. If you do not include <code>StatusEquals</code>,
      *            all custom language models are returned.
      *            </p>
      * @see ModelStatus
@@ -133,7 +133,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <p>
      * Returns only custom language models with the specified status. Language
      * models are ordered by creation date, with the newest model first. If you
-     * don't include <code>StatusEquals</code>, all custom language models are
+     * do not include <code>StatusEquals</code>, all custom language models are
      * returned.
      * </p>
      * <p>
@@ -146,7 +146,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * @param statusEquals <p>
      *            Returns only custom language models with the specified status.
      *            Language models are ordered by creation date, with the newest
-     *            model first. If you don't include <code>StatusEquals</code>,
+     *            model first. If you do not include <code>StatusEquals</code>,
      *            all custom language models are returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -162,7 +162,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <p>
      * Returns only custom language models with the specified status. Language
      * models are ordered by creation date, with the newest model first. If you
-     * don't include <code>StatusEquals</code>, all custom language models are
+     * do not include <code>StatusEquals</code>, all custom language models are
      * returned.
      * </p>
      * <p>
@@ -172,7 +172,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * @param statusEquals <p>
      *            Returns only custom language models with the specified status.
      *            Language models are ordered by creation date, with the newest
-     *            model first. If you don't include <code>StatusEquals</code>,
+     *            model first. If you do not include <code>StatusEquals</code>,
      *            all custom language models are returned.
      *            </p>
      * @see ModelStatus
@@ -185,7 +185,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <p>
      * Returns only custom language models with the specified status. Language
      * models are ordered by creation date, with the newest model first. If you
-     * don't include <code>StatusEquals</code>, all custom language models are
+     * do not include <code>StatusEquals</code>, all custom language models are
      * returned.
      * </p>
      * <p>
@@ -198,7 +198,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * @param statusEquals <p>
      *            Returns only custom language models with the specified status.
      *            Language models are ordered by creation date, with the newest
-     *            model first. If you don't include <code>StatusEquals</code>,
+     *            model first. If you do not include <code>StatusEquals</code>,
      *            all custom language models are returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -361,7 +361,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <p>
      * The maximum number of custom language models to return in each page of
      * results. If there are fewer results than the value that you specify, only
-     * the actual results are returned. If you don't specify a value, a default
+     * the actual results are returned. If you do not specify a value, a default
      * of 5 is used.
      * </p>
      * <p>
@@ -371,7 +371,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * @return <p>
      *         The maximum number of custom language models to return in each
      *         page of results. If there are fewer results than the value that
-     *         you specify, only the actual results are returned. If you don't
+     *         you specify, only the actual results are returned. If you do not
      *         specify a value, a default of 5 is used.
      *         </p>
      */
@@ -383,7 +383,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <p>
      * The maximum number of custom language models to return in each page of
      * results. If there are fewer results than the value that you specify, only
-     * the actual results are returned. If you don't specify a value, a default
+     * the actual results are returned. If you do not specify a value, a default
      * of 5 is used.
      * </p>
      * <p>
@@ -394,7 +394,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      *            The maximum number of custom language models to return in each
      *            page of results. If there are fewer results than the value
      *            that you specify, only the actual results are returned. If you
-     *            don't specify a value, a default of 5 is used.
+     *            do not specify a value, a default of 5 is used.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -405,7 +405,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <p>
      * The maximum number of custom language models to return in each page of
      * results. If there are fewer results than the value that you specify, only
-     * the actual results are returned. If you don't specify a value, a default
+     * the actual results are returned. If you do not specify a value, a default
      * of 5 is used.
      * </p>
      * <p>
@@ -419,7 +419,7 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      *            The maximum number of custom language models to return in each
      *            page of results. If there are fewer results than the value
      *            that you specify, only the actual results are returned. If you
-     *            don't specify a value, a default of 5 is used.
+     *            do not specify a value, a default of 5 is used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
