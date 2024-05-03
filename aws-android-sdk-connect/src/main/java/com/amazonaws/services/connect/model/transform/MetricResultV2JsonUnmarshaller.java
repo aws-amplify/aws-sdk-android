@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,6 +41,9 @@ class MetricResultV2JsonUnmarshaller implements
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("MetricInterval")) {
+                metricResultV2.setMetricInterval(MetricIntervalJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Collections")) {
                 metricResultV2.setCollections(new ListUnmarshaller<MetricDataV2>(
                         MetricDataV2JsonUnmarshaller.getInstance()

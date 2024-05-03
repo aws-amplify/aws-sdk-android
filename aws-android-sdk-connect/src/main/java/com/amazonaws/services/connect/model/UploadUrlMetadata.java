@@ -1,0 +1,318 @@
+/*
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+package com.amazonaws.services.connect.model;
+
+import java.io.Serializable;
+
+/**
+ * <p>
+ * Fields required when uploading an attached file.
+ * </p>
+ */
+public class UploadUrlMetadata implements Serializable {
+    /**
+     * <p>
+     * A pre-signed S3 URL that should be used for uploading the attached file.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     */
+    private String url;
+
+    /**
+     * <p>
+     * The expiration time of the URL in ISO timestamp. It's specified in ISO
+     * 8601 format: <code>yyyy-MM-ddThh:mm:ss.SSSZ</code>. For example,
+     * <code>2019-11-08T02:41:28.172Z</code>.
+     * </p>
+     */
+    private String urlExpiry;
+
+    /**
+     * <p>
+     * A map of headers that should be provided when uploading the attached
+     * file.
+     * </p>
+     */
+    private java.util.Map<String, String> headersToInclude;
+
+    /**
+     * <p>
+     * A pre-signed S3 URL that should be used for uploading the attached file.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     *
+     * @return <p>
+     *         A pre-signed S3 URL that should be used for uploading the
+     *         attached file.
+     *         </p>
+     */
+    public String getUrl() {
+        return url;
+    }
+
+    /**
+     * <p>
+     * A pre-signed S3 URL that should be used for uploading the attached file.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     *
+     * @param url <p>
+     *            A pre-signed S3 URL that should be used for uploading the
+     *            attached file.
+     *            </p>
+     */
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    /**
+     * <p>
+     * A pre-signed S3 URL that should be used for uploading the attached file.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     *
+     * @param url <p>
+     *            A pre-signed S3 URL that should be used for uploading the
+     *            attached file.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UploadUrlMetadata withUrl(String url) {
+        this.url = url;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The expiration time of the URL in ISO timestamp. It's specified in ISO
+     * 8601 format: <code>yyyy-MM-ddThh:mm:ss.SSSZ</code>. For example,
+     * <code>2019-11-08T02:41:28.172Z</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The expiration time of the URL in ISO timestamp. It's specified
+     *         in ISO 8601 format: <code>yyyy-MM-ddThh:mm:ss.SSSZ</code>. For
+     *         example, <code>2019-11-08T02:41:28.172Z</code>.
+     *         </p>
+     */
+    public String getUrlExpiry() {
+        return urlExpiry;
+    }
+
+    /**
+     * <p>
+     * The expiration time of the URL in ISO timestamp. It's specified in ISO
+     * 8601 format: <code>yyyy-MM-ddThh:mm:ss.SSSZ</code>. For example,
+     * <code>2019-11-08T02:41:28.172Z</code>.
+     * </p>
+     *
+     * @param urlExpiry <p>
+     *            The expiration time of the URL in ISO timestamp. It's
+     *            specified in ISO 8601 format:
+     *            <code>yyyy-MM-ddThh:mm:ss.SSSZ</code>. For example,
+     *            <code>2019-11-08T02:41:28.172Z</code>.
+     *            </p>
+     */
+    public void setUrlExpiry(String urlExpiry) {
+        this.urlExpiry = urlExpiry;
+    }
+
+    /**
+     * <p>
+     * The expiration time of the URL in ISO timestamp. It's specified in ISO
+     * 8601 format: <code>yyyy-MM-ddThh:mm:ss.SSSZ</code>. For example,
+     * <code>2019-11-08T02:41:28.172Z</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param urlExpiry <p>
+     *            The expiration time of the URL in ISO timestamp. It's
+     *            specified in ISO 8601 format:
+     *            <code>yyyy-MM-ddThh:mm:ss.SSSZ</code>. For example,
+     *            <code>2019-11-08T02:41:28.172Z</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UploadUrlMetadata withUrlExpiry(String urlExpiry) {
+        this.urlExpiry = urlExpiry;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A map of headers that should be provided when uploading the attached
+     * file.
+     * </p>
+     *
+     * @return <p>
+     *         A map of headers that should be provided when uploading the
+     *         attached file.
+     *         </p>
+     */
+    public java.util.Map<String, String> getHeadersToInclude() {
+        return headersToInclude;
+    }
+
+    /**
+     * <p>
+     * A map of headers that should be provided when uploading the attached
+     * file.
+     * </p>
+     *
+     * @param headersToInclude <p>
+     *            A map of headers that should be provided when uploading the
+     *            attached file.
+     *            </p>
+     */
+    public void setHeadersToInclude(java.util.Map<String, String> headersToInclude) {
+        this.headersToInclude = headersToInclude;
+    }
+
+    /**
+     * <p>
+     * A map of headers that should be provided when uploading the attached
+     * file.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param headersToInclude <p>
+     *            A map of headers that should be provided when uploading the
+     *            attached file.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UploadUrlMetadata withHeadersToInclude(java.util.Map<String, String> headersToInclude) {
+        this.headersToInclude = headersToInclude;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A map of headers that should be provided when uploading the attached
+     * file.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into HeadersToInclude parameter, and
+     * returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param key The key of the entry to be added into HeadersToInclude.
+     * @param value The corresponding value of the entry to be added into
+     *            HeadersToInclude.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UploadUrlMetadata addHeadersToIncludeEntry(String key, String value) {
+        if (null == this.headersToInclude) {
+            this.headersToInclude = new java.util.HashMap<String, String>();
+        }
+        if (this.headersToInclude.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.headersToInclude.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into HeadersToInclude.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public UploadUrlMetadata clearHeadersToIncludeEntries() {
+        this.headersToInclude = null;
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getUrl() != null)
+            sb.append("Url: " + getUrl() + ",");
+        if (getUrlExpiry() != null)
+            sb.append("UrlExpiry: " + getUrlExpiry() + ",");
+        if (getHeadersToInclude() != null)
+            sb.append("HeadersToInclude: " + getHeadersToInclude());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getUrl() == null) ? 0 : getUrl().hashCode());
+        hashCode = prime * hashCode + ((getUrlExpiry() == null) ? 0 : getUrlExpiry().hashCode());
+        hashCode = prime * hashCode
+                + ((getHeadersToInclude() == null) ? 0 : getHeadersToInclude().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof UploadUrlMetadata == false)
+            return false;
+        UploadUrlMetadata other = (UploadUrlMetadata) obj;
+
+        if (other.getUrl() == null ^ this.getUrl() == null)
+            return false;
+        if (other.getUrl() != null && other.getUrl().equals(this.getUrl()) == false)
+            return false;
+        if (other.getUrlExpiry() == null ^ this.getUrlExpiry() == null)
+            return false;
+        if (other.getUrlExpiry() != null
+                && other.getUrlExpiry().equals(this.getUrlExpiry()) == false)
+            return false;
+        if (other.getHeadersToInclude() == null ^ this.getHeadersToInclude() == null)
+            return false;
+        if (other.getHeadersToInclude() != null
+                && other.getHeadersToInclude().equals(this.getHeadersToInclude()) == false)
+            return false;
+        return true;
+    }
+}
