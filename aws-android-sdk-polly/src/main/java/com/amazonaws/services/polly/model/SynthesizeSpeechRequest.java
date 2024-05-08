@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,44 +32,30 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
-     * Amazon Polly to use when processing input text for speech synthesis. For
-     * information on Amazon Polly voices and which voices are available in
-     * standard-only, NTTS-only, and both standard and NTTS formats, see <a
-     * href=
-     * "https://docs.aws.amazon.com/polly/latest/dg/voicelist.html">Available
-     * Voices</a>.
-     * </p>
-     * <p>
-     * <b>NTTS-only voices</b>
-     * </p>
-     * <p>
-     * When using NTTS-only voices such as Kevin (en-US), this parameter is
-     * required and must be set to <code>neural</code>. If the engine is not
-     * specified, or is set to <code>standard</code>, this will result in an
-     * error.
+     * Specifies the engine (<code>standard</code>, <code>neural</code>,
+     * <code>long-form</code>, or <code>generative</code>) for Amazon Polly to
+     * use when processing input text for speech synthesis. Provide an engine
+     * that is supported by the voice you select. If you don't provide an
+     * engine, the standard engine is selected by default. If a chosen voice
+     * isn't supported by the standard engine, this will result in an error. For
+     * information on Amazon Polly voices and which voices are available for
+     * each engine, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/voicelist.html"
+     * >Available Voices</a>.
      * </p>
      * <p>
      * Type: String
      * </p>
      * <p>
-     * Valid Values: <code>standard</code> | <code>neural</code>
+     * Valid Values: <code>standard</code> | <code>neural</code> |
+     * <code>long-form</code> | <code>generative</code>
      * </p>
      * <p>
      * Required: Yes
      * </p>
      * <p>
-     * <b>Standard voices</b>
-     * </p>
-     * <p>
-     * For standard voices, this is not required; the engine parameter defaults
-     * to <code>standard</code>. If the engine is not specified, or is set to
-     * <code>standard</code> and an NTTS-only voice is selected, this will
-     * result in an error.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, neural
+     * <b>Allowed Values: </b>standard, neural, long-form, generative
      */
     private String engine;
 
@@ -133,7 +119,8 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
      * "24000". The default value for standard voices is "22050". The default
-     * value for neural voices is "24000".
+     * value for neural voices is "24000". The default value for long-form
+     * voices is "24000". The default value for generative voices is "24000".
      * </p>
      * <p>
      * Valid values for pcm are "8000" and "16000" The default value is "16000".
@@ -187,86 +174,60 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory, Burcu
      */
     private String voiceId;
 
     /**
      * <p>
-     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
-     * Amazon Polly to use when processing input text for speech synthesis. For
-     * information on Amazon Polly voices and which voices are available in
-     * standard-only, NTTS-only, and both standard and NTTS formats, see <a
-     * href=
-     * "https://docs.aws.amazon.com/polly/latest/dg/voicelist.html">Available
-     * Voices</a>.
-     * </p>
-     * <p>
-     * <b>NTTS-only voices</b>
-     * </p>
-     * <p>
-     * When using NTTS-only voices such as Kevin (en-US), this parameter is
-     * required and must be set to <code>neural</code>. If the engine is not
-     * specified, or is set to <code>standard</code>, this will result in an
-     * error.
+     * Specifies the engine (<code>standard</code>, <code>neural</code>,
+     * <code>long-form</code>, or <code>generative</code>) for Amazon Polly to
+     * use when processing input text for speech synthesis. Provide an engine
+     * that is supported by the voice you select. If you don't provide an
+     * engine, the standard engine is selected by default. If a chosen voice
+     * isn't supported by the standard engine, this will result in an error. For
+     * information on Amazon Polly voices and which voices are available for
+     * each engine, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/voicelist.html"
+     * >Available Voices</a>.
      * </p>
      * <p>
      * Type: String
      * </p>
      * <p>
-     * Valid Values: <code>standard</code> | <code>neural</code>
+     * Valid Values: <code>standard</code> | <code>neural</code> |
+     * <code>long-form</code> | <code>generative</code>
      * </p>
      * <p>
      * Required: Yes
      * </p>
      * <p>
-     * <b>Standard voices</b>
-     * </p>
-     * <p>
-     * For standard voices, this is not required; the engine parameter defaults
-     * to <code>standard</code>. If the engine is not specified, or is set to
-     * <code>standard</code> and an NTTS-only voice is selected, this will
-     * result in an error.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, neural
+     * <b>Allowed Values: </b>standard, neural, long-form, generative
      *
      * @return <p>
-     *         Specifies the engine (<code>standard</code> or
-     *         <code>neural</code>) for Amazon Polly to use when processing
-     *         input text for speech synthesis. For information on Amazon Polly
-     *         voices and which voices are available in standard-only,
-     *         NTTS-only, and both standard and NTTS formats, see <a href=
+     *         Specifies the engine (<code>standard</code>, <code>neural</code>,
+     *         <code>long-form</code>, or <code>generative</code>) for Amazon
+     *         Polly to use when processing input text for speech synthesis.
+     *         Provide an engine that is supported by the voice you select. If
+     *         you don't provide an engine, the standard engine is selected by
+     *         default. If a chosen voice isn't supported by the standard
+     *         engine, this will result in an error. For information on Amazon
+     *         Polly voices and which voices are available for each engine, see
+     *         <a href=
      *         "https://docs.aws.amazon.com/polly/latest/dg/voicelist.html"
      *         >Available Voices</a>.
-     *         </p>
-     *         <p>
-     *         <b>NTTS-only voices</b>
-     *         </p>
-     *         <p>
-     *         When using NTTS-only voices such as Kevin (en-US), this parameter
-     *         is required and must be set to <code>neural</code>. If the engine
-     *         is not specified, or is set to <code>standard</code>, this will
-     *         result in an error.
      *         </p>
      *         <p>
      *         Type: String
      *         </p>
      *         <p>
-     *         Valid Values: <code>standard</code> | <code>neural</code>
+     *         Valid Values: <code>standard</code> | <code>neural</code> |
+     *         <code>long-form</code> | <code>generative</code>
      *         </p>
      *         <p>
      *         Required: Yes
-     *         </p>
-     *         <p>
-     *         <b>Standard voices</b>
-     *         </p>
-     *         <p>
-     *         For standard voices, this is not required; the engine parameter
-     *         defaults to <code>standard</code>. If the engine is not
-     *         specified, or is set to <code>standard</code> and an NTTS-only
-     *         voice is selected, this will result in an error.
      *         </p>
      * @see Engine
      */
@@ -276,80 +237,54 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
-     * Amazon Polly to use when processing input text for speech synthesis. For
-     * information on Amazon Polly voices and which voices are available in
-     * standard-only, NTTS-only, and both standard and NTTS formats, see <a
-     * href=
-     * "https://docs.aws.amazon.com/polly/latest/dg/voicelist.html">Available
-     * Voices</a>.
-     * </p>
-     * <p>
-     * <b>NTTS-only voices</b>
-     * </p>
-     * <p>
-     * When using NTTS-only voices such as Kevin (en-US), this parameter is
-     * required and must be set to <code>neural</code>. If the engine is not
-     * specified, or is set to <code>standard</code>, this will result in an
-     * error.
+     * Specifies the engine (<code>standard</code>, <code>neural</code>,
+     * <code>long-form</code>, or <code>generative</code>) for Amazon Polly to
+     * use when processing input text for speech synthesis. Provide an engine
+     * that is supported by the voice you select. If you don't provide an
+     * engine, the standard engine is selected by default. If a chosen voice
+     * isn't supported by the standard engine, this will result in an error. For
+     * information on Amazon Polly voices and which voices are available for
+     * each engine, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/voicelist.html"
+     * >Available Voices</a>.
      * </p>
      * <p>
      * Type: String
      * </p>
      * <p>
-     * Valid Values: <code>standard</code> | <code>neural</code>
+     * Valid Values: <code>standard</code> | <code>neural</code> |
+     * <code>long-form</code> | <code>generative</code>
      * </p>
      * <p>
      * Required: Yes
      * </p>
      * <p>
-     * <b>Standard voices</b>
-     * </p>
-     * <p>
-     * For standard voices, this is not required; the engine parameter defaults
-     * to <code>standard</code>. If the engine is not specified, or is set to
-     * <code>standard</code> and an NTTS-only voice is selected, this will
-     * result in an error.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, neural
+     * <b>Allowed Values: </b>standard, neural, long-form, generative
      *
      * @param engine <p>
-     *            Specifies the engine (<code>standard</code> or
-     *            <code>neural</code>) for Amazon Polly to use when processing
-     *            input text for speech synthesis. For information on Amazon
-     *            Polly voices and which voices are available in standard-only,
-     *            NTTS-only, and both standard and NTTS formats, see <a href=
-     *            "https://docs.aws.amazon.com/polly/latest/dg/voicelist.html"
+     *            Specifies the engine (<code>standard</code>,
+     *            <code>neural</code>, <code>long-form</code>, or
+     *            <code>generative</code>) for Amazon Polly to use when
+     *            processing input text for speech synthesis. Provide an engine
+     *            that is supported by the voice you select. If you don't
+     *            provide an engine, the standard engine is selected by default.
+     *            If a chosen voice isn't supported by the standard engine, this
+     *            will result in an error. For information on Amazon Polly
+     *            voices and which voices are available for each engine, see <a
+     *            href
+     *            ="https://docs.aws.amazon.com/polly/latest/dg/voicelist.html"
      *            >Available Voices</a>.
-     *            </p>
-     *            <p>
-     *            <b>NTTS-only voices</b>
-     *            </p>
-     *            <p>
-     *            When using NTTS-only voices such as Kevin (en-US), this
-     *            parameter is required and must be set to <code>neural</code>.
-     *            If the engine is not specified, or is set to
-     *            <code>standard</code>, this will result in an error.
      *            </p>
      *            <p>
      *            Type: String
      *            </p>
      *            <p>
-     *            Valid Values: <code>standard</code> | <code>neural</code>
+     *            Valid Values: <code>standard</code> | <code>neural</code> |
+     *            <code>long-form</code> | <code>generative</code>
      *            </p>
      *            <p>
      *            Required: Yes
-     *            </p>
-     *            <p>
-     *            <b>Standard voices</b>
-     *            </p>
-     *            <p>
-     *            For standard voices, this is not required; the engine
-     *            parameter defaults to <code>standard</code>. If the engine is
-     *            not specified, or is set to <code>standard</code> and an
-     *            NTTS-only voice is selected, this will result in an error.
      *            </p>
      * @see Engine
      */
@@ -359,83 +294,57 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
-     * Amazon Polly to use when processing input text for speech synthesis. For
-     * information on Amazon Polly voices and which voices are available in
-     * standard-only, NTTS-only, and both standard and NTTS formats, see <a
-     * href=
-     * "https://docs.aws.amazon.com/polly/latest/dg/voicelist.html">Available
-     * Voices</a>.
-     * </p>
-     * <p>
-     * <b>NTTS-only voices</b>
-     * </p>
-     * <p>
-     * When using NTTS-only voices such as Kevin (en-US), this parameter is
-     * required and must be set to <code>neural</code>. If the engine is not
-     * specified, or is set to <code>standard</code>, this will result in an
-     * error.
+     * Specifies the engine (<code>standard</code>, <code>neural</code>,
+     * <code>long-form</code>, or <code>generative</code>) for Amazon Polly to
+     * use when processing input text for speech synthesis. Provide an engine
+     * that is supported by the voice you select. If you don't provide an
+     * engine, the standard engine is selected by default. If a chosen voice
+     * isn't supported by the standard engine, this will result in an error. For
+     * information on Amazon Polly voices and which voices are available for
+     * each engine, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/voicelist.html"
+     * >Available Voices</a>.
      * </p>
      * <p>
      * Type: String
      * </p>
      * <p>
-     * Valid Values: <code>standard</code> | <code>neural</code>
+     * Valid Values: <code>standard</code> | <code>neural</code> |
+     * <code>long-form</code> | <code>generative</code>
      * </p>
      * <p>
      * Required: Yes
-     * </p>
-     * <p>
-     * <b>Standard voices</b>
-     * </p>
-     * <p>
-     * For standard voices, this is not required; the engine parameter defaults
-     * to <code>standard</code>. If the engine is not specified, or is set to
-     * <code>standard</code> and an NTTS-only voice is selected, this will
-     * result in an error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, neural
+     * <b>Allowed Values: </b>standard, neural, long-form, generative
      *
      * @param engine <p>
-     *            Specifies the engine (<code>standard</code> or
-     *            <code>neural</code>) for Amazon Polly to use when processing
-     *            input text for speech synthesis. For information on Amazon
-     *            Polly voices and which voices are available in standard-only,
-     *            NTTS-only, and both standard and NTTS formats, see <a href=
-     *            "https://docs.aws.amazon.com/polly/latest/dg/voicelist.html"
+     *            Specifies the engine (<code>standard</code>,
+     *            <code>neural</code>, <code>long-form</code>, or
+     *            <code>generative</code>) for Amazon Polly to use when
+     *            processing input text for speech synthesis. Provide an engine
+     *            that is supported by the voice you select. If you don't
+     *            provide an engine, the standard engine is selected by default.
+     *            If a chosen voice isn't supported by the standard engine, this
+     *            will result in an error. For information on Amazon Polly
+     *            voices and which voices are available for each engine, see <a
+     *            href
+     *            ="https://docs.aws.amazon.com/polly/latest/dg/voicelist.html"
      *            >Available Voices</a>.
-     *            </p>
-     *            <p>
-     *            <b>NTTS-only voices</b>
-     *            </p>
-     *            <p>
-     *            When using NTTS-only voices such as Kevin (en-US), this
-     *            parameter is required and must be set to <code>neural</code>.
-     *            If the engine is not specified, or is set to
-     *            <code>standard</code>, this will result in an error.
      *            </p>
      *            <p>
      *            Type: String
      *            </p>
      *            <p>
-     *            Valid Values: <code>standard</code> | <code>neural</code>
+     *            Valid Values: <code>standard</code> | <code>neural</code> |
+     *            <code>long-form</code> | <code>generative</code>
      *            </p>
      *            <p>
      *            Required: Yes
-     *            </p>
-     *            <p>
-     *            <b>Standard voices</b>
-     *            </p>
-     *            <p>
-     *            For standard voices, this is not required; the engine
-     *            parameter defaults to <code>standard</code>. If the engine is
-     *            not specified, or is set to <code>standard</code> and an
-     *            NTTS-only voice is selected, this will result in an error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -448,80 +357,54 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
-     * Amazon Polly to use when processing input text for speech synthesis. For
-     * information on Amazon Polly voices and which voices are available in
-     * standard-only, NTTS-only, and both standard and NTTS formats, see <a
-     * href=
-     * "https://docs.aws.amazon.com/polly/latest/dg/voicelist.html">Available
-     * Voices</a>.
-     * </p>
-     * <p>
-     * <b>NTTS-only voices</b>
-     * </p>
-     * <p>
-     * When using NTTS-only voices such as Kevin (en-US), this parameter is
-     * required and must be set to <code>neural</code>. If the engine is not
-     * specified, or is set to <code>standard</code>, this will result in an
-     * error.
+     * Specifies the engine (<code>standard</code>, <code>neural</code>,
+     * <code>long-form</code>, or <code>generative</code>) for Amazon Polly to
+     * use when processing input text for speech synthesis. Provide an engine
+     * that is supported by the voice you select. If you don't provide an
+     * engine, the standard engine is selected by default. If a chosen voice
+     * isn't supported by the standard engine, this will result in an error. For
+     * information on Amazon Polly voices and which voices are available for
+     * each engine, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/voicelist.html"
+     * >Available Voices</a>.
      * </p>
      * <p>
      * Type: String
      * </p>
      * <p>
-     * Valid Values: <code>standard</code> | <code>neural</code>
+     * Valid Values: <code>standard</code> | <code>neural</code> |
+     * <code>long-form</code> | <code>generative</code>
      * </p>
      * <p>
      * Required: Yes
      * </p>
      * <p>
-     * <b>Standard voices</b>
-     * </p>
-     * <p>
-     * For standard voices, this is not required; the engine parameter defaults
-     * to <code>standard</code>. If the engine is not specified, or is set to
-     * <code>standard</code> and an NTTS-only voice is selected, this will
-     * result in an error.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, neural
+     * <b>Allowed Values: </b>standard, neural, long-form, generative
      *
      * @param engine <p>
-     *            Specifies the engine (<code>standard</code> or
-     *            <code>neural</code>) for Amazon Polly to use when processing
-     *            input text for speech synthesis. For information on Amazon
-     *            Polly voices and which voices are available in standard-only,
-     *            NTTS-only, and both standard and NTTS formats, see <a href=
-     *            "https://docs.aws.amazon.com/polly/latest/dg/voicelist.html"
+     *            Specifies the engine (<code>standard</code>,
+     *            <code>neural</code>, <code>long-form</code>, or
+     *            <code>generative</code>) for Amazon Polly to use when
+     *            processing input text for speech synthesis. Provide an engine
+     *            that is supported by the voice you select. If you don't
+     *            provide an engine, the standard engine is selected by default.
+     *            If a chosen voice isn't supported by the standard engine, this
+     *            will result in an error. For information on Amazon Polly
+     *            voices and which voices are available for each engine, see <a
+     *            href
+     *            ="https://docs.aws.amazon.com/polly/latest/dg/voicelist.html"
      *            >Available Voices</a>.
-     *            </p>
-     *            <p>
-     *            <b>NTTS-only voices</b>
-     *            </p>
-     *            <p>
-     *            When using NTTS-only voices such as Kevin (en-US), this
-     *            parameter is required and must be set to <code>neural</code>.
-     *            If the engine is not specified, or is set to
-     *            <code>standard</code>, this will result in an error.
      *            </p>
      *            <p>
      *            Type: String
      *            </p>
      *            <p>
-     *            Valid Values: <code>standard</code> | <code>neural</code>
+     *            Valid Values: <code>standard</code> | <code>neural</code> |
+     *            <code>long-form</code> | <code>generative</code>
      *            </p>
      *            <p>
      *            Required: Yes
-     *            </p>
-     *            <p>
-     *            <b>Standard voices</b>
-     *            </p>
-     *            <p>
-     *            For standard voices, this is not required; the engine
-     *            parameter defaults to <code>standard</code>. If the engine is
-     *            not specified, or is set to <code>standard</code> and an
-     *            NTTS-only voice is selected, this will result in an error.
      *            </p>
      * @see Engine
      */
@@ -531,83 +414,57 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
-     * Amazon Polly to use when processing input text for speech synthesis. For
-     * information on Amazon Polly voices and which voices are available in
-     * standard-only, NTTS-only, and both standard and NTTS formats, see <a
-     * href=
-     * "https://docs.aws.amazon.com/polly/latest/dg/voicelist.html">Available
-     * Voices</a>.
-     * </p>
-     * <p>
-     * <b>NTTS-only voices</b>
-     * </p>
-     * <p>
-     * When using NTTS-only voices such as Kevin (en-US), this parameter is
-     * required and must be set to <code>neural</code>. If the engine is not
-     * specified, or is set to <code>standard</code>, this will result in an
-     * error.
+     * Specifies the engine (<code>standard</code>, <code>neural</code>,
+     * <code>long-form</code>, or <code>generative</code>) for Amazon Polly to
+     * use when processing input text for speech synthesis. Provide an engine
+     * that is supported by the voice you select. If you don't provide an
+     * engine, the standard engine is selected by default. If a chosen voice
+     * isn't supported by the standard engine, this will result in an error. For
+     * information on Amazon Polly voices and which voices are available for
+     * each engine, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/voicelist.html"
+     * >Available Voices</a>.
      * </p>
      * <p>
      * Type: String
      * </p>
      * <p>
-     * Valid Values: <code>standard</code> | <code>neural</code>
+     * Valid Values: <code>standard</code> | <code>neural</code> |
+     * <code>long-form</code> | <code>generative</code>
      * </p>
      * <p>
      * Required: Yes
-     * </p>
-     * <p>
-     * <b>Standard voices</b>
-     * </p>
-     * <p>
-     * For standard voices, this is not required; the engine parameter defaults
-     * to <code>standard</code>. If the engine is not specified, or is set to
-     * <code>standard</code> and an NTTS-only voice is selected, this will
-     * result in an error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, neural
+     * <b>Allowed Values: </b>standard, neural, long-form, generative
      *
      * @param engine <p>
-     *            Specifies the engine (<code>standard</code> or
-     *            <code>neural</code>) for Amazon Polly to use when processing
-     *            input text for speech synthesis. For information on Amazon
-     *            Polly voices and which voices are available in standard-only,
-     *            NTTS-only, and both standard and NTTS formats, see <a href=
-     *            "https://docs.aws.amazon.com/polly/latest/dg/voicelist.html"
+     *            Specifies the engine (<code>standard</code>,
+     *            <code>neural</code>, <code>long-form</code>, or
+     *            <code>generative</code>) for Amazon Polly to use when
+     *            processing input text for speech synthesis. Provide an engine
+     *            that is supported by the voice you select. If you don't
+     *            provide an engine, the standard engine is selected by default.
+     *            If a chosen voice isn't supported by the standard engine, this
+     *            will result in an error. For information on Amazon Polly
+     *            voices and which voices are available for each engine, see <a
+     *            href
+     *            ="https://docs.aws.amazon.com/polly/latest/dg/voicelist.html"
      *            >Available Voices</a>.
-     *            </p>
-     *            <p>
-     *            <b>NTTS-only voices</b>
-     *            </p>
-     *            <p>
-     *            When using NTTS-only voices such as Kevin (en-US), this
-     *            parameter is required and must be set to <code>neural</code>.
-     *            If the engine is not specified, or is set to
-     *            <code>standard</code>, this will result in an error.
      *            </p>
      *            <p>
      *            Type: String
      *            </p>
      *            <p>
-     *            Valid Values: <code>standard</code> | <code>neural</code>
+     *            Valid Values: <code>standard</code> | <code>neural</code> |
+     *            <code>long-form</code> | <code>generative</code>
      *            </p>
      *            <p>
      *            Required: Yes
-     *            </p>
-     *            <p>
-     *            <b>Standard voices</b>
-     *            </p>
-     *            <p>
-     *            For standard voices, this is not required; the engine
-     *            parameter defaults to <code>standard</code>. If the engine is
-     *            not specified, or is set to <code>standard</code> and an
-     *            NTTS-only voice is selected, this will result in an error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1139,7 +996,8 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
      * "24000". The default value for standard voices is "22050". The default
-     * value for neural voices is "24000".
+     * value for neural voices is "24000". The default value for long-form
+     * voices is "24000". The default value for generative voices is "24000".
      * </p>
      * <p>
      * Valid values for pcm are "8000" and "16000" The default value is "16000".
@@ -1151,7 +1009,9 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      *         <p>
      *         The valid values for mp3 and ogg_vorbis are "8000", "16000",
      *         "22050", and "24000". The default value for standard voices is
-     *         "22050". The default value for neural voices is "24000".
+     *         "22050". The default value for neural voices is "24000". The
+     *         default value for long-form voices is "24000". The default value
+     *         for generative voices is "24000".
      *         </p>
      *         <p>
      *         Valid values for pcm are "8000" and "16000" The default value is
@@ -1169,7 +1029,8 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
      * "24000". The default value for standard voices is "22050". The default
-     * value for neural voices is "24000".
+     * value for neural voices is "24000". The default value for long-form
+     * voices is "24000". The default value for generative voices is "24000".
      * </p>
      * <p>
      * Valid values for pcm are "8000" and "16000" The default value is "16000".
@@ -1181,7 +1042,9 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      *            <p>
      *            The valid values for mp3 and ogg_vorbis are "8000", "16000",
      *            "22050", and "24000". The default value for standard voices is
-     *            "22050". The default value for neural voices is "24000".
+     *            "22050". The default value for neural voices is "24000". The
+     *            default value for long-form voices is "24000". The default
+     *            value for generative voices is "24000".
      *            </p>
      *            <p>
      *            Valid values for pcm are "8000" and "16000" The default value
@@ -1199,7 +1062,8 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
      * "24000". The default value for standard voices is "22050". The default
-     * value for neural voices is "24000".
+     * value for neural voices is "24000". The default value for long-form
+     * voices is "24000". The default value for generative voices is "24000".
      * </p>
      * <p>
      * Valid values for pcm are "8000" and "16000" The default value is "16000".
@@ -1214,7 +1078,9 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      *            <p>
      *            The valid values for mp3 and ogg_vorbis are "8000", "16000",
      *            "22050", and "24000". The default value for standard voices is
-     *            "22050". The default value for neural voices is "24000".
+     *            "22050". The default value for neural voices is "24000". The
+     *            default value for long-form voices is "24000". The default
+     *            value for generative voices is "24000".
      *            </p>
      *            <p>
      *            Valid values for pcm are "8000" and "16000" The default value
@@ -1504,7 +1370,8 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory, Burcu
      *
      * @return <p>
      *         Voice ID to use for the synthesis. You can get a list of
@@ -1536,7 +1403,8 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory, Burcu
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -1571,7 +1439,8 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory, Burcu
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -1606,7 +1475,8 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory, Burcu
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -1641,7 +1511,8 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory, Burcu
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
