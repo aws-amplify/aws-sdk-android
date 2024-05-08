@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,7 +36,9 @@ public class NumberAttributeConstraintsType implements Serializable {
 
     /**
      * <p>
-     * The maximum value of an attribute that is of the number data type.
+     * The maximum length of a number attribute value. Must be a number less
+     * than or equal to <code>2^1023</code>, represented as a string with a
+     * length of 131072 characters or fewer.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -103,15 +105,18 @@ public class NumberAttributeConstraintsType implements Serializable {
 
     /**
      * <p>
-     * The maximum value of an attribute that is of the number data type.
+     * The maximum length of a number attribute value. Must be a number less
+     * than or equal to <code>2^1023</code>, represented as a string with a
+     * length of 131072 characters or fewer.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
-     *         The maximum value of an attribute that is of the number data
-     *         type.
+     *         The maximum length of a number attribute value. Must be a number
+     *         less than or equal to <code>2^1023</code>, represented as a
+     *         string with a length of 131072 characters or fewer.
      *         </p>
      */
     public String getMaxValue() {
@@ -120,15 +125,18 @@ public class NumberAttributeConstraintsType implements Serializable {
 
     /**
      * <p>
-     * The maximum value of an attribute that is of the number data type.
+     * The maximum length of a number attribute value. Must be a number less
+     * than or equal to <code>2^1023</code>, represented as a string with a
+     * length of 131072 characters or fewer.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 131072<br/>
      *
      * @param maxValue <p>
-     *            The maximum value of an attribute that is of the number data
-     *            type.
+     *            The maximum length of a number attribute value. Must be a
+     *            number less than or equal to <code>2^1023</code>, represented
+     *            as a string with a length of 131072 characters or fewer.
      *            </p>
      */
     public void setMaxValue(String maxValue) {
@@ -137,7 +145,9 @@ public class NumberAttributeConstraintsType implements Serializable {
 
     /**
      * <p>
-     * The maximum value of an attribute that is of the number data type.
+     * The maximum length of a number attribute value. Must be a number less
+     * than or equal to <code>2^1023</code>, represented as a string with a
+     * length of 131072 characters or fewer.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -147,8 +157,9 @@ public class NumberAttributeConstraintsType implements Serializable {
      * <b>Length: </b>0 - 131072<br/>
      *
      * @param maxValue <p>
-     *            The maximum value of an attribute that is of the number data
-     *            type.
+     *            The maximum length of a number attribute value. Must be a
+     *            number less than or equal to <code>2^1023</code>, represented
+     *            as a string with a length of 131072 characters or fewer.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

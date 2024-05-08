@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,6 +23,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Deletes the attributes for a user.
  * </p>
+ * <p>
+ * Authorize this action with a signed-in user's access token. It must include
+ * the scope <code>aws.cognito.signin.user.admin</code>.
+ * </p>
  * <note>
  * <p>
  * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
@@ -31,7 +35,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * policies. For more information about authorization models in Amazon Cognito,
  * see <a href=
  * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
- * >Using the Amazon Cognito native and OIDC APIs</a>.
+ * >Using the Amazon Cognito user pools API and user pool endpoints</a>.
  * </p>
  * </note>
  */

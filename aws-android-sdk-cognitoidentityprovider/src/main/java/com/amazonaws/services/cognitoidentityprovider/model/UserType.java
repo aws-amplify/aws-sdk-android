@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -50,9 +50,9 @@ public class UserType implements Serializable {
 
     /**
      * <p>
-     * The date and time, in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format, when the item was modified.
+     * The date and time when the item was modified. Amazon Cognito returns this
+     * timestamp in UNIX epoch time format. Your SDK might render the output in
+     * a human-readable format like ISO 8601 or a Java <code>Date</code> object.
      * </p>
      */
     private java.util.Date userLastModifiedDate;
@@ -106,7 +106,7 @@ public class UserType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD
+     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD, EXTERNAL_PROVIDER
      */
     private String userStatus;
 
@@ -295,15 +295,16 @@ public class UserType implements Serializable {
 
     /**
      * <p>
-     * The date and time, in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format, when the item was modified.
+     * The date and time when the item was modified. Amazon Cognito returns this
+     * timestamp in UNIX epoch time format. Your SDK might render the output in
+     * a human-readable format like ISO 8601 or a Java <code>Date</code> object.
      * </p>
      *
      * @return <p>
-     *         The date and time, in <a
-     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *         8601</a> format, when the item was modified.
+     *         The date and time when the item was modified. Amazon Cognito
+     *         returns this timestamp in UNIX epoch time format. Your SDK might
+     *         render the output in a human-readable format like ISO 8601 or a
+     *         Java <code>Date</code> object.
      *         </p>
      */
     public java.util.Date getUserLastModifiedDate() {
@@ -312,15 +313,16 @@ public class UserType implements Serializable {
 
     /**
      * <p>
-     * The date and time, in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format, when the item was modified.
+     * The date and time when the item was modified. Amazon Cognito returns this
+     * timestamp in UNIX epoch time format. Your SDK might render the output in
+     * a human-readable format like ISO 8601 or a Java <code>Date</code> object.
      * </p>
      *
      * @param userLastModifiedDate <p>
-     *            The date and time, in <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format, when the item was modified.
+     *            The date and time when the item was modified. Amazon Cognito
+     *            returns this timestamp in UNIX epoch time format. Your SDK
+     *            might render the output in a human-readable format like ISO
+     *            8601 or a Java <code>Date</code> object.
      *            </p>
      */
     public void setUserLastModifiedDate(java.util.Date userLastModifiedDate) {
@@ -329,18 +331,19 @@ public class UserType implements Serializable {
 
     /**
      * <p>
-     * The date and time, in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format, when the item was modified.
+     * The date and time when the item was modified. Amazon Cognito returns this
+     * timestamp in UNIX epoch time format. Your SDK might render the output in
+     * a human-readable format like ISO 8601 or a Java <code>Date</code> object.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userLastModifiedDate <p>
-     *            The date and time, in <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format, when the item was modified.
+     *            The date and time when the item was modified. Amazon Cognito
+     *            returns this timestamp in UNIX epoch time format. Your SDK
+     *            might render the output in a human-readable format like ISO
+     *            8601 or a Java <code>Date</code> object.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -450,7 +453,7 @@ public class UserType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD
+     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD, EXTERNAL_PROVIDER
      *
      * @return <p>
      *         The user status. This can be one of the following:
@@ -539,7 +542,7 @@ public class UserType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD
+     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD, EXTERNAL_PROVIDER
      *
      * @param userStatus <p>
      *            The user status. This can be one of the following:
@@ -631,7 +634,7 @@ public class UserType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD
+     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD, EXTERNAL_PROVIDER
      *
      * @param userStatus <p>
      *            The user status. This can be one of the following:
@@ -723,7 +726,7 @@ public class UserType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD
+     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD, EXTERNAL_PROVIDER
      *
      * @param userStatus <p>
      *            The user status. This can be one of the following:
@@ -815,7 +818,7 @@ public class UserType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD
+     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD, EXTERNAL_PROVIDER
      *
      * @param userStatus <p>
      *            The user status. This can be one of the following:
