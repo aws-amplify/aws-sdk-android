@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,6 +22,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Describes the specified flow module.
+ * </p>
+ * <p>
+ * Use the <code>$SAVED</code> alias in the request to describe the
+ * <code>SAVED</code> content of a Flow. For example,
+ * <code>arn:aws:.../contact-flow/{id}:$SAVED</code>. Once a contact flow is
+ * published, <code>$SAVED</code> needs to be supplied to view saved content
+ * that has not been published.
  * </p>
  */
 public class DescribeContactFlowModuleRequest extends AmazonWebServiceRequest implements

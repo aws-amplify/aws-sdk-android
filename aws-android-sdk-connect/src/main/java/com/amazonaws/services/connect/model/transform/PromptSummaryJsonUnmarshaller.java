@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -43,6 +43,12 @@ class PromptSummaryJsonUnmarshaller implements Unmarshaller<PromptSummary, JsonU
                         .unmarshall(context));
             } else if (name.equals("Name")) {
                 promptSummary.setName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                promptSummary.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                promptSummary.setLastModifiedRegion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
