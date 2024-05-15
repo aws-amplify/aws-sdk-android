@@ -27,6 +27,10 @@ subprojects { project ->
     }
 }
 
+subprojects {
+    task allDeps(type: DependencyReportTask) {}
+}
+
 private void configureAndroidLibrary(Project project) {
     project.android {
         defaultConfig {

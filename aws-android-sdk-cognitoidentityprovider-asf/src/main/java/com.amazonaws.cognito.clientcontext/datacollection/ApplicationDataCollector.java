@@ -33,7 +33,6 @@ import android.util.Log;
 public class ApplicationDataCollector extends DataCollector {
 
     private static final String TAG = ApplicationDataCollector.class.getSimpleName();
-    private static final int ALL_FLAGS_OFF = 0;
 
     /**
      * {@inheritDoc}
@@ -60,7 +59,7 @@ public class ApplicationDataCollector extends DataCollector {
 
         String appVersion = "";
         try {
-            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), ALL_FLAGS_OFF);
+            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
             appVersion = packageInfo.versionName;
         } catch (NameNotFoundException e) {
             Log.i(TAG, "Unable to get app version. Provided package name could not be found.");

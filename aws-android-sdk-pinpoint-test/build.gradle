@@ -2,11 +2,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'devicefarm'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 18 // UIAutomator
-        targetSdkVersion 29
+        targetSdkVersion 30
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 }
@@ -31,4 +31,3 @@ devicefarm {
         secretKey "$System.env.DEVICEFARM_SECRET_KEY"
     }
 }
-

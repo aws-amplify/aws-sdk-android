@@ -2,12 +2,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'devicefarm'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         minSdkVersion 14 // ext junit
-        targetSdkVersion 29
+        targetSdkVersion 30
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
@@ -41,4 +41,3 @@ devicefarm {
         secretKey "$System.env.DEVICEFARM_SECRET_KEY"
     }
 }
-

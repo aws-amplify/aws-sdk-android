@@ -2,11 +2,11 @@ apply from: rootProject.file('publishing.gradle')
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 21 // for kinesisvideo, which uses camera2 APIs.
-        targetSdkVersion 29
+        targetSdkVersion 30
     }
 
     packagingOptions {
@@ -20,4 +20,3 @@ dependencies {
     }
     implementation project(':aws-android-sdk-kinesisvideo')
 }
-

@@ -2,11 +2,11 @@ apply from: rootProject.file('publishing.gradle')
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 16 // androidx.browser
-        targetSdkVersion 29
+        targetSdkVersion 30
 
         manifestPlaceholders = [
                 'authRedirectScheme': 'FOR_LIBRARY_CONSUMER_TO_OVERRIDE'
@@ -26,4 +26,3 @@ dependencies {
     api project(':aws-android-sdk-cognitoidentityprovider-asf')
     implementation 'androidx.browser:browser:1.3.0'
 }
-
