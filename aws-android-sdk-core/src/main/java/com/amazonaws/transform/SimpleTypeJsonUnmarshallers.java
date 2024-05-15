@@ -249,7 +249,7 @@ public class SimpleTypeJsonUnmarshallers {
      */
     public static class DateJsonUnmarshaller implements Unmarshaller<Date, JsonUnmarshallerContext> {
         private static final int DATE_MULTIPLIER = 1000;
-        private final TimestampFormat format;
+        final TimestampFormat format;
 
         private DateJsonUnmarshaller(TimestampFormat format) {
             this.format = format;
@@ -286,10 +286,7 @@ public class SimpleTypeJsonUnmarshallers {
          * @return the instance.
          */
         public static DateJsonUnmarshaller getInstance() {
-            if (instance == null) {
-                instance = new DateJsonUnmarshaller(TimestampFormat.UNIX_TIMESTAMP);
-            }
-            return instance;
+            return getInstance(TimestampFormat.UNIX_TIMESTAMP);
         }
 
         /**
