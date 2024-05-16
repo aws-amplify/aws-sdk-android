@@ -257,6 +257,15 @@ public class SimpleTypeJsonUnmarshallerTest {
     }
 
     @Test
+    public void defaultFunctionAlwaysReturnsUnixTimestampUnmarshaller() {
+        SimpleTypeJsonUnmarshallers.DateJsonUnmarshaller first =
+                SimpleTypeJsonUnmarshallers.DateJsonUnmarshaller.getInstance(TimestampFormat.ISO_8601);
+        SimpleTypeJsonUnmarshallers.DateJsonUnmarshaller second =
+                SimpleTypeJsonUnmarshallers.DateJsonUnmarshaller.getInstance();
+        assertEquals(TimestampFormat.UNIX_TIMESTAMP, second.format);
+    }
+
+    @Test
     public void testDoubleJsonUnmarshaller() throws Exception {
         Double dub = new Double(5.5);
 

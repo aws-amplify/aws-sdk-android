@@ -15,6 +15,7 @@
 
 package com.amazonaws.testutils.util;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.provider.Settings;
@@ -44,6 +45,7 @@ public final class AirplaneMode {
         return status == 1;
     }
 
+    @SuppressLint("MissingPermission")
     private static void setAirplaneMode(boolean shouldEnable) {
         if (shouldEnable == isEnabled()) return;
 
