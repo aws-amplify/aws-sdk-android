@@ -1,3 +1,10 @@
+## [Release 2.75.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.75.1)
+
+### Bug Fixes
+- **misc** Don't return incorrect date format instance ([#3576](https://github.com/aws-amplify/aws-sdk-android/issues/3576))
+
+[See all changes between 2.75.0 and 2.75.1](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.75.0...release_v2.75.1)
+
 ## [Release 2.75.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.75.0)
 
 ### Features
