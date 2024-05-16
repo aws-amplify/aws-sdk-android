@@ -15,6 +15,7 @@
 
 package com.amazonaws.mobileconnectors.lex.interactionkit.internal.audio;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.media.AudioFormat;
@@ -115,6 +116,7 @@ public class AudioRecorder implements AudioSource {
      * @param format the audio format the audio recorder will use.
      * @throws Exception if failed to create audio recorder instance.
      */
+    @SuppressLint("MissingPermission") // App Developer should check for Manifest.permission.RECORD_AUDIO permission
     public AudioRecorder(final Context context, final MediaType mediaType,
             final int recorderPositionNotificationPeriod,
             final int sampleRate, final int channels, final int format) throws Exception {
