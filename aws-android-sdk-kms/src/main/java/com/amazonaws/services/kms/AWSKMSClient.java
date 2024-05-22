@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -468,6 +468,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
         jsonErrorUnmarshallers.add(new CloudHsmClusterNotActiveExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new CloudHsmClusterNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new CloudHsmClusterNotRelatedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new CustomKeyStoreHasCMKsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new CustomKeyStoreInvalidStateExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new CustomKeyStoreNameInUseExceptionUnmarshaller());
@@ -561,6 +562,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * <p>
      * <b>Related operations</b>: <a>ScheduleKeyDeletion</a>
+     * </p>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
      * </p>
      * 
      * @param cancelKeyDeletionRequest
@@ -751,6 +758,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param connectCustomKeyStoreRequest
      * @return connectCustomKeyStoreResult The response from the
@@ -895,6 +908,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param createAliasRequest
      * @throws DependencyTimeoutException
@@ -1078,6 +1097,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param createCustomKeyStoreRequest
      * @return createCustomKeyStoreResult The response from the
@@ -1236,6 +1261,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param createGrantRequest
      * @return createGrantResult The response from the CreateGrant service
@@ -1560,6 +1591,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param createKeyRequest
      * @return createKeyResult The response from the CreateKey service method,
@@ -1705,12 +1742,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * SDK. Use the <code>Recipient</code> parameter to provide the attestation
      * document for the enclave. Instead of the plaintext data, the response
      * includes the plaintext data encrypted with the public key from the
-     * attestation document (<code>CiphertextForRecipient</code>).For
+     * attestation document (<code>CiphertextForRecipient</code>). For
      * information about the interaction between KMS and Amazon Web Services
      * Nitro Enclaves, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
      * >How Amazon Web Services Nitro Enclaves uses KMS</a> in the <i>Key
-     * Management Service Developer Guide</i>..
+     * Management Service Developer Guide</i>.
      * </p>
      * <p>
      * The KMS key that you use for this operation must be in a compatible key
@@ -1754,6 +1791,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param decryptRequest
      * @return decryptResult The response from the Decrypt service method, as
@@ -1880,6 +1923,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param deleteAliasRequest
      * @throws DependencyTimeoutException
@@ -2007,6 +2056,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param deleteCustomKeyStoreRequest
      * @return deleteCustomKeyStoreResult The response from the
@@ -2101,6 +2156,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param deleteImportedKeyMaterialRequest
      * @throws InvalidArnException
@@ -2232,6 +2293,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param describeCustomKeyStoresRequest
      * @return describeCustomKeyStoresResult The response from the
@@ -2297,16 +2364,17 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * and verifying MACs) and the algorithms that the KMS key supports.
      * </p>
      * <p>
-     * For <a
-     * href="kms/latest/developerguide/multi-region-keys-overview.html">multi
-     * -Region keys</a>, <code>DescribeKey</code> displays the primary key and
-     * all related replica keys. For KMS keys in <a
-     * href="kms/latest/developerguide/keystore-cloudhsm.html">CloudHSM key
-     * stores</a>, it includes information about the key store, such as the key
-     * store ID and the CloudHSM cluster ID. For KMS keys in <a
-     * href="kms/latest/developerguide/keystore-external.html">external key
-     * stores</a>, it includes the custom key store ID and the ID of the
-     * external key.
+     * For <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html"
+     * >multi-Region keys</a>, <code>DescribeKey</code> displays the primary key
+     * and all related replica keys. For KMS keys in <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/keystore-cloudhsm.html"
+     * >CloudHSM key stores</a>, it includes information about the key store,
+     * such as the key store ID and the CloudHSM cluster ID. For KMS keys in <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/keystore-external.html"
+     * >external key stores</a>, it includes the custom key store ID and the ID
+     * of the external key.
      * </p>
      * <p>
      * <code>DescribeKey</code> does not return the following information:
@@ -2400,6 +2468,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param describeKeyRequest
      * @return describeKeyResult The response from the DescribeKey service
@@ -2477,6 +2551,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * <p>
      * <b>Related operations</b>: <a>EnableKey</a>
+     * </p>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
      * </p>
      * 
      * @param disableKeyRequest
@@ -2587,7 +2667,23 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <a>GetKeyRotationStatus</a>
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <a>ListKeyRotations</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a>RotateKeyOnDemand</a>
+     * </p>
+     * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param disableKeyRotationRequest
      * @throws NotFoundException
@@ -2709,6 +2805,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param disconnectCustomKeyStoreRequest
      * @return disconnectCustomKeyStoreResult The response from the
@@ -2782,6 +2884,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <p>
      * <b>Related operations</b>: <a>DisableKey</a>
      * </p>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param enableKeyRequest
      * @throws NotFoundException
@@ -2825,19 +2933,29 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
     /**
      * <p>
      * Enables <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotating-keys-enable-disable"
      * >automatic rotation of the key material</a> of the specified symmetric
      * encryption KMS key.
      * </p>
      * <p>
-     * When you enable automatic rotation of a<a href=
+     * By default, when you enable automatic rotation of a <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
      * >customer managed KMS key</a>, KMS rotates the key material of the KMS
      * key one year (approximately 365 days) from the enable date and every year
-     * thereafter. You can monitor rotation of the key material for your KMS
-     * keys in CloudTrail and Amazon CloudWatch. To disable rotation of the key
-     * material in a customer managed KMS key, use the <a>DisableKeyRotation</a>
-     * operation.
+     * thereafter. You can use the optional <code>RotationPeriodInDays</code>
+     * parameter to specify a custom rotation period when you enable key
+     * rotation, or you can use <code>RotationPeriodInDays</code> to modify the
+     * rotation period of a key that you previously enabled automatic key
+     * rotation on.
+     * </p>
+     * <p>
+     * You can monitor rotation of the key material for your KMS keys in
+     * CloudTrail and Amazon CloudWatch. To disable rotation of the key material
+     * in a customer managed KMS key, use the <a>DisableKeyRotation</a>
+     * operation. You can use the <a>GetKeyRotationStatus</a> operation to
+     * identify any in progress rotations. You can use the
+     * <a>ListKeyRotations</a> operation to view the details of completed
+     * rotations.
      * </p>
      * <p>
      * Automatic key rotation is supported only on <a href=
@@ -2857,13 +2975,14 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * >multi-Region keys</a>, set the property on the primary key.
      * </p>
      * <p>
-     * You cannot enable or disable automatic rotation <a href=
+     * You cannot enable or disable automatic rotation of <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
      * >Amazon Web Services managed KMS keys</a>. KMS always rotates the key
      * material of Amazon Web Services managed keys every year. Rotation of <a
      * href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk"
-     * >Amazon Web Services owned KMS keys</a> varies.
+     * >Amazon Web Services owned KMS keys</a> is managed by the Amazon Web
+     * Services service that owns the key.
      * </p>
      * <note>
      * <p>
@@ -2910,7 +3029,29 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <a>GetKeyRotationStatus</a>
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <a>ListKeyRotations</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a>RotateKeyOnDemand</a>
+     * </p>
+     * <note>
+     * <p>
+     * You can perform on-demand (<a>RotateKeyOnDemand</a>) rotation of the key
+     * material in customer managed KMS keys, regardless of whether or not
+     * automatic key rotation is enabled.
+     * </p>
+     * </note></li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param enableKeyRotationRequest
      * @throws NotFoundException
@@ -3111,6 +3252,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param encryptRequest
      * @return encryptResult The response from the Encrypt service method, as
@@ -3329,6 +3476,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param generateDataKeyRequest
      * @return generateDataKeyResult The response from the GenerateDataKey
@@ -3386,8 +3539,8 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * copy of the private key that is encrypted under the symmetric encryption
      * KMS key you specify. You can use the data key pair to perform asymmetric
      * cryptography and implement digital signatures outside of KMS. The bytes
-     * in the keys are random; they not related to the caller or to the KMS key
-     * that is used to encrypt the private key.
+     * in the keys are random; they are not related to the caller or to the KMS
+     * key that is used to encrypt the private key.
      * </p>
      * <p>
      * You can use the public key that <code>GenerateDataKeyPair</code> returns
@@ -3511,6 +3664,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param generateDataKeyPairRequest
      * @return generateDataKeyPairResult The response from the
@@ -3663,6 +3822,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param generateDataKeyPairWithoutPlaintextRequest
      * @return generateDataKeyPairWithoutPlaintextResult The response from the
@@ -3831,6 +3996,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param generateDataKeyWithoutPlaintextRequest
      * @return generateDataKeyWithoutPlaintextResult The response from the
@@ -3934,6 +4105,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <p>
      * <b>Related operations</b>: <a>VerifyMac</a>
      * </p>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param generateMacRequest
      * @return generateMacResult The response from the GenerateMac service
@@ -4029,6 +4206,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
      * >kms:GenerateRandom</a> (IAM policy)
      * </p>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param generateRandomRequest
      * @return generateRandomResult The response from the GenerateRandom service
@@ -4089,7 +4272,15 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * >kms:GetKeyPolicy</a> (key policy)
      * </p>
      * <p>
-     * <b>Related operations</b>: <a>PutKeyPolicy</a>
+     * <b>Related operations</b>: <a href=
+     * "https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html"
+     * >PutKeyPolicy</a>
+     * </p>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
      * </p>
      * 
      * @param getKeyPolicyRequest
@@ -4139,18 +4330,13 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
 
     /**
      * <p>
-     * Gets a Boolean value that indicates whether <a href=
+     * Provides detailed information about the rotation status for a KMS key,
+     * including whether <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html"
      * >automatic rotation of the key material</a> is enabled for the specified
-     * KMS key.
-     * </p>
-     * <p>
-     * When you enable automatic rotation for <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
-     * >customer managed KMS keys</a>, KMS rotates the key material of the KMS
-     * key one year (approximately 365 days) from the enable date and every year
-     * thereafter. You can monitor rotation of the key material for your KMS
-     * keys in CloudTrail and Amazon CloudWatch.
+     * KMS key, the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotation-period"
+     * >rotation period</a>, and the next scheduled rotation date.
      * </p>
      * <p>
      * Automatic key rotation is supported only on <a href=
@@ -4178,6 +4364,14 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * rotates the key material in Amazon Web Services managed KMS keys every
      * year. The key rotation status for Amazon Web Services managed KMS keys is
      * always <code>true</code>.
+     * </p>
+     * <p>
+     * You can perform on-demand (<a>RotateKeyOnDemand</a>) rotation of the key
+     * material in customer managed KMS keys, regardless of whether or not
+     * automatic key rotation is enabled. You can use GetKeyRotationStatus to
+     * identify the date and time that an in progress on-demand rotation was
+     * initiated. You can use <a>ListKeyRotations</a> to view the details of
+     * completed rotations.
      * </p>
      * <note>
      * <p>
@@ -4238,7 +4432,23 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <a>EnableKeyRotation</a>
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <a>ListKeyRotations</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a>RotateKeyOnDemand</a>
+     * </p>
+     * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param getKeyRotationStatusRequest
      * @return getKeyRotationStatusResult The response from the
@@ -4311,14 +4521,15 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <code>EXTERNAL</code> to create a KMS key with no key material. You can
      * import key material for a symmetric encryption KMS key, HMAC KMS key,
      * asymmetric encryption KMS key, or asymmetric signing KMS key. You can
-     * also import key material into a <a
-     * href="kms/latest/developerguide/multi-region-keys-overview.html"
+     * also import key material into a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html"
      * >multi-Region key</a> of any supported type. However, you can't import
-     * key material into a KMS key in a <a
-     * href="kms/latest/developerguide/custom-key-store-overview.html">custom
-     * key store</a>. You can also use <code>GetParametersForImport</code> to
-     * get a public key and import token to <a href=
-     * "kms/latest/developerguide/importing-keys.html#reimport-key-material"
+     * key material into a KMS key in a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
+     * >custom key store</a>. You can also use
+     * <code>GetParametersForImport</code> to get a public key and import token
+     * to <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html#reimport-key-material"
      * >reimport the original key material</a> into a KMS key whose key material
      * expired or was deleted.
      * </p>
@@ -4329,7 +4540,8 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <ul>
      * <li>
      * <p>
-     * The public key (or "wrapping key") of an RSA key pair that KMS generates.
+     * The public key (or "wrapping key") of an asymmetric key pair that KMS
+     * generates.
      * </p>
      * <p>
      * You will use this public key to encrypt ("wrap") your key material while
@@ -4410,6 +4622,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param getParametersForImportRequest
      * @return getParametersForImportResult The response from the
@@ -4550,6 +4768,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <p>
      * <b>Related operations</b>: <a>CreateKey</a>
      * </p>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param getPublicKeyRequest
      * @return getPublicKeyResult The response from the GetPublicKey service
@@ -4626,9 +4850,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * import different key material. You might reimport key material to replace
      * key material that expired or key material that you deleted. You might
      * also reimport key material to change the expiration model or expiration
-     * date of the key material. Before reimporting key material, if necessary,
-     * call <a>DeleteImportedKeyMaterial</a> to delete the current imported key
-     * material.
+     * date of the key material.
      * </p>
      * <p>
      * Each time you import key material into KMS, you can determine whether (
@@ -4781,6 +5003,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param importKeyMaterialRequest
      * @return importKeyMaterialResult The response from the ImportKeyMaterial
@@ -4896,6 +5124,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param listAliasesRequest
      * @return listAliasesResult The response from the ListAliases service
@@ -5007,6 +5241,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param listGrantsRequest
      * @return listGrantsResult The response from the ListGrants service method,
@@ -5082,10 +5322,18 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </li>
      * <li>
      * <p>
-     * <a>PutKeyPolicy</a>
+     * <a href=
+     * "https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html"
+     * >PutKeyPolicy</a>
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param listKeyPoliciesRequest
      * @return listKeyPoliciesResult The response from the ListKeyPolicies
@@ -5121,6 +5369,109 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
             }
             Unmarshaller<ListKeyPoliciesResult, JsonUnmarshallerContext> unmarshaller = new ListKeyPoliciesResultJsonUnmarshaller();
             JsonResponseHandler<ListKeyPoliciesResult> responseHandler = new JsonResponseHandler<ListKeyPoliciesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns information about all completed key material rotations for the
+     * specified KMS key.
+     * </p>
+     * <p>
+     * You must specify the KMS key in all requests. You can refine the key
+     * rotations list by limiting the number of rotations returned.
+     * </p>
+     * <p>
+     * For detailed information about automatic and on-demand key rotations, see
+     * <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html"
+     * >Rotating KMS keys</a> in the <i>Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * <b>Cross-account use</b>: No. You cannot perform this operation on a KMS
+     * key in a different Amazon Web Services account.
+     * </p>
+     * <p>
+     * <b>Required permissions</b>: <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+     * >kms:ListKeyRotations</a> (key policy)
+     * </p>
+     * <p>
+     * <b>Related operations:</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a>EnableKeyRotation</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a>DisableKeyRotation</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a>GetKeyRotationStatus</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a>RotateKeyOnDemand</a>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
+     * 
+     * @param listKeyRotationsRequest
+     * @return listKeyRotationsResult The response from the ListKeyRotations
+     *         service method, as returned by AWS Key Management Service.
+     * @throws NotFoundException
+     * @throws InvalidArnException
+     * @throws InvalidMarkerException
+     * @throws KMSInternalException
+     * @throws KMSInvalidStateException
+     * @throws UnsupportedOperationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Key Management Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public ListKeyRotationsResult listKeyRotations(ListKeyRotationsRequest listKeyRotationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listKeyRotationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListKeyRotationsRequest> request = null;
+        Response<ListKeyRotationsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListKeyRotationsRequestMarshaller().marshall(listKeyRotationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListKeyRotationsResult, JsonUnmarshallerContext> unmarshaller = new ListKeyRotationsResultJsonUnmarshaller();
+            JsonResponseHandler<ListKeyRotationsResult> responseHandler = new JsonResponseHandler<ListKeyRotationsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -5171,6 +5522,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param listKeysRequest
      * @return listKeysResult The response from the ListKeys service method, as
@@ -5262,6 +5619,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param listResourceTagsRequest
      * @return listResourceTagsResult The response from the ListResourceTags
@@ -5331,10 +5694,13 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * <p>
      * <b>Cross-account use</b>: You must specify a principal in your Amazon Web
-     * Services account. However, this operation can return grants in any Amazon
-     * Web Services account. You do not need
-     * <code>kms:ListRetirableGrants</code> permission (or any other additional
-     * permission) in any Amazon Web Services account other than your own.
+     * Services account. This operation returns a list of grants where the
+     * retiring principal specified in the <code>ListRetirableGrants</code>
+     * request is the same retiring principal on the grant. This can include
+     * grants on KMS keys owned by other Amazon Web Services accounts, but you
+     * do not need <code>kms:ListRetirableGrants</code> permission (or any other
+     * additional permission) in any Amazon Web Services account other than your
+     * own.
      * </p>
      * <p>
      * <b>Required permissions</b>: <a href=
@@ -5342,6 +5708,16 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * >kms:ListRetirableGrants</a> (IAM policy) in your Amazon Web Services
      * account.
      * </p>
+     * <note>
+     * <p>
+     * KMS authorizes <code>ListRetirableGrants</code> requests by evaluating
+     * the caller account's kms:ListRetirableGrants permissions. The authorized
+     * resource in <code>ListRetirableGrants</code> calls is the retiring
+     * principal specified in the request. KMS does not evaluate the caller's
+     * permissions to verify their access to any KMS keys or grants that might
+     * be returned by the <code>ListRetirableGrants</code> call.
+     * </p>
+     * </note>
      * <p>
      * <b>Related operations:</b>
      * </p>
@@ -5367,6 +5743,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param listRetirableGrantsRequest
      * @return listRetirableGrantsResult The response from the
@@ -5444,6 +5826,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * <p>
      * <b>Related operations</b>: <a>GetKeyPolicy</a>
+     * </p>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
      * </p>
      * 
      * @param putKeyPolicyRequest
@@ -5633,6 +6021,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param reEncryptRequest
      * @return reEncryptResult The response from the ReEncrypt service method,
@@ -5769,9 +6163,10 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * If you replicate a multi-Region primary key with imported key material,
      * the replica key is created with no key material. You must import the same
      * key material that you imported into the primary key. For details, see <a
-     * href="kms/latest/developerguide/multi-region-keys-import.html">Importing
-     * key material into multi-Region keys</a> in the <i>Key Management Service
-     * Developer Guide</i>.
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-import.html"
+     * >Importing key material into multi-Region keys</a> in the <i>Key
+     * Management Service Developer Guide</i>.
      * </p>
      * <p>
      * To convert a replica key to a primary key, use the
@@ -5825,6 +6220,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param replicateKeyRequest
      * @return replicateKeyResult The response from the ReplicateKey service
@@ -5911,7 +6312,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * different Amazon Web Services account.
      * </p>
      * <p>
-     * <b>Required permissions:</b>:Permission to retire a grant is determined
+     * <b>Required permissions</b>: Permission to retire a grant is determined
      * primarily by the grant. For details, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#grant-delete"
      * >Retiring and revoking grants</a> in the <i>Key Management Service
@@ -5942,6 +6343,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param retireGrantRequest
      * @throws InvalidArnException
@@ -5988,7 +6395,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <p>
      * Deletes the specified grant. You revoke a grant to terminate the
      * permissions that the grant allows. For more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/managing-grants.html#grant-delete"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#grant-delete"
      * >Retiring and revoking grants</a> in the <i> <i>Key Management Service
      * Developer Guide</i> </i>.
      * </p>
@@ -6046,6 +6453,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param revokeGrantRequest
      * @throws NotFoundException
@@ -6089,6 +6502,165 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
 
     /**
      * <p>
+     * Immediately initiates rotation of the key material of the specified
+     * symmetric encryption KMS key.
+     * </p>
+     * <p>
+     * You can perform <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotating-keys-on-demand"
+     * >on-demand rotation</a> of the key material in customer managed KMS keys,
+     * regardless of whether or not <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotating-keys-enable-disable"
+     * >automatic key rotation</a> is enabled. On-demand rotations do not change
+     * existing automatic rotation schedules. For example, consider a KMS key
+     * that has automatic key rotation enabled with a rotation period of 730
+     * days. If the key is scheduled to automatically rotate on April 14, 2024,
+     * and you perform an on-demand rotation on April 10, 2024, the key will
+     * automatically rotate, as scheduled, on April 14, 2024 and every 730 days
+     * thereafter.
+     * </p>
+     * <note>
+     * <p>
+     * You can perform on-demand key rotation a <b>maximum of 10 times</b> per
+     * KMS key. You can use the KMS console to view the number of remaining
+     * on-demand rotations available for a KMS key.
+     * </p>
+     * </note>
+     * <p>
+     * You can use <a>GetKeyRotationStatus</a> to identify any in progress
+     * on-demand rotations. You can use <a>ListKeyRotations</a> to identify the
+     * date that completed on-demand rotations were performed. You can monitor
+     * rotation of the key material for your KMS keys in CloudTrail and Amazon
+     * CloudWatch.
+     * </p>
+     * <p>
+     * On-demand key rotation is supported only on <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#symmetric-cmks"
+     * >symmetric encryption KMS keys</a>. You cannot perform on-demand rotation
+     * of <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html"
+     * >asymmetric KMS keys</a>, <a
+     * href="https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html"
+     * >HMAC KMS keys</a>, KMS keys with <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+     * >imported key material</a>, or KMS keys in a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
+     * >custom key store</a>. To perform on-demand rotation of a set of related
+     * <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-manage.html#multi-region-rotate"
+     * >multi-Region keys</a>, invoke the on-demand rotation on the primary key.
+     * </p>
+     * <p>
+     * You cannot initiate on-demand rotation of <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
+     * >Amazon Web Services managed KMS keys</a>. KMS always rotates the key
+     * material of Amazon Web Services managed keys every year. Rotation of <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk"
+     * >Amazon Web Services owned KMS keys</a> is managed by the Amazon Web
+     * Services service that owns the key.
+     * </p>
+     * <p>
+     * The KMS key that you use for this operation must be in a compatible key
+     * state. For details, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * <b>Cross-account use</b>: No. You cannot perform this operation on a KMS
+     * key in a different Amazon Web Services account.
+     * </p>
+     * <p>
+     * <b>Required permissions</b>: <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+     * >kms:RotateKeyOnDemand</a> (key policy)
+     * </p>
+     * <p>
+     * <b>Related operations:</b>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a>EnableKeyRotation</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a>DisableKeyRotation</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a>GetKeyRotationStatus</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a>ListKeyRotations</a>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
+     * 
+     * @param rotateKeyOnDemandRequest
+     * @return rotateKeyOnDemandResult The response from the RotateKeyOnDemand
+     *         service method, as returned by AWS Key Management Service.
+     * @throws NotFoundException
+     * @throws DisabledException
+     * @throws InvalidArnException
+     * @throws DependencyTimeoutException
+     * @throws KMSInternalException
+     * @throws KMSInvalidStateException
+     * @throws UnsupportedOperationException
+     * @throws LimitExceededException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Key Management Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public RotateKeyOnDemandResult rotateKeyOnDemand(
+            RotateKeyOnDemandRequest rotateKeyOnDemandRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(rotateKeyOnDemandRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<RotateKeyOnDemandRequest> request = null;
+        Response<RotateKeyOnDemandResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new RotateKeyOnDemandRequestMarshaller()
+                        .marshall(rotateKeyOnDemandRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<RotateKeyOnDemandResult, JsonUnmarshallerContext> unmarshaller = new RotateKeyOnDemandResultJsonUnmarshaller();
+            JsonResponseHandler<RotateKeyOnDemandResult> responseHandler = new JsonResponseHandler<RotateKeyOnDemandResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Schedules the deletion of a KMS key. By default, KMS applies a waiting
      * period of 30 days, but you can specify a waiting period of 7-30 days.
      * When this operation is successful, the key state of the KMS key changes
@@ -6103,8 +6675,8 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <p>
      * Deleting a KMS key is a destructive and potentially dangerous operation.
      * When a KMS key is deleted, all data that was encrypted under the KMS key
-     * is unrecoverable. (The only exception is a <a
-     * href="kms/latest/developerguide/multi-region-keys-delete.html"
+     * is unrecoverable. (The only exception is a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-delete.html"
      * >multi-Region replica key</a>, or an <a href=
      * "kms/latest/developerguide/importing-keys-managing.html#import-delete-key"
      * >asymmetric or HMAC KMS key with imported key material</a>.) To prevent
@@ -6179,6 +6751,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param scheduleKeyDeletionRequest
      * @return scheduleKeyDeletionResult The response from the
@@ -6320,6 +6898,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <p>
      * <b>Related operations</b>: <a>Verify</a>
      * </p>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param signRequest
      * @return signResult The response from the Sign service method, as returned
@@ -6457,6 +7041,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param tagResourceRequest
      * @throws KMSInternalException
@@ -6568,6 +7158,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param untagResourceRequest
      * @throws KMSInternalException
@@ -6704,6 +7300,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param updateAliasRequest
      * @throws DependencyTimeoutException
@@ -6880,6 +7482,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param updateCustomKeyStoreRequest
      * @return updateCustomKeyStoreResult The response from the
@@ -6977,6 +7585,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param updateKeyDescriptionRequest
      * @throws NotFoundException
@@ -7134,6 +7748,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param updatePrimaryRegionRequest
      * @throws DisabledException
@@ -7245,6 +7865,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <p>
      * <b>Related operations</b>: <a>Sign</a>
      * </p>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @param verifyRequest
      * @return verifyResult The response from the Verify service method, as
@@ -7338,6 +7964,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * <p>
      * <b>Related operations</b>: <a>GenerateMac</a>
+     * </p>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
      * </p>
      * 
      * @param verifyMacRequest
@@ -7663,6 +8295,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @return createKeyResult The response from the CreateKey service method,
      *         as returned by AWS Key Management Service.
@@ -7732,6 +8370,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @return listKeysResult The response from the ListKeys service method, as
      *         returned by AWS Key Management Service.
@@ -7814,6 +8458,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @return listAliasesResult The response from the ListAliases service
      *         method, as returned by AWS Key Management Service.
@@ -7871,7 +8521,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * different Amazon Web Services account.
      * </p>
      * <p>
-     * <b>Required permissions:</b>:Permission to retire a grant is determined
+     * <b>Required permissions</b>: Permission to retire a grant is determined
      * primarily by the grant. For details, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#grant-delete"
      * >Retiring and revoking grants</a> in the <i>Key Management Service
@@ -7902,6 +8552,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
+     * </p>
      * 
      * @throws InvalidArnException
      * @throws InvalidGrantTokenException
@@ -7970,6 +8626,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <b>Required permissions</b>: <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
      * >kms:GenerateRandom</a> (IAM policy)
+     * </p>
+     * <p>
+     * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+     * model. For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+     * >KMS eventual consistency</a>.
      * </p>
      * 
      * @return generateRandomResult The response from the GenerateRandom service
