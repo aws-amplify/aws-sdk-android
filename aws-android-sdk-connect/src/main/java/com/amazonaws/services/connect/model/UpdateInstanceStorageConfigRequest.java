@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -63,7 +63,8 @@ public class UpdateInstanceStorageConfigRequest extends AmazonWebServiceRequest 
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
      * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS,
-     * SCREEN_RECORDINGS
+     * SCREEN_RECORDINGS, REAL_TIME_CONTACT_ANALYSIS_CHAT_SEGMENTS,
+     * REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS
      */
     private String resourceType;
 
@@ -219,7 +220,8 @@ public class UpdateInstanceStorageConfigRequest extends AmazonWebServiceRequest 
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
      * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS,
-     * SCREEN_RECORDINGS
+     * SCREEN_RECORDINGS, REAL_TIME_CONTACT_ANALYSIS_CHAT_SEGMENTS,
+     * REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS
      *
      * @return <p>
      *         A valid resource type.
@@ -239,7 +241,8 @@ public class UpdateInstanceStorageConfigRequest extends AmazonWebServiceRequest 
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
      * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS,
-     * SCREEN_RECORDINGS
+     * SCREEN_RECORDINGS, REAL_TIME_CONTACT_ANALYSIS_CHAT_SEGMENTS,
+     * REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS
      *
      * @param resourceType <p>
      *            A valid resource type.
@@ -262,7 +265,8 @@ public class UpdateInstanceStorageConfigRequest extends AmazonWebServiceRequest 
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
      * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS,
-     * SCREEN_RECORDINGS
+     * SCREEN_RECORDINGS, REAL_TIME_CONTACT_ANALYSIS_CHAT_SEGMENTS,
+     * REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS
      *
      * @param resourceType <p>
      *            A valid resource type.
@@ -285,7 +289,8 @@ public class UpdateInstanceStorageConfigRequest extends AmazonWebServiceRequest 
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
      * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS,
-     * SCREEN_RECORDINGS
+     * SCREEN_RECORDINGS, REAL_TIME_CONTACT_ANALYSIS_CHAT_SEGMENTS,
+     * REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS
      *
      * @param resourceType <p>
      *            A valid resource type.
@@ -308,7 +313,8 @@ public class UpdateInstanceStorageConfigRequest extends AmazonWebServiceRequest 
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
      * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS,
-     * SCREEN_RECORDINGS
+     * SCREEN_RECORDINGS, REAL_TIME_CONTACT_ANALYSIS_CHAT_SEGMENTS,
+     * REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS
      *
      * @param resourceType <p>
      *            A valid resource type.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,6 +31,19 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Administrator Guide</i>.
  * </p>
  * <important>
+ * <ul>
+ * <li>
+ * <p>
+ * We recommend using <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+ * >ListPhoneNumbersV2</a> to return phone number types. ListPhoneNumbers
+ * doesn't support number types <code>UIFN</code>, <code>SHARED</code>,
+ * <code>THIRD_PARTY_TF</code>, and <code>THIRD_PARTY_DID</code>. While it
+ * returns numbers of those types, it incorrectly lists them as
+ * <code>TOLL_FREE</code> or <code>DID</code>.
+ * </p>
+ * </li>
+ * <li>
  * <p>
  * The phone number <code>Arn</code> value that is returned from each of the
  * items in the <a href=
@@ -42,6 +55,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >ListPhoneNumbersV2</a> API. It returns the new phone number ARN that can be
  * used to tag phone number resources.
  * </p>
+ * </li>
+ * </ul>
  * </important>
  */
 public class ListPhoneNumbersRequest extends AmazonWebServiceRequest implements Serializable {
@@ -62,6 +77,17 @@ public class ListPhoneNumbersRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The type of phone number.
      * </p>
+     * <note>
+     * <p>
+     * We recommend using <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> to return phone number types. While
+     * ListPhoneNumbers returns number types <code>UIFN</code>,
+     * <code>SHARED</code>, <code>THIRD_PARTY_TF</code>, and
+     * <code>THIRD_PARTY_DID</code>, it incorrectly lists them as
+     * <code>TOLL_FREE</code> or <code>DID</code>.
+     * </p>
+     * </note>
      */
     private java.util.List<String> phoneNumberTypes;
 
@@ -170,10 +196,32 @@ public class ListPhoneNumbersRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The type of phone number.
      * </p>
+     * <note>
+     * <p>
+     * We recommend using <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> to return phone number types. While
+     * ListPhoneNumbers returns number types <code>UIFN</code>,
+     * <code>SHARED</code>, <code>THIRD_PARTY_TF</code>, and
+     * <code>THIRD_PARTY_DID</code>, it incorrectly lists them as
+     * <code>TOLL_FREE</code> or <code>DID</code>.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         The type of phone number.
      *         </p>
+     *         <note>
+     *         <p>
+     *         We recommend using <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     *         >ListPhoneNumbersV2</a> to return phone number types. While
+     *         ListPhoneNumbers returns number types <code>UIFN</code>,
+     *         <code>SHARED</code>, <code>THIRD_PARTY_TF</code>, and
+     *         <code>THIRD_PARTY_DID</code>, it incorrectly lists them as
+     *         <code>TOLL_FREE</code> or <code>DID</code>.
+     *         </p>
+     *         </note>
      */
     public java.util.List<String> getPhoneNumberTypes() {
         return phoneNumberTypes;
@@ -183,10 +231,32 @@ public class ListPhoneNumbersRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The type of phone number.
      * </p>
+     * <note>
+     * <p>
+     * We recommend using <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> to return phone number types. While
+     * ListPhoneNumbers returns number types <code>UIFN</code>,
+     * <code>SHARED</code>, <code>THIRD_PARTY_TF</code>, and
+     * <code>THIRD_PARTY_DID</code>, it incorrectly lists them as
+     * <code>TOLL_FREE</code> or <code>DID</code>.
+     * </p>
+     * </note>
      *
      * @param phoneNumberTypes <p>
      *            The type of phone number.
      *            </p>
+     *            <note>
+     *            <p>
+     *            We recommend using <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     *            >ListPhoneNumbersV2</a> to return phone number types. While
+     *            ListPhoneNumbers returns number types <code>UIFN</code>,
+     *            <code>SHARED</code>, <code>THIRD_PARTY_TF</code>, and
+     *            <code>THIRD_PARTY_DID</code>, it incorrectly lists them as
+     *            <code>TOLL_FREE</code> or <code>DID</code>.
+     *            </p>
+     *            </note>
      */
     public void setPhoneNumberTypes(java.util.Collection<String> phoneNumberTypes) {
         if (phoneNumberTypes == null) {
@@ -201,6 +271,17 @@ public class ListPhoneNumbersRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The type of phone number.
      * </p>
+     * <note>
+     * <p>
+     * We recommend using <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> to return phone number types. While
+     * ListPhoneNumbers returns number types <code>UIFN</code>,
+     * <code>SHARED</code>, <code>THIRD_PARTY_TF</code>, and
+     * <code>THIRD_PARTY_DID</code>, it incorrectly lists them as
+     * <code>TOLL_FREE</code> or <code>DID</code>.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -208,6 +289,17 @@ public class ListPhoneNumbersRequest extends AmazonWebServiceRequest implements 
      * @param phoneNumberTypes <p>
      *            The type of phone number.
      *            </p>
+     *            <note>
+     *            <p>
+     *            We recommend using <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     *            >ListPhoneNumbersV2</a> to return phone number types. While
+     *            ListPhoneNumbers returns number types <code>UIFN</code>,
+     *            <code>SHARED</code>, <code>THIRD_PARTY_TF</code>, and
+     *            <code>THIRD_PARTY_DID</code>, it incorrectly lists them as
+     *            <code>TOLL_FREE</code> or <code>DID</code>.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -225,6 +317,17 @@ public class ListPhoneNumbersRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The type of phone number.
      * </p>
+     * <note>
+     * <p>
+     * We recommend using <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> to return phone number types. While
+     * ListPhoneNumbers returns number types <code>UIFN</code>,
+     * <code>SHARED</code>, <code>THIRD_PARTY_TF</code>, and
+     * <code>THIRD_PARTY_DID</code>, it incorrectly lists them as
+     * <code>TOLL_FREE</code> or <code>DID</code>.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -232,6 +335,17 @@ public class ListPhoneNumbersRequest extends AmazonWebServiceRequest implements 
      * @param phoneNumberTypes <p>
      *            The type of phone number.
      *            </p>
+     *            <note>
+     *            <p>
+     *            We recommend using <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     *            >ListPhoneNumbersV2</a> to return phone number types. While
+     *            ListPhoneNumbers returns number types <code>UIFN</code>,
+     *            <code>SHARED</code>, <code>THIRD_PARTY_TF</code>, and
+     *            <code>THIRD_PARTY_DID</code>, it incorrectly lists them as
+     *            <code>TOLL_FREE</code> or <code>DID</code>.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
