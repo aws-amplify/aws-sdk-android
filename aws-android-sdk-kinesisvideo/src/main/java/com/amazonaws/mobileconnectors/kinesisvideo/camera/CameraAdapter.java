@@ -61,6 +61,10 @@ public class CameraAdapter {
         mCameraId = cameraId;
     }
 
+    public static void sayHi() {
+        System.out.println("CameraAdapter says hi");
+    }
+
     public void openCamera(final OpenCameraCallback cameraOpenCameraCallback) {
         startBackgroundThread();
         if (null == mContext || (isActivityFinishing(mContext))) {

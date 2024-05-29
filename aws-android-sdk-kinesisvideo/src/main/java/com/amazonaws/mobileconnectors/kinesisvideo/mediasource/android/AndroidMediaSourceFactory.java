@@ -23,6 +23,10 @@ import com.amazonaws.kinesisvideo.client.mediasource.CameraMediaSourceConfigurat
 import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSource;
 import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceConfiguration;
 import com.amazonaws.kinesisvideo.client.mediasource.UnknownMediaSourceException;
+import com.amazonaws.mobileconnectors.kinesisvideo.mediasource.android.AudioVideoMediaSource;
+import com.amazonaws.mobileconnectors.kinesisvideo.mediasource.android.AudioVideoMediaSourceConfiguration;
+
+
 
 public final class AndroidMediaSourceFactory {
 
@@ -34,6 +38,9 @@ public final class AndroidMediaSourceFactory {
         if (CameraMediaSourceConfiguration.MEDIA_SOURCE_TYPE
             .equals(configuration.getMediaSourceType())) {
             return createAndroidCameraMediaSource(streamName, context, (CameraMediaSourceConfiguration) configuration);
+        } else if (AudioVideoMediaSourceConfiguration.MEDIA_SOURCE_TYPE
+                    .equals(configuration.getMediaSourceType())) {
+            return createAndroidMicrophoneCameraMediaSource(streamName, context, (AudioVideoMediaSourceConfiguration) configuration);
         } else {
             throw new UnknownMediaSourceException(configuration.getMediaSourceType());
         }
@@ -45,6 +52,15 @@ public final class AndroidMediaSourceFactory {
             final CameraMediaSourceConfiguration configuration) {
 
         final AndroidCameraMediaSource mediaSource = new AndroidCameraMediaSource(streamName, context);
+        mediaSource.configure(configuration);
+        return mediaSource;
+    }
+
+    private static AudioVideoMediaSource createAndroidMicrophoneCameraMediaSource(
+            final String streamName,
+            final Context context,
+            final AudioVideoMediaSourceConfiguration configuration) {
+        final AudioVideoMediaSource mediaSource = new AudioVideoMediaSource(streamName, context);
         mediaSource.configure(configuration);
         return mediaSource;
     }

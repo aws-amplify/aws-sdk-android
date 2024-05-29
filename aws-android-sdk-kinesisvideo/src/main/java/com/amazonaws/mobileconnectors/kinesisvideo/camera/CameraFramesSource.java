@@ -22,12 +22,16 @@ import static com.amazonaws.mobileconnectors.kinesisvideo.encoding.EncoderWrappe
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.nio.ByteBuffer;
 
 import android.content.Context;
 import android.media.Image;
 import android.media.ImageReader;
 import android.util.Log;
 import android.view.Surface;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.ImageFormat;
 
 import com.amazonaws.kinesisvideo.client.mediasource.CameraMediaSourceConfiguration;
 import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;

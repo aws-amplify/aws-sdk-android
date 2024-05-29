@@ -45,25 +45,25 @@ public class EncoderFactory {
     private static MediaCodec createMediaCodec(final CameraMediaSourceConfiguration mediaSourceConfiguration) {
         try {
             final MediaCodec encoder = MediaCodec.createEncoderByType(mediaSourceConfiguration.getEncoderMimeType());
-            try {
-                encoder.configure(
-                        configureMediaFormat(mediaSourceConfiguration,
-                                MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420SemiPlanar),
-                        NULL_SURFACE,
-                        NULL_CRYPTO,
-                        MediaCodec.CONFIGURE_FLAG_ENCODE);
-                logSupportedColorFormats(encoder, mediaSourceConfiguration);
-            } catch (MediaCodec.CodecException e) {
-                Log.d(TAG, "Failed configuring MediaCodec with Semi-planar pixel format, falling back to planar");
+            // try {
+                // encoder.configure(
+                //         configureMediaFormat(mediaSourceConfiguration,
+                //                 MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420SemiPlanar),
+                //         NULL_SURFACE,
+                //         NULL_CRYPTO,
+                //         MediaCodec.CONFIGURE_FLAG_ENCODE);
+                // logSupportedColorFormats(encoder, mediaSourceConfiguration);
+            // } catch (MediaCodec.CodecException e) {
+                // Log.d(TAG, "Failed configuring MediaCodec with Semi-planar pixel format, falling back to planar");
 
                 encoder.configure(
                         configureMediaFormat(mediaSourceConfiguration,
-                                MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420Planar),
+                                MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420Flexible),
                         NULL_SURFACE,
                         NULL_CRYPTO,
                         MediaCodec.CONFIGURE_FLAG_ENCODE);
                 logSupportedColorFormats(encoder, mediaSourceConfiguration);
-            }
+            // }
 
             return encoder;
         } catch (final IOException e) {
@@ -84,6 +84,12 @@ public class EncoderFactory {
                 mediaSourceConfiguration.getEncoderMimeType(),
                 mediaSourceConfiguration.getHorizontalResolution(),
                 mediaSourceConfiguration.getVerticalResolution());
+
+        // Switching height and width for rotation case:
+        // final MediaFormat format = MediaFormat.createVideoFormat(
+        //         mediaSourceConfiguration.getEncoderMimeType(),
+        //         mediaSourceConfiguration.getVerticalResolution(),
+        //         mediaSourceConfiguration.getHorizontalResolution());
 
         // Set some properties.  Failing to specify some of these can cause the MediaCodec
         // configure() call to throw an unhelpful exception.
