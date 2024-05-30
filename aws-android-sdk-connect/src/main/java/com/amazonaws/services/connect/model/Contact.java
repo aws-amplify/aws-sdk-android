@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -149,6 +149,40 @@ public class Contact implements Serializable {
 
     /**
      * <p>
+     * The timestamp when the contact was last paused.
+     * </p>
+     */
+    private java.util.Date lastPausedTimestamp;
+
+    /**
+     * <p>
+     * The timestamp when the contact was last resumed.
+     * </p>
+     */
+    private java.util.Date lastResumedTimestamp;
+
+    /**
+     * <p>
+     * Total pause count for a contact.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 10<br/>
+     */
+    private Integer totalPauseCount;
+
+    /**
+     * <p>
+     * Total pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     */
+    private Integer totalPauseDurationInSeconds;
+
+    /**
+     * <p>
      * The timestamp, in Unix epoch time format, at which to start running the
      * inbound flow.
      * </p>
@@ -173,6 +207,115 @@ public class Contact implements Serializable {
      * </p>
      */
     private WisdomInfo wisdomInfo;
+
+    /**
+     * <p>
+     * An integer that represents the queue time adjust to be applied to the
+     * contact, in seconds (longer / larger queue time are routed
+     * preferentially). Cannot be specified if the QueuePriority is specified.
+     * Must be statically defined and a valid integer value.
+     * </p>
+     */
+    private Integer queueTimeAdjustmentSeconds;
+
+    /**
+     * <p>
+     * An integer that represents the queue priority to be applied to the
+     * contact (lower priorities are routed preferentially). Cannot be specified
+     * if the QueueTimeAdjustmentSeconds is specified. Must be statically
+     * defined, must be larger than zero, and a valid integer value. Default
+     * Value is 5.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 9223372036854775807<br/>
+     */
+    private Long queuePriority;
+
+    /**
+     * <p>
+     * Tags associated with the contact. This contains both Amazon Web Services
+     * generated and user-defined tags.
+     * </p>
+     */
+    private java.util.Map<String, String> tags;
+
+    /**
+     * <p>
+     * The timestamp when customer endpoint connected to Amazon Connect.
+     * </p>
+     */
+    private java.util.Date connectedToSystemTimestamp;
+
+    /**
+     * <p>
+     * Latest routing criteria on the contact.
+     * </p>
+     */
+    private RoutingCriteria routingCriteria;
+
+    /**
+     * <p>
+     * Information about the Customer on the contact.
+     * </p>
+     */
+    private Customer customer;
+
+    /**
+     * <p>
+     * Information associated with a campaign.
+     * </p>
+     */
+    private Campaign campaign;
+
+    /**
+     * <p>
+     * Indicates how an <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/how-to-create-campaigns.html"
+     * >outbound campaign</a> call is actually disposed if the contact is
+     * connected to Amazon Connect.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ANSWERED, UNDETECTED, ERROR, HUMAN_ANSWERED,
+     * SIT_TONE_DETECTED, SIT_TONE_BUSY, SIT_TONE_INVALID_NUMBER,
+     * FAX_MACHINE_DETECTED, VOICEMAIL_BEEP, VOICEMAIL_NO_BEEP, AMD_UNRESOLVED,
+     * AMD_UNANSWERED, AMD_ERROR, AMD_NOT_APPLICABLE
+     */
+    private String answeringMachineDetectionStatus;
+
+    /**
+     * <p>
+     * Information about customer’s voice activity.
+     * </p>
+     */
+    private CustomerVoiceActivity customerVoiceActivity;
+
+    /**
+     * <p>
+     * Information about the quality of the participant's media connection.
+     * </p>
+     */
+    private QualityMetrics qualityMetrics;
+
+    /**
+     * <p>
+     * Information about the call disconnect experience.
+     * </p>
+     */
+    private DisconnectDetails disconnectDetails;
+
+    /**
+     * <p>
+     * A set of system defined key-value pairs stored on individual contact
+     * segments using an attribute map. The attributes are standard Amazon
+     * Connect attributes and can be accessed in flows. Attribute keys can
+     * include only alphanumeric, -, and _ characters. This field can be used to
+     * show channel subtype. For example, <code>connect:Guide</code> or
+     * <code>connect:SMS</code>.
+     * </p>
+     */
+    private java.util.Map<String, SegmentAttributeValue> segmentAttributes;
 
     /**
      * <p>
@@ -990,6 +1133,204 @@ public class Contact implements Serializable {
 
     /**
      * <p>
+     * The timestamp when the contact was last paused.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp when the contact was last paused.
+     *         </p>
+     */
+    public java.util.Date getLastPausedTimestamp() {
+        return lastPausedTimestamp;
+    }
+
+    /**
+     * <p>
+     * The timestamp when the contact was last paused.
+     * </p>
+     *
+     * @param lastPausedTimestamp <p>
+     *            The timestamp when the contact was last paused.
+     *            </p>
+     */
+    public void setLastPausedTimestamp(java.util.Date lastPausedTimestamp) {
+        this.lastPausedTimestamp = lastPausedTimestamp;
+    }
+
+    /**
+     * <p>
+     * The timestamp when the contact was last paused.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lastPausedTimestamp <p>
+     *            The timestamp when the contact was last paused.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withLastPausedTimestamp(java.util.Date lastPausedTimestamp) {
+        this.lastPausedTimestamp = lastPausedTimestamp;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The timestamp when the contact was last resumed.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp when the contact was last resumed.
+     *         </p>
+     */
+    public java.util.Date getLastResumedTimestamp() {
+        return lastResumedTimestamp;
+    }
+
+    /**
+     * <p>
+     * The timestamp when the contact was last resumed.
+     * </p>
+     *
+     * @param lastResumedTimestamp <p>
+     *            The timestamp when the contact was last resumed.
+     *            </p>
+     */
+    public void setLastResumedTimestamp(java.util.Date lastResumedTimestamp) {
+        this.lastResumedTimestamp = lastResumedTimestamp;
+    }
+
+    /**
+     * <p>
+     * The timestamp when the contact was last resumed.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lastResumedTimestamp <p>
+     *            The timestamp when the contact was last resumed.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withLastResumedTimestamp(java.util.Date lastResumedTimestamp) {
+        this.lastResumedTimestamp = lastResumedTimestamp;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Total pause count for a contact.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 10<br/>
+     *
+     * @return <p>
+     *         Total pause count for a contact.
+     *         </p>
+     */
+    public Integer getTotalPauseCount() {
+        return totalPauseCount;
+    }
+
+    /**
+     * <p>
+     * Total pause count for a contact.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 10<br/>
+     *
+     * @param totalPauseCount <p>
+     *            Total pause count for a contact.
+     *            </p>
+     */
+    public void setTotalPauseCount(Integer totalPauseCount) {
+        this.totalPauseCount = totalPauseCount;
+    }
+
+    /**
+     * <p>
+     * Total pause count for a contact.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 10<br/>
+     *
+     * @param totalPauseCount <p>
+     *            Total pause count for a contact.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withTotalPauseCount(Integer totalPauseCount) {
+        this.totalPauseCount = totalPauseCount;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Total pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @return <p>
+     *         Total pause duration for a contact in seconds.
+     *         </p>
+     */
+    public Integer getTotalPauseDurationInSeconds() {
+        return totalPauseDurationInSeconds;
+    }
+
+    /**
+     * <p>
+     * Total pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param totalPauseDurationInSeconds <p>
+     *            Total pause duration for a contact in seconds.
+     *            </p>
+     */
+    public void setTotalPauseDurationInSeconds(Integer totalPauseDurationInSeconds) {
+        this.totalPauseDurationInSeconds = totalPauseDurationInSeconds;
+    }
+
+    /**
+     * <p>
+     * Total pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param totalPauseDurationInSeconds <p>
+     *            Total pause duration for a contact in seconds.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withTotalPauseDurationInSeconds(Integer totalPauseDurationInSeconds) {
+        this.totalPauseDurationInSeconds = totalPauseDurationInSeconds;
+        return this;
+    }
+
+    /**
+     * <p>
      * The timestamp, in Unix epoch time format, at which to start running the
      * inbound flow.
      * </p>
@@ -1151,6 +1492,820 @@ public class Contact implements Serializable {
     }
 
     /**
+     * <p>
+     * An integer that represents the queue time adjust to be applied to the
+     * contact, in seconds (longer / larger queue time are routed
+     * preferentially). Cannot be specified if the QueuePriority is specified.
+     * Must be statically defined and a valid integer value.
+     * </p>
+     *
+     * @return <p>
+     *         An integer that represents the queue time adjust to be applied to
+     *         the contact, in seconds (longer / larger queue time are routed
+     *         preferentially). Cannot be specified if the QueuePriority is
+     *         specified. Must be statically defined and a valid integer value.
+     *         </p>
+     */
+    public Integer getQueueTimeAdjustmentSeconds() {
+        return queueTimeAdjustmentSeconds;
+    }
+
+    /**
+     * <p>
+     * An integer that represents the queue time adjust to be applied to the
+     * contact, in seconds (longer / larger queue time are routed
+     * preferentially). Cannot be specified if the QueuePriority is specified.
+     * Must be statically defined and a valid integer value.
+     * </p>
+     *
+     * @param queueTimeAdjustmentSeconds <p>
+     *            An integer that represents the queue time adjust to be applied
+     *            to the contact, in seconds (longer / larger queue time are
+     *            routed preferentially). Cannot be specified if the
+     *            QueuePriority is specified. Must be statically defined and a
+     *            valid integer value.
+     *            </p>
+     */
+    public void setQueueTimeAdjustmentSeconds(Integer queueTimeAdjustmentSeconds) {
+        this.queueTimeAdjustmentSeconds = queueTimeAdjustmentSeconds;
+    }
+
+    /**
+     * <p>
+     * An integer that represents the queue time adjust to be applied to the
+     * contact, in seconds (longer / larger queue time are routed
+     * preferentially). Cannot be specified if the QueuePriority is specified.
+     * Must be statically defined and a valid integer value.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param queueTimeAdjustmentSeconds <p>
+     *            An integer that represents the queue time adjust to be applied
+     *            to the contact, in seconds (longer / larger queue time are
+     *            routed preferentially). Cannot be specified if the
+     *            QueuePriority is specified. Must be statically defined and a
+     *            valid integer value.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withQueueTimeAdjustmentSeconds(Integer queueTimeAdjustmentSeconds) {
+        this.queueTimeAdjustmentSeconds = queueTimeAdjustmentSeconds;
+        return this;
+    }
+
+    /**
+     * <p>
+     * An integer that represents the queue priority to be applied to the
+     * contact (lower priorities are routed preferentially). Cannot be specified
+     * if the QueueTimeAdjustmentSeconds is specified. Must be statically
+     * defined, must be larger than zero, and a valid integer value. Default
+     * Value is 5.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 9223372036854775807<br/>
+     *
+     * @return <p>
+     *         An integer that represents the queue priority to be applied to
+     *         the contact (lower priorities are routed preferentially). Cannot
+     *         be specified if the QueueTimeAdjustmentSeconds is specified. Must
+     *         be statically defined, must be larger than zero, and a valid
+     *         integer value. Default Value is 5.
+     *         </p>
+     */
+    public Long getQueuePriority() {
+        return queuePriority;
+    }
+
+    /**
+     * <p>
+     * An integer that represents the queue priority to be applied to the
+     * contact (lower priorities are routed preferentially). Cannot be specified
+     * if the QueueTimeAdjustmentSeconds is specified. Must be statically
+     * defined, must be larger than zero, and a valid integer value. Default
+     * Value is 5.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 9223372036854775807<br/>
+     *
+     * @param queuePriority <p>
+     *            An integer that represents the queue priority to be applied to
+     *            the contact (lower priorities are routed preferentially).
+     *            Cannot be specified if the QueueTimeAdjustmentSeconds is
+     *            specified. Must be statically defined, must be larger than
+     *            zero, and a valid integer value. Default Value is 5.
+     *            </p>
+     */
+    public void setQueuePriority(Long queuePriority) {
+        this.queuePriority = queuePriority;
+    }
+
+    /**
+     * <p>
+     * An integer that represents the queue priority to be applied to the
+     * contact (lower priorities are routed preferentially). Cannot be specified
+     * if the QueueTimeAdjustmentSeconds is specified. Must be statically
+     * defined, must be larger than zero, and a valid integer value. Default
+     * Value is 5.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 9223372036854775807<br/>
+     *
+     * @param queuePriority <p>
+     *            An integer that represents the queue priority to be applied to
+     *            the contact (lower priorities are routed preferentially).
+     *            Cannot be specified if the QueueTimeAdjustmentSeconds is
+     *            specified. Must be statically defined, must be larger than
+     *            zero, and a valid integer value. Default Value is 5.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withQueuePriority(Long queuePriority) {
+        this.queuePriority = queuePriority;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Tags associated with the contact. This contains both Amazon Web Services
+     * generated and user-defined tags.
+     * </p>
+     *
+     * @return <p>
+     *         Tags associated with the contact. This contains both Amazon Web
+     *         Services generated and user-defined tags.
+     *         </p>
+     */
+    public java.util.Map<String, String> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Tags associated with the contact. This contains both Amazon Web Services
+     * generated and user-defined tags.
+     * </p>
+     *
+     * @param tags <p>
+     *            Tags associated with the contact. This contains both Amazon
+     *            Web Services generated and user-defined tags.
+     *            </p>
+     */
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * <p>
+     * Tags associated with the contact. This contains both Amazon Web Services
+     * generated and user-defined tags.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Tags associated with the contact. This contains both Amazon
+     *            Web Services generated and user-defined tags.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Tags associated with the contact. This contains both Amazon Web Services
+     * generated and user-defined tags.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into Tags parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into Tags.
+     * @param value The corresponding value of the entry to be added into Tags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact addTagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
+        }
+        if (this.tags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.tags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into Tags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public Contact clearTagsEntries() {
+        this.tags = null;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The timestamp when customer endpoint connected to Amazon Connect.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp when customer endpoint connected to Amazon Connect.
+     *         </p>
+     */
+    public java.util.Date getConnectedToSystemTimestamp() {
+        return connectedToSystemTimestamp;
+    }
+
+    /**
+     * <p>
+     * The timestamp when customer endpoint connected to Amazon Connect.
+     * </p>
+     *
+     * @param connectedToSystemTimestamp <p>
+     *            The timestamp when customer endpoint connected to Amazon
+     *            Connect.
+     *            </p>
+     */
+    public void setConnectedToSystemTimestamp(java.util.Date connectedToSystemTimestamp) {
+        this.connectedToSystemTimestamp = connectedToSystemTimestamp;
+    }
+
+    /**
+     * <p>
+     * The timestamp when customer endpoint connected to Amazon Connect.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param connectedToSystemTimestamp <p>
+     *            The timestamp when customer endpoint connected to Amazon
+     *            Connect.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withConnectedToSystemTimestamp(java.util.Date connectedToSystemTimestamp) {
+        this.connectedToSystemTimestamp = connectedToSystemTimestamp;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Latest routing criteria on the contact.
+     * </p>
+     *
+     * @return <p>
+     *         Latest routing criteria on the contact.
+     *         </p>
+     */
+    public RoutingCriteria getRoutingCriteria() {
+        return routingCriteria;
+    }
+
+    /**
+     * <p>
+     * Latest routing criteria on the contact.
+     * </p>
+     *
+     * @param routingCriteria <p>
+     *            Latest routing criteria on the contact.
+     *            </p>
+     */
+    public void setRoutingCriteria(RoutingCriteria routingCriteria) {
+        this.routingCriteria = routingCriteria;
+    }
+
+    /**
+     * <p>
+     * Latest routing criteria on the contact.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param routingCriteria <p>
+     *            Latest routing criteria on the contact.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withRoutingCriteria(RoutingCriteria routingCriteria) {
+        this.routingCriteria = routingCriteria;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Information about the Customer on the contact.
+     * </p>
+     *
+     * @return <p>
+     *         Information about the Customer on the contact.
+     *         </p>
+     */
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    /**
+     * <p>
+     * Information about the Customer on the contact.
+     * </p>
+     *
+     * @param customer <p>
+     *            Information about the Customer on the contact.
+     *            </p>
+     */
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    /**
+     * <p>
+     * Information about the Customer on the contact.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param customer <p>
+     *            Information about the Customer on the contact.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withCustomer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Information associated with a campaign.
+     * </p>
+     *
+     * @return <p>
+     *         Information associated with a campaign.
+     *         </p>
+     */
+    public Campaign getCampaign() {
+        return campaign;
+    }
+
+    /**
+     * <p>
+     * Information associated with a campaign.
+     * </p>
+     *
+     * @param campaign <p>
+     *            Information associated with a campaign.
+     *            </p>
+     */
+    public void setCampaign(Campaign campaign) {
+        this.campaign = campaign;
+    }
+
+    /**
+     * <p>
+     * Information associated with a campaign.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param campaign <p>
+     *            Information associated with a campaign.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withCampaign(Campaign campaign) {
+        this.campaign = campaign;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Indicates how an <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/how-to-create-campaigns.html"
+     * >outbound campaign</a> call is actually disposed if the contact is
+     * connected to Amazon Connect.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ANSWERED, UNDETECTED, ERROR, HUMAN_ANSWERED,
+     * SIT_TONE_DETECTED, SIT_TONE_BUSY, SIT_TONE_INVALID_NUMBER,
+     * FAX_MACHINE_DETECTED, VOICEMAIL_BEEP, VOICEMAIL_NO_BEEP, AMD_UNRESOLVED,
+     * AMD_UNANSWERED, AMD_ERROR, AMD_NOT_APPLICABLE
+     *
+     * @return <p>
+     *         Indicates how an <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/how-to-create-campaigns.html"
+     *         >outbound campaign</a> call is actually disposed if the contact
+     *         is connected to Amazon Connect.
+     *         </p>
+     * @see AnsweringMachineDetectionStatus
+     */
+    public String getAnsweringMachineDetectionStatus() {
+        return answeringMachineDetectionStatus;
+    }
+
+    /**
+     * <p>
+     * Indicates how an <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/how-to-create-campaigns.html"
+     * >outbound campaign</a> call is actually disposed if the contact is
+     * connected to Amazon Connect.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ANSWERED, UNDETECTED, ERROR, HUMAN_ANSWERED,
+     * SIT_TONE_DETECTED, SIT_TONE_BUSY, SIT_TONE_INVALID_NUMBER,
+     * FAX_MACHINE_DETECTED, VOICEMAIL_BEEP, VOICEMAIL_NO_BEEP, AMD_UNRESOLVED,
+     * AMD_UNANSWERED, AMD_ERROR, AMD_NOT_APPLICABLE
+     *
+     * @param answeringMachineDetectionStatus <p>
+     *            Indicates how an <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/how-to-create-campaigns.html"
+     *            >outbound campaign</a> call is actually disposed if the
+     *            contact is connected to Amazon Connect.
+     *            </p>
+     * @see AnsweringMachineDetectionStatus
+     */
+    public void setAnsweringMachineDetectionStatus(String answeringMachineDetectionStatus) {
+        this.answeringMachineDetectionStatus = answeringMachineDetectionStatus;
+    }
+
+    /**
+     * <p>
+     * Indicates how an <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/how-to-create-campaigns.html"
+     * >outbound campaign</a> call is actually disposed if the contact is
+     * connected to Amazon Connect.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ANSWERED, UNDETECTED, ERROR, HUMAN_ANSWERED,
+     * SIT_TONE_DETECTED, SIT_TONE_BUSY, SIT_TONE_INVALID_NUMBER,
+     * FAX_MACHINE_DETECTED, VOICEMAIL_BEEP, VOICEMAIL_NO_BEEP, AMD_UNRESOLVED,
+     * AMD_UNANSWERED, AMD_ERROR, AMD_NOT_APPLICABLE
+     *
+     * @param answeringMachineDetectionStatus <p>
+     *            Indicates how an <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/how-to-create-campaigns.html"
+     *            >outbound campaign</a> call is actually disposed if the
+     *            contact is connected to Amazon Connect.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see AnsweringMachineDetectionStatus
+     */
+    public Contact withAnsweringMachineDetectionStatus(String answeringMachineDetectionStatus) {
+        this.answeringMachineDetectionStatus = answeringMachineDetectionStatus;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Indicates how an <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/how-to-create-campaigns.html"
+     * >outbound campaign</a> call is actually disposed if the contact is
+     * connected to Amazon Connect.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ANSWERED, UNDETECTED, ERROR, HUMAN_ANSWERED,
+     * SIT_TONE_DETECTED, SIT_TONE_BUSY, SIT_TONE_INVALID_NUMBER,
+     * FAX_MACHINE_DETECTED, VOICEMAIL_BEEP, VOICEMAIL_NO_BEEP, AMD_UNRESOLVED,
+     * AMD_UNANSWERED, AMD_ERROR, AMD_NOT_APPLICABLE
+     *
+     * @param answeringMachineDetectionStatus <p>
+     *            Indicates how an <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/how-to-create-campaigns.html"
+     *            >outbound campaign</a> call is actually disposed if the
+     *            contact is connected to Amazon Connect.
+     *            </p>
+     * @see AnsweringMachineDetectionStatus
+     */
+    public void setAnsweringMachineDetectionStatus(
+            AnsweringMachineDetectionStatus answeringMachineDetectionStatus) {
+        this.answeringMachineDetectionStatus = answeringMachineDetectionStatus.toString();
+    }
+
+    /**
+     * <p>
+     * Indicates how an <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/how-to-create-campaigns.html"
+     * >outbound campaign</a> call is actually disposed if the contact is
+     * connected to Amazon Connect.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ANSWERED, UNDETECTED, ERROR, HUMAN_ANSWERED,
+     * SIT_TONE_DETECTED, SIT_TONE_BUSY, SIT_TONE_INVALID_NUMBER,
+     * FAX_MACHINE_DETECTED, VOICEMAIL_BEEP, VOICEMAIL_NO_BEEP, AMD_UNRESOLVED,
+     * AMD_UNANSWERED, AMD_ERROR, AMD_NOT_APPLICABLE
+     *
+     * @param answeringMachineDetectionStatus <p>
+     *            Indicates how an <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/how-to-create-campaigns.html"
+     *            >outbound campaign</a> call is actually disposed if the
+     *            contact is connected to Amazon Connect.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see AnsweringMachineDetectionStatus
+     */
+    public Contact withAnsweringMachineDetectionStatus(
+            AnsweringMachineDetectionStatus answeringMachineDetectionStatus) {
+        this.answeringMachineDetectionStatus = answeringMachineDetectionStatus.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Information about customer’s voice activity.
+     * </p>
+     *
+     * @return <p>
+     *         Information about customer’s voice activity.
+     *         </p>
+     */
+    public CustomerVoiceActivity getCustomerVoiceActivity() {
+        return customerVoiceActivity;
+    }
+
+    /**
+     * <p>
+     * Information about customer’s voice activity.
+     * </p>
+     *
+     * @param customerVoiceActivity <p>
+     *            Information about customer’s voice activity.
+     *            </p>
+     */
+    public void setCustomerVoiceActivity(CustomerVoiceActivity customerVoiceActivity) {
+        this.customerVoiceActivity = customerVoiceActivity;
+    }
+
+    /**
+     * <p>
+     * Information about customer’s voice activity.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param customerVoiceActivity <p>
+     *            Information about customer’s voice activity.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withCustomerVoiceActivity(CustomerVoiceActivity customerVoiceActivity) {
+        this.customerVoiceActivity = customerVoiceActivity;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Information about the quality of the participant's media connection.
+     * </p>
+     *
+     * @return <p>
+     *         Information about the quality of the participant's media
+     *         connection.
+     *         </p>
+     */
+    public QualityMetrics getQualityMetrics() {
+        return qualityMetrics;
+    }
+
+    /**
+     * <p>
+     * Information about the quality of the participant's media connection.
+     * </p>
+     *
+     * @param qualityMetrics <p>
+     *            Information about the quality of the participant's media
+     *            connection.
+     *            </p>
+     */
+    public void setQualityMetrics(QualityMetrics qualityMetrics) {
+        this.qualityMetrics = qualityMetrics;
+    }
+
+    /**
+     * <p>
+     * Information about the quality of the participant's media connection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param qualityMetrics <p>
+     *            Information about the quality of the participant's media
+     *            connection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withQualityMetrics(QualityMetrics qualityMetrics) {
+        this.qualityMetrics = qualityMetrics;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Information about the call disconnect experience.
+     * </p>
+     *
+     * @return <p>
+     *         Information about the call disconnect experience.
+     *         </p>
+     */
+    public DisconnectDetails getDisconnectDetails() {
+        return disconnectDetails;
+    }
+
+    /**
+     * <p>
+     * Information about the call disconnect experience.
+     * </p>
+     *
+     * @param disconnectDetails <p>
+     *            Information about the call disconnect experience.
+     *            </p>
+     */
+    public void setDisconnectDetails(DisconnectDetails disconnectDetails) {
+        this.disconnectDetails = disconnectDetails;
+    }
+
+    /**
+     * <p>
+     * Information about the call disconnect experience.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param disconnectDetails <p>
+     *            Information about the call disconnect experience.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withDisconnectDetails(DisconnectDetails disconnectDetails) {
+        this.disconnectDetails = disconnectDetails;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A set of system defined key-value pairs stored on individual contact
+     * segments using an attribute map. The attributes are standard Amazon
+     * Connect attributes and can be accessed in flows. Attribute keys can
+     * include only alphanumeric, -, and _ characters. This field can be used to
+     * show channel subtype. For example, <code>connect:Guide</code> or
+     * <code>connect:SMS</code>.
+     * </p>
+     *
+     * @return <p>
+     *         A set of system defined key-value pairs stored on individual
+     *         contact segments using an attribute map. The attributes are
+     *         standard Amazon Connect attributes and can be accessed in flows.
+     *         Attribute keys can include only alphanumeric, -, and _
+     *         characters. This field can be used to show channel subtype. For
+     *         example, <code>connect:Guide</code> or <code>connect:SMS</code>.
+     *         </p>
+     */
+    public java.util.Map<String, SegmentAttributeValue> getSegmentAttributes() {
+        return segmentAttributes;
+    }
+
+    /**
+     * <p>
+     * A set of system defined key-value pairs stored on individual contact
+     * segments using an attribute map. The attributes are standard Amazon
+     * Connect attributes and can be accessed in flows. Attribute keys can
+     * include only alphanumeric, -, and _ characters. This field can be used to
+     * show channel subtype. For example, <code>connect:Guide</code> or
+     * <code>connect:SMS</code>.
+     * </p>
+     *
+     * @param segmentAttributes <p>
+     *            A set of system defined key-value pairs stored on individual
+     *            contact segments using an attribute map. The attributes are
+     *            standard Amazon Connect attributes and can be accessed in
+     *            flows. Attribute keys can include only alphanumeric, -, and _
+     *            characters. This field can be used to show channel subtype.
+     *            For example, <code>connect:Guide</code> or
+     *            <code>connect:SMS</code>.
+     *            </p>
+     */
+    public void setSegmentAttributes(java.util.Map<String, SegmentAttributeValue> segmentAttributes) {
+        this.segmentAttributes = segmentAttributes;
+    }
+
+    /**
+     * <p>
+     * A set of system defined key-value pairs stored on individual contact
+     * segments using an attribute map. The attributes are standard Amazon
+     * Connect attributes and can be accessed in flows. Attribute keys can
+     * include only alphanumeric, -, and _ characters. This field can be used to
+     * show channel subtype. For example, <code>connect:Guide</code> or
+     * <code>connect:SMS</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param segmentAttributes <p>
+     *            A set of system defined key-value pairs stored on individual
+     *            contact segments using an attribute map. The attributes are
+     *            standard Amazon Connect attributes and can be accessed in
+     *            flows. Attribute keys can include only alphanumeric, -, and _
+     *            characters. This field can be used to show channel subtype.
+     *            For example, <code>connect:Guide</code> or
+     *            <code>connect:SMS</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withSegmentAttributes(
+            java.util.Map<String, SegmentAttributeValue> segmentAttributes) {
+        this.segmentAttributes = segmentAttributes;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A set of system defined key-value pairs stored on individual contact
+     * segments using an attribute map. The attributes are standard Amazon
+     * Connect attributes and can be accessed in flows. Attribute keys can
+     * include only alphanumeric, -, and _ characters. This field can be used to
+     * show channel subtype. For example, <code>connect:Guide</code> or
+     * <code>connect:SMS</code>.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into SegmentAttributes parameter,
+     * and returns a reference to this object so that method calls can be
+     * chained together.
+     *
+     * @param key The key of the entry to be added into SegmentAttributes.
+     * @param value The corresponding value of the entry to be added into
+     *            SegmentAttributes.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact addSegmentAttributesEntry(String key, SegmentAttributeValue value) {
+        if (null == this.segmentAttributes) {
+            this.segmentAttributes = new java.util.HashMap<String, SegmentAttributeValue>();
+        }
+        if (this.segmentAttributes.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.segmentAttributes.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into SegmentAttributes.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public Contact clearSegmentAttributesEntries() {
+        this.segmentAttributes = null;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1187,12 +2342,45 @@ public class Contact implements Serializable {
             sb.append("DisconnectTimestamp: " + getDisconnectTimestamp() + ",");
         if (getLastUpdateTimestamp() != null)
             sb.append("LastUpdateTimestamp: " + getLastUpdateTimestamp() + ",");
+        if (getLastPausedTimestamp() != null)
+            sb.append("LastPausedTimestamp: " + getLastPausedTimestamp() + ",");
+        if (getLastResumedTimestamp() != null)
+            sb.append("LastResumedTimestamp: " + getLastResumedTimestamp() + ",");
+        if (getTotalPauseCount() != null)
+            sb.append("TotalPauseCount: " + getTotalPauseCount() + ",");
+        if (getTotalPauseDurationInSeconds() != null)
+            sb.append("TotalPauseDurationInSeconds: " + getTotalPauseDurationInSeconds() + ",");
         if (getScheduledTimestamp() != null)
             sb.append("ScheduledTimestamp: " + getScheduledTimestamp() + ",");
         if (getRelatedContactId() != null)
             sb.append("RelatedContactId: " + getRelatedContactId() + ",");
         if (getWisdomInfo() != null)
-            sb.append("WisdomInfo: " + getWisdomInfo());
+            sb.append("WisdomInfo: " + getWisdomInfo() + ",");
+        if (getQueueTimeAdjustmentSeconds() != null)
+            sb.append("QueueTimeAdjustmentSeconds: " + getQueueTimeAdjustmentSeconds() + ",");
+        if (getQueuePriority() != null)
+            sb.append("QueuePriority: " + getQueuePriority() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags() + ",");
+        if (getConnectedToSystemTimestamp() != null)
+            sb.append("ConnectedToSystemTimestamp: " + getConnectedToSystemTimestamp() + ",");
+        if (getRoutingCriteria() != null)
+            sb.append("RoutingCriteria: " + getRoutingCriteria() + ",");
+        if (getCustomer() != null)
+            sb.append("Customer: " + getCustomer() + ",");
+        if (getCampaign() != null)
+            sb.append("Campaign: " + getCampaign() + ",");
+        if (getAnsweringMachineDetectionStatus() != null)
+            sb.append("AnsweringMachineDetectionStatus: " + getAnsweringMachineDetectionStatus()
+                    + ",");
+        if (getCustomerVoiceActivity() != null)
+            sb.append("CustomerVoiceActivity: " + getCustomerVoiceActivity() + ",");
+        if (getQualityMetrics() != null)
+            sb.append("QualityMetrics: " + getQualityMetrics() + ",");
+        if (getDisconnectDetails() != null)
+            sb.append("DisconnectDetails: " + getDisconnectDetails() + ",");
+        if (getSegmentAttributes() != null)
+            sb.append("SegmentAttributes: " + getSegmentAttributes());
         sb.append("}");
         return sb.toString();
     }
@@ -1223,10 +2411,48 @@ public class Contact implements Serializable {
         hashCode = prime * hashCode
                 + ((getLastUpdateTimestamp() == null) ? 0 : getLastUpdateTimestamp().hashCode());
         hashCode = prime * hashCode
+                + ((getLastPausedTimestamp() == null) ? 0 : getLastPausedTimestamp().hashCode());
+        hashCode = prime * hashCode
+                + ((getLastResumedTimestamp() == null) ? 0 : getLastResumedTimestamp().hashCode());
+        hashCode = prime * hashCode
+                + ((getTotalPauseCount() == null) ? 0 : getTotalPauseCount().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getTotalPauseDurationInSeconds() == null) ? 0
+                        : getTotalPauseDurationInSeconds().hashCode());
+        hashCode = prime * hashCode
                 + ((getScheduledTimestamp() == null) ? 0 : getScheduledTimestamp().hashCode());
         hashCode = prime * hashCode
                 + ((getRelatedContactId() == null) ? 0 : getRelatedContactId().hashCode());
         hashCode = prime * hashCode + ((getWisdomInfo() == null) ? 0 : getWisdomInfo().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getQueueTimeAdjustmentSeconds() == null) ? 0 : getQueueTimeAdjustmentSeconds()
+                        .hashCode());
+        hashCode = prime * hashCode
+                + ((getQueuePriority() == null) ? 0 : getQueuePriority().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getConnectedToSystemTimestamp() == null) ? 0 : getConnectedToSystemTimestamp()
+                        .hashCode());
+        hashCode = prime * hashCode
+                + ((getRoutingCriteria() == null) ? 0 : getRoutingCriteria().hashCode());
+        hashCode = prime * hashCode + ((getCustomer() == null) ? 0 : getCustomer().hashCode());
+        hashCode = prime * hashCode + ((getCampaign() == null) ? 0 : getCampaign().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAnsweringMachineDetectionStatus() == null) ? 0
+                        : getAnsweringMachineDetectionStatus().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getCustomerVoiceActivity() == null) ? 0 : getCustomerVoiceActivity().hashCode());
+        hashCode = prime * hashCode
+                + ((getQualityMetrics() == null) ? 0 : getQualityMetrics().hashCode());
+        hashCode = prime * hashCode
+                + ((getDisconnectDetails() == null) ? 0 : getDisconnectDetails().hashCode());
+        hashCode = prime * hashCode
+                + ((getSegmentAttributes() == null) ? 0 : getSegmentAttributes().hashCode());
         return hashCode;
     }
 
@@ -1302,6 +2528,28 @@ public class Contact implements Serializable {
         if (other.getLastUpdateTimestamp() != null
                 && other.getLastUpdateTimestamp().equals(this.getLastUpdateTimestamp()) == false)
             return false;
+        if (other.getLastPausedTimestamp() == null ^ this.getLastPausedTimestamp() == null)
+            return false;
+        if (other.getLastPausedTimestamp() != null
+                && other.getLastPausedTimestamp().equals(this.getLastPausedTimestamp()) == false)
+            return false;
+        if (other.getLastResumedTimestamp() == null ^ this.getLastResumedTimestamp() == null)
+            return false;
+        if (other.getLastResumedTimestamp() != null
+                && other.getLastResumedTimestamp().equals(this.getLastResumedTimestamp()) == false)
+            return false;
+        if (other.getTotalPauseCount() == null ^ this.getTotalPauseCount() == null)
+            return false;
+        if (other.getTotalPauseCount() != null
+                && other.getTotalPauseCount().equals(this.getTotalPauseCount()) == false)
+            return false;
+        if (other.getTotalPauseDurationInSeconds() == null
+                ^ this.getTotalPauseDurationInSeconds() == null)
+            return false;
+        if (other.getTotalPauseDurationInSeconds() != null
+                && other.getTotalPauseDurationInSeconds().equals(
+                        this.getTotalPauseDurationInSeconds()) == false)
+            return false;
         if (other.getScheduledTimestamp() == null ^ this.getScheduledTimestamp() == null)
             return false;
         if (other.getScheduledTimestamp() != null
@@ -1316,6 +2564,69 @@ public class Contact implements Serializable {
             return false;
         if (other.getWisdomInfo() != null
                 && other.getWisdomInfo().equals(this.getWisdomInfo()) == false)
+            return false;
+        if (other.getQueueTimeAdjustmentSeconds() == null
+                ^ this.getQueueTimeAdjustmentSeconds() == null)
+            return false;
+        if (other.getQueueTimeAdjustmentSeconds() != null
+                && other.getQueueTimeAdjustmentSeconds().equals(
+                        this.getQueueTimeAdjustmentSeconds()) == false)
+            return false;
+        if (other.getQueuePriority() == null ^ this.getQueuePriority() == null)
+            return false;
+        if (other.getQueuePriority() != null
+                && other.getQueuePriority().equals(this.getQueuePriority()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getConnectedToSystemTimestamp() == null
+                ^ this.getConnectedToSystemTimestamp() == null)
+            return false;
+        if (other.getConnectedToSystemTimestamp() != null
+                && other.getConnectedToSystemTimestamp().equals(
+                        this.getConnectedToSystemTimestamp()) == false)
+            return false;
+        if (other.getRoutingCriteria() == null ^ this.getRoutingCriteria() == null)
+            return false;
+        if (other.getRoutingCriteria() != null
+                && other.getRoutingCriteria().equals(this.getRoutingCriteria()) == false)
+            return false;
+        if (other.getCustomer() == null ^ this.getCustomer() == null)
+            return false;
+        if (other.getCustomer() != null && other.getCustomer().equals(this.getCustomer()) == false)
+            return false;
+        if (other.getCampaign() == null ^ this.getCampaign() == null)
+            return false;
+        if (other.getCampaign() != null && other.getCampaign().equals(this.getCampaign()) == false)
+            return false;
+        if (other.getAnsweringMachineDetectionStatus() == null
+                ^ this.getAnsweringMachineDetectionStatus() == null)
+            return false;
+        if (other.getAnsweringMachineDetectionStatus() != null
+                && other.getAnsweringMachineDetectionStatus().equals(
+                        this.getAnsweringMachineDetectionStatus()) == false)
+            return false;
+        if (other.getCustomerVoiceActivity() == null ^ this.getCustomerVoiceActivity() == null)
+            return false;
+        if (other.getCustomerVoiceActivity() != null
+                && other.getCustomerVoiceActivity().equals(this.getCustomerVoiceActivity()) == false)
+            return false;
+        if (other.getQualityMetrics() == null ^ this.getQualityMetrics() == null)
+            return false;
+        if (other.getQualityMetrics() != null
+                && other.getQualityMetrics().equals(this.getQualityMetrics()) == false)
+            return false;
+        if (other.getDisconnectDetails() == null ^ this.getDisconnectDetails() == null)
+            return false;
+        if (other.getDisconnectDetails() != null
+                && other.getDisconnectDetails().equals(this.getDisconnectDetails()) == false)
+            return false;
+        if (other.getSegmentAttributes() == null ^ this.getSegmentAttributes() == null)
+            return false;
+        if (other.getSegmentAttributes() != null
+                && other.getSegmentAttributes().equals(this.getSegmentAttributes()) == false)
             return false;
         return true;
     }

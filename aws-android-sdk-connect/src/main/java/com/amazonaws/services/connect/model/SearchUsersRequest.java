@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,6 +37,11 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
      * instance.
      * </p>
+     * <note>
+     * <p>
+     * InstanceID is a required field. The "Required: No" below is incorrect.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
@@ -61,7 +66,7 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 100<br/>
+     * <b>Range: </b>1 - 500<br/>
      */
     private Integer maxResults;
 
@@ -94,6 +99,11 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
      * instance.
      * </p>
+     * <note>
+     * <p>
+     * InstanceID is a required field. The "Required: No" below is incorrect.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
@@ -104,6 +114,12 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      *         >find the instance ID</a> in the Amazon Resource Name (ARN) of
      *         the instance.
      *         </p>
+     *         <note>
+     *         <p>
+     *         InstanceID is a required field. The "Required: No" below is
+     *         incorrect.
+     *         </p>
+     *         </note>
      */
     public String getInstanceId() {
         return instanceId;
@@ -116,6 +132,11 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
      * instance.
      * </p>
+     * <note>
+     * <p>
+     * InstanceID is a required field. The "Required: No" below is incorrect.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
@@ -127,6 +148,12 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
      *            the instance.
      *            </p>
+     *            <note>
+     *            <p>
+     *            InstanceID is a required field. The "Required: No" below is
+     *            incorrect.
+     *            </p>
+     *            </note>
      */
     public void setInstanceId(String instanceId) {
         this.instanceId = instanceId;
@@ -139,6 +166,11 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
      * instance.
      * </p>
+     * <note>
+     * <p>
+     * InstanceID is a required field. The "Required: No" below is incorrect.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -153,6 +185,12 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
      *            the instance.
      *            </p>
+     *            <note>
+     *            <p>
+     *            InstanceID is a required field. The "Required: No" below is
+     *            incorrect.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -233,7 +271,7 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 100<br/>
+     * <b>Range: </b>1 - 500<br/>
      *
      * @return <p>
      *         The maximum number of results to return per page.
@@ -249,7 +287,7 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 100<br/>
+     * <b>Range: </b>1 - 500<br/>
      *
      * @param maxResults <p>
      *            The maximum number of results to return per page.
@@ -268,7 +306,7 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 100<br/>
+     * <b>Range: </b>1 - 500<br/>
      *
      * @param maxResults <p>
      *            The maximum number of results to return per page.
