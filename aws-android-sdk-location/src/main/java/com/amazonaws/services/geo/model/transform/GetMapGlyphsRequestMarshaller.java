@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -55,6 +55,10 @@ public class GetMapGlyphsRequestMarshaller implements
 
         String uriResourcePath = "/maps/v0/maps/{MapName}/glyphs/{FontStack}/{FontUnicodeRange}";
         uriResourcePath = uriResourcePath.replace(
+                "{MapName}",
+                (getMapGlyphsRequest.getMapName() == null) ? "" : StringUtils
+                        .fromString(getMapGlyphsRequest.getMapName()));
+        uriResourcePath = uriResourcePath.replace(
                 "{FontStack}",
                 (getMapGlyphsRequest.getFontStack() == null) ? "" : StringUtils
                         .fromString(getMapGlyphsRequest.getFontStack()));
@@ -65,13 +69,9 @@ public class GetMapGlyphsRequestMarshaller implements
         if (getMapGlyphsRequest.getKey() != null) {
             request.addParameter("key", StringUtils.fromString(getMapGlyphsRequest.getKey()));
         }
-        uriResourcePath = uriResourcePath.replace(
-                "{MapName}",
-                (getMapGlyphsRequest.getMapName() == null) ? "" : StringUtils
-                        .fromString(getMapGlyphsRequest.getMapName()));
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
         request.setHostPrefix("maps.");
 

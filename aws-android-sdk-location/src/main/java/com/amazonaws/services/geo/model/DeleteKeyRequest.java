@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,9 +33,30 @@ public class DeleteKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String keyName;
+
+    /**
+     * <p>
+     * ForceDelete bypasses an API key's expiry conditions and deletes the key.
+     * Set the parameter <code>true</code> to delete the key or to
+     * <code>false</code> to not preemptively delete the API key.
+     * </p>
+     * <p>
+     * Valid values: <code>true</code>, or <code>false</code>.
+     * </p>
+     * <p>
+     * Required: No
+     * </p>
+     * <note>
+     * <p>
+     * This action is irreversible. Only use ForceDelete if you are certain the
+     * key is no longer in use.
+     * </p>
+     * </note>
+     */
+    private Boolean forceDelete;
 
     /**
      * <p>
@@ -44,7 +65,7 @@ public class DeleteKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
      *         The name of the API key to delete.
@@ -61,7 +82,7 @@ public class DeleteKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param keyName <p>
      *            The name of the API key to delete.
@@ -81,7 +102,7 @@ public class DeleteKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param keyName <p>
      *            The name of the API key to delete.
@@ -91,6 +112,178 @@ public class DeleteKeyRequest extends AmazonWebServiceRequest implements Seriali
      */
     public DeleteKeyRequest withKeyName(String keyName) {
         this.keyName = keyName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * ForceDelete bypasses an API key's expiry conditions and deletes the key.
+     * Set the parameter <code>true</code> to delete the key or to
+     * <code>false</code> to not preemptively delete the API key.
+     * </p>
+     * <p>
+     * Valid values: <code>true</code>, or <code>false</code>.
+     * </p>
+     * <p>
+     * Required: No
+     * </p>
+     * <note>
+     * <p>
+     * This action is irreversible. Only use ForceDelete if you are certain the
+     * key is no longer in use.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         ForceDelete bypasses an API key's expiry conditions and deletes
+     *         the key. Set the parameter <code>true</code> to delete the key or
+     *         to <code>false</code> to not preemptively delete the API key.
+     *         </p>
+     *         <p>
+     *         Valid values: <code>true</code>, or <code>false</code>.
+     *         </p>
+     *         <p>
+     *         Required: No
+     *         </p>
+     *         <note>
+     *         <p>
+     *         This action is irreversible. Only use ForceDelete if you are
+     *         certain the key is no longer in use.
+     *         </p>
+     *         </note>
+     */
+    public Boolean isForceDelete() {
+        return forceDelete;
+    }
+
+    /**
+     * <p>
+     * ForceDelete bypasses an API key's expiry conditions and deletes the key.
+     * Set the parameter <code>true</code> to delete the key or to
+     * <code>false</code> to not preemptively delete the API key.
+     * </p>
+     * <p>
+     * Valid values: <code>true</code>, or <code>false</code>.
+     * </p>
+     * <p>
+     * Required: No
+     * </p>
+     * <note>
+     * <p>
+     * This action is irreversible. Only use ForceDelete if you are certain the
+     * key is no longer in use.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         ForceDelete bypasses an API key's expiry conditions and deletes
+     *         the key. Set the parameter <code>true</code> to delete the key or
+     *         to <code>false</code> to not preemptively delete the API key.
+     *         </p>
+     *         <p>
+     *         Valid values: <code>true</code>, or <code>false</code>.
+     *         </p>
+     *         <p>
+     *         Required: No
+     *         </p>
+     *         <note>
+     *         <p>
+     *         This action is irreversible. Only use ForceDelete if you are
+     *         certain the key is no longer in use.
+     *         </p>
+     *         </note>
+     */
+    public Boolean getForceDelete() {
+        return forceDelete;
+    }
+
+    /**
+     * <p>
+     * ForceDelete bypasses an API key's expiry conditions and deletes the key.
+     * Set the parameter <code>true</code> to delete the key or to
+     * <code>false</code> to not preemptively delete the API key.
+     * </p>
+     * <p>
+     * Valid values: <code>true</code>, or <code>false</code>.
+     * </p>
+     * <p>
+     * Required: No
+     * </p>
+     * <note>
+     * <p>
+     * This action is irreversible. Only use ForceDelete if you are certain the
+     * key is no longer in use.
+     * </p>
+     * </note>
+     *
+     * @param forceDelete <p>
+     *            ForceDelete bypasses an API key's expiry conditions and
+     *            deletes the key. Set the parameter <code>true</code> to delete
+     *            the key or to <code>false</code> to not preemptively delete
+     *            the API key.
+     *            </p>
+     *            <p>
+     *            Valid values: <code>true</code>, or <code>false</code>.
+     *            </p>
+     *            <p>
+     *            Required: No
+     *            </p>
+     *            <note>
+     *            <p>
+     *            This action is irreversible. Only use ForceDelete if you are
+     *            certain the key is no longer in use.
+     *            </p>
+     *            </note>
+     */
+    public void setForceDelete(Boolean forceDelete) {
+        this.forceDelete = forceDelete;
+    }
+
+    /**
+     * <p>
+     * ForceDelete bypasses an API key's expiry conditions and deletes the key.
+     * Set the parameter <code>true</code> to delete the key or to
+     * <code>false</code> to not preemptively delete the API key.
+     * </p>
+     * <p>
+     * Valid values: <code>true</code>, or <code>false</code>.
+     * </p>
+     * <p>
+     * Required: No
+     * </p>
+     * <note>
+     * <p>
+     * This action is irreversible. Only use ForceDelete if you are certain the
+     * key is no longer in use.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param forceDelete <p>
+     *            ForceDelete bypasses an API key's expiry conditions and
+     *            deletes the key. Set the parameter <code>true</code> to delete
+     *            the key or to <code>false</code> to not preemptively delete
+     *            the API key.
+     *            </p>
+     *            <p>
+     *            Valid values: <code>true</code>, or <code>false</code>.
+     *            </p>
+     *            <p>
+     *            Required: No
+     *            </p>
+     *            <note>
+     *            <p>
+     *            This action is irreversible. Only use ForceDelete if you are
+     *            certain the key is no longer in use.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DeleteKeyRequest withForceDelete(Boolean forceDelete) {
+        this.forceDelete = forceDelete;
         return this;
     }
 
@@ -106,7 +299,9 @@ public class DeleteKeyRequest extends AmazonWebServiceRequest implements Seriali
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getKeyName() != null)
-            sb.append("KeyName: " + getKeyName());
+            sb.append("KeyName: " + getKeyName() + ",");
+        if (getForceDelete() != null)
+            sb.append("ForceDelete: " + getForceDelete());
         sb.append("}");
         return sb.toString();
     }
@@ -117,6 +312,8 @@ public class DeleteKeyRequest extends AmazonWebServiceRequest implements Seriali
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getKeyName() == null) ? 0 : getKeyName().hashCode());
+        hashCode = prime * hashCode
+                + ((getForceDelete() == null) ? 0 : getForceDelete().hashCode());
         return hashCode;
     }
 
@@ -134,6 +331,11 @@ public class DeleteKeyRequest extends AmazonWebServiceRequest implements Seriali
         if (other.getKeyName() == null ^ this.getKeyName() == null)
             return false;
         if (other.getKeyName() != null && other.getKeyName().equals(this.getKeyName()) == false)
+            return false;
+        if (other.getForceDelete() == null ^ this.getForceDelete() == null)
+            return false;
+        if (other.getForceDelete() != null
+                && other.getForceDelete().equals(this.getForceDelete()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -78,36 +78,9 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String calculatorName;
-
-    /**
-     * <p>
-     * Specifies route preferences when traveling by <code>Car</code>, such as
-     * avoiding routes that use ferries or tolls.
-     * </p>
-     * <p>
-     * Requirements: <code>TravelMode</code> must be specified as
-     * <code>Car</code>.
-     * </p>
-     */
-    private CalculateRouteCarModeOptions carModeOptions;
-
-    /**
-     * <p>
-     * Sets the time of departure as the current time. Uses the current time to
-     * calculate a route. Otherwise, the best time of day to travel with the
-     * best traffic conditions is used to calculate the route.
-     * </p>
-     * <p>
-     * Default Value: <code>false</code>
-     * </p>
-     * <p>
-     * Valid Values: <code>false</code> | <code>true</code>
-     * </p>
-     */
-    private Boolean departNow;
 
     /**
      * <p>
@@ -141,30 +114,6 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Specifies the desired time of departure. Uses the given time to calculate
-     * the route. Otherwise, the best time of day to travel with the best
-     * traffic conditions is used to calculate the route.
-     * </p>
-     * <note>
-     * <p>
-     * Setting a departure time in the past returns a
-     * <code>400 ValidationException</code> error.
-     * </p>
-     * </note>
-     * <ul>
-     * <li>
-     * <p>
-     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
-     * <code>2020–07-2T12:15:20.000Z+01:00</code>
-     * </p>
-     * </li>
-     * </ul>
-     */
-    private java.util.Date departureTime;
-
-    /**
-     * <p>
      * The finish position for the route. Defined in <a
      * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
      * >World Geodetic System (WGS 84)</a> format:
@@ -193,42 +142,41 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Set the unit system to specify the distance.
+     * Specifies an ordered list of up to 23 intermediate positions to include
+     * along a route between the departure position and destination position.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For example, from the <code>DeparturePosition</code>
+     * <code>[-123.115, 49.285]</code>, the route follows the order that the
+     * waypoint positions are given
+     * <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * If you specify a waypoint position that's not located on a road, Amazon
+     * Location <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     * >moves the position to the nearest road</a>.
      * </p>
      * <p>
-     * Default Value: <code>Kilometers</code>
+     * Specifying more than 23 waypoints returns a
+     * <code>400 ValidationException</code> error.
      * </p>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Kilometers, Miles
+     * If Esri is the provider for your route calculator, specifying a route
+     * that is longer than 400 km returns a
+     * <code>400 RoutesValidationException</code> error.
+     * </p>
+     * </note>
+     * <p>
+     * Valid Values: <code>[-180 to 180,-90 to 90]</code>
+     * </p>
      */
-    private String distanceUnit;
-
-    /**
-     * <p>
-     * Set to include the geometry details in the result for each path between a
-     * pair of positions.
-     * </p>
-     * <p>
-     * Default Value: <code>false</code>
-     * </p>
-     * <p>
-     * Valid Values: <code>false</code> | <code>true</code>
-     * </p>
-     */
-    private Boolean includeLegGeometry;
-
-    /**
-     * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     */
-    private String key;
+    private java.util.List<java.util.List<Double>> waypointPositions;
 
     /**
      * <p>
@@ -282,6 +230,78 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
+     * Specifies the desired time of departure. Uses the given time to calculate
+     * the route. Otherwise, the best time of day to travel with the best
+     * traffic conditions is used to calculate the route.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
+     * <code>2020–07-2T12:15:20.000Z+01:00</code>
+     * </p>
+     * </li>
+     * </ul>
+     */
+    private java.util.Date departureTime;
+
+    /**
+     * <p>
+     * Sets the time of departure as the current time. Uses the current time to
+     * calculate a route. Otherwise, the best time of day to travel with the
+     * best traffic conditions is used to calculate the route.
+     * </p>
+     * <p>
+     * Default Value: <code>false</code>
+     * </p>
+     * <p>
+     * Valid Values: <code>false</code> | <code>true</code>
+     * </p>
+     */
+    private Boolean departNow;
+
+    /**
+     * <p>
+     * Set the unit system to specify the distance.
+     * </p>
+     * <p>
+     * Default Value: <code>Kilometers</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Kilometers, Miles
+     */
+    private String distanceUnit;
+
+    /**
+     * <p>
+     * Set to include the geometry details in the result for each path between a
+     * pair of positions.
+     * </p>
+     * <p>
+     * Default Value: <code>false</code>
+     * </p>
+     * <p>
+     * Valid Values: <code>false</code> | <code>true</code>
+     * </p>
+     */
+    private Boolean includeLegGeometry;
+
+    /**
+     * <p>
+     * Specifies route preferences when traveling by <code>Car</code>, such as
+     * avoiding routes that use ferries or tolls.
+     * </p>
+     * <p>
+     * Requirements: <code>TravelMode</code> must be specified as
+     * <code>Car</code>.
+     * </p>
+     */
+    private CalculateRouteCarModeOptions carModeOptions;
+
+    /**
+     * <p>
      * Specifies route preferences when traveling by <code>Truck</code>, such as
      * avoiding routes that use ferries or tolls, and truck specifications to
      * consider when choosing an optimal road.
@@ -295,41 +315,39 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Specifies an ordered list of up to 23 intermediate positions to include
-     * along a route between the departure position and destination position.
+     * Specifies the desired time of arrival. Uses the given time to calculate
+     * the route. Otherwise, the best time of day to travel with the best
+     * traffic conditions is used to calculate the route.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * For example, from the <code>DeparturePosition</code>
-     * <code>[-123.115, 49.285]</code>, the route follows the order that the
-     * waypoint positions are given
-     * <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
-     * </p>
-     * </li>
-     * </ul>
      * <note>
      * <p>
-     * If you specify a waypoint position that's not located on a road, Amazon
-     * Location <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     * >moves the position to the nearest road</a>.
-     * </p>
-     * <p>
-     * Specifying more than 23 waypoints returns a
-     * <code>400 ValidationException</code> error.
-     * </p>
-     * <p>
-     * If Esri is the provider for your route calculator, specifying a route
-     * that is longer than 400 km returns a
-     * <code>400 RoutesValidationException</code> error.
+     * ArrivalTime is not supported Esri.
      * </p>
      * </note>
-     * <p>
-     * Valid Values: <code>[-180 to 180,-90 to 90]</code>
-     * </p>
      */
-    private java.util.List<java.util.List<Double>> waypointPositions;
+    private java.util.Date arrivalTime;
+
+    /**
+     * <p>
+     * Specifies the distance to optimize for when calculating a route.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FastestRoute, ShortestRoute
+     */
+    private String optimizeFor;
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     */
+    private String key;
 
     /**
      * <p>
@@ -339,7 +357,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
      *         The name of the route calculator resource that you want to use to
@@ -358,7 +376,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param calculatorName <p>
      *            The name of the route calculator resource that you want to use
@@ -380,7 +398,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param calculatorName <p>
      *            The name of the route calculator resource that you want to use
@@ -391,207 +409,6 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      */
     public CalculateRouteRequest withCalculatorName(String calculatorName) {
         this.calculatorName = calculatorName;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Specifies route preferences when traveling by <code>Car</code>, such as
-     * avoiding routes that use ferries or tolls.
-     * </p>
-     * <p>
-     * Requirements: <code>TravelMode</code> must be specified as
-     * <code>Car</code>.
-     * </p>
-     *
-     * @return <p>
-     *         Specifies route preferences when traveling by <code>Car</code>,
-     *         such as avoiding routes that use ferries or tolls.
-     *         </p>
-     *         <p>
-     *         Requirements: <code>TravelMode</code> must be specified as
-     *         <code>Car</code>.
-     *         </p>
-     */
-    public CalculateRouteCarModeOptions getCarModeOptions() {
-        return carModeOptions;
-    }
-
-    /**
-     * <p>
-     * Specifies route preferences when traveling by <code>Car</code>, such as
-     * avoiding routes that use ferries or tolls.
-     * </p>
-     * <p>
-     * Requirements: <code>TravelMode</code> must be specified as
-     * <code>Car</code>.
-     * </p>
-     *
-     * @param carModeOptions <p>
-     *            Specifies route preferences when traveling by <code>Car</code>
-     *            , such as avoiding routes that use ferries or tolls.
-     *            </p>
-     *            <p>
-     *            Requirements: <code>TravelMode</code> must be specified as
-     *            <code>Car</code>.
-     *            </p>
-     */
-    public void setCarModeOptions(CalculateRouteCarModeOptions carModeOptions) {
-        this.carModeOptions = carModeOptions;
-    }
-
-    /**
-     * <p>
-     * Specifies route preferences when traveling by <code>Car</code>, such as
-     * avoiding routes that use ferries or tolls.
-     * </p>
-     * <p>
-     * Requirements: <code>TravelMode</code> must be specified as
-     * <code>Car</code>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param carModeOptions <p>
-     *            Specifies route preferences when traveling by <code>Car</code>
-     *            , such as avoiding routes that use ferries or tolls.
-     *            </p>
-     *            <p>
-     *            Requirements: <code>TravelMode</code> must be specified as
-     *            <code>Car</code>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CalculateRouteRequest withCarModeOptions(CalculateRouteCarModeOptions carModeOptions) {
-        this.carModeOptions = carModeOptions;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Sets the time of departure as the current time. Uses the current time to
-     * calculate a route. Otherwise, the best time of day to travel with the
-     * best traffic conditions is used to calculate the route.
-     * </p>
-     * <p>
-     * Default Value: <code>false</code>
-     * </p>
-     * <p>
-     * Valid Values: <code>false</code> | <code>true</code>
-     * </p>
-     *
-     * @return <p>
-     *         Sets the time of departure as the current time. Uses the current
-     *         time to calculate a route. Otherwise, the best time of day to
-     *         travel with the best traffic conditions is used to calculate the
-     *         route.
-     *         </p>
-     *         <p>
-     *         Default Value: <code>false</code>
-     *         </p>
-     *         <p>
-     *         Valid Values: <code>false</code> | <code>true</code>
-     *         </p>
-     */
-    public Boolean isDepartNow() {
-        return departNow;
-    }
-
-    /**
-     * <p>
-     * Sets the time of departure as the current time. Uses the current time to
-     * calculate a route. Otherwise, the best time of day to travel with the
-     * best traffic conditions is used to calculate the route.
-     * </p>
-     * <p>
-     * Default Value: <code>false</code>
-     * </p>
-     * <p>
-     * Valid Values: <code>false</code> | <code>true</code>
-     * </p>
-     *
-     * @return <p>
-     *         Sets the time of departure as the current time. Uses the current
-     *         time to calculate a route. Otherwise, the best time of day to
-     *         travel with the best traffic conditions is used to calculate the
-     *         route.
-     *         </p>
-     *         <p>
-     *         Default Value: <code>false</code>
-     *         </p>
-     *         <p>
-     *         Valid Values: <code>false</code> | <code>true</code>
-     *         </p>
-     */
-    public Boolean getDepartNow() {
-        return departNow;
-    }
-
-    /**
-     * <p>
-     * Sets the time of departure as the current time. Uses the current time to
-     * calculate a route. Otherwise, the best time of day to travel with the
-     * best traffic conditions is used to calculate the route.
-     * </p>
-     * <p>
-     * Default Value: <code>false</code>
-     * </p>
-     * <p>
-     * Valid Values: <code>false</code> | <code>true</code>
-     * </p>
-     *
-     * @param departNow <p>
-     *            Sets the time of departure as the current time. Uses the
-     *            current time to calculate a route. Otherwise, the best time of
-     *            day to travel with the best traffic conditions is used to
-     *            calculate the route.
-     *            </p>
-     *            <p>
-     *            Default Value: <code>false</code>
-     *            </p>
-     *            <p>
-     *            Valid Values: <code>false</code> | <code>true</code>
-     *            </p>
-     */
-    public void setDepartNow(Boolean departNow) {
-        this.departNow = departNow;
-    }
-
-    /**
-     * <p>
-     * Sets the time of departure as the current time. Uses the current time to
-     * calculate a route. Otherwise, the best time of day to travel with the
-     * best traffic conditions is used to calculate the route.
-     * </p>
-     * <p>
-     * Default Value: <code>false</code>
-     * </p>
-     * <p>
-     * Valid Values: <code>false</code> | <code>true</code>
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param departNow <p>
-     *            Sets the time of departure as the current time. Uses the
-     *            current time to calculate a route. Otherwise, the best time of
-     *            day to travel with the best traffic conditions is used to
-     *            calculate the route.
-     *            </p>
-     *            <p>
-     *            Default Value: <code>false</code>
-     *            </p>
-     *            <p>
-     *            Valid Values: <code>false</code> | <code>true</code>
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CalculateRouteRequest withDepartNow(Boolean departNow) {
-        this.departNow = departNow;
         return this;
     }
 
@@ -860,158 +677,6 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Specifies the desired time of departure. Uses the given time to calculate
-     * the route. Otherwise, the best time of day to travel with the best
-     * traffic conditions is used to calculate the route.
-     * </p>
-     * <note>
-     * <p>
-     * Setting a departure time in the past returns a
-     * <code>400 ValidationException</code> error.
-     * </p>
-     * </note>
-     * <ul>
-     * <li>
-     * <p>
-     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
-     * <code>2020–07-2T12:15:20.000Z+01:00</code>
-     * </p>
-     * </li>
-     * </ul>
-     *
-     * @return <p>
-     *         Specifies the desired time of departure. Uses the given time to
-     *         calculate the route. Otherwise, the best time of day to travel
-     *         with the best traffic conditions is used to calculate the route.
-     *         </p>
-     *         <note>
-     *         <p>
-     *         Setting a departure time in the past returns a
-     *         <code>400 ValidationException</code> error.
-     *         </p>
-     *         </note>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         In <a
-     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For
-     *         example, <code>2020–07-2T12:15:20.000Z+01:00</code>
-     *         </p>
-     *         </li>
-     *         </ul>
-     */
-    public java.util.Date getDepartureTime() {
-        return departureTime;
-    }
-
-    /**
-     * <p>
-     * Specifies the desired time of departure. Uses the given time to calculate
-     * the route. Otherwise, the best time of day to travel with the best
-     * traffic conditions is used to calculate the route.
-     * </p>
-     * <note>
-     * <p>
-     * Setting a departure time in the past returns a
-     * <code>400 ValidationException</code> error.
-     * </p>
-     * </note>
-     * <ul>
-     * <li>
-     * <p>
-     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
-     * <code>2020–07-2T12:15:20.000Z+01:00</code>
-     * </p>
-     * </li>
-     * </ul>
-     *
-     * @param departureTime <p>
-     *            Specifies the desired time of departure. Uses the given time
-     *            to calculate the route. Otherwise, the best time of day to
-     *            travel with the best traffic conditions is used to calculate
-     *            the route.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            Setting a departure time in the past returns a
-     *            <code>400 ValidationException</code> error.
-     *            </p>
-     *            </note>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            In <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For
-     *            example, <code>2020–07-2T12:15:20.000Z+01:00</code>
-     *            </p>
-     *            </li>
-     *            </ul>
-     */
-    public void setDepartureTime(java.util.Date departureTime) {
-        this.departureTime = departureTime;
-    }
-
-    /**
-     * <p>
-     * Specifies the desired time of departure. Uses the given time to calculate
-     * the route. Otherwise, the best time of day to travel with the best
-     * traffic conditions is used to calculate the route.
-     * </p>
-     * <note>
-     * <p>
-     * Setting a departure time in the past returns a
-     * <code>400 ValidationException</code> error.
-     * </p>
-     * </note>
-     * <ul>
-     * <li>
-     * <p>
-     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
-     * <code>2020–07-2T12:15:20.000Z+01:00</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param departureTime <p>
-     *            Specifies the desired time of departure. Uses the given time
-     *            to calculate the route. Otherwise, the best time of day to
-     *            travel with the best traffic conditions is used to calculate
-     *            the route.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            Setting a departure time in the past returns a
-     *            <code>400 ValidationException</code> error.
-     *            </p>
-     *            </note>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            In <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For
-     *            example, <code>2020–07-2T12:15:20.000Z+01:00</code>
-     *            </p>
-     *            </li>
-     *            </ul>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CalculateRouteRequest withDepartureTime(java.util.Date departureTime) {
-        this.departureTime = departureTime;
-        return this;
-    }
-
-    /**
-     * <p>
      * The finish position for the route. Defined in <a
      * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
      * >World Geodetic System (WGS 84)</a> format:
@@ -1255,308 +920,329 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Set the unit system to specify the distance.
+     * Specifies an ordered list of up to 23 intermediate positions to include
+     * along a route between the departure position and destination position.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For example, from the <code>DeparturePosition</code>
+     * <code>[-123.115, 49.285]</code>, the route follows the order that the
+     * waypoint positions are given
+     * <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * If you specify a waypoint position that's not located on a road, Amazon
+     * Location <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     * >moves the position to the nearest road</a>.
      * </p>
      * <p>
-     * Default Value: <code>Kilometers</code>
+     * Specifying more than 23 waypoints returns a
+     * <code>400 ValidationException</code> error.
      * </p>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Kilometers, Miles
+     * If Esri is the provider for your route calculator, specifying a route
+     * that is longer than 400 km returns a
+     * <code>400 RoutesValidationException</code> error.
+     * </p>
+     * </note>
+     * <p>
+     * Valid Values: <code>[-180 to 180,-90 to 90]</code>
+     * </p>
      *
      * @return <p>
-     *         Set the unit system to specify the distance.
+     *         Specifies an ordered list of up to 23 intermediate positions to
+     *         include along a route between the departure position and
+     *         destination position.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         For example, from the <code>DeparturePosition</code>
+     *         <code>[-123.115, 49.285]</code>, the route follows the order that
+     *         the waypoint positions are given
+     *         <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <note>
+     *         <p>
+     *         If you specify a waypoint position that's not located on a road,
+     *         Amazon Location <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     *         >moves the position to the nearest road</a>.
      *         </p>
      *         <p>
-     *         Default Value: <code>Kilometers</code>
+     *         Specifying more than 23 waypoints returns a
+     *         <code>400 ValidationException</code> error.
      *         </p>
-     * @see DistanceUnit
+     *         <p>
+     *         If Esri is the provider for your route calculator, specifying a
+     *         route that is longer than 400 km returns a
+     *         <code>400 RoutesValidationException</code> error.
+     *         </p>
+     *         </note>
+     *         <p>
+     *         Valid Values: <code>[-180 to 180,-90 to 90]</code>
+     *         </p>
      */
-    public String getDistanceUnit() {
-        return distanceUnit;
+    public java.util.List<java.util.List<Double>> getWaypointPositions() {
+        return waypointPositions;
     }
 
     /**
      * <p>
-     * Set the unit system to specify the distance.
+     * Specifies an ordered list of up to 23 intermediate positions to include
+     * along a route between the departure position and destination position.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For example, from the <code>DeparturePosition</code>
+     * <code>[-123.115, 49.285]</code>, the route follows the order that the
+     * waypoint positions are given
+     * <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * If you specify a waypoint position that's not located on a road, Amazon
+     * Location <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     * >moves the position to the nearest road</a>.
      * </p>
      * <p>
-     * Default Value: <code>Kilometers</code>
+     * Specifying more than 23 waypoints returns a
+     * <code>400 ValidationException</code> error.
      * </p>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Kilometers, Miles
+     * If Esri is the provider for your route calculator, specifying a route
+     * that is longer than 400 km returns a
+     * <code>400 RoutesValidationException</code> error.
+     * </p>
+     * </note>
+     * <p>
+     * Valid Values: <code>[-180 to 180,-90 to 90]</code>
+     * </p>
      *
-     * @param distanceUnit <p>
-     *            Set the unit system to specify the distance.
+     * @param waypointPositions <p>
+     *            Specifies an ordered list of up to 23 intermediate positions
+     *            to include along a route between the departure position and
+     *            destination position.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            For example, from the <code>DeparturePosition</code>
+     *            <code>[-123.115, 49.285]</code>, the route follows the order
+     *            that the waypoint positions are given
+     *            <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <note>
+     *            <p>
+     *            If you specify a waypoint position that's not located on a
+     *            road, Amazon Location <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     *            >moves the position to the nearest road</a>.
      *            </p>
      *            <p>
-     *            Default Value: <code>Kilometers</code>
+     *            Specifying more than 23 waypoints returns a
+     *            <code>400 ValidationException</code> error.
      *            </p>
-     * @see DistanceUnit
+     *            <p>
+     *            If Esri is the provider for your route calculator, specifying
+     *            a route that is longer than 400 km returns a
+     *            <code>400 RoutesValidationException</code> error.
+     *            </p>
+     *            </note>
+     *            <p>
+     *            Valid Values: <code>[-180 to 180,-90 to 90]</code>
+     *            </p>
      */
-    public void setDistanceUnit(String distanceUnit) {
-        this.distanceUnit = distanceUnit;
+    public void setWaypointPositions(java.util.Collection<java.util.List<Double>> waypointPositions) {
+        if (waypointPositions == null) {
+            this.waypointPositions = null;
+            return;
+        }
+
+        this.waypointPositions = new java.util.ArrayList<java.util.List<Double>>(waypointPositions);
     }
 
     /**
      * <p>
-     * Set the unit system to specify the distance.
+     * Specifies an ordered list of up to 23 intermediate positions to include
+     * along a route between the departure position and destination position.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For example, from the <code>DeparturePosition</code>
+     * <code>[-123.115, 49.285]</code>, the route follows the order that the
+     * waypoint positions are given
+     * <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * If you specify a waypoint position that's not located on a road, Amazon
+     * Location <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     * >moves the position to the nearest road</a>.
      * </p>
      * <p>
-     * Default Value: <code>Kilometers</code>
+     * Specifying more than 23 waypoints returns a
+     * <code>400 ValidationException</code> error.
+     * </p>
+     * <p>
+     * If Esri is the provider for your route calculator, specifying a route
+     * that is longer than 400 km returns a
+     * <code>400 RoutesValidationException</code> error.
+     * </p>
+     * </note>
+     * <p>
+     * Valid Values: <code>[-180 to 180,-90 to 90]</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Kilometers, Miles
      *
-     * @param distanceUnit <p>
-     *            Set the unit system to specify the distance.
+     * @param waypointPositions <p>
+     *            Specifies an ordered list of up to 23 intermediate positions
+     *            to include along a route between the departure position and
+     *            destination position.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            For example, from the <code>DeparturePosition</code>
+     *            <code>[-123.115, 49.285]</code>, the route follows the order
+     *            that the waypoint positions are given
+     *            <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <note>
+     *            <p>
+     *            If you specify a waypoint position that's not located on a
+     *            road, Amazon Location <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     *            >moves the position to the nearest road</a>.
      *            </p>
      *            <p>
-     *            Default Value: <code>Kilometers</code>
+     *            Specifying more than 23 waypoints returns a
+     *            <code>400 ValidationException</code> error.
+     *            </p>
+     *            <p>
+     *            If Esri is the provider for your route calculator, specifying
+     *            a route that is longer than 400 km returns a
+     *            <code>400 RoutesValidationException</code> error.
+     *            </p>
+     *            </note>
+     *            <p>
+     *            Valid Values: <code>[-180 to 180,-90 to 90]</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
-     * @see DistanceUnit
      */
-    public CalculateRouteRequest withDistanceUnit(String distanceUnit) {
-        this.distanceUnit = distanceUnit;
+    public CalculateRouteRequest withWaypointPositions(java.util.List<Double>... waypointPositions) {
+        if (getWaypointPositions() == null) {
+            this.waypointPositions = new java.util.ArrayList<java.util.List<Double>>(
+                    waypointPositions.length);
+        }
+        for (java.util.List<Double> value : waypointPositions) {
+            this.waypointPositions.add(value);
+        }
         return this;
     }
 
     /**
      * <p>
-     * Set the unit system to specify the distance.
+     * Specifies an ordered list of up to 23 intermediate positions to include
+     * along a route between the departure position and destination position.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For example, from the <code>DeparturePosition</code>
+     * <code>[-123.115, 49.285]</code>, the route follows the order that the
+     * waypoint positions are given
+     * <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * If you specify a waypoint position that's not located on a road, Amazon
+     * Location <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     * >moves the position to the nearest road</a>.
      * </p>
      * <p>
-     * Default Value: <code>Kilometers</code>
+     * Specifying more than 23 waypoints returns a
+     * <code>400 ValidationException</code> error.
      * </p>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Kilometers, Miles
-     *
-     * @param distanceUnit <p>
-     *            Set the unit system to specify the distance.
-     *            </p>
-     *            <p>
-     *            Default Value: <code>Kilometers</code>
-     *            </p>
-     * @see DistanceUnit
-     */
-    public void setDistanceUnit(DistanceUnit distanceUnit) {
-        this.distanceUnit = distanceUnit.toString();
-    }
-
-    /**
-     * <p>
-     * Set the unit system to specify the distance.
+     * If Esri is the provider for your route calculator, specifying a route
+     * that is longer than 400 km returns a
+     * <code>400 RoutesValidationException</code> error.
      * </p>
+     * </note>
      * <p>
-     * Default Value: <code>Kilometers</code>
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Kilometers, Miles
-     *
-     * @param distanceUnit <p>
-     *            Set the unit system to specify the distance.
-     *            </p>
-     *            <p>
-     *            Default Value: <code>Kilometers</code>
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see DistanceUnit
-     */
-    public CalculateRouteRequest withDistanceUnit(DistanceUnit distanceUnit) {
-        this.distanceUnit = distanceUnit.toString();
-        return this;
-    }
-
-    /**
-     * <p>
-     * Set to include the geometry details in the result for each path between a
-     * pair of positions.
-     * </p>
-     * <p>
-     * Default Value: <code>false</code>
-     * </p>
-     * <p>
-     * Valid Values: <code>false</code> | <code>true</code>
-     * </p>
-     *
-     * @return <p>
-     *         Set to include the geometry details in the result for each path
-     *         between a pair of positions.
-     *         </p>
-     *         <p>
-     *         Default Value: <code>false</code>
-     *         </p>
-     *         <p>
-     *         Valid Values: <code>false</code> | <code>true</code>
-     *         </p>
-     */
-    public Boolean isIncludeLegGeometry() {
-        return includeLegGeometry;
-    }
-
-    /**
-     * <p>
-     * Set to include the geometry details in the result for each path between a
-     * pair of positions.
-     * </p>
-     * <p>
-     * Default Value: <code>false</code>
-     * </p>
-     * <p>
-     * Valid Values: <code>false</code> | <code>true</code>
-     * </p>
-     *
-     * @return <p>
-     *         Set to include the geometry details in the result for each path
-     *         between a pair of positions.
-     *         </p>
-     *         <p>
-     *         Default Value: <code>false</code>
-     *         </p>
-     *         <p>
-     *         Valid Values: <code>false</code> | <code>true</code>
-     *         </p>
-     */
-    public Boolean getIncludeLegGeometry() {
-        return includeLegGeometry;
-    }
-
-    /**
-     * <p>
-     * Set to include the geometry details in the result for each path between a
-     * pair of positions.
-     * </p>
-     * <p>
-     * Default Value: <code>false</code>
-     * </p>
-     * <p>
-     * Valid Values: <code>false</code> | <code>true</code>
-     * </p>
-     *
-     * @param includeLegGeometry <p>
-     *            Set to include the geometry details in the result for each
-     *            path between a pair of positions.
-     *            </p>
-     *            <p>
-     *            Default Value: <code>false</code>
-     *            </p>
-     *            <p>
-     *            Valid Values: <code>false</code> | <code>true</code>
-     *            </p>
-     */
-    public void setIncludeLegGeometry(Boolean includeLegGeometry) {
-        this.includeLegGeometry = includeLegGeometry;
-    }
-
-    /**
-     * <p>
-     * Set to include the geometry details in the result for each path between a
-     * pair of positions.
-     * </p>
-     * <p>
-     * Default Value: <code>false</code>
-     * </p>
-     * <p>
-     * Valid Values: <code>false</code> | <code>true</code>
+     * Valid Values: <code>[-180 to 180,-90 to 90]</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param includeLegGeometry <p>
-     *            Set to include the geometry details in the result for each
-     *            path between a pair of positions.
+     * @param waypointPositions <p>
+     *            Specifies an ordered list of up to 23 intermediate positions
+     *            to include along a route between the departure position and
+     *            destination position.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            For example, from the <code>DeparturePosition</code>
+     *            <code>[-123.115, 49.285]</code>, the route follows the order
+     *            that the waypoint positions are given
+     *            <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <note>
+     *            <p>
+     *            If you specify a waypoint position that's not located on a
+     *            road, Amazon Location <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     *            >moves the position to the nearest road</a>.
      *            </p>
      *            <p>
-     *            Default Value: <code>false</code>
+     *            Specifying more than 23 waypoints returns a
+     *            <code>400 ValidationException</code> error.
      *            </p>
      *            <p>
-     *            Valid Values: <code>false</code> | <code>true</code>
+     *            If Esri is the provider for your route calculator, specifying
+     *            a route that is longer than 400 km returns a
+     *            <code>400 RoutesValidationException</code> error.
+     *            </p>
+     *            </note>
+     *            <p>
+     *            Valid Values: <code>[-180 to 180,-90 to 90]</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CalculateRouteRequest withIncludeLegGeometry(Boolean includeLegGeometry) {
-        this.includeLegGeometry = includeLegGeometry;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @return <p>
-     *         The optional <a href=
-     *         "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     *         >API key</a> to authorize the request.
-     *         </p>
-     */
-    public String getKey() {
-        return key;
-    }
-
-    /**
-     * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param key <p>
-     *            The optional <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     *            >API key</a> to authorize the request.
-     *            </p>
-     */
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    /**
-     * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param key <p>
-     *            The optional <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     *            >API key</a> to authorize the request.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CalculateRouteRequest withKey(String key) {
-        this.key = key;
+    public CalculateRouteRequest withWaypointPositions(
+            java.util.Collection<java.util.List<Double>> waypointPositions) {
+        setWaypointPositions(waypointPositions);
         return this;
     }
 
@@ -2072,6 +1758,564 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
+     * Specifies the desired time of departure. Uses the given time to calculate
+     * the route. Otherwise, the best time of day to travel with the best
+     * traffic conditions is used to calculate the route.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
+     * <code>2020–07-2T12:15:20.000Z+01:00</code>
+     * </p>
+     * </li>
+     * </ul>
+     *
+     * @return <p>
+     *         Specifies the desired time of departure. Uses the given time to
+     *         calculate the route. Otherwise, the best time of day to travel
+     *         with the best traffic conditions is used to calculate the route.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         In <a
+     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For
+     *         example, <code>2020–07-2T12:15:20.000Z+01:00</code>
+     *         </p>
+     *         </li>
+     *         </ul>
+     */
+    public java.util.Date getDepartureTime() {
+        return departureTime;
+    }
+
+    /**
+     * <p>
+     * Specifies the desired time of departure. Uses the given time to calculate
+     * the route. Otherwise, the best time of day to travel with the best
+     * traffic conditions is used to calculate the route.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
+     * <code>2020–07-2T12:15:20.000Z+01:00</code>
+     * </p>
+     * </li>
+     * </ul>
+     *
+     * @param departureTime <p>
+     *            Specifies the desired time of departure. Uses the given time
+     *            to calculate the route. Otherwise, the best time of day to
+     *            travel with the best traffic conditions is used to calculate
+     *            the route.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            In <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For
+     *            example, <code>2020–07-2T12:15:20.000Z+01:00</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setDepartureTime(java.util.Date departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    /**
+     * <p>
+     * Specifies the desired time of departure. Uses the given time to calculate
+     * the route. Otherwise, the best time of day to travel with the best
+     * traffic conditions is used to calculate the route.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
+     * <code>2020–07-2T12:15:20.000Z+01:00</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param departureTime <p>
+     *            Specifies the desired time of departure. Uses the given time
+     *            to calculate the route. Otherwise, the best time of day to
+     *            travel with the best traffic conditions is used to calculate
+     *            the route.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            In <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For
+     *            example, <code>2020–07-2T12:15:20.000Z+01:00</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CalculateRouteRequest withDepartureTime(java.util.Date departureTime) {
+        this.departureTime = departureTime;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Sets the time of departure as the current time. Uses the current time to
+     * calculate a route. Otherwise, the best time of day to travel with the
+     * best traffic conditions is used to calculate the route.
+     * </p>
+     * <p>
+     * Default Value: <code>false</code>
+     * </p>
+     * <p>
+     * Valid Values: <code>false</code> | <code>true</code>
+     * </p>
+     *
+     * @return <p>
+     *         Sets the time of departure as the current time. Uses the current
+     *         time to calculate a route. Otherwise, the best time of day to
+     *         travel with the best traffic conditions is used to calculate the
+     *         route.
+     *         </p>
+     *         <p>
+     *         Default Value: <code>false</code>
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>false</code> | <code>true</code>
+     *         </p>
+     */
+    public Boolean isDepartNow() {
+        return departNow;
+    }
+
+    /**
+     * <p>
+     * Sets the time of departure as the current time. Uses the current time to
+     * calculate a route. Otherwise, the best time of day to travel with the
+     * best traffic conditions is used to calculate the route.
+     * </p>
+     * <p>
+     * Default Value: <code>false</code>
+     * </p>
+     * <p>
+     * Valid Values: <code>false</code> | <code>true</code>
+     * </p>
+     *
+     * @return <p>
+     *         Sets the time of departure as the current time. Uses the current
+     *         time to calculate a route. Otherwise, the best time of day to
+     *         travel with the best traffic conditions is used to calculate the
+     *         route.
+     *         </p>
+     *         <p>
+     *         Default Value: <code>false</code>
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>false</code> | <code>true</code>
+     *         </p>
+     */
+    public Boolean getDepartNow() {
+        return departNow;
+    }
+
+    /**
+     * <p>
+     * Sets the time of departure as the current time. Uses the current time to
+     * calculate a route. Otherwise, the best time of day to travel with the
+     * best traffic conditions is used to calculate the route.
+     * </p>
+     * <p>
+     * Default Value: <code>false</code>
+     * </p>
+     * <p>
+     * Valid Values: <code>false</code> | <code>true</code>
+     * </p>
+     *
+     * @param departNow <p>
+     *            Sets the time of departure as the current time. Uses the
+     *            current time to calculate a route. Otherwise, the best time of
+     *            day to travel with the best traffic conditions is used to
+     *            calculate the route.
+     *            </p>
+     *            <p>
+     *            Default Value: <code>false</code>
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>false</code> | <code>true</code>
+     *            </p>
+     */
+    public void setDepartNow(Boolean departNow) {
+        this.departNow = departNow;
+    }
+
+    /**
+     * <p>
+     * Sets the time of departure as the current time. Uses the current time to
+     * calculate a route. Otherwise, the best time of day to travel with the
+     * best traffic conditions is used to calculate the route.
+     * </p>
+     * <p>
+     * Default Value: <code>false</code>
+     * </p>
+     * <p>
+     * Valid Values: <code>false</code> | <code>true</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param departNow <p>
+     *            Sets the time of departure as the current time. Uses the
+     *            current time to calculate a route. Otherwise, the best time of
+     *            day to travel with the best traffic conditions is used to
+     *            calculate the route.
+     *            </p>
+     *            <p>
+     *            Default Value: <code>false</code>
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>false</code> | <code>true</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CalculateRouteRequest withDepartNow(Boolean departNow) {
+        this.departNow = departNow;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Set the unit system to specify the distance.
+     * </p>
+     * <p>
+     * Default Value: <code>Kilometers</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Kilometers, Miles
+     *
+     * @return <p>
+     *         Set the unit system to specify the distance.
+     *         </p>
+     *         <p>
+     *         Default Value: <code>Kilometers</code>
+     *         </p>
+     * @see DistanceUnit
+     */
+    public String getDistanceUnit() {
+        return distanceUnit;
+    }
+
+    /**
+     * <p>
+     * Set the unit system to specify the distance.
+     * </p>
+     * <p>
+     * Default Value: <code>Kilometers</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Kilometers, Miles
+     *
+     * @param distanceUnit <p>
+     *            Set the unit system to specify the distance.
+     *            </p>
+     *            <p>
+     *            Default Value: <code>Kilometers</code>
+     *            </p>
+     * @see DistanceUnit
+     */
+    public void setDistanceUnit(String distanceUnit) {
+        this.distanceUnit = distanceUnit;
+    }
+
+    /**
+     * <p>
+     * Set the unit system to specify the distance.
+     * </p>
+     * <p>
+     * Default Value: <code>Kilometers</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Kilometers, Miles
+     *
+     * @param distanceUnit <p>
+     *            Set the unit system to specify the distance.
+     *            </p>
+     *            <p>
+     *            Default Value: <code>Kilometers</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DistanceUnit
+     */
+    public CalculateRouteRequest withDistanceUnit(String distanceUnit) {
+        this.distanceUnit = distanceUnit;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Set the unit system to specify the distance.
+     * </p>
+     * <p>
+     * Default Value: <code>Kilometers</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Kilometers, Miles
+     *
+     * @param distanceUnit <p>
+     *            Set the unit system to specify the distance.
+     *            </p>
+     *            <p>
+     *            Default Value: <code>Kilometers</code>
+     *            </p>
+     * @see DistanceUnit
+     */
+    public void setDistanceUnit(DistanceUnit distanceUnit) {
+        this.distanceUnit = distanceUnit.toString();
+    }
+
+    /**
+     * <p>
+     * Set the unit system to specify the distance.
+     * </p>
+     * <p>
+     * Default Value: <code>Kilometers</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Kilometers, Miles
+     *
+     * @param distanceUnit <p>
+     *            Set the unit system to specify the distance.
+     *            </p>
+     *            <p>
+     *            Default Value: <code>Kilometers</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DistanceUnit
+     */
+    public CalculateRouteRequest withDistanceUnit(DistanceUnit distanceUnit) {
+        this.distanceUnit = distanceUnit.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Set to include the geometry details in the result for each path between a
+     * pair of positions.
+     * </p>
+     * <p>
+     * Default Value: <code>false</code>
+     * </p>
+     * <p>
+     * Valid Values: <code>false</code> | <code>true</code>
+     * </p>
+     *
+     * @return <p>
+     *         Set to include the geometry details in the result for each path
+     *         between a pair of positions.
+     *         </p>
+     *         <p>
+     *         Default Value: <code>false</code>
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>false</code> | <code>true</code>
+     *         </p>
+     */
+    public Boolean isIncludeLegGeometry() {
+        return includeLegGeometry;
+    }
+
+    /**
+     * <p>
+     * Set to include the geometry details in the result for each path between a
+     * pair of positions.
+     * </p>
+     * <p>
+     * Default Value: <code>false</code>
+     * </p>
+     * <p>
+     * Valid Values: <code>false</code> | <code>true</code>
+     * </p>
+     *
+     * @return <p>
+     *         Set to include the geometry details in the result for each path
+     *         between a pair of positions.
+     *         </p>
+     *         <p>
+     *         Default Value: <code>false</code>
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>false</code> | <code>true</code>
+     *         </p>
+     */
+    public Boolean getIncludeLegGeometry() {
+        return includeLegGeometry;
+    }
+
+    /**
+     * <p>
+     * Set to include the geometry details in the result for each path between a
+     * pair of positions.
+     * </p>
+     * <p>
+     * Default Value: <code>false</code>
+     * </p>
+     * <p>
+     * Valid Values: <code>false</code> | <code>true</code>
+     * </p>
+     *
+     * @param includeLegGeometry <p>
+     *            Set to include the geometry details in the result for each
+     *            path between a pair of positions.
+     *            </p>
+     *            <p>
+     *            Default Value: <code>false</code>
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>false</code> | <code>true</code>
+     *            </p>
+     */
+    public void setIncludeLegGeometry(Boolean includeLegGeometry) {
+        this.includeLegGeometry = includeLegGeometry;
+    }
+
+    /**
+     * <p>
+     * Set to include the geometry details in the result for each path between a
+     * pair of positions.
+     * </p>
+     * <p>
+     * Default Value: <code>false</code>
+     * </p>
+     * <p>
+     * Valid Values: <code>false</code> | <code>true</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param includeLegGeometry <p>
+     *            Set to include the geometry details in the result for each
+     *            path between a pair of positions.
+     *            </p>
+     *            <p>
+     *            Default Value: <code>false</code>
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>false</code> | <code>true</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CalculateRouteRequest withIncludeLegGeometry(Boolean includeLegGeometry) {
+        this.includeLegGeometry = includeLegGeometry;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies route preferences when traveling by <code>Car</code>, such as
+     * avoiding routes that use ferries or tolls.
+     * </p>
+     * <p>
+     * Requirements: <code>TravelMode</code> must be specified as
+     * <code>Car</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies route preferences when traveling by <code>Car</code>,
+     *         such as avoiding routes that use ferries or tolls.
+     *         </p>
+     *         <p>
+     *         Requirements: <code>TravelMode</code> must be specified as
+     *         <code>Car</code>.
+     *         </p>
+     */
+    public CalculateRouteCarModeOptions getCarModeOptions() {
+        return carModeOptions;
+    }
+
+    /**
+     * <p>
+     * Specifies route preferences when traveling by <code>Car</code>, such as
+     * avoiding routes that use ferries or tolls.
+     * </p>
+     * <p>
+     * Requirements: <code>TravelMode</code> must be specified as
+     * <code>Car</code>.
+     * </p>
+     *
+     * @param carModeOptions <p>
+     *            Specifies route preferences when traveling by <code>Car</code>
+     *            , such as avoiding routes that use ferries or tolls.
+     *            </p>
+     *            <p>
+     *            Requirements: <code>TravelMode</code> must be specified as
+     *            <code>Car</code>.
+     *            </p>
+     */
+    public void setCarModeOptions(CalculateRouteCarModeOptions carModeOptions) {
+        this.carModeOptions = carModeOptions;
+    }
+
+    /**
+     * <p>
+     * Specifies route preferences when traveling by <code>Car</code>, such as
+     * avoiding routes that use ferries or tolls.
+     * </p>
+     * <p>
+     * Requirements: <code>TravelMode</code> must be specified as
+     * <code>Car</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param carModeOptions <p>
+     *            Specifies route preferences when traveling by <code>Car</code>
+     *            , such as avoiding routes that use ferries or tolls.
+     *            </p>
+     *            <p>
+     *            Requirements: <code>TravelMode</code> must be specified as
+     *            <code>Car</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CalculateRouteRequest withCarModeOptions(CalculateRouteCarModeOptions carModeOptions) {
+        this.carModeOptions = carModeOptions;
+        return this;
+    }
+
+    /**
+     * <p>
      * Specifies route preferences when traveling by <code>Truck</code>, such as
      * avoiding routes that use ferries or tolls, and truck specifications to
      * consider when choosing an optimal road.
@@ -2156,329 +2400,257 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Specifies an ordered list of up to 23 intermediate positions to include
-     * along a route between the departure position and destination position.
+     * Specifies the desired time of arrival. Uses the given time to calculate
+     * the route. Otherwise, the best time of day to travel with the best
+     * traffic conditions is used to calculate the route.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * For example, from the <code>DeparturePosition</code>
-     * <code>[-123.115, 49.285]</code>, the route follows the order that the
-     * waypoint positions are given
-     * <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
-     * </p>
-     * </li>
-     * </ul>
      * <note>
      * <p>
-     * If you specify a waypoint position that's not located on a road, Amazon
-     * Location <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     * >moves the position to the nearest road</a>.
-     * </p>
-     * <p>
-     * Specifying more than 23 waypoints returns a
-     * <code>400 ValidationException</code> error.
-     * </p>
-     * <p>
-     * If Esri is the provider for your route calculator, specifying a route
-     * that is longer than 400 km returns a
-     * <code>400 RoutesValidationException</code> error.
+     * ArrivalTime is not supported Esri.
      * </p>
      * </note>
-     * <p>
-     * Valid Values: <code>[-180 to 180,-90 to 90]</code>
-     * </p>
      *
      * @return <p>
-     *         Specifies an ordered list of up to 23 intermediate positions to
-     *         include along a route between the departure position and
-     *         destination position.
+     *         Specifies the desired time of arrival. Uses the given time to
+     *         calculate the route. Otherwise, the best time of day to travel
+     *         with the best traffic conditions is used to calculate the route.
      *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         For example, from the <code>DeparturePosition</code>
-     *         <code>[-123.115, 49.285]</code>, the route follows the order that
-     *         the waypoint positions are given
-     *         <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
-     *         </p>
-     *         </li>
-     *         </ul>
      *         <note>
      *         <p>
-     *         If you specify a waypoint position that's not located on a road,
-     *         Amazon Location <a href=
-     *         "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     *         >moves the position to the nearest road</a>.
-     *         </p>
-     *         <p>
-     *         Specifying more than 23 waypoints returns a
-     *         <code>400 ValidationException</code> error.
-     *         </p>
-     *         <p>
-     *         If Esri is the provider for your route calculator, specifying a
-     *         route that is longer than 400 km returns a
-     *         <code>400 RoutesValidationException</code> error.
+     *         ArrivalTime is not supported Esri.
      *         </p>
      *         </note>
-     *         <p>
-     *         Valid Values: <code>[-180 to 180,-90 to 90]</code>
-     *         </p>
      */
-    public java.util.List<java.util.List<Double>> getWaypointPositions() {
-        return waypointPositions;
+    public java.util.Date getArrivalTime() {
+        return arrivalTime;
     }
 
     /**
      * <p>
-     * Specifies an ordered list of up to 23 intermediate positions to include
-     * along a route between the departure position and destination position.
+     * Specifies the desired time of arrival. Uses the given time to calculate
+     * the route. Otherwise, the best time of day to travel with the best
+     * traffic conditions is used to calculate the route.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * For example, from the <code>DeparturePosition</code>
-     * <code>[-123.115, 49.285]</code>, the route follows the order that the
-     * waypoint positions are given
-     * <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
-     * </p>
-     * </li>
-     * </ul>
      * <note>
      * <p>
-     * If you specify a waypoint position that's not located on a road, Amazon
-     * Location <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     * >moves the position to the nearest road</a>.
-     * </p>
-     * <p>
-     * Specifying more than 23 waypoints returns a
-     * <code>400 ValidationException</code> error.
-     * </p>
-     * <p>
-     * If Esri is the provider for your route calculator, specifying a route
-     * that is longer than 400 km returns a
-     * <code>400 RoutesValidationException</code> error.
+     * ArrivalTime is not supported Esri.
      * </p>
      * </note>
-     * <p>
-     * Valid Values: <code>[-180 to 180,-90 to 90]</code>
-     * </p>
      *
-     * @param waypointPositions <p>
-     *            Specifies an ordered list of up to 23 intermediate positions
-     *            to include along a route between the departure position and
-     *            destination position.
+     * @param arrivalTime <p>
+     *            Specifies the desired time of arrival. Uses the given time to
+     *            calculate the route. Otherwise, the best time of day to travel
+     *            with the best traffic conditions is used to calculate the
+     *            route.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            For example, from the <code>DeparturePosition</code>
-     *            <code>[-123.115, 49.285]</code>, the route follows the order
-     *            that the waypoint positions are given
-     *            <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
-     *            </p>
-     *            </li>
-     *            </ul>
      *            <note>
      *            <p>
-     *            If you specify a waypoint position that's not located on a
-     *            road, Amazon Location <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     *            >moves the position to the nearest road</a>.
-     *            </p>
-     *            <p>
-     *            Specifying more than 23 waypoints returns a
-     *            <code>400 ValidationException</code> error.
-     *            </p>
-     *            <p>
-     *            If Esri is the provider for your route calculator, specifying
-     *            a route that is longer than 400 km returns a
-     *            <code>400 RoutesValidationException</code> error.
+     *            ArrivalTime is not supported Esri.
      *            </p>
      *            </note>
-     *            <p>
-     *            Valid Values: <code>[-180 to 180,-90 to 90]</code>
-     *            </p>
      */
-    public void setWaypointPositions(java.util.Collection<java.util.List<Double>> waypointPositions) {
-        if (waypointPositions == null) {
-            this.waypointPositions = null;
-            return;
-        }
-
-        this.waypointPositions = new java.util.ArrayList<java.util.List<Double>>(waypointPositions);
+    public void setArrivalTime(java.util.Date arrivalTime) {
+        this.arrivalTime = arrivalTime;
     }
 
     /**
      * <p>
-     * Specifies an ordered list of up to 23 intermediate positions to include
-     * along a route between the departure position and destination position.
+     * Specifies the desired time of arrival. Uses the given time to calculate
+     * the route. Otherwise, the best time of day to travel with the best
+     * traffic conditions is used to calculate the route.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * For example, from the <code>DeparturePosition</code>
-     * <code>[-123.115, 49.285]</code>, the route follows the order that the
-     * waypoint positions are given
-     * <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
-     * </p>
-     * </li>
-     * </ul>
      * <note>
      * <p>
-     * If you specify a waypoint position that's not located on a road, Amazon
-     * Location <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     * >moves the position to the nearest road</a>.
-     * </p>
-     * <p>
-     * Specifying more than 23 waypoints returns a
-     * <code>400 ValidationException</code> error.
-     * </p>
-     * <p>
-     * If Esri is the provider for your route calculator, specifying a route
-     * that is longer than 400 km returns a
-     * <code>400 RoutesValidationException</code> error.
+     * ArrivalTime is not supported Esri.
      * </p>
      * </note>
-     * <p>
-     * Valid Values: <code>[-180 to 180,-90 to 90]</code>
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param waypointPositions <p>
-     *            Specifies an ordered list of up to 23 intermediate positions
-     *            to include along a route between the departure position and
-     *            destination position.
+     * @param arrivalTime <p>
+     *            Specifies the desired time of arrival. Uses the given time to
+     *            calculate the route. Otherwise, the best time of day to travel
+     *            with the best traffic conditions is used to calculate the
+     *            route.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            For example, from the <code>DeparturePosition</code>
-     *            <code>[-123.115, 49.285]</code>, the route follows the order
-     *            that the waypoint positions are given
-     *            <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
-     *            </p>
-     *            </li>
-     *            </ul>
      *            <note>
      *            <p>
-     *            If you specify a waypoint position that's not located on a
-     *            road, Amazon Location <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     *            >moves the position to the nearest road</a>.
-     *            </p>
-     *            <p>
-     *            Specifying more than 23 waypoints returns a
-     *            <code>400 ValidationException</code> error.
-     *            </p>
-     *            <p>
-     *            If Esri is the provider for your route calculator, specifying
-     *            a route that is longer than 400 km returns a
-     *            <code>400 RoutesValidationException</code> error.
+     *            ArrivalTime is not supported Esri.
      *            </p>
      *            </note>
-     *            <p>
-     *            Valid Values: <code>[-180 to 180,-90 to 90]</code>
-     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CalculateRouteRequest withWaypointPositions(java.util.List<Double>... waypointPositions) {
-        if (getWaypointPositions() == null) {
-            this.waypointPositions = new java.util.ArrayList<java.util.List<Double>>(
-                    waypointPositions.length);
-        }
-        for (java.util.List<Double> value : waypointPositions) {
-            this.waypointPositions.add(value);
-        }
+    public CalculateRouteRequest withArrivalTime(java.util.Date arrivalTime) {
+        this.arrivalTime = arrivalTime;
         return this;
     }
 
     /**
      * <p>
-     * Specifies an ordered list of up to 23 intermediate positions to include
-     * along a route between the departure position and destination position.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * For example, from the <code>DeparturePosition</code>
-     * <code>[-123.115, 49.285]</code>, the route follows the order that the
-     * waypoint positions are given
-     * <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <note>
-     * <p>
-     * If you specify a waypoint position that's not located on a road, Amazon
-     * Location <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     * >moves the position to the nearest road</a>.
+     * Specifies the distance to optimize for when calculating a route.
      * </p>
      * <p>
-     * Specifying more than 23 waypoints returns a
-     * <code>400 ValidationException</code> error.
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FastestRoute, ShortestRoute
+     *
+     * @return <p>
+     *         Specifies the distance to optimize for when calculating a route.
+     *         </p>
+     * @see OptimizationMode
+     */
+    public String getOptimizeFor() {
+        return optimizeFor;
+    }
+
+    /**
+     * <p>
+     * Specifies the distance to optimize for when calculating a route.
      * </p>
      * <p>
-     * If Esri is the provider for your route calculator, specifying a route
-     * that is longer than 400 km returns a
-     * <code>400 RoutesValidationException</code> error.
-     * </p>
-     * </note>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FastestRoute, ShortestRoute
+     *
+     * @param optimizeFor <p>
+     *            Specifies the distance to optimize for when calculating a
+     *            route.
+     *            </p>
+     * @see OptimizationMode
+     */
+    public void setOptimizeFor(String optimizeFor) {
+        this.optimizeFor = optimizeFor;
+    }
+
+    /**
      * <p>
-     * Valid Values: <code>[-180 to 180,-90 to 90]</code>
+     * Specifies the distance to optimize for when calculating a route.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FastestRoute, ShortestRoute
      *
-     * @param waypointPositions <p>
-     *            Specifies an ordered list of up to 23 intermediate positions
-     *            to include along a route between the departure position and
-     *            destination position.
+     * @param optimizeFor <p>
+     *            Specifies the distance to optimize for when calculating a
+     *            route.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            For example, from the <code>DeparturePosition</code>
-     *            <code>[-123.115, 49.285]</code>, the route follows the order
-     *            that the waypoint positions are given
-     *            <code>[[-122.757, 49.0021],[-122.349, 47.620]]</code>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see OptimizationMode
+     */
+    public CalculateRouteRequest withOptimizeFor(String optimizeFor) {
+        this.optimizeFor = optimizeFor;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies the distance to optimize for when calculating a route.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FastestRoute, ShortestRoute
+     *
+     * @param optimizeFor <p>
+     *            Specifies the distance to optimize for when calculating a
+     *            route.
      *            </p>
-     *            </li>
-     *            </ul>
-     *            <note>
-     *            <p>
-     *            If you specify a waypoint position that's not located on a
-     *            road, Amazon Location <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     *            >moves the position to the nearest road</a>.
+     * @see OptimizationMode
+     */
+    public void setOptimizeFor(OptimizationMode optimizeFor) {
+        this.optimizeFor = optimizeFor.toString();
+    }
+
+    /**
+     * <p>
+     * Specifies the distance to optimize for when calculating a route.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FastestRoute, ShortestRoute
+     *
+     * @param optimizeFor <p>
+     *            Specifies the distance to optimize for when calculating a
+     *            route.
      *            </p>
-     *            <p>
-     *            Specifying more than 23 waypoints returns a
-     *            <code>400 ValidationException</code> error.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see OptimizationMode
+     */
+    public CalculateRouteRequest withOptimizeFor(OptimizationMode optimizeFor) {
+        this.optimizeFor = optimizeFor.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @return <p>
+     *         The optional <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *         >API key</a> to authorize the request.
+     *         </p>
+     */
+    public String getKey() {
+        return key;
+    }
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
      *            </p>
-     *            <p>
-     *            If Esri is the provider for your route calculator, specifying
-     *            a route that is longer than 400 km returns a
-     *            <code>400 RoutesValidationException</code> error.
-     *            </p>
-     *            </note>
-     *            <p>
-     *            Valid Values: <code>[-180 to 180,-90 to 90]</code>
+     */
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CalculateRouteRequest withWaypointPositions(
-            java.util.Collection<java.util.List<Double>> waypointPositions) {
-        setWaypointPositions(waypointPositions);
+    public CalculateRouteRequest withKey(String key) {
+        this.key = key;
         return this;
     }
 
@@ -2495,28 +2667,32 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
         sb.append("{");
         if (getCalculatorName() != null)
             sb.append("CalculatorName: " + getCalculatorName() + ",");
-        if (getCarModeOptions() != null)
-            sb.append("CarModeOptions: " + getCarModeOptions() + ",");
-        if (getDepartNow() != null)
-            sb.append("DepartNow: " + getDepartNow() + ",");
         if (getDeparturePosition() != null)
             sb.append("DeparturePosition: " + getDeparturePosition() + ",");
-        if (getDepartureTime() != null)
-            sb.append("DepartureTime: " + getDepartureTime() + ",");
         if (getDestinationPosition() != null)
             sb.append("DestinationPosition: " + getDestinationPosition() + ",");
+        if (getWaypointPositions() != null)
+            sb.append("WaypointPositions: " + getWaypointPositions() + ",");
+        if (getTravelMode() != null)
+            sb.append("TravelMode: " + getTravelMode() + ",");
+        if (getDepartureTime() != null)
+            sb.append("DepartureTime: " + getDepartureTime() + ",");
+        if (getDepartNow() != null)
+            sb.append("DepartNow: " + getDepartNow() + ",");
         if (getDistanceUnit() != null)
             sb.append("DistanceUnit: " + getDistanceUnit() + ",");
         if (getIncludeLegGeometry() != null)
             sb.append("IncludeLegGeometry: " + getIncludeLegGeometry() + ",");
-        if (getKey() != null)
-            sb.append("Key: " + getKey() + ",");
-        if (getTravelMode() != null)
-            sb.append("TravelMode: " + getTravelMode() + ",");
+        if (getCarModeOptions() != null)
+            sb.append("CarModeOptions: " + getCarModeOptions() + ",");
         if (getTruckModeOptions() != null)
             sb.append("TruckModeOptions: " + getTruckModeOptions() + ",");
-        if (getWaypointPositions() != null)
-            sb.append("WaypointPositions: " + getWaypointPositions());
+        if (getArrivalTime() != null)
+            sb.append("ArrivalTime: " + getArrivalTime() + ",");
+        if (getOptimizeFor() != null)
+            sb.append("OptimizeFor: " + getOptimizeFor() + ",");
+        if (getKey() != null)
+            sb.append("Key: " + getKey());
         sb.append("}");
         return sb.toString();
     }
@@ -2529,24 +2705,28 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
         hashCode = prime * hashCode
                 + ((getCalculatorName() == null) ? 0 : getCalculatorName().hashCode());
         hashCode = prime * hashCode
-                + ((getCarModeOptions() == null) ? 0 : getCarModeOptions().hashCode());
-        hashCode = prime * hashCode + ((getDepartNow() == null) ? 0 : getDepartNow().hashCode());
-        hashCode = prime * hashCode
                 + ((getDeparturePosition() == null) ? 0 : getDeparturePosition().hashCode());
         hashCode = prime * hashCode
-                + ((getDepartureTime() == null) ? 0 : getDepartureTime().hashCode());
-        hashCode = prime * hashCode
                 + ((getDestinationPosition() == null) ? 0 : getDestinationPosition().hashCode());
+        hashCode = prime * hashCode
+                + ((getWaypointPositions() == null) ? 0 : getWaypointPositions().hashCode());
+        hashCode = prime * hashCode + ((getTravelMode() == null) ? 0 : getTravelMode().hashCode());
+        hashCode = prime * hashCode
+                + ((getDepartureTime() == null) ? 0 : getDepartureTime().hashCode());
+        hashCode = prime * hashCode + ((getDepartNow() == null) ? 0 : getDepartNow().hashCode());
         hashCode = prime * hashCode
                 + ((getDistanceUnit() == null) ? 0 : getDistanceUnit().hashCode());
         hashCode = prime * hashCode
                 + ((getIncludeLegGeometry() == null) ? 0 : getIncludeLegGeometry().hashCode());
-        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
-        hashCode = prime * hashCode + ((getTravelMode() == null) ? 0 : getTravelMode().hashCode());
+        hashCode = prime * hashCode
+                + ((getCarModeOptions() == null) ? 0 : getCarModeOptions().hashCode());
         hashCode = prime * hashCode
                 + ((getTruckModeOptions() == null) ? 0 : getTruckModeOptions().hashCode());
         hashCode = prime * hashCode
-                + ((getWaypointPositions() == null) ? 0 : getWaypointPositions().hashCode());
+                + ((getArrivalTime() == null) ? 0 : getArrivalTime().hashCode());
+        hashCode = prime * hashCode
+                + ((getOptimizeFor() == null) ? 0 : getOptimizeFor().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
         return hashCode;
     }
 
@@ -2566,30 +2746,35 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
         if (other.getCalculatorName() != null
                 && other.getCalculatorName().equals(this.getCalculatorName()) == false)
             return false;
-        if (other.getCarModeOptions() == null ^ this.getCarModeOptions() == null)
-            return false;
-        if (other.getCarModeOptions() != null
-                && other.getCarModeOptions().equals(this.getCarModeOptions()) == false)
-            return false;
-        if (other.getDepartNow() == null ^ this.getDepartNow() == null)
-            return false;
-        if (other.getDepartNow() != null
-                && other.getDepartNow().equals(this.getDepartNow()) == false)
-            return false;
         if (other.getDeparturePosition() == null ^ this.getDeparturePosition() == null)
             return false;
         if (other.getDeparturePosition() != null
                 && other.getDeparturePosition().equals(this.getDeparturePosition()) == false)
+            return false;
+        if (other.getDestinationPosition() == null ^ this.getDestinationPosition() == null)
+            return false;
+        if (other.getDestinationPosition() != null
+                && other.getDestinationPosition().equals(this.getDestinationPosition()) == false)
+            return false;
+        if (other.getWaypointPositions() == null ^ this.getWaypointPositions() == null)
+            return false;
+        if (other.getWaypointPositions() != null
+                && other.getWaypointPositions().equals(this.getWaypointPositions()) == false)
+            return false;
+        if (other.getTravelMode() == null ^ this.getTravelMode() == null)
+            return false;
+        if (other.getTravelMode() != null
+                && other.getTravelMode().equals(this.getTravelMode()) == false)
             return false;
         if (other.getDepartureTime() == null ^ this.getDepartureTime() == null)
             return false;
         if (other.getDepartureTime() != null
                 && other.getDepartureTime().equals(this.getDepartureTime()) == false)
             return false;
-        if (other.getDestinationPosition() == null ^ this.getDestinationPosition() == null)
+        if (other.getDepartNow() == null ^ this.getDepartNow() == null)
             return false;
-        if (other.getDestinationPosition() != null
-                && other.getDestinationPosition().equals(this.getDestinationPosition()) == false)
+        if (other.getDepartNow() != null
+                && other.getDepartNow().equals(this.getDepartNow()) == false)
             return false;
         if (other.getDistanceUnit() == null ^ this.getDistanceUnit() == null)
             return false;
@@ -2601,24 +2786,29 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
         if (other.getIncludeLegGeometry() != null
                 && other.getIncludeLegGeometry().equals(this.getIncludeLegGeometry()) == false)
             return false;
-        if (other.getKey() == null ^ this.getKey() == null)
+        if (other.getCarModeOptions() == null ^ this.getCarModeOptions() == null)
             return false;
-        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
-            return false;
-        if (other.getTravelMode() == null ^ this.getTravelMode() == null)
-            return false;
-        if (other.getTravelMode() != null
-                && other.getTravelMode().equals(this.getTravelMode()) == false)
+        if (other.getCarModeOptions() != null
+                && other.getCarModeOptions().equals(this.getCarModeOptions()) == false)
             return false;
         if (other.getTruckModeOptions() == null ^ this.getTruckModeOptions() == null)
             return false;
         if (other.getTruckModeOptions() != null
                 && other.getTruckModeOptions().equals(this.getTruckModeOptions()) == false)
             return false;
-        if (other.getWaypointPositions() == null ^ this.getWaypointPositions() == null)
+        if (other.getArrivalTime() == null ^ this.getArrivalTime() == null)
             return false;
-        if (other.getWaypointPositions() != null
-                && other.getWaypointPositions().equals(this.getWaypointPositions()) == false)
+        if (other.getArrivalTime() != null
+                && other.getArrivalTime().equals(this.getArrivalTime()) == false)
+            return false;
+        if (other.getOptimizeFor() == null ^ this.getOptimizeFor() == null)
+            return false;
+        if (other.getOptimizeFor() != null
+                && other.getOptimizeFor().equals(this.getOptimizeFor()) == false)
+            return false;
+        if (other.getKey() == null ^ this.getKey() == null)
+            return false;
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
             return false;
         return true;
     }

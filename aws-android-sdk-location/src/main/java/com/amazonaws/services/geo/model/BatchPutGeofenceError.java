@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,6 +26,17 @@ import java.io.Serializable;
 public class BatchPutGeofenceError implements Serializable {
     /**
      * <p>
+     * The geofence associated with the error message.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
+     */
+    private String geofenceId;
+
+    /**
+     * <p>
      * Contains details associated to the batch error.
      * </p>
      */
@@ -38,9 +49,55 @@ public class BatchPutGeofenceError implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
+     *
+     * @return <p>
+     *         The geofence associated with the error message.
+     *         </p>
      */
-    private String geofenceId;
+    public String getGeofenceId() {
+        return geofenceId;
+    }
+
+    /**
+     * <p>
+     * The geofence associated with the error message.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
+     *
+     * @param geofenceId <p>
+     *            The geofence associated with the error message.
+     *            </p>
+     */
+    public void setGeofenceId(String geofenceId) {
+        this.geofenceId = geofenceId;
+    }
+
+    /**
+     * <p>
+     * The geofence associated with the error message.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
+     *
+     * @param geofenceId <p>
+     *            The geofence associated with the error message.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public BatchPutGeofenceError withGeofenceId(String geofenceId) {
+        this.geofenceId = geofenceId;
+        return this;
+    }
 
     /**
      * <p>
@@ -88,63 +145,6 @@ public class BatchPutGeofenceError implements Serializable {
     }
 
     /**
-     * <p>
-     * The geofence associated with the error message.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
-     *
-     * @return <p>
-     *         The geofence associated with the error message.
-     *         </p>
-     */
-    public String getGeofenceId() {
-        return geofenceId;
-    }
-
-    /**
-     * <p>
-     * The geofence associated with the error message.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
-     *
-     * @param geofenceId <p>
-     *            The geofence associated with the error message.
-     *            </p>
-     */
-    public void setGeofenceId(String geofenceId) {
-        this.geofenceId = geofenceId;
-    }
-
-    /**
-     * <p>
-     * The geofence associated with the error message.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
-     *
-     * @param geofenceId <p>
-     *            The geofence associated with the error message.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public BatchPutGeofenceError withGeofenceId(String geofenceId) {
-        this.geofenceId = geofenceId;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -155,10 +155,10 @@ public class BatchPutGeofenceError implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getError() != null)
-            sb.append("Error: " + getError() + ",");
         if (getGeofenceId() != null)
-            sb.append("GeofenceId: " + getGeofenceId());
+            sb.append("GeofenceId: " + getGeofenceId() + ",");
+        if (getError() != null)
+            sb.append("Error: " + getError());
         sb.append("}");
         return sb.toString();
     }
@@ -168,8 +168,8 @@ public class BatchPutGeofenceError implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getError() == null) ? 0 : getError().hashCode());
         hashCode = prime * hashCode + ((getGeofenceId() == null) ? 0 : getGeofenceId().hashCode());
+        hashCode = prime * hashCode + ((getError() == null) ? 0 : getError().hashCode());
         return hashCode;
     }
 
@@ -184,14 +184,14 @@ public class BatchPutGeofenceError implements Serializable {
             return false;
         BatchPutGeofenceError other = (BatchPutGeofenceError) obj;
 
-        if (other.getError() == null ^ this.getError() == null)
-            return false;
-        if (other.getError() != null && other.getError().equals(this.getError()) == false)
-            return false;
         if (other.getGeofenceId() == null ^ this.getGeofenceId() == null)
             return false;
         if (other.getGeofenceId() != null
                 && other.getGeofenceId().equals(this.getGeofenceId()) == false)
+            return false;
+        if (other.getError() == null ^ this.getError() == null)
+            return false;
+        if (other.getError() != null && other.getError().equals(this.getError()) == false)
             return false;
         return true;
     }

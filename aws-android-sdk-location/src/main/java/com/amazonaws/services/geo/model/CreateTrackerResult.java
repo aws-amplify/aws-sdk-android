@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,12 +20,14 @@ import java.io.Serializable;
 public class CreateTrackerResult implements Serializable {
     /**
      * <p>
-     * The timestamp for when the tracker resource was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * The name of the tracker resource.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
-    private java.util.Date createTime;
+    private String trackerName;
 
     /**
      * <p>
@@ -44,10 +46,19 @@ public class CreateTrackerResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      */
     private String trackerArn;
+
+    /**
+     * <p>
+     * The timestamp for when the tracker resource was created in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     */
+    private java.util.Date createTime;
 
     /**
      * <p>
@@ -56,9 +67,175 @@ public class CreateTrackerResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The name of the tracker resource.
+     *         </p>
      */
-    private String trackerName;
+    public String getTrackerName() {
+        return trackerName;
+    }
+
+    /**
+     * <p>
+     * The name of the tracker resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param trackerName <p>
+     *            The name of the tracker resource.
+     *            </p>
+     */
+    public void setTrackerName(String trackerName) {
+        this.trackerName = trackerName;
+    }
+
+    /**
+     * <p>
+     * The name of the tracker resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param trackerName <p>
+     *            The name of the tracker resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateTrackerResult withTrackerName(String trackerName) {
+        this.trackerName = trackerName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) for the tracker resource. Used when you
+     * need to specify a resource across all Amazon Web Services.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1600<br/>
+     * <b>Pattern:
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) for the tracker resource. Used
+     *         when you need to specify a resource across all Amazon Web
+     *         Services.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Format example:
+     *         <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
+     *         </p>
+     *         </li>
+     *         </ul>
+     */
+    public String getTrackerArn() {
+        return trackerArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) for the tracker resource. Used when you
+     * need to specify a resource across all Amazon Web Services.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1600<br/>
+     * <b>Pattern:
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
+     *
+     * @param trackerArn <p>
+     *            The Amazon Resource Name (ARN) for the tracker resource. Used
+     *            when you need to specify a resource across all Amazon Web
+     *            Services.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setTrackerArn(String trackerArn) {
+        this.trackerArn = trackerArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) for the tracker resource. Used when you
+     * need to specify a resource across all Amazon Web Services.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1600<br/>
+     * <b>Pattern:
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
+     *
+     * @param trackerArn <p>
+     *            The Amazon Resource Name (ARN) for the tracker resource. Used
+     *            when you need to specify a resource across all Amazon Web
+     *            Services.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateTrackerResult withTrackerArn(String trackerArn) {
+        this.trackerArn = trackerArn;
+        return this;
+    }
 
     /**
      * <p>
@@ -118,183 +295,6 @@ public class CreateTrackerResult implements Serializable {
     }
 
     /**
-     * <p>
-     * The Amazon Resource Name (ARN) for the tracker resource. Used when you
-     * need to specify a resource across all Amazon Web Services.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Format example:
-     * <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1600<br/>
-     * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
-     *
-     * @return <p>
-     *         The Amazon Resource Name (ARN) for the tracker resource. Used
-     *         when you need to specify a resource across all Amazon Web
-     *         Services.
-     *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         Format example:
-     *         <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
-     *         </p>
-     *         </li>
-     *         </ul>
-     */
-    public String getTrackerArn() {
-        return trackerArn;
-    }
-
-    /**
-     * <p>
-     * The Amazon Resource Name (ARN) for the tracker resource. Used when you
-     * need to specify a resource across all Amazon Web Services.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Format example:
-     * <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1600<br/>
-     * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
-     *
-     * @param trackerArn <p>
-     *            The Amazon Resource Name (ARN) for the tracker resource. Used
-     *            when you need to specify a resource across all Amazon Web
-     *            Services.
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Format example:
-     *            <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
-     *            </p>
-     *            </li>
-     *            </ul>
-     */
-    public void setTrackerArn(String trackerArn) {
-        this.trackerArn = trackerArn;
-    }
-
-    /**
-     * <p>
-     * The Amazon Resource Name (ARN) for the tracker resource. Used when you
-     * need to specify a resource across all Amazon Web Services.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Format example:
-     * <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1600<br/>
-     * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
-     *
-     * @param trackerArn <p>
-     *            The Amazon Resource Name (ARN) for the tracker resource. Used
-     *            when you need to specify a resource across all Amazon Web
-     *            Services.
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Format example:
-     *            <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
-     *            </p>
-     *            </li>
-     *            </ul>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateTrackerResult withTrackerArn(String trackerArn) {
-        this.trackerArn = trackerArn;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The name of the tracker resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         The name of the tracker resource.
-     *         </p>
-     */
-    public String getTrackerName() {
-        return trackerName;
-    }
-
-    /**
-     * <p>
-     * The name of the tracker resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param trackerName <p>
-     *            The name of the tracker resource.
-     *            </p>
-     */
-    public void setTrackerName(String trackerName) {
-        this.trackerName = trackerName;
-    }
-
-    /**
-     * <p>
-     * The name of the tracker resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param trackerName <p>
-     *            The name of the tracker resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateTrackerResult withTrackerName(String trackerName) {
-        this.trackerName = trackerName;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -305,12 +305,12 @@ public class CreateTrackerResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCreateTime() != null)
-            sb.append("CreateTime: " + getCreateTime() + ",");
+        if (getTrackerName() != null)
+            sb.append("TrackerName: " + getTrackerName() + ",");
         if (getTrackerArn() != null)
             sb.append("TrackerArn: " + getTrackerArn() + ",");
-        if (getTrackerName() != null)
-            sb.append("TrackerName: " + getTrackerName());
+        if (getCreateTime() != null)
+            sb.append("CreateTime: " + getCreateTime());
         sb.append("}");
         return sb.toString();
     }
@@ -320,10 +320,10 @@ public class CreateTrackerResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
-        hashCode = prime * hashCode + ((getTrackerArn() == null) ? 0 : getTrackerArn().hashCode());
         hashCode = prime * hashCode
                 + ((getTrackerName() == null) ? 0 : getTrackerName().hashCode());
+        hashCode = prime * hashCode + ((getTrackerArn() == null) ? 0 : getTrackerArn().hashCode());
+        hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         return hashCode;
     }
 
@@ -338,20 +338,20 @@ public class CreateTrackerResult implements Serializable {
             return false;
         CreateTrackerResult other = (CreateTrackerResult) obj;
 
-        if (other.getCreateTime() == null ^ this.getCreateTime() == null)
+        if (other.getTrackerName() == null ^ this.getTrackerName() == null)
             return false;
-        if (other.getCreateTime() != null
-                && other.getCreateTime().equals(this.getCreateTime()) == false)
+        if (other.getTrackerName() != null
+                && other.getTrackerName().equals(this.getTrackerName()) == false)
             return false;
         if (other.getTrackerArn() == null ^ this.getTrackerArn() == null)
             return false;
         if (other.getTrackerArn() != null
                 && other.getTrackerArn().equals(this.getTrackerArn()) == false)
             return false;
-        if (other.getTrackerName() == null ^ this.getTrackerName() == null)
+        if (other.getCreateTime() == null ^ this.getCreateTime() == null)
             return false;
-        if (other.getTrackerName() != null
-                && other.getTrackerName().equals(this.getTrackerName()) == false)
+        if (other.getCreateTime() != null
+                && other.getCreateTime().equals(this.getCreateTime()) == false)
             return false;
         return true;
     }

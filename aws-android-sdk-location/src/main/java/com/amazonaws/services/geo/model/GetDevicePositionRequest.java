@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,23 +32,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetDevicePositionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The device whose position you want to retrieve.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
-     */
-    private String deviceId;
-
-    /**
-     * <p>
      * The tracker resource receiving the position update.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String trackerName;
 
@@ -59,55 +48,9 @@ public class GetDevicePositionRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
-     *
-     * @return <p>
-     *         The device whose position you want to retrieve.
-     *         </p>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      */
-    public String getDeviceId() {
-        return deviceId;
-    }
-
-    /**
-     * <p>
-     * The device whose position you want to retrieve.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
-     *
-     * @param deviceId <p>
-     *            The device whose position you want to retrieve.
-     *            </p>
-     */
-    public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
-    }
-
-    /**
-     * <p>
-     * The device whose position you want to retrieve.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
-     *
-     * @param deviceId <p>
-     *            The device whose position you want to retrieve.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetDevicePositionRequest withDeviceId(String deviceId) {
-        this.deviceId = deviceId;
-        return this;
-    }
+    private String deviceId;
 
     /**
      * <p>
@@ -116,7 +59,7 @@ public class GetDevicePositionRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
      *         The tracker resource receiving the position update.
@@ -133,7 +76,7 @@ public class GetDevicePositionRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param trackerName <p>
      *            The tracker resource receiving the position update.
@@ -153,7 +96,7 @@ public class GetDevicePositionRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param trackerName <p>
      *            The tracker resource receiving the position update.
@@ -163,6 +106,63 @@ public class GetDevicePositionRequest extends AmazonWebServiceRequest implements
      */
     public GetDevicePositionRequest withTrackerName(String trackerName) {
         this.trackerName = trackerName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The device whose position you want to retrieve.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
+     *
+     * @return <p>
+     *         The device whose position you want to retrieve.
+     *         </p>
+     */
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    /**
+     * <p>
+     * The device whose position you want to retrieve.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
+     *
+     * @param deviceId <p>
+     *            The device whose position you want to retrieve.
+     *            </p>
+     */
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    /**
+     * <p>
+     * The device whose position you want to retrieve.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
+     *
+     * @param deviceId <p>
+     *            The device whose position you want to retrieve.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetDevicePositionRequest withDeviceId(String deviceId) {
+        this.deviceId = deviceId;
         return this;
     }
 
@@ -177,10 +177,10 @@ public class GetDevicePositionRequest extends AmazonWebServiceRequest implements
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getDeviceId() != null)
-            sb.append("DeviceId: " + getDeviceId() + ",");
         if (getTrackerName() != null)
-            sb.append("TrackerName: " + getTrackerName());
+            sb.append("TrackerName: " + getTrackerName() + ",");
+        if (getDeviceId() != null)
+            sb.append("DeviceId: " + getDeviceId());
         sb.append("}");
         return sb.toString();
     }
@@ -190,9 +190,9 @@ public class GetDevicePositionRequest extends AmazonWebServiceRequest implements
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getDeviceId() == null) ? 0 : getDeviceId().hashCode());
         hashCode = prime * hashCode
                 + ((getTrackerName() == null) ? 0 : getTrackerName().hashCode());
+        hashCode = prime * hashCode + ((getDeviceId() == null) ? 0 : getDeviceId().hashCode());
         return hashCode;
     }
 
@@ -207,14 +207,14 @@ public class GetDevicePositionRequest extends AmazonWebServiceRequest implements
             return false;
         GetDevicePositionRequest other = (GetDevicePositionRequest) obj;
 
-        if (other.getDeviceId() == null ^ this.getDeviceId() == null)
-            return false;
-        if (other.getDeviceId() != null && other.getDeviceId().equals(this.getDeviceId()) == false)
-            return false;
         if (other.getTrackerName() == null ^ this.getTrackerName() == null)
             return false;
         if (other.getTrackerName() != null
                 && other.getTrackerName().equals(this.getTrackerName()) == false)
+            return false;
+        if (other.getDeviceId() == null ^ this.getDeviceId() == null)
+            return false;
+        if (other.getDeviceId() != null && other.getDeviceId().equals(this.getDeviceId()) == false)
             return false;
         return true;
     }

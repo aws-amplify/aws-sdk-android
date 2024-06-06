@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,15 +18,6 @@ package com.amazonaws.services.geo.model;
 import java.io.Serializable;
 
 public class CreateKeyResult implements Serializable {
-    /**
-     * <p>
-     * The timestamp for when the API key resource was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     * </p>
-     */
-    private java.util.Date createTime;
-
     /**
      * <p>
      * The key value/string of an API key. This value is used when making API
@@ -56,8 +47,8 @@ public class CreateKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      */
     private String keyArn;
 
@@ -68,7 +59,7 @@ public class CreateKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String keyName;
 
@@ -78,56 +69,8 @@ public class CreateKeyResult implements Serializable {
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
-     *
-     * @return <p>
-     *         The timestamp for when the API key resource was created in <a
-     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">
-     *         ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     *         </p>
      */
-    public java.util.Date getCreateTime() {
-        return createTime;
-    }
-
-    /**
-     * <p>
-     * The timestamp for when the API key resource was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     * </p>
-     *
-     * @param createTime <p>
-     *            The timestamp for when the API key resource was created in <a
-     *            href="https://www.iso.org/iso-8601-date-and-time-format.html">
-     *            ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     *            </p>
-     */
-    public void setCreateTime(java.util.Date createTime) {
-        this.createTime = createTime;
-    }
-
-    /**
-     * <p>
-     * The timestamp for when the API key resource was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param createTime <p>
-     *            The timestamp for when the API key resource was created in <a
-     *            href="https://www.iso.org/iso-8601-date-and-time-format.html">
-     *            ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateKeyResult withCreateTime(java.util.Date createTime) {
-        this.createTime = createTime;
-        return this;
-    }
+    private java.util.Date createTime;
 
     /**
      * <p>
@@ -219,8 +162,8 @@ public class CreateKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for the API key resource. Used
@@ -256,8 +199,8 @@ public class CreateKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      *
      * @param keyArn <p>
      *            The Amazon Resource Name (ARN) for the API key resource. Used
@@ -296,8 +239,8 @@ public class CreateKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      *
      * @param keyArn <p>
      *            The Amazon Resource Name (ARN) for the API key resource. Used
@@ -327,7 +270,7 @@ public class CreateKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
      *         The name of the API key resource.
@@ -344,7 +287,7 @@ public class CreateKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param keyName <p>
      *            The name of the API key resource.
@@ -364,7 +307,7 @@ public class CreateKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param keyName <p>
      *            The name of the API key resource.
@@ -374,6 +317,63 @@ public class CreateKeyResult implements Serializable {
      */
     public CreateKeyResult withKeyName(String keyName) {
         this.keyName = keyName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The timestamp for when the API key resource was created in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp for when the API key resource was created in <a
+     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">
+     *         ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *         </p>
+     */
+    public java.util.Date getCreateTime() {
+        return createTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp for when the API key resource was created in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     *
+     * @param createTime <p>
+     *            The timestamp for when the API key resource was created in <a
+     *            href="https://www.iso.org/iso-8601-date-and-time-format.html">
+     *            ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *            </p>
+     */
+    public void setCreateTime(java.util.Date createTime) {
+        this.createTime = createTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp for when the API key resource was created in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param createTime <p>
+     *            The timestamp for when the API key resource was created in <a
+     *            href="https://www.iso.org/iso-8601-date-and-time-format.html">
+     *            ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateKeyResult withCreateTime(java.util.Date createTime) {
+        this.createTime = createTime;
         return this;
     }
 
@@ -388,14 +388,14 @@ public class CreateKeyResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCreateTime() != null)
-            sb.append("CreateTime: " + getCreateTime() + ",");
         if (getKey() != null)
             sb.append("Key: " + getKey() + ",");
         if (getKeyArn() != null)
             sb.append("KeyArn: " + getKeyArn() + ",");
         if (getKeyName() != null)
-            sb.append("KeyName: " + getKeyName());
+            sb.append("KeyName: " + getKeyName() + ",");
+        if (getCreateTime() != null)
+            sb.append("CreateTime: " + getCreateTime());
         sb.append("}");
         return sb.toString();
     }
@@ -405,10 +405,10 @@ public class CreateKeyResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
         hashCode = prime * hashCode + ((getKeyArn() == null) ? 0 : getKeyArn().hashCode());
         hashCode = prime * hashCode + ((getKeyName() == null) ? 0 : getKeyName().hashCode());
+        hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         return hashCode;
     }
 
@@ -423,11 +423,6 @@ public class CreateKeyResult implements Serializable {
             return false;
         CreateKeyResult other = (CreateKeyResult) obj;
 
-        if (other.getCreateTime() == null ^ this.getCreateTime() == null)
-            return false;
-        if (other.getCreateTime() != null
-                && other.getCreateTime().equals(this.getCreateTime()) == false)
-            return false;
         if (other.getKey() == null ^ this.getKey() == null)
             return false;
         if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
@@ -439,6 +434,11 @@ public class CreateKeyResult implements Serializable {
         if (other.getKeyName() == null ^ this.getKeyName() == null)
             return false;
         if (other.getKeyName() != null && other.getKeyName().equals(this.getKeyName()) == false)
+            return false;
+        if (other.getCreateTime() == null ^ this.getCreateTime() == null)
+            return false;
+        if (other.getCreateTime() != null
+                && other.getCreateTime().equals(this.getCreateTime()) == false)
             return false;
         return true;
     }

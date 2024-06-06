@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,10 +36,7 @@ class GeofenceGeometryJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Circle")) {
-                geofenceGeometry.setCircle(CircleJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Polygon")) {
+            if (name.equals("Polygon")) {
                 geofenceGeometry
                         .setPolygon(new ListUnmarshaller<java.util.List<java.util.List<Double>>>(
                                 new ListUnmarshaller<java.util.List<Double>>(
@@ -49,6 +46,12 @@ class GeofenceGeometryJsonUnmarshaller implements
                                 )
                         )
                                 .unmarshall(context));
+            } else if (name.equals("Circle")) {
+                geofenceGeometry.setCircle(CircleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Geobuf")) {
+                geofenceGeometry.setGeobuf(ByteBufferJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

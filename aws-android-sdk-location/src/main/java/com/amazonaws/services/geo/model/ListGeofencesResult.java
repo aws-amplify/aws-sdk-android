@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ public class ListGeofencesResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2000<br/>
+     * <b>Length: </b>1 - 60000<br/>
      */
     private String nextToken;
 
@@ -122,7 +122,7 @@ public class ListGeofencesResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2000<br/>
+     * <b>Length: </b>1 - 60000<br/>
      *
      * @return <p>
      *         A pagination token indicating there are additional pages
@@ -142,7 +142,7 @@ public class ListGeofencesResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2000<br/>
+     * <b>Length: </b>1 - 60000<br/>
      *
      * @param nextToken <p>
      *            A pagination token indicating there are additional pages
@@ -165,7 +165,7 @@ public class ListGeofencesResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2000<br/>
+     * <b>Length: </b>1 - 60000<br/>
      *
      * @param nextToken <p>
      *            A pagination token indicating there are additional pages

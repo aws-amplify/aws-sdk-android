@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,8 +42,8 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      */
     private String resourceArn;
 
@@ -71,8 +71,8 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the resource from which you
@@ -108,8 +108,8 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      *
      * @param resourceArn <p>
      *            The Amazon Resource Name (ARN) of the resource from which you
@@ -148,8 +148,8 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      *
      * @param resourceArn <p>
      *            The Amazon Resource Name (ARN) of the resource from which you

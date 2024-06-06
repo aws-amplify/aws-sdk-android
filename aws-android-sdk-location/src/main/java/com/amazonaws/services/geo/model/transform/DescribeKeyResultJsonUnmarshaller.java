@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,18 +33,7 @@ public class DescribeKeyResultJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("CreateTime")) {
-                describeKeyResult.setCreateTime(DateJsonUnmarshaller.getInstance(
-                        TimestampFormat.ISO_8601)
-                        .unmarshall(context));
-            } else if (name.equals("Description")) {
-                describeKeyResult.setDescription(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("ExpireTime")) {
-                describeKeyResult.setExpireTime(DateJsonUnmarshaller.getInstance(
-                        TimestampFormat.ISO_8601)
-                        .unmarshall(context));
-            } else if (name.equals("Key")) {
+            if (name.equals("Key")) {
                 describeKeyResult.setKey(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("KeyArn")) {
@@ -56,15 +45,26 @@ public class DescribeKeyResultJsonUnmarshaller implements
             } else if (name.equals("Restrictions")) {
                 describeKeyResult.setRestrictions(ApiKeyRestrictionsJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CreateTime")) {
+                describeKeyResult.setCreateTime(DateJsonUnmarshaller.getInstance(
+                        TimestampFormat.ISO_8601)
+                        .unmarshall(context));
+            } else if (name.equals("ExpireTime")) {
+                describeKeyResult.setExpireTime(DateJsonUnmarshaller.getInstance(
+                        TimestampFormat.ISO_8601)
+                        .unmarshall(context));
+            } else if (name.equals("UpdateTime")) {
+                describeKeyResult.setUpdateTime(DateJsonUnmarshaller.getInstance(
+                        TimestampFormat.ISO_8601)
+                        .unmarshall(context));
+            } else if (name.equals("Description")) {
+                describeKeyResult.setDescription(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Tags")) {
                 describeKeyResult.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller
                         .getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("UpdateTime")) {
-                describeKeyResult.setUpdateTime(DateJsonUnmarshaller.getInstance(
-                        TimestampFormat.ISO_8601)
-                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

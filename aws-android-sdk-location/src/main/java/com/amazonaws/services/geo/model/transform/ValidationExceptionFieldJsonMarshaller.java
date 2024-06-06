@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,15 +27,15 @@ class ValidationExceptionFieldJsonMarshaller {
     public void marshall(ValidationExceptionField validationExceptionField, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
-        if (validationExceptionField.getMessage() != null) {
-            String message = validationExceptionField.getMessage();
-            jsonWriter.name("Message");
-            jsonWriter.value(message);
-        }
         if (validationExceptionField.getName() != null) {
             String name = validationExceptionField.getName();
             jsonWriter.name("Name");
             jsonWriter.value(name);
+        }
+        if (validationExceptionField.getMessage() != null) {
+            String message = validationExceptionField.getMessage();
+            jsonWriter.name("Message");
+            jsonWriter.value(message);
         }
         jsonWriter.endObject();
     }
