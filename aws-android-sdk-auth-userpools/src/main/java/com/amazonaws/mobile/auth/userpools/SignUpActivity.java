@@ -101,7 +101,7 @@ public class SignUpActivity extends Activity {
         Log.d(LOG_TAG, "phone = " + phone);
 
 
-        final Integer minimumPasswordLength = getMinimumPasswordLength();
+        final Integer minimumPasswordLength = CognitoUserPoolsSignInProvider.getMinimumPasswordLength(configuration);
 
         if (username.isEmpty()) {
             showError(getString(R.string.sign_up_username_missing));
@@ -154,14 +154,5 @@ public class SignUpActivity extends Activity {
         ViewHelper.showDialog(this,
                 getString(R.string.title_activity_sign_up),
                 getString(R.string.sign_up_failed) + " " + msg);
-    }
-
-    @Nullable
-    private Integer getMinimumPasswordLength() {
-        JSONObject auth = configuration.optJsonObject("Auth");
-        if (auth == null) return null;
-        JSONObject passwordSettings = auth.optJSONObject("passwordProtectionSettings");
-        if (passwordSettings == null) return null;
-        return passwordSettings.optInt("passwordPolicyMinLength");
     }
 }
