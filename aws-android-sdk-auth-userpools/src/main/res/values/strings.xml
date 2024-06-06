@@ -43,6 +43,7 @@
     <string name="mfa_code_empty">MFA Code is empty.</string>
     <string name="mfa_failed">MFA Failed.</string>
     <string name="password_length_validation_failed">Password should have 6 or more characters.</string>
+    <string name="password_length_validation_failed_variable">Password should have %d or more characters.</string>
     <string name="sign_up_username_missing">Missing username.</string>
     <string name="sign_up_confirm_code_missing">Sign Up Confirmation code is missing.</string>
     <string name="sign_up_in_progress">Sign up in progress</string>
