@@ -45,25 +45,26 @@ public class EncoderFactory {
     private static MediaCodec createMediaCodec(final CameraMediaSourceConfiguration mediaSourceConfiguration) {
         try {
             final MediaCodec encoder = MediaCodec.createEncoderByType(mediaSourceConfiguration.getEncoderMimeType());
-            // try {
-                // encoder.configure(
-                //         configureMediaFormat(mediaSourceConfiguration,
-                //                 MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420SemiPlanar),
-                //         NULL_SURFACE,
-                //         NULL_CRYPTO,
-                //         MediaCodec.CONFIGURE_FLAG_ENCODE);
-                // logSupportedColorFormats(encoder, mediaSourceConfiguration);
-            // } catch (MediaCodec.CodecException e) {
-                // Log.d(TAG, "Failed configuring MediaCodec with Semi-planar pixel format, falling back to planar");
-
+            try {
                 encoder.configure(
                         configureMediaFormat(mediaSourceConfiguration,
-                                MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420Flexible),
+                                MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420SemiPlanar),
                         NULL_SURFACE,
                         NULL_CRYPTO,
                         MediaCodec.CONFIGURE_FLAG_ENCODE);
                 logSupportedColorFormats(encoder, mediaSourceConfiguration);
-            // }
+            } catch (MediaCodec.CodecException e) {
+                Log.d(TAG, "Failed configuring MediaCodec with Semi-planar pixel format, falling back to planar");
+
+                encoder.configure(
+                        configureMediaFormat(mediaSourceConfiguration,
+                                // MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420Flexible), // NOTE: COLOR_FormatYUV420SemiPlanar and COLOR_FormatYUV420Planar are deprecated
+                                MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420Planar),
+                        NULL_SURFACE,
+                        NULL_CRYPTO,
+                        MediaCodec.CONFIGURE_FLAG_ENCODE);
+                logSupportedColorFormats(encoder, mediaSourceConfiguration);
+            }
 
             return encoder;
         } catch (final IOException e) {
