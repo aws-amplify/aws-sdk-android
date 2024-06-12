@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,8 +34,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * To make a <code>StartMedicalTranscriptionJob</code> request, you must first
- * upload your media file into an Amazon S3 bucket; you can then specify the S3
- * location of the file using the <code>Media</code> parameter.
+ * upload your media file into an Amazon S3 bucket; you can then specify the
+ * Amazon S3 location of the file using the <code>Media</code> parameter.
  * </p>
  * <p>
  * You must include the following parameters in your
@@ -123,7 +123,13 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      */
     private String languageCode;
 
@@ -132,7 +138,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * The sample rate, in hertz, of the audio track in your input media file.
      * </p>
      * <p>
-     * If you don't specify the media sample rate, Amazon Transcribe Medical
+     * If you do not specify the media sample rate, Amazon Transcribe Medical
      * determines it for you. If you specify the sample rate, it must match the
      * rate detected by Amazon Transcribe Medical; if there's a mismatch between
      * the value that you specify and the value detected, your job fails.
@@ -152,7 +158,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      */
     private String mediaFormat;
 
@@ -162,9 +168,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * your request.
      * </p>
      * <p>
-     * For information on supported media formats, refer to the <a href=
-     * "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
-     * >MediaFormat</a> parameter or the <a href=
+     * For information on supported media formats, refer to the
+     * <code>MediaFormat</code> parameter or the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
      * >Media formats</a> section in the Amazon S3 Developer Guide.
      * </p>
@@ -321,8 +326,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </li>
      * </ol>
      * <p>
-     * If you don't specify an encryption key, your output is encrypted with the
-     * default Amazon S3 key (SSE-S3).
+     * If you do not specify an encryption key, your output is encrypted with
+     * the default Amazon S3 key (SSE-S3).
      * </p>
      * <p>
      * If you specify a KMS key to encrypt your output, you must also specify an
@@ -545,7 +550,13 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      *
      * @return <p>
      *         The language code that represents the language spoken in the
@@ -573,7 +584,13 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      *
      * @param languageCode <p>
      *            The language code that represents the language spoken in the
@@ -604,7 +621,13 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      *
      * @param languageCode <p>
      *            The language code that represents the language spoken in the
@@ -635,7 +658,13 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      *
      * @param languageCode <p>
      *            The language code that represents the language spoken in the
@@ -666,7 +695,13 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      *
      * @param languageCode <p>
      *            The language code that represents the language spoken in the
@@ -689,7 +724,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * The sample rate, in hertz, of the audio track in your input media file.
      * </p>
      * <p>
-     * If you don't specify the media sample rate, Amazon Transcribe Medical
+     * If you do not specify the media sample rate, Amazon Transcribe Medical
      * determines it for you. If you specify the sample rate, it must match the
      * rate detected by Amazon Transcribe Medical; if there's a mismatch between
      * the value that you specify and the value detected, your job fails.
@@ -706,7 +741,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *         file.
      *         </p>
      *         <p>
-     *         If you don't specify the media sample rate, Amazon Transcribe
+     *         If you do not specify the media sample rate, Amazon Transcribe
      *         Medical determines it for you. If you specify the sample rate, it
      *         must match the rate detected by Amazon Transcribe Medical; if
      *         there's a mismatch between the value that you specify and the
@@ -724,7 +759,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * The sample rate, in hertz, of the audio track in your input media file.
      * </p>
      * <p>
-     * If you don't specify the media sample rate, Amazon Transcribe Medical
+     * If you do not specify the media sample rate, Amazon Transcribe Medical
      * determines it for you. If you specify the sample rate, it must match the
      * rate detected by Amazon Transcribe Medical; if there's a mismatch between
      * the value that you specify and the value detected, your job fails.
@@ -741,7 +776,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *            media file.
      *            </p>
      *            <p>
-     *            If you don't specify the media sample rate, Amazon Transcribe
+     *            If you do not specify the media sample rate, Amazon Transcribe
      *            Medical determines it for you. If you specify the sample rate,
      *            it must match the rate detected by Amazon Transcribe Medical;
      *            if there's a mismatch between the value that you specify and
@@ -759,7 +794,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * The sample rate, in hertz, of the audio track in your input media file.
      * </p>
      * <p>
-     * If you don't specify the media sample rate, Amazon Transcribe Medical
+     * If you do not specify the media sample rate, Amazon Transcribe Medical
      * determines it for you. If you specify the sample rate, it must match the
      * rate detected by Amazon Transcribe Medical; if there's a mismatch between
      * the value that you specify and the value detected, your job fails.
@@ -779,7 +814,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *            media file.
      *            </p>
      *            <p>
-     *            If you don't specify the media sample rate, Amazon Transcribe
+     *            If you do not specify the media sample rate, Amazon Transcribe
      *            Medical determines it for you. If you specify the sample rate,
      *            it must match the rate detected by Amazon Transcribe Medical;
      *            if there's a mismatch between the value that you specify and
@@ -801,7 +836,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @return <p>
      *         Specify the format of your input media file.
@@ -818,7 +853,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            Specify the format of your input media file.
@@ -838,7 +873,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            Specify the format of your input media file.
@@ -858,7 +893,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            Specify the format of your input media file.
@@ -878,7 +913,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            Specify the format of your input media file.
@@ -898,9 +933,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * your request.
      * </p>
      * <p>
-     * For information on supported media formats, refer to the <a href=
-     * "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
-     * >MediaFormat</a> parameter or the <a href=
+     * For information on supported media formats, refer to the
+     * <code>MediaFormat</code> parameter or the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
      * >Media formats</a> section in the Amazon S3 Developer Guide.
      * </p>
@@ -910,9 +944,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *         use in your request.
      *         </p>
      *         <p>
-     *         For information on supported media formats, refer to the <a href=
-     *         "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
-     *         >MediaFormat</a> parameter or the <a href=
+     *         For information on supported media formats, refer to the
+     *         <code>MediaFormat</code> parameter or the <a href=
      *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
      *         >Media formats</a> section in the Amazon S3 Developer Guide.
      *         </p>
@@ -927,9 +960,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * your request.
      * </p>
      * <p>
-     * For information on supported media formats, refer to the <a href=
-     * "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
-     * >MediaFormat</a> parameter or the <a href=
+     * For information on supported media formats, refer to the
+     * <code>MediaFormat</code> parameter or the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
      * >Media formats</a> section in the Amazon S3 Developer Guide.
      * </p>
@@ -939,10 +971,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *            use in your request.
      *            </p>
      *            <p>
-     *            For information on supported media formats, refer to the <a
-     *            href=
-     *            "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
-     *            >MediaFormat</a> parameter or the <a href=
+     *            For information on supported media formats, refer to the
+     *            <code>MediaFormat</code> parameter or the <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
      *            >Media formats</a> section in the Amazon S3 Developer Guide.
      *            </p>
@@ -957,9 +987,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * your request.
      * </p>
      * <p>
-     * For information on supported media formats, refer to the <a href=
-     * "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
-     * >MediaFormat</a> parameter or the <a href=
+     * For information on supported media formats, refer to the
+     * <code>MediaFormat</code> parameter or the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
      * >Media formats</a> section in the Amazon S3 Developer Guide.
      * </p>
@@ -972,10 +1001,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *            use in your request.
      *            </p>
      *            <p>
-     *            For information on supported media formats, refer to the <a
-     *            href=
-     *            "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
-     *            >MediaFormat</a> parameter or the <a href=
+     *            For information on supported media formats, refer to the
+     *            <code>MediaFormat</code> parameter or the <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
      *            >Media formats</a> section in the Amazon S3 Developer Guide.
      *            </p>
@@ -1610,8 +1637,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </li>
      * </ol>
      * <p>
-     * If you don't specify an encryption key, your output is encrypted with the
-     * default Amazon S3 key (SSE-S3).
+     * If you do not specify an encryption key, your output is encrypted with
+     * the default Amazon S3 key (SSE-S3).
      * </p>
      * <p>
      * If you specify a KMS key to encrypt your output, you must also specify an
@@ -1683,7 +1710,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *         </li>
      *         </ol>
      *         <p>
-     *         If you don't specify an encryption key, your output is encrypted
+     *         If you do not specify an encryption key, your output is encrypted
      *         with the default Amazon S3 key (SSE-S3).
      *         </p>
      *         <p>
@@ -1756,8 +1783,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </li>
      * </ol>
      * <p>
-     * If you don't specify an encryption key, your output is encrypted with the
-     * default Amazon S3 key (SSE-S3).
+     * If you do not specify an encryption key, your output is encrypted with
+     * the default Amazon S3 key (SSE-S3).
      * </p>
      * <p>
      * If you specify a KMS key to encrypt your output, you must also specify an
@@ -1830,7 +1857,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *            </li>
      *            </ol>
      *            <p>
-     *            If you don't specify an encryption key, your output is
+     *            If you do not specify an encryption key, your output is
      *            encrypted with the default Amazon S3 key (SSE-S3).
      *            </p>
      *            <p>
@@ -1903,8 +1930,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </li>
      * </ol>
      * <p>
-     * If you don't specify an encryption key, your output is encrypted with the
-     * default Amazon S3 key (SSE-S3).
+     * If you do not specify an encryption key, your output is encrypted with
+     * the default Amazon S3 key (SSE-S3).
      * </p>
      * <p>
      * If you specify a KMS key to encrypt your output, you must also specify an
@@ -1980,7 +2007,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *            </li>
      *            </ol>
      *            <p>
-     *            If you don't specify an encryption key, your output is
+     *            If you do not specify an encryption key, your output is
      *            encrypted with the default Amazon S3 key (SSE-S3).
      *            </p>
      *            <p>
