@@ -52,6 +52,7 @@ import com.amazonaws.mobile.auth.core.signin.SignInProviderResultHandler;
 import com.amazonaws.mobile.auth.core.internal.util.ViewHelper;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -61,6 +62,9 @@ import static com.amazonaws.mobile.auth.userpools.CognitoUserPoolsSignInProvider
 import static com.amazonaws.mobile.auth.userpools.CognitoUserPoolsSignInProvider.AttributeKeys.PASSWORD;
 import static com.amazonaws.mobile.auth.userpools.CognitoUserPoolsSignInProvider.AttributeKeys.USERNAME;
 import static com.amazonaws.mobile.auth.userpools.CognitoUserPoolsSignInProvider.AttributeKeys.VERIFICATION_CODE;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Manages sign-in using Cognito User Pools.
@@ -408,10 +412,14 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
                     password = data.getStringExtra(PASSWORD);
                     verificationCode = data.getStringExtra(VERIFICATION_CODE);
 
-                    if (password.length() < PASSWORD_MIN_LENGTH) {
+                    Integer minimumPasswordLength = getMinimumPasswordLength(awsConfiguration);
+                    if (minimumPasswordLength != null && password.length() < minimumPasswordLength) {
                         ViewHelper.showDialog(activity, activity.getString(R.string.title_activity_forgot_password),
-                                    activity.getString(R.string.password_change_failed) 
-                                    + " " + activity.getString(R.string.password_length_validation_failed));
+                                activity.getString(R.string.password_change_failed)
+                                        + " " + activity.getString(
+                                        R.string.password_length_validation_failed_variable,
+                                        minimumPasswordLength
+                                ));
                         return;
                     }
 
@@ -444,7 +452,7 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
 
                     if (verificationCode.length() < 1) {
                         ViewHelper.showDialog(activity, activity.getString(R.string.title_activity_mfa),
-                                    activity.getString(R.string.mfa_failed) 
+                                    activity.getString(R.string.mfa_failed)
                                     + " " + activity.getString(R.string.mfa_code_empty));
                         return;
                     }
@@ -469,7 +477,7 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
 
                     if (verificationCode.length() < 1) {
                         ViewHelper.showDialog(activity, activity.getString(R.string.title_activity_sign_up_confirm),
-                                    activity.getString(R.string.sign_up_confirm_title) 
+                                    activity.getString(R.string.sign_up_confirm_title)
                                     + " " + activity.getString(R.string.sign_up_confirm_code_missing));
                         return;
                     }
@@ -696,5 +704,14 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
 
     static String getFontFamily() {
         return fontFamily;
+    }
+
+    @Nullable
+    static Integer getMinimumPasswordLength(@NonNull final AWSConfiguration configuration) {
+        JSONObject auth = configuration.optJsonObject("Auth");
+        if (auth == null) return null;
+        JSONObject passwordSettings = auth.optJSONObject("passwordProtectionSettings");
+        if (passwordSettings == null) return null;
+        return passwordSettings.optInt("passwordPolicyMinLength");
     }
 }
