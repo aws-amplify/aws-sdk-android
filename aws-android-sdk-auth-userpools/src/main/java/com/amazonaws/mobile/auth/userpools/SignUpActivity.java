@@ -38,6 +38,10 @@ import com.amazonaws.services.cognitoidentityprovider.model.SignUpResult;
 import static com.amazonaws.mobile.auth.userpools.CognitoUserPoolsSignInProvider.AttributeKeys.*;
 import static com.amazonaws.mobile.auth.userpools.CognitoUserPoolsSignInProvider.getErrorMessageFromException;
 
+import androidx.annotation.Nullable;
+
+import org.json.JSONObject;
+
 /**
  * Activity to prompt for account sign up information.
  */
@@ -47,6 +51,7 @@ public class SignUpActivity extends Activity {
 
     private SignUpView signUpView;
     private CognitoUserPool mUserPool;
+    private AWSConfiguration configuration;
 
     /**
      * Starts a {@link SignUpActivity}
@@ -67,7 +72,8 @@ public class SignUpActivity extends Activity {
         signUpView = (SignUpView) findViewById(R.id.signup_view);
 
         Context appContext = getApplicationContext();
-        mUserPool = new CognitoUserPool(appContext, new AWSConfiguration(appContext));
+        configuration = new AWSConfiguration(appContext);
+        mUserPool = new CognitoUserPool(appContext, configuration);
 
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
@@ -94,13 +100,16 @@ public class SignUpActivity extends Activity {
         Log.d(LOG_TAG, "email = " + email);
         Log.d(LOG_TAG, "phone = " + phone);
 
+
+        final Integer minimumPasswordLength = CognitoUserPoolsSignInProvider.getMinimumPasswordLength(configuration);
+
         if (username.isEmpty()) {
             showError(getString(R.string.sign_up_username_missing));
             return;
         }
 
-        if (password.length() < 6) {
-            showError(getString(R.string.password_length_validation_failed));
+        if (minimumPasswordLength != null && password.length() < minimumPasswordLength) {
+            showError(getString(R.string.password_length_validation_failed_variable, minimumPasswordLength));
             return;
         }
 
