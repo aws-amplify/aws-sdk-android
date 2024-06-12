@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ public class ListEdgeAgentConfigurationsRequest extends AmazonWebServiceRequest 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 512<br/>
+     * <b>Length: </b>0 - 1024<br/>
      * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      */
     private String nextToken;
@@ -196,7 +196,7 @@ public class ListEdgeAgentConfigurationsRequest extends AmazonWebServiceRequest 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 512<br/>
+     * <b>Length: </b>0 - 1024<br/>
      * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      *
      * @return <p>
@@ -220,7 +220,7 @@ public class ListEdgeAgentConfigurationsRequest extends AmazonWebServiceRequest 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 512<br/>
+     * <b>Length: </b>0 - 1024<br/>
      * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      *
      * @param nextToken <p>
@@ -247,7 +247,7 @@ public class ListEdgeAgentConfigurationsRequest extends AmazonWebServiceRequest 
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 512<br/>
+     * <b>Length: </b>0 - 1024<br/>
      * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      *
      * @param nextToken <p>
