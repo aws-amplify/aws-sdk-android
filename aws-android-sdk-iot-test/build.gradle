@@ -1,11 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 14 // junit ext
-        targetSdkVersion 29
+        targetSdkVersion 30
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         testInstrumentationRunnerArguments(['notClass': 'org.conscrypt.KitKatPlatformOpenSSLSocketImplAdapter'])
     }
@@ -17,4 +17,3 @@ dependencies {
     androidTestImplementation project(':aws-android-sdk-iot')
     androidTestImplementation project(':aws-android-sdk-testutils')
 }
-

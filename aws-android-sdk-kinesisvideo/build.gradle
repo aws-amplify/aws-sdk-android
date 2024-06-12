@@ -2,12 +2,12 @@ apply from: rootProject.file('publishing.gradle')
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         minSdkVersion 24 // https://developer.android.com/reference/javax/net/ssl/X509ExtendedTrustManager
-        targetSdkVersion 29
+        targetSdkVersion 30
     }
 
     packagingOptions {
@@ -37,4 +37,3 @@ dependencies {
     testImplementation 'com.google.truth:truth:1.1.2'
     testImplementation 'org.robolectric:robolectric:4.4'
 }
-

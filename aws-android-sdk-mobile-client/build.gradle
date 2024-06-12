@@ -3,11 +3,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'devicefarm'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 14 // FB, Google, UI, UserPools all need 14, Hosted UI needs 16
-        targetSdkVersion 29
+        targetSdkVersion 30
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
@@ -77,4 +77,3 @@ dependencies {
     }
     androidTestImplementation project(':aws-android-sdk-testutils')
 }
-

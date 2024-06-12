@@ -2,11 +2,11 @@ apply plugin: 'com.android.library'
 apply from: rootProject.file('publishing.gradle')
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 14 // v4 support, brought from facebook sdk
-        targetSdkVersion 29
+        targetSdkVersion 30
     }
 }
 
@@ -15,4 +15,3 @@ dependencies {
     api 'com.facebook.android:facebook-login:11.2.0'
     implementation 'androidx.annotation:annotation:1.1.0'
 }
-

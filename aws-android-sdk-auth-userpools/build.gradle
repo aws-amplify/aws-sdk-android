@@ -2,11 +2,11 @@ apply from: rootProject.file('publishing.gradle')
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 14 // setAllCaps(), 11 otherwise
-        targetSdkVersion 29
+        targetSdkVersion 30
     }
 }
 
@@ -16,4 +16,3 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.annotation:annotation:1.1.0'
 }
-

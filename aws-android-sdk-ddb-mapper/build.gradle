@@ -2,12 +2,12 @@ apply from: rootProject.file('publishing.gradle')
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 29
+        targetSdkVersion 30
     }
 }
 
@@ -19,4 +19,3 @@ dependencies {
     testImplementation 'org.easymock:easymock:3.1'
     testRuntimeOnly 'org.apache.httpcomponents:httpclient:4.5.12'
 }
-
