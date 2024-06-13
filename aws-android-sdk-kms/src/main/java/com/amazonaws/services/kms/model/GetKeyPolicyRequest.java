@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,7 +33,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >kms:GetKeyPolicy</a> (key policy)
  * </p>
  * <p>
- * <b>Related operations</b>: <a>PutKeyPolicy</a>
+ * <b>Related operations</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html"
+ * >PutKeyPolicy</a>
+ * </p>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
  * </p>
  */
 public class GetKeyPolicyRequest extends AmazonWebServiceRequest implements Serializable {
@@ -72,7 +80,8 @@ public class GetKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * Specifies the name of the key policy. The only valid name is
+     * Specifies the name of the key policy. If no policy name is specified, the
+     * default value is <code>default</code>. The only valid name is
      * <code>default</code>. To get the names of key policies, use
      * <a>ListKeyPolicies</a>.
      * </p>
@@ -277,7 +286,8 @@ public class GetKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * Specifies the name of the key policy. The only valid name is
+     * Specifies the name of the key policy. If no policy name is specified, the
+     * default value is <code>default</code>. The only valid name is
      * <code>default</code>. To get the names of key policies, use
      * <a>ListKeyPolicies</a>.
      * </p>
@@ -287,9 +297,10 @@ public class GetKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * <b>Pattern: </b>[\w]+<br/>
      *
      * @return <p>
-     *         Specifies the name of the key policy. The only valid name is
-     *         <code>default</code>. To get the names of key policies, use
-     *         <a>ListKeyPolicies</a>.
+     *         Specifies the name of the key policy. If no policy name is
+     *         specified, the default value is <code>default</code>. The only
+     *         valid name is <code>default</code>. To get the names of key
+     *         policies, use <a>ListKeyPolicies</a>.
      *         </p>
      */
     public String getPolicyName() {
@@ -298,7 +309,8 @@ public class GetKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * Specifies the name of the key policy. The only valid name is
+     * Specifies the name of the key policy. If no policy name is specified, the
+     * default value is <code>default</code>. The only valid name is
      * <code>default</code>. To get the names of key policies, use
      * <a>ListKeyPolicies</a>.
      * </p>
@@ -308,9 +320,10 @@ public class GetKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * <b>Pattern: </b>[\w]+<br/>
      *
      * @param policyName <p>
-     *            Specifies the name of the key policy. The only valid name is
-     *            <code>default</code>. To get the names of key policies, use
-     *            <a>ListKeyPolicies</a>.
+     *            Specifies the name of the key policy. If no policy name is
+     *            specified, the default value is <code>default</code>. The only
+     *            valid name is <code>default</code>. To get the names of key
+     *            policies, use <a>ListKeyPolicies</a>.
      *            </p>
      */
     public void setPolicyName(String policyName) {
@@ -319,7 +332,8 @@ public class GetKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * Specifies the name of the key policy. The only valid name is
+     * Specifies the name of the key policy. If no policy name is specified, the
+     * default value is <code>default</code>. The only valid name is
      * <code>default</code>. To get the names of key policies, use
      * <a>ListKeyPolicies</a>.
      * </p>
@@ -332,9 +346,10 @@ public class GetKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * <b>Pattern: </b>[\w]+<br/>
      *
      * @param policyName <p>
-     *            Specifies the name of the key policy. The only valid name is
-     *            <code>default</code>. To get the names of key policies, use
-     *            <a>ListKeyPolicies</a>.
+     *            Specifies the name of the key policy. If no policy name is
+     *            specified, the default value is <code>default</code>. The only
+     *            valid name is <code>default</code>. To get the names of key
+     *            policies, use <a>ListKeyPolicies</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

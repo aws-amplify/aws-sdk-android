@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,8 +42,9 @@ import com.amazonaws.AmazonServiceException;
  * verifying messages, the <code>KeyUsage</code> must be
  * <code>SIGN_VERIFY</code>. For generating and verifying message authentication
  * codes (MACs), the <code>KeyUsage</code> must be
- * <code>GENERATE_VERIFY_MAC</code>. To find the <code>KeyUsage</code> of a KMS
- * key, use the <a>DescribeKey</a> operation.
+ * <code>GENERATE_VERIFY_MAC</code>. For deriving key agreement secrets, the
+ * <code>KeyUsage</code> must be <code>KEY_AGREEMENT</code>. To find the
+ * <code>KeyUsage</code> of a KMS key, use the <a>DescribeKey</a> operation.
  * </p>
  * <p>
  * To find the encryption or signing algorithms supported for a particular KMS

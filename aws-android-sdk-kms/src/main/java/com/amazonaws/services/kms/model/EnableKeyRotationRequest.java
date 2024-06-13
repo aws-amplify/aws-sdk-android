@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,18 +22,27 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Enables <a href=
- * "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html"
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotating-keys-enable-disable"
  * >automatic rotation of the key material</a> of the specified symmetric
  * encryption KMS key.
  * </p>
  * <p>
- * When you enable automatic rotation of a<a href=
+ * By default, when you enable automatic rotation of a <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
  * >customer managed KMS key</a>, KMS rotates the key material of the KMS key
  * one year (approximately 365 days) from the enable date and every year
- * thereafter. You can monitor rotation of the key material for your KMS keys in
- * CloudTrail and Amazon CloudWatch. To disable rotation of the key material in
- * a customer managed KMS key, use the <a>DisableKeyRotation</a> operation.
+ * thereafter. You can use the optional <code>RotationPeriodInDays</code>
+ * parameter to specify a custom rotation period when you enable key rotation,
+ * or you can use <code>RotationPeriodInDays</code> to modify the rotation
+ * period of a key that you previously enabled automatic key rotation on.
+ * </p>
+ * <p>
+ * You can monitor rotation of the key material for your KMS keys in CloudTrail
+ * and Amazon CloudWatch. To disable rotation of the key material in a customer
+ * managed KMS key, use the <a>DisableKeyRotation</a> operation. You can use the
+ * <a>GetKeyRotationStatus</a> operation to identify any in progress rotations.
+ * You can use the <a>ListKeyRotations</a> operation to view the details of
+ * completed rotations.
  * </p>
  * <p>
  * Automatic key rotation is supported only on <a href=
@@ -53,12 +62,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >multi-Region keys</a>, set the property on the primary key.
  * </p>
  * <p>
- * You cannot enable or disable automatic rotation <a href=
+ * You cannot enable or disable automatic rotation of <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
  * >Amazon Web Services managed KMS keys</a>. KMS always rotates the key
  * material of Amazon Web Services managed keys every year. Rotation of <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk"
- * >Amazon Web Services owned KMS keys</a> varies.
+ * >Amazon Web Services owned KMS keys</a> is managed by the Amazon Web Services
+ * service that owns the key.
  * </p>
  * <note>
  * <p>
@@ -105,7 +115,29 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <a>GetKeyRotationStatus</a>
  * </p>
  * </li>
+ * <li>
+ * <p>
+ * <a>ListKeyRotations</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>RotateKeyOnDemand</a>
+ * </p>
+ * <note>
+ * <p>
+ * You can perform on-demand (<a>RotateKeyOnDemand</a>) rotation of the key
+ * material in customer managed KMS keys, regardless of whether or not automatic
+ * key rotation is enabled.
+ * </p>
+ * </note></li>
  * </ul>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
+ * </p>
  */
 public class EnableKeyRotationRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -152,6 +184,31 @@ public class EnableKeyRotationRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 2048<br/>
      */
     private String keyId;
+
+    /**
+     * <p>
+     * Use this parameter to specify a custom period of time between each
+     * rotation date. If no value is specified, the default value is 365 days.
+     * </p>
+     * <p>
+     * The rotation period defines the number of days after you enable automatic
+     * key rotation that KMS will rotate your key material, and the number of
+     * days between each automatic rotation thereafter.
+     * </p>
+     * <p>
+     * You can use the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/conditions-kms.html#conditions-kms-rotation-period-in-days"
+     * > <code>kms:RotationPeriodInDays</code> </a> condition key to further
+     * constrain the values that principals can specify in the
+     * <code>RotationPeriodInDays</code> parameter.
+     * </p>
+     * <p>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>90 - 2560<br/>
+     */
+    private Integer rotationPeriodInDays;
 
     /**
      * <p>
@@ -418,6 +475,156 @@ public class EnableKeyRotationRequest extends AmazonWebServiceRequest implements
     }
 
     /**
+     * <p>
+     * Use this parameter to specify a custom period of time between each
+     * rotation date. If no value is specified, the default value is 365 days.
+     * </p>
+     * <p>
+     * The rotation period defines the number of days after you enable automatic
+     * key rotation that KMS will rotate your key material, and the number of
+     * days between each automatic rotation thereafter.
+     * </p>
+     * <p>
+     * You can use the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/conditions-kms.html#conditions-kms-rotation-period-in-days"
+     * > <code>kms:RotationPeriodInDays</code> </a> condition key to further
+     * constrain the values that principals can specify in the
+     * <code>RotationPeriodInDays</code> parameter.
+     * </p>
+     * <p>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>90 - 2560<br/>
+     *
+     * @return <p>
+     *         Use this parameter to specify a custom period of time between
+     *         each rotation date. If no value is specified, the default value
+     *         is 365 days.
+     *         </p>
+     *         <p>
+     *         The rotation period defines the number of days after you enable
+     *         automatic key rotation that KMS will rotate your key material,
+     *         and the number of days between each automatic rotation
+     *         thereafter.
+     *         </p>
+     *         <p>
+     *         You can use the <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/conditions-kms.html#conditions-kms-rotation-period-in-days"
+     *         > <code>kms:RotationPeriodInDays</code> </a> condition key to
+     *         further constrain the values that principals can specify in the
+     *         <code>RotationPeriodInDays</code> parameter.
+     *         </p>
+     *         <p>
+     *         </p>
+     */
+    public Integer getRotationPeriodInDays() {
+        return rotationPeriodInDays;
+    }
+
+    /**
+     * <p>
+     * Use this parameter to specify a custom period of time between each
+     * rotation date. If no value is specified, the default value is 365 days.
+     * </p>
+     * <p>
+     * The rotation period defines the number of days after you enable automatic
+     * key rotation that KMS will rotate your key material, and the number of
+     * days between each automatic rotation thereafter.
+     * </p>
+     * <p>
+     * You can use the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/conditions-kms.html#conditions-kms-rotation-period-in-days"
+     * > <code>kms:RotationPeriodInDays</code> </a> condition key to further
+     * constrain the values that principals can specify in the
+     * <code>RotationPeriodInDays</code> parameter.
+     * </p>
+     * <p>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>90 - 2560<br/>
+     *
+     * @param rotationPeriodInDays <p>
+     *            Use this parameter to specify a custom period of time between
+     *            each rotation date. If no value is specified, the default
+     *            value is 365 days.
+     *            </p>
+     *            <p>
+     *            The rotation period defines the number of days after you
+     *            enable automatic key rotation that KMS will rotate your key
+     *            material, and the number of days between each automatic
+     *            rotation thereafter.
+     *            </p>
+     *            <p>
+     *            You can use the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/conditions-kms.html#conditions-kms-rotation-period-in-days"
+     *            > <code>kms:RotationPeriodInDays</code> </a> condition key to
+     *            further constrain the values that principals can specify in
+     *            the <code>RotationPeriodInDays</code> parameter.
+     *            </p>
+     *            <p>
+     *            </p>
+     */
+    public void setRotationPeriodInDays(Integer rotationPeriodInDays) {
+        this.rotationPeriodInDays = rotationPeriodInDays;
+    }
+
+    /**
+     * <p>
+     * Use this parameter to specify a custom period of time between each
+     * rotation date. If no value is specified, the default value is 365 days.
+     * </p>
+     * <p>
+     * The rotation period defines the number of days after you enable automatic
+     * key rotation that KMS will rotate your key material, and the number of
+     * days between each automatic rotation thereafter.
+     * </p>
+     * <p>
+     * You can use the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/conditions-kms.html#conditions-kms-rotation-period-in-days"
+     * > <code>kms:RotationPeriodInDays</code> </a> condition key to further
+     * constrain the values that principals can specify in the
+     * <code>RotationPeriodInDays</code> parameter.
+     * </p>
+     * <p>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>90 - 2560<br/>
+     *
+     * @param rotationPeriodInDays <p>
+     *            Use this parameter to specify a custom period of time between
+     *            each rotation date. If no value is specified, the default
+     *            value is 365 days.
+     *            </p>
+     *            <p>
+     *            The rotation period defines the number of days after you
+     *            enable automatic key rotation that KMS will rotate your key
+     *            material, and the number of days between each automatic
+     *            rotation thereafter.
+     *            </p>
+     *            <p>
+     *            You can use the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/conditions-kms.html#conditions-kms-rotation-period-in-days"
+     *            > <code>kms:RotationPeriodInDays</code> </a> condition key to
+     *            further constrain the values that principals can specify in
+     *            the <code>RotationPeriodInDays</code> parameter.
+     *            </p>
+     *            <p>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EnableKeyRotationRequest withRotationPeriodInDays(Integer rotationPeriodInDays) {
+        this.rotationPeriodInDays = rotationPeriodInDays;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -429,7 +636,9 @@ public class EnableKeyRotationRequest extends AmazonWebServiceRequest implements
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getKeyId() != null)
-            sb.append("KeyId: " + getKeyId());
+            sb.append("KeyId: " + getKeyId() + ",");
+        if (getRotationPeriodInDays() != null)
+            sb.append("RotationPeriodInDays: " + getRotationPeriodInDays());
         sb.append("}");
         return sb.toString();
     }
@@ -440,6 +649,8 @@ public class EnableKeyRotationRequest extends AmazonWebServiceRequest implements
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getKeyId() == null) ? 0 : getKeyId().hashCode());
+        hashCode = prime * hashCode
+                + ((getRotationPeriodInDays() == null) ? 0 : getRotationPeriodInDays().hashCode());
         return hashCode;
     }
 
@@ -457,6 +668,11 @@ public class EnableKeyRotationRequest extends AmazonWebServiceRequest implements
         if (other.getKeyId() == null ^ this.getKeyId() == null)
             return false;
         if (other.getKeyId() != null && other.getKeyId().equals(this.getKeyId()) == false)
+            return false;
+        if (other.getRotationPeriodInDays() == null ^ this.getRotationPeriodInDays() == null)
+            return false;
+        if (other.getRotationPeriodInDays() != null
+                && other.getRotationPeriodInDays().equals(this.getRotationPeriodInDays()) == false)
             return false;
         return true;
     }

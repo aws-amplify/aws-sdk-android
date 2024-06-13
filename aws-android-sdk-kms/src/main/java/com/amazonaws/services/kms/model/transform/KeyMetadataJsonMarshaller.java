@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -129,6 +129,17 @@ class KeyMetadataJsonMarshaller {
             for (String signingAlgorithmsItem : signingAlgorithms) {
                 if (signingAlgorithmsItem != null) {
                     jsonWriter.value(signingAlgorithmsItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (keyMetadata.getKeyAgreementAlgorithms() != null) {
+            java.util.List<String> keyAgreementAlgorithms = keyMetadata.getKeyAgreementAlgorithms();
+            jsonWriter.name("KeyAgreementAlgorithms");
+            jsonWriter.beginArray();
+            for (String keyAgreementAlgorithmsItem : keyAgreementAlgorithms) {
+                if (keyAgreementAlgorithmsItem != null) {
+                    jsonWriter.value(keyAgreementAlgorithmsItem);
                 }
             }
             jsonWriter.endArray();
