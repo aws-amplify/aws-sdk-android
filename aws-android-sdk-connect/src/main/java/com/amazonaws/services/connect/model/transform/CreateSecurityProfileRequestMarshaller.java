@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -125,6 +125,37 @@ public class CreateSecurityProfileRequestMarshaller implements
                     }
                 }
                 jsonWriter.endArray();
+            }
+            if (createSecurityProfileRequest.getApplications() != null) {
+                java.util.List<Application> applications = createSecurityProfileRequest
+                        .getApplications();
+                jsonWriter.name("Applications");
+                jsonWriter.beginArray();
+                for (Application applicationsItem : applications) {
+                    if (applicationsItem != null) {
+                        ApplicationJsonMarshaller.getInstance().marshall(applicationsItem,
+                                jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (createSecurityProfileRequest.getHierarchyRestrictedResources() != null) {
+                java.util.List<String> hierarchyRestrictedResources = createSecurityProfileRequest
+                        .getHierarchyRestrictedResources();
+                jsonWriter.name("HierarchyRestrictedResources");
+                jsonWriter.beginArray();
+                for (String hierarchyRestrictedResourcesItem : hierarchyRestrictedResources) {
+                    if (hierarchyRestrictedResourcesItem != null) {
+                        jsonWriter.value(hierarchyRestrictedResourcesItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (createSecurityProfileRequest.getAllowedAccessControlHierarchyGroupId() != null) {
+                String allowedAccessControlHierarchyGroupId = createSecurityProfileRequest
+                        .getAllowedAccessControlHierarchyGroupId();
+                jsonWriter.name("AllowedAccessControlHierarchyGroupId");
+                jsonWriter.value(allowedAccessControlHierarchyGroupId);
             }
 
             jsonWriter.endObject();

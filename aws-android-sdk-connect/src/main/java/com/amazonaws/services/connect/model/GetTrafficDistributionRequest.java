@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,7 +28,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetTrafficDistributionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier of the traffic distribution group.
+     * The identifier of the traffic distribution group. This can be the ID or
+     * the ARN if the API is being called in the Region where the traffic
+     * distribution group was created. The ARN must be provided if the call is
+     * from the replicated Region.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -42,7 +45,10 @@ public class GetTrafficDistributionRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identifier of the traffic distribution group.
+     * The identifier of the traffic distribution group. This can be the ID or
+     * the ARN if the API is being called in the Region where the traffic
+     * distribution group was created. The ARN must be provided if the call is
+     * from the replicated Region.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,7 +59,10 @@ public class GetTrafficDistributionRequest extends AmazonWebServiceRequest imple
      * }-[a-f0-9]{4}-[a-f0-9]{12}$<br/>
      *
      * @return <p>
-     *         The identifier of the traffic distribution group.
+     *         The identifier of the traffic distribution group. This can be the
+     *         ID or the ARN if the API is being called in the Region where the
+     *         traffic distribution group was created. The ARN must be provided
+     *         if the call is from the replicated Region.
      *         </p>
      */
     public String getId() {
@@ -62,7 +71,10 @@ public class GetTrafficDistributionRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identifier of the traffic distribution group.
+     * The identifier of the traffic distribution group. This can be the ID or
+     * the ARN if the API is being called in the Region where the traffic
+     * distribution group was created. The ARN must be provided if the call is
+     * from the replicated Region.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -73,7 +85,10 @@ public class GetTrafficDistributionRequest extends AmazonWebServiceRequest imple
      * }-[a-f0-9]{4}-[a-f0-9]{12}$<br/>
      *
      * @param id <p>
-     *            The identifier of the traffic distribution group.
+     *            The identifier of the traffic distribution group. This can be
+     *            the ID or the ARN if the API is being called in the Region
+     *            where the traffic distribution group was created. The ARN must
+     *            be provided if the call is from the replicated Region.
      *            </p>
      */
     public void setId(String id) {
@@ -82,7 +97,10 @@ public class GetTrafficDistributionRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identifier of the traffic distribution group.
+     * The identifier of the traffic distribution group. This can be the ID or
+     * the ARN if the API is being called in the Region where the traffic
+     * distribution group was created. The ARN must be provided if the call is
+     * from the replicated Region.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -96,7 +114,10 @@ public class GetTrafficDistributionRequest extends AmazonWebServiceRequest imple
      * }-[a-f0-9]{4}-[a-f0-9]{12}$<br/>
      *
      * @param id <p>
-     *            The identifier of the traffic distribution group.
+     *            The identifier of the traffic distribution group. This can be
+     *            the ID or the ARN if the API is being called in the Region
+     *            where the traffic distribution group was created. The ARN must
+     *            be provided if the call is from the replicated Region.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
