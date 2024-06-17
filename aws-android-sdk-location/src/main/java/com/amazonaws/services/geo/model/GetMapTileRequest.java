@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,6 +35,47 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetMapTileRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
+     * The map resource to retrieve the map tiles from.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     */
+    private String mapName;
+
+    /**
+     * <p>
+     * The zoom value for the map tile.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>.*\d+.*<br/>
+     */
+    private String z;
+
+    /**
+     * <p>
+     * The X axis value for the map tile.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>.*\d+.*<br/>
+     */
+    private String x;
+
+    /**
+     * <p>
+     * The Y axis value for the map tile.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>.*\d+.*<br/>
+     */
+    private String y;
+
+    /**
+     * <p>
      * The optional <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
      * >API key</a> to authorize the request.
@@ -52,29 +93,55 @@ public class GetMapTileRequest extends AmazonWebServiceRequest implements Serial
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The map resource to retrieve the map tiles from.
+     *         </p>
      */
-    private String mapName;
+    public String getMapName() {
+        return mapName;
+    }
 
     /**
      * <p>
-     * The X axis value for the map tile.
+     * The map resource to retrieve the map tiles from.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\d+<br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param mapName <p>
+     *            The map resource to retrieve the map tiles from.
+     *            </p>
      */
-    private String x;
+    public void setMapName(String mapName) {
+        this.mapName = mapName;
+    }
 
     /**
      * <p>
-     * The Y axis value for the map tile.
+     * The map resource to retrieve the map tiles from.
      * </p>
      * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\d+<br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param mapName <p>
+     *            The map resource to retrieve the map tiles from.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    private String y;
+    public GetMapTileRequest withMapName(String mapName) {
+        this.mapName = mapName;
+        return this;
+    }
 
     /**
      * <p>
@@ -82,9 +149,161 @@ public class GetMapTileRequest extends AmazonWebServiceRequest implements Serial
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\d+<br/>
+     * <b>Pattern: </b>.*\d+.*<br/>
+     *
+     * @return <p>
+     *         The zoom value for the map tile.
+     *         </p>
      */
-    private String z;
+    public String getZ() {
+        return z;
+    }
+
+    /**
+     * <p>
+     * The zoom value for the map tile.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>.*\d+.*<br/>
+     *
+     * @param z <p>
+     *            The zoom value for the map tile.
+     *            </p>
+     */
+    public void setZ(String z) {
+        this.z = z;
+    }
+
+    /**
+     * <p>
+     * The zoom value for the map tile.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>.*\d+.*<br/>
+     *
+     * @param z <p>
+     *            The zoom value for the map tile.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetMapTileRequest withZ(String z) {
+        this.z = z;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The X axis value for the map tile.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>.*\d+.*<br/>
+     *
+     * @return <p>
+     *         The X axis value for the map tile.
+     *         </p>
+     */
+    public String getX() {
+        return x;
+    }
+
+    /**
+     * <p>
+     * The X axis value for the map tile.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>.*\d+.*<br/>
+     *
+     * @param x <p>
+     *            The X axis value for the map tile.
+     *            </p>
+     */
+    public void setX(String x) {
+        this.x = x;
+    }
+
+    /**
+     * <p>
+     * The X axis value for the map tile.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>.*\d+.*<br/>
+     *
+     * @param x <p>
+     *            The X axis value for the map tile.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetMapTileRequest withX(String x) {
+        this.x = x;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Y axis value for the map tile.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>.*\d+.*<br/>
+     *
+     * @return <p>
+     *         The Y axis value for the map tile.
+     *         </p>
+     */
+    public String getY() {
+        return y;
+    }
+
+    /**
+     * <p>
+     * The Y axis value for the map tile.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>.*\d+.*<br/>
+     *
+     * @param y <p>
+     *            The Y axis value for the map tile.
+     *            </p>
+     */
+    public void setY(String y) {
+        this.y = y;
+    }
+
+    /**
+     * <p>
+     * The Y axis value for the map tile.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>.*\d+.*<br/>
+     *
+     * @param y <p>
+     *            The Y axis value for the map tile.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetMapTileRequest withY(String y) {
+        this.y = y;
+        return this;
+    }
 
     /**
      * <p>
@@ -153,225 +372,6 @@ public class GetMapTileRequest extends AmazonWebServiceRequest implements Serial
     }
 
     /**
-     * <p>
-     * The map resource to retrieve the map tiles from.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         The map resource to retrieve the map tiles from.
-     *         </p>
-     */
-    public String getMapName() {
-        return mapName;
-    }
-
-    /**
-     * <p>
-     * The map resource to retrieve the map tiles from.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param mapName <p>
-     *            The map resource to retrieve the map tiles from.
-     *            </p>
-     */
-    public void setMapName(String mapName) {
-        this.mapName = mapName;
-    }
-
-    /**
-     * <p>
-     * The map resource to retrieve the map tiles from.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param mapName <p>
-     *            The map resource to retrieve the map tiles from.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetMapTileRequest withMapName(String mapName) {
-        this.mapName = mapName;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The X axis value for the map tile.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\d+<br/>
-     *
-     * @return <p>
-     *         The X axis value for the map tile.
-     *         </p>
-     */
-    public String getX() {
-        return x;
-    }
-
-    /**
-     * <p>
-     * The X axis value for the map tile.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\d+<br/>
-     *
-     * @param x <p>
-     *            The X axis value for the map tile.
-     *            </p>
-     */
-    public void setX(String x) {
-        this.x = x;
-    }
-
-    /**
-     * <p>
-     * The X axis value for the map tile.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\d+<br/>
-     *
-     * @param x <p>
-     *            The X axis value for the map tile.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetMapTileRequest withX(String x) {
-        this.x = x;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The Y axis value for the map tile.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\d+<br/>
-     *
-     * @return <p>
-     *         The Y axis value for the map tile.
-     *         </p>
-     */
-    public String getY() {
-        return y;
-    }
-
-    /**
-     * <p>
-     * The Y axis value for the map tile.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\d+<br/>
-     *
-     * @param y <p>
-     *            The Y axis value for the map tile.
-     *            </p>
-     */
-    public void setY(String y) {
-        this.y = y;
-    }
-
-    /**
-     * <p>
-     * The Y axis value for the map tile.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\d+<br/>
-     *
-     * @param y <p>
-     *            The Y axis value for the map tile.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetMapTileRequest withY(String y) {
-        this.y = y;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The zoom value for the map tile.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\d+<br/>
-     *
-     * @return <p>
-     *         The zoom value for the map tile.
-     *         </p>
-     */
-    public String getZ() {
-        return z;
-    }
-
-    /**
-     * <p>
-     * The zoom value for the map tile.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\d+<br/>
-     *
-     * @param z <p>
-     *            The zoom value for the map tile.
-     *            </p>
-     */
-    public void setZ(String z) {
-        this.z = z;
-    }
-
-    /**
-     * <p>
-     * The zoom value for the map tile.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\d+<br/>
-     *
-     * @param z <p>
-     *            The zoom value for the map tile.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetMapTileRequest withZ(String z) {
-        this.z = z;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -382,16 +382,16 @@ public class GetMapTileRequest extends AmazonWebServiceRequest implements Serial
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getKey() != null)
-            sb.append("Key: " + getKey() + ",");
         if (getMapName() != null)
             sb.append("MapName: " + getMapName() + ",");
+        if (getZ() != null)
+            sb.append("Z: " + getZ() + ",");
         if (getX() != null)
             sb.append("X: " + getX() + ",");
         if (getY() != null)
             sb.append("Y: " + getY() + ",");
-        if (getZ() != null)
-            sb.append("Z: " + getZ());
+        if (getKey() != null)
+            sb.append("Key: " + getKey());
         sb.append("}");
         return sb.toString();
     }
@@ -401,11 +401,11 @@ public class GetMapTileRequest extends AmazonWebServiceRequest implements Serial
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
         hashCode = prime * hashCode + ((getMapName() == null) ? 0 : getMapName().hashCode());
+        hashCode = prime * hashCode + ((getZ() == null) ? 0 : getZ().hashCode());
         hashCode = prime * hashCode + ((getX() == null) ? 0 : getX().hashCode());
         hashCode = prime * hashCode + ((getY() == null) ? 0 : getY().hashCode());
-        hashCode = prime * hashCode + ((getZ() == null) ? 0 : getZ().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
         return hashCode;
     }
 
@@ -420,13 +420,13 @@ public class GetMapTileRequest extends AmazonWebServiceRequest implements Serial
             return false;
         GetMapTileRequest other = (GetMapTileRequest) obj;
 
-        if (other.getKey() == null ^ this.getKey() == null)
-            return false;
-        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
-            return false;
         if (other.getMapName() == null ^ this.getMapName() == null)
             return false;
         if (other.getMapName() != null && other.getMapName().equals(this.getMapName()) == false)
+            return false;
+        if (other.getZ() == null ^ this.getZ() == null)
+            return false;
+        if (other.getZ() != null && other.getZ().equals(this.getZ()) == false)
             return false;
         if (other.getX() == null ^ this.getX() == null)
             return false;
@@ -436,9 +436,9 @@ public class GetMapTileRequest extends AmazonWebServiceRequest implements Serial
             return false;
         if (other.getY() != null && other.getY().equals(this.getY()) == false)
             return false;
-        if (other.getZ() == null ^ this.getZ() == null)
+        if (other.getKey() == null ^ this.getKey() == null)
             return false;
-        if (other.getZ() != null && other.getZ().equals(this.getZ()) == false)
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
             return false;
         return true;
     }

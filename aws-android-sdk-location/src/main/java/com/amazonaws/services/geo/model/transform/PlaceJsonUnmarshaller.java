@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,57 +35,60 @@ class PlaceJsonUnmarshaller implements Unmarshaller<Place, JsonUnmarshallerConte
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("AddressNumber")) {
+            if (name.equals("Label")) {
+                place.setLabel(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Geometry")) {
+                place.setGeometry(PlaceGeometryJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("AddressNumber")) {
                 place.setAddressNumber(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Street")) {
+                place.setStreet(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Neighborhood")) {
+                place.setNeighborhood(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Municipality")) {
+                place.setMunicipality(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("SubRegion")) {
+                place.setSubRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Region")) {
+                place.setRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Country")) {
+                place.setCountry(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("PostalCode")) {
+                place.setPostalCode(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Interpolated")) {
+                place.setInterpolated(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TimeZone")) {
+                place.setTimeZone(TimeZoneJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("UnitType")) {
+                place.setUnitType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("UnitNumber")) {
+                place.setUnitNumber(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Categories")) {
                 place.setCategories(new ListUnmarshaller<String>(StringJsonUnmarshaller
                         .getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("Country")) {
-                place.setCountry(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Geometry")) {
-                place.setGeometry(PlaceGeometryJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Interpolated")) {
-                place.setInterpolated(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Label")) {
-                place.setLabel(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Municipality")) {
-                place.setMunicipality(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Neighborhood")) {
-                place.setNeighborhood(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("PostalCode")) {
-                place.setPostalCode(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Region")) {
-                place.setRegion(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Street")) {
-                place.setStreet(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("SubRegion")) {
-                place.setSubRegion(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
             } else if (name.equals("SupplementalCategories")) {
                 place.setSupplementalCategories(new ListUnmarshaller<String>(StringJsonUnmarshaller
                         .getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("TimeZone")) {
-                place.setTimeZone(TimeZoneJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("UnitNumber")) {
-                place.setUnitNumber(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("UnitType")) {
-                place.setUnitType(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("SubMunicipality")) {
+                place.setSubMunicipality(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

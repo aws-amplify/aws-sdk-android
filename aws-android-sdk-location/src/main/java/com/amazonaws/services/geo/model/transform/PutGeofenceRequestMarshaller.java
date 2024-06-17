@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -68,6 +68,11 @@ public class PutGeofenceRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (putGeofenceRequest.getGeometry() != null) {
+                GeofenceGeometry geometry = putGeofenceRequest.getGeometry();
+                jsonWriter.name("Geometry");
+                GeofenceGeometryJsonMarshaller.getInstance().marshall(geometry, jsonWriter);
+            }
             if (putGeofenceRequest.getGeofenceProperties() != null) {
                 java.util.Map<String, String> geofenceProperties = putGeofenceRequest
                         .getGeofenceProperties();
@@ -83,11 +88,6 @@ public class PutGeofenceRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
-            if (putGeofenceRequest.getGeometry() != null) {
-                GeofenceGeometry geometry = putGeofenceRequest.getGeometry();
-                jsonWriter.name("Geometry");
-                GeofenceGeometryJsonMarshaller.getInstance().marshall(geometry, jsonWriter);
-            }
 
             jsonWriter.endObject();
             jsonWriter.close();
@@ -100,7 +100,7 @@ public class PutGeofenceRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
         request.setHostPrefix("geofencing.");
 

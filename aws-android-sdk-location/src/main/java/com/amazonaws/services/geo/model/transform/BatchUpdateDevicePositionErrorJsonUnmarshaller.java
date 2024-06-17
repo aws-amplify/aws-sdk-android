@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,13 +40,13 @@ class BatchUpdateDevicePositionErrorJsonUnmarshaller implements
             if (name.equals("DeviceId")) {
                 batchUpdateDevicePositionError.setDeviceId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("Error")) {
-                batchUpdateDevicePositionError.setError(BatchItemErrorJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
             } else if (name.equals("SampleTime")) {
                 batchUpdateDevicePositionError.setSampleTime(DateJsonUnmarshaller.getInstance(
                         TimestampFormat.ISO_8601)
+                        .unmarshall(context));
+            } else if (name.equals("Error")) {
+                batchUpdateDevicePositionError.setError(BatchItemErrorJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

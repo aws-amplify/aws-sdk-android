@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,8 +22,9 @@ import java.io.Serializable;
  * Contains the geofence geometry details.
  * </p>
  * <p>
- * A geofence geometry is made up of either a polygon or a circle. Can be either
- * a polygon or a circle. Including both will return a validation error.
+ * A geofence geometry is made up of either a polygon or a circle. Can be a
+ * polygon, a circle or a polygon encoded in Geobuf format. Including multiple
+ * selections will return a validation error.
  * </p>
  * <note>
  * <p>
@@ -33,13 +34,6 @@ import java.io.Serializable;
  * </note>
  */
 public class GeofenceGeometry implements Serializable {
-    /**
-     * <p>
-     * A circle on the earth, as defined by a center point and a radius.
-     * </p>
-     */
-    private Circle circle;
-
     /**
      * <p>
      * A polygon is a list of linear rings which are each made up of a list of
@@ -74,48 +68,23 @@ public class GeofenceGeometry implements Serializable {
      * <p>
      * A circle on the earth, as defined by a center point and a radius.
      * </p>
-     *
-     * @return <p>
-     *         A circle on the earth, as defined by a center point and a radius.
-     *         </p>
      */
-    public Circle getCircle() {
-        return circle;
-    }
+    private Circle circle;
 
     /**
      * <p>
-     * A circle on the earth, as defined by a center point and a radius.
-     * </p>
-     *
-     * @param circle <p>
-     *            A circle on the earth, as defined by a center point and a
-     *            radius.
-     *            </p>
-     */
-    public void setCircle(Circle circle) {
-        this.circle = circle;
-    }
-
-    /**
-     * <p>
-     * A circle on the earth, as defined by a center point and a radius.
+     * Geobuf is a compact binary encoding for geographic data that provides
+     * lossless compression of GeoJSON polygons. The Geobuf must be
+     * Base64-encoded.
      * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param circle <p>
-     *            A circle on the earth, as defined by a center point and a
-     *            radius.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
+     * A polygon in Geobuf format can have up to 100,000 vertices.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 600000<br/>
      */
-    public GeofenceGeometry withCircle(Circle circle) {
-        this.circle = circle;
-        return this;
-    }
+    private java.nio.ByteBuffer geobuf;
 
     /**
      * <p>
@@ -388,6 +357,137 @@ public class GeofenceGeometry implements Serializable {
     }
 
     /**
+     * <p>
+     * A circle on the earth, as defined by a center point and a radius.
+     * </p>
+     *
+     * @return <p>
+     *         A circle on the earth, as defined by a center point and a radius.
+     *         </p>
+     */
+    public Circle getCircle() {
+        return circle;
+    }
+
+    /**
+     * <p>
+     * A circle on the earth, as defined by a center point and a radius.
+     * </p>
+     *
+     * @param circle <p>
+     *            A circle on the earth, as defined by a center point and a
+     *            radius.
+     *            </p>
+     */
+    public void setCircle(Circle circle) {
+        this.circle = circle;
+    }
+
+    /**
+     * <p>
+     * A circle on the earth, as defined by a center point and a radius.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param circle <p>
+     *            A circle on the earth, as defined by a center point and a
+     *            radius.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GeofenceGeometry withCircle(Circle circle) {
+        this.circle = circle;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Geobuf is a compact binary encoding for geographic data that provides
+     * lossless compression of GeoJSON polygons. The Geobuf must be
+     * Base64-encoded.
+     * </p>
+     * <p>
+     * A polygon in Geobuf format can have up to 100,000 vertices.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 600000<br/>
+     *
+     * @return <p>
+     *         Geobuf is a compact binary encoding for geographic data that
+     *         provides lossless compression of GeoJSON polygons. The Geobuf
+     *         must be Base64-encoded.
+     *         </p>
+     *         <p>
+     *         A polygon in Geobuf format can have up to 100,000 vertices.
+     *         </p>
+     */
+    public java.nio.ByteBuffer getGeobuf() {
+        return geobuf;
+    }
+
+    /**
+     * <p>
+     * Geobuf is a compact binary encoding for geographic data that provides
+     * lossless compression of GeoJSON polygons. The Geobuf must be
+     * Base64-encoded.
+     * </p>
+     * <p>
+     * A polygon in Geobuf format can have up to 100,000 vertices.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 600000<br/>
+     *
+     * @param geobuf <p>
+     *            Geobuf is a compact binary encoding for geographic data that
+     *            provides lossless compression of GeoJSON polygons. The Geobuf
+     *            must be Base64-encoded.
+     *            </p>
+     *            <p>
+     *            A polygon in Geobuf format can have up to 100,000 vertices.
+     *            </p>
+     */
+    public void setGeobuf(java.nio.ByteBuffer geobuf) {
+        this.geobuf = geobuf;
+    }
+
+    /**
+     * <p>
+     * Geobuf is a compact binary encoding for geographic data that provides
+     * lossless compression of GeoJSON polygons. The Geobuf must be
+     * Base64-encoded.
+     * </p>
+     * <p>
+     * A polygon in Geobuf format can have up to 100,000 vertices.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 600000<br/>
+     *
+     * @param geobuf <p>
+     *            Geobuf is a compact binary encoding for geographic data that
+     *            provides lossless compression of GeoJSON polygons. The Geobuf
+     *            must be Base64-encoded.
+     *            </p>
+     *            <p>
+     *            A polygon in Geobuf format can have up to 100,000 vertices.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GeofenceGeometry withGeobuf(java.nio.ByteBuffer geobuf) {
+        this.geobuf = geobuf;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -398,10 +498,12 @@ public class GeofenceGeometry implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getPolygon() != null)
+            sb.append("Polygon: " + getPolygon() + ",");
         if (getCircle() != null)
             sb.append("Circle: " + getCircle() + ",");
-        if (getPolygon() != null)
-            sb.append("Polygon: " + getPolygon());
+        if (getGeobuf() != null)
+            sb.append("Geobuf: " + getGeobuf());
         sb.append("}");
         return sb.toString();
     }
@@ -411,8 +513,9 @@ public class GeofenceGeometry implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getCircle() == null) ? 0 : getCircle().hashCode());
         hashCode = prime * hashCode + ((getPolygon() == null) ? 0 : getPolygon().hashCode());
+        hashCode = prime * hashCode + ((getCircle() == null) ? 0 : getCircle().hashCode());
+        hashCode = prime * hashCode + ((getGeobuf() == null) ? 0 : getGeobuf().hashCode());
         return hashCode;
     }
 
@@ -427,13 +530,17 @@ public class GeofenceGeometry implements Serializable {
             return false;
         GeofenceGeometry other = (GeofenceGeometry) obj;
 
+        if (other.getPolygon() == null ^ this.getPolygon() == null)
+            return false;
+        if (other.getPolygon() != null && other.getPolygon().equals(this.getPolygon()) == false)
+            return false;
         if (other.getCircle() == null ^ this.getCircle() == null)
             return false;
         if (other.getCircle() != null && other.getCircle().equals(this.getCircle()) == false)
             return false;
-        if (other.getPolygon() == null ^ this.getPolygon() == null)
+        if (other.getGeobuf() == null ^ this.getGeobuf() == null)
             return false;
-        if (other.getPolygon() != null && other.getPolygon().equals(this.getPolygon()) == false)
+        if (other.getGeobuf() != null && other.getGeobuf().equals(this.getGeobuf()) == false)
             return false;
         return true;
     }

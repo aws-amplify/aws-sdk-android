@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,15 +26,16 @@ class LegJsonMarshaller {
 
     public void marshall(Leg leg, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (leg.getDistance() != null) {
-            Double distance = leg.getDistance();
-            jsonWriter.name("Distance");
-            jsonWriter.value(distance);
-        }
-        if (leg.getDurationSeconds() != null) {
-            Double durationSeconds = leg.getDurationSeconds();
-            jsonWriter.name("DurationSeconds");
-            jsonWriter.value(durationSeconds);
+        if (leg.getStartPosition() != null) {
+            java.util.List<Double> startPosition = leg.getStartPosition();
+            jsonWriter.name("StartPosition");
+            jsonWriter.beginArray();
+            for (Double startPositionItem : startPosition) {
+                if (startPositionItem != null) {
+                    jsonWriter.value(startPositionItem);
+                }
+            }
+            jsonWriter.endArray();
         }
         if (leg.getEndPosition() != null) {
             java.util.List<Double> endPosition = leg.getEndPosition();
@@ -47,21 +48,20 @@ class LegJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (leg.getDistance() != null) {
+            Double distance = leg.getDistance();
+            jsonWriter.name("Distance");
+            jsonWriter.value(distance);
+        }
+        if (leg.getDurationSeconds() != null) {
+            Double durationSeconds = leg.getDurationSeconds();
+            jsonWriter.name("DurationSeconds");
+            jsonWriter.value(durationSeconds);
+        }
         if (leg.getGeometry() != null) {
             LegGeometry geometry = leg.getGeometry();
             jsonWriter.name("Geometry");
             LegGeometryJsonMarshaller.getInstance().marshall(geometry, jsonWriter);
-        }
-        if (leg.getStartPosition() != null) {
-            java.util.List<Double> startPosition = leg.getStartPosition();
-            jsonWriter.name("StartPosition");
-            jsonWriter.beginArray();
-            for (Double startPositionItem : startPosition) {
-                if (startPositionItem != null) {
-                    jsonWriter.value(startPositionItem);
-                }
-            }
-            jsonWriter.endArray();
         }
         if (leg.getSteps() != null) {
             java.util.List<Step> steps = leg.getSteps();

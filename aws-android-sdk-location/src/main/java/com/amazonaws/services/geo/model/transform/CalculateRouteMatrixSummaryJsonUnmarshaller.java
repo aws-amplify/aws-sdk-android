@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,14 +39,14 @@ class CalculateRouteMatrixSummaryJsonUnmarshaller implements
             if (name.equals("DataSource")) {
                 calculateRouteMatrixSummary.setDataSource(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("DistanceUnit")) {
-                calculateRouteMatrixSummary.setDistanceUnit(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("RouteCount")) {
+                calculateRouteMatrixSummary.setRouteCount(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ErrorCount")) {
                 calculateRouteMatrixSummary.setErrorCount(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("RouteCount")) {
-                calculateRouteMatrixSummary.setRouteCount(IntegerJsonUnmarshaller.getInstance()
+            } else if (name.equals("DistanceUnit")) {
+                calculateRouteMatrixSummary.setDistanceUnit(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

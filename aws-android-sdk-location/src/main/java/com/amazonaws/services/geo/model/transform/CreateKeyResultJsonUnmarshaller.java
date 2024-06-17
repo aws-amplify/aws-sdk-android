@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,11 +33,7 @@ public class CreateKeyResultJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("CreateTime")) {
-                createKeyResult.setCreateTime(DateJsonUnmarshaller.getInstance(
-                        TimestampFormat.ISO_8601)
-                        .unmarshall(context));
-            } else if (name.equals("Key")) {
+            if (name.equals("Key")) {
                 createKeyResult.setKey(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("KeyArn")) {
@@ -45,6 +41,10 @@ public class CreateKeyResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("KeyName")) {
                 createKeyResult.setKeyName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("CreateTime")) {
+                createKeyResult.setCreateTime(DateJsonUnmarshaller.getInstance(
+                        TimestampFormat.ISO_8601)
                         .unmarshall(context));
             } else {
                 reader.skipValue();

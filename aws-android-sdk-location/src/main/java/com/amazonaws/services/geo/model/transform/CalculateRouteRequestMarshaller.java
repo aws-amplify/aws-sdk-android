@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -67,18 +67,6 @@ public class CalculateRouteRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (calculateRouteRequest.getCarModeOptions() != null) {
-                CalculateRouteCarModeOptions carModeOptions = calculateRouteRequest
-                        .getCarModeOptions();
-                jsonWriter.name("CarModeOptions");
-                CalculateRouteCarModeOptionsJsonMarshaller.getInstance().marshall(carModeOptions,
-                        jsonWriter);
-            }
-            if (calculateRouteRequest.getDepartNow() != null) {
-                Boolean departNow = calculateRouteRequest.getDepartNow();
-                jsonWriter.name("DepartNow");
-                jsonWriter.value(departNow);
-            }
             if (calculateRouteRequest.getDeparturePosition() != null) {
                 java.util.List<Double> departurePosition = calculateRouteRequest
                         .getDeparturePosition();
@@ -91,11 +79,6 @@ public class CalculateRouteRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
-            if (calculateRouteRequest.getDepartureTime() != null) {
-                java.util.Date departureTime = calculateRouteRequest.getDepartureTime();
-                jsonWriter.name("DepartureTime");
-                jsonWriter.value(DateUtils.formatISO8601Date(departureTime));
-            }
             if (calculateRouteRequest.getDestinationPosition() != null) {
                 java.util.List<Double> destinationPosition = calculateRouteRequest
                         .getDestinationPosition();
@@ -107,28 +90,6 @@ public class CalculateRouteRequestMarshaller implements
                     }
                 }
                 jsonWriter.endArray();
-            }
-            if (calculateRouteRequest.getDistanceUnit() != null) {
-                String distanceUnit = calculateRouteRequest.getDistanceUnit();
-                jsonWriter.name("DistanceUnit");
-                jsonWriter.value(distanceUnit);
-            }
-            if (calculateRouteRequest.getIncludeLegGeometry() != null) {
-                Boolean includeLegGeometry = calculateRouteRequest.getIncludeLegGeometry();
-                jsonWriter.name("IncludeLegGeometry");
-                jsonWriter.value(includeLegGeometry);
-            }
-            if (calculateRouteRequest.getTravelMode() != null) {
-                String travelMode = calculateRouteRequest.getTravelMode();
-                jsonWriter.name("TravelMode");
-                jsonWriter.value(travelMode);
-            }
-            if (calculateRouteRequest.getTruckModeOptions() != null) {
-                CalculateRouteTruckModeOptions truckModeOptions = calculateRouteRequest
-                        .getTruckModeOptions();
-                jsonWriter.name("TruckModeOptions");
-                CalculateRouteTruckModeOptionsJsonMarshaller.getInstance().marshall(
-                        truckModeOptions, jsonWriter);
             }
             if (calculateRouteRequest.getWaypointPositions() != null) {
                 java.util.List<java.util.List<Double>> waypointPositions = calculateRouteRequest
@@ -148,6 +109,55 @@ public class CalculateRouteRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (calculateRouteRequest.getTravelMode() != null) {
+                String travelMode = calculateRouteRequest.getTravelMode();
+                jsonWriter.name("TravelMode");
+                jsonWriter.value(travelMode);
+            }
+            if (calculateRouteRequest.getDepartureTime() != null) {
+                java.util.Date departureTime = calculateRouteRequest.getDepartureTime();
+                jsonWriter.name("DepartureTime");
+                jsonWriter.value(DateUtils.formatISO8601Date(departureTime));
+            }
+            if (calculateRouteRequest.getDepartNow() != null) {
+                Boolean departNow = calculateRouteRequest.getDepartNow();
+                jsonWriter.name("DepartNow");
+                jsonWriter.value(departNow);
+            }
+            if (calculateRouteRequest.getDistanceUnit() != null) {
+                String distanceUnit = calculateRouteRequest.getDistanceUnit();
+                jsonWriter.name("DistanceUnit");
+                jsonWriter.value(distanceUnit);
+            }
+            if (calculateRouteRequest.getIncludeLegGeometry() != null) {
+                Boolean includeLegGeometry = calculateRouteRequest.getIncludeLegGeometry();
+                jsonWriter.name("IncludeLegGeometry");
+                jsonWriter.value(includeLegGeometry);
+            }
+            if (calculateRouteRequest.getCarModeOptions() != null) {
+                CalculateRouteCarModeOptions carModeOptions = calculateRouteRequest
+                        .getCarModeOptions();
+                jsonWriter.name("CarModeOptions");
+                CalculateRouteCarModeOptionsJsonMarshaller.getInstance().marshall(carModeOptions,
+                        jsonWriter);
+            }
+            if (calculateRouteRequest.getTruckModeOptions() != null) {
+                CalculateRouteTruckModeOptions truckModeOptions = calculateRouteRequest
+                        .getTruckModeOptions();
+                jsonWriter.name("TruckModeOptions");
+                CalculateRouteTruckModeOptionsJsonMarshaller.getInstance().marshall(
+                        truckModeOptions, jsonWriter);
+            }
+            if (calculateRouteRequest.getArrivalTime() != null) {
+                java.util.Date arrivalTime = calculateRouteRequest.getArrivalTime();
+                jsonWriter.name("ArrivalTime");
+                jsonWriter.value(DateUtils.formatISO8601Date(arrivalTime));
+            }
+            if (calculateRouteRequest.getOptimizeFor() != null) {
+                String optimizeFor = calculateRouteRequest.getOptimizeFor();
+                jsonWriter.name("OptimizeFor");
+                jsonWriter.value(optimizeFor);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
@@ -160,7 +170,7 @@ public class CalculateRouteRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
         request.setHostPrefix("routes.");
 

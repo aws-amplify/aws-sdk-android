@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,15 +27,15 @@ class BatchDeleteGeofenceErrorJsonMarshaller {
     public void marshall(BatchDeleteGeofenceError batchDeleteGeofenceError, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
-        if (batchDeleteGeofenceError.getError() != null) {
-            BatchItemError error = batchDeleteGeofenceError.getError();
-            jsonWriter.name("Error");
-            BatchItemErrorJsonMarshaller.getInstance().marshall(error, jsonWriter);
-        }
         if (batchDeleteGeofenceError.getGeofenceId() != null) {
             String geofenceId = batchDeleteGeofenceError.getGeofenceId();
             jsonWriter.name("GeofenceId");
             jsonWriter.value(geofenceId);
+        }
+        if (batchDeleteGeofenceError.getError() != null) {
+            BatchItemError error = batchDeleteGeofenceError.getError();
+            jsonWriter.name("Error");
+            BatchItemErrorJsonMarshaller.getInstance().marshall(error, jsonWriter);
         }
         jsonWriter.endObject();
     }

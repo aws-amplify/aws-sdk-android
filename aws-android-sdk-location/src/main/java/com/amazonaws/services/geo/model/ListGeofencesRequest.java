@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,9 +32,23 @@ public class ListGeofencesRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String collectionName;
+
+    /**
+     * <p>
+     * The pagination token specifying which page of results to return in the
+     * response. If no token is provided, the default page is the first page.
+     * </p>
+     * <p>
+     * Default value: <code>null</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 60000<br/>
+     */
+    private String nextToken;
 
     /**
      * <p>
@@ -51,26 +65,12 @@ public class ListGeofencesRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The pagination token specifying which page of results to return in the
-     * response. If no token is provided, the default page is the first page.
-     * </p>
-     * <p>
-     * Default value: <code>null</code>
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2000<br/>
-     */
-    private String nextToken;
-
-    /**
-     * <p>
      * The name of the geofence collection storing the list of geofences.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
      *         The name of the geofence collection storing the list of
@@ -88,7 +88,7 @@ public class ListGeofencesRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param collectionName <p>
      *            The name of the geofence collection storing the list of
@@ -109,7 +109,7 @@ public class ListGeofencesRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param collectionName <p>
      *            The name of the geofence collection storing the list of
@@ -120,6 +120,87 @@ public class ListGeofencesRequest extends AmazonWebServiceRequest implements Ser
      */
     public ListGeofencesRequest withCollectionName(String collectionName) {
         this.collectionName = collectionName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The pagination token specifying which page of results to return in the
+     * response. If no token is provided, the default page is the first page.
+     * </p>
+     * <p>
+     * Default value: <code>null</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 60000<br/>
+     *
+     * @return <p>
+     *         The pagination token specifying which page of results to return
+     *         in the response. If no token is provided, the default page is the
+     *         first page.
+     *         </p>
+     *         <p>
+     *         Default value: <code>null</code>
+     *         </p>
+     */
+    public String getNextToken() {
+        return nextToken;
+    }
+
+    /**
+     * <p>
+     * The pagination token specifying which page of results to return in the
+     * response. If no token is provided, the default page is the first page.
+     * </p>
+     * <p>
+     * Default value: <code>null</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 60000<br/>
+     *
+     * @param nextToken <p>
+     *            The pagination token specifying which page of results to
+     *            return in the response. If no token is provided, the default
+     *            page is the first page.
+     *            </p>
+     *            <p>
+     *            Default value: <code>null</code>
+     *            </p>
+     */
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
+    }
+
+    /**
+     * <p>
+     * The pagination token specifying which page of results to return in the
+     * response. If no token is provided, the default page is the first page.
+     * </p>
+     * <p>
+     * Default value: <code>null</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 60000<br/>
+     *
+     * @param nextToken <p>
+     *            The pagination token specifying which page of results to
+     *            return in the response. If no token is provided, the default
+     *            page is the first page.
+     *            </p>
+     *            <p>
+     *            Default value: <code>null</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListGeofencesRequest withNextToken(String nextToken) {
+        this.nextToken = nextToken;
         return this;
     }
 
@@ -199,87 +280,6 @@ public class ListGeofencesRequest extends AmazonWebServiceRequest implements Ser
     }
 
     /**
-     * <p>
-     * The pagination token specifying which page of results to return in the
-     * response. If no token is provided, the default page is the first page.
-     * </p>
-     * <p>
-     * Default value: <code>null</code>
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2000<br/>
-     *
-     * @return <p>
-     *         The pagination token specifying which page of results to return
-     *         in the response. If no token is provided, the default page is the
-     *         first page.
-     *         </p>
-     *         <p>
-     *         Default value: <code>null</code>
-     *         </p>
-     */
-    public String getNextToken() {
-        return nextToken;
-    }
-
-    /**
-     * <p>
-     * The pagination token specifying which page of results to return in the
-     * response. If no token is provided, the default page is the first page.
-     * </p>
-     * <p>
-     * Default value: <code>null</code>
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2000<br/>
-     *
-     * @param nextToken <p>
-     *            The pagination token specifying which page of results to
-     *            return in the response. If no token is provided, the default
-     *            page is the first page.
-     *            </p>
-     *            <p>
-     *            Default value: <code>null</code>
-     *            </p>
-     */
-    public void setNextToken(String nextToken) {
-        this.nextToken = nextToken;
-    }
-
-    /**
-     * <p>
-     * The pagination token specifying which page of results to return in the
-     * response. If no token is provided, the default page is the first page.
-     * </p>
-     * <p>
-     * Default value: <code>null</code>
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2000<br/>
-     *
-     * @param nextToken <p>
-     *            The pagination token specifying which page of results to
-     *            return in the response. If no token is provided, the default
-     *            page is the first page.
-     *            </p>
-     *            <p>
-     *            Default value: <code>null</code>
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public ListGeofencesRequest withNextToken(String nextToken) {
-        this.nextToken = nextToken;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -292,10 +292,10 @@ public class ListGeofencesRequest extends AmazonWebServiceRequest implements Ser
         sb.append("{");
         if (getCollectionName() != null)
             sb.append("CollectionName: " + getCollectionName() + ",");
-        if (getMaxResults() != null)
-            sb.append("MaxResults: " + getMaxResults() + ",");
         if (getNextToken() != null)
-            sb.append("NextToken: " + getNextToken());
+            sb.append("NextToken: " + getNextToken() + ",");
+        if (getMaxResults() != null)
+            sb.append("MaxResults: " + getMaxResults());
         sb.append("}");
         return sb.toString();
     }
@@ -307,8 +307,8 @@ public class ListGeofencesRequest extends AmazonWebServiceRequest implements Ser
 
         hashCode = prime * hashCode
                 + ((getCollectionName() == null) ? 0 : getCollectionName().hashCode());
-        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
+        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         return hashCode;
     }
 
@@ -328,15 +328,15 @@ public class ListGeofencesRequest extends AmazonWebServiceRequest implements Ser
         if (other.getCollectionName() != null
                 && other.getCollectionName().equals(this.getCollectionName()) == false)
             return false;
-        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
-            return false;
-        if (other.getMaxResults() != null
-                && other.getMaxResults().equals(this.getMaxResults()) == false)
-            return false;
         if (other.getNextToken() == null ^ this.getNextToken() == null)
             return false;
         if (other.getNextToken() != null
                 && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
+        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
+            return false;
+        if (other.getMaxResults() != null
+                && other.getMaxResults().equals(this.getMaxResults()) == false)
             return false;
         return true;
     }

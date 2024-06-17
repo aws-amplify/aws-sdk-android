@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,18 +36,9 @@ class ListGeofenceResponseEntryJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("CreateTime")) {
-                listGeofenceResponseEntry.setCreateTime(DateJsonUnmarshaller.getInstance(
-                        TimestampFormat.ISO_8601)
-                        .unmarshall(context));
-            } else if (name.equals("GeofenceId")) {
+            if (name.equals("GeofenceId")) {
                 listGeofenceResponseEntry.setGeofenceId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("GeofenceProperties")) {
-                listGeofenceResponseEntry.setGeofenceProperties(new MapUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
             } else if (name.equals("Geometry")) {
                 listGeofenceResponseEntry.setGeometry(GeofenceGeometryJsonUnmarshaller
                         .getInstance()
@@ -55,10 +46,19 @@ class ListGeofenceResponseEntryJsonUnmarshaller implements
             } else if (name.equals("Status")) {
                 listGeofenceResponseEntry.setStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CreateTime")) {
+                listGeofenceResponseEntry.setCreateTime(DateJsonUnmarshaller.getInstance(
+                        TimestampFormat.ISO_8601)
+                        .unmarshall(context));
             } else if (name.equals("UpdateTime")) {
                 listGeofenceResponseEntry.setUpdateTime(DateJsonUnmarshaller.getInstance(
                         TimestampFormat.ISO_8601)
                         .unmarshall(context));
+            } else if (name.equals("GeofenceProperties")) {
+                listGeofenceResponseEntry.setGeofenceProperties(new MapUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

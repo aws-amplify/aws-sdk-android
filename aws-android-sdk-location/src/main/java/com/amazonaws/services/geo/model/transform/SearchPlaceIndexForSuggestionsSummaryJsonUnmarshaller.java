@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,24 +37,17 @@ class SearchPlaceIndexForSuggestionsSummaryJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("BiasPosition")) {
+            if (name.equals("Text")) {
+                searchPlaceIndexForSuggestionsSummary.setText(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("BiasPosition")) {
                 searchPlaceIndexForSuggestionsSummary.setBiasPosition(new ListUnmarshaller<Double>(
                         DoubleJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("DataSource")) {
-                searchPlaceIndexForSuggestionsSummary.setDataSource(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
             } else if (name.equals("FilterBBox")) {
                 searchPlaceIndexForSuggestionsSummary.setFilterBBox(new ListUnmarshaller<Double>(
                         DoubleJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
-            } else if (name.equals("FilterCategories")) {
-                searchPlaceIndexForSuggestionsSummary
-                        .setFilterCategories(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                                .getInstance()
                         )
                                 .unmarshall(context));
             } else if (name.equals("FilterCountries")) {
@@ -63,17 +56,24 @@ class SearchPlaceIndexForSuggestionsSummaryJsonUnmarshaller implements
                                 .getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("Language")) {
-                searchPlaceIndexForSuggestionsSummary.setLanguage(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
             } else if (name.equals("MaxResults")) {
                 searchPlaceIndexForSuggestionsSummary.setMaxResults(IntegerJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
-            } else if (name.equals("Text")) {
-                searchPlaceIndexForSuggestionsSummary.setText(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("DataSource")) {
+                searchPlaceIndexForSuggestionsSummary.setDataSource(StringJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Language")) {
+                searchPlaceIndexForSuggestionsSummary.setLanguage(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("FilterCategories")) {
+                searchPlaceIndexForSuggestionsSummary
+                        .setFilterCategories(new ListUnmarshaller<String>(StringJsonUnmarshaller
+                                .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

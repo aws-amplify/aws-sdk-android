@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,25 +27,25 @@ class TruckDimensionsJsonMarshaller {
     public void marshall(TruckDimensions truckDimensions, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
-        if (truckDimensions.getHeight() != null) {
-            Double height = truckDimensions.getHeight();
-            jsonWriter.name("Height");
-            jsonWriter.value(height);
-        }
         if (truckDimensions.getLength() != null) {
             Double length = truckDimensions.getLength();
             jsonWriter.name("Length");
             jsonWriter.value(length);
         }
-        if (truckDimensions.getUnit() != null) {
-            String unit = truckDimensions.getUnit();
-            jsonWriter.name("Unit");
-            jsonWriter.value(unit);
+        if (truckDimensions.getHeight() != null) {
+            Double height = truckDimensions.getHeight();
+            jsonWriter.name("Height");
+            jsonWriter.value(height);
         }
         if (truckDimensions.getWidth() != null) {
             Double width = truckDimensions.getWidth();
             jsonWriter.name("Width");
             jsonWriter.value(width);
+        }
+        if (truckDimensions.getUnit() != null) {
+            String unit = truckDimensions.getUnit();
+            jsonWriter.name("Unit");
+            jsonWriter.value(unit);
         }
         jsonWriter.endObject();
     }

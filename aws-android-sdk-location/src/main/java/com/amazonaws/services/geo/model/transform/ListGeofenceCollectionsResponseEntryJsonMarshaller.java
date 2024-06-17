@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,11 +32,6 @@ class ListGeofenceCollectionsResponseEntryJsonMarshaller {
             jsonWriter.name("CollectionName");
             jsonWriter.value(collectionName);
         }
-        if (listGeofenceCollectionsResponseEntry.getCreateTime() != null) {
-            java.util.Date createTime = listGeofenceCollectionsResponseEntry.getCreateTime();
-            jsonWriter.name("CreateTime");
-            jsonWriter.value(DateUtils.formatISO8601Date(createTime));
-        }
         if (listGeofenceCollectionsResponseEntry.getDescription() != null) {
             String description = listGeofenceCollectionsResponseEntry.getDescription();
             jsonWriter.name("Description");
@@ -52,6 +47,11 @@ class ListGeofenceCollectionsResponseEntryJsonMarshaller {
                     .getPricingPlanDataSource();
             jsonWriter.name("PricingPlanDataSource");
             jsonWriter.value(pricingPlanDataSource);
+        }
+        if (listGeofenceCollectionsResponseEntry.getCreateTime() != null) {
+            java.util.Date createTime = listGeofenceCollectionsResponseEntry.getCreateTime();
+            jsonWriter.name("CreateTime");
+            jsonWriter.value(DateUtils.formatISO8601Date(createTime));
         }
         if (listGeofenceCollectionsResponseEntry.getUpdateTime() != null) {
             java.util.Date updateTime = listGeofenceCollectionsResponseEntry.getUpdateTime();

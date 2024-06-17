@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,12 +25,24 @@ import java.io.Serializable;
 public class ListPlaceIndexesResponseEntry implements Serializable {
     /**
      * <p>
-     * The timestamp for when the place index resource was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * The name of the place index resource.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
-    private java.util.Date createTime;
+    private String indexName;
+
+    /**
+     * <p>
+     * The optional description for the place index resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     */
+    private String description;
 
     /**
      * <p>
@@ -63,27 +75,6 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The optional description for the place index resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     */
-    private String description;
-
-    /**
-     * <p>
-     * The name of the place index resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     */
-    private String indexName;
-
-    /**
-     * <p>
      * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
      * <p>
@@ -92,6 +83,15 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * MobileAssetManagement
      */
     private String pricingPlan;
+
+    /**
+     * <p>
+     * The timestamp for when the place index resource was created in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     */
+    private java.util.Date createTime;
 
     /**
      * <p>
@@ -104,60 +104,112 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the place index resource was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * The name of the place index resource.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
-     *         The timestamp for when the place index resource was created in <a
-     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *         The name of the place index resource.
      *         </p>
      */
-    public java.util.Date getCreateTime() {
-        return createTime;
+    public String getIndexName() {
+        return indexName;
     }
 
     /**
      * <p>
-     * The timestamp for when the place index resource was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * The name of the place index resource.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
-     * @param createTime <p>
-     *            The timestamp for when the place index resource was created in
-     *            <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * @param indexName <p>
+     *            The name of the place index resource.
      *            </p>
      */
-    public void setCreateTime(java.util.Date createTime) {
-        this.createTime = createTime;
+    public void setIndexName(String indexName) {
+        this.indexName = indexName;
     }
 
     /**
      * <p>
-     * The timestamp for when the place index resource was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * The name of the place index resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
-     * @param createTime <p>
-     *            The timestamp for when the place index resource was created in
-     *            <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * @param indexName <p>
+     *            The name of the place index resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListPlaceIndexesResponseEntry withCreateTime(java.util.Date createTime) {
-        this.createTime = createTime;
+    public ListPlaceIndexesResponseEntry withIndexName(String indexName) {
+        this.indexName = indexName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The optional description for the place index resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @return <p>
+     *         The optional description for the place index resource.
+     *         </p>
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * <p>
+     * The optional description for the place index resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            The optional description for the place index resource.
+     *            </p>
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * <p>
+     * The optional description for the place index resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            The optional description for the place index resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListPlaceIndexesResponseEntry withDescription(String description) {
+        this.description = description;
         return this;
     }
 
@@ -343,117 +395,6 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The optional description for the place index resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @return <p>
-     *         The optional description for the place index resource.
-     *         </p>
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * <p>
-     * The optional description for the place index resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param description <p>
-     *            The optional description for the place index resource.
-     *            </p>
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * <p>
-     * The optional description for the place index resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param description <p>
-     *            The optional description for the place index resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public ListPlaceIndexesResponseEntry withDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The name of the place index resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         The name of the place index resource.
-     *         </p>
-     */
-    public String getIndexName() {
-        return indexName;
-    }
-
-    /**
-     * <p>
-     * The name of the place index resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param indexName <p>
-     *            The name of the place index resource.
-     *            </p>
-     */
-    public void setIndexName(String indexName) {
-        this.indexName = indexName;
-    }
-
-    /**
-     * <p>
-     * The name of the place index resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param indexName <p>
-     *            The name of the place index resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public ListPlaceIndexesResponseEntry withIndexName(String indexName) {
-        this.indexName = indexName;
-        return this;
-    }
-
-    /**
-     * <p>
      * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
      * <p>
@@ -556,6 +497,65 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
+     * The timestamp for when the place index resource was created in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp for when the place index resource was created in <a
+     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *         </p>
+     */
+    public java.util.Date getCreateTime() {
+        return createTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp for when the place index resource was created in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     *
+     * @param createTime <p>
+     *            The timestamp for when the place index resource was created in
+     *            <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *            </p>
+     */
+    public void setCreateTime(java.util.Date createTime) {
+        this.createTime = createTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp for when the place index resource was created in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param createTime <p>
+     *            The timestamp for when the place index resource was created in
+     *            <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListPlaceIndexesResponseEntry withCreateTime(java.util.Date createTime) {
+        this.createTime = createTime;
+        return this;
+    }
+
+    /**
+     * <p>
      * The timestamp for when the place index resource was last updated in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -625,16 +625,16 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCreateTime() != null)
-            sb.append("CreateTime: " + getCreateTime() + ",");
-        if (getDataSource() != null)
-            sb.append("DataSource: " + getDataSource() + ",");
-        if (getDescription() != null)
-            sb.append("Description: " + getDescription() + ",");
         if (getIndexName() != null)
             sb.append("IndexName: " + getIndexName() + ",");
+        if (getDescription() != null)
+            sb.append("Description: " + getDescription() + ",");
+        if (getDataSource() != null)
+            sb.append("DataSource: " + getDataSource() + ",");
         if (getPricingPlan() != null)
             sb.append("PricingPlan: " + getPricingPlan() + ",");
+        if (getCreateTime() != null)
+            sb.append("CreateTime: " + getCreateTime() + ",");
         if (getUpdateTime() != null)
             sb.append("UpdateTime: " + getUpdateTime());
         sb.append("}");
@@ -646,13 +646,13 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
-        hashCode = prime * hashCode + ((getDataSource() == null) ? 0 : getDataSource().hashCode());
-        hashCode = prime * hashCode
-                + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
         hashCode = prime * hashCode
+                + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        hashCode = prime * hashCode + ((getDataSource() == null) ? 0 : getDataSource().hashCode());
+        hashCode = prime * hashCode
                 + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
+        hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         hashCode = prime * hashCode + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return hashCode;
     }
@@ -668,30 +668,30 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
             return false;
         ListPlaceIndexesResponseEntry other = (ListPlaceIndexesResponseEntry) obj;
 
-        if (other.getCreateTime() == null ^ this.getCreateTime() == null)
+        if (other.getIndexName() == null ^ this.getIndexName() == null)
             return false;
-        if (other.getCreateTime() != null
-                && other.getCreateTime().equals(this.getCreateTime()) == false)
-            return false;
-        if (other.getDataSource() == null ^ this.getDataSource() == null)
-            return false;
-        if (other.getDataSource() != null
-                && other.getDataSource().equals(this.getDataSource()) == false)
+        if (other.getIndexName() != null
+                && other.getIndexName().equals(this.getIndexName()) == false)
             return false;
         if (other.getDescription() == null ^ this.getDescription() == null)
             return false;
         if (other.getDescription() != null
                 && other.getDescription().equals(this.getDescription()) == false)
             return false;
-        if (other.getIndexName() == null ^ this.getIndexName() == null)
+        if (other.getDataSource() == null ^ this.getDataSource() == null)
             return false;
-        if (other.getIndexName() != null
-                && other.getIndexName().equals(this.getIndexName()) == false)
+        if (other.getDataSource() != null
+                && other.getDataSource().equals(this.getDataSource()) == false)
             return false;
         if (other.getPricingPlan() == null ^ this.getPricingPlan() == null)
             return false;
         if (other.getPricingPlan() != null
                 && other.getPricingPlan().equals(this.getPricingPlan()) == false)
+            return false;
+        if (other.getCreateTime() == null ^ this.getCreateTime() == null)
+            return false;
+        if (other.getCreateTime() != null
+                && other.getCreateTime().equals(this.getCreateTime()) == false)
             return false;
         if (other.getUpdateTime() == null ^ this.getUpdateTime() == null)
             return false;

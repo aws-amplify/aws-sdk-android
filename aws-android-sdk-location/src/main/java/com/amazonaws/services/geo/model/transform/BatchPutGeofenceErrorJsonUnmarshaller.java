@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,11 +36,11 @@ class BatchPutGeofenceErrorJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Error")) {
-                batchPutGeofenceError.setError(BatchItemErrorJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("GeofenceId")) {
+            if (name.equals("GeofenceId")) {
                 batchPutGeofenceError.setGeofenceId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Error")) {
+                batchPutGeofenceError.setError(BatchItemErrorJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

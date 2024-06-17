@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -38,17 +38,6 @@ class ApiKeyRestrictionsJsonMarshaller {
             }
             jsonWriter.endArray();
         }
-        if (apiKeyRestrictions.getAllowReferers() != null) {
-            java.util.List<String> allowReferers = apiKeyRestrictions.getAllowReferers();
-            jsonWriter.name("AllowReferers");
-            jsonWriter.beginArray();
-            for (String allowReferersItem : allowReferers) {
-                if (allowReferersItem != null) {
-                    jsonWriter.value(allowReferersItem);
-                }
-            }
-            jsonWriter.endArray();
-        }
         if (apiKeyRestrictions.getAllowResources() != null) {
             java.util.List<String> allowResources = apiKeyRestrictions.getAllowResources();
             jsonWriter.name("AllowResources");
@@ -56,6 +45,17 @@ class ApiKeyRestrictionsJsonMarshaller {
             for (String allowResourcesItem : allowResources) {
                 if (allowResourcesItem != null) {
                     jsonWriter.value(allowResourcesItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (apiKeyRestrictions.getAllowReferers() != null) {
+            java.util.List<String> allowReferers = apiKeyRestrictions.getAllowReferers();
+            jsonWriter.name("AllowReferers");
+            jsonWriter.beginArray();
+            for (String allowReferersItem : allowReferers) {
+                if (allowReferersItem != null) {
+                    jsonWriter.value(allowReferersItem);
                 }
             }
             jsonWriter.endArray();

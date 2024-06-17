@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -64,15 +64,15 @@ public class ListGeofencesRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (listGeofencesRequest.getMaxResults() != null) {
-                Integer maxResults = listGeofencesRequest.getMaxResults();
-                jsonWriter.name("MaxResults");
-                jsonWriter.value(maxResults);
-            }
             if (listGeofencesRequest.getNextToken() != null) {
                 String nextToken = listGeofencesRequest.getNextToken();
                 jsonWriter.name("NextToken");
                 jsonWriter.value(nextToken);
+            }
+            if (listGeofencesRequest.getMaxResults() != null) {
+                Integer maxResults = listGeofencesRequest.getMaxResults();
+                jsonWriter.name("MaxResults");
+                jsonWriter.value(maxResults);
             }
 
             jsonWriter.endObject();
@@ -86,7 +86,7 @@ public class ListGeofencesRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
         request.setHostPrefix("geofencing.");
 

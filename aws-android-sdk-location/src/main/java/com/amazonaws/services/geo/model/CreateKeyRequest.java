@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,26 +35,6 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class CreateKeyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * An optional description for the API key resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     */
-    private String description;
-
-    /**
-     * <p>
-     * The optional timestamp for when the API key resource will expire in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. One of
-     * <code>NoExpiry</code> or <code>ExpireTime</code> must be set.
-     * </p>
-     */
-    private java.util.Date expireTime;
-
-    /**
-     * <p>
      * A custom name for the API key resource.
      * </p>
      * <p>
@@ -81,9 +61,36 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String keyName;
+
+    /**
+     * <p>
+     * The API key restrictions for the API key resource.
+     * </p>
+     */
+    private ApiKeyRestrictions restrictions;
+
+    /**
+     * <p>
+     * An optional description for the API key resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     */
+    private String description;
+
+    /**
+     * <p>
+     * The optional timestamp for when the API key resource will expire in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. One of
+     * <code>NoExpiry</code> or <code>ExpireTime</code> must be set.
+     * </p>
+     */
+    private java.util.Date expireTime;
 
     /**
      * <p>
@@ -92,13 +99,6 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      */
     private Boolean noExpiry;
-
-    /**
-     * <p>
-     * The API key restrictions for the API key resource.
-     * </p>
-     */
-    private ApiKeyRestrictions restrictions;
 
     /**
      * <p>
@@ -147,6 +147,234 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </ul>
      */
     private java.util.Map<String, String> tags;
+
+    /**
+     * <p>
+     * A custom name for the API key resource.
+     * </p>
+     * <p>
+     * Requirements:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens (-),
+     * periods (.), and underscores (_).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Must be a unique API key name.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * No spaces allowed. For example, <code>ExampleAPIKey</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         A custom name for the API key resource.
+     *         </p>
+     *         <p>
+     *         Requirements:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens
+     *         (-), periods (.), and underscores (_).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Must be a unique API key name.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         No spaces allowed. For example, <code>ExampleAPIKey</code>.
+     *         </p>
+     *         </li>
+     *         </ul>
+     */
+    public String getKeyName() {
+        return keyName;
+    }
+
+    /**
+     * <p>
+     * A custom name for the API key resource.
+     * </p>
+     * <p>
+     * Requirements:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens (-),
+     * periods (.), and underscores (_).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Must be a unique API key name.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * No spaces allowed. For example, <code>ExampleAPIKey</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param keyName <p>
+     *            A custom name for the API key resource.
+     *            </p>
+     *            <p>
+     *            Requirements:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens
+     *            (-), periods (.), and underscores (_).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Must be a unique API key name.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            No spaces allowed. For example, <code>ExampleAPIKey</code>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setKeyName(String keyName) {
+        this.keyName = keyName;
+    }
+
+    /**
+     * <p>
+     * A custom name for the API key resource.
+     * </p>
+     * <p>
+     * Requirements:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens (-),
+     * periods (.), and underscores (_).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Must be a unique API key name.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * No spaces allowed. For example, <code>ExampleAPIKey</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param keyName <p>
+     *            A custom name for the API key resource.
+     *            </p>
+     *            <p>
+     *            Requirements:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens
+     *            (-), periods (.), and underscores (_).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Must be a unique API key name.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            No spaces allowed. For example, <code>ExampleAPIKey</code>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateKeyRequest withKeyName(String keyName) {
+        this.keyName = keyName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The API key restrictions for the API key resource.
+     * </p>
+     *
+     * @return <p>
+     *         The API key restrictions for the API key resource.
+     *         </p>
+     */
+    public ApiKeyRestrictions getRestrictions() {
+        return restrictions;
+    }
+
+    /**
+     * <p>
+     * The API key restrictions for the API key resource.
+     * </p>
+     *
+     * @param restrictions <p>
+     *            The API key restrictions for the API key resource.
+     *            </p>
+     */
+    public void setRestrictions(ApiKeyRestrictions restrictions) {
+        this.restrictions = restrictions;
+    }
+
+    /**
+     * <p>
+     * The API key restrictions for the API key resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param restrictions <p>
+     *            The API key restrictions for the API key resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateKeyRequest withRestrictions(ApiKeyRestrictions restrictions) {
+        this.restrictions = restrictions;
+        return this;
+    }
 
     /**
      * <p>
@@ -270,189 +498,6 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A custom name for the API key resource.
-     * </p>
-     * <p>
-     * Requirements:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens (-),
-     * periods (.), and underscores (_).
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Must be a unique API key name.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * No spaces allowed. For example, <code>ExampleAPIKey</code>.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         A custom name for the API key resource.
-     *         </p>
-     *         <p>
-     *         Requirements:
-     *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens
-     *         (-), periods (.), and underscores (_).
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Must be a unique API key name.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         No spaces allowed. For example, <code>ExampleAPIKey</code>.
-     *         </p>
-     *         </li>
-     *         </ul>
-     */
-    public String getKeyName() {
-        return keyName;
-    }
-
-    /**
-     * <p>
-     * A custom name for the API key resource.
-     * </p>
-     * <p>
-     * Requirements:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens (-),
-     * periods (.), and underscores (_).
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Must be a unique API key name.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * No spaces allowed. For example, <code>ExampleAPIKey</code>.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param keyName <p>
-     *            A custom name for the API key resource.
-     *            </p>
-     *            <p>
-     *            Requirements:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens
-     *            (-), periods (.), and underscores (_).
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Must be a unique API key name.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            No spaces allowed. For example, <code>ExampleAPIKey</code>.
-     *            </p>
-     *            </li>
-     *            </ul>
-     */
-    public void setKeyName(String keyName) {
-        this.keyName = keyName;
-    }
-
-    /**
-     * <p>
-     * A custom name for the API key resource.
-     * </p>
-     * <p>
-     * Requirements:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens (-),
-     * periods (.), and underscores (_).
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Must be a unique API key name.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * No spaces allowed. For example, <code>ExampleAPIKey</code>.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param keyName <p>
-     *            A custom name for the API key resource.
-     *            </p>
-     *            <p>
-     *            Requirements:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens
-     *            (-), periods (.), and underscores (_).
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Must be a unique API key name.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            No spaces allowed. For example, <code>ExampleAPIKey</code>.
-     *            </p>
-     *            </li>
-     *            </ul>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateKeyRequest withKeyName(String keyName) {
-        this.keyName = keyName;
-        return this;
-    }
-
-    /**
-     * <p>
      * Optionally set to <code>true</code> to set no expiration time for the API
      * key. One of <code>NoExpiry</code> or <code>ExpireTime</code> must be set.
      * </p>
@@ -518,51 +563,6 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      */
     public CreateKeyRequest withNoExpiry(Boolean noExpiry) {
         this.noExpiry = noExpiry;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The API key restrictions for the API key resource.
-     * </p>
-     *
-     * @return <p>
-     *         The API key restrictions for the API key resource.
-     *         </p>
-     */
-    public ApiKeyRestrictions getRestrictions() {
-        return restrictions;
-    }
-
-    /**
-     * <p>
-     * The API key restrictions for the API key resource.
-     * </p>
-     *
-     * @param restrictions <p>
-     *            The API key restrictions for the API key resource.
-     *            </p>
-     */
-    public void setRestrictions(ApiKeyRestrictions restrictions) {
-        this.restrictions = restrictions;
-    }
-
-    /**
-     * <p>
-     * The API key restrictions for the API key resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param restrictions <p>
-     *            The API key restrictions for the API key resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateKeyRequest withRestrictions(ApiKeyRestrictions restrictions) {
-        this.restrictions = restrictions;
         return this;
     }
 
@@ -944,16 +944,16 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getKeyName() != null)
+            sb.append("KeyName: " + getKeyName() + ",");
+        if (getRestrictions() != null)
+            sb.append("Restrictions: " + getRestrictions() + ",");
         if (getDescription() != null)
             sb.append("Description: " + getDescription() + ",");
         if (getExpireTime() != null)
             sb.append("ExpireTime: " + getExpireTime() + ",");
-        if (getKeyName() != null)
-            sb.append("KeyName: " + getKeyName() + ",");
         if (getNoExpiry() != null)
             sb.append("NoExpiry: " + getNoExpiry() + ",");
-        if (getRestrictions() != null)
-            sb.append("Restrictions: " + getRestrictions() + ",");
         if (getTags() != null)
             sb.append("Tags: " + getTags());
         sb.append("}");
@@ -965,13 +965,13 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getKeyName() == null) ? 0 : getKeyName().hashCode());
+        hashCode = prime * hashCode
+                + ((getRestrictions() == null) ? 0 : getRestrictions().hashCode());
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getExpireTime() == null) ? 0 : getExpireTime().hashCode());
-        hashCode = prime * hashCode + ((getKeyName() == null) ? 0 : getKeyName().hashCode());
         hashCode = prime * hashCode + ((getNoExpiry() == null) ? 0 : getNoExpiry().hashCode());
-        hashCode = prime * hashCode
-                + ((getRestrictions() == null) ? 0 : getRestrictions().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
@@ -987,6 +987,15 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
             return false;
         CreateKeyRequest other = (CreateKeyRequest) obj;
 
+        if (other.getKeyName() == null ^ this.getKeyName() == null)
+            return false;
+        if (other.getKeyName() != null && other.getKeyName().equals(this.getKeyName()) == false)
+            return false;
+        if (other.getRestrictions() == null ^ this.getRestrictions() == null)
+            return false;
+        if (other.getRestrictions() != null
+                && other.getRestrictions().equals(this.getRestrictions()) == false)
+            return false;
         if (other.getDescription() == null ^ this.getDescription() == null)
             return false;
         if (other.getDescription() != null
@@ -997,18 +1006,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
         if (other.getExpireTime() != null
                 && other.getExpireTime().equals(this.getExpireTime()) == false)
             return false;
-        if (other.getKeyName() == null ^ this.getKeyName() == null)
-            return false;
-        if (other.getKeyName() != null && other.getKeyName().equals(this.getKeyName()) == false)
-            return false;
         if (other.getNoExpiry() == null ^ this.getNoExpiry() == null)
             return false;
         if (other.getNoExpiry() != null && other.getNoExpiry().equals(this.getNoExpiry()) == false)
-            return false;
-        if (other.getRestrictions() == null ^ this.getRestrictions() == null)
-            return false;
-        if (other.getRestrictions() != null
-                && other.getRestrictions().equals(this.getRestrictions()) == false)
             return false;
         if (other.getTags() == null ^ this.getTags() == null)
             return false;

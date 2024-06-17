@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -66,16 +66,6 @@ public class CreateGeofenceCollectionRequestMarshaller implements
                 jsonWriter.name("CollectionName");
                 jsonWriter.value(collectionName);
             }
-            if (createGeofenceCollectionRequest.getDescription() != null) {
-                String description = createGeofenceCollectionRequest.getDescription();
-                jsonWriter.name("Description");
-                jsonWriter.value(description);
-            }
-            if (createGeofenceCollectionRequest.getKmsKeyId() != null) {
-                String kmsKeyId = createGeofenceCollectionRequest.getKmsKeyId();
-                jsonWriter.name("KmsKeyId");
-                jsonWriter.value(kmsKeyId);
-            }
             if (createGeofenceCollectionRequest.getPricingPlan() != null) {
                 String pricingPlan = createGeofenceCollectionRequest.getPricingPlan();
                 jsonWriter.name("PricingPlan");
@@ -86,6 +76,11 @@ public class CreateGeofenceCollectionRequestMarshaller implements
                         .getPricingPlanDataSource();
                 jsonWriter.name("PricingPlanDataSource");
                 jsonWriter.value(pricingPlanDataSource);
+            }
+            if (createGeofenceCollectionRequest.getDescription() != null) {
+                String description = createGeofenceCollectionRequest.getDescription();
+                jsonWriter.name("Description");
+                jsonWriter.value(description);
             }
             if (createGeofenceCollectionRequest.getTags() != null) {
                 java.util.Map<String, String> tags = createGeofenceCollectionRequest.getTags();
@@ -100,6 +95,11 @@ public class CreateGeofenceCollectionRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (createGeofenceCollectionRequest.getKmsKeyId() != null) {
+                String kmsKeyId = createGeofenceCollectionRequest.getKmsKeyId();
+                jsonWriter.name("KmsKeyId");
+                jsonWriter.value(kmsKeyId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
@@ -112,9 +112,9 @@ public class CreateGeofenceCollectionRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
-        request.setHostPrefix("geofencing.");
+        request.setHostPrefix("cp.geofencing.");
 
         return request;
     }

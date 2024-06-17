@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,25 +37,6 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class CreateMapRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Specifies the <code>MapConfiguration</code>, including the map style, for
-     * the map resource that you create. The map style defines the look of maps
-     * and the data provider for your map resource.
-     * </p>
-     */
-    private MapConfiguration configuration;
-
-    /**
-     * <p>
-     * An optional description for the map resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     */
-    private String description;
-
-    /**
-     * <p>
      * The name for the map resource.
      * </p>
      * <p>
@@ -82,9 +63,18 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String mapName;
+
+    /**
+     * <p>
+     * Specifies the <code>MapConfiguration</code>, including the map style, for
+     * the map resource that you create. The map style defines the look of maps
+     * and the data provider for your map resource.
+     * </p>
+     */
+    private MapConfiguration configuration;
 
     /**
      * <p>
@@ -97,6 +87,16 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      */
     private String pricingPlan;
+
+    /**
+     * <p>
+     * An optional description for the map resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     */
+    private String description;
 
     /**
      * <p>
@@ -148,120 +148,6 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the <code>MapConfiguration</code>, including the map style, for
-     * the map resource that you create. The map style defines the look of maps
-     * and the data provider for your map resource.
-     * </p>
-     *
-     * @return <p>
-     *         Specifies the <code>MapConfiguration</code>, including the map
-     *         style, for the map resource that you create. The map style
-     *         defines the look of maps and the data provider for your map
-     *         resource.
-     *         </p>
-     */
-    public MapConfiguration getConfiguration() {
-        return configuration;
-    }
-
-    /**
-     * <p>
-     * Specifies the <code>MapConfiguration</code>, including the map style, for
-     * the map resource that you create. The map style defines the look of maps
-     * and the data provider for your map resource.
-     * </p>
-     *
-     * @param configuration <p>
-     *            Specifies the <code>MapConfiguration</code>, including the map
-     *            style, for the map resource that you create. The map style
-     *            defines the look of maps and the data provider for your map
-     *            resource.
-     *            </p>
-     */
-    public void setConfiguration(MapConfiguration configuration) {
-        this.configuration = configuration;
-    }
-
-    /**
-     * <p>
-     * Specifies the <code>MapConfiguration</code>, including the map style, for
-     * the map resource that you create. The map style defines the look of maps
-     * and the data provider for your map resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param configuration <p>
-     *            Specifies the <code>MapConfiguration</code>, including the map
-     *            style, for the map resource that you create. The map style
-     *            defines the look of maps and the data provider for your map
-     *            resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateMapRequest withConfiguration(MapConfiguration configuration) {
-        this.configuration = configuration;
-        return this;
-    }
-
-    /**
-     * <p>
-     * An optional description for the map resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @return <p>
-     *         An optional description for the map resource.
-     *         </p>
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * <p>
-     * An optional description for the map resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param description <p>
-     *            An optional description for the map resource.
-     *            </p>
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * <p>
-     * An optional description for the map resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param description <p>
-     *            An optional description for the map resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateMapRequest withDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    /**
-     * <p>
      * The name for the map resource.
      * </p>
      * <p>
@@ -288,7 +174,7 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
      *         The name for the map resource.
@@ -347,7 +233,7 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param mapName <p>
      *            The name for the map resource.
@@ -409,7 +295,7 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param mapName <p>
      *            The name for the map resource.
@@ -440,6 +326,66 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      */
     public CreateMapRequest withMapName(String mapName) {
         this.mapName = mapName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies the <code>MapConfiguration</code>, including the map style, for
+     * the map resource that you create. The map style defines the look of maps
+     * and the data provider for your map resource.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies the <code>MapConfiguration</code>, including the map
+     *         style, for the map resource that you create. The map style
+     *         defines the look of maps and the data provider for your map
+     *         resource.
+     *         </p>
+     */
+    public MapConfiguration getConfiguration() {
+        return configuration;
+    }
+
+    /**
+     * <p>
+     * Specifies the <code>MapConfiguration</code>, including the map style, for
+     * the map resource that you create. The map style defines the look of maps
+     * and the data provider for your map resource.
+     * </p>
+     *
+     * @param configuration <p>
+     *            Specifies the <code>MapConfiguration</code>, including the map
+     *            style, for the map resource that you create. The map style
+     *            defines the look of maps and the data provider for your map
+     *            resource.
+     *            </p>
+     */
+    public void setConfiguration(MapConfiguration configuration) {
+        this.configuration = configuration;
+    }
+
+    /**
+     * <p>
+     * Specifies the <code>MapConfiguration</code>, including the map style, for
+     * the map resource that you create. The map style defines the look of maps
+     * and the data provider for your map resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param configuration <p>
+     *            Specifies the <code>MapConfiguration</code>, including the map
+     *            style, for the map resource that you create. The map style
+     *            defines the look of maps and the data provider for your map
+     *            resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateMapRequest withConfiguration(MapConfiguration configuration) {
+        this.configuration = configuration;
         return this;
     }
 
@@ -552,6 +498,60 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      */
     public CreateMapRequest withPricingPlan(PricingPlan pricingPlan) {
         this.pricingPlan = pricingPlan.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * An optional description for the map resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @return <p>
+     *         An optional description for the map resource.
+     *         </p>
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * <p>
+     * An optional description for the map resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            An optional description for the map resource.
+     *            </p>
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * <p>
+     * An optional description for the map resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            An optional description for the map resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateMapRequest withDescription(String description) {
+        this.description = description;
         return this;
     }
 
@@ -933,14 +933,14 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getConfiguration() != null)
-            sb.append("Configuration: " + getConfiguration() + ",");
-        if (getDescription() != null)
-            sb.append("Description: " + getDescription() + ",");
         if (getMapName() != null)
             sb.append("MapName: " + getMapName() + ",");
+        if (getConfiguration() != null)
+            sb.append("Configuration: " + getConfiguration() + ",");
         if (getPricingPlan() != null)
             sb.append("PricingPlan: " + getPricingPlan() + ",");
+        if (getDescription() != null)
+            sb.append("Description: " + getDescription() + ",");
         if (getTags() != null)
             sb.append("Tags: " + getTags());
         sb.append("}");
@@ -952,13 +952,13 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getMapName() == null) ? 0 : getMapName().hashCode());
         hashCode = prime * hashCode
                 + ((getConfiguration() == null) ? 0 : getConfiguration().hashCode());
         hashCode = prime * hashCode
-                + ((getDescription() == null) ? 0 : getDescription().hashCode());
-        hashCode = prime * hashCode + ((getMapName() == null) ? 0 : getMapName().hashCode());
-        hashCode = prime * hashCode
                 + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
+        hashCode = prime * hashCode
+                + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
@@ -974,24 +974,24 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
             return false;
         CreateMapRequest other = (CreateMapRequest) obj;
 
+        if (other.getMapName() == null ^ this.getMapName() == null)
+            return false;
+        if (other.getMapName() != null && other.getMapName().equals(this.getMapName()) == false)
+            return false;
         if (other.getConfiguration() == null ^ this.getConfiguration() == null)
             return false;
         if (other.getConfiguration() != null
                 && other.getConfiguration().equals(this.getConfiguration()) == false)
             return false;
-        if (other.getDescription() == null ^ this.getDescription() == null)
-            return false;
-        if (other.getDescription() != null
-                && other.getDescription().equals(this.getDescription()) == false)
-            return false;
-        if (other.getMapName() == null ^ this.getMapName() == null)
-            return false;
-        if (other.getMapName() != null && other.getMapName().equals(this.getMapName()) == false)
-            return false;
         if (other.getPricingPlan() == null ^ this.getPricingPlan() == null)
             return false;
         if (other.getPricingPlan() != null
                 && other.getPricingPlan().equals(this.getPricingPlan()) == false)
+            return false;
+        if (other.getDescription() == null ^ this.getDescription() == null)
+            return false;
+        if (other.getDescription() != null
+                && other.getDescription().equals(this.getDescription()) == false)
             return false;
         if (other.getTags() == null ^ this.getTags() == null)
             return false;

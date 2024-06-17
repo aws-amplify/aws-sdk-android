@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,6 +27,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class UpdateKeyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
+     * The name of the API key resource to update.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     */
+    private String keyName;
+
+    /**
+     * <p>
      * Updates the description for the API key resource.
      * </p>
      * <p>
@@ -43,6 +54,14 @@ public class UpdateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      */
     private java.util.Date expireTime;
+
+    /**
+     * <p>
+     * Whether the API key should expire. Set to <code>true</code> to set the
+     * API key to have no expiration time.
+     * </p>
+     */
+    private Boolean noExpiry;
 
     /**
      * <p>
@@ -64,29 +83,67 @@ public class UpdateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
+     * Updates the API key restrictions for the API key resource.
+     * </p>
+     */
+    private ApiKeyRestrictions restrictions;
+
+    /**
+     * <p>
      * The name of the API key resource to update.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The name of the API key resource to update.
+     *         </p>
      */
-    private String keyName;
+    public String getKeyName() {
+        return keyName;
+    }
 
     /**
      * <p>
-     * Whether the API key should expire. Set to <code>true</code> to set the
-     * API key to have no expiration time.
+     * The name of the API key resource to update.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param keyName <p>
+     *            The name of the API key resource to update.
+     *            </p>
      */
-    private Boolean noExpiry;
+    public void setKeyName(String keyName) {
+        this.keyName = keyName;
+    }
 
     /**
      * <p>
-     * Updates the API key restrictions for the API key resource.
+     * The name of the API key resource to update.
      * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param keyName <p>
+     *            The name of the API key resource to update.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    private ApiKeyRestrictions restrictions;
+    public UpdateKeyRequest withKeyName(String keyName) {
+        this.keyName = keyName;
+        return this;
+    }
 
     /**
      * <p>
@@ -199,6 +256,72 @@ public class UpdateKeyRequest extends AmazonWebServiceRequest implements Seriali
      */
     public UpdateKeyRequest withExpireTime(java.util.Date expireTime) {
         this.expireTime = expireTime;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Whether the API key should expire. Set to <code>true</code> to set the
+     * API key to have no expiration time.
+     * </p>
+     *
+     * @return <p>
+     *         Whether the API key should expire. Set to <code>true</code> to
+     *         set the API key to have no expiration time.
+     *         </p>
+     */
+    public Boolean isNoExpiry() {
+        return noExpiry;
+    }
+
+    /**
+     * <p>
+     * Whether the API key should expire. Set to <code>true</code> to set the
+     * API key to have no expiration time.
+     * </p>
+     *
+     * @return <p>
+     *         Whether the API key should expire. Set to <code>true</code> to
+     *         set the API key to have no expiration time.
+     *         </p>
+     */
+    public Boolean getNoExpiry() {
+        return noExpiry;
+    }
+
+    /**
+     * <p>
+     * Whether the API key should expire. Set to <code>true</code> to set the
+     * API key to have no expiration time.
+     * </p>
+     *
+     * @param noExpiry <p>
+     *            Whether the API key should expire. Set to <code>true</code> to
+     *            set the API key to have no expiration time.
+     *            </p>
+     */
+    public void setNoExpiry(Boolean noExpiry) {
+        this.noExpiry = noExpiry;
+    }
+
+    /**
+     * <p>
+     * Whether the API key should expire. Set to <code>true</code> to set the
+     * API key to have no expiration time.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param noExpiry <p>
+     *            Whether the API key should expire. Set to <code>true</code> to
+     *            set the API key to have no expiration time.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateKeyRequest withNoExpiry(Boolean noExpiry) {
+        this.noExpiry = noExpiry;
         return this;
     }
 
@@ -350,129 +473,6 @@ public class UpdateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The name of the API key resource to update.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         The name of the API key resource to update.
-     *         </p>
-     */
-    public String getKeyName() {
-        return keyName;
-    }
-
-    /**
-     * <p>
-     * The name of the API key resource to update.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param keyName <p>
-     *            The name of the API key resource to update.
-     *            </p>
-     */
-    public void setKeyName(String keyName) {
-        this.keyName = keyName;
-    }
-
-    /**
-     * <p>
-     * The name of the API key resource to update.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param keyName <p>
-     *            The name of the API key resource to update.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateKeyRequest withKeyName(String keyName) {
-        this.keyName = keyName;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Whether the API key should expire. Set to <code>true</code> to set the
-     * API key to have no expiration time.
-     * </p>
-     *
-     * @return <p>
-     *         Whether the API key should expire. Set to <code>true</code> to
-     *         set the API key to have no expiration time.
-     *         </p>
-     */
-    public Boolean isNoExpiry() {
-        return noExpiry;
-    }
-
-    /**
-     * <p>
-     * Whether the API key should expire. Set to <code>true</code> to set the
-     * API key to have no expiration time.
-     * </p>
-     *
-     * @return <p>
-     *         Whether the API key should expire. Set to <code>true</code> to
-     *         set the API key to have no expiration time.
-     *         </p>
-     */
-    public Boolean getNoExpiry() {
-        return noExpiry;
-    }
-
-    /**
-     * <p>
-     * Whether the API key should expire. Set to <code>true</code> to set the
-     * API key to have no expiration time.
-     * </p>
-     *
-     * @param noExpiry <p>
-     *            Whether the API key should expire. Set to <code>true</code> to
-     *            set the API key to have no expiration time.
-     *            </p>
-     */
-    public void setNoExpiry(Boolean noExpiry) {
-        this.noExpiry = noExpiry;
-    }
-
-    /**
-     * <p>
-     * Whether the API key should expire. Set to <code>true</code> to set the
-     * API key to have no expiration time.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param noExpiry <p>
-     *            Whether the API key should expire. Set to <code>true</code> to
-     *            set the API key to have no expiration time.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateKeyRequest withNoExpiry(Boolean noExpiry) {
-        this.noExpiry = noExpiry;
-        return this;
-    }
-
-    /**
-     * <p>
      * Updates the API key restrictions for the API key resource.
      * </p>
      *
@@ -527,16 +527,16 @@ public class UpdateKeyRequest extends AmazonWebServiceRequest implements Seriali
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getKeyName() != null)
+            sb.append("KeyName: " + getKeyName() + ",");
         if (getDescription() != null)
             sb.append("Description: " + getDescription() + ",");
         if (getExpireTime() != null)
             sb.append("ExpireTime: " + getExpireTime() + ",");
-        if (getForceUpdate() != null)
-            sb.append("ForceUpdate: " + getForceUpdate() + ",");
-        if (getKeyName() != null)
-            sb.append("KeyName: " + getKeyName() + ",");
         if (getNoExpiry() != null)
             sb.append("NoExpiry: " + getNoExpiry() + ",");
+        if (getForceUpdate() != null)
+            sb.append("ForceUpdate: " + getForceUpdate() + ",");
         if (getRestrictions() != null)
             sb.append("Restrictions: " + getRestrictions());
         sb.append("}");
@@ -548,13 +548,13 @@ public class UpdateKeyRequest extends AmazonWebServiceRequest implements Seriali
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getKeyName() == null) ? 0 : getKeyName().hashCode());
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getExpireTime() == null) ? 0 : getExpireTime().hashCode());
+        hashCode = prime * hashCode + ((getNoExpiry() == null) ? 0 : getNoExpiry().hashCode());
         hashCode = prime * hashCode
                 + ((getForceUpdate() == null) ? 0 : getForceUpdate().hashCode());
-        hashCode = prime * hashCode + ((getKeyName() == null) ? 0 : getKeyName().hashCode());
-        hashCode = prime * hashCode + ((getNoExpiry() == null) ? 0 : getNoExpiry().hashCode());
         hashCode = prime * hashCode
                 + ((getRestrictions() == null) ? 0 : getRestrictions().hashCode());
         return hashCode;
@@ -571,6 +571,10 @@ public class UpdateKeyRequest extends AmazonWebServiceRequest implements Seriali
             return false;
         UpdateKeyRequest other = (UpdateKeyRequest) obj;
 
+        if (other.getKeyName() == null ^ this.getKeyName() == null)
+            return false;
+        if (other.getKeyName() != null && other.getKeyName().equals(this.getKeyName()) == false)
+            return false;
         if (other.getDescription() == null ^ this.getDescription() == null)
             return false;
         if (other.getDescription() != null
@@ -581,18 +585,14 @@ public class UpdateKeyRequest extends AmazonWebServiceRequest implements Seriali
         if (other.getExpireTime() != null
                 && other.getExpireTime().equals(this.getExpireTime()) == false)
             return false;
+        if (other.getNoExpiry() == null ^ this.getNoExpiry() == null)
+            return false;
+        if (other.getNoExpiry() != null && other.getNoExpiry().equals(this.getNoExpiry()) == false)
+            return false;
         if (other.getForceUpdate() == null ^ this.getForceUpdate() == null)
             return false;
         if (other.getForceUpdate() != null
                 && other.getForceUpdate().equals(this.getForceUpdate()) == false)
-            return false;
-        if (other.getKeyName() == null ^ this.getKeyName() == null)
-            return false;
-        if (other.getKeyName() != null && other.getKeyName().equals(this.getKeyName()) == false)
-            return false;
-        if (other.getNoExpiry() == null ^ this.getNoExpiry() == null)
-            return false;
-        if (other.getNoExpiry() != null && other.getNoExpiry().equals(this.getNoExpiry()) == false)
             return false;
         if (other.getRestrictions() == null ^ this.getRestrictions() == null)
             return false;

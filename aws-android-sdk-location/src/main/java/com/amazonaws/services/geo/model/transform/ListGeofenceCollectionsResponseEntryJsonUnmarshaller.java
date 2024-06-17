@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,10 +41,6 @@ class ListGeofenceCollectionsResponseEntryJsonUnmarshaller implements
                 listGeofenceCollectionsResponseEntry.setCollectionName(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
-            } else if (name.equals("CreateTime")) {
-                listGeofenceCollectionsResponseEntry.setCreateTime(DateJsonUnmarshaller
-                        .getInstance(TimestampFormat.ISO_8601)
-                        .unmarshall(context));
             } else if (name.equals("Description")) {
                 listGeofenceCollectionsResponseEntry.setDescription(StringJsonUnmarshaller
                         .getInstance()
@@ -57,6 +53,10 @@ class ListGeofenceCollectionsResponseEntryJsonUnmarshaller implements
                 listGeofenceCollectionsResponseEntry
                         .setPricingPlanDataSource(StringJsonUnmarshaller.getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("CreateTime")) {
+                listGeofenceCollectionsResponseEntry.setCreateTime(DateJsonUnmarshaller
+                        .getInstance(TimestampFormat.ISO_8601)
+                        .unmarshall(context));
             } else if (name.equals("UpdateTime")) {
                 listGeofenceCollectionsResponseEntry.setUpdateTime(DateJsonUnmarshaller
                         .getInstance(TimestampFormat.ISO_8601)

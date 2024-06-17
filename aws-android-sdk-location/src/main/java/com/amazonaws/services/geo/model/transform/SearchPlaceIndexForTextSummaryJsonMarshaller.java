@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,6 +27,11 @@ class SearchPlaceIndexForTextSummaryJsonMarshaller {
     public void marshall(SearchPlaceIndexForTextSummary searchPlaceIndexForTextSummary,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (searchPlaceIndexForTextSummary.getText() != null) {
+            String text = searchPlaceIndexForTextSummary.getText();
+            jsonWriter.name("Text");
+            jsonWriter.value(text);
+        }
         if (searchPlaceIndexForTextSummary.getBiasPosition() != null) {
             java.util.List<Double> biasPosition = searchPlaceIndexForTextSummary.getBiasPosition();
             jsonWriter.name("BiasPosition");
@@ -38,11 +43,6 @@ class SearchPlaceIndexForTextSummaryJsonMarshaller {
             }
             jsonWriter.endArray();
         }
-        if (searchPlaceIndexForTextSummary.getDataSource() != null) {
-            String dataSource = searchPlaceIndexForTextSummary.getDataSource();
-            jsonWriter.name("DataSource");
-            jsonWriter.value(dataSource);
-        }
         if (searchPlaceIndexForTextSummary.getFilterBBox() != null) {
             java.util.List<Double> filterBBox = searchPlaceIndexForTextSummary.getFilterBBox();
             jsonWriter.name("FilterBBox");
@@ -50,18 +50,6 @@ class SearchPlaceIndexForTextSummaryJsonMarshaller {
             for (Double filterBBoxItem : filterBBox) {
                 if (filterBBoxItem != null) {
                     jsonWriter.value(filterBBoxItem);
-                }
-            }
-            jsonWriter.endArray();
-        }
-        if (searchPlaceIndexForTextSummary.getFilterCategories() != null) {
-            java.util.List<String> filterCategories = searchPlaceIndexForTextSummary
-                    .getFilterCategories();
-            jsonWriter.name("FilterCategories");
-            jsonWriter.beginArray();
-            for (String filterCategoriesItem : filterCategories) {
-                if (filterCategoriesItem != null) {
-                    jsonWriter.value(filterCategoriesItem);
                 }
             }
             jsonWriter.endArray();
@@ -77,11 +65,6 @@ class SearchPlaceIndexForTextSummaryJsonMarshaller {
                 }
             }
             jsonWriter.endArray();
-        }
-        if (searchPlaceIndexForTextSummary.getLanguage() != null) {
-            String language = searchPlaceIndexForTextSummary.getLanguage();
-            jsonWriter.name("Language");
-            jsonWriter.value(language);
         }
         if (searchPlaceIndexForTextSummary.getMaxResults() != null) {
             Integer maxResults = searchPlaceIndexForTextSummary.getMaxResults();
@@ -99,10 +82,27 @@ class SearchPlaceIndexForTextSummaryJsonMarshaller {
             }
             jsonWriter.endArray();
         }
-        if (searchPlaceIndexForTextSummary.getText() != null) {
-            String text = searchPlaceIndexForTextSummary.getText();
-            jsonWriter.name("Text");
-            jsonWriter.value(text);
+        if (searchPlaceIndexForTextSummary.getDataSource() != null) {
+            String dataSource = searchPlaceIndexForTextSummary.getDataSource();
+            jsonWriter.name("DataSource");
+            jsonWriter.value(dataSource);
+        }
+        if (searchPlaceIndexForTextSummary.getLanguage() != null) {
+            String language = searchPlaceIndexForTextSummary.getLanguage();
+            jsonWriter.name("Language");
+            jsonWriter.value(language);
+        }
+        if (searchPlaceIndexForTextSummary.getFilterCategories() != null) {
+            java.util.List<String> filterCategories = searchPlaceIndexForTextSummary
+                    .getFilterCategories();
+            jsonWriter.name("FilterCategories");
+            jsonWriter.beginArray();
+            for (String filterCategoriesItem : filterCategories) {
+                if (filterCategoriesItem != null) {
+                    jsonWriter.value(filterCategoriesItem);
+                }
+            }
+            jsonWriter.endArray();
         }
         jsonWriter.endObject();
     }

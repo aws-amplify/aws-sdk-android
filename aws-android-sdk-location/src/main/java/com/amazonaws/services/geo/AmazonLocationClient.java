@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -2090,6 +2090,75 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
+     * Evaluates device positions against geofence geometries from a given
+     * geofence collection. The event forecasts three states for which a device
+     * can be in relative to a geofence:
+     * </p>
+     * <p>
+     * <code>ENTER</code>: If a device is outside of a geofence, but would
+     * breach the fence if the device is moving at its current speed within time
+     * horizon window.
+     * </p>
+     * <p>
+     * <code>EXIT</code>: If a device is inside of a geofence, but would breach
+     * the fence if the device is moving at its current speed within time
+     * horizon window.
+     * </p>
+     * <p>
+     * <code>IDLE</code>: If a device is inside of a geofence, and the device is
+     * not moving.
+     * </p>
+     * 
+     * @param forecastGeofenceEventsRequest
+     * @return forecastGeofenceEventsResult The response from the
+     *         ForecastGeofenceEvents service method, as returned by AWS
+     *         Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public ForecastGeofenceEventsResult forecastGeofenceEvents(
+            ForecastGeofenceEventsRequest forecastGeofenceEventsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(forecastGeofenceEventsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ForecastGeofenceEventsRequest> request = null;
+        Response<ForecastGeofenceEventsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ForecastGeofenceEventsRequestMarshaller()
+                        .marshall(forecastGeofenceEventsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ForecastGeofenceEventsResult, JsonUnmarshallerContext> unmarshaller = new ForecastGeofenceEventsResultJsonUnmarshaller();
+            JsonResponseHandler<ForecastGeofenceEventsResult> responseHandler = new JsonResponseHandler<ForecastGeofenceEventsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Retrieves a device's most recent position according to its sample time.
      * </p>
      * <note>
@@ -2208,6 +2277,12 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
      * <p>
      * Retrieves the geofence details from a geofence collection.
      * </p>
+     * <note>
+     * <p>
+     * The returned geometry will always match the geometry format used when the
+     * geofence was created.
+     * </p>
+     * </note>
      * 
      * @param getGeofenceRequest
      * @return getGeofenceResult The response from the GetGeofence service
@@ -3713,6 +3788,61 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
             }
             Unmarshaller<UpdateTrackerResult, JsonUnmarshallerContext> unmarshaller = new UpdateTrackerResultJsonUnmarshaller();
             JsonResponseHandler<UpdateTrackerResult> responseHandler = new JsonResponseHandler<UpdateTrackerResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Verifies the integrity of the device's position by determining if it was
+     * reported behind a proxy, and by comparing it to an inferred position
+     * estimated based on the device's state.
+     * </p>
+     * 
+     * @param verifyDevicePositionRequest
+     * @return verifyDevicePositionResult The response from the
+     *         VerifyDevicePosition service method, as returned by AWS Location
+     *         service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public VerifyDevicePositionResult verifyDevicePosition(
+            VerifyDevicePositionRequest verifyDevicePositionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(verifyDevicePositionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<VerifyDevicePositionRequest> request = null;
+        Response<VerifyDevicePositionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new VerifyDevicePositionRequestMarshaller()
+                        .marshall(verifyDevicePositionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<VerifyDevicePositionResult, JsonUnmarshallerContext> unmarshaller = new VerifyDevicePositionResultJsonUnmarshaller();
+            JsonResponseHandler<VerifyDevicePositionResult> responseHandler = new JsonResponseHandler<VerifyDevicePositionResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

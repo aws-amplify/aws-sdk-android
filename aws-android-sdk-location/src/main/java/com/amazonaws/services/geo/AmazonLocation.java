@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -1081,6 +1081,48 @@ public interface AmazonLocation {
 
     /**
      * <p>
+     * Evaluates device positions against geofence geometries from a given
+     * geofence collection. The event forecasts three states for which a device
+     * can be in relative to a geofence:
+     * </p>
+     * <p>
+     * <code>ENTER</code>: If a device is outside of a geofence, but would
+     * breach the fence if the device is moving at its current speed within time
+     * horizon window.
+     * </p>
+     * <p>
+     * <code>EXIT</code>: If a device is inside of a geofence, but would breach
+     * the fence if the device is moving at its current speed within time
+     * horizon window.
+     * </p>
+     * <p>
+     * <code>IDLE</code>: If a device is inside of a geofence, and the device is
+     * not moving.
+     * </p>
+     * 
+     * @param forecastGeofenceEventsRequest
+     * @return forecastGeofenceEventsResult The response from the
+     *         ForecastGeofenceEvents service method, as returned by AWS
+     *         Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    ForecastGeofenceEventsResult forecastGeofenceEvents(
+            ForecastGeofenceEventsRequest forecastGeofenceEventsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Retrieves a device's most recent position according to its sample time.
      * </p>
      * <note>
@@ -1144,6 +1186,12 @@ public interface AmazonLocation {
      * <p>
      * Retrieves the geofence details from a geofence collection.
      * </p>
+     * <note>
+     * <p>
+     * The returned geometry will always match the geometry format used when the
+     * geofence was created.
+     * </p>
+     * </note>
      * 
      * @param getGeofenceRequest
      * @return getGeofenceResult The response from the GetGeofence service
@@ -1920,6 +1968,34 @@ public interface AmazonLocation {
      */
     UpdateTrackerResult updateTracker(UpdateTrackerRequest updateTrackerRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Verifies the integrity of the device's position by determining if it was
+     * reported behind a proxy, and by comparing it to an inferred position
+     * estimated based on the device's state.
+     * </p>
+     * 
+     * @param verifyDevicePositionRequest
+     * @return verifyDevicePositionResult The response from the
+     *         VerifyDevicePosition service method, as returned by AWS Location
+     *         service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    VerifyDevicePositionResult verifyDevicePosition(
+            VerifyDevicePositionRequest verifyDevicePositionRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * Shuts down this client object, releasing any resources that might be held

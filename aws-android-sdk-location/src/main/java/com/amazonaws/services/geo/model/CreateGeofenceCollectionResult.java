@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,6 +20,17 @@ import java.io.Serializable;
 public class CreateGeofenceCollectionResult implements Serializable {
     /**
      * <p>
+     * The name for the geofence collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     */
+    private String collectionName;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
      * when you need to specify a resource across all Amazon Web Services.
      * </p>
@@ -35,21 +46,10 @@ public class CreateGeofenceCollectionResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      */
     private String collectionArn;
-
-    /**
-     * <p>
-     * The name for the geofence collection.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     */
-    private String collectionName;
 
     /**
      * <p>
@@ -62,6 +62,63 @@ public class CreateGeofenceCollectionResult implements Serializable {
 
     /**
      * <p>
+     * The name for the geofence collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The name for the geofence collection.
+     *         </p>
+     */
+    public String getCollectionName() {
+        return collectionName;
+    }
+
+    /**
+     * <p>
+     * The name for the geofence collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param collectionName <p>
+     *            The name for the geofence collection.
+     *            </p>
+     */
+    public void setCollectionName(String collectionName) {
+        this.collectionName = collectionName;
+    }
+
+    /**
+     * <p>
+     * The name for the geofence collection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param collectionName <p>
+     *            The name for the geofence collection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateGeofenceCollectionResult withCollectionName(String collectionName) {
+        this.collectionName = collectionName;
+        return this;
+    }
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
      * when you need to specify a resource across all Amazon Web Services.
      * </p>
@@ -77,8 +134,8 @@ public class CreateGeofenceCollectionResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for the geofence collection
@@ -115,8 +172,8 @@ public class CreateGeofenceCollectionResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      *
      * @param collectionArn <p>
      *            The Amazon Resource Name (ARN) for the geofence collection
@@ -156,8 +213,8 @@ public class CreateGeofenceCollectionResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      *
      * @param collectionArn <p>
      *            The Amazon Resource Name (ARN) for the geofence collection
@@ -177,63 +234,6 @@ public class CreateGeofenceCollectionResult implements Serializable {
      */
     public CreateGeofenceCollectionResult withCollectionArn(String collectionArn) {
         this.collectionArn = collectionArn;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The name for the geofence collection.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         The name for the geofence collection.
-     *         </p>
-     */
-    public String getCollectionName() {
-        return collectionName;
-    }
-
-    /**
-     * <p>
-     * The name for the geofence collection.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param collectionName <p>
-     *            The name for the geofence collection.
-     *            </p>
-     */
-    public void setCollectionName(String collectionName) {
-        this.collectionName = collectionName;
-    }
-
-    /**
-     * <p>
-     * The name for the geofence collection.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param collectionName <p>
-     *            The name for the geofence collection.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateGeofenceCollectionResult withCollectionName(String collectionName) {
-        this.collectionName = collectionName;
         return this;
     }
 
@@ -307,10 +307,10 @@ public class CreateGeofenceCollectionResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCollectionArn() != null)
-            sb.append("CollectionArn: " + getCollectionArn() + ",");
         if (getCollectionName() != null)
             sb.append("CollectionName: " + getCollectionName() + ",");
+        if (getCollectionArn() != null)
+            sb.append("CollectionArn: " + getCollectionArn() + ",");
         if (getCreateTime() != null)
             sb.append("CreateTime: " + getCreateTime());
         sb.append("}");
@@ -323,9 +323,9 @@ public class CreateGeofenceCollectionResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode
-                + ((getCollectionArn() == null) ? 0 : getCollectionArn().hashCode());
-        hashCode = prime * hashCode
                 + ((getCollectionName() == null) ? 0 : getCollectionName().hashCode());
+        hashCode = prime * hashCode
+                + ((getCollectionArn() == null) ? 0 : getCollectionArn().hashCode());
         hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         return hashCode;
     }
@@ -341,15 +341,15 @@ public class CreateGeofenceCollectionResult implements Serializable {
             return false;
         CreateGeofenceCollectionResult other = (CreateGeofenceCollectionResult) obj;
 
-        if (other.getCollectionArn() == null ^ this.getCollectionArn() == null)
-            return false;
-        if (other.getCollectionArn() != null
-                && other.getCollectionArn().equals(this.getCollectionArn()) == false)
-            return false;
         if (other.getCollectionName() == null ^ this.getCollectionName() == null)
             return false;
         if (other.getCollectionName() != null
                 && other.getCollectionName().equals(this.getCollectionName()) == false)
+            return false;
+        if (other.getCollectionArn() == null ^ this.getCollectionArn() == null)
+            return false;
+        if (other.getCollectionArn() != null
+                && other.getCollectionArn().equals(this.getCollectionArn()) == false)
             return false;
         if (other.getCreateTime() == null ^ this.getCreateTime() == null)
             return false;

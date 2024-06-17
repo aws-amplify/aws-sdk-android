@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,6 +26,17 @@ import java.io.Serializable;
 public class BatchPutGeofenceSuccess implements Serializable {
     /**
      * <p>
+     * The geofence successfully stored in a geofence collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
+     */
+    private String geofenceId;
+
+    /**
+     * <p>
      * The timestamp for when the geofence was stored in a geofence collection
      * in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
@@ -35,23 +46,69 @@ public class BatchPutGeofenceSuccess implements Serializable {
 
     /**
      * <p>
-     * The geofence successfully stored in a geofence collection.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
-     */
-    private String geofenceId;
-
-    /**
-     * <p>
      * The timestamp for when the geofence was last updated in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
      * </p>
      */
     private java.util.Date updateTime;
+
+    /**
+     * <p>
+     * The geofence successfully stored in a geofence collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
+     *
+     * @return <p>
+     *         The geofence successfully stored in a geofence collection.
+     *         </p>
+     */
+    public String getGeofenceId() {
+        return geofenceId;
+    }
+
+    /**
+     * <p>
+     * The geofence successfully stored in a geofence collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
+     *
+     * @param geofenceId <p>
+     *            The geofence successfully stored in a geofence collection.
+     *            </p>
+     */
+    public void setGeofenceId(String geofenceId) {
+        this.geofenceId = geofenceId;
+    }
+
+    /**
+     * <p>
+     * The geofence successfully stored in a geofence collection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
+     *
+     * @param geofenceId <p>
+     *            The geofence successfully stored in a geofence collection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public BatchPutGeofenceSuccess withGeofenceId(String geofenceId) {
+        this.geofenceId = geofenceId;
+        return this;
+    }
 
     /**
      * <p>
@@ -110,63 +167,6 @@ public class BatchPutGeofenceSuccess implements Serializable {
      */
     public BatchPutGeofenceSuccess withCreateTime(java.util.Date createTime) {
         this.createTime = createTime;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The geofence successfully stored in a geofence collection.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
-     *
-     * @return <p>
-     *         The geofence successfully stored in a geofence collection.
-     *         </p>
-     */
-    public String getGeofenceId() {
-        return geofenceId;
-    }
-
-    /**
-     * <p>
-     * The geofence successfully stored in a geofence collection.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
-     *
-     * @param geofenceId <p>
-     *            The geofence successfully stored in a geofence collection.
-     *            </p>
-     */
-    public void setGeofenceId(String geofenceId) {
-        this.geofenceId = geofenceId;
-    }
-
-    /**
-     * <p>
-     * The geofence successfully stored in a geofence collection.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
-     *
-     * @param geofenceId <p>
-     *            The geofence successfully stored in a geofence collection.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public BatchPutGeofenceSuccess withGeofenceId(String geofenceId) {
-        this.geofenceId = geofenceId;
         return this;
     }
 
@@ -240,10 +240,10 @@ public class BatchPutGeofenceSuccess implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCreateTime() != null)
-            sb.append("CreateTime: " + getCreateTime() + ",");
         if (getGeofenceId() != null)
             sb.append("GeofenceId: " + getGeofenceId() + ",");
+        if (getCreateTime() != null)
+            sb.append("CreateTime: " + getCreateTime() + ",");
         if (getUpdateTime() != null)
             sb.append("UpdateTime: " + getUpdateTime());
         sb.append("}");
@@ -255,8 +255,8 @@ public class BatchPutGeofenceSuccess implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         hashCode = prime * hashCode + ((getGeofenceId() == null) ? 0 : getGeofenceId().hashCode());
+        hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         hashCode = prime * hashCode + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return hashCode;
     }
@@ -272,15 +272,15 @@ public class BatchPutGeofenceSuccess implements Serializable {
             return false;
         BatchPutGeofenceSuccess other = (BatchPutGeofenceSuccess) obj;
 
-        if (other.getCreateTime() == null ^ this.getCreateTime() == null)
-            return false;
-        if (other.getCreateTime() != null
-                && other.getCreateTime().equals(this.getCreateTime()) == false)
-            return false;
         if (other.getGeofenceId() == null ^ this.getGeofenceId() == null)
             return false;
         if (other.getGeofenceId() != null
                 && other.getGeofenceId().equals(this.getGeofenceId()) == false)
+            return false;
+        if (other.getCreateTime() == null ^ this.getCreateTime() == null)
+            return false;
+        if (other.getCreateTime() != null
+                && other.getCreateTime().equals(this.getCreateTime()) == false)
             return false;
         if (other.getUpdateTime() == null ^ this.getUpdateTime() == null)
             return false;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,21 +34,39 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String indexName;
 
     /**
      * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
+     * Specifies the longitude and latitude of the position to query.
+     * </p>
+     * <p>
+     * This parameter must contain a pair of numbers. The first number
+     * represents the X coordinate, or longitude; the second number represents
+     * the Y coordinate, or latitude.
+     * </p>
+     * <p>
+     * For example, <code>[-123.1174, 49.2847]</code> represents a position with
+     * longitude <code>-123.1174</code> and latitude <code>49.2847</code>.
+     * </p>
+     */
+    private java.util.List<Double> position;
+
+    /**
+     * <p>
+     * An optional parameter. The maximum number of results returned per
+     * request.
+     * </p>
+     * <p>
+     * Default value: <code>50</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
+     * <b>Range: </b>1 - 50<br/>
      */
-    private String key;
+    private Integer maxResults;
 
     /**
      * <p>
@@ -85,33 +103,15 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * An optional parameter. The maximum number of results returned per
-     * request.
-     * </p>
-     * <p>
-     * Default value: <code>50</code>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
+     * <b>Length: </b>0 - 1000<br/>
      */
-    private Integer maxResults;
-
-    /**
-     * <p>
-     * Specifies the longitude and latitude of the position to query.
-     * </p>
-     * <p>
-     * This parameter must contain a pair of numbers. The first number
-     * represents the X coordinate, or longitude; the second number represents
-     * the Y coordinate, or latitude.
-     * </p>
-     * <p>
-     * For example, <code>[-123.1174, 49.2847]</code> represents a position with
-     * longitude <code>-123.1174</code> and latitude <code>49.2847</code>.
-     * </p>
-     */
-    private java.util.List<Double> position;
+    private String key;
 
     /**
      * <p>
@@ -120,7 +120,7 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
      *         The name of the place index resource you want to use for the
@@ -138,7 +138,7 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param indexName <p>
      *            The name of the place index resource you want to use for the
@@ -159,7 +159,7 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param indexName <p>
      *            The name of the place index resource you want to use for the
@@ -175,67 +175,229 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
+     * Specifies the longitude and latitude of the position to query.
      * </p>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
+     * This parameter must contain a pair of numbers. The first number
+     * represents the X coordinate, or longitude; the second number represents
+     * the Y coordinate, or latitude.
+     * </p>
+     * <p>
+     * For example, <code>[-123.1174, 49.2847]</code> represents a position with
+     * longitude <code>-123.1174</code> and latitude <code>49.2847</code>.
+     * </p>
      *
      * @return <p>
-     *         The optional <a href=
-     *         "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     *         >API key</a> to authorize the request.
+     *         Specifies the longitude and latitude of the position to query.
+     *         </p>
+     *         <p>
+     *         This parameter must contain a pair of numbers. The first number
+     *         represents the X coordinate, or longitude; the second number
+     *         represents the Y coordinate, or latitude.
+     *         </p>
+     *         <p>
+     *         For example, <code>[-123.1174, 49.2847]</code> represents a
+     *         position with longitude <code>-123.1174</code> and latitude
+     *         <code>49.2847</code>.
      *         </p>
      */
-    public String getKey() {
-        return key;
+    public java.util.List<Double> getPosition() {
+        return position;
     }
 
     /**
      * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
+     * Specifies the longitude and latitude of the position to query.
+     * </p>
+     * <p>
+     * This parameter must contain a pair of numbers. The first number
+     * represents the X coordinate, or longitude; the second number represents
+     * the Y coordinate, or latitude.
+     * </p>
+     * <p>
+     * For example, <code>[-123.1174, 49.2847]</code> represents a position with
+     * longitude <code>-123.1174</code> and latitude <code>49.2847</code>.
+     * </p>
+     *
+     * @param position <p>
+     *            Specifies the longitude and latitude of the position to query.
+     *            </p>
+     *            <p>
+     *            This parameter must contain a pair of numbers. The first
+     *            number represents the X coordinate, or longitude; the second
+     *            number represents the Y coordinate, or latitude.
+     *            </p>
+     *            <p>
+     *            For example, <code>[-123.1174, 49.2847]</code> represents a
+     *            position with longitude <code>-123.1174</code> and latitude
+     *            <code>49.2847</code>.
+     *            </p>
+     */
+    public void setPosition(java.util.Collection<Double> position) {
+        if (position == null) {
+            this.position = null;
+            return;
+        }
+
+        this.position = new java.util.ArrayList<Double>(position);
+    }
+
+    /**
+     * <p>
+     * Specifies the longitude and latitude of the position to query.
+     * </p>
+     * <p>
+     * This parameter must contain a pair of numbers. The first number
+     * represents the X coordinate, or longitude; the second number represents
+     * the Y coordinate, or latitude.
+     * </p>
+     * <p>
+     * For example, <code>[-123.1174, 49.2847]</code> represents a position with
+     * longitude <code>-123.1174</code> and latitude <code>49.2847</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param position <p>
+     *            Specifies the longitude and latitude of the position to query.
+     *            </p>
+     *            <p>
+     *            This parameter must contain a pair of numbers. The first
+     *            number represents the X coordinate, or longitude; the second
+     *            number represents the Y coordinate, or latitude.
+     *            </p>
+     *            <p>
+     *            For example, <code>[-123.1174, 49.2847]</code> represents a
+     *            position with longitude <code>-123.1174</code> and latitude
+     *            <code>49.2847</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForPositionRequest withPosition(Double... position) {
+        if (getPosition() == null) {
+            this.position = new java.util.ArrayList<Double>(position.length);
+        }
+        for (Double value : position) {
+            this.position.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies the longitude and latitude of the position to query.
+     * </p>
+     * <p>
+     * This parameter must contain a pair of numbers. The first number
+     * represents the X coordinate, or longitude; the second number represents
+     * the Y coordinate, or latitude.
+     * </p>
+     * <p>
+     * For example, <code>[-123.1174, 49.2847]</code> represents a position with
+     * longitude <code>-123.1174</code> and latitude <code>49.2847</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param position <p>
+     *            Specifies the longitude and latitude of the position to query.
+     *            </p>
+     *            <p>
+     *            This parameter must contain a pair of numbers. The first
+     *            number represents the X coordinate, or longitude; the second
+     *            number represents the Y coordinate, or latitude.
+     *            </p>
+     *            <p>
+     *            For example, <code>[-123.1174, 49.2847]</code> represents a
+     *            position with longitude <code>-123.1174</code> and latitude
+     *            <code>49.2847</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForPositionRequest withPosition(java.util.Collection<Double> position) {
+        setPosition(position);
+        return this;
+    }
+
+    /**
+     * <p>
+     * An optional parameter. The maximum number of results returned per
+     * request.
+     * </p>
+     * <p>
+     * Default value: <code>50</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
+     * <b>Range: </b>1 - 50<br/>
      *
-     * @param key <p>
-     *            The optional <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     *            >API key</a> to authorize the request.
-     *            </p>
+     * @return <p>
+     *         An optional parameter. The maximum number of results returned per
+     *         request.
+     *         </p>
+     *         <p>
+     *         Default value: <code>50</code>
+     *         </p>
      */
-    public void setKey(String key) {
-        this.key = key;
+    public Integer getMaxResults() {
+        return maxResults;
     }
 
     /**
      * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
+     * An optional parameter. The maximum number of results returned per
+     * request.
+     * </p>
+     * <p>
+     * Default value: <code>50</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 50<br/>
+     *
+     * @param maxResults <p>
+     *            An optional parameter. The maximum number of results returned
+     *            per request.
+     *            </p>
+     *            <p>
+     *            Default value: <code>50</code>
+     *            </p>
+     */
+    public void setMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
+    }
+
+    /**
+     * <p>
+     * An optional parameter. The maximum number of results returned per
+     * request.
+     * </p>
+     * <p>
+     * Default value: <code>50</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
+     * <b>Range: </b>1 - 50<br/>
      *
-     * @param key <p>
-     *            The optional <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     *            >API key</a> to authorize the request.
+     * @param maxResults <p>
+     *            An optional parameter. The maximum number of results returned
+     *            per request.
+     *            </p>
+     *            <p>
+     *            Default value: <code>50</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForPositionRequest withKey(String key) {
-        this.key = key;
+    public SearchPlaceIndexForPositionRequest withMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
         return this;
     }
 
@@ -433,229 +595,67 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * An optional parameter. The maximum number of results returned per
-     * request.
-     * </p>
-     * <p>
-     * Default value: <code>50</code>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
+     * <b>Length: </b>0 - 1000<br/>
      *
      * @return <p>
-     *         An optional parameter. The maximum number of results returned per
-     *         request.
-     *         </p>
-     *         <p>
-     *         Default value: <code>50</code>
+     *         The optional <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *         >API key</a> to authorize the request.
      *         </p>
      */
-    public Integer getMaxResults() {
-        return maxResults;
+    public String getKey() {
+        return key;
     }
 
     /**
      * <p>
-     * An optional parameter. The maximum number of results returned per
-     * request.
-     * </p>
-     * <p>
-     * Default value: <code>50</code>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
+     * <b>Length: </b>0 - 1000<br/>
      *
-     * @param maxResults <p>
-     *            An optional parameter. The maximum number of results returned
-     *            per request.
-     *            </p>
-     *            <p>
-     *            Default value: <code>50</code>
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
      *            </p>
      */
-    public void setMaxResults(Integer maxResults) {
-        this.maxResults = maxResults;
+    public void setKey(String key) {
+        this.key = key;
     }
 
     /**
      * <p>
-     * An optional parameter. The maximum number of results returned per
-     * request.
-     * </p>
-     * <p>
-     * Default value: <code>50</code>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
+     * <b>Length: </b>0 - 1000<br/>
      *
-     * @param maxResults <p>
-     *            An optional parameter. The maximum number of results returned
-     *            per request.
-     *            </p>
-     *            <p>
-     *            Default value: <code>50</code>
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForPositionRequest withMaxResults(Integer maxResults) {
-        this.maxResults = maxResults;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Specifies the longitude and latitude of the position to query.
-     * </p>
-     * <p>
-     * This parameter must contain a pair of numbers. The first number
-     * represents the X coordinate, or longitude; the second number represents
-     * the Y coordinate, or latitude.
-     * </p>
-     * <p>
-     * For example, <code>[-123.1174, 49.2847]</code> represents a position with
-     * longitude <code>-123.1174</code> and latitude <code>49.2847</code>.
-     * </p>
-     *
-     * @return <p>
-     *         Specifies the longitude and latitude of the position to query.
-     *         </p>
-     *         <p>
-     *         This parameter must contain a pair of numbers. The first number
-     *         represents the X coordinate, or longitude; the second number
-     *         represents the Y coordinate, or latitude.
-     *         </p>
-     *         <p>
-     *         For example, <code>[-123.1174, 49.2847]</code> represents a
-     *         position with longitude <code>-123.1174</code> and latitude
-     *         <code>49.2847</code>.
-     *         </p>
-     */
-    public java.util.List<Double> getPosition() {
-        return position;
-    }
-
-    /**
-     * <p>
-     * Specifies the longitude and latitude of the position to query.
-     * </p>
-     * <p>
-     * This parameter must contain a pair of numbers. The first number
-     * represents the X coordinate, or longitude; the second number represents
-     * the Y coordinate, or latitude.
-     * </p>
-     * <p>
-     * For example, <code>[-123.1174, 49.2847]</code> represents a position with
-     * longitude <code>-123.1174</code> and latitude <code>49.2847</code>.
-     * </p>
-     *
-     * @param position <p>
-     *            Specifies the longitude and latitude of the position to query.
-     *            </p>
-     *            <p>
-     *            This parameter must contain a pair of numbers. The first
-     *            number represents the X coordinate, or longitude; the second
-     *            number represents the Y coordinate, or latitude.
-     *            </p>
-     *            <p>
-     *            For example, <code>[-123.1174, 49.2847]</code> represents a
-     *            position with longitude <code>-123.1174</code> and latitude
-     *            <code>49.2847</code>.
-     *            </p>
-     */
-    public void setPosition(java.util.Collection<Double> position) {
-        if (position == null) {
-            this.position = null;
-            return;
-        }
-
-        this.position = new java.util.ArrayList<Double>(position);
-    }
-
-    /**
-     * <p>
-     * Specifies the longitude and latitude of the position to query.
-     * </p>
-     * <p>
-     * This parameter must contain a pair of numbers. The first number
-     * represents the X coordinate, or longitude; the second number represents
-     * the Y coordinate, or latitude.
-     * </p>
-     * <p>
-     * For example, <code>[-123.1174, 49.2847]</code> represents a position with
-     * longitude <code>-123.1174</code> and latitude <code>49.2847</code>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param position <p>
-     *            Specifies the longitude and latitude of the position to query.
-     *            </p>
-     *            <p>
-     *            This parameter must contain a pair of numbers. The first
-     *            number represents the X coordinate, or longitude; the second
-     *            number represents the Y coordinate, or latitude.
-     *            </p>
-     *            <p>
-     *            For example, <code>[-123.1174, 49.2847]</code> represents a
-     *            position with longitude <code>-123.1174</code> and latitude
-     *            <code>49.2847</code>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForPositionRequest withPosition(Double... position) {
-        if (getPosition() == null) {
-            this.position = new java.util.ArrayList<Double>(position.length);
-        }
-        for (Double value : position) {
-            this.position.add(value);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * Specifies the longitude and latitude of the position to query.
-     * </p>
-     * <p>
-     * This parameter must contain a pair of numbers. The first number
-     * represents the X coordinate, or longitude; the second number represents
-     * the Y coordinate, or latitude.
-     * </p>
-     * <p>
-     * For example, <code>[-123.1174, 49.2847]</code> represents a position with
-     * longitude <code>-123.1174</code> and latitude <code>49.2847</code>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param position <p>
-     *            Specifies the longitude and latitude of the position to query.
-     *            </p>
-     *            <p>
-     *            This parameter must contain a pair of numbers. The first
-     *            number represents the X coordinate, or longitude; the second
-     *            number represents the Y coordinate, or latitude.
-     *            </p>
-     *            <p>
-     *            For example, <code>[-123.1174, 49.2847]</code> represents a
-     *            position with longitude <code>-123.1174</code> and latitude
-     *            <code>49.2847</code>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForPositionRequest withPosition(java.util.Collection<Double> position) {
-        setPosition(position);
+    public SearchPlaceIndexForPositionRequest withKey(String key) {
+        this.key = key;
         return this;
     }
 
@@ -672,14 +672,14 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
         sb.append("{");
         if (getIndexName() != null)
             sb.append("IndexName: " + getIndexName() + ",");
-        if (getKey() != null)
-            sb.append("Key: " + getKey() + ",");
-        if (getLanguage() != null)
-            sb.append("Language: " + getLanguage() + ",");
+        if (getPosition() != null)
+            sb.append("Position: " + getPosition() + ",");
         if (getMaxResults() != null)
             sb.append("MaxResults: " + getMaxResults() + ",");
-        if (getPosition() != null)
-            sb.append("Position: " + getPosition());
+        if (getLanguage() != null)
+            sb.append("Language: " + getLanguage() + ",");
+        if (getKey() != null)
+            sb.append("Key: " + getKey());
         sb.append("}");
         return sb.toString();
     }
@@ -690,10 +690,10 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
-        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
-        hashCode = prime * hashCode + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
-        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getPosition() == null) ? 0 : getPosition().hashCode());
+        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
+        hashCode = prime * hashCode + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
         return hashCode;
     }
 
@@ -713,22 +713,22 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
         if (other.getIndexName() != null
                 && other.getIndexName().equals(this.getIndexName()) == false)
             return false;
-        if (other.getKey() == null ^ this.getKey() == null)
+        if (other.getPosition() == null ^ this.getPosition() == null)
             return false;
-        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
-            return false;
-        if (other.getLanguage() == null ^ this.getLanguage() == null)
-            return false;
-        if (other.getLanguage() != null && other.getLanguage().equals(this.getLanguage()) == false)
+        if (other.getPosition() != null && other.getPosition().equals(this.getPosition()) == false)
             return false;
         if (other.getMaxResults() == null ^ this.getMaxResults() == null)
             return false;
         if (other.getMaxResults() != null
                 && other.getMaxResults().equals(this.getMaxResults()) == false)
             return false;
-        if (other.getPosition() == null ^ this.getPosition() == null)
+        if (other.getLanguage() == null ^ this.getLanguage() == null)
             return false;
-        if (other.getPosition() != null && other.getPosition().equals(this.getPosition()) == false)
+        if (other.getLanguage() != null && other.getLanguage().equals(this.getLanguage()) == false)
+            return false;
+        if (other.getKey() == null ^ this.getKey() == null)
+            return false;
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
             return false;
         return true;
     }

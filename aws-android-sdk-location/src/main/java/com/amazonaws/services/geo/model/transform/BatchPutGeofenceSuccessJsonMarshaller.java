@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,15 +27,15 @@ class BatchPutGeofenceSuccessJsonMarshaller {
     public void marshall(BatchPutGeofenceSuccess batchPutGeofenceSuccess, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
-        if (batchPutGeofenceSuccess.getCreateTime() != null) {
-            java.util.Date createTime = batchPutGeofenceSuccess.getCreateTime();
-            jsonWriter.name("CreateTime");
-            jsonWriter.value(DateUtils.formatISO8601Date(createTime));
-        }
         if (batchPutGeofenceSuccess.getGeofenceId() != null) {
             String geofenceId = batchPutGeofenceSuccess.getGeofenceId();
             jsonWriter.name("GeofenceId");
             jsonWriter.value(geofenceId);
+        }
+        if (batchPutGeofenceSuccess.getCreateTime() != null) {
+            java.util.Date createTime = batchPutGeofenceSuccess.getCreateTime();
+            jsonWriter.name("CreateTime");
+            jsonWriter.value(DateUtils.formatISO8601Date(createTime));
         }
         if (batchPutGeofenceSuccess.getUpdateTime() != null) {
             java.util.Date updateTime = batchPutGeofenceSuccess.getUpdateTime();

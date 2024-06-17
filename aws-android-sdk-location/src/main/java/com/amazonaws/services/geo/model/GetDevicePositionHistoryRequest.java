@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,49 +34,26 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
         Serializable {
     /**
      * <p>
+     * The tracker resource receiving the request for the device position
+     * history.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     */
+    private String trackerName;
+
+    /**
+     * <p>
      * The device whose position history you want to retrieve.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      */
     private String deviceId;
-
-    /**
-     * <p>
-     * Specify the end time for the position history in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
-     * value will be the time that the request is made.
-     * </p>
-     * <p>
-     * Requirement:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * The time specified for <code>EndTimeExclusive</code> must be after the
-     * time for <code>StartTimeInclusive</code>.
-     * </p>
-     * </li>
-     * </ul>
-     */
-    private java.util.Date endTimeExclusive;
-
-    /**
-     * <p>
-     * An optional limit for the number of device positions returned in a single
-     * call.
-     * </p>
-     * <p>
-     * Default value: <code>100</code>
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 100<br/>
-     */
-    private Integer maxResults;
 
     /**
      * <p>
@@ -115,15 +92,101 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
+     * Specify the end time for the position history in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
+     * value will be the time that the request is made.
+     * </p>
+     * <p>
+     * Requirement:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The time specified for <code>EndTimeExclusive</code> must be after the
+     * time for <code>StartTimeInclusive</code>.
+     * </p>
+     * </li>
+     * </ul>
+     */
+    private java.util.Date endTimeExclusive;
+
+    /**
+     * <p>
+     * An optional limit for the number of device positions returned in a single
+     * call.
+     * </p>
+     * <p>
+     * Default value: <code>100</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 100<br/>
+     */
+    private Integer maxResults;
+
+    /**
+     * <p>
      * The tracker resource receiving the request for the device position
      * history.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The tracker resource receiving the request for the device
+     *         position history.
+     *         </p>
      */
-    private String trackerName;
+    public String getTrackerName() {
+        return trackerName;
+    }
+
+    /**
+     * <p>
+     * The tracker resource receiving the request for the device position
+     * history.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param trackerName <p>
+     *            The tracker resource receiving the request for the device
+     *            position history.
+     *            </p>
+     */
+    public void setTrackerName(String trackerName) {
+        this.trackerName = trackerName;
+    }
+
+    /**
+     * <p>
+     * The tracker resource receiving the request for the device position
+     * history.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param trackerName <p>
+     *            The tracker resource receiving the request for the device
+     *            position history.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetDevicePositionHistoryRequest withTrackerName(String trackerName) {
+        this.trackerName = trackerName;
+        return this;
+    }
 
     /**
      * <p>
@@ -132,7 +195,7 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      *
      * @return <p>
      *         The device whose position history you want to retrieve.
@@ -149,7 +212,7 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      *
      * @param deviceId <p>
      *            The device whose position history you want to retrieve.
@@ -169,7 +232,7 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      *
      * @param deviceId <p>
      *            The device whose position history you want to retrieve.
@@ -179,213 +242,6 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      */
     public GetDevicePositionHistoryRequest withDeviceId(String deviceId) {
         this.deviceId = deviceId;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Specify the end time for the position history in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
-     * value will be the time that the request is made.
-     * </p>
-     * <p>
-     * Requirement:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * The time specified for <code>EndTimeExclusive</code> must be after the
-     * time for <code>StartTimeInclusive</code>.
-     * </p>
-     * </li>
-     * </ul>
-     *
-     * @return <p>
-     *         Specify the end time for the position history in <a
-     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">
-     *         ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By
-     *         default, the value will be the time that the request is made.
-     *         </p>
-     *         <p>
-     *         Requirement:
-     *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         The time specified for <code>EndTimeExclusive</code> must be
-     *         after the time for <code>StartTimeInclusive</code>.
-     *         </p>
-     *         </li>
-     *         </ul>
-     */
-    public java.util.Date getEndTimeExclusive() {
-        return endTimeExclusive;
-    }
-
-    /**
-     * <p>
-     * Specify the end time for the position history in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
-     * value will be the time that the request is made.
-     * </p>
-     * <p>
-     * Requirement:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * The time specified for <code>EndTimeExclusive</code> must be after the
-     * time for <code>StartTimeInclusive</code>.
-     * </p>
-     * </li>
-     * </ul>
-     *
-     * @param endTimeExclusive <p>
-     *            Specify the end time for the position history in <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By
-     *            default, the value will be the time that the request is made.
-     *            </p>
-     *            <p>
-     *            Requirement:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            The time specified for <code>EndTimeExclusive</code> must be
-     *            after the time for <code>StartTimeInclusive</code>.
-     *            </p>
-     *            </li>
-     *            </ul>
-     */
-    public void setEndTimeExclusive(java.util.Date endTimeExclusive) {
-        this.endTimeExclusive = endTimeExclusive;
-    }
-
-    /**
-     * <p>
-     * Specify the end time for the position history in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
-     * value will be the time that the request is made.
-     * </p>
-     * <p>
-     * Requirement:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * The time specified for <code>EndTimeExclusive</code> must be after the
-     * time for <code>StartTimeInclusive</code>.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param endTimeExclusive <p>
-     *            Specify the end time for the position history in <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By
-     *            default, the value will be the time that the request is made.
-     *            </p>
-     *            <p>
-     *            Requirement:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            The time specified for <code>EndTimeExclusive</code> must be
-     *            after the time for <code>StartTimeInclusive</code>.
-     *            </p>
-     *            </li>
-     *            </ul>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetDevicePositionHistoryRequest withEndTimeExclusive(java.util.Date endTimeExclusive) {
-        this.endTimeExclusive = endTimeExclusive;
-        return this;
-    }
-
-    /**
-     * <p>
-     * An optional limit for the number of device positions returned in a single
-     * call.
-     * </p>
-     * <p>
-     * Default value: <code>100</code>
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 100<br/>
-     *
-     * @return <p>
-     *         An optional limit for the number of device positions returned in
-     *         a single call.
-     *         </p>
-     *         <p>
-     *         Default value: <code>100</code>
-     *         </p>
-     */
-    public Integer getMaxResults() {
-        return maxResults;
-    }
-
-    /**
-     * <p>
-     * An optional limit for the number of device positions returned in a single
-     * call.
-     * </p>
-     * <p>
-     * Default value: <code>100</code>
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 100<br/>
-     *
-     * @param maxResults <p>
-     *            An optional limit for the number of device positions returned
-     *            in a single call.
-     *            </p>
-     *            <p>
-     *            Default value: <code>100</code>
-     *            </p>
-     */
-    public void setMaxResults(Integer maxResults) {
-        this.maxResults = maxResults;
-    }
-
-    /**
-     * <p>
-     * An optional limit for the number of device positions returned in a single
-     * call.
-     * </p>
-     * <p>
-     * Default value: <code>100</code>
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 100<br/>
-     *
-     * @param maxResults <p>
-     *            An optional limit for the number of device positions returned
-     *            in a single call.
-     *            </p>
-     *            <p>
-     *            Default value: <code>100</code>
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetDevicePositionHistoryRequest withMaxResults(Integer maxResults) {
-        this.maxResults = maxResults;
         return this;
     }
 
@@ -604,64 +460,208 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The tracker resource receiving the request for the device position
-     * history.
+     * Specify the end time for the position history in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
+     * value will be the time that the request is made.
      * </p>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * Requirement:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The time specified for <code>EndTimeExclusive</code> must be after the
+     * time for <code>StartTimeInclusive</code>.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @return <p>
-     *         The tracker resource receiving the request for the device
-     *         position history.
+     *         Specify the end time for the position history in <a
+     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">
+     *         ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By
+     *         default, the value will be the time that the request is made.
      *         </p>
+     *         <p>
+     *         Requirement:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         The time specified for <code>EndTimeExclusive</code> must be
+     *         after the time for <code>StartTimeInclusive</code>.
+     *         </p>
+     *         </li>
+     *         </ul>
      */
-    public String getTrackerName() {
-        return trackerName;
+    public java.util.Date getEndTimeExclusive() {
+        return endTimeExclusive;
     }
 
     /**
      * <p>
-     * The tracker resource receiving the request for the device position
-     * history.
+     * Specify the end time for the position history in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
+     * value will be the time that the request is made.
+     * </p>
+     * <p>
+     * Requirement:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The time specified for <code>EndTimeExclusive</code> must be after the
+     * time for <code>StartTimeInclusive</code>.
+     * </p>
+     * </li>
+     * </ul>
+     *
+     * @param endTimeExclusive <p>
+     *            Specify the end time for the position history in <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By
+     *            default, the value will be the time that the request is made.
+     *            </p>
+     *            <p>
+     *            Requirement:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            The time specified for <code>EndTimeExclusive</code> must be
+     *            after the time for <code>StartTimeInclusive</code>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setEndTimeExclusive(java.util.Date endTimeExclusive) {
+        this.endTimeExclusive = endTimeExclusive;
+    }
+
+    /**
+     * <p>
+     * Specify the end time for the position history in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
+     * value will be the time that the request is made.
+     * </p>
+     * <p>
+     * Requirement:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The time specified for <code>EndTimeExclusive</code> must be after the
+     * time for <code>StartTimeInclusive</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param endTimeExclusive <p>
+     *            Specify the end time for the position history in <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By
+     *            default, the value will be the time that the request is made.
+     *            </p>
+     *            <p>
+     *            Requirement:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            The time specified for <code>EndTimeExclusive</code> must be
+     *            after the time for <code>StartTimeInclusive</code>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetDevicePositionHistoryRequest withEndTimeExclusive(java.util.Date endTimeExclusive) {
+        this.endTimeExclusive = endTimeExclusive;
+        return this;
+    }
+
+    /**
+     * <p>
+     * An optional limit for the number of device positions returned in a single
+     * call.
+     * </p>
+     * <p>
+     * Default value: <code>100</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Range: </b>1 - 100<br/>
      *
-     * @param trackerName <p>
-     *            The tracker resource receiving the request for the device
-     *            position history.
-     *            </p>
+     * @return <p>
+     *         An optional limit for the number of device positions returned in
+     *         a single call.
+     *         </p>
+     *         <p>
+     *         Default value: <code>100</code>
+     *         </p>
      */
-    public void setTrackerName(String trackerName) {
-        this.trackerName = trackerName;
+    public Integer getMaxResults() {
+        return maxResults;
     }
 
     /**
      * <p>
-     * The tracker resource receiving the request for the device position
-     * history.
+     * An optional limit for the number of device positions returned in a single
+     * call.
+     * </p>
+     * <p>
+     * Default value: <code>100</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 100<br/>
+     *
+     * @param maxResults <p>
+     *            An optional limit for the number of device positions returned
+     *            in a single call.
+     *            </p>
+     *            <p>
+     *            Default value: <code>100</code>
+     *            </p>
+     */
+    public void setMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
+    }
+
+    /**
+     * <p>
+     * An optional limit for the number of device positions returned in a single
+     * call.
+     * </p>
+     * <p>
+     * Default value: <code>100</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Range: </b>1 - 100<br/>
      *
-     * @param trackerName <p>
-     *            The tracker resource receiving the request for the device
-     *            position history.
+     * @param maxResults <p>
+     *            An optional limit for the number of device positions returned
+     *            in a single call.
+     *            </p>
+     *            <p>
+     *            Default value: <code>100</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetDevicePositionHistoryRequest withTrackerName(String trackerName) {
-        this.trackerName = trackerName;
+    public GetDevicePositionHistoryRequest withMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
         return this;
     }
 
@@ -676,18 +676,18 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getTrackerName() != null)
+            sb.append("TrackerName: " + getTrackerName() + ",");
         if (getDeviceId() != null)
             sb.append("DeviceId: " + getDeviceId() + ",");
-        if (getEndTimeExclusive() != null)
-            sb.append("EndTimeExclusive: " + getEndTimeExclusive() + ",");
-        if (getMaxResults() != null)
-            sb.append("MaxResults: " + getMaxResults() + ",");
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken() + ",");
         if (getStartTimeInclusive() != null)
             sb.append("StartTimeInclusive: " + getStartTimeInclusive() + ",");
-        if (getTrackerName() != null)
-            sb.append("TrackerName: " + getTrackerName());
+        if (getEndTimeExclusive() != null)
+            sb.append("EndTimeExclusive: " + getEndTimeExclusive() + ",");
+        if (getMaxResults() != null)
+            sb.append("MaxResults: " + getMaxResults());
         sb.append("}");
         return sb.toString();
     }
@@ -697,15 +697,15 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getDeviceId() == null) ? 0 : getDeviceId().hashCode());
         hashCode = prime * hashCode
-                + ((getEndTimeExclusive() == null) ? 0 : getEndTimeExclusive().hashCode());
-        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
+                + ((getTrackerName() == null) ? 0 : getTrackerName().hashCode());
+        hashCode = prime * hashCode + ((getDeviceId() == null) ? 0 : getDeviceId().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode
                 + ((getStartTimeInclusive() == null) ? 0 : getStartTimeInclusive().hashCode());
         hashCode = prime * hashCode
-                + ((getTrackerName() == null) ? 0 : getTrackerName().hashCode());
+                + ((getEndTimeExclusive() == null) ? 0 : getEndTimeExclusive().hashCode());
+        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         return hashCode;
     }
 
@@ -720,19 +720,14 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
             return false;
         GetDevicePositionHistoryRequest other = (GetDevicePositionHistoryRequest) obj;
 
+        if (other.getTrackerName() == null ^ this.getTrackerName() == null)
+            return false;
+        if (other.getTrackerName() != null
+                && other.getTrackerName().equals(this.getTrackerName()) == false)
+            return false;
         if (other.getDeviceId() == null ^ this.getDeviceId() == null)
             return false;
         if (other.getDeviceId() != null && other.getDeviceId().equals(this.getDeviceId()) == false)
-            return false;
-        if (other.getEndTimeExclusive() == null ^ this.getEndTimeExclusive() == null)
-            return false;
-        if (other.getEndTimeExclusive() != null
-                && other.getEndTimeExclusive().equals(this.getEndTimeExclusive()) == false)
-            return false;
-        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
-            return false;
-        if (other.getMaxResults() != null
-                && other.getMaxResults().equals(this.getMaxResults()) == false)
             return false;
         if (other.getNextToken() == null ^ this.getNextToken() == null)
             return false;
@@ -744,10 +739,15 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
         if (other.getStartTimeInclusive() != null
                 && other.getStartTimeInclusive().equals(this.getStartTimeInclusive()) == false)
             return false;
-        if (other.getTrackerName() == null ^ this.getTrackerName() == null)
+        if (other.getEndTimeExclusive() == null ^ this.getEndTimeExclusive() == null)
             return false;
-        if (other.getTrackerName() != null
-                && other.getTrackerName().equals(this.getTrackerName()) == false)
+        if (other.getEndTimeExclusive() != null
+                && other.getEndTimeExclusive().equals(this.getEndTimeExclusive()) == false)
+            return false;
+        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
+            return false;
+        if (other.getMaxResults() != null
+                && other.getMaxResults().equals(this.getMaxResults()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,19 +32,9 @@ public class UpdateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String calculatorName;
-
-    /**
-     * <p>
-     * Updates the description for the route calculator resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     */
-    private String description;
 
     /**
      * <p>
@@ -60,12 +50,22 @@ public class UpdateRouteCalculatorRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
+     * Updates the description for the route calculator resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     */
+    private String description;
+
+    /**
+     * <p>
      * The name of the route calculator resource to update.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
      *         The name of the route calculator resource to update.
@@ -82,7 +82,7 @@ public class UpdateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param calculatorName <p>
      *            The name of the route calculator resource to update.
@@ -102,7 +102,7 @@ public class UpdateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param calculatorName <p>
      *            The name of the route calculator resource to update.
@@ -112,60 +112,6 @@ public class UpdateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      */
     public UpdateRouteCalculatorRequest withCalculatorName(String calculatorName) {
         this.calculatorName = calculatorName;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Updates the description for the route calculator resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @return <p>
-     *         Updates the description for the route calculator resource.
-     *         </p>
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * <p>
-     * Updates the description for the route calculator resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param description <p>
-     *            Updates the description for the route calculator resource.
-     *            </p>
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * <p>
-     * Updates the description for the route calculator resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param description <p>
-     *            Updates the description for the route calculator resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateRouteCalculatorRequest withDescription(String description) {
-        this.description = description;
         return this;
     }
 
@@ -282,6 +228,60 @@ public class UpdateRouteCalculatorRequest extends AmazonWebServiceRequest implem
     }
 
     /**
+     * <p>
+     * Updates the description for the route calculator resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @return <p>
+     *         Updates the description for the route calculator resource.
+     *         </p>
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * <p>
+     * Updates the description for the route calculator resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            Updates the description for the route calculator resource.
+     *            </p>
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * <p>
+     * Updates the description for the route calculator resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            Updates the description for the route calculator resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateRouteCalculatorRequest withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -294,10 +294,10 @@ public class UpdateRouteCalculatorRequest extends AmazonWebServiceRequest implem
         sb.append("{");
         if (getCalculatorName() != null)
             sb.append("CalculatorName: " + getCalculatorName() + ",");
-        if (getDescription() != null)
-            sb.append("Description: " + getDescription() + ",");
         if (getPricingPlan() != null)
-            sb.append("PricingPlan: " + getPricingPlan());
+            sb.append("PricingPlan: " + getPricingPlan() + ",");
+        if (getDescription() != null)
+            sb.append("Description: " + getDescription());
         sb.append("}");
         return sb.toString();
     }
@@ -310,9 +310,9 @@ public class UpdateRouteCalculatorRequest extends AmazonWebServiceRequest implem
         hashCode = prime * hashCode
                 + ((getCalculatorName() == null) ? 0 : getCalculatorName().hashCode());
         hashCode = prime * hashCode
-                + ((getDescription() == null) ? 0 : getDescription().hashCode());
-        hashCode = prime * hashCode
                 + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
+        hashCode = prime * hashCode
+                + ((getDescription() == null) ? 0 : getDescription().hashCode());
         return hashCode;
     }
 
@@ -332,15 +332,15 @@ public class UpdateRouteCalculatorRequest extends AmazonWebServiceRequest implem
         if (other.getCalculatorName() != null
                 && other.getCalculatorName().equals(this.getCalculatorName()) == false)
             return false;
-        if (other.getDescription() == null ^ this.getDescription() == null)
-            return false;
-        if (other.getDescription() != null
-                && other.getDescription().equals(this.getDescription()) == false)
-            return false;
         if (other.getPricingPlan() == null ^ this.getPricingPlan() == null)
             return false;
         if (other.getPricingPlan() != null
                 && other.getPricingPlan().equals(this.getPricingPlan()) == false)
+            return false;
+        if (other.getDescription() == null ^ this.getDescription() == null)
+            return false;
+        if (other.getDescription() != null
+                && other.getDescription().equals(this.getDescription()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,21 +36,21 @@ class ListMapsResponseEntryJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("CreateTime")) {
-                listMapsResponseEntry.setCreateTime(DateJsonUnmarshaller.getInstance(
-                        TimestampFormat.ISO_8601)
-                        .unmarshall(context));
-            } else if (name.equals("DataSource")) {
-                listMapsResponseEntry.setDataSource(StringJsonUnmarshaller.getInstance()
+            if (name.equals("MapName")) {
+                listMapsResponseEntry.setMapName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Description")) {
                 listMapsResponseEntry.setDescription(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("MapName")) {
-                listMapsResponseEntry.setMapName(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("DataSource")) {
+                listMapsResponseEntry.setDataSource(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("PricingPlan")) {
                 listMapsResponseEntry.setPricingPlan(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("CreateTime")) {
+                listMapsResponseEntry.setCreateTime(DateJsonUnmarshaller.getInstance(
+                        TimestampFormat.ISO_8601)
                         .unmarshall(context));
             } else if (name.equals("UpdateTime")) {
                 listMapsResponseEntry.setUpdateTime(DateJsonUnmarshaller.getInstance(

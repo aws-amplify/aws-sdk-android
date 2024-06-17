@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,6 +25,17 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  */
 public class ListDevicePositionsRequest extends AmazonWebServiceRequest implements Serializable {
+    /**
+     * <p>
+     * The tracker resource containing the requested devices.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     */
+    private String trackerName;
+
     /**
      * <p>
      * An optional limit for the number of entries returned in a single call.
@@ -54,14 +65,67 @@ public class ListDevicePositionsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
+     * The geometry used to filter device positions.
+     * </p>
+     */
+    private TrackingFilterGeometry filterGeometry;
+
+    /**
+     * <p>
      * The tracker resource containing the requested devices.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The tracker resource containing the requested devices.
+     *         </p>
      */
-    private String trackerName;
+    public String getTrackerName() {
+        return trackerName;
+    }
+
+    /**
+     * <p>
+     * The tracker resource containing the requested devices.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param trackerName <p>
+     *            The tracker resource containing the requested devices.
+     *            </p>
+     */
+    public void setTrackerName(String trackerName) {
+        this.trackerName = trackerName;
+    }
+
+    /**
+     * <p>
+     * The tracker resource containing the requested devices.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param trackerName <p>
+     *            The tracker resource containing the requested devices.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListDevicePositionsRequest withTrackerName(String trackerName) {
+        this.trackerName = trackerName;
+        return this;
+    }
 
     /**
      * <p>
@@ -221,58 +285,46 @@ public class ListDevicePositionsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The tracker resource containing the requested devices.
+     * The geometry used to filter device positions.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @return <p>
-     *         The tracker resource containing the requested devices.
+     *         The geometry used to filter device positions.
      *         </p>
      */
-    public String getTrackerName() {
-        return trackerName;
+    public TrackingFilterGeometry getFilterGeometry() {
+        return filterGeometry;
     }
 
     /**
      * <p>
-     * The tracker resource containing the requested devices.
+     * The geometry used to filter device positions.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
      *
-     * @param trackerName <p>
-     *            The tracker resource containing the requested devices.
+     * @param filterGeometry <p>
+     *            The geometry used to filter device positions.
      *            </p>
      */
-    public void setTrackerName(String trackerName) {
-        this.trackerName = trackerName;
+    public void setFilterGeometry(TrackingFilterGeometry filterGeometry) {
+        this.filterGeometry = filterGeometry;
     }
 
     /**
      * <p>
-     * The tracker resource containing the requested devices.
+     * The geometry used to filter device positions.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
      *
-     * @param trackerName <p>
-     *            The tracker resource containing the requested devices.
+     * @param filterGeometry <p>
+     *            The geometry used to filter device positions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListDevicePositionsRequest withTrackerName(String trackerName) {
-        this.trackerName = trackerName;
+    public ListDevicePositionsRequest withFilterGeometry(TrackingFilterGeometry filterGeometry) {
+        this.filterGeometry = filterGeometry;
         return this;
     }
 
@@ -287,12 +339,14 @@ public class ListDevicePositionsRequest extends AmazonWebServiceRequest implemen
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getTrackerName() != null)
+            sb.append("TrackerName: " + getTrackerName() + ",");
         if (getMaxResults() != null)
             sb.append("MaxResults: " + getMaxResults() + ",");
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken() + ",");
-        if (getTrackerName() != null)
-            sb.append("TrackerName: " + getTrackerName());
+        if (getFilterGeometry() != null)
+            sb.append("FilterGeometry: " + getFilterGeometry());
         sb.append("}");
         return sb.toString();
     }
@@ -302,10 +356,12 @@ public class ListDevicePositionsRequest extends AmazonWebServiceRequest implemen
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode
+                + ((getTrackerName() == null) ? 0 : getTrackerName().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode
-                + ((getTrackerName() == null) ? 0 : getTrackerName().hashCode());
+                + ((getFilterGeometry() == null) ? 0 : getFilterGeometry().hashCode());
         return hashCode;
     }
 
@@ -320,6 +376,11 @@ public class ListDevicePositionsRequest extends AmazonWebServiceRequest implemen
             return false;
         ListDevicePositionsRequest other = (ListDevicePositionsRequest) obj;
 
+        if (other.getTrackerName() == null ^ this.getTrackerName() == null)
+            return false;
+        if (other.getTrackerName() != null
+                && other.getTrackerName().equals(this.getTrackerName()) == false)
+            return false;
         if (other.getMaxResults() == null ^ this.getMaxResults() == null)
             return false;
         if (other.getMaxResults() != null
@@ -330,10 +391,10 @@ public class ListDevicePositionsRequest extends AmazonWebServiceRequest implemen
         if (other.getNextToken() != null
                 && other.getNextToken().equals(this.getNextToken()) == false)
             return false;
-        if (other.getTrackerName() == null ^ this.getTrackerName() == null)
+        if (other.getFilterGeometry() == null ^ this.getFilterGeometry() == null)
             return false;
-        if (other.getTrackerName() != null
-                && other.getTrackerName().equals(this.getTrackerName()) == false)
+        if (other.getFilterGeometry() != null
+                && other.getFilterGeometry().equals(this.getFilterGeometry()) == false)
             return false;
         return true;
     }

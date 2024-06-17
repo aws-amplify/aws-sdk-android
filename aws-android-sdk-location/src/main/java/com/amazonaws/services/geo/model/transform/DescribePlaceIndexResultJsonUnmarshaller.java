@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,8 +33,24 @@ public class DescribePlaceIndexResultJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("CreateTime")) {
+            if (name.equals("IndexName")) {
+                describePlaceIndexResult.setIndexName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("IndexArn")) {
+                describePlaceIndexResult.setIndexArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("PricingPlan")) {
+                describePlaceIndexResult.setPricingPlan(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Description")) {
+                describePlaceIndexResult.setDescription(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("CreateTime")) {
                 describePlaceIndexResult.setCreateTime(DateJsonUnmarshaller.getInstance(
+                        TimestampFormat.ISO_8601)
+                        .unmarshall(context));
+            } else if (name.equals("UpdateTime")) {
+                describePlaceIndexResult.setUpdateTime(DateJsonUnmarshaller.getInstance(
                         TimestampFormat.ISO_8601)
                         .unmarshall(context));
             } else if (name.equals("DataSource")) {
@@ -45,27 +61,11 @@ public class DescribePlaceIndexResultJsonUnmarshaller implements
                         .setDataSourceConfiguration(DataSourceConfigurationJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
-            } else if (name.equals("Description")) {
-                describePlaceIndexResult.setDescription(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("IndexArn")) {
-                describePlaceIndexResult.setIndexArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("IndexName")) {
-                describePlaceIndexResult.setIndexName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("PricingPlan")) {
-                describePlaceIndexResult.setPricingPlan(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
             } else if (name.equals("Tags")) {
                 describePlaceIndexResult.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller
                         .getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("UpdateTime")) {
-                describePlaceIndexResult.setUpdateTime(DateJsonUnmarshaller.getInstance(
-                        TimestampFormat.ISO_8601)
-                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

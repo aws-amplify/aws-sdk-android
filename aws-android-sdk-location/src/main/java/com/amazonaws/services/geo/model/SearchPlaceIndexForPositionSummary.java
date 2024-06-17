@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,6 +24,27 @@ import java.io.Serializable;
  * </p>
  */
 public class SearchPlaceIndexForPositionSummary implements Serializable {
+    /**
+     * <p>
+     * The position specified in the request.
+     * </p>
+     */
+    private java.util.List<Double> position;
+
+    /**
+     * <p>
+     * Contains the optional result count limit that is specified in the
+     * request.
+     * </p>
+     * <p>
+     * Default value: <code>50</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 50<br/>
+     */
+    private Integer maxResults;
+
     /**
      * <p>
      * The geospatial data provider attached to the place index resource
@@ -69,6 +90,80 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
 
     /**
      * <p>
+     * The position specified in the request.
+     * </p>
+     *
+     * @return <p>
+     *         The position specified in the request.
+     *         </p>
+     */
+    public java.util.List<Double> getPosition() {
+        return position;
+    }
+
+    /**
+     * <p>
+     * The position specified in the request.
+     * </p>
+     *
+     * @param position <p>
+     *            The position specified in the request.
+     *            </p>
+     */
+    public void setPosition(java.util.Collection<Double> position) {
+        if (position == null) {
+            this.position = null;
+            return;
+        }
+
+        this.position = new java.util.ArrayList<Double>(position);
+    }
+
+    /**
+     * <p>
+     * The position specified in the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param position <p>
+     *            The position specified in the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForPositionSummary withPosition(Double... position) {
+        if (getPosition() == null) {
+            this.position = new java.util.ArrayList<Double>(position.length);
+        }
+        for (Double value : position) {
+            this.position.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The position specified in the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param position <p>
+     *            The position specified in the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForPositionSummary withPosition(java.util.Collection<Double> position) {
+        setPosition(position);
+        return this;
+    }
+
+    /**
+     * <p>
      * Contains the optional result count limit that is specified in the
      * request.
      * </p>
@@ -78,15 +173,72 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 50<br/>
+     *
+     * @return <p>
+     *         Contains the optional result count limit that is specified in the
+     *         request.
+     *         </p>
+     *         <p>
+     *         Default value: <code>50</code>
+     *         </p>
      */
-    private Integer maxResults;
+    public Integer getMaxResults() {
+        return maxResults;
+    }
 
     /**
      * <p>
-     * The position specified in the request.
+     * Contains the optional result count limit that is specified in the
+     * request.
      * </p>
+     * <p>
+     * Default value: <code>50</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 50<br/>
+     *
+     * @param maxResults <p>
+     *            Contains the optional result count limit that is specified in
+     *            the request.
+     *            </p>
+     *            <p>
+     *            Default value: <code>50</code>
+     *            </p>
      */
-    private java.util.List<Double> position;
+    public void setMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
+    }
+
+    /**
+     * <p>
+     * Contains the optional result count limit that is specified in the
+     * request.
+     * </p>
+     * <p>
+     * Default value: <code>50</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 50<br/>
+     *
+     * @param maxResults <p>
+     *            Contains the optional result count limit that is specified in
+     *            the request.
+     *            </p>
+     *            <p>
+     *            Default value: <code>50</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForPositionSummary withMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
+        return this;
+    }
 
     /**
      * <p>
@@ -346,158 +498,6 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
     }
 
     /**
-     * <p>
-     * Contains the optional result count limit that is specified in the
-     * request.
-     * </p>
-     * <p>
-     * Default value: <code>50</code>
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
-     *
-     * @return <p>
-     *         Contains the optional result count limit that is specified in the
-     *         request.
-     *         </p>
-     *         <p>
-     *         Default value: <code>50</code>
-     *         </p>
-     */
-    public Integer getMaxResults() {
-        return maxResults;
-    }
-
-    /**
-     * <p>
-     * Contains the optional result count limit that is specified in the
-     * request.
-     * </p>
-     * <p>
-     * Default value: <code>50</code>
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
-     *
-     * @param maxResults <p>
-     *            Contains the optional result count limit that is specified in
-     *            the request.
-     *            </p>
-     *            <p>
-     *            Default value: <code>50</code>
-     *            </p>
-     */
-    public void setMaxResults(Integer maxResults) {
-        this.maxResults = maxResults;
-    }
-
-    /**
-     * <p>
-     * Contains the optional result count limit that is specified in the
-     * request.
-     * </p>
-     * <p>
-     * Default value: <code>50</code>
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
-     *
-     * @param maxResults <p>
-     *            Contains the optional result count limit that is specified in
-     *            the request.
-     *            </p>
-     *            <p>
-     *            Default value: <code>50</code>
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForPositionSummary withMaxResults(Integer maxResults) {
-        this.maxResults = maxResults;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The position specified in the request.
-     * </p>
-     *
-     * @return <p>
-     *         The position specified in the request.
-     *         </p>
-     */
-    public java.util.List<Double> getPosition() {
-        return position;
-    }
-
-    /**
-     * <p>
-     * The position specified in the request.
-     * </p>
-     *
-     * @param position <p>
-     *            The position specified in the request.
-     *            </p>
-     */
-    public void setPosition(java.util.Collection<Double> position) {
-        if (position == null) {
-            this.position = null;
-            return;
-        }
-
-        this.position = new java.util.ArrayList<Double>(position);
-    }
-
-    /**
-     * <p>
-     * The position specified in the request.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param position <p>
-     *            The position specified in the request.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForPositionSummary withPosition(Double... position) {
-        if (getPosition() == null) {
-            this.position = new java.util.ArrayList<Double>(position.length);
-        }
-        for (Double value : position) {
-            this.position.add(value);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * The position specified in the request.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param position <p>
-     *            The position specified in the request.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForPositionSummary withPosition(java.util.Collection<Double> position) {
-        setPosition(position);
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -508,14 +508,14 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getPosition() != null)
+            sb.append("Position: " + getPosition() + ",");
+        if (getMaxResults() != null)
+            sb.append("MaxResults: " + getMaxResults() + ",");
         if (getDataSource() != null)
             sb.append("DataSource: " + getDataSource() + ",");
         if (getLanguage() != null)
-            sb.append("Language: " + getLanguage() + ",");
-        if (getMaxResults() != null)
-            sb.append("MaxResults: " + getMaxResults() + ",");
-        if (getPosition() != null)
-            sb.append("Position: " + getPosition());
+            sb.append("Language: " + getLanguage());
         sb.append("}");
         return sb.toString();
     }
@@ -525,10 +525,10 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getPosition() == null) ? 0 : getPosition().hashCode());
+        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getDataSource() == null) ? 0 : getDataSource().hashCode());
         hashCode = prime * hashCode + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
-        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
-        hashCode = prime * hashCode + ((getPosition() == null) ? 0 : getPosition().hashCode());
         return hashCode;
     }
 
@@ -543,6 +543,15 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
             return false;
         SearchPlaceIndexForPositionSummary other = (SearchPlaceIndexForPositionSummary) obj;
 
+        if (other.getPosition() == null ^ this.getPosition() == null)
+            return false;
+        if (other.getPosition() != null && other.getPosition().equals(this.getPosition()) == false)
+            return false;
+        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
+            return false;
+        if (other.getMaxResults() != null
+                && other.getMaxResults().equals(this.getMaxResults()) == false)
+            return false;
         if (other.getDataSource() == null ^ this.getDataSource() == null)
             return false;
         if (other.getDataSource() != null
@@ -551,15 +560,6 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
         if (other.getLanguage() == null ^ this.getLanguage() == null)
             return false;
         if (other.getLanguage() != null && other.getLanguage().equals(this.getLanguage()) == false)
-            return false;
-        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
-            return false;
-        if (other.getMaxResults() != null
-                && other.getMaxResults().equals(this.getMaxResults()) == false)
-            return false;
-        if (other.getPosition() == null ^ this.getPosition() == null)
-            return false;
-        if (other.getPosition() != null && other.getPosition().equals(this.getPosition()) == false)
             return false;
         return true;
     }

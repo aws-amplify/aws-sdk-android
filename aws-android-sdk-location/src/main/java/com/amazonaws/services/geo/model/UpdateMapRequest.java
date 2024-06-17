@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,30 +27,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class UpdateMapRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Updates the parts of the map configuration that can be updated, including
-     * the political view.
-     * </p>
-     */
-    private MapConfigurationUpdate configurationUpdate;
-
-    /**
-     * <p>
-     * Updates the description for the map resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     */
-    private String description;
-
-    /**
-     * <p>
      * The name of the map resource to update.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String mapName;
 
@@ -68,108 +50,21 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Updates the parts of the map configuration that can be updated, including
-     * the political view.
+     * Updates the description for the map resource.
      * </p>
-     *
-     * @return <p>
-     *         Updates the parts of the map configuration that can be updated,
-     *         including the political view.
-     *         </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
      */
-    public MapConfigurationUpdate getConfigurationUpdate() {
-        return configurationUpdate;
-    }
+    private String description;
 
     /**
      * <p>
      * Updates the parts of the map configuration that can be updated, including
      * the political view.
      * </p>
-     *
-     * @param configurationUpdate <p>
-     *            Updates the parts of the map configuration that can be
-     *            updated, including the political view.
-     *            </p>
      */
-    public void setConfigurationUpdate(MapConfigurationUpdate configurationUpdate) {
-        this.configurationUpdate = configurationUpdate;
-    }
-
-    /**
-     * <p>
-     * Updates the parts of the map configuration that can be updated, including
-     * the political view.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param configurationUpdate <p>
-     *            Updates the parts of the map configuration that can be
-     *            updated, including the political view.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateMapRequest withConfigurationUpdate(MapConfigurationUpdate configurationUpdate) {
-        this.configurationUpdate = configurationUpdate;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Updates the description for the map resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @return <p>
-     *         Updates the description for the map resource.
-     *         </p>
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * <p>
-     * Updates the description for the map resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param description <p>
-     *            Updates the description for the map resource.
-     *            </p>
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * <p>
-     * Updates the description for the map resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param description <p>
-     *            Updates the description for the map resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateMapRequest withDescription(String description) {
-        this.description = description;
-        return this;
-    }
+    private MapConfigurationUpdate configurationUpdate;
 
     /**
      * <p>
@@ -178,7 +73,7 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
      *         The name of the map resource to update.
@@ -195,7 +90,7 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param mapName <p>
      *            The name of the map resource to update.
@@ -215,7 +110,7 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param mapName <p>
      *            The name of the map resource to update.
@@ -341,6 +236,111 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
+     * <p>
+     * Updates the description for the map resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @return <p>
+     *         Updates the description for the map resource.
+     *         </p>
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * <p>
+     * Updates the description for the map resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            Updates the description for the map resource.
+     *            </p>
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * <p>
+     * Updates the description for the map resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            Updates the description for the map resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateMapRequest withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Updates the parts of the map configuration that can be updated, including
+     * the political view.
+     * </p>
+     *
+     * @return <p>
+     *         Updates the parts of the map configuration that can be updated,
+     *         including the political view.
+     *         </p>
+     */
+    public MapConfigurationUpdate getConfigurationUpdate() {
+        return configurationUpdate;
+    }
+
+    /**
+     * <p>
+     * Updates the parts of the map configuration that can be updated, including
+     * the political view.
+     * </p>
+     *
+     * @param configurationUpdate <p>
+     *            Updates the parts of the map configuration that can be
+     *            updated, including the political view.
+     *            </p>
+     */
+    public void setConfigurationUpdate(MapConfigurationUpdate configurationUpdate) {
+        this.configurationUpdate = configurationUpdate;
+    }
+
+    /**
+     * <p>
+     * Updates the parts of the map configuration that can be updated, including
+     * the political view.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param configurationUpdate <p>
+     *            Updates the parts of the map configuration that can be
+     *            updated, including the political view.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateMapRequest withConfigurationUpdate(MapConfigurationUpdate configurationUpdate) {
+        this.configurationUpdate = configurationUpdate;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -351,14 +351,14 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getConfigurationUpdate() != null)
-            sb.append("ConfigurationUpdate: " + getConfigurationUpdate() + ",");
-        if (getDescription() != null)
-            sb.append("Description: " + getDescription() + ",");
         if (getMapName() != null)
             sb.append("MapName: " + getMapName() + ",");
         if (getPricingPlan() != null)
-            sb.append("PricingPlan: " + getPricingPlan());
+            sb.append("PricingPlan: " + getPricingPlan() + ",");
+        if (getDescription() != null)
+            sb.append("Description: " + getDescription() + ",");
+        if (getConfigurationUpdate() != null)
+            sb.append("ConfigurationUpdate: " + getConfigurationUpdate());
         sb.append("}");
         return sb.toString();
     }
@@ -368,13 +368,13 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode
-                + ((getConfigurationUpdate() == null) ? 0 : getConfigurationUpdate().hashCode());
-        hashCode = prime * hashCode
-                + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getMapName() == null) ? 0 : getMapName().hashCode());
         hashCode = prime * hashCode
                 + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
+        hashCode = prime * hashCode
+                + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        hashCode = prime * hashCode
+                + ((getConfigurationUpdate() == null) ? 0 : getConfigurationUpdate().hashCode());
         return hashCode;
     }
 
@@ -389,16 +389,6 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
             return false;
         UpdateMapRequest other = (UpdateMapRequest) obj;
 
-        if (other.getConfigurationUpdate() == null ^ this.getConfigurationUpdate() == null)
-            return false;
-        if (other.getConfigurationUpdate() != null
-                && other.getConfigurationUpdate().equals(this.getConfigurationUpdate()) == false)
-            return false;
-        if (other.getDescription() == null ^ this.getDescription() == null)
-            return false;
-        if (other.getDescription() != null
-                && other.getDescription().equals(this.getDescription()) == false)
-            return false;
         if (other.getMapName() == null ^ this.getMapName() == null)
             return false;
         if (other.getMapName() != null && other.getMapName().equals(this.getMapName()) == false)
@@ -407,6 +397,16 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
             return false;
         if (other.getPricingPlan() != null
                 && other.getPricingPlan().equals(this.getPricingPlan()) == false)
+            return false;
+        if (other.getDescription() == null ^ this.getDescription() == null)
+            return false;
+        if (other.getDescription() != null
+                && other.getDescription().equals(this.getDescription()) == false)
+            return false;
+        if (other.getConfigurationUpdate() == null ^ this.getConfigurationUpdate() == null)
+            return false;
+        if (other.getConfigurationUpdate() != null
+                && other.getConfigurationUpdate().equals(this.getConfigurationUpdate()) == false)
             return false;
         return true;
     }

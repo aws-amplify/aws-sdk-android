@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,6 +20,24 @@ import java.io.Serializable;
 public class CreateRouteCalculatorResult implements Serializable {
     /**
      * <p>
+     * The name of the route calculator resource.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For example, <code>ExampleRouteCalculator</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     */
+    private String calculatorName;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) for the route calculator resource. Use the
      * ARN when you specify a resource across all Amazon Web Services.
      * </p>
@@ -35,28 +53,10 @@ public class CreateRouteCalculatorResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
      */
     private String calculatorArn;
-
-    /**
-     * <p>
-     * The name of the route calculator resource.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * For example, <code>ExampleRouteCalculator</code>.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     */
-    private String calculatorName;
 
     /**
      * <p>
@@ -76,6 +76,105 @@ public class CreateRouteCalculatorResult implements Serializable {
 
     /**
      * <p>
+     * The name of the route calculator resource.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For example, <code>ExampleRouteCalculator</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The name of the route calculator resource.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         For example, <code>ExampleRouteCalculator</code>.
+     *         </p>
+     *         </li>
+     *         </ul>
+     */
+    public String getCalculatorName() {
+        return calculatorName;
+    }
+
+    /**
+     * <p>
+     * The name of the route calculator resource.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For example, <code>ExampleRouteCalculator</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param calculatorName <p>
+     *            The name of the route calculator resource.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            For example, <code>ExampleRouteCalculator</code>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setCalculatorName(String calculatorName) {
+        this.calculatorName = calculatorName;
+    }
+
+    /**
+     * <p>
+     * The name of the route calculator resource.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For example, <code>ExampleRouteCalculator</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param calculatorName <p>
+     *            The name of the route calculator resource.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            For example, <code>ExampleRouteCalculator</code>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateRouteCalculatorResult withCalculatorName(String calculatorName) {
+        this.calculatorName = calculatorName;
+        return this;
+    }
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) for the route calculator resource. Use the
      * ARN when you specify a resource across all Amazon Web Services.
      * </p>
@@ -91,8 +190,8 @@ public class CreateRouteCalculatorResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for the route calculator resource.
@@ -129,8 +228,8 @@ public class CreateRouteCalculatorResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
      *
      * @param calculatorArn <p>
      *            The Amazon Resource Name (ARN) for the route calculator
@@ -170,8 +269,8 @@ public class CreateRouteCalculatorResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
      *
      * @param calculatorArn <p>
      *            The Amazon Resource Name (ARN) for the route calculator
@@ -191,105 +290,6 @@ public class CreateRouteCalculatorResult implements Serializable {
      */
     public CreateRouteCalculatorResult withCalculatorArn(String calculatorArn) {
         this.calculatorArn = calculatorArn;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The name of the route calculator resource.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * For example, <code>ExampleRouteCalculator</code>.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         The name of the route calculator resource.
-     *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         For example, <code>ExampleRouteCalculator</code>.
-     *         </p>
-     *         </li>
-     *         </ul>
-     */
-    public String getCalculatorName() {
-        return calculatorName;
-    }
-
-    /**
-     * <p>
-     * The name of the route calculator resource.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * For example, <code>ExampleRouteCalculator</code>.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param calculatorName <p>
-     *            The name of the route calculator resource.
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            For example, <code>ExampleRouteCalculator</code>.
-     *            </p>
-     *            </li>
-     *            </ul>
-     */
-    public void setCalculatorName(String calculatorName) {
-        this.calculatorName = calculatorName;
-    }
-
-    /**
-     * <p>
-     * The name of the route calculator resource.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * For example, <code>ExampleRouteCalculator</code>.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param calculatorName <p>
-     *            The name of the route calculator resource.
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            For example, <code>ExampleRouteCalculator</code>.
-     *            </p>
-     *            </li>
-     *            </ul>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateRouteCalculatorResult withCalculatorName(String calculatorName) {
-        this.calculatorName = calculatorName;
         return this;
     }
 
@@ -405,10 +405,10 @@ public class CreateRouteCalculatorResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCalculatorArn() != null)
-            sb.append("CalculatorArn: " + getCalculatorArn() + ",");
         if (getCalculatorName() != null)
             sb.append("CalculatorName: " + getCalculatorName() + ",");
+        if (getCalculatorArn() != null)
+            sb.append("CalculatorArn: " + getCalculatorArn() + ",");
         if (getCreateTime() != null)
             sb.append("CreateTime: " + getCreateTime());
         sb.append("}");
@@ -421,9 +421,9 @@ public class CreateRouteCalculatorResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode
-                + ((getCalculatorArn() == null) ? 0 : getCalculatorArn().hashCode());
-        hashCode = prime * hashCode
                 + ((getCalculatorName() == null) ? 0 : getCalculatorName().hashCode());
+        hashCode = prime * hashCode
+                + ((getCalculatorArn() == null) ? 0 : getCalculatorArn().hashCode());
         hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         return hashCode;
     }
@@ -439,15 +439,15 @@ public class CreateRouteCalculatorResult implements Serializable {
             return false;
         CreateRouteCalculatorResult other = (CreateRouteCalculatorResult) obj;
 
-        if (other.getCalculatorArn() == null ^ this.getCalculatorArn() == null)
-            return false;
-        if (other.getCalculatorArn() != null
-                && other.getCalculatorArn().equals(this.getCalculatorArn()) == false)
-            return false;
         if (other.getCalculatorName() == null ^ this.getCalculatorName() == null)
             return false;
         if (other.getCalculatorName() != null
                 && other.getCalculatorName().equals(this.getCalculatorName()) == false)
+            return false;
+        if (other.getCalculatorArn() == null ^ this.getCalculatorArn() == null)
+            return false;
+        if (other.getCalculatorArn() != null
+                && other.getCalculatorArn().equals(this.getCalculatorArn()) == false)
             return false;
         if (other.getCreateTime() == null ^ this.getCreateTime() == null)
             return false;

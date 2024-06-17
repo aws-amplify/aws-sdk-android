@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,6 +27,16 @@ class SearchForSuggestionsResultJsonMarshaller {
     public void marshall(SearchForSuggestionsResult searchForSuggestionsResult,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (searchForSuggestionsResult.getText() != null) {
+            String text = searchForSuggestionsResult.getText();
+            jsonWriter.name("Text");
+            jsonWriter.value(text);
+        }
+        if (searchForSuggestionsResult.getPlaceId() != null) {
+            String placeId = searchForSuggestionsResult.getPlaceId();
+            jsonWriter.name("PlaceId");
+            jsonWriter.value(placeId);
+        }
         if (searchForSuggestionsResult.getCategories() != null) {
             java.util.List<String> categories = searchForSuggestionsResult.getCategories();
             jsonWriter.name("Categories");
@@ -37,11 +47,6 @@ class SearchForSuggestionsResultJsonMarshaller {
                 }
             }
             jsonWriter.endArray();
-        }
-        if (searchForSuggestionsResult.getPlaceId() != null) {
-            String placeId = searchForSuggestionsResult.getPlaceId();
-            jsonWriter.name("PlaceId");
-            jsonWriter.value(placeId);
         }
         if (searchForSuggestionsResult.getSupplementalCategories() != null) {
             java.util.List<String> supplementalCategories = searchForSuggestionsResult
@@ -54,11 +59,6 @@ class SearchForSuggestionsResultJsonMarshaller {
                 }
             }
             jsonWriter.endArray();
-        }
-        if (searchForSuggestionsResult.getText() != null) {
-            String text = searchForSuggestionsResult.getText();
-            jsonWriter.name("Text");
-            jsonWriter.value(text);
         }
         jsonWriter.endObject();
     }

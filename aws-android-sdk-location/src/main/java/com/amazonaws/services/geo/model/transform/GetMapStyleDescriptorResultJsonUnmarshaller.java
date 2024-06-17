@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,10 +34,10 @@ public class GetMapStyleDescriptorResultJsonUnmarshaller implements
             getMapStyleDescriptorResult.setBlob(java.nio.ByteBuffer.wrap(com.amazonaws.util.IOUtils
                     .toByteArray(is)));
         }
-        if (context.getHeader("Cache-Control") != null)
-            getMapStyleDescriptorResult.setCacheControl(context.getHeader("Cache-Control"));
         if (context.getHeader("Content-Type") != null)
             getMapStyleDescriptorResult.setContentType(context.getHeader("Content-Type"));
+        if (context.getHeader("Cache-Control") != null)
+            getMapStyleDescriptorResult.setCacheControl(context.getHeader("Cache-Control"));
         return getMapStyleDescriptorResult;
     }
 

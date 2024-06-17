@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,30 +27,30 @@ class ListMapsResponseEntryJsonMarshaller {
     public void marshall(ListMapsResponseEntry listMapsResponseEntry, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
-        if (listMapsResponseEntry.getCreateTime() != null) {
-            java.util.Date createTime = listMapsResponseEntry.getCreateTime();
-            jsonWriter.name("CreateTime");
-            jsonWriter.value(DateUtils.formatISO8601Date(createTime));
-        }
-        if (listMapsResponseEntry.getDataSource() != null) {
-            String dataSource = listMapsResponseEntry.getDataSource();
-            jsonWriter.name("DataSource");
-            jsonWriter.value(dataSource);
+        if (listMapsResponseEntry.getMapName() != null) {
+            String mapName = listMapsResponseEntry.getMapName();
+            jsonWriter.name("MapName");
+            jsonWriter.value(mapName);
         }
         if (listMapsResponseEntry.getDescription() != null) {
             String description = listMapsResponseEntry.getDescription();
             jsonWriter.name("Description");
             jsonWriter.value(description);
         }
-        if (listMapsResponseEntry.getMapName() != null) {
-            String mapName = listMapsResponseEntry.getMapName();
-            jsonWriter.name("MapName");
-            jsonWriter.value(mapName);
+        if (listMapsResponseEntry.getDataSource() != null) {
+            String dataSource = listMapsResponseEntry.getDataSource();
+            jsonWriter.name("DataSource");
+            jsonWriter.value(dataSource);
         }
         if (listMapsResponseEntry.getPricingPlan() != null) {
             String pricingPlan = listMapsResponseEntry.getPricingPlan();
             jsonWriter.name("PricingPlan");
             jsonWriter.value(pricingPlan);
+        }
+        if (listMapsResponseEntry.getCreateTime() != null) {
+            java.util.Date createTime = listMapsResponseEntry.getCreateTime();
+            jsonWriter.name("CreateTime");
+            jsonWriter.value(DateUtils.formatISO8601Date(createTime));
         }
         if (listMapsResponseEntry.getUpdateTime() != null) {
             java.util.Date updateTime = listMapsResponseEntry.getUpdateTime();

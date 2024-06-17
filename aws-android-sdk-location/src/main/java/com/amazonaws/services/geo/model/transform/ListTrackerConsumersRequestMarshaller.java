@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -87,9 +87,9 @@ public class ListTrackerConsumersRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
-        request.setHostPrefix("tracking.");
+        request.setHostPrefix("cp.tracking.");
 
         return request;
     }

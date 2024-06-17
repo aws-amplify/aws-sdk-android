@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -44,14 +44,13 @@ public class ValidationExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
         ValidationException e = (ValidationException) super.unmarshall(error);
         e.setErrorCode("ValidationException");
+        e.setReason(String.valueOf(error.get("Reason")));
 
         final AwsJsonReader jsonReader = JsonUtils.getJsonReader(new StringReader(error
                 .get("FieldList")));
         e.setFieldList(new ListUnmarshaller<ValidationExceptionField>(
                 ValidationExceptionFieldJsonUnmarshaller.getInstance())
                 .unmarshall(new JsonUnmarshallerContext(jsonReader)));
-
-        e.setReason(String.valueOf(error.get("Reason")));
 
         return e;
     }

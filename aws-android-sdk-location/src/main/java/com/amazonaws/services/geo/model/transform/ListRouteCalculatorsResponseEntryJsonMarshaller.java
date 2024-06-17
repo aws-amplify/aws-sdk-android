@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,25 +32,25 @@ class ListRouteCalculatorsResponseEntryJsonMarshaller {
             jsonWriter.name("CalculatorName");
             jsonWriter.value(calculatorName);
         }
-        if (listRouteCalculatorsResponseEntry.getCreateTime() != null) {
-            java.util.Date createTime = listRouteCalculatorsResponseEntry.getCreateTime();
-            jsonWriter.name("CreateTime");
-            jsonWriter.value(DateUtils.formatISO8601Date(createTime));
+        if (listRouteCalculatorsResponseEntry.getDescription() != null) {
+            String description = listRouteCalculatorsResponseEntry.getDescription();
+            jsonWriter.name("Description");
+            jsonWriter.value(description);
         }
         if (listRouteCalculatorsResponseEntry.getDataSource() != null) {
             String dataSource = listRouteCalculatorsResponseEntry.getDataSource();
             jsonWriter.name("DataSource");
             jsonWriter.value(dataSource);
         }
-        if (listRouteCalculatorsResponseEntry.getDescription() != null) {
-            String description = listRouteCalculatorsResponseEntry.getDescription();
-            jsonWriter.name("Description");
-            jsonWriter.value(description);
-        }
         if (listRouteCalculatorsResponseEntry.getPricingPlan() != null) {
             String pricingPlan = listRouteCalculatorsResponseEntry.getPricingPlan();
             jsonWriter.name("PricingPlan");
             jsonWriter.value(pricingPlan);
+        }
+        if (listRouteCalculatorsResponseEntry.getCreateTime() != null) {
+            java.util.Date createTime = listRouteCalculatorsResponseEntry.getCreateTime();
+            jsonWriter.name("CreateTime");
+            jsonWriter.value(DateUtils.formatISO8601Date(createTime));
         }
         if (listRouteCalculatorsResponseEntry.getUpdateTime() != null) {
             java.util.Date updateTime = listRouteCalculatorsResponseEntry.getUpdateTime();

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,6 +26,13 @@ import java.io.Serializable;
 public class SearchForPositionResult implements Serializable {
     /**
      * <p>
+     * Details about the search result, such as its address and position.
+     * </p>
+     */
+    private Place place;
+
+    /**
+     * <p>
      * The distance in meters of a great-circle arc between the query position
      * and the result.
      * </p>
@@ -43,13 +50,6 @@ public class SearchForPositionResult implements Serializable {
 
     /**
      * <p>
-     * Details about the search result, such as its address and position.
-     * </p>
-     */
-    private Place place;
-
-    /**
-     * <p>
      * The unique identifier of the place. You can use this with the
      * <code>GetPlace</code> operation to find the place again later.
      * </p>
@@ -62,6 +62,54 @@ public class SearchForPositionResult implements Serializable {
      * </note>
      */
     private String placeId;
+
+    /**
+     * <p>
+     * Details about the search result, such as its address and position.
+     * </p>
+     *
+     * @return <p>
+     *         Details about the search result, such as its address and
+     *         position.
+     *         </p>
+     */
+    public Place getPlace() {
+        return place;
+    }
+
+    /**
+     * <p>
+     * Details about the search result, such as its address and position.
+     * </p>
+     *
+     * @param place <p>
+     *            Details about the search result, such as its address and
+     *            position.
+     *            </p>
+     */
+    public void setPlace(Place place) {
+        this.place = place;
+    }
+
+    /**
+     * <p>
+     * Details about the search result, such as its address and position.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param place <p>
+     *            Details about the search result, such as its address and
+     *            position.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchForPositionResult withPlace(Place place) {
+        this.place = place;
+        return this;
+    }
 
     /**
      * <p>
@@ -159,54 +207,6 @@ public class SearchForPositionResult implements Serializable {
      */
     public SearchForPositionResult withDistance(Double distance) {
         this.distance = distance;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Details about the search result, such as its address and position.
-     * </p>
-     *
-     * @return <p>
-     *         Details about the search result, such as its address and
-     *         position.
-     *         </p>
-     */
-    public Place getPlace() {
-        return place;
-    }
-
-    /**
-     * <p>
-     * Details about the search result, such as its address and position.
-     * </p>
-     *
-     * @param place <p>
-     *            Details about the search result, such as its address and
-     *            position.
-     *            </p>
-     */
-    public void setPlace(Place place) {
-        this.place = place;
-    }
-
-    /**
-     * <p>
-     * Details about the search result, such as its address and position.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param place <p>
-     *            Details about the search result, such as its address and
-     *            position.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchForPositionResult withPlace(Place place) {
-        this.place = place;
         return this;
     }
 
@@ -314,10 +314,10 @@ public class SearchForPositionResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getDistance() != null)
-            sb.append("Distance: " + getDistance() + ",");
         if (getPlace() != null)
             sb.append("Place: " + getPlace() + ",");
+        if (getDistance() != null)
+            sb.append("Distance: " + getDistance() + ",");
         if (getPlaceId() != null)
             sb.append("PlaceId: " + getPlaceId());
         sb.append("}");
@@ -329,8 +329,8 @@ public class SearchForPositionResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getDistance() == null) ? 0 : getDistance().hashCode());
         hashCode = prime * hashCode + ((getPlace() == null) ? 0 : getPlace().hashCode());
+        hashCode = prime * hashCode + ((getDistance() == null) ? 0 : getDistance().hashCode());
         hashCode = prime * hashCode + ((getPlaceId() == null) ? 0 : getPlaceId().hashCode());
         return hashCode;
     }
@@ -346,13 +346,13 @@ public class SearchForPositionResult implements Serializable {
             return false;
         SearchForPositionResult other = (SearchForPositionResult) obj;
 
-        if (other.getDistance() == null ^ this.getDistance() == null)
-            return false;
-        if (other.getDistance() != null && other.getDistance().equals(this.getDistance()) == false)
-            return false;
         if (other.getPlace() == null ^ this.getPlace() == null)
             return false;
         if (other.getPlace() != null && other.getPlace().equals(this.getPlace()) == false)
+            return false;
+        if (other.getDistance() == null ^ this.getDistance() == null)
+            return false;
+        if (other.getDistance() != null && other.getDistance().equals(this.getDistance()) == false)
             return false;
         if (other.getPlaceId() == null ^ this.getPlaceId() == null)
             return false;

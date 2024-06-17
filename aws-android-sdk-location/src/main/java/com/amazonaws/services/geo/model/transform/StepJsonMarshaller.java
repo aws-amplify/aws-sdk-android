@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,15 +26,16 @@ class StepJsonMarshaller {
 
     public void marshall(Step step, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (step.getDistance() != null) {
-            Double distance = step.getDistance();
-            jsonWriter.name("Distance");
-            jsonWriter.value(distance);
-        }
-        if (step.getDurationSeconds() != null) {
-            Double durationSeconds = step.getDurationSeconds();
-            jsonWriter.name("DurationSeconds");
-            jsonWriter.value(durationSeconds);
+        if (step.getStartPosition() != null) {
+            java.util.List<Double> startPosition = step.getStartPosition();
+            jsonWriter.name("StartPosition");
+            jsonWriter.beginArray();
+            for (Double startPositionItem : startPosition) {
+                if (startPositionItem != null) {
+                    jsonWriter.value(startPositionItem);
+                }
+            }
+            jsonWriter.endArray();
         }
         if (step.getEndPosition() != null) {
             java.util.List<Double> endPosition = step.getEndPosition();
@@ -47,21 +48,20 @@ class StepJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (step.getDistance() != null) {
+            Double distance = step.getDistance();
+            jsonWriter.name("Distance");
+            jsonWriter.value(distance);
+        }
+        if (step.getDurationSeconds() != null) {
+            Double durationSeconds = step.getDurationSeconds();
+            jsonWriter.name("DurationSeconds");
+            jsonWriter.value(durationSeconds);
+        }
         if (step.getGeometryOffset() != null) {
             Integer geometryOffset = step.getGeometryOffset();
             jsonWriter.name("GeometryOffset");
             jsonWriter.value(geometryOffset);
-        }
-        if (step.getStartPosition() != null) {
-            java.util.List<Double> startPosition = step.getStartPosition();
-            jsonWriter.name("StartPosition");
-            jsonWriter.beginArray();
-            for (Double startPositionItem : startPosition) {
-                if (startPositionItem != null) {
-                    jsonWriter.value(startPositionItem);
-                }
-            }
-            jsonWriter.endArray();
         }
         jsonWriter.endObject();
     }

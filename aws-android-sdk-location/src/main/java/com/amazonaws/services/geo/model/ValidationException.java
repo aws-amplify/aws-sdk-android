@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,13 +27,6 @@ public class ValidationException extends AmazonServiceException {
 
     /**
      * <p>
-     * The field where the invalid entry was detected.
-     * </p>
-     */
-    private java.util.List<ValidationExceptionField> fieldList;
-
-    /**
-     * <p>
      * A message with the reason for the validation exception error.
      * </p>
      * <p>
@@ -44,39 +37,19 @@ public class ValidationException extends AmazonServiceException {
     private String reason;
 
     /**
+     * <p>
+     * The field where the invalid entry was detected.
+     * </p>
+     */
+    private java.util.List<ValidationExceptionField> fieldList;
+
+    /**
      * Constructs a new ValidationException with the specified error message.
      *
      * @param message Describes the error encountered.
      */
     public ValidationException(String message) {
         super(message);
-    }
-
-    /**
-     * <p>
-     * The field where the invalid entry was detected.
-     * </p>
-     *
-     * @return <p>
-     *         The field where the invalid entry was detected.
-     *         </p>
-     */
-    public java.util.List<ValidationExceptionField> getFieldList() {
-        return fieldList;
-    }
-
-    /**
-     * <p>
-     * The field where the invalid entry was detected.
-     * </p>
-     *
-     * @param fieldList <p>
-     *            The field where the invalid entry was detected.
-     *            </p>
-     */
-    public void setFieldList(java.util.Collection<ValidationExceptionField> fieldList) {
-        this.fieldList = fieldList == null ? null
-                : new java.util.ArrayList<ValidationExceptionField>(fieldList);
     }
 
     /**
@@ -113,5 +86,32 @@ public class ValidationException extends AmazonServiceException {
      */
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    /**
+     * <p>
+     * The field where the invalid entry was detected.
+     * </p>
+     *
+     * @return <p>
+     *         The field where the invalid entry was detected.
+     *         </p>
+     */
+    public java.util.List<ValidationExceptionField> getFieldList() {
+        return fieldList;
+    }
+
+    /**
+     * <p>
+     * The field where the invalid entry was detected.
+     * </p>
+     *
+     * @param fieldList <p>
+     *            The field where the invalid entry was detected.
+     *            </p>
+     */
+    public void setFieldList(java.util.Collection<ValidationExceptionField> fieldList) {
+        this.fieldList = fieldList == null ? null
+                : new java.util.ArrayList<ValidationExceptionField>(fieldList);
     }
 }

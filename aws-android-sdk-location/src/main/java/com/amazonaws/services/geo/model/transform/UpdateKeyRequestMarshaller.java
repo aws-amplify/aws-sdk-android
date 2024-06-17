@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -73,15 +73,15 @@ public class UpdateKeyRequestMarshaller implements
                 jsonWriter.name("ExpireTime");
                 jsonWriter.value(DateUtils.formatISO8601Date(expireTime));
             }
-            if (updateKeyRequest.getForceUpdate() != null) {
-                Boolean forceUpdate = updateKeyRequest.getForceUpdate();
-                jsonWriter.name("ForceUpdate");
-                jsonWriter.value(forceUpdate);
-            }
             if (updateKeyRequest.getNoExpiry() != null) {
                 Boolean noExpiry = updateKeyRequest.getNoExpiry();
                 jsonWriter.name("NoExpiry");
                 jsonWriter.value(noExpiry);
+            }
+            if (updateKeyRequest.getForceUpdate() != null) {
+                Boolean forceUpdate = updateKeyRequest.getForceUpdate();
+                jsonWriter.name("ForceUpdate");
+                jsonWriter.value(forceUpdate);
             }
             if (updateKeyRequest.getRestrictions() != null) {
                 ApiKeyRestrictions restrictions = updateKeyRequest.getRestrictions();
@@ -100,9 +100,9 @@ public class UpdateKeyRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
-        request.setHostPrefix("metadata.");
+        request.setHostPrefix("cp.metadata.");
 
         return request;
     }

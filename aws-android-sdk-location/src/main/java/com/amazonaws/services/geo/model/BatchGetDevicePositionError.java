@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ public class BatchGetDevicePositionError implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      */
     private String deviceId;
 
@@ -48,7 +48,7 @@ public class BatchGetDevicePositionError implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      *
      * @return <p>
      *         The ID of the device that didn't return a position.
@@ -65,7 +65,7 @@ public class BatchGetDevicePositionError implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      *
      * @param deviceId <p>
      *            The ID of the device that didn't return a position.
@@ -85,7 +85,7 @@ public class BatchGetDevicePositionError implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      *
      * @param deviceId <p>
      *            The ID of the device that didn't return a position.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,6 +23,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Retrieves the geofence details from a geofence collection.
  * </p>
+ * <note>
+ * <p>
+ * The returned geometry will always match the geometry format used when the
+ * geofence was created.
+ * </p>
+ * </note>
  */
 public class GetGeofenceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -32,7 +38,7 @@ public class GetGeofenceRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String collectionName;
 
@@ -43,7 +49,7 @@ public class GetGeofenceRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      */
     private String geofenceId;
 
@@ -54,7 +60,7 @@ public class GetGeofenceRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
      *         The geofence collection storing the target geofence.
@@ -71,7 +77,7 @@ public class GetGeofenceRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param collectionName <p>
      *            The geofence collection storing the target geofence.
@@ -91,7 +97,7 @@ public class GetGeofenceRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param collectionName <p>
      *            The geofence collection storing the target geofence.
@@ -111,7 +117,7 @@ public class GetGeofenceRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      *
      * @return <p>
      *         The geofence you're retrieving details for.
@@ -128,7 +134,7 @@ public class GetGeofenceRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      *
      * @param geofenceId <p>
      *            The geofence you're retrieving details for.
@@ -148,7 +154,7 @@ public class GetGeofenceRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      *
      * @param geofenceId <p>
      *            The geofence you're retrieving details for.

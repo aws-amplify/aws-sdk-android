@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,6 +20,17 @@ import java.io.Serializable;
 public class UpdateMapResult implements Serializable {
     /**
      * <p>
+     * The name of the updated map resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     */
+    private String mapName;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) of the updated map resource. Used to
      * specify a resource across AWS.
      * </p>
@@ -34,21 +45,10 @@ public class UpdateMapResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
      */
     private String mapArn;
-
-    /**
-     * <p>
-     * The name of the updated map resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     */
-    private String mapName;
 
     /**
      * <p>
@@ -61,6 +61,63 @@ public class UpdateMapResult implements Serializable {
 
     /**
      * <p>
+     * The name of the updated map resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The name of the updated map resource.
+     *         </p>
+     */
+    public String getMapName() {
+        return mapName;
+    }
+
+    /**
+     * <p>
+     * The name of the updated map resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param mapName <p>
+     *            The name of the updated map resource.
+     *            </p>
+     */
+    public void setMapName(String mapName) {
+        this.mapName = mapName;
+    }
+
+    /**
+     * <p>
+     * The name of the updated map resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param mapName <p>
+     *            The name of the updated map resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateMapResult withMapName(String mapName) {
+        this.mapName = mapName;
+        return this;
+    }
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) of the updated map resource. Used to
      * specify a resource across AWS.
      * </p>
@@ -75,8 +132,8 @@ public class UpdateMapResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the updated map resource. Used
@@ -111,8 +168,8 @@ public class UpdateMapResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
      *
      * @param mapArn <p>
      *            The Amazon Resource Name (ARN) of the updated map resource.
@@ -150,8 +207,8 @@ public class UpdateMapResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
      *
      * @param mapArn <p>
      *            The Amazon Resource Name (ARN) of the updated map resource.
@@ -170,63 +227,6 @@ public class UpdateMapResult implements Serializable {
      */
     public UpdateMapResult withMapArn(String mapArn) {
         this.mapArn = mapArn;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The name of the updated map resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         The name of the updated map resource.
-     *         </p>
-     */
-    public String getMapName() {
-        return mapName;
-    }
-
-    /**
-     * <p>
-     * The name of the updated map resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param mapName <p>
-     *            The name of the updated map resource.
-     *            </p>
-     */
-    public void setMapName(String mapName) {
-        this.mapName = mapName;
-    }
-
-    /**
-     * <p>
-     * The name of the updated map resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param mapName <p>
-     *            The name of the updated map resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateMapResult withMapName(String mapName) {
-        this.mapName = mapName;
         return this;
     }
 
@@ -298,10 +298,10 @@ public class UpdateMapResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getMapArn() != null)
-            sb.append("MapArn: " + getMapArn() + ",");
         if (getMapName() != null)
             sb.append("MapName: " + getMapName() + ",");
+        if (getMapArn() != null)
+            sb.append("MapArn: " + getMapArn() + ",");
         if (getUpdateTime() != null)
             sb.append("UpdateTime: " + getUpdateTime());
         sb.append("}");
@@ -313,8 +313,8 @@ public class UpdateMapResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getMapArn() == null) ? 0 : getMapArn().hashCode());
         hashCode = prime * hashCode + ((getMapName() == null) ? 0 : getMapName().hashCode());
+        hashCode = prime * hashCode + ((getMapArn() == null) ? 0 : getMapArn().hashCode());
         hashCode = prime * hashCode + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return hashCode;
     }
@@ -330,13 +330,13 @@ public class UpdateMapResult implements Serializable {
             return false;
         UpdateMapResult other = (UpdateMapResult) obj;
 
-        if (other.getMapArn() == null ^ this.getMapArn() == null)
-            return false;
-        if (other.getMapArn() != null && other.getMapArn().equals(this.getMapArn()) == false)
-            return false;
         if (other.getMapName() == null ^ this.getMapName() == null)
             return false;
         if (other.getMapName() != null && other.getMapName().equals(this.getMapName()) == false)
+            return false;
+        if (other.getMapArn() == null ^ this.getMapArn() == null)
+            return false;
+        if (other.getMapArn() != null && other.getMapArn().equals(this.getMapArn()) == false)
             return false;
         if (other.getUpdateTime() == null ^ this.getUpdateTime() == null)
             return false;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String calculatorName;
 
@@ -131,16 +131,6 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The optional description for the route calculator resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     */
-    private String description;
-
-    /**
-     * <p>
      * No longer used. If included, the only allowed value is
      * <code>RequestBasedUsage</code>.
      * </p>
@@ -150,6 +140,16 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * MobileAssetManagement
      */
     private String pricingPlan;
+
+    /**
+     * <p>
+     * The optional description for the route calculator resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     */
+    private String description;
 
     /**
      * <p>
@@ -235,7 +235,7 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
      *         The name of the route calculator resource.
@@ -295,7 +295,7 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param calculatorName <p>
      *            The name of the route calculator resource.
@@ -358,7 +358,7 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param calculatorName <p>
      *            The name of the route calculator resource.
@@ -749,60 +749,6 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The optional description for the route calculator resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @return <p>
-     *         The optional description for the route calculator resource.
-     *         </p>
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * <p>
-     * The optional description for the route calculator resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param description <p>
-     *            The optional description for the route calculator resource.
-     *            </p>
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * <p>
-     * The optional description for the route calculator resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param description <p>
-     *            The optional description for the route calculator resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateRouteCalculatorRequest withDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    /**
-     * <p>
      * No longer used. If included, the only allowed value is
      * <code>RequestBasedUsage</code>.
      * </p>
@@ -910,6 +856,60 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      */
     public CreateRouteCalculatorRequest withPricingPlan(PricingPlan pricingPlan) {
         this.pricingPlan = pricingPlan.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The optional description for the route calculator resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @return <p>
+     *         The optional description for the route calculator resource.
+     *         </p>
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * <p>
+     * The optional description for the route calculator resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            The optional description for the route calculator resource.
+     *            </p>
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * <p>
+     * The optional description for the route calculator resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            The optional description for the route calculator resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateRouteCalculatorRequest withDescription(String description) {
+        this.description = description;
         return this;
     }
 
@@ -1351,10 +1351,10 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
             sb.append("CalculatorName: " + getCalculatorName() + ",");
         if (getDataSource() != null)
             sb.append("DataSource: " + getDataSource() + ",");
-        if (getDescription() != null)
-            sb.append("Description: " + getDescription() + ",");
         if (getPricingPlan() != null)
             sb.append("PricingPlan: " + getPricingPlan() + ",");
+        if (getDescription() != null)
+            sb.append("Description: " + getDescription() + ",");
         if (getTags() != null)
             sb.append("Tags: " + getTags());
         sb.append("}");
@@ -1370,9 +1370,9 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
                 + ((getCalculatorName() == null) ? 0 : getCalculatorName().hashCode());
         hashCode = prime * hashCode + ((getDataSource() == null) ? 0 : getDataSource().hashCode());
         hashCode = prime * hashCode
-                + ((getDescription() == null) ? 0 : getDescription().hashCode());
-        hashCode = prime * hashCode
                 + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
+        hashCode = prime * hashCode
+                + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
@@ -1398,15 +1398,15 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
         if (other.getDataSource() != null
                 && other.getDataSource().equals(this.getDataSource()) == false)
             return false;
-        if (other.getDescription() == null ^ this.getDescription() == null)
-            return false;
-        if (other.getDescription() != null
-                && other.getDescription().equals(this.getDescription()) == false)
-            return false;
         if (other.getPricingPlan() == null ^ this.getPricingPlan() == null)
             return false;
         if (other.getPricingPlan() != null
                 && other.getPricingPlan().equals(this.getPricingPlan()) == false)
+            return false;
+        if (other.getDescription() == null ^ this.getDescription() == null)
+            return false;
+        if (other.getDescription() != null
+                && other.getDescription().equals(this.getDescription()) == false)
             return false;
         if (other.getTags() == null ^ this.getTags() == null)
             return false;

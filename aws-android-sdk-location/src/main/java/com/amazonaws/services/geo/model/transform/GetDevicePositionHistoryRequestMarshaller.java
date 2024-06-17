@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -56,30 +56,19 @@ public class GetDevicePositionHistoryRequestMarshaller implements
 
         String uriResourcePath = "/tracking/v0/trackers/{TrackerName}/devices/{DeviceId}/list-positions";
         uriResourcePath = uriResourcePath.replace(
-                "{DeviceId}",
-                (getDevicePositionHistoryRequest.getDeviceId() == null) ? "" : StringUtils
-                        .fromString(getDevicePositionHistoryRequest.getDeviceId()));
-        uriResourcePath = uriResourcePath.replace(
                 "{TrackerName}",
                 (getDevicePositionHistoryRequest.getTrackerName() == null) ? "" : StringUtils
                         .fromString(getDevicePositionHistoryRequest.getTrackerName()));
+        uriResourcePath = uriResourcePath.replace(
+                "{DeviceId}",
+                (getDevicePositionHistoryRequest.getDeviceId() == null) ? "" : StringUtils
+                        .fromString(getDevicePositionHistoryRequest.getDeviceId()));
         request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (getDevicePositionHistoryRequest.getEndTimeExclusive() != null) {
-                java.util.Date endTimeExclusive = getDevicePositionHistoryRequest
-                        .getEndTimeExclusive();
-                jsonWriter.name("EndTimeExclusive");
-                jsonWriter.value(DateUtils.formatISO8601Date(endTimeExclusive));
-            }
-            if (getDevicePositionHistoryRequest.getMaxResults() != null) {
-                Integer maxResults = getDevicePositionHistoryRequest.getMaxResults();
-                jsonWriter.name("MaxResults");
-                jsonWriter.value(maxResults);
-            }
             if (getDevicePositionHistoryRequest.getNextToken() != null) {
                 String nextToken = getDevicePositionHistoryRequest.getNextToken();
                 jsonWriter.name("NextToken");
@@ -90,6 +79,17 @@ public class GetDevicePositionHistoryRequestMarshaller implements
                         .getStartTimeInclusive();
                 jsonWriter.name("StartTimeInclusive");
                 jsonWriter.value(DateUtils.formatISO8601Date(startTimeInclusive));
+            }
+            if (getDevicePositionHistoryRequest.getEndTimeExclusive() != null) {
+                java.util.Date endTimeExclusive = getDevicePositionHistoryRequest
+                        .getEndTimeExclusive();
+                jsonWriter.name("EndTimeExclusive");
+                jsonWriter.value(DateUtils.formatISO8601Date(endTimeExclusive));
+            }
+            if (getDevicePositionHistoryRequest.getMaxResults() != null) {
+                Integer maxResults = getDevicePositionHistoryRequest.getMaxResults();
+                jsonWriter.name("MaxResults");
+                jsonWriter.value(maxResults);
             }
 
             jsonWriter.endObject();
@@ -103,7 +103,7 @@ public class GetDevicePositionHistoryRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
         request.setHostPrefix("tracking.");
 

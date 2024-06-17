@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,28 +28,47 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class CreateTrackerRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * An optional description for the tracker resource.
+     * The name for the tracker resource.
      * </p>
      * <p>
+     * Requirements:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
+     * periods (.), and underscores (_).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Must be a unique tracker resource name.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * No spaces allowed. For example, <code>ExampleTracker</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
-    private String description;
+    private String trackerName;
 
     /**
      * <p>
-     * Whether to enable position <code>UPDATE</code> events from this tracker
-     * to be sent to EventBridge.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
-     * <note>
      * <p>
-     * You do not need enable this feature to get <code>ENTER</code> and
-     * <code>EXIT</code> events for geofences with this tracker. Those events
-     * are always sent to EventBridge.
-     * </p>
-     * </note>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
      */
-    private Boolean eventBridgeEnabled;
+    private String pricingPlan;
 
     /**
      * <p>
@@ -63,6 +82,71 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - 2048<br/>
      */
     private String kmsKeyId;
+
+    /**
+     * <p>
+     * This parameter is no longer used.
+     * </p>
+     */
+    private String pricingPlanDataSource;
+
+    /**
+     * <p>
+     * An optional description for the tracker resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     */
+    private String description;
+
+    /**
+     * <p>
+     * Applies one or more tags to the tracker resource. A tag is a key-value
+     * pair helps manage, identify, search, and filter your resources by
+     * labelling them.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
+     * </p>
+     * <p>
+     * Restrictions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Maximum 50 tags per resource
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Each resource tag must be unique with a maximum of one value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum key length: 128 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum value length: 256 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+     * characters: + - = . _ : / @.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Cannot use "aws:" as a prefix for a key.
+     * </p>
+     * </li>
+     * </ul>
+     */
+    private java.util.Map<String, String> tags;
 
     /**
      * <p>
@@ -116,70 +200,44 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * No longer used. If included, the only allowed value is
-     * <code>RequestBasedUsage</code>.
+     * Whether to enable position <code>UPDATE</code> events from this tracker
+     * to be sent to EventBridge.
      * </p>
+     * <note>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
-     * MobileAssetManagement
+     * You do not need enable this feature to get <code>ENTER</code> and
+     * <code>EXIT</code> events for geofences with this tracker. Those events
+     * are always sent to EventBridge.
+     * </p>
+     * </note>
      */
-    private String pricingPlan;
+    private Boolean eventBridgeEnabled;
 
     /**
      * <p>
-     * This parameter is no longer used.
+     * Enables <code>GeospatialQueries</code> for a tracker that uses a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     * >Amazon Web Services KMS customer managed key</a>.
      * </p>
+     * <p>
+     * This parameter is only used if you are using a KMS customer managed key.
+     * </p>
+     * <note>
+     * <p>
+     * If you wish to encrypt your data using your own KMS customer managed key,
+     * then the Bounding Polygon Queries feature will be disabled by default.
+     * This is because by using this feature, a representation of your device
+     * positions will not be encrypted using the your KMS managed key. The exact
+     * device position, however; is still encrypted using your managed key.
+     * </p>
+     * <p>
+     * You can choose to opt-in to the Bounding Polygon Quseries feature. This
+     * is done by setting the <code>KmsKeyEnableGeospatialQueries</code>
+     * parameter to true when creating or updating a Tracker.
+     * </p>
+     * </note>
      */
-    private String pricingPlanDataSource;
-
-    /**
-     * <p>
-     * Applies one or more tags to the tracker resource. A tag is a key-value
-     * pair helps manage, identify, search, and filter your resources by
-     * labelling them.
-     * </p>
-     * <p>
-     * Format: <code>"key" : "value"</code>
-     * </p>
-     * <p>
-     * Restrictions:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Maximum 50 tags per resource
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Each resource tag must be unique with a maximum of one value.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Maximum key length: 128 Unicode characters in UTF-8
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Maximum value length: 256 Unicode characters in UTF-8
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
-     * characters: + - = . _ : / @.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Cannot use "aws:" as a prefix for a key.
-     * </p>
-     * </li>
-     * </ul>
-     */
-    private java.util.Map<String, String> tags;
+    private Boolean kmsKeyEnableGeospatialQueries;
 
     /**
      * <p>
@@ -209,183 +267,270 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     */
-    private String trackerName;
-
-    /**
-     * <p>
-     * An optional description for the tracker resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
-     *         An optional description for the tracker resource.
+     *         The name for the tracker resource.
      *         </p>
+     *         <p>
+     *         Requirements:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens
+     *         (-), periods (.), and underscores (_).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Must be a unique tracker resource name.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         No spaces allowed. For example, <code>ExampleTracker</code>.
+     *         </p>
+     *         </li>
+     *         </ul>
      */
-    public String getDescription() {
-        return description;
+    public String getTrackerName() {
+        return trackerName;
     }
 
     /**
      * <p>
-     * An optional description for the tracker resource.
+     * The name for the tracker resource.
      * </p>
+     * <p>
+     * Requirements:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
+     * periods (.), and underscores (_).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Must be a unique tracker resource name.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * No spaces allowed. For example, <code>ExampleTracker</code>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
-     * @param description <p>
-     *            An optional description for the tracker resource.
+     * @param trackerName <p>
+     *            The name for the tracker resource.
      *            </p>
+     *            <p>
+     *            Requirements:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens
+     *            (-), periods (.), and underscores (_).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Must be a unique tracker resource name.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            No spaces allowed. For example, <code>ExampleTracker</code>.
+     *            </p>
+     *            </li>
+     *            </ul>
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTrackerName(String trackerName) {
+        this.trackerName = trackerName;
     }
 
     /**
      * <p>
-     * An optional description for the tracker resource.
+     * The name for the tracker resource.
      * </p>
+     * <p>
+     * Requirements:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
+     * periods (.), and underscores (_).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Must be a unique tracker resource name.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * No spaces allowed. For example, <code>ExampleTracker</code>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
-     * @param description <p>
-     *            An optional description for the tracker resource.
+     * @param trackerName <p>
+     *            The name for the tracker resource.
      *            </p>
+     *            <p>
+     *            Requirements:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens
+     *            (-), periods (.), and underscores (_).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Must be a unique tracker resource name.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            No spaces allowed. For example, <code>ExampleTracker</code>.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateTrackerRequest withDescription(String description) {
-        this.description = description;
+    public CreateTrackerRequest withTrackerName(String trackerName) {
+        this.trackerName = trackerName;
         return this;
     }
 
     /**
      * <p>
-     * Whether to enable position <code>UPDATE</code> events from this tracker
-     * to be sent to EventBridge.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
-     * <note>
      * <p>
-     * You do not need enable this feature to get <code>ENTER</code> and
-     * <code>EXIT</code> events for geofences with this tracker. Those events
-     * are always sent to EventBridge.
-     * </p>
-     * </note>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
      *
      * @return <p>
-     *         Whether to enable position <code>UPDATE</code> events from this
-     *         tracker to be sent to EventBridge.
+     *         No longer used. If included, the only allowed value is
+     *         <code>RequestBasedUsage</code>.
      *         </p>
-     *         <note>
-     *         <p>
-     *         You do not need enable this feature to get <code>ENTER</code> and
-     *         <code>EXIT</code> events for geofences with this tracker. Those
-     *         events are always sent to EventBridge.
-     *         </p>
-     *         </note>
+     * @see PricingPlan
      */
-    public Boolean isEventBridgeEnabled() {
-        return eventBridgeEnabled;
+    public String getPricingPlan() {
+        return pricingPlan;
     }
 
     /**
      * <p>
-     * Whether to enable position <code>UPDATE</code> events from this tracker
-     * to be sent to EventBridge.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
-     * <note>
      * <p>
-     * You do not need enable this feature to get <code>ENTER</code> and
-     * <code>EXIT</code> events for geofences with this tracker. Those events
-     * are always sent to EventBridge.
-     * </p>
-     * </note>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
      *
-     * @return <p>
-     *         Whether to enable position <code>UPDATE</code> events from this
-     *         tracker to be sent to EventBridge.
-     *         </p>
-     *         <note>
-     *         <p>
-     *         You do not need enable this feature to get <code>ENTER</code> and
-     *         <code>EXIT</code> events for geofences with this tracker. Those
-     *         events are always sent to EventBridge.
-     *         </p>
-     *         </note>
+     * @param pricingPlan <p>
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
+     *            </p>
+     * @see PricingPlan
      */
-    public Boolean getEventBridgeEnabled() {
-        return eventBridgeEnabled;
+    public void setPricingPlan(String pricingPlan) {
+        this.pricingPlan = pricingPlan;
     }
 
     /**
      * <p>
-     * Whether to enable position <code>UPDATE</code> events from this tracker
-     * to be sent to EventBridge.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
-     * <note>
-     * <p>
-     * You do not need enable this feature to get <code>ENTER</code> and
-     * <code>EXIT</code> events for geofences with this tracker. Those events
-     * are always sent to EventBridge.
-     * </p>
-     * </note>
-     *
-     * @param eventBridgeEnabled <p>
-     *            Whether to enable position <code>UPDATE</code> events from
-     *            this tracker to be sent to EventBridge.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            You do not need enable this feature to get <code>ENTER</code>
-     *            and <code>EXIT</code> events for geofences with this tracker.
-     *            Those events are always sent to EventBridge.
-     *            </p>
-     *            </note>
-     */
-    public void setEventBridgeEnabled(Boolean eventBridgeEnabled) {
-        this.eventBridgeEnabled = eventBridgeEnabled;
-    }
-
-    /**
-     * <p>
-     * Whether to enable position <code>UPDATE</code> events from this tracker
-     * to be sent to EventBridge.
-     * </p>
-     * <note>
-     * <p>
-     * You do not need enable this feature to get <code>ENTER</code> and
-     * <code>EXIT</code> events for geofences with this tracker. Those events
-     * are always sent to EventBridge.
-     * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
      *
-     * @param eventBridgeEnabled <p>
-     *            Whether to enable position <code>UPDATE</code> events from
-     *            this tracker to be sent to EventBridge.
+     * @param pricingPlan <p>
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
      *            </p>
-     *            <note>
-     *            <p>
-     *            You do not need enable this feature to get <code>ENTER</code>
-     *            and <code>EXIT</code> events for geofences with this tracker.
-     *            Those events are always sent to EventBridge.
-     *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
+     * @see PricingPlan
      */
-    public CreateTrackerRequest withEventBridgeEnabled(Boolean eventBridgeEnabled) {
-        this.eventBridgeEnabled = eventBridgeEnabled;
+    public CreateTrackerRequest withPricingPlan(String pricingPlan) {
+        this.pricingPlan = pricingPlan;
+        return this;
+    }
+
+    /**
+     * <p>
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @param pricingPlan <p>
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
+     *            </p>
+     * @see PricingPlan
+     */
+    public void setPricingPlan(PricingPlan pricingPlan) {
+        this.pricingPlan = pricingPlan.toString();
+    }
+
+    /**
+     * <p>
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @param pricingPlan <p>
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see PricingPlan
+     */
+    public CreateTrackerRequest withPricingPlan(PricingPlan pricingPlan) {
+        this.pricingPlan = pricingPlan.toString();
         return this;
     }
 
@@ -458,6 +603,472 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      */
     public CreateTrackerRequest withKmsKeyId(String kmsKeyId) {
         this.kmsKeyId = kmsKeyId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * This parameter is no longer used.
+     * </p>
+     *
+     * @return <p>
+     *         This parameter is no longer used.
+     *         </p>
+     */
+    public String getPricingPlanDataSource() {
+        return pricingPlanDataSource;
+    }
+
+    /**
+     * <p>
+     * This parameter is no longer used.
+     * </p>
+     *
+     * @param pricingPlanDataSource <p>
+     *            This parameter is no longer used.
+     *            </p>
+     */
+    public void setPricingPlanDataSource(String pricingPlanDataSource) {
+        this.pricingPlanDataSource = pricingPlanDataSource;
+    }
+
+    /**
+     * <p>
+     * This parameter is no longer used.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param pricingPlanDataSource <p>
+     *            This parameter is no longer used.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateTrackerRequest withPricingPlanDataSource(String pricingPlanDataSource) {
+        this.pricingPlanDataSource = pricingPlanDataSource;
+        return this;
+    }
+
+    /**
+     * <p>
+     * An optional description for the tracker resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @return <p>
+     *         An optional description for the tracker resource.
+     *         </p>
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * <p>
+     * An optional description for the tracker resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            An optional description for the tracker resource.
+     *            </p>
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * <p>
+     * An optional description for the tracker resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            An optional description for the tracker resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateTrackerRequest withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Applies one or more tags to the tracker resource. A tag is a key-value
+     * pair helps manage, identify, search, and filter your resources by
+     * labelling them.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
+     * </p>
+     * <p>
+     * Restrictions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Maximum 50 tags per resource
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Each resource tag must be unique with a maximum of one value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum key length: 128 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum value length: 256 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+     * characters: + - = . _ : / @.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Cannot use "aws:" as a prefix for a key.
+     * </p>
+     * </li>
+     * </ul>
+     *
+     * @return <p>
+     *         Applies one or more tags to the tracker resource. A tag is a
+     *         key-value pair helps manage, identify, search, and filter your
+     *         resources by labelling them.
+     *         </p>
+     *         <p>
+     *         Format: <code>"key" : "value"</code>
+     *         </p>
+     *         <p>
+     *         Restrictions:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Maximum 50 tags per resource
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Each resource tag must be unique with a maximum of one value.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Maximum key length: 128 Unicode characters in UTF-8
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Maximum value length: 256 Unicode characters in UTF-8
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Can use alphanumeric characters (A–Z, a–z, 0–9), and the
+     *         following characters: + - = . _ : / @.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Cannot use "aws:" as a prefix for a key.
+     *         </p>
+     *         </li>
+     *         </ul>
+     */
+    public java.util.Map<String, String> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Applies one or more tags to the tracker resource. A tag is a key-value
+     * pair helps manage, identify, search, and filter your resources by
+     * labelling them.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
+     * </p>
+     * <p>
+     * Restrictions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Maximum 50 tags per resource
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Each resource tag must be unique with a maximum of one value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum key length: 128 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum value length: 256 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+     * characters: + - = . _ : / @.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Cannot use "aws:" as a prefix for a key.
+     * </p>
+     * </li>
+     * </ul>
+     *
+     * @param tags <p>
+     *            Applies one or more tags to the tracker resource. A tag is a
+     *            key-value pair helps manage, identify, search, and filter your
+     *            resources by labelling them.
+     *            </p>
+     *            <p>
+     *            Format: <code>"key" : "value"</code>
+     *            </p>
+     *            <p>
+     *            Restrictions:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Maximum 50 tags per resource
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Each resource tag must be unique with a maximum of one value.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Maximum key length: 128 Unicode characters in UTF-8
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Maximum value length: 256 Unicode characters in UTF-8
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Can use alphanumeric characters (A–Z, a–z, 0–9), and the
+     *            following characters: + - = . _ : / @.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Cannot use "aws:" as a prefix for a key.
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * <p>
+     * Applies one or more tags to the tracker resource. A tag is a key-value
+     * pair helps manage, identify, search, and filter your resources by
+     * labelling them.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
+     * </p>
+     * <p>
+     * Restrictions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Maximum 50 tags per resource
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Each resource tag must be unique with a maximum of one value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum key length: 128 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum value length: 256 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+     * characters: + - = . _ : / @.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Cannot use "aws:" as a prefix for a key.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Applies one or more tags to the tracker resource. A tag is a
+     *            key-value pair helps manage, identify, search, and filter your
+     *            resources by labelling them.
+     *            </p>
+     *            <p>
+     *            Format: <code>"key" : "value"</code>
+     *            </p>
+     *            <p>
+     *            Restrictions:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Maximum 50 tags per resource
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Each resource tag must be unique with a maximum of one value.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Maximum key length: 128 Unicode characters in UTF-8
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Maximum value length: 256 Unicode characters in UTF-8
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Can use alphanumeric characters (A–Z, a–z, 0–9), and the
+     *            following characters: + - = . _ : / @.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Cannot use "aws:" as a prefix for a key.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateTrackerRequest withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Applies one or more tags to the tracker resource. A tag is a key-value
+     * pair helps manage, identify, search, and filter your resources by
+     * labelling them.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
+     * </p>
+     * <p>
+     * Restrictions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Maximum 50 tags per resource
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Each resource tag must be unique with a maximum of one value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum key length: 128 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum value length: 256 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+     * characters: + - = . _ : / @.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Cannot use "aws:" as a prefix for a key.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The method adds a new key-value pair into Tags parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into Tags.
+     * @param value The corresponding value of the entry to be added into Tags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateTrackerRequest addTagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
+        }
+        if (this.tags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.tags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into Tags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public CreateTrackerRequest clearTagsEntries() {
+        this.tags = null;
         return this;
     }
 
@@ -979,708 +1590,350 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * No longer used. If included, the only allowed value is
-     * <code>RequestBasedUsage</code>.
+     * Whether to enable position <code>UPDATE</code> events from this tracker
+     * to be sent to EventBridge.
      * </p>
+     * <note>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
-     * MobileAssetManagement
+     * You do not need enable this feature to get <code>ENTER</code> and
+     * <code>EXIT</code> events for geofences with this tracker. Those events
+     * are always sent to EventBridge.
+     * </p>
+     * </note>
      *
      * @return <p>
-     *         No longer used. If included, the only allowed value is
-     *         <code>RequestBasedUsage</code>.
+     *         Whether to enable position <code>UPDATE</code> events from this
+     *         tracker to be sent to EventBridge.
      *         </p>
-     * @see PricingPlan
+     *         <note>
+     *         <p>
+     *         You do not need enable this feature to get <code>ENTER</code> and
+     *         <code>EXIT</code> events for geofences with this tracker. Those
+     *         events are always sent to EventBridge.
+     *         </p>
+     *         </note>
      */
-    public String getPricingPlan() {
-        return pricingPlan;
+    public Boolean isEventBridgeEnabled() {
+        return eventBridgeEnabled;
     }
 
     /**
      * <p>
-     * No longer used. If included, the only allowed value is
-     * <code>RequestBasedUsage</code>.
+     * Whether to enable position <code>UPDATE</code> events from this tracker
+     * to be sent to EventBridge.
      * </p>
+     * <note>
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
-     * MobileAssetManagement
-     *
-     * @param pricingPlan <p>
-     *            No longer used. If included, the only allowed value is
-     *            <code>RequestBasedUsage</code>.
-     *            </p>
-     * @see PricingPlan
-     */
-    public void setPricingPlan(String pricingPlan) {
-        this.pricingPlan = pricingPlan;
-    }
-
-    /**
-     * <p>
-     * No longer used. If included, the only allowed value is
-     * <code>RequestBasedUsage</code>.
+     * You do not need enable this feature to get <code>ENTER</code> and
+     * <code>EXIT</code> events for geofences with this tracker. Those events
+     * are always sent to EventBridge.
      * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
-     * MobileAssetManagement
-     *
-     * @param pricingPlan <p>
-     *            No longer used. If included, the only allowed value is
-     *            <code>RequestBasedUsage</code>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see PricingPlan
-     */
-    public CreateTrackerRequest withPricingPlan(String pricingPlan) {
-        this.pricingPlan = pricingPlan;
-        return this;
-    }
-
-    /**
-     * <p>
-     * No longer used. If included, the only allowed value is
-     * <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
-     * MobileAssetManagement
-     *
-     * @param pricingPlan <p>
-     *            No longer used. If included, the only allowed value is
-     *            <code>RequestBasedUsage</code>.
-     *            </p>
-     * @see PricingPlan
-     */
-    public void setPricingPlan(PricingPlan pricingPlan) {
-        this.pricingPlan = pricingPlan.toString();
-    }
-
-    /**
-     * <p>
-     * No longer used. If included, the only allowed value is
-     * <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
-     * MobileAssetManagement
-     *
-     * @param pricingPlan <p>
-     *            No longer used. If included, the only allowed value is
-     *            <code>RequestBasedUsage</code>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see PricingPlan
-     */
-    public CreateTrackerRequest withPricingPlan(PricingPlan pricingPlan) {
-        this.pricingPlan = pricingPlan.toString();
-        return this;
-    }
-
-    /**
-     * <p>
-     * This parameter is no longer used.
-     * </p>
+     * </note>
      *
      * @return <p>
-     *         This parameter is no longer used.
+     *         Whether to enable position <code>UPDATE</code> events from this
+     *         tracker to be sent to EventBridge.
      *         </p>
+     *         <note>
+     *         <p>
+     *         You do not need enable this feature to get <code>ENTER</code> and
+     *         <code>EXIT</code> events for geofences with this tracker. Those
+     *         events are always sent to EventBridge.
+     *         </p>
+     *         </note>
      */
-    public String getPricingPlanDataSource() {
-        return pricingPlanDataSource;
+    public Boolean getEventBridgeEnabled() {
+        return eventBridgeEnabled;
     }
 
     /**
      * <p>
-     * This parameter is no longer used.
+     * Whether to enable position <code>UPDATE</code> events from this tracker
+     * to be sent to EventBridge.
      * </p>
+     * <note>
+     * <p>
+     * You do not need enable this feature to get <code>ENTER</code> and
+     * <code>EXIT</code> events for geofences with this tracker. Those events
+     * are always sent to EventBridge.
+     * </p>
+     * </note>
      *
-     * @param pricingPlanDataSource <p>
-     *            This parameter is no longer used.
+     * @param eventBridgeEnabled <p>
+     *            Whether to enable position <code>UPDATE</code> events from
+     *            this tracker to be sent to EventBridge.
      *            </p>
+     *            <note>
+     *            <p>
+     *            You do not need enable this feature to get <code>ENTER</code>
+     *            and <code>EXIT</code> events for geofences with this tracker.
+     *            Those events are always sent to EventBridge.
+     *            </p>
+     *            </note>
      */
-    public void setPricingPlanDataSource(String pricingPlanDataSource) {
-        this.pricingPlanDataSource = pricingPlanDataSource;
+    public void setEventBridgeEnabled(Boolean eventBridgeEnabled) {
+        this.eventBridgeEnabled = eventBridgeEnabled;
     }
 
     /**
      * <p>
-     * This parameter is no longer used.
+     * Whether to enable position <code>UPDATE</code> events from this tracker
+     * to be sent to EventBridge.
      * </p>
+     * <note>
+     * <p>
+     * You do not need enable this feature to get <code>ENTER</code> and
+     * <code>EXIT</code> events for geofences with this tracker. Those events
+     * are always sent to EventBridge.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param pricingPlanDataSource <p>
-     *            This parameter is no longer used.
+     * @param eventBridgeEnabled <p>
+     *            Whether to enable position <code>UPDATE</code> events from
+     *            this tracker to be sent to EventBridge.
      *            </p>
+     *            <note>
+     *            <p>
+     *            You do not need enable this feature to get <code>ENTER</code>
+     *            and <code>EXIT</code> events for geofences with this tracker.
+     *            Those events are always sent to EventBridge.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateTrackerRequest withPricingPlanDataSource(String pricingPlanDataSource) {
-        this.pricingPlanDataSource = pricingPlanDataSource;
+    public CreateTrackerRequest withEventBridgeEnabled(Boolean eventBridgeEnabled) {
+        this.eventBridgeEnabled = eventBridgeEnabled;
         return this;
     }
 
     /**
      * <p>
-     * Applies one or more tags to the tracker resource. A tag is a key-value
-     * pair helps manage, identify, search, and filter your resources by
-     * labelling them.
+     * Enables <code>GeospatialQueries</code> for a tracker that uses a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     * >Amazon Web Services KMS customer managed key</a>.
      * </p>
      * <p>
-     * Format: <code>"key" : "value"</code>
+     * This parameter is only used if you are using a KMS customer managed key.
+     * </p>
+     * <note>
+     * <p>
+     * If you wish to encrypt your data using your own KMS customer managed key,
+     * then the Bounding Polygon Queries feature will be disabled by default.
+     * This is because by using this feature, a representation of your device
+     * positions will not be encrypted using the your KMS managed key. The exact
+     * device position, however; is still encrypted using your managed key.
      * </p>
      * <p>
-     * Restrictions:
+     * You can choose to opt-in to the Bounding Polygon Quseries feature. This
+     * is done by setting the <code>KmsKeyEnableGeospatialQueries</code>
+     * parameter to true when creating or updating a Tracker.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Maximum 50 tags per resource
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Each resource tag must be unique with a maximum of one value.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Maximum key length: 128 Unicode characters in UTF-8
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Maximum value length: 256 Unicode characters in UTF-8
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
-     * characters: + - = . _ : / @.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Cannot use "aws:" as a prefix for a key.
-     * </p>
-     * </li>
-     * </ul>
+     * </note>
      *
      * @return <p>
-     *         Applies one or more tags to the tracker resource. A tag is a
-     *         key-value pair helps manage, identify, search, and filter your
-     *         resources by labelling them.
+     *         Enables <code>GeospatialQueries</code> for a tracker that uses a
+     *         <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     *         >Amazon Web Services KMS customer managed key</a>.
      *         </p>
      *         <p>
-     *         Format: <code>"key" : "value"</code>
+     *         This parameter is only used if you are using a KMS customer
+     *         managed key.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         If you wish to encrypt your data using your own KMS customer
+     *         managed key, then the Bounding Polygon Queries feature will be
+     *         disabled by default. This is because by using this feature, a
+     *         representation of your device positions will not be encrypted
+     *         using the your KMS managed key. The exact device position,
+     *         however; is still encrypted using your managed key.
      *         </p>
      *         <p>
-     *         Restrictions:
+     *         You can choose to opt-in to the Bounding Polygon Quseries
+     *         feature. This is done by setting the
+     *         <code>KmsKeyEnableGeospatialQueries</code> parameter to true when
+     *         creating or updating a Tracker.
      *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         Maximum 50 tags per resource
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Each resource tag must be unique with a maximum of one value.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Maximum key length: 128 Unicode characters in UTF-8
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Maximum value length: 256 Unicode characters in UTF-8
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Can use alphanumeric characters (A–Z, a–z, 0–9), and the
-     *         following characters: + - = . _ : / @.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Cannot use "aws:" as a prefix for a key.
-     *         </p>
-     *         </li>
-     *         </ul>
+     *         </note>
      */
-    public java.util.Map<String, String> getTags() {
-        return tags;
+    public Boolean isKmsKeyEnableGeospatialQueries() {
+        return kmsKeyEnableGeospatialQueries;
     }
 
     /**
      * <p>
-     * Applies one or more tags to the tracker resource. A tag is a key-value
-     * pair helps manage, identify, search, and filter your resources by
-     * labelling them.
+     * Enables <code>GeospatialQueries</code> for a tracker that uses a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     * >Amazon Web Services KMS customer managed key</a>.
      * </p>
      * <p>
-     * Format: <code>"key" : "value"</code>
+     * This parameter is only used if you are using a KMS customer managed key.
+     * </p>
+     * <note>
+     * <p>
+     * If you wish to encrypt your data using your own KMS customer managed key,
+     * then the Bounding Polygon Queries feature will be disabled by default.
+     * This is because by using this feature, a representation of your device
+     * positions will not be encrypted using the your KMS managed key. The exact
+     * device position, however; is still encrypted using your managed key.
      * </p>
      * <p>
-     * Restrictions:
+     * You can choose to opt-in to the Bounding Polygon Quseries feature. This
+     * is done by setting the <code>KmsKeyEnableGeospatialQueries</code>
+     * parameter to true when creating or updating a Tracker.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Maximum 50 tags per resource
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Each resource tag must be unique with a maximum of one value.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Maximum key length: 128 Unicode characters in UTF-8
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Maximum value length: 256 Unicode characters in UTF-8
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
-     * characters: + - = . _ : / @.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Cannot use "aws:" as a prefix for a key.
-     * </p>
-     * </li>
-     * </ul>
-     *
-     * @param tags <p>
-     *            Applies one or more tags to the tracker resource. A tag is a
-     *            key-value pair helps manage, identify, search, and filter your
-     *            resources by labelling them.
-     *            </p>
-     *            <p>
-     *            Format: <code>"key" : "value"</code>
-     *            </p>
-     *            <p>
-     *            Restrictions:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Maximum 50 tags per resource
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Each resource tag must be unique with a maximum of one value.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Maximum key length: 128 Unicode characters in UTF-8
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Maximum value length: 256 Unicode characters in UTF-8
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Can use alphanumeric characters (A–Z, a–z, 0–9), and the
-     *            following characters: + - = . _ : / @.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Cannot use "aws:" as a prefix for a key.
-     *            </p>
-     *            </li>
-     *            </ul>
-     */
-    public void setTags(java.util.Map<String, String> tags) {
-        this.tags = tags;
-    }
-
-    /**
-     * <p>
-     * Applies one or more tags to the tracker resource. A tag is a key-value
-     * pair helps manage, identify, search, and filter your resources by
-     * labelling them.
-     * </p>
-     * <p>
-     * Format: <code>"key" : "value"</code>
-     * </p>
-     * <p>
-     * Restrictions:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Maximum 50 tags per resource
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Each resource tag must be unique with a maximum of one value.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Maximum key length: 128 Unicode characters in UTF-8
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Maximum value length: 256 Unicode characters in UTF-8
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
-     * characters: + - = . _ : / @.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Cannot use "aws:" as a prefix for a key.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param tags <p>
-     *            Applies one or more tags to the tracker resource. A tag is a
-     *            key-value pair helps manage, identify, search, and filter your
-     *            resources by labelling them.
-     *            </p>
-     *            <p>
-     *            Format: <code>"key" : "value"</code>
-     *            </p>
-     *            <p>
-     *            Restrictions:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Maximum 50 tags per resource
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Each resource tag must be unique with a maximum of one value.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Maximum key length: 128 Unicode characters in UTF-8
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Maximum value length: 256 Unicode characters in UTF-8
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Can use alphanumeric characters (A–Z, a–z, 0–9), and the
-     *            following characters: + - = . _ : / @.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Cannot use "aws:" as a prefix for a key.
-     *            </p>
-     *            </li>
-     *            </ul>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateTrackerRequest withTags(java.util.Map<String, String> tags) {
-        this.tags = tags;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Applies one or more tags to the tracker resource. A tag is a key-value
-     * pair helps manage, identify, search, and filter your resources by
-     * labelling them.
-     * </p>
-     * <p>
-     * Format: <code>"key" : "value"</code>
-     * </p>
-     * <p>
-     * Restrictions:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Maximum 50 tags per resource
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Each resource tag must be unique with a maximum of one value.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Maximum key length: 128 Unicode characters in UTF-8
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Maximum value length: 256 Unicode characters in UTF-8
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
-     * characters: + - = . _ : / @.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Cannot use "aws:" as a prefix for a key.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * The method adds a new key-value pair into Tags parameter, and returns a
-     * reference to this object so that method calls can be chained together.
-     *
-     * @param key The key of the entry to be added into Tags.
-     * @param value The corresponding value of the entry to be added into Tags.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateTrackerRequest addTagsEntry(String key, String value) {
-        if (null == this.tags) {
-            this.tags = new java.util.HashMap<String, String>();
-        }
-        if (this.tags.containsKey(key))
-            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
-                    + ") are provided.");
-        this.tags.put(key, value);
-        return this;
-    }
-
-    /**
-     * Removes all the entries added into Tags.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     */
-    public CreateTrackerRequest clearTagsEntries() {
-        this.tags = null;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The name for the tracker resource.
-     * </p>
-     * <p>
-     * Requirements:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
-     * periods (.), and underscores (_).
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Must be a unique tracker resource name.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * No spaces allowed. For example, <code>ExampleTracker</code>.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * </note>
      *
      * @return <p>
-     *         The name for the tracker resource.
+     *         Enables <code>GeospatialQueries</code> for a tracker that uses a
+     *         <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     *         >Amazon Web Services KMS customer managed key</a>.
      *         </p>
      *         <p>
-     *         Requirements:
+     *         This parameter is only used if you are using a KMS customer
+     *         managed key.
      *         </p>
-     *         <ul>
-     *         <li>
+     *         <note>
      *         <p>
-     *         Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens
-     *         (-), periods (.), and underscores (_).
+     *         If you wish to encrypt your data using your own KMS customer
+     *         managed key, then the Bounding Polygon Queries feature will be
+     *         disabled by default. This is because by using this feature, a
+     *         representation of your device positions will not be encrypted
+     *         using the your KMS managed key. The exact device position,
+     *         however; is still encrypted using your managed key.
      *         </p>
-     *         </li>
-     *         <li>
      *         <p>
-     *         Must be a unique tracker resource name.
+     *         You can choose to opt-in to the Bounding Polygon Quseries
+     *         feature. This is done by setting the
+     *         <code>KmsKeyEnableGeospatialQueries</code> parameter to true when
+     *         creating or updating a Tracker.
      *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         No spaces allowed. For example, <code>ExampleTracker</code>.
-     *         </p>
-     *         </li>
-     *         </ul>
+     *         </note>
      */
-    public String getTrackerName() {
-        return trackerName;
+    public Boolean getKmsKeyEnableGeospatialQueries() {
+        return kmsKeyEnableGeospatialQueries;
     }
 
     /**
      * <p>
-     * The name for the tracker resource.
+     * Enables <code>GeospatialQueries</code> for a tracker that uses a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     * >Amazon Web Services KMS customer managed key</a>.
      * </p>
      * <p>
-     * Requirements:
+     * This parameter is only used if you are using a KMS customer managed key.
      * </p>
-     * <ul>
-     * <li>
+     * <note>
      * <p>
-     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
-     * periods (.), and underscores (_).
+     * If you wish to encrypt your data using your own KMS customer managed key,
+     * then the Bounding Polygon Queries feature will be disabled by default.
+     * This is because by using this feature, a representation of your device
+     * positions will not be encrypted using the your KMS managed key. The exact
+     * device position, however; is still encrypted using your managed key.
      * </p>
-     * </li>
-     * <li>
      * <p>
-     * Must be a unique tracker resource name.
+     * You can choose to opt-in to the Bounding Polygon Quseries feature. This
+     * is done by setting the <code>KmsKeyEnableGeospatialQueries</code>
+     * parameter to true when creating or updating a Tracker.
      * </p>
-     * </li>
-     * <li>
-     * <p>
-     * No spaces allowed. For example, <code>ExampleTracker</code>.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * </note>
      *
-     * @param trackerName <p>
-     *            The name for the tracker resource.
+     * @param kmsKeyEnableGeospatialQueries <p>
+     *            Enables <code>GeospatialQueries</code> for a tracker that uses
+     *            a <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     *            >Amazon Web Services KMS customer managed key</a>.
      *            </p>
      *            <p>
-     *            Requirements:
+     *            This parameter is only used if you are using a KMS customer
+     *            managed key.
      *            </p>
-     *            <ul>
-     *            <li>
+     *            <note>
      *            <p>
-     *            Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens
-     *            (-), periods (.), and underscores (_).
+     *            If you wish to encrypt your data using your own KMS customer
+     *            managed key, then the Bounding Polygon Queries feature will be
+     *            disabled by default. This is because by using this feature, a
+     *            representation of your device positions will not be encrypted
+     *            using the your KMS managed key. The exact device position,
+     *            however; is still encrypted using your managed key.
      *            </p>
-     *            </li>
-     *            <li>
      *            <p>
-     *            Must be a unique tracker resource name.
+     *            You can choose to opt-in to the Bounding Polygon Quseries
+     *            feature. This is done by setting the
+     *            <code>KmsKeyEnableGeospatialQueries</code> parameter to true
+     *            when creating or updating a Tracker.
      *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            No spaces allowed. For example, <code>ExampleTracker</code>.
-     *            </p>
-     *            </li>
-     *            </ul>
+     *            </note>
      */
-    public void setTrackerName(String trackerName) {
-        this.trackerName = trackerName;
+    public void setKmsKeyEnableGeospatialQueries(Boolean kmsKeyEnableGeospatialQueries) {
+        this.kmsKeyEnableGeospatialQueries = kmsKeyEnableGeospatialQueries;
     }
 
     /**
      * <p>
-     * The name for the tracker resource.
+     * Enables <code>GeospatialQueries</code> for a tracker that uses a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     * >Amazon Web Services KMS customer managed key</a>.
      * </p>
      * <p>
-     * Requirements:
+     * This parameter is only used if you are using a KMS customer managed key.
      * </p>
-     * <ul>
-     * <li>
+     * <note>
      * <p>
-     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
-     * periods (.), and underscores (_).
+     * If you wish to encrypt your data using your own KMS customer managed key,
+     * then the Bounding Polygon Queries feature will be disabled by default.
+     * This is because by using this feature, a representation of your device
+     * positions will not be encrypted using the your KMS managed key. The exact
+     * device position, however; is still encrypted using your managed key.
      * </p>
-     * </li>
-     * <li>
      * <p>
-     * Must be a unique tracker resource name.
+     * You can choose to opt-in to the Bounding Polygon Quseries feature. This
+     * is done by setting the <code>KmsKeyEnableGeospatialQueries</code>
+     * parameter to true when creating or updating a Tracker.
      * </p>
-     * </li>
-     * <li>
-     * <p>
-     * No spaces allowed. For example, <code>ExampleTracker</code>.
-     * </p>
-     * </li>
-     * </ul>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
      *
-     * @param trackerName <p>
-     *            The name for the tracker resource.
+     * @param kmsKeyEnableGeospatialQueries <p>
+     *            Enables <code>GeospatialQueries</code> for a tracker that uses
+     *            a <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     *            >Amazon Web Services KMS customer managed key</a>.
      *            </p>
      *            <p>
-     *            Requirements:
+     *            This parameter is only used if you are using a KMS customer
+     *            managed key.
      *            </p>
-     *            <ul>
-     *            <li>
+     *            <note>
      *            <p>
-     *            Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens
-     *            (-), periods (.), and underscores (_).
+     *            If you wish to encrypt your data using your own KMS customer
+     *            managed key, then the Bounding Polygon Queries feature will be
+     *            disabled by default. This is because by using this feature, a
+     *            representation of your device positions will not be encrypted
+     *            using the your KMS managed key. The exact device position,
+     *            however; is still encrypted using your managed key.
      *            </p>
-     *            </li>
-     *            <li>
      *            <p>
-     *            Must be a unique tracker resource name.
+     *            You can choose to opt-in to the Bounding Polygon Quseries
+     *            feature. This is done by setting the
+     *            <code>KmsKeyEnableGeospatialQueries</code> parameter to true
+     *            when creating or updating a Tracker.
      *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            No spaces allowed. For example, <code>ExampleTracker</code>.
-     *            </p>
-     *            </li>
-     *            </ul>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateTrackerRequest withTrackerName(String trackerName) {
-        this.trackerName = trackerName;
+    public CreateTrackerRequest withKmsKeyEnableGeospatialQueries(
+            Boolean kmsKeyEnableGeospatialQueries) {
+        this.kmsKeyEnableGeospatialQueries = kmsKeyEnableGeospatialQueries;
         return this;
     }
 
@@ -1695,22 +1948,24 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getDescription() != null)
-            sb.append("Description: " + getDescription() + ",");
-        if (getEventBridgeEnabled() != null)
-            sb.append("EventBridgeEnabled: " + getEventBridgeEnabled() + ",");
-        if (getKmsKeyId() != null)
-            sb.append("KmsKeyId: " + getKmsKeyId() + ",");
-        if (getPositionFiltering() != null)
-            sb.append("PositionFiltering: " + getPositionFiltering() + ",");
+        if (getTrackerName() != null)
+            sb.append("TrackerName: " + getTrackerName() + ",");
         if (getPricingPlan() != null)
             sb.append("PricingPlan: " + getPricingPlan() + ",");
+        if (getKmsKeyId() != null)
+            sb.append("KmsKeyId: " + getKmsKeyId() + ",");
         if (getPricingPlanDataSource() != null)
             sb.append("PricingPlanDataSource: " + getPricingPlanDataSource() + ",");
+        if (getDescription() != null)
+            sb.append("Description: " + getDescription() + ",");
         if (getTags() != null)
             sb.append("Tags: " + getTags() + ",");
-        if (getTrackerName() != null)
-            sb.append("TrackerName: " + getTrackerName());
+        if (getPositionFiltering() != null)
+            sb.append("PositionFiltering: " + getPositionFiltering() + ",");
+        if (getEventBridgeEnabled() != null)
+            sb.append("EventBridgeEnabled: " + getEventBridgeEnabled() + ",");
+        if (getKmsKeyEnableGeospatialQueries() != null)
+            sb.append("KmsKeyEnableGeospatialQueries: " + getKmsKeyEnableGeospatialQueries());
         sb.append("}");
         return sb.toString();
     }
@@ -1721,20 +1976,24 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
         int hashCode = 1;
 
         hashCode = prime * hashCode
-                + ((getDescription() == null) ? 0 : getDescription().hashCode());
-        hashCode = prime * hashCode
-                + ((getEventBridgeEnabled() == null) ? 0 : getEventBridgeEnabled().hashCode());
-        hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
-        hashCode = prime * hashCode
-                + ((getPositionFiltering() == null) ? 0 : getPositionFiltering().hashCode());
+                + ((getTrackerName() == null) ? 0 : getTrackerName().hashCode());
         hashCode = prime * hashCode
                 + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
+        hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
         hashCode = prime
                 * hashCode
                 + ((getPricingPlanDataSource() == null) ? 0 : getPricingPlanDataSource().hashCode());
+        hashCode = prime * hashCode
+                + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode
-                + ((getTrackerName() == null) ? 0 : getTrackerName().hashCode());
+                + ((getPositionFiltering() == null) ? 0 : getPositionFiltering().hashCode());
+        hashCode = prime * hashCode
+                + ((getEventBridgeEnabled() == null) ? 0 : getEventBridgeEnabled().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getKmsKeyEnableGeospatialQueries() == null) ? 0
+                        : getKmsKeyEnableGeospatialQueries().hashCode());
         return hashCode;
     }
 
@@ -1749,43 +2008,50 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
             return false;
         CreateTrackerRequest other = (CreateTrackerRequest) obj;
 
-        if (other.getDescription() == null ^ this.getDescription() == null)
+        if (other.getTrackerName() == null ^ this.getTrackerName() == null)
             return false;
-        if (other.getDescription() != null
-                && other.getDescription().equals(this.getDescription()) == false)
-            return false;
-        if (other.getEventBridgeEnabled() == null ^ this.getEventBridgeEnabled() == null)
-            return false;
-        if (other.getEventBridgeEnabled() != null
-                && other.getEventBridgeEnabled().equals(this.getEventBridgeEnabled()) == false)
-            return false;
-        if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null)
-            return false;
-        if (other.getKmsKeyId() != null && other.getKmsKeyId().equals(this.getKmsKeyId()) == false)
-            return false;
-        if (other.getPositionFiltering() == null ^ this.getPositionFiltering() == null)
-            return false;
-        if (other.getPositionFiltering() != null
-                && other.getPositionFiltering().equals(this.getPositionFiltering()) == false)
+        if (other.getTrackerName() != null
+                && other.getTrackerName().equals(this.getTrackerName()) == false)
             return false;
         if (other.getPricingPlan() == null ^ this.getPricingPlan() == null)
             return false;
         if (other.getPricingPlan() != null
                 && other.getPricingPlan().equals(this.getPricingPlan()) == false)
             return false;
+        if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null)
+            return false;
+        if (other.getKmsKeyId() != null && other.getKmsKeyId().equals(this.getKmsKeyId()) == false)
+            return false;
         if (other.getPricingPlanDataSource() == null ^ this.getPricingPlanDataSource() == null)
             return false;
         if (other.getPricingPlanDataSource() != null
                 && other.getPricingPlanDataSource().equals(this.getPricingPlanDataSource()) == false)
             return false;
+        if (other.getDescription() == null ^ this.getDescription() == null)
+            return false;
+        if (other.getDescription() != null
+                && other.getDescription().equals(this.getDescription()) == false)
+            return false;
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
-        if (other.getTrackerName() == null ^ this.getTrackerName() == null)
+        if (other.getPositionFiltering() == null ^ this.getPositionFiltering() == null)
             return false;
-        if (other.getTrackerName() != null
-                && other.getTrackerName().equals(this.getTrackerName()) == false)
+        if (other.getPositionFiltering() != null
+                && other.getPositionFiltering().equals(this.getPositionFiltering()) == false)
+            return false;
+        if (other.getEventBridgeEnabled() == null ^ this.getEventBridgeEnabled() == null)
+            return false;
+        if (other.getEventBridgeEnabled() != null
+                && other.getEventBridgeEnabled().equals(this.getEventBridgeEnabled()) == false)
+            return false;
+        if (other.getKmsKeyEnableGeospatialQueries() == null
+                ^ this.getKmsKeyEnableGeospatialQueries() == null)
+            return false;
+        if (other.getKmsKeyEnableGeospatialQueries() != null
+                && other.getKmsKeyEnableGeospatialQueries().equals(
+                        this.getKmsKeyEnableGeospatialQueries()) == false)
             return false;
         return true;
     }

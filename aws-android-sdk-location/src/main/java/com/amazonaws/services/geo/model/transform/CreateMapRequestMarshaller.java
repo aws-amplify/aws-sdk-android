@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -59,25 +59,25 @@ public class CreateMapRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (createMapRequest.getConfiguration() != null) {
-                MapConfiguration configuration = createMapRequest.getConfiguration();
-                jsonWriter.name("Configuration");
-                MapConfigurationJsonMarshaller.getInstance().marshall(configuration, jsonWriter);
-            }
-            if (createMapRequest.getDescription() != null) {
-                String description = createMapRequest.getDescription();
-                jsonWriter.name("Description");
-                jsonWriter.value(description);
-            }
             if (createMapRequest.getMapName() != null) {
                 String mapName = createMapRequest.getMapName();
                 jsonWriter.name("MapName");
                 jsonWriter.value(mapName);
             }
+            if (createMapRequest.getConfiguration() != null) {
+                MapConfiguration configuration = createMapRequest.getConfiguration();
+                jsonWriter.name("Configuration");
+                MapConfigurationJsonMarshaller.getInstance().marshall(configuration, jsonWriter);
+            }
             if (createMapRequest.getPricingPlan() != null) {
                 String pricingPlan = createMapRequest.getPricingPlan();
                 jsonWriter.name("PricingPlan");
                 jsonWriter.value(pricingPlan);
+            }
+            if (createMapRequest.getDescription() != null) {
+                String description = createMapRequest.getDescription();
+                jsonWriter.name("Description");
+                jsonWriter.value(description);
             }
             if (createMapRequest.getTags() != null) {
                 java.util.Map<String, String> tags = createMapRequest.getTags();
@@ -104,9 +104,9 @@ public class CreateMapRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
-        request.setHostPrefix("maps.");
+        request.setHostPrefix("cp.maps.");
 
         return request;
     }

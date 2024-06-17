@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,14 +20,6 @@ import java.io.Serializable;
 public class BatchPutGeofenceResult implements Serializable {
     /**
      * <p>
-     * Contains additional error details for each geofence that failed to be
-     * stored in a geofence collection.
-     * </p>
-     */
-    private java.util.List<BatchPutGeofenceError> errors;
-
-    /**
-     * <p>
      * Contains each geofence that was successfully stored in a geofence
      * collection.
      * </p>
@@ -39,82 +31,8 @@ public class BatchPutGeofenceResult implements Serializable {
      * Contains additional error details for each geofence that failed to be
      * stored in a geofence collection.
      * </p>
-     *
-     * @return <p>
-     *         Contains additional error details for each geofence that failed
-     *         to be stored in a geofence collection.
-     *         </p>
      */
-    public java.util.List<BatchPutGeofenceError> getErrors() {
-        return errors;
-    }
-
-    /**
-     * <p>
-     * Contains additional error details for each geofence that failed to be
-     * stored in a geofence collection.
-     * </p>
-     *
-     * @param errors <p>
-     *            Contains additional error details for each geofence that
-     *            failed to be stored in a geofence collection.
-     *            </p>
-     */
-    public void setErrors(java.util.Collection<BatchPutGeofenceError> errors) {
-        if (errors == null) {
-            this.errors = null;
-            return;
-        }
-
-        this.errors = new java.util.ArrayList<BatchPutGeofenceError>(errors);
-    }
-
-    /**
-     * <p>
-     * Contains additional error details for each geofence that failed to be
-     * stored in a geofence collection.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param errors <p>
-     *            Contains additional error details for each geofence that
-     *            failed to be stored in a geofence collection.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public BatchPutGeofenceResult withErrors(BatchPutGeofenceError... errors) {
-        if (getErrors() == null) {
-            this.errors = new java.util.ArrayList<BatchPutGeofenceError>(errors.length);
-        }
-        for (BatchPutGeofenceError value : errors) {
-            this.errors.add(value);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * Contains additional error details for each geofence that failed to be
-     * stored in a geofence collection.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param errors <p>
-     *            Contains additional error details for each geofence that
-     *            failed to be stored in a geofence collection.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public BatchPutGeofenceResult withErrors(java.util.Collection<BatchPutGeofenceError> errors) {
-        setErrors(errors);
-        return this;
-    }
+    private java.util.List<BatchPutGeofenceError> errors;
 
     /**
      * <p>
@@ -200,6 +118,88 @@ public class BatchPutGeofenceResult implements Serializable {
     }
 
     /**
+     * <p>
+     * Contains additional error details for each geofence that failed to be
+     * stored in a geofence collection.
+     * </p>
+     *
+     * @return <p>
+     *         Contains additional error details for each geofence that failed
+     *         to be stored in a geofence collection.
+     *         </p>
+     */
+    public java.util.List<BatchPutGeofenceError> getErrors() {
+        return errors;
+    }
+
+    /**
+     * <p>
+     * Contains additional error details for each geofence that failed to be
+     * stored in a geofence collection.
+     * </p>
+     *
+     * @param errors <p>
+     *            Contains additional error details for each geofence that
+     *            failed to be stored in a geofence collection.
+     *            </p>
+     */
+    public void setErrors(java.util.Collection<BatchPutGeofenceError> errors) {
+        if (errors == null) {
+            this.errors = null;
+            return;
+        }
+
+        this.errors = new java.util.ArrayList<BatchPutGeofenceError>(errors);
+    }
+
+    /**
+     * <p>
+     * Contains additional error details for each geofence that failed to be
+     * stored in a geofence collection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param errors <p>
+     *            Contains additional error details for each geofence that
+     *            failed to be stored in a geofence collection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public BatchPutGeofenceResult withErrors(BatchPutGeofenceError... errors) {
+        if (getErrors() == null) {
+            this.errors = new java.util.ArrayList<BatchPutGeofenceError>(errors.length);
+        }
+        for (BatchPutGeofenceError value : errors) {
+            this.errors.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contains additional error details for each geofence that failed to be
+     * stored in a geofence collection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param errors <p>
+     *            Contains additional error details for each geofence that
+     *            failed to be stored in a geofence collection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public BatchPutGeofenceResult withErrors(java.util.Collection<BatchPutGeofenceError> errors) {
+        setErrors(errors);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -210,10 +210,10 @@ public class BatchPutGeofenceResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getErrors() != null)
-            sb.append("Errors: " + getErrors() + ",");
         if (getSuccesses() != null)
-            sb.append("Successes: " + getSuccesses());
+            sb.append("Successes: " + getSuccesses() + ",");
+        if (getErrors() != null)
+            sb.append("Errors: " + getErrors());
         sb.append("}");
         return sb.toString();
     }
@@ -223,8 +223,8 @@ public class BatchPutGeofenceResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getErrors() == null) ? 0 : getErrors().hashCode());
         hashCode = prime * hashCode + ((getSuccesses() == null) ? 0 : getSuccesses().hashCode());
+        hashCode = prime * hashCode + ((getErrors() == null) ? 0 : getErrors().hashCode());
         return hashCode;
     }
 
@@ -239,14 +239,14 @@ public class BatchPutGeofenceResult implements Serializable {
             return false;
         BatchPutGeofenceResult other = (BatchPutGeofenceResult) obj;
 
-        if (other.getErrors() == null ^ this.getErrors() == null)
-            return false;
-        if (other.getErrors() != null && other.getErrors().equals(this.getErrors()) == false)
-            return false;
         if (other.getSuccesses() == null ^ this.getSuccesses() == null)
             return false;
         if (other.getSuccesses() != null
                 && other.getSuccesses().equals(this.getSuccesses()) == false)
+            return false;
+        if (other.getErrors() == null ^ this.getErrors() == null)
+            return false;
+        if (other.getErrors() != null && other.getErrors().equals(this.getErrors()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,15 +32,15 @@ class BatchEvaluateGeofencesErrorJsonMarshaller {
             jsonWriter.name("DeviceId");
             jsonWriter.value(deviceId);
         }
-        if (batchEvaluateGeofencesError.getError() != null) {
-            BatchItemError error = batchEvaluateGeofencesError.getError();
-            jsonWriter.name("Error");
-            BatchItemErrorJsonMarshaller.getInstance().marshall(error, jsonWriter);
-        }
         if (batchEvaluateGeofencesError.getSampleTime() != null) {
             java.util.Date sampleTime = batchEvaluateGeofencesError.getSampleTime();
             jsonWriter.name("SampleTime");
             jsonWriter.value(DateUtils.formatISO8601Date(sampleTime));
+        }
+        if (batchEvaluateGeofencesError.getError() != null) {
+            BatchItemError error = batchEvaluateGeofencesError.getError();
+            jsonWriter.name("Error");
+            BatchItemErrorJsonMarshaller.getInstance().marshall(error, jsonWriter);
         }
         jsonWriter.endObject();
     }

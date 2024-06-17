@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,17 +36,17 @@ class TruckDimensionsJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Height")) {
-                truckDimensions.setHeight(DoubleJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Length")) {
+            if (name.equals("Length")) {
                 truckDimensions.setLength(DoubleJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("Unit")) {
-                truckDimensions.setUnit(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("Height")) {
+                truckDimensions.setHeight(DoubleJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Width")) {
                 truckDimensions.setWidth(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Unit")) {
+                truckDimensions.setUnit(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

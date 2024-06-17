@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -64,22 +64,22 @@ public class UpdatePlaceIndexRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (updatePlaceIndexRequest.getDataSourceConfiguration() != null) {
-                DataSourceConfiguration dataSourceConfiguration = updatePlaceIndexRequest
-                        .getDataSourceConfiguration();
-                jsonWriter.name("DataSourceConfiguration");
-                DataSourceConfigurationJsonMarshaller.getInstance().marshall(
-                        dataSourceConfiguration, jsonWriter);
+            if (updatePlaceIndexRequest.getPricingPlan() != null) {
+                String pricingPlan = updatePlaceIndexRequest.getPricingPlan();
+                jsonWriter.name("PricingPlan");
+                jsonWriter.value(pricingPlan);
             }
             if (updatePlaceIndexRequest.getDescription() != null) {
                 String description = updatePlaceIndexRequest.getDescription();
                 jsonWriter.name("Description");
                 jsonWriter.value(description);
             }
-            if (updatePlaceIndexRequest.getPricingPlan() != null) {
-                String pricingPlan = updatePlaceIndexRequest.getPricingPlan();
-                jsonWriter.name("PricingPlan");
-                jsonWriter.value(pricingPlan);
+            if (updatePlaceIndexRequest.getDataSourceConfiguration() != null) {
+                DataSourceConfiguration dataSourceConfiguration = updatePlaceIndexRequest
+                        .getDataSourceConfiguration();
+                jsonWriter.name("DataSourceConfiguration");
+                DataSourceConfigurationJsonMarshaller.getInstance().marshall(
+                        dataSourceConfiguration, jsonWriter);
             }
 
             jsonWriter.endObject();
@@ -93,9 +93,9 @@ public class UpdatePlaceIndexRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
-        request.setHostPrefix("places.");
+        request.setHostPrefix("cp.places.");
 
         return request;
     }

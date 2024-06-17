@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,25 +35,25 @@ class StepJsonUnmarshaller implements Unmarshaller<Step, JsonUnmarshallerContext
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Distance")) {
-                step.setDistance(DoubleJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("DurationSeconds")) {
-                step.setDurationSeconds(DoubleJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+            if (name.equals("StartPosition")) {
+                step.setStartPosition(new ListUnmarshaller<Double>(DoubleJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("EndPosition")) {
                 step.setEndPosition(new ListUnmarshaller<Double>(DoubleJsonUnmarshaller
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("Distance")) {
+                step.setDistance(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DurationSeconds")) {
+                step.setDurationSeconds(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("GeometryOffset")) {
                 step.setGeometryOffset(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("StartPosition")) {
-                step.setStartPosition(new ListUnmarshaller<Double>(DoubleJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

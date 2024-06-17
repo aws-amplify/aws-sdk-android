@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -69,18 +69,6 @@ public class CalculateRouteMatrixRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (calculateRouteMatrixRequest.getCarModeOptions() != null) {
-                CalculateRouteCarModeOptions carModeOptions = calculateRouteMatrixRequest
-                        .getCarModeOptions();
-                jsonWriter.name("CarModeOptions");
-                CalculateRouteCarModeOptionsJsonMarshaller.getInstance().marshall(carModeOptions,
-                        jsonWriter);
-            }
-            if (calculateRouteMatrixRequest.getDepartNow() != null) {
-                Boolean departNow = calculateRouteMatrixRequest.getDepartNow();
-                jsonWriter.name("DepartNow");
-                jsonWriter.value(departNow);
-            }
             if (calculateRouteMatrixRequest.getDeparturePositions() != null) {
                 java.util.List<java.util.List<Double>> departurePositions = calculateRouteMatrixRequest
                         .getDeparturePositions();
@@ -98,11 +86,6 @@ public class CalculateRouteMatrixRequestMarshaller implements
                     }
                 }
                 jsonWriter.endArray();
-            }
-            if (calculateRouteMatrixRequest.getDepartureTime() != null) {
-                java.util.Date departureTime = calculateRouteMatrixRequest.getDepartureTime();
-                jsonWriter.name("DepartureTime");
-                jsonWriter.value(DateUtils.formatISO8601Date(departureTime));
             }
             if (calculateRouteMatrixRequest.getDestinationPositions() != null) {
                 java.util.List<java.util.List<Double>> destinationPositions = calculateRouteMatrixRequest
@@ -122,15 +105,32 @@ public class CalculateRouteMatrixRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (calculateRouteMatrixRequest.getTravelMode() != null) {
+                String travelMode = calculateRouteMatrixRequest.getTravelMode();
+                jsonWriter.name("TravelMode");
+                jsonWriter.value(travelMode);
+            }
+            if (calculateRouteMatrixRequest.getDepartureTime() != null) {
+                java.util.Date departureTime = calculateRouteMatrixRequest.getDepartureTime();
+                jsonWriter.name("DepartureTime");
+                jsonWriter.value(DateUtils.formatISO8601Date(departureTime));
+            }
+            if (calculateRouteMatrixRequest.getDepartNow() != null) {
+                Boolean departNow = calculateRouteMatrixRequest.getDepartNow();
+                jsonWriter.name("DepartNow");
+                jsonWriter.value(departNow);
+            }
             if (calculateRouteMatrixRequest.getDistanceUnit() != null) {
                 String distanceUnit = calculateRouteMatrixRequest.getDistanceUnit();
                 jsonWriter.name("DistanceUnit");
                 jsonWriter.value(distanceUnit);
             }
-            if (calculateRouteMatrixRequest.getTravelMode() != null) {
-                String travelMode = calculateRouteMatrixRequest.getTravelMode();
-                jsonWriter.name("TravelMode");
-                jsonWriter.value(travelMode);
+            if (calculateRouteMatrixRequest.getCarModeOptions() != null) {
+                CalculateRouteCarModeOptions carModeOptions = calculateRouteMatrixRequest
+                        .getCarModeOptions();
+                jsonWriter.name("CarModeOptions");
+                CalculateRouteCarModeOptionsJsonMarshaller.getInstance().marshall(carModeOptions,
+                        jsonWriter);
             }
             if (calculateRouteMatrixRequest.getTruckModeOptions() != null) {
                 CalculateRouteTruckModeOptions truckModeOptions = calculateRouteMatrixRequest
@@ -151,7 +151,7 @@ public class CalculateRouteMatrixRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
         request.setHostPrefix("routes.");
 
