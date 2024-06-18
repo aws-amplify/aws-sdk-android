@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -158,6 +158,13 @@ import com.amazonaws.services.rekognition.model.transform.*;
  * <li>
  * <p>
  * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_GetMediaAnalysisJob.html"
+ * >GetMediaAnalysisJob</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_IndexFaces.html"
  * >IndexFaces</a>
  * </p>
@@ -167,6 +174,13 @@ import com.amazonaws.services.rekognition.model.transform.*;
  * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListCollections.html"
  * >ListCollections</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListMediaAnalysisJob.html"
+ * >ListMediaAnalysisJob</a>
  * </p>
  * </li>
  * <li>
@@ -216,6 +230,13 @@ import com.amazonaws.services.rekognition.model.transform.*;
  * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchUsersByImage.html"
  * >SearchUsersByImage</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_StartMediaAnalysisJob.html"
+ * >StartMediaAnalysisJob</a>
  * </p>
  * </li>
  * </ul>
@@ -829,6 +850,7 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
         jsonErrorUnmarshallers.add(new ImageTooLargeExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalServerErrorExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidImageFormatExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidManifestExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidPaginationTokenExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidParameterExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidPolicyRevisionIdExceptionUnmarshaller());
@@ -1096,6 +1118,11 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     }
 
     /**
+     * <note>
+     * <p>
+     * This operation applies only to Amazon Rekognition Custom Labels.
+     * </p>
+     * </note>
      * <p>
      * Copies a version of an Amazon Rekognition Custom Labels model from a
      * source project to a destination project. The source and destination
@@ -1119,6 +1146,9 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * you don't need to create a project policy.
      * </p>
      * <note>
+     * <p>
+     * Copying project versions is supported only for Custom Labels models.
+     * </p>
      * <p>
      * To copy a model, the destination project, source project, and source
      * model version must already exist.
@@ -1263,6 +1293,11 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     }
 
     /**
+     * <note>
+     * <p>
+     * This operation applies only to Amazon Rekognition Custom Labels.
+     * </p>
+     * </note>
      * <p>
      * Creates a new Amazon Rekognition Custom Labels dataset. You can create a
      * dataset by using an Amazon Sagemaker format manifest file or by copying
@@ -1420,12 +1455,13 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
-     * Creates a new Amazon Rekognition Custom Labels project. A project is a
-     * group of resources (datasets, model versions) that you use to create and
-     * manage Amazon Rekognition Custom Labels models.
-     * </p>
-     * <p>
-     * This operation requires permissions to perform the
+     * Creates a new Amazon Rekognition project. A project is a group of
+     * resources (datasets, model versions) that you use to create and manage a
+     * Amazon Rekognition Custom Labels Model or custom adapter. You can specify
+     * a feature to create the project with, if no feature is specified then
+     * Custom Labels is used by default. For adapters, you can also choose
+     * whether or not to have the project auto update by using the AutoUpdate
+     * argument. This operation requires permissions to perform the
      * <code>rekognition:CreateProject</code> action.
      * </p>
      * 
@@ -1478,17 +1514,32 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
-     * Creates a new version of a model and begins training. Models are managed
-     * as part of an Amazon Rekognition Custom Labels project. The response from
+     * Creates a new version of Amazon Rekognition project (like a Custom Labels
+     * model or a custom adapter) and begins training. Models and adapters are
+     * managed as part of a Rekognition project. The response from
      * <code>CreateProjectVersion</code> is an Amazon Resource Name (ARN) for
-     * the version of the model.
+     * the project version.
      * </p>
      * <p>
-     * Training uses the training and test datasets associated with the project.
-     * For more information, see Creating training and test dataset in the
-     * <i>Amazon Rekognition Custom Labels Developer Guide</i>.
+     * The FeatureConfig operation argument allows you to configure specific
+     * model or adapter settings. You can provide a description to the project
+     * version by using the VersionDescription argment. Training can take a
+     * while to complete. You can get the current status by calling
+     * <a>DescribeProjectVersions</a>. Training completed successfully if the
+     * value of the <code>Status</code> field is <code>TRAINING_COMPLETED</code>
+     * . Once training has successfully completed, call
+     * <a>DescribeProjectVersions</a> to get the training results and evaluate
+     * the model.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:CreateProjectVersion</code> action.
      * </p>
      * <note>
+     * <p>
+     * <i>The following applies only to projects with Amazon Rekognition Custom
+     * Labels as the chosen feature:</i>
+     * </p>
      * <p>
      * You can train a model in a project that doesn't have associated datasets
      * by specifying manifest files in the <code>TrainingData</code> and
@@ -1506,31 +1557,7 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * datasets for the project.
      * </p>
      * </note>
-     * <p>
-     * Training takes a while to complete. You can get the current status by
-     * calling <a>DescribeProjectVersions</a>. Training completed successfully
-     * if the value of the <code>Status</code> field is
-     * <code>TRAINING_COMPLETED</code>.
-     * </p>
-     * <p>
-     * If training fails, see Debugging a failed model training in the <i>Amazon
-     * Rekognition Custom Labels</i> developer guide.
-     * </p>
-     * <p>
-     * Once training has successfully completed, call
-     * <a>DescribeProjectVersions</a> to get the training results and evaluate
-     * the model. For more information, see Improving a trained Amazon
-     * Rekognition Custom Labels model in the <i>Amazon Rekognition Custom
-     * Labels</i> developers guide.
-     * </p>
-     * <p>
-     * After evaluating the model, you start the model by calling
-     * <a>StartProjectVersion</a>.
-     * </p>
-     * <p>
-     * This operation requires permissions to perform the
-     * <code>rekognition:CreateProjectVersion</code> action.
-     * </p>
+     * <p/>
      * 
      * @param createProjectVersionRequest
      * @return createProjectVersionResult The response from the
@@ -1812,6 +1839,11 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     }
 
     /**
+     * <note>
+     * <p>
+     * This operation applies only to Amazon Rekognition Custom Labels.
+     * </p>
+     * </note>
      * <p>
      * Deletes an existing Amazon Rekognition Custom Labels dataset. Deleting a
      * dataset might take while. Use <a>DescribeDataset</a> to check the current
@@ -1936,9 +1968,9 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
-     * Deletes an Amazon Rekognition Custom Labels project. To delete a project
-     * you must first delete all models associated with the project. To delete a
-     * model, see <a>DeleteProjectVersion</a>.
+     * Deletes a Amazon Rekognition project. To delete a project you must first
+     * delete all models or adapters associated with the project. To delete a
+     * model or adapter, see <a>DeleteProjectVersion</a>.
      * </p>
      * <p>
      * <code>DeleteProject</code> is an asynchronous operation. To check if the
@@ -2000,6 +2032,11 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     }
 
     /**
+     * <note>
+     * <p>
+     * This operation applies only to Amazon Rekognition Custom Labels.
+     * </p>
+     * </note>
      * <p>
      * Deletes an existing project policy.
      * </p>
@@ -2065,14 +2102,15 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
-     * Deletes an Amazon Rekognition Custom Labels model.
+     * Deletes a Rekognition project model or project version, like a Amazon
+     * Rekognition Custom Labels model or a custom adapter.
      * </p>
      * <p>
-     * You can't delete a model if it is running or if it is training. To check
-     * the status of a model, use the <code>Status</code> field returned from
-     * <a>DescribeProjectVersions</a>. To stop a running model call
-     * <a>StopProjectVersion</a>. If the model is training, wait until it
-     * finishes.
+     * You can't delete a project version if it is running or if it is training.
+     * To check the status of a project version, use the Status field returned
+     * from <a>DescribeProjectVersions</a>. To stop a project version call
+     * <a>StopProjectVersion</a>. If the project version is training, wait until
+     * it finishes.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -2307,6 +2345,11 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     }
 
     /**
+     * <note>
+     * <p>
+     * This operation applies only to Amazon Rekognition Custom Labels.
+     * </p>
+     * </note>
      * <p>
      * Describes an Amazon Rekognition Custom Labels dataset. You can get
      * information such as the current status of a dataset and statistics about
@@ -2365,10 +2408,10 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
-     * Lists and describes the versions of a model in an Amazon Rekognition
-     * Custom Labels project. You can specify up to 10 model versions in
+     * Lists and describes the versions of an Amazon Rekognition project. You
+     * can specify up to 10 model or adapter versions in
      * <code>ProjectVersionArns</code>. If you don't specify a value,
-     * descriptions for all model versions in the project are returned.
+     * descriptions for all model/adapter versions in the project are returned.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -2427,7 +2470,7 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
-     * Gets information about your Amazon Rekognition Custom Labels projects.
+     * Gets information about your Rekognition projects.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -2538,6 +2581,11 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     }
 
     /**
+     * <note>
+     * <p>
+     * This operation applies only to Amazon Rekognition Custom Labels.
+     * </p>
+     * </note>
      * <p>
      * Detects custom labels in a supplied image by using an Amazon Rekognition
      * Custom Labels model.
@@ -2559,7 +2607,9 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * the label name (<code>Name</code>), the level of confidence that the
      * image contains the object (<code>Confidence</code>), and object location
      * information, if it exists, for the label on the image (
-     * <code>Geometry</code>).
+     * <code>Geometry</code>). Note that for the
+     * <code>DetectCustomLabelsLabels</code> operation, <code>Polygons</code>
+     * are not returned in the <code>Geometry</code> section of the response.
      * </p>
      * <p>
      * To filter labels that are returned, specify a value for
@@ -2974,6 +3024,11 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * call Amazon Rekognition operations, passing image bytes is not supported.
      * The image must be either a PNG or JPEG formatted file.
      * </p>
+     * <p>
+     * You can specify an adapter to use when retrieving label predictions by
+     * providing a <code>ProjectVersionArn</code> to the
+     * <code>ProjectVersion</code> argument.
+     * </p>
      * 
      * @param detectModerationLabelsRequest
      * @return detectModerationLabelsResult The response from the
@@ -2988,6 +3043,8 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * @throws ProvisionedThroughputExceededException
      * @throws InvalidImageFormatException
      * @throws HumanLoopQuotaExceededException
+     * @throws ResourceNotFoundException
+     * @throws ResourceNotReadyException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3309,6 +3366,11 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     }
 
     /**
+     * <note>
+     * <p>
+     * This operation applies only to Amazon Rekognition Custom Labels.
+     * </p>
+     * </note>
      * <p>
      * Distributes the entries (images) in a training dataset across the
      * training dataset and the test dataset for a project.
@@ -4084,6 +4146,61 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
+     * Retrieves the results for a given media analysis job. Takes a
+     * <code>JobId</code> returned by StartMediaAnalysisJob.
+     * </p>
+     * 
+     * @param getMediaAnalysisJobRequest
+     * @return getMediaAnalysisJobResult The response from the
+     *         GetMediaAnalysisJob service method, as returned by Amazon
+     *         Rekognition.
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerErrorException
+     * @throws InvalidParameterException
+     * @throws ProvisionedThroughputExceededException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public GetMediaAnalysisJobResult getMediaAnalysisJob(
+            GetMediaAnalysisJobRequest getMediaAnalysisJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getMediaAnalysisJobRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetMediaAnalysisJobRequest> request = null;
+        Response<GetMediaAnalysisJobResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetMediaAnalysisJobRequestMarshaller()
+                        .marshall(getMediaAnalysisJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetMediaAnalysisJobResult, JsonUnmarshallerContext> unmarshaller = new GetMediaAnalysisJobResultJsonUnmarshaller();
+            JsonResponseHandler<GetMediaAnalysisJobResult> responseHandler = new JsonResponseHandler<GetMediaAnalysisJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets the path tracking results of a Amazon Rekognition Video analysis
      * started by <a>StartPersonTracking</a>.
      * </p>
@@ -4647,6 +4764,11 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     }
 
     /**
+     * <note>
+     * <p>
+     * This operation applies only to Amazon Rekognition Custom Labels.
+     * </p>
+     * </note>
      * <p>
      * Lists the entries (images) within a dataset. An entry is a JSON Line that
      * contains the information for a single image, including the image
@@ -4723,6 +4845,11 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     }
 
     /**
+     * <note>
+     * <p>
+     * This operation applies only to Amazon Rekognition Custom Labels.
+     * </p>
+     * </note>
      * <p>
      * Lists the labels in a dataset. Amazon Rekognition Custom Labels uses
      * labels to describe images. For more information, see <a href=
@@ -4846,6 +4973,66 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     }
 
     /**
+     * <p>
+     * Returns a list of media analysis jobs. Results are sorted by
+     * <code>CreationTimestamp</code> in descending order.
+     * </p>
+     * 
+     * @param listMediaAnalysisJobsRequest
+     * @return listMediaAnalysisJobsResult The response from the
+     *         ListMediaAnalysisJobs service method, as returned by Amazon
+     *         Rekognition.
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws InvalidParameterException
+     * @throws InvalidPaginationTokenException
+     * @throws ProvisionedThroughputExceededException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListMediaAnalysisJobsResult listMediaAnalysisJobs(
+            ListMediaAnalysisJobsRequest listMediaAnalysisJobsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listMediaAnalysisJobsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListMediaAnalysisJobsRequest> request = null;
+        Response<ListMediaAnalysisJobsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListMediaAnalysisJobsRequestMarshaller()
+                        .marshall(listMediaAnalysisJobsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListMediaAnalysisJobsResult, JsonUnmarshallerContext> unmarshaller = new ListMediaAnalysisJobsResultJsonUnmarshaller();
+            JsonResponseHandler<ListMediaAnalysisJobsResult> responseHandler = new JsonResponseHandler<ListMediaAnalysisJobsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <note>
+     * <p>
+     * This operation applies only to Amazon Rekognition Custom Labels.
+     * </p>
+     * </note>
      * <p>
      * Gets a list of the project policies attached to a project.
      * </p>
@@ -5080,12 +5267,18 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     }
 
     /**
+     * <note>
+     * <p>
+     * This operation applies only to Amazon Rekognition Custom Labels.
+     * </p>
+     * </note>
      * <p>
      * Attaches a project policy to a Amazon Rekognition Custom Labels project
      * in a trusting AWS account. A project policy specifies that a trusted AWS
      * account can copy a model version from a trusting AWS account to a project
      * in the trusted AWS account. To copy a model version you use the
-     * <a>CopyProjectVersion</a> operation.
+     * <a>CopyProjectVersion</a> operation. Only applies to Custom Labels
+     * projects.
      * </p>
      * <p>
      * For more information about the format of a project policy document, see
@@ -5979,6 +6172,67 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
+     * Initiates a new media analysis job. Accepts a manifest file in an Amazon
+     * S3 bucket. The output is a manifest file and a summary of the manifest
+     * stored in the Amazon S3 bucket.
+     * </p>
+     * 
+     * @param startMediaAnalysisJobRequest
+     * @return startMediaAnalysisJobResult The response from the
+     *         StartMediaAnalysisJob service method, as returned by Amazon
+     *         Rekognition.
+     * @throws InternalServerErrorException
+     * @throws AccessDeniedException
+     * @throws InvalidParameterException
+     * @throws InvalidManifestException
+     * @throws InvalidS3ObjectException
+     * @throws ResourceNotFoundException
+     * @throws ResourceNotReadyException
+     * @throws ProvisionedThroughputExceededException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws IdempotentParameterMismatchException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public StartMediaAnalysisJobResult startMediaAnalysisJob(
+            StartMediaAnalysisJobRequest startMediaAnalysisJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(startMediaAnalysisJobRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<StartMediaAnalysisJobRequest> request = null;
+        Response<StartMediaAnalysisJobResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new StartMediaAnalysisJobRequestMarshaller()
+                        .marshall(startMediaAnalysisJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<StartMediaAnalysisJobResult, JsonUnmarshallerContext> unmarshaller = new StartMediaAnalysisJobResultJsonUnmarshaller();
+            JsonResponseHandler<StartMediaAnalysisJobResult> responseHandler = new JsonResponseHandler<StartMediaAnalysisJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Starts the asynchronous tracking of a person's path in a stored video.
      * </p>
      * <p>
@@ -6051,6 +6305,11 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     }
 
     /**
+     * <note>
+     * <p>
+     * This operation applies only to Amazon Rekognition Custom Labels.
+     * </p>
+     * </note>
      * <p>
      * Starts the running of the version of a model. Starting a model takes a
      * while to complete. To check the current state of the model, use
@@ -6066,10 +6325,6 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * a running model, call <a>StopProjectVersion</a>.
      * </p>
      * </note>
-     * <p>
-     * For more information, see <i>Running a trained Amazon Rekognition Custom
-     * Labels model</i> in the Amazon Rekognition Custom Labels Guide.
-     * </p>
      * <p>
      * This operation requires permissions to perform the
      * <code>rekognition:StartProjectVersion</code> action.
@@ -6350,9 +6605,15 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     }
 
     /**
+     * <note>
+     * <p>
+     * This operation applies only to Amazon Rekognition Custom Labels.
+     * </p>
+     * </note>
      * <p>
      * Stops a running model. The operation might take a while to complete. To
-     * check the current status, call <a>DescribeProjectVersions</a>.
+     * check the current status, call <a>DescribeProjectVersions</a>. Only
+     * applies to Custom Labels projects.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -6580,6 +6841,11 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     }
 
     /**
+     * <note>
+     * <p>
+     * This operation applies only to Amazon Rekognition Custom Labels.
+     * </p>
+     * </note>
      * <p>
      * Adds or updates one or more entries (images) in a dataset. An entry is a
      * JSON Line which contains the information for a single image, including
