@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -66,6 +66,16 @@ public class CreateProjectRequestMarshaller implements
                 String projectName = createProjectRequest.getProjectName();
                 jsonWriter.name("ProjectName");
                 jsonWriter.value(projectName);
+            }
+            if (createProjectRequest.getFeature() != null) {
+                String feature = createProjectRequest.getFeature();
+                jsonWriter.name("Feature");
+                jsonWriter.value(feature);
+            }
+            if (createProjectRequest.getAutoUpdate() != null) {
+                String autoUpdate = createProjectRequest.getAutoUpdate();
+                jsonWriter.name("AutoUpdate");
+                jsonWriter.value(autoUpdate);
             }
 
             jsonWriter.endObject();
