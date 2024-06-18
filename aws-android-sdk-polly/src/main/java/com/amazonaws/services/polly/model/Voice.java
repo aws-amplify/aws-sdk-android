@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -49,7 +49,8 @@ public class Voice implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory, Burcu
      */
     private String id;
 
@@ -98,8 +99,9 @@ public class Voice implements Serializable {
 
     /**
      * <p>
-     * Specifies which engines (<code>standard</code> or <code>neural</code>)
-     * that are supported by a given voice.
+     * Specifies which engines (<code>standard</code>, <code>neural</code>,
+     * <code>long-form</code> or <code>generative</code>) are supported by a
+     * given voice.
      * </p>
      */
     private java.util.List<String> supportedEngines;
@@ -217,7 +219,8 @@ public class Voice implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory, Burcu
      *
      * @return <p>
      *         Amazon Polly assigned voice ID. This is the ID that you specify
@@ -245,7 +248,8 @@ public class Voice implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory, Burcu
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -277,7 +281,8 @@ public class Voice implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory, Burcu
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -309,7 +314,8 @@ public class Voice implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory, Burcu
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -341,7 +347,8 @@ public class Voice implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory, Burcu
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -706,13 +713,15 @@ public class Voice implements Serializable {
 
     /**
      * <p>
-     * Specifies which engines (<code>standard</code> or <code>neural</code>)
-     * that are supported by a given voice.
+     * Specifies which engines (<code>standard</code>, <code>neural</code>,
+     * <code>long-form</code> or <code>generative</code>) are supported by a
+     * given voice.
      * </p>
      *
      * @return <p>
-     *         Specifies which engines (<code>standard</code> or
-     *         <code>neural</code>) that are supported by a given voice.
+     *         Specifies which engines (<code>standard</code>,
+     *         <code>neural</code>, <code>long-form</code> or
+     *         <code>generative</code>) are supported by a given voice.
      *         </p>
      */
     public java.util.List<String> getSupportedEngines() {
@@ -721,13 +730,15 @@ public class Voice implements Serializable {
 
     /**
      * <p>
-     * Specifies which engines (<code>standard</code> or <code>neural</code>)
-     * that are supported by a given voice.
+     * Specifies which engines (<code>standard</code>, <code>neural</code>,
+     * <code>long-form</code> or <code>generative</code>) are supported by a
+     * given voice.
      * </p>
      *
      * @param supportedEngines <p>
-     *            Specifies which engines (<code>standard</code> or
-     *            <code>neural</code>) that are supported by a given voice.
+     *            Specifies which engines (<code>standard</code>,
+     *            <code>neural</code>, <code>long-form</code> or
+     *            <code>generative</code>) are supported by a given voice.
      *            </p>
      */
     public void setSupportedEngines(java.util.Collection<String> supportedEngines) {
@@ -741,16 +752,18 @@ public class Voice implements Serializable {
 
     /**
      * <p>
-     * Specifies which engines (<code>standard</code> or <code>neural</code>)
-     * that are supported by a given voice.
+     * Specifies which engines (<code>standard</code>, <code>neural</code>,
+     * <code>long-form</code> or <code>generative</code>) are supported by a
+     * given voice.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param supportedEngines <p>
-     *            Specifies which engines (<code>standard</code> or
-     *            <code>neural</code>) that are supported by a given voice.
+     *            Specifies which engines (<code>standard</code>,
+     *            <code>neural</code>, <code>long-form</code> or
+     *            <code>generative</code>) are supported by a given voice.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -767,16 +780,18 @@ public class Voice implements Serializable {
 
     /**
      * <p>
-     * Specifies which engines (<code>standard</code> or <code>neural</code>)
-     * that are supported by a given voice.
+     * Specifies which engines (<code>standard</code>, <code>neural</code>,
+     * <code>long-form</code> or <code>generative</code>) are supported by a
+     * given voice.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param supportedEngines <p>
-     *            Specifies which engines (<code>standard</code> or
-     *            <code>neural</code>) that are supported by a given voice.
+     *            Specifies which engines (<code>standard</code>,
+     *            <code>neural</code>, <code>long-form</code> or
+     *            <code>generative</code>) are supported by a given voice.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
