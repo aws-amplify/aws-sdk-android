@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,8 +22,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Invokes a Lambda function. You can invoke a function synchronously (and wait
- * for the response), or asynchronously. To invoke a function asynchronously,
- * set <code>InvocationType</code> to <code>Event</code>.
+ * for the response), or asynchronously. By default, Lambda invokes your
+ * function synchronously (i.e. the<code>InvocationType</code> is
+ * <code>RequestResponse</code>). To invoke a function asynchronously, set
+ * <code>InvocationType</code> to <code>Event</code>. Lambda passes the
+ * <code>ClientContext</code> object to your function for synchronous
+ * invocations only.
  * </p>
  * <p>
  * For <a
@@ -85,7 +89,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class InvokeRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the Lambda function, version, or alias.
+     * The name or ARN of the Lambda function, version, or alias.
      * </p>
      * <p class="title">
      * <b>Name formats</b>
@@ -171,7 +175,9 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Up to 3,583 bytes of base64-encoded data about the invoking client to
-     * pass to the function in the context object.
+     * pass to the function in the context object. Lambda passes the
+     * <code>ClientContext</code> object to your function for synchronous
+     * invocations only.
      * </p>
      */
     private String clientContext;
@@ -201,7 +207,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The name of the Lambda function, version, or alias.
+     * The name or ARN of the Lambda function, version, or alias.
      * </p>
      * <p class="title">
      * <b>Name formats</b>
@@ -239,7 +245,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * :)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
      *
      * @return <p>
-     *         The name of the Lambda function, version, or alias.
+     *         The name or ARN of the Lambda function, version, or alias.
      *         </p>
      *         <p class="title">
      *         <b>Name formats</b>
@@ -278,7 +284,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The name of the Lambda function, version, or alias.
+     * The name or ARN of the Lambda function, version, or alias.
      * </p>
      * <p class="title">
      * <b>Name formats</b>
@@ -316,7 +322,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * :)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
      *
      * @param functionName <p>
-     *            The name of the Lambda function, version, or alias.
+     *            The name or ARN of the Lambda function, version, or alias.
      *            </p>
      *            <p class="title">
      *            <b>Name formats</b>
@@ -355,7 +361,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The name of the Lambda function, version, or alias.
+     * The name or ARN of the Lambda function, version, or alias.
      * </p>
      * <p class="title">
      * <b>Name formats</b>
@@ -396,7 +402,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * :)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
      *
      * @param functionName <p>
-     *            The name of the Lambda function, version, or alias.
+     *            The name or ARN of the Lambda function, version, or alias.
      *            </p>
      *            <p class="title">
      *            <b>Name formats</b>
@@ -878,12 +884,16 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Up to 3,583 bytes of base64-encoded data about the invoking client to
-     * pass to the function in the context object.
+     * pass to the function in the context object. Lambda passes the
+     * <code>ClientContext</code> object to your function for synchronous
+     * invocations only.
      * </p>
      *
      * @return <p>
      *         Up to 3,583 bytes of base64-encoded data about the invoking
-     *         client to pass to the function in the context object.
+     *         client to pass to the function in the context object. Lambda
+     *         passes the <code>ClientContext</code> object to your function for
+     *         synchronous invocations only.
      *         </p>
      */
     public String getClientContext() {
@@ -893,12 +903,16 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Up to 3,583 bytes of base64-encoded data about the invoking client to
-     * pass to the function in the context object.
+     * pass to the function in the context object. Lambda passes the
+     * <code>ClientContext</code> object to your function for synchronous
+     * invocations only.
      * </p>
      *
      * @param clientContext <p>
      *            Up to 3,583 bytes of base64-encoded data about the invoking
-     *            client to pass to the function in the context object.
+     *            client to pass to the function in the context object. Lambda
+     *            passes the <code>ClientContext</code> object to your function
+     *            for synchronous invocations only.
      *            </p>
      */
     public void setClientContext(String clientContext) {
@@ -908,7 +922,9 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Up to 3,583 bytes of base64-encoded data about the invoking client to
-     * pass to the function in the context object.
+     * pass to the function in the context object. Lambda passes the
+     * <code>ClientContext</code> object to your function for synchronous
+     * invocations only.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -916,7 +932,9 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *
      * @param clientContext <p>
      *            Up to 3,583 bytes of base64-encoded data about the invoking
-     *            client to pass to the function in the context object.
+     *            client to pass to the function in the context object. Lambda
+     *            passes the <code>ClientContext</code> object to your function
+     *            for synchronous invocations only.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
