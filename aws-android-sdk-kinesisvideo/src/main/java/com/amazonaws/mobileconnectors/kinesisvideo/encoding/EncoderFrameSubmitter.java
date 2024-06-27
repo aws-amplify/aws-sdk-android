@@ -139,8 +139,14 @@ public class EncoderFrameSubmitter {
 
         for (int i = 0; i < cameraFrame.getPlanes().length; i++) {
             final ByteBuffer sourceImagePlane = cameraFrame.getPlanes()[i].getBuffer();
+            System.out.println("[TESTING] remaining() sourceImagePlane #" + i + ": " + sourceImagePlane.remaining());
+            System.out.println("[TESTING] limit() sourceImagePlane #" + i + ": " + sourceImagePlane.limit());
+
             final ByteBuffer destinationImagePlane = codecInputImage.getPlanes()[i].getBuffer();
-            copyBuffer(sourceImagePlane, destinationImagePlane);
+            System.out.println("[TESTING] remaining() destinationImagePlane #" + i + ": " + destinationImagePlane.remaining());
+
+            copyBuffer(sourceImagePlane, destinationImagePlane, cameraFrame.getWidth(), cameraFrame.getPlanes()[i].getRowStride(), codecInputImage.getPlanes()[i].getPixelStride());
+            // copyBuffer(sourceImagePlane, destinationImagePlane);
         }
     }
 
@@ -151,6 +157,68 @@ public class EncoderFrameSubmitter {
         destinationBuffer.limit(bytesToCopy);
         sourceBuffer.limit(bytesToCopy);
         destinationBuffer.put(sourceBuffer);
+        destinationBuffer.rewind();
+
+        return bytesToCopy;
+    }
+
+    
+    private int copyBuffer(final ByteBuffer sourceBuffer,
+                        final ByteBuffer destinationBuffer,
+                        int imageWidth, int sourceBufferRowStride, int pixelStride) {
+
+        if(imageWidth == sourceBufferRowStride) {
+            return copyBuffer(sourceBuffer, destinationBuffer);
+        }                  
+
+        int numRows = (int) Math.ceil((double) sourceBuffer.remaining() / sourceBufferRowStride);
+        
+        System.out.println("numRows:" + numRows);
+
+        // Desired bytes might exceed destination buffer capacity.
+        int desiredBytesToCopy = numRows * imageWidth;
+        final int bytesToCopy = Math.min(desiredBytesToCopy, destinationBuffer.capacity());
+        destinationBuffer.limit(bytesToCopy);
+
+        if (pixelStride == 2) {
+            numRows = numRows - 1;
+        }
+        
+        for (int row = 0; row < numRows; row++) {
+            int startPos = row * sourceBufferRowStride;
+            int endPos = startPos + imageWidth;
+
+            sourceBuffer.limit(endPos);
+            System.out.println("Set sourceBuffer limit to :" + endPos);
+
+            sourceBuffer.position(startPos);
+            System.out.println("Set sourceBuffer position to :" + startPos);
+
+            // Put the valid row data into the destination buffer.
+            destinationBuffer.put(sourceBuffer);
+        }
+
+        System.out.println("End of copy loop.");
+
+        System.out.println("sourceBuffer.remaining(): " + sourceBuffer.remaining());
+        System.out.println("sourceBuffer.remaining(): " + sourceBuffer.remaining());
+
+        if (pixelStride == 2) {
+            int startPos = numRows * sourceBufferRowStride;
+            int endPos = startPos + imageWidth - 1;
+
+            sourceBuffer.limit(endPos);
+            System.out.println("Set sourceBuffer limit to :" + endPos);
+
+            sourceBuffer.position(startPos);
+            System.out.println("Set sourceBuffer position to :" + startPos);
+
+            // Put the valid row data into the destination buffer.
+            destinationBuffer.put(sourceBuffer);
+        }
+
+        System.out.println("End of copy.");
+
         destinationBuffer.rewind();
 
         return bytesToCopy;
