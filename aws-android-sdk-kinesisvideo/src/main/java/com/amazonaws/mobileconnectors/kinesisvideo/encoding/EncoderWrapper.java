@@ -25,9 +25,6 @@ import com.amazonaws.kinesisvideo.client.mediasource.CameraMediaSourceConfigurat
 import com.amazonaws.kinesisvideo.producer.KinesisVideoFrame;
 import com.amazonaws.mobileconnectors.kinesisvideo.util.FrameUtility;
 
-import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.VIDEO_TRACK_ID;
-
-
 import java.nio.ByteBuffer;
 
 /**
@@ -66,10 +63,6 @@ public class EncoderWrapper {
     private void initEncoder() {
         mBufferInfo = new MediaCodec.BufferInfo();
         mEncoder = EncoderFactory.createConfiguredEncoder(mMediaSourceConfiguration);
-
-        // Notify submitter if frames should be 90° rotated (probably should be true if using portrait mode on phone).
-        final boolean rotate90 = mMediaSourceConfiguration.getCameraOrientation() == -90 ? true : false;
-        // mEncoderFrameSubmitter = new EncoderFrameSubmitter(mEncoder, rotate90);
         mEncoderFrameSubmitter = new EncoderFrameSubmitter(mEncoder);
         mEncoder.start();
     }
@@ -203,12 +196,11 @@ public class EncoderWrapper {
         final ByteBuffer frameData = encodedData;
 
         mFrameAvailableListener.onFrameAvailable(
-                FrameUtility.createFrameWithTrackID(
+                FrameUtility.createFrame(
                         mBufferInfo,
-                        currentTime,
+                        1 + currentTime - mFragmentStart,
                         mFrameIndex++,
-                        frameData,
-                        VIDEO_TRACK_ID));
+                        frameData));
     }
 
     public void stop() {
