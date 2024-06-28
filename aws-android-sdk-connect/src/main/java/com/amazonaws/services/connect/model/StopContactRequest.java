@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Ends the specified contact. This call does not work for the following
- * initiation methods:
+ * Ends the specified contact. Use this API to stop queued callbacks. It does
+ * not work for voice contacts that use the following initiation methods:
  * </p>
  * <ul>
  * <li>
@@ -40,7 +40,21 @@ import com.amazonaws.AmazonWebServiceRequest;
  * QUEUE_TRANSFER
  * </p>
  * </li>
+ * <li>
+ * <p>
+ * EXTERNAL_OUTBOUND
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * MONITOR
+ * </p>
+ * </li>
  * </ul>
+ * <p>
+ * Chat and task contacts can be terminated in any state, regardless of
+ * initiation method.
+ * </p>
  */
 public class StopContactRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -65,6 +79,14 @@ public class StopContactRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 100<br/>
      */
     private String instanceId;
+
+    /**
+     * <p>
+     * The reason a contact can be disconnected. Only Amazon Connect outbound
+     * campaigns can provide this field.
+     * </p>
+     */
+    private DisconnectReason disconnectReason;
 
     /**
      * <p>
@@ -195,6 +217,57 @@ public class StopContactRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
+     * <p>
+     * The reason a contact can be disconnected. Only Amazon Connect outbound
+     * campaigns can provide this field.
+     * </p>
+     *
+     * @return <p>
+     *         The reason a contact can be disconnected. Only Amazon Connect
+     *         outbound campaigns can provide this field.
+     *         </p>
+     */
+    public DisconnectReason getDisconnectReason() {
+        return disconnectReason;
+    }
+
+    /**
+     * <p>
+     * The reason a contact can be disconnected. Only Amazon Connect outbound
+     * campaigns can provide this field.
+     * </p>
+     *
+     * @param disconnectReason <p>
+     *            The reason a contact can be disconnected. Only Amazon Connect
+     *            outbound campaigns can provide this field.
+     *            </p>
+     */
+    public void setDisconnectReason(DisconnectReason disconnectReason) {
+        this.disconnectReason = disconnectReason;
+    }
+
+    /**
+     * <p>
+     * The reason a contact can be disconnected. Only Amazon Connect outbound
+     * campaigns can provide this field.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param disconnectReason <p>
+     *            The reason a contact can be disconnected. Only Amazon Connect
+     *            outbound campaigns can provide this field.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StopContactRequest withDisconnectReason(DisconnectReason disconnectReason) {
+        this.disconnectReason = disconnectReason;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -208,7 +281,9 @@ public class StopContactRequest extends AmazonWebServiceRequest implements Seria
         if (getContactId() != null)
             sb.append("ContactId: " + getContactId() + ",");
         if (getInstanceId() != null)
-            sb.append("InstanceId: " + getInstanceId());
+            sb.append("InstanceId: " + getInstanceId() + ",");
+        if (getDisconnectReason() != null)
+            sb.append("DisconnectReason: " + getDisconnectReason());
         sb.append("}");
         return sb.toString();
     }
@@ -220,6 +295,8 @@ public class StopContactRequest extends AmazonWebServiceRequest implements Seria
 
         hashCode = prime * hashCode + ((getContactId() == null) ? 0 : getContactId().hashCode());
         hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
+        hashCode = prime * hashCode
+                + ((getDisconnectReason() == null) ? 0 : getDisconnectReason().hashCode());
         return hashCode;
     }
 
@@ -243,6 +320,11 @@ public class StopContactRequest extends AmazonWebServiceRequest implements Seria
             return false;
         if (other.getInstanceId() != null
                 && other.getInstanceId().equals(this.getInstanceId()) == false)
+            return false;
+        if (other.getDisconnectReason() == null ^ this.getDisconnectReason() == null)
+            return false;
+        if (other.getDisconnectReason() != null
+                && other.getDisconnectReason().equals(this.getDisconnectReason()) == false)
             return false;
         return true;
     }

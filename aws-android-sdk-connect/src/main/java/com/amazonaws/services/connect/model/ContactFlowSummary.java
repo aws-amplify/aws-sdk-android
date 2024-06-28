@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -76,6 +76,16 @@ public class ContactFlowSummary implements Serializable {
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      */
     private String contactFlowState;
+
+    /**
+     * <p>
+     * The status of the contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     */
+    private String contactFlowStatus;
 
     /**
      * <p>
@@ -435,6 +445,103 @@ public class ContactFlowSummary implements Serializable {
     }
 
     /**
+     * <p>
+     * The status of the contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     *
+     * @return <p>
+     *         The status of the contact flow.
+     *         </p>
+     * @see ContactFlowStatus
+     */
+    public String getContactFlowStatus() {
+        return contactFlowStatus;
+    }
+
+    /**
+     * <p>
+     * The status of the contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     *
+     * @param contactFlowStatus <p>
+     *            The status of the contact flow.
+     *            </p>
+     * @see ContactFlowStatus
+     */
+    public void setContactFlowStatus(String contactFlowStatus) {
+        this.contactFlowStatus = contactFlowStatus;
+    }
+
+    /**
+     * <p>
+     * The status of the contact flow.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     *
+     * @param contactFlowStatus <p>
+     *            The status of the contact flow.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ContactFlowStatus
+     */
+    public ContactFlowSummary withContactFlowStatus(String contactFlowStatus) {
+        this.contactFlowStatus = contactFlowStatus;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The status of the contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     *
+     * @param contactFlowStatus <p>
+     *            The status of the contact flow.
+     *            </p>
+     * @see ContactFlowStatus
+     */
+    public void setContactFlowStatus(ContactFlowStatus contactFlowStatus) {
+        this.contactFlowStatus = contactFlowStatus.toString();
+    }
+
+    /**
+     * <p>
+     * The status of the contact flow.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     *
+     * @param contactFlowStatus <p>
+     *            The status of the contact flow.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ContactFlowStatus
+     */
+    public ContactFlowSummary withContactFlowStatus(ContactFlowStatus contactFlowStatus) {
+        this.contactFlowStatus = contactFlowStatus.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -454,7 +561,9 @@ public class ContactFlowSummary implements Serializable {
         if (getContactFlowType() != null)
             sb.append("ContactFlowType: " + getContactFlowType() + ",");
         if (getContactFlowState() != null)
-            sb.append("ContactFlowState: " + getContactFlowState());
+            sb.append("ContactFlowState: " + getContactFlowState() + ",");
+        if (getContactFlowStatus() != null)
+            sb.append("ContactFlowStatus: " + getContactFlowStatus());
         sb.append("}");
         return sb.toString();
     }
@@ -471,6 +580,8 @@ public class ContactFlowSummary implements Serializable {
                 + ((getContactFlowType() == null) ? 0 : getContactFlowType().hashCode());
         hashCode = prime * hashCode
                 + ((getContactFlowState() == null) ? 0 : getContactFlowState().hashCode());
+        hashCode = prime * hashCode
+                + ((getContactFlowStatus() == null) ? 0 : getContactFlowStatus().hashCode());
         return hashCode;
     }
 
@@ -506,6 +617,11 @@ public class ContactFlowSummary implements Serializable {
             return false;
         if (other.getContactFlowState() != null
                 && other.getContactFlowState().equals(this.getContactFlowState()) == false)
+            return false;
+        if (other.getContactFlowStatus() == null ^ this.getContactFlowStatus() == null)
+            return false;
+        if (other.getContactFlowStatus() != null
+                && other.getContactFlowStatus().equals(this.getContactFlowStatus()) == false)
             return false;
         return true;
     }
