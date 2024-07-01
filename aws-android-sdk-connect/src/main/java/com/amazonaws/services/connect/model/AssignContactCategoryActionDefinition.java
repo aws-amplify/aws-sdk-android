@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import java.io.Serializable;
  * This action must be set if <code>TriggerEventSource</code> is one of the
  * following values: <code>OnPostCallAnalysisAvailable</code> |
  * <code>OnRealTimeCallAnalysisAvailable</code> |
+ * <code>OnRealTimeChatAnalysisAvailable</code> |
  * <code>OnPostChatAnalysisAvailable</code>. Contact is categorized using the
  * rule name.
  * </p>

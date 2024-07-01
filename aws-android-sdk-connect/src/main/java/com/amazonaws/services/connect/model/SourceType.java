@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@ import java.util.Map;
 public enum SourceType {
 
     SALESFORCE("SALESFORCE"),
-    ZENDESK("ZENDESK");
+    ZENDESK("ZENDESK"),
+    CASES("CASES");
 
     private String value;
 
@@ -42,6 +43,7 @@ public enum SourceType {
         enumMap = new HashMap<String, SourceType>();
         enumMap.put("SALESFORCE", SALESFORCE);
         enumMap.put("ZENDESK", ZENDESK);
+        enumMap.put("CASES", CASES);
     }
 
     /**
