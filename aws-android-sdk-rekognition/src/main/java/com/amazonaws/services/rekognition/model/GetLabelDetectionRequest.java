@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -127,6 +127,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * results, call <code>GetlabelDetection</code> and populate the
  * <code>NextToken</code> request parameter with the token value returned from
  * the previous call to <code>GetLabelDetection</code>.
+ * </p>
+ * <p>
+ * If you are retrieving results while using the Amazon Simple Notification
+ * Service, note that you will receive an "ERROR" notification if the job
+ * encounters an issue.
  * </p>
  */
 public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements Serializable {

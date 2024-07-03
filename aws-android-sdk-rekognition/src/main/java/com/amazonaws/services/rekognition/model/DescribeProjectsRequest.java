@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets information about your Amazon Rekognition Custom Labels projects.
+ * Gets information about your Rekognition projects.
  * </p>
  * <p>
  * This operation requires permissions to perform the
@@ -32,9 +32,8 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * If the previous response was incomplete (because there is more results to
-     * retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-     * the response. You can use this pagination token to retrieve the next set
-     * of results.
+     * retrieve), Rekognition returns a pagination token in the response. You
+     * can use this pagination token to retrieve the next set of results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -56,19 +55,26 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * A list of the projects that you want Amazon Rekognition Custom Labels to
-     * describe. If you don't specify a value, the response includes
-     * descriptions for all the projects in your AWS account.
+     * A list of the projects that you want Rekognition to describe. If you
+     * don't specify a value, the response includes descriptions for all the
+     * projects in your AWS account.
      * </p>
      */
     private java.util.List<String> projectNames;
 
     /**
      * <p>
+     * Specifies the type of customization to filter projects by. If no value is
+     * specified, CUSTOM_LABELS is used as a default.
+     * </p>
+     */
+    private java.util.List<String> features;
+
+    /**
+     * <p>
      * If the previous response was incomplete (because there is more results to
-     * retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-     * the response. You can use this pagination token to retrieve the next set
-     * of results.
+     * retrieve), Rekognition returns a pagination token in the response. You
+     * can use this pagination token to retrieve the next set of results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,9 +82,9 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
      *
      * @return <p>
      *         If the previous response was incomplete (because there is more
-     *         results to retrieve), Amazon Rekognition Custom Labels returns a
-     *         pagination token in the response. You can use this pagination
-     *         token to retrieve the next set of results.
+     *         results to retrieve), Rekognition returns a pagination token in
+     *         the response. You can use this pagination token to retrieve the
+     *         next set of results.
      *         </p>
      */
     public String getNextToken() {
@@ -88,9 +94,8 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * If the previous response was incomplete (because there is more results to
-     * retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-     * the response. You can use this pagination token to retrieve the next set
-     * of results.
+     * retrieve), Rekognition returns a pagination token in the response. You
+     * can use this pagination token to retrieve the next set of results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -98,9 +103,9 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
      *
      * @param nextToken <p>
      *            If the previous response was incomplete (because there is more
-     *            results to retrieve), Amazon Rekognition Custom Labels returns
-     *            a pagination token in the response. You can use this
-     *            pagination token to retrieve the next set of results.
+     *            results to retrieve), Rekognition returns a pagination token
+     *            in the response. You can use this pagination token to retrieve
+     *            the next set of results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -110,9 +115,8 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * If the previous response was incomplete (because there is more results to
-     * retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-     * the response. You can use this pagination token to retrieve the next set
-     * of results.
+     * retrieve), Rekognition returns a pagination token in the response. You
+     * can use this pagination token to retrieve the next set of results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -123,9 +127,9 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
      *
      * @param nextToken <p>
      *            If the previous response was incomplete (because there is more
-     *            results to retrieve), Amazon Rekognition Custom Labels returns
-     *            a pagination token in the response. You can use this
-     *            pagination token to retrieve the next set of results.
+     *            results to retrieve), Rekognition returns a pagination token
+     *            in the response. You can use this pagination token to retrieve
+     *            the next set of results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -206,15 +210,15 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * A list of the projects that you want Amazon Rekognition Custom Labels to
-     * describe. If you don't specify a value, the response includes
-     * descriptions for all the projects in your AWS account.
+     * A list of the projects that you want Rekognition to describe. If you
+     * don't specify a value, the response includes descriptions for all the
+     * projects in your AWS account.
      * </p>
      *
      * @return <p>
-     *         A list of the projects that you want Amazon Rekognition Custom
-     *         Labels to describe. If you don't specify a value, the response
-     *         includes descriptions for all the projects in your AWS account.
+     *         A list of the projects that you want Rekognition to describe. If
+     *         you don't specify a value, the response includes descriptions for
+     *         all the projects in your AWS account.
      *         </p>
      */
     public java.util.List<String> getProjectNames() {
@@ -223,16 +227,15 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * A list of the projects that you want Amazon Rekognition Custom Labels to
-     * describe. If you don't specify a value, the response includes
-     * descriptions for all the projects in your AWS account.
+     * A list of the projects that you want Rekognition to describe. If you
+     * don't specify a value, the response includes descriptions for all the
+     * projects in your AWS account.
      * </p>
      *
      * @param projectNames <p>
-     *            A list of the projects that you want Amazon Rekognition Custom
-     *            Labels to describe. If you don't specify a value, the response
-     *            includes descriptions for all the projects in your AWS
-     *            account.
+     *            A list of the projects that you want Rekognition to describe.
+     *            If you don't specify a value, the response includes
+     *            descriptions for all the projects in your AWS account.
      *            </p>
      */
     public void setProjectNames(java.util.Collection<String> projectNames) {
@@ -246,19 +249,18 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * A list of the projects that you want Amazon Rekognition Custom Labels to
-     * describe. If you don't specify a value, the response includes
-     * descriptions for all the projects in your AWS account.
+     * A list of the projects that you want Rekognition to describe. If you
+     * don't specify a value, the response includes descriptions for all the
+     * projects in your AWS account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param projectNames <p>
-     *            A list of the projects that you want Amazon Rekognition Custom
-     *            Labels to describe. If you don't specify a value, the response
-     *            includes descriptions for all the projects in your AWS
-     *            account.
+     *            A list of the projects that you want Rekognition to describe.
+     *            If you don't specify a value, the response includes
+     *            descriptions for all the projects in your AWS account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -275,25 +277,106 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * A list of the projects that you want Amazon Rekognition Custom Labels to
-     * describe. If you don't specify a value, the response includes
-     * descriptions for all the projects in your AWS account.
+     * A list of the projects that you want Rekognition to describe. If you
+     * don't specify a value, the response includes descriptions for all the
+     * projects in your AWS account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param projectNames <p>
-     *            A list of the projects that you want Amazon Rekognition Custom
-     *            Labels to describe. If you don't specify a value, the response
-     *            includes descriptions for all the projects in your AWS
-     *            account.
+     *            A list of the projects that you want Rekognition to describe.
+     *            If you don't specify a value, the response includes
+     *            descriptions for all the projects in your AWS account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public DescribeProjectsRequest withProjectNames(java.util.Collection<String> projectNames) {
         setProjectNames(projectNames);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies the type of customization to filter projects by. If no value is
+     * specified, CUSTOM_LABELS is used as a default.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies the type of customization to filter projects by. If no
+     *         value is specified, CUSTOM_LABELS is used as a default.
+     *         </p>
+     */
+    public java.util.List<String> getFeatures() {
+        return features;
+    }
+
+    /**
+     * <p>
+     * Specifies the type of customization to filter projects by. If no value is
+     * specified, CUSTOM_LABELS is used as a default.
+     * </p>
+     *
+     * @param features <p>
+     *            Specifies the type of customization to filter projects by. If
+     *            no value is specified, CUSTOM_LABELS is used as a default.
+     *            </p>
+     */
+    public void setFeatures(java.util.Collection<String> features) {
+        if (features == null) {
+            this.features = null;
+            return;
+        }
+
+        this.features = new java.util.ArrayList<String>(features);
+    }
+
+    /**
+     * <p>
+     * Specifies the type of customization to filter projects by. If no value is
+     * specified, CUSTOM_LABELS is used as a default.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param features <p>
+     *            Specifies the type of customization to filter projects by. If
+     *            no value is specified, CUSTOM_LABELS is used as a default.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeProjectsRequest withFeatures(String... features) {
+        if (getFeatures() == null) {
+            this.features = new java.util.ArrayList<String>(features.length);
+        }
+        for (String value : features) {
+            this.features.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies the type of customization to filter projects by. If no value is
+     * specified, CUSTOM_LABELS is used as a default.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param features <p>
+     *            Specifies the type of customization to filter projects by. If
+     *            no value is specified, CUSTOM_LABELS is used as a default.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeProjectsRequest withFeatures(java.util.Collection<String> features) {
+        setFeatures(features);
         return this;
     }
 
@@ -313,7 +396,9 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
         if (getMaxResults() != null)
             sb.append("MaxResults: " + getMaxResults() + ",");
         if (getProjectNames() != null)
-            sb.append("ProjectNames: " + getProjectNames());
+            sb.append("ProjectNames: " + getProjectNames() + ",");
+        if (getFeatures() != null)
+            sb.append("Features: " + getFeatures());
         sb.append("}");
         return sb.toString();
     }
@@ -327,6 +412,7 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode
                 + ((getProjectNames() == null) ? 0 : getProjectNames().hashCode());
+        hashCode = prime * hashCode + ((getFeatures() == null) ? 0 : getFeatures().hashCode());
         return hashCode;
     }
 
@@ -355,6 +441,10 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
             return false;
         if (other.getProjectNames() != null
                 && other.getProjectNames().equals(this.getProjectNames()) == false)
+            return false;
+        if (other.getFeatures() == null ^ this.getFeatures() == null)
+            return false;
+        if (other.getFeatures() != null && other.getFeatures().equals(this.getFeatures()) == false)
             return false;
         return true;
     }
