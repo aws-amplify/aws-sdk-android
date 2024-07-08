@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -91,7 +91,8 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC,
+     * KEY_AGREEMENT
      */
     private String keyUsage;
 
@@ -264,6 +265,13 @@ public class KeyMetadata implements Serializable {
      * </p>
      */
     private java.util.List<String> signingAlgorithms = new java.util.ArrayList<String>();
+
+    /**
+     * <p>
+     * The key agreement algorithm used to derive a shared secret.
+     * </p>
+     */
+    private java.util.List<String> keyAgreementAlgorithms = new java.util.ArrayList<String>();
 
     /**
      * <p>
@@ -722,7 +730,8 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC,
+     * KEY_AGREEMENT
      *
      * @return <p>
      *         The <a href=
@@ -743,7 +752,8 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC,
+     * KEY_AGREEMENT
      *
      * @param keyUsage <p>
      *            The <a href=
@@ -768,7 +778,8 @@ public class KeyMetadata implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC,
+     * KEY_AGREEMENT
      *
      * @param keyUsage <p>
      *            The <a href=
@@ -793,7 +804,8 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC,
+     * KEY_AGREEMENT
      *
      * @param keyUsage <p>
      *            The <a href=
@@ -818,7 +830,8 @@ public class KeyMetadata implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC,
+     * KEY_AGREEMENT
      *
      * @param keyUsage <p>
      *            The <a href=
@@ -2279,6 +2292,82 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
+     * The key agreement algorithm used to derive a shared secret.
+     * </p>
+     *
+     * @return <p>
+     *         The key agreement algorithm used to derive a shared secret.
+     *         </p>
+     */
+    public java.util.List<String> getKeyAgreementAlgorithms() {
+        return keyAgreementAlgorithms;
+    }
+
+    /**
+     * <p>
+     * The key agreement algorithm used to derive a shared secret.
+     * </p>
+     *
+     * @param keyAgreementAlgorithms <p>
+     *            The key agreement algorithm used to derive a shared secret.
+     *            </p>
+     */
+    public void setKeyAgreementAlgorithms(java.util.Collection<String> keyAgreementAlgorithms) {
+        if (keyAgreementAlgorithms == null) {
+            this.keyAgreementAlgorithms = null;
+            return;
+        }
+
+        this.keyAgreementAlgorithms = new java.util.ArrayList<String>(keyAgreementAlgorithms);
+    }
+
+    /**
+     * <p>
+     * The key agreement algorithm used to derive a shared secret.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param keyAgreementAlgorithms <p>
+     *            The key agreement algorithm used to derive a shared secret.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public KeyMetadata withKeyAgreementAlgorithms(String... keyAgreementAlgorithms) {
+        if (getKeyAgreementAlgorithms() == null) {
+            this.keyAgreementAlgorithms = new java.util.ArrayList<String>(
+                    keyAgreementAlgorithms.length);
+        }
+        for (String value : keyAgreementAlgorithms) {
+            this.keyAgreementAlgorithms.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The key agreement algorithm used to derive a shared secret.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param keyAgreementAlgorithms <p>
+     *            The key agreement algorithm used to derive a shared secret.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public KeyMetadata withKeyAgreementAlgorithms(
+            java.util.Collection<String> keyAgreementAlgorithms) {
+        setKeyAgreementAlgorithms(keyAgreementAlgorithms);
+        return this;
+    }
+
+    /**
+     * <p>
      * Indicates whether the KMS key is a multi-Region (<code>True</code>) or
      * regional (<code>False</code>) key. This value is <code>True</code> for
      * multi-Region primary and replica keys and <code>False</code> for regional
@@ -3023,6 +3112,8 @@ public class KeyMetadata implements Serializable {
             sb.append("EncryptionAlgorithms: " + getEncryptionAlgorithms() + ",");
         if (getSigningAlgorithms() != null)
             sb.append("SigningAlgorithms: " + getSigningAlgorithms() + ",");
+        if (getKeyAgreementAlgorithms() != null)
+            sb.append("KeyAgreementAlgorithms: " + getKeyAgreementAlgorithms() + ",");
         if (getMultiRegion() != null)
             sb.append("MultiRegion: " + getMultiRegion() + ",");
         if (getMultiRegionConfiguration() != null)
@@ -3072,6 +3163,10 @@ public class KeyMetadata implements Serializable {
                 + ((getEncryptionAlgorithms() == null) ? 0 : getEncryptionAlgorithms().hashCode());
         hashCode = prime * hashCode
                 + ((getSigningAlgorithms() == null) ? 0 : getSigningAlgorithms().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getKeyAgreementAlgorithms() == null) ? 0 : getKeyAgreementAlgorithms()
+                        .hashCode());
         hashCode = prime * hashCode
                 + ((getMultiRegion() == null) ? 0 : getMultiRegion().hashCode());
         hashCode = prime
@@ -3186,6 +3281,11 @@ public class KeyMetadata implements Serializable {
             return false;
         if (other.getSigningAlgorithms() != null
                 && other.getSigningAlgorithms().equals(this.getSigningAlgorithms()) == false)
+            return false;
+        if (other.getKeyAgreementAlgorithms() == null ^ this.getKeyAgreementAlgorithms() == null)
+            return false;
+        if (other.getKeyAgreementAlgorithms() != null
+                && other.getKeyAgreementAlgorithms().equals(this.getKeyAgreementAlgorithms()) == false)
             return false;
         if (other.getMultiRegion() == null ^ this.getMultiRegion() == null)
             return false;

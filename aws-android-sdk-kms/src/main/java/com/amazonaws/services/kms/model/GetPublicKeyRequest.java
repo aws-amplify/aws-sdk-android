@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -58,7 +58,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * <a href=
  * "https://docs.aws.amazon.com/kms/latest/APIReference/API_GetPublicKey.html#KMS-GetPublicKey-response-KeyUsage"
- * >KeyUsage</a>: Whether the key is used for encryption or signing.
+ * >KeyUsage</a>: Whether the key is used for encryption, signing, or deriving a
+ * shared secret.
  * </p>
  * </li>
  * <li>
@@ -107,6 +108,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * <b>Related operations</b>: <a>CreateKey</a>
+ * </p>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
  * </p>
  */
 public class GetPublicKeyRequest extends AmazonWebServiceRequest implements Serializable {

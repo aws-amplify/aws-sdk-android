@@ -91,6 +91,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.Cogn
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ForgotPasswordContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.NewPasswordContinuation;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoNotAuthorizedException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.ForgotPasswordHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
@@ -2045,17 +2046,21 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
                             @Override
                             public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
-                                signalTokensNotAvailable(null);
+                                signalTokensNotAvailable(new CognitoNotAuthorizedException("No valid tokens on device."));
                             }
 
                             @Override
                             public void getMFACode(MultiFactorAuthenticationContinuation continuation) {
-                                signalTokensNotAvailable(null);
+                                signalTokensNotAvailable(
+                                        new Exception("MFA code requested during token refresh.")
+                                );
                             }
 
                             @Override
                             public void authenticationChallenge(ChallengeContinuation continuation) {
-                                signalTokensNotAvailable(null);
+                                signalTokensNotAvailable(
+                                        new Exception("Authentication challenge requested during token refresh.")
+                                );
                             }
 
                             @Override
@@ -2064,8 +2069,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             }
 
                             private void signalTokensNotAvailable(final Exception e) {
+                                Exception exception;
+                                if (e == null) {
+                                    exception = new Exception(("Unknown error occurred during token refresh."));
+                                } else {
+                                    exception = e;
+                                }
                                 Log.w(TAG, "signalTokensNotAvailable");
-                                callback.onError(new Exception("No cached session.", e));
+                                callback.onError(new Exception("No cached session.", exception));
                             }
                         }
                     );
