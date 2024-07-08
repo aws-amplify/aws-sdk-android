@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,6 +22,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Gets a registration code used to register a CA certificate with IoT.
+ * </p>
+ * <p>
+ * IoT will create a registration code as part of this API call if the
+ * registration code doesn't exist or has been deleted. If you already have a
+ * registration code, this API call will return the same registration code.
  * </p>
  * <p>
  * Requires permission to access the <a href=

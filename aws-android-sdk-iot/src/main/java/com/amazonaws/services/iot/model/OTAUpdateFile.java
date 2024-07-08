@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -64,7 +64,8 @@ public class OTAUpdateFile implements Serializable {
 
     /**
      * <p>
-     * A list of name/attribute pairs.
+     * A list of name-attribute pairs. They won't be sent to devices as a part
+     * of the Job document.
      * </p>
      */
     private java.util.Map<String, String> attributes;
@@ -314,11 +315,13 @@ public class OTAUpdateFile implements Serializable {
 
     /**
      * <p>
-     * A list of name/attribute pairs.
+     * A list of name-attribute pairs. They won't be sent to devices as a part
+     * of the Job document.
      * </p>
      *
      * @return <p>
-     *         A list of name/attribute pairs.
+     *         A list of name-attribute pairs. They won't be sent to devices as
+     *         a part of the Job document.
      *         </p>
      */
     public java.util.Map<String, String> getAttributes() {
@@ -327,11 +330,13 @@ public class OTAUpdateFile implements Serializable {
 
     /**
      * <p>
-     * A list of name/attribute pairs.
+     * A list of name-attribute pairs. They won't be sent to devices as a part
+     * of the Job document.
      * </p>
      *
      * @param attributes <p>
-     *            A list of name/attribute pairs.
+     *            A list of name-attribute pairs. They won't be sent to devices
+     *            as a part of the Job document.
      *            </p>
      */
     public void setAttributes(java.util.Map<String, String> attributes) {
@@ -340,14 +345,16 @@ public class OTAUpdateFile implements Serializable {
 
     /**
      * <p>
-     * A list of name/attribute pairs.
+     * A list of name-attribute pairs. They won't be sent to devices as a part
+     * of the Job document.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param attributes <p>
-     *            A list of name/attribute pairs.
+     *            A list of name-attribute pairs. They won't be sent to devices
+     *            as a part of the Job document.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -359,7 +366,8 @@ public class OTAUpdateFile implements Serializable {
 
     /**
      * <p>
-     * A list of name/attribute pairs.
+     * A list of name-attribute pairs. They won't be sent to devices as a part
+     * of the Job document.
      * </p>
      * <p>
      * The method adds a new key-value pair into attributes parameter, and
