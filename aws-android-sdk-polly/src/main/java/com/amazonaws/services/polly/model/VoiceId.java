@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -115,7 +115,10 @@ public enum VoiceId {
     Sofie("Sofie"),
     Lisa("Lisa"),
     Isabelle("Isabelle"),
-    Zayd("Zayd");
+    Zayd("Zayd"),
+    Danielle("Danielle"),
+    Gregory("Gregory"),
+    Burcu("Burcu");
 
     private String value;
 
@@ -224,6 +227,9 @@ public enum VoiceId {
         enumMap.put("Lisa", Lisa);
         enumMap.put("Isabelle", Isabelle);
         enumMap.put("Zayd", Zayd);
+        enumMap.put("Danielle", Danielle);
+        enumMap.put("Gregory", Gregory);
+        enumMap.put("Burcu", Burcu);
     }
 
     /**
