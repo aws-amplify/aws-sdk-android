@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,16 +21,50 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Signs out a user from all devices. <code>GlobalSignOut</code> invalidates all
- * identity, access and refresh tokens that Amazon Cognito has issued to a user.
- * A user can still use a hosted UI cookie to retrieve new tokens for the
- * duration of the 1-hour cookie validity period.
+ * Invalidates the identity, access, and refresh tokens that Amazon Cognito
+ * issued to a user. Call this operation when your user signs out of your app.
+ * This results in the following behavior.
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * Amazon Cognito no longer accepts <i>token-authorized</i> user operations that
+ * you authorize with a signed-out user's access tokens. For more information,
+ * see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
+ * >Using the Amazon Cognito user pools API and user pool endpoints</a>.
  * </p>
  * <p>
- * Your app isn't aware that a user's access token is revoked unless it attempts
- * to authorize a user pools API request with an access token that contains the
- * scope <code>aws.cognito.signin.user.admin</code>. Your app might otherwise
- * accept access tokens until they expire.
+ * Amazon Cognito returns an <code>Access Token has been revoked</code> error
+ * when your app attempts to authorize a user pools API request with a revoked
+ * access token that contains the scope
+ * <code>aws.cognito.signin.user.admin</code>.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Amazon Cognito no longer accepts a signed-out user's ID token in a <a href=
+ * "https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetId.html"
+ * >GetId </a> request to an identity pool with
+ * <code>ServerSideTokenCheck</code> enabled for its user pool IdP configuration
+ * in <a href=
+ * "https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_CognitoIdentityProvider.html"
+ * >CognitoIdentityProvider</a>.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Amazon Cognito no longer accepts a signed-out user's refresh tokens in
+ * refresh requests.
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * Other requests might be valid until your user's token expires.
+ * </p>
+ * <p>
+ * Authorize this action with a signed-in user's access token. It must include
+ * the scope <code>aws.cognito.signin.user.admin</code>.
  * </p>
  * <note>
  * <p>
@@ -40,7 +74,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * policies. For more information about authorization models in Amazon Cognito,
  * see <a href=
  * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
- * >Using the Amazon Cognito native and OIDC APIs</a>.
+ * >Using the Amazon Cognito user pools API and user pool endpoints</a>.
  * </p>
  * </note>
  */

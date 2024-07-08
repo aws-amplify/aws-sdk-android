@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,6 +23,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Resets the specified user's password in a user pool as an administrator.
  * Works on any user.
+ * </p>
+ * <p>
+ * To use this API operation, your user pool must have self-service account
+ * recovery configured. Use <a href=
+ * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminSetUserPassword.html"
+ * >AdminSetUserPassword</a> if you manage passwords as an administrator.
  * </p>
  * <note>
  * <p>
@@ -101,7 +107,11 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The user name of the user whose password you want to reset.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, this value must be the <code>sub</code> of a local
+     * user or the username of a user from a third-party IdP.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -228,7 +238,11 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The user name of the user whose password you want to reset.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, this value must be the <code>sub</code> of a local
+     * user or the username of a user from a third-party IdP.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -236,7 +250,12 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The user name of the user whose password you want to reset.
+     *         The username of the user that you want to query or modify. The
+     *         value of this parameter is typically your user's username, but it
+     *         can be any of their alias attributes. If <code>username</code>
+     *         isn't an alias attribute in your user pool, this value must be
+     *         the <code>sub</code> of a local user or the username of a user
+     *         from a third-party IdP.
      *         </p>
      */
     public String getUsername() {
@@ -245,7 +264,11 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The user name of the user whose password you want to reset.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, this value must be the <code>sub</code> of a local
+     * user or the username of a user from a third-party IdP.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -253,7 +276,12 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user whose password you want to reset.
+     *            The username of the user that you want to query or modify. The
+     *            value of this parameter is typically your user's username, but
+     *            it can be any of their alias attributes. If
+     *            <code>username</code> isn't an alias attribute in your user
+     *            pool, this value must be the <code>sub</code> of a local user
+     *            or the username of a user from a third-party IdP.
      *            </p>
      */
     public void setUsername(String username) {
@@ -262,7 +290,11 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The user name of the user whose password you want to reset.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, this value must be the <code>sub</code> of a local
+     * user or the username of a user from a third-party IdP.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -273,7 +305,12 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user whose password you want to reset.
+     *            The username of the user that you want to query or modify. The
+     *            value of this parameter is typically your user's username, but
+     *            it can be any of their alias attributes. If
+     *            <code>username</code> isn't an alias attribute in your user
+     *            pool, this value must be the <code>sub</code> of a local user
+     *            or the username of a user from a third-party IdP.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

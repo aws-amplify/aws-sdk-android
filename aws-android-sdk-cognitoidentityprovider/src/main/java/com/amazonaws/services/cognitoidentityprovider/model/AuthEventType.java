@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -46,9 +46,9 @@ public class AuthEventType implements Serializable {
 
     /**
      * <p>
-     * The date and time, in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format, when the item was created.
+     * The date and time when the item was created. Amazon Cognito returns this
+     * timestamp in UNIX epoch time format. Your SDK might render the output in
+     * a human-readable format like ISO 8601 or a Java <code>Date</code> object.
      * </p>
      */
     private java.util.Date creationDate;
@@ -252,15 +252,16 @@ public class AuthEventType implements Serializable {
 
     /**
      * <p>
-     * The date and time, in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format, when the item was created.
+     * The date and time when the item was created. Amazon Cognito returns this
+     * timestamp in UNIX epoch time format. Your SDK might render the output in
+     * a human-readable format like ISO 8601 or a Java <code>Date</code> object.
      * </p>
      *
      * @return <p>
-     *         The date and time, in <a
-     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *         8601</a> format, when the item was created.
+     *         The date and time when the item was created. Amazon Cognito
+     *         returns this timestamp in UNIX epoch time format. Your SDK might
+     *         render the output in a human-readable format like ISO 8601 or a
+     *         Java <code>Date</code> object.
      *         </p>
      */
     public java.util.Date getCreationDate() {
@@ -269,15 +270,16 @@ public class AuthEventType implements Serializable {
 
     /**
      * <p>
-     * The date and time, in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format, when the item was created.
+     * The date and time when the item was created. Amazon Cognito returns this
+     * timestamp in UNIX epoch time format. Your SDK might render the output in
+     * a human-readable format like ISO 8601 or a Java <code>Date</code> object.
      * </p>
      *
      * @param creationDate <p>
-     *            The date and time, in <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format, when the item was created.
+     *            The date and time when the item was created. Amazon Cognito
+     *            returns this timestamp in UNIX epoch time format. Your SDK
+     *            might render the output in a human-readable format like ISO
+     *            8601 or a Java <code>Date</code> object.
      *            </p>
      */
     public void setCreationDate(java.util.Date creationDate) {
@@ -286,18 +288,19 @@ public class AuthEventType implements Serializable {
 
     /**
      * <p>
-     * The date and time, in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format, when the item was created.
+     * The date and time when the item was created. Amazon Cognito returns this
+     * timestamp in UNIX epoch time format. Your SDK might render the output in
+     * a human-readable format like ISO 8601 or a Java <code>Date</code> object.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param creationDate <p>
-     *            The date and time, in <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format, when the item was created.
+     *            The date and time when the item was created. Amazon Cognito
+     *            returns this timestamp in UNIX epoch time format. Your SDK
+     *            might render the output in a human-readable format like ISO
+     *            8601 or a Java <code>Date</code> object.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
