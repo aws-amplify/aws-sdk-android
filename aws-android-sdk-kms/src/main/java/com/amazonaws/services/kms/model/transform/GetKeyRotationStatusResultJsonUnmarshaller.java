@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,6 +35,20 @@ public class GetKeyRotationStatusResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("KeyRotationEnabled")) {
                 getKeyRotationStatusResult.setKeyRotationEnabled(BooleanJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("KeyId")) {
+                getKeyRotationStatusResult.setKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("RotationPeriodInDays")) {
+                getKeyRotationStatusResult.setRotationPeriodInDays(IntegerJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("NextRotationDate")) {
+                getKeyRotationStatusResult.setNextRotationDate(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("OnDemandRotationStartDate")) {
+                getKeyRotationStatusResult.setOnDemandRotationStartDate(DateJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
             } else {

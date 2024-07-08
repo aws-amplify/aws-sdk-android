@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -67,6 +67,11 @@ public class EnableKeyRotationRequestMarshaller implements
                 String keyId = enableKeyRotationRequest.getKeyId();
                 jsonWriter.name("KeyId");
                 jsonWriter.value(keyId);
+            }
+            if (enableKeyRotationRequest.getRotationPeriodInDays() != null) {
+                Integer rotationPeriodInDays = enableKeyRotationRequest.getRotationPeriodInDays();
+                jsonWriter.name("RotationPeriodInDays");
+                jsonWriter.value(rotationPeriodInDays);
             }
 
             jsonWriter.endObject();

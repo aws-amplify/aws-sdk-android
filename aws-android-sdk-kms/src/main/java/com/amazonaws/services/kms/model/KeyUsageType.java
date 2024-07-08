@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,8 @@ public enum KeyUsageType {
 
     SIGN_VERIFY("SIGN_VERIFY"),
     ENCRYPT_DECRYPT("ENCRYPT_DECRYPT"),
-    GENERATE_VERIFY_MAC("GENERATE_VERIFY_MAC");
+    GENERATE_VERIFY_MAC("GENERATE_VERIFY_MAC"),
+    KEY_AGREEMENT("KEY_AGREEMENT");
 
     private String value;
 
@@ -44,6 +45,7 @@ public enum KeyUsageType {
         enumMap.put("SIGN_VERIFY", SIGN_VERIFY);
         enumMap.put("ENCRYPT_DECRYPT", ENCRYPT_DECRYPT);
         enumMap.put("GENERATE_VERIFY_MAC", GENERATE_VERIFY_MAC);
+        enumMap.put("KEY_AGREEMENT", KEY_AGREEMENT);
     }
 
     /**

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ public class ListResourceTagsResult implements Serializable {
      * <p>
      * A flag that indicates whether there are more items in the list. When this
      * value is true, the list in this response is truncated. To get more items,
-     * pass the value of the <code>NextMarker</code> element in thisresponse to
+     * pass the value of the <code>NextMarker</code> element in this response to
      * the <code>Marker</code> parameter in a subsequent request.
      * </p>
      */
@@ -295,7 +295,7 @@ public class ListResourceTagsResult implements Serializable {
      * <p>
      * A flag that indicates whether there are more items in the list. When this
      * value is true, the list in this response is truncated. To get more items,
-     * pass the value of the <code>NextMarker</code> element in thisresponse to
+     * pass the value of the <code>NextMarker</code> element in this response to
      * the <code>Marker</code> parameter in a subsequent request.
      * </p>
      *
@@ -303,8 +303,8 @@ public class ListResourceTagsResult implements Serializable {
      *         A flag that indicates whether there are more items in the list.
      *         When this value is true, the list in this response is truncated.
      *         To get more items, pass the value of the <code>NextMarker</code>
-     *         element in thisresponse to the <code>Marker</code> parameter in a
-     *         subsequent request.
+     *         element in this response to the <code>Marker</code> parameter in
+     *         a subsequent request.
      *         </p>
      */
     public Boolean isTruncated() {
@@ -315,7 +315,7 @@ public class ListResourceTagsResult implements Serializable {
      * <p>
      * A flag that indicates whether there are more items in the list. When this
      * value is true, the list in this response is truncated. To get more items,
-     * pass the value of the <code>NextMarker</code> element in thisresponse to
+     * pass the value of the <code>NextMarker</code> element in this response to
      * the <code>Marker</code> parameter in a subsequent request.
      * </p>
      *
@@ -323,8 +323,8 @@ public class ListResourceTagsResult implements Serializable {
      *         A flag that indicates whether there are more items in the list.
      *         When this value is true, the list in this response is truncated.
      *         To get more items, pass the value of the <code>NextMarker</code>
-     *         element in thisresponse to the <code>Marker</code> parameter in a
-     *         subsequent request.
+     *         element in this response to the <code>Marker</code> parameter in
+     *         a subsequent request.
      *         </p>
      */
     public Boolean getTruncated() {
@@ -335,7 +335,7 @@ public class ListResourceTagsResult implements Serializable {
      * <p>
      * A flag that indicates whether there are more items in the list. When this
      * value is true, the list in this response is truncated. To get more items,
-     * pass the value of the <code>NextMarker</code> element in thisresponse to
+     * pass the value of the <code>NextMarker</code> element in this response to
      * the <code>Marker</code> parameter in a subsequent request.
      * </p>
      *
@@ -343,7 +343,7 @@ public class ListResourceTagsResult implements Serializable {
      *            A flag that indicates whether there are more items in the
      *            list. When this value is true, the list in this response is
      *            truncated. To get more items, pass the value of the
-     *            <code>NextMarker</code> element in thisresponse to the
+     *            <code>NextMarker</code> element in this response to the
      *            <code>Marker</code> parameter in a subsequent request.
      *            </p>
      */
@@ -355,7 +355,7 @@ public class ListResourceTagsResult implements Serializable {
      * <p>
      * A flag that indicates whether there are more items in the list. When this
      * value is true, the list in this response is truncated. To get more items,
-     * pass the value of the <code>NextMarker</code> element in thisresponse to
+     * pass the value of the <code>NextMarker</code> element in this response to
      * the <code>Marker</code> parameter in a subsequent request.
      * </p>
      * <p>
@@ -366,7 +366,7 @@ public class ListResourceTagsResult implements Serializable {
      *            A flag that indicates whether there are more items in the
      *            list. When this value is true, the list in this response is
      *            truncated. To get more items, pass the value of the
-     *            <code>NextMarker</code> element in thisresponse to the
+     *            <code>NextMarker</code> element in this response to the
      *            <code>Marker</code> parameter in a subsequent request.
      *            </p>
      * @return A reference to this updated object so that method calls can be

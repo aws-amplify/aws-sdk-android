@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -157,6 +157,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </li>
  * </ul>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
+ * </p>
  */
 public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -306,7 +312,7 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * <p>
      * An external key store with <code>PUBLIC_ENDPOINT</code> connectivity
      * cannot use the same <code>XksProxyUriEndpoint</code> value as an external
-     * key store with <code>VPC_ENDPOINT_SERVICE</code> connectivity in the same
+     * key store with <code>VPC_ENDPOINT_SERVICE</code> connectivity in this
      * Amazon Web Services Region.
      * </p>
      * </li>
@@ -1169,7 +1175,7 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * <p>
      * An external key store with <code>PUBLIC_ENDPOINT</code> connectivity
      * cannot use the same <code>XksProxyUriEndpoint</code> value as an external
-     * key store with <code>VPC_ENDPOINT_SERVICE</code> connectivity in the same
+     * key store with <code>VPC_ENDPOINT_SERVICE</code> connectivity in this
      * Amazon Web Services Region.
      * </p>
      * </li>
@@ -1236,8 +1242,8 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      *         An external key store with <code>PUBLIC_ENDPOINT</code>
      *         connectivity cannot use the same <code>XksProxyUriEndpoint</code>
      *         value as an external key store with
-     *         <code>VPC_ENDPOINT_SERVICE</code> connectivity in the same Amazon
-     *         Web Services Region.
+     *         <code>VPC_ENDPOINT_SERVICE</code> connectivity in this Amazon Web
+     *         Services Region.
      *         </p>
      *         </li>
      *         <li>
@@ -1301,7 +1307,7 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * <p>
      * An external key store with <code>PUBLIC_ENDPOINT</code> connectivity
      * cannot use the same <code>XksProxyUriEndpoint</code> value as an external
-     * key store with <code>VPC_ENDPOINT_SERVICE</code> connectivity in the same
+     * key store with <code>VPC_ENDPOINT_SERVICE</code> connectivity in this
      * Amazon Web Services Region.
      * </p>
      * </li>
@@ -1371,7 +1377,7 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      *            connectivity cannot use the same
      *            <code>XksProxyUriEndpoint</code> value as an external key
      *            store with <code>VPC_ENDPOINT_SERVICE</code> connectivity in
-     *            the same Amazon Web Services Region.
+     *            this Amazon Web Services Region.
      *            </p>
      *            </li>
      *            <li>
@@ -1435,7 +1441,7 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * <p>
      * An external key store with <code>PUBLIC_ENDPOINT</code> connectivity
      * cannot use the same <code>XksProxyUriEndpoint</code> value as an external
-     * key store with <code>VPC_ENDPOINT_SERVICE</code> connectivity in the same
+     * key store with <code>VPC_ENDPOINT_SERVICE</code> connectivity in this
      * Amazon Web Services Region.
      * </p>
      * </li>
@@ -1508,7 +1514,7 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      *            connectivity cannot use the same
      *            <code>XksProxyUriEndpoint</code> value as an external key
      *            store with <code>VPC_ENDPOINT_SERVICE</code> connectivity in
-     *            the same Amazon Web Services Region.
+     *            this Amazon Web Services Region.
      *            </p>
      *            </li>
      *            <li>

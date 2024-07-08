@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -82,17 +82,19 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The permitted use of the public key. Valid values are
-     * <code>ENCRYPT_DECRYPT</code> or <code>SIGN_VERIFY</code>.
+     * The permitted use of the public key. Valid values for asymmetric key
+     * pairs are <code>ENCRYPT_DECRYPT</code>, <code>SIGN_VERIFY</code>, and
+     * <code>KEY_AGREEMENT</code>.
      * </p>
      * <p>
-     * This information is critical. If a public key with
+     * This information is critical. For example, if a public key with
      * <code>SIGN_VERIFY</code> key usage encrypts data outside of KMS, the
      * ciphertext cannot be decrypted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC,
+     * KEY_AGREEMENT
      */
     private String keyUsage;
 
@@ -122,6 +124,15 @@ public class GetPublicKeyResult implements Serializable {
      * </p>
      */
     private java.util.List<String> signingAlgorithms = new java.util.ArrayList<String>();
+
+    /**
+     * <p>
+     * The key agreement algorithm used to derive a shared secret. This field is
+     * present only when the KMS key has a <code>KeyUsage</code> value of
+     * <code>KEY_AGREEMENT</code>.
+     * </p>
+     */
+    private java.util.List<String> keyAgreementAlgorithms = new java.util.ArrayList<String>();
 
     /**
      * <p>
@@ -587,24 +598,27 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The permitted use of the public key. Valid values are
-     * <code>ENCRYPT_DECRYPT</code> or <code>SIGN_VERIFY</code>.
+     * The permitted use of the public key. Valid values for asymmetric key
+     * pairs are <code>ENCRYPT_DECRYPT</code>, <code>SIGN_VERIFY</code>, and
+     * <code>KEY_AGREEMENT</code>.
      * </p>
      * <p>
-     * This information is critical. If a public key with
+     * This information is critical. For example, if a public key with
      * <code>SIGN_VERIFY</code> key usage encrypts data outside of KMS, the
      * ciphertext cannot be decrypted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC,
+     * KEY_AGREEMENT
      *
      * @return <p>
-     *         The permitted use of the public key. Valid values are
-     *         <code>ENCRYPT_DECRYPT</code> or <code>SIGN_VERIFY</code>.
+     *         The permitted use of the public key. Valid values for asymmetric
+     *         key pairs are <code>ENCRYPT_DECRYPT</code>,
+     *         <code>SIGN_VERIFY</code>, and <code>KEY_AGREEMENT</code>.
      *         </p>
      *         <p>
-     *         This information is critical. If a public key with
+     *         This information is critical. For example, if a public key with
      *         <code>SIGN_VERIFY</code> key usage encrypts data outside of KMS,
      *         the ciphertext cannot be decrypted.
      *         </p>
@@ -616,26 +630,29 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The permitted use of the public key. Valid values are
-     * <code>ENCRYPT_DECRYPT</code> or <code>SIGN_VERIFY</code>.
+     * The permitted use of the public key. Valid values for asymmetric key
+     * pairs are <code>ENCRYPT_DECRYPT</code>, <code>SIGN_VERIFY</code>, and
+     * <code>KEY_AGREEMENT</code>.
      * </p>
      * <p>
-     * This information is critical. If a public key with
+     * This information is critical. For example, if a public key with
      * <code>SIGN_VERIFY</code> key usage encrypts data outside of KMS, the
      * ciphertext cannot be decrypted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC,
+     * KEY_AGREEMENT
      *
      * @param keyUsage <p>
-     *            The permitted use of the public key. Valid values are
-     *            <code>ENCRYPT_DECRYPT</code> or <code>SIGN_VERIFY</code>.
+     *            The permitted use of the public key. Valid values for
+     *            asymmetric key pairs are <code>ENCRYPT_DECRYPT</code>,
+     *            <code>SIGN_VERIFY</code>, and <code>KEY_AGREEMENT</code>.
      *            </p>
      *            <p>
-     *            This information is critical. If a public key with
-     *            <code>SIGN_VERIFY</code> key usage encrypts data outside of
-     *            KMS, the ciphertext cannot be decrypted.
+     *            This information is critical. For example, if a public key
+     *            with <code>SIGN_VERIFY</code> key usage encrypts data outside
+     *            of KMS, the ciphertext cannot be decrypted.
      *            </p>
      * @see KeyUsageType
      */
@@ -645,11 +662,12 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The permitted use of the public key. Valid values are
-     * <code>ENCRYPT_DECRYPT</code> or <code>SIGN_VERIFY</code>.
+     * The permitted use of the public key. Valid values for asymmetric key
+     * pairs are <code>ENCRYPT_DECRYPT</code>, <code>SIGN_VERIFY</code>, and
+     * <code>KEY_AGREEMENT</code>.
      * </p>
      * <p>
-     * This information is critical. If a public key with
+     * This information is critical. For example, if a public key with
      * <code>SIGN_VERIFY</code> key usage encrypts data outside of KMS, the
      * ciphertext cannot be decrypted.
      * </p>
@@ -658,16 +676,18 @@ public class GetPublicKeyResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC,
+     * KEY_AGREEMENT
      *
      * @param keyUsage <p>
-     *            The permitted use of the public key. Valid values are
-     *            <code>ENCRYPT_DECRYPT</code> or <code>SIGN_VERIFY</code>.
+     *            The permitted use of the public key. Valid values for
+     *            asymmetric key pairs are <code>ENCRYPT_DECRYPT</code>,
+     *            <code>SIGN_VERIFY</code>, and <code>KEY_AGREEMENT</code>.
      *            </p>
      *            <p>
-     *            This information is critical. If a public key with
-     *            <code>SIGN_VERIFY</code> key usage encrypts data outside of
-     *            KMS, the ciphertext cannot be decrypted.
+     *            This information is critical. For example, if a public key
+     *            with <code>SIGN_VERIFY</code> key usage encrypts data outside
+     *            of KMS, the ciphertext cannot be decrypted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -680,26 +700,29 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The permitted use of the public key. Valid values are
-     * <code>ENCRYPT_DECRYPT</code> or <code>SIGN_VERIFY</code>.
+     * The permitted use of the public key. Valid values for asymmetric key
+     * pairs are <code>ENCRYPT_DECRYPT</code>, <code>SIGN_VERIFY</code>, and
+     * <code>KEY_AGREEMENT</code>.
      * </p>
      * <p>
-     * This information is critical. If a public key with
+     * This information is critical. For example, if a public key with
      * <code>SIGN_VERIFY</code> key usage encrypts data outside of KMS, the
      * ciphertext cannot be decrypted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC,
+     * KEY_AGREEMENT
      *
      * @param keyUsage <p>
-     *            The permitted use of the public key. Valid values are
-     *            <code>ENCRYPT_DECRYPT</code> or <code>SIGN_VERIFY</code>.
+     *            The permitted use of the public key. Valid values for
+     *            asymmetric key pairs are <code>ENCRYPT_DECRYPT</code>,
+     *            <code>SIGN_VERIFY</code>, and <code>KEY_AGREEMENT</code>.
      *            </p>
      *            <p>
-     *            This information is critical. If a public key with
-     *            <code>SIGN_VERIFY</code> key usage encrypts data outside of
-     *            KMS, the ciphertext cannot be decrypted.
+     *            This information is critical. For example, if a public key
+     *            with <code>SIGN_VERIFY</code> key usage encrypts data outside
+     *            of KMS, the ciphertext cannot be decrypted.
      *            </p>
      * @see KeyUsageType
      */
@@ -709,11 +732,12 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The permitted use of the public key. Valid values are
-     * <code>ENCRYPT_DECRYPT</code> or <code>SIGN_VERIFY</code>.
+     * The permitted use of the public key. Valid values for asymmetric key
+     * pairs are <code>ENCRYPT_DECRYPT</code>, <code>SIGN_VERIFY</code>, and
+     * <code>KEY_AGREEMENT</code>.
      * </p>
      * <p>
-     * This information is critical. If a public key with
+     * This information is critical. For example, if a public key with
      * <code>SIGN_VERIFY</code> key usage encrypts data outside of KMS, the
      * ciphertext cannot be decrypted.
      * </p>
@@ -722,16 +746,18 @@ public class GetPublicKeyResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC,
+     * KEY_AGREEMENT
      *
      * @param keyUsage <p>
-     *            The permitted use of the public key. Valid values are
-     *            <code>ENCRYPT_DECRYPT</code> or <code>SIGN_VERIFY</code>.
+     *            The permitted use of the public key. Valid values for
+     *            asymmetric key pairs are <code>ENCRYPT_DECRYPT</code>,
+     *            <code>SIGN_VERIFY</code>, and <code>KEY_AGREEMENT</code>.
      *            </p>
      *            <p>
-     *            This information is critical. If a public key with
-     *            <code>SIGN_VERIFY</code> key usage encrypts data outside of
-     *            KMS, the ciphertext cannot be decrypted.
+     *            This information is critical. For example, if a public key
+     *            with <code>SIGN_VERIFY</code> key usage encrypts data outside
+     *            of KMS, the ciphertext cannot be decrypted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1004,6 +1030,98 @@ public class GetPublicKeyResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The key agreement algorithm used to derive a shared secret. This field is
+     * present only when the KMS key has a <code>KeyUsage</code> value of
+     * <code>KEY_AGREEMENT</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The key agreement algorithm used to derive a shared secret. This
+     *         field is present only when the KMS key has a
+     *         <code>KeyUsage</code> value of <code>KEY_AGREEMENT</code>.
+     *         </p>
+     */
+    public java.util.List<String> getKeyAgreementAlgorithms() {
+        return keyAgreementAlgorithms;
+    }
+
+    /**
+     * <p>
+     * The key agreement algorithm used to derive a shared secret. This field is
+     * present only when the KMS key has a <code>KeyUsage</code> value of
+     * <code>KEY_AGREEMENT</code>.
+     * </p>
+     *
+     * @param keyAgreementAlgorithms <p>
+     *            The key agreement algorithm used to derive a shared secret.
+     *            This field is present only when the KMS key has a
+     *            <code>KeyUsage</code> value of <code>KEY_AGREEMENT</code>.
+     *            </p>
+     */
+    public void setKeyAgreementAlgorithms(java.util.Collection<String> keyAgreementAlgorithms) {
+        if (keyAgreementAlgorithms == null) {
+            this.keyAgreementAlgorithms = null;
+            return;
+        }
+
+        this.keyAgreementAlgorithms = new java.util.ArrayList<String>(keyAgreementAlgorithms);
+    }
+
+    /**
+     * <p>
+     * The key agreement algorithm used to derive a shared secret. This field is
+     * present only when the KMS key has a <code>KeyUsage</code> value of
+     * <code>KEY_AGREEMENT</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param keyAgreementAlgorithms <p>
+     *            The key agreement algorithm used to derive a shared secret.
+     *            This field is present only when the KMS key has a
+     *            <code>KeyUsage</code> value of <code>KEY_AGREEMENT</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetPublicKeyResult withKeyAgreementAlgorithms(String... keyAgreementAlgorithms) {
+        if (getKeyAgreementAlgorithms() == null) {
+            this.keyAgreementAlgorithms = new java.util.ArrayList<String>(
+                    keyAgreementAlgorithms.length);
+        }
+        for (String value : keyAgreementAlgorithms) {
+            this.keyAgreementAlgorithms.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The key agreement algorithm used to derive a shared secret. This field is
+     * present only when the KMS key has a <code>KeyUsage</code> value of
+     * <code>KEY_AGREEMENT</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param keyAgreementAlgorithms <p>
+     *            The key agreement algorithm used to derive a shared secret.
+     *            This field is present only when the KMS key has a
+     *            <code>KeyUsage</code> value of <code>KEY_AGREEMENT</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetPublicKeyResult withKeyAgreementAlgorithms(
+            java.util.Collection<String> keyAgreementAlgorithms) {
+        setKeyAgreementAlgorithms(keyAgreementAlgorithms);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1027,7 +1145,9 @@ public class GetPublicKeyResult implements Serializable {
         if (getEncryptionAlgorithms() != null)
             sb.append("EncryptionAlgorithms: " + getEncryptionAlgorithms() + ",");
         if (getSigningAlgorithms() != null)
-            sb.append("SigningAlgorithms: " + getSigningAlgorithms());
+            sb.append("SigningAlgorithms: " + getSigningAlgorithms() + ",");
+        if (getKeyAgreementAlgorithms() != null)
+            sb.append("KeyAgreementAlgorithms: " + getKeyAgreementAlgorithms());
         sb.append("}");
         return sb.toString();
     }
@@ -1048,6 +1168,10 @@ public class GetPublicKeyResult implements Serializable {
                 + ((getEncryptionAlgorithms() == null) ? 0 : getEncryptionAlgorithms().hashCode());
         hashCode = prime * hashCode
                 + ((getSigningAlgorithms() == null) ? 0 : getSigningAlgorithms().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getKeyAgreementAlgorithms() == null) ? 0 : getKeyAgreementAlgorithms()
+                        .hashCode());
         return hashCode;
     }
 
@@ -1093,6 +1217,11 @@ public class GetPublicKeyResult implements Serializable {
             return false;
         if (other.getSigningAlgorithms() != null
                 && other.getSigningAlgorithms().equals(this.getSigningAlgorithms()) == false)
+            return false;
+        if (other.getKeyAgreementAlgorithms() == null ^ this.getKeyAgreementAlgorithms() == null)
+            return false;
+        if (other.getKeyAgreementAlgorithms() != null
+                && other.getKeyAgreementAlgorithms().equals(this.getKeyAgreementAlgorithms()) == false)
             return false;
         return true;
     }

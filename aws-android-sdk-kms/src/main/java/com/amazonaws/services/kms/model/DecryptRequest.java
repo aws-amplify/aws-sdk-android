@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -108,11 +108,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Use the <code>Recipient</code> parameter to provide the attestation document
  * for the enclave. Instead of the plaintext data, the response includes the
  * plaintext data encrypted with the public key from the attestation document (
- * <code>CiphertextForRecipient</code>).For information about the interaction
+ * <code>CiphertextForRecipient</code>). For information about the interaction
  * between KMS and Amazon Web Services Nitro Enclaves, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
  * >How Amazon Web Services Nitro Enclaves uses KMS</a> in the <i>Key Management
- * Service Developer Guide</i>..
+ * Service Developer Guide</i>.
  * </p>
  * <p>
  * The KMS key that you use for this operation must be in a compatible key
@@ -156,6 +156,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </li>
  * </ul>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
+ * </p>
  */
 public class DecryptRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -295,7 +301,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
     /**
      * <p>
      * A signed <a href=
-     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc"
+     * "https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-concepts.html#term-attestdoc"
      * >attestation document</a> from an Amazon Web Services Nitro enclave and
      * the encryption algorithm to use with the enclave's public key. The only
      * valid encryption algorithm is <code>RSAES_OAEP_SHA_256</code>.
@@ -1331,7 +1337,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
     /**
      * <p>
      * A signed <a href=
-     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc"
+     * "https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-concepts.html#term-attestdoc"
      * >attestation document</a> from an Amazon Web Services Nitro enclave and
      * the encryption algorithm to use with the enclave's public key. The only
      * valid encryption algorithm is <code>RSAES_OAEP_SHA_256</code>.
@@ -1361,7 +1367,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      *
      * @return <p>
      *         A signed <a href=
-     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc"
+     *         "https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-concepts.html#term-attestdoc"
      *         >attestation document</a> from an Amazon Web Services Nitro
      *         enclave and the encryption algorithm to use with the enclave's
      *         public key. The only valid encryption algorithm is
@@ -1399,7 +1405,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
     /**
      * <p>
      * A signed <a href=
-     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc"
+     * "https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-concepts.html#term-attestdoc"
      * >attestation document</a> from an Amazon Web Services Nitro enclave and
      * the encryption algorithm to use with the enclave's public key. The only
      * valid encryption algorithm is <code>RSAES_OAEP_SHA_256</code>.
@@ -1429,7 +1435,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      *
      * @param recipient <p>
      *            A signed <a href=
-     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc"
+     *            "https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-concepts.html#term-attestdoc"
      *            >attestation document</a> from an Amazon Web Services Nitro
      *            enclave and the encryption algorithm to use with the enclave's
      *            public key. The only valid encryption algorithm is
@@ -1468,7 +1474,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
     /**
      * <p>
      * A signed <a href=
-     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc"
+     * "https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-concepts.html#term-attestdoc"
      * >attestation document</a> from an Amazon Web Services Nitro enclave and
      * the encryption algorithm to use with the enclave's public key. The only
      * valid encryption algorithm is <code>RSAES_OAEP_SHA_256</code>.
@@ -1501,7 +1507,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      *
      * @param recipient <p>
      *            A signed <a href=
-     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc"
+     *            "https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-concepts.html#term-attestdoc"
      *            >attestation document</a> from an Amazon Web Services Nitro
      *            enclave and the encryption algorithm to use with the enclave's
      *            public key. The only valid encryption algorithm is

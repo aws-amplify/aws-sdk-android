@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,18 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets a Boolean value that indicates whether <a href=
+ * Provides detailed information about the rotation status for a KMS key,
+ * including whether <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html"
  * >automatic rotation of the key material</a> is enabled for the specified KMS
- * key.
- * </p>
- * <p>
- * When you enable automatic rotation for <a href=
- * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
- * >customer managed KMS keys</a>, KMS rotates the key material of the KMS key
- * one year (approximately 365 days) from the enable date and every year
- * thereafter. You can monitor rotation of the key material for your KMS keys in
- * CloudTrail and Amazon CloudWatch.
+ * key, the <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotation-period"
+ * >rotation period</a>, and the next scheduled rotation date.
  * </p>
  * <p>
  * Automatic key rotation is supported only on <a href=
@@ -60,6 +55,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * rotates the key material in Amazon Web Services managed KMS keys every year.
  * The key rotation status for Amazon Web Services managed KMS keys is always
  * <code>true</code>.
+ * </p>
+ * <p>
+ * You can perform on-demand (<a>RotateKeyOnDemand</a>) rotation of the key
+ * material in customer managed KMS keys, regardless of whether or not automatic
+ * key rotation is enabled. You can use GetKeyRotationStatus to identify the
+ * date and time that an in progress on-demand rotation was initiated. You can
+ * use <a>ListKeyRotations</a> to view the details of completed rotations.
  * </p>
  * <note>
  * <p>
@@ -120,7 +122,23 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <a>EnableKeyRotation</a>
  * </p>
  * </li>
+ * <li>
+ * <p>
+ * <a>ListKeyRotations</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>RotateKeyOnDemand</a>
+ * </p>
+ * </li>
  * </ul>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
+ * </p>
  */
 public class GetKeyRotationStatusRequest extends AmazonWebServiceRequest implements Serializable {
     /**

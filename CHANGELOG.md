@@ -1,3 +1,15 @@
+## [Release 2.75.2](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.75.2)
+
+### Bug Fixes
+- **aws-android-sdk-auth-userpools:** Check actual password requirements in drop-in UI ([#3588](https://github.com/aws-amplify/aws-sdk-android/issues/3588))
+- **misc:** Add rexml dependency ([#3594](https://github.com/aws-amplify/aws-sdk-android/issues/3594))
+
+### Miscellaneous
+- Update rexml ([#3581](https://github.com/aws-amplify/aws-sdk-android/issues/3581))
+- prevent connectivity manager crash ([#3593](https://github.com/aws-amplify/aws-sdk-android/issues/3593))
+
+[See all changes between 2.75.1 and 2.75.2](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.75.1...release_v2.75.2)
+
 ## [Release 2.75.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.75.1)
 
 ### Bug Fixes
