@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,7 +29,8 @@ public enum MediaFormat {
     Flac("flac"),
     Ogg("ogg"),
     Amr("amr"),
-    Webm("webm");
+    Webm("webm"),
+    M4a("m4a");
 
     private String value;
 
@@ -52,6 +53,7 @@ public enum MediaFormat {
         enumMap.put("ogg", Ogg);
         enumMap.put("amr", Amr);
         enumMap.put("webm", Webm);
+        enumMap.put("m4a", M4a);
     }
 
     /**
