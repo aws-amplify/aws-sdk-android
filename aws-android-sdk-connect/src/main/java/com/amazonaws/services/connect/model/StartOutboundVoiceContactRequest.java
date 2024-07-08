@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -58,6 +58,54 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
         Serializable {
     /**
      * <p>
+     * The name of a voice contact that is shown to an agent in the Contact
+     * Control Panel (CCP).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 512<br/>
+     */
+    private String name;
+
+    /**
+     * <p>
+     * A description of the voice contact that is shown to an agent in the
+     * Contact Control Panel (CCP).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
+     */
+    private String description;
+
+    /**
+     * <p>
+     * A formatted URL that is shown to an agent in the Contact Control Panel
+     * (CCP). Contacts can have the following reference types at the time of
+     * creation: <code>URL</code> | <code>NUMBER</code> | <code>STRING</code> |
+     * <code>DATE</code> | <code>EMAIL</code>. <code>ATTACHMENT</code> is not a
+     * supported reference type during voice contact creation.
+     * </p>
+     */
+    private java.util.Map<String, Reference> references;
+
+    /**
+     * <p>
+     * The <code>contactId</code> that is related to this contact. Linking
+     * voice, task, or chat by using <code>RelatedContactID</code> copies over
+     * contact attributes from the related contact to the new contact. All
+     * updates to user-defined attributes in the new contact are limited to the
+     * individual contact ID. There are no limits to the number of contacts that
+     * can be linked by using <code>RelatedContactId</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     */
+    private String relatedContactId;
+
+    /**
+     * <p>
      * The phone number of the customer, in E.164 format.
      * </p>
      * <p>
@@ -69,11 +117,11 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The identifier of the flow for the outbound call. To see the
-     * ContactFlowId in the Amazon Connect console user interface, on the
-     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * flow. On the flow page, under the name of the flow, choose <b>Show
-     * additional flow information</b>. The ContactFlowId is the last part of
-     * the ARN, shown here in bold:
+     * ContactFlowId in the Amazon Connect admin website, on the navigation menu
+     * go to <b>Routing</b>, <b>Contact Flows</b>. Choose the flow. On the flow
+     * page, under the name of the flow, choose <b>Show additional flow
+     * information</b>. The ContactFlowId is the last part of the ARN, shown
+     * here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -184,6 +232,330 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
+     * The name of a voice contact that is shown to an agent in the Contact
+     * Control Panel (CCP).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 512<br/>
+     *
+     * @return <p>
+     *         The name of a voice contact that is shown to an agent in the
+     *         Contact Control Panel (CCP).
+     *         </p>
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * <p>
+     * The name of a voice contact that is shown to an agent in the Contact
+     * Control Panel (CCP).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 512<br/>
+     *
+     * @param name <p>
+     *            The name of a voice contact that is shown to an agent in the
+     *            Contact Control Panel (CCP).
+     *            </p>
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * <p>
+     * The name of a voice contact that is shown to an agent in the Contact
+     * Control Panel (CCP).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 512<br/>
+     *
+     * @param name <p>
+     *            The name of a voice contact that is shown to an agent in the
+     *            Contact Control Panel (CCP).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartOutboundVoiceContactRequest withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A description of the voice contact that is shown to an agent in the
+     * Contact Control Panel (CCP).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
+     *
+     * @return <p>
+     *         A description of the voice contact that is shown to an agent in
+     *         the Contact Control Panel (CCP).
+     *         </p>
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * <p>
+     * A description of the voice contact that is shown to an agent in the
+     * Contact Control Panel (CCP).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
+     *
+     * @param description <p>
+     *            A description of the voice contact that is shown to an agent
+     *            in the Contact Control Panel (CCP).
+     *            </p>
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * <p>
+     * A description of the voice contact that is shown to an agent in the
+     * Contact Control Panel (CCP).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
+     *
+     * @param description <p>
+     *            A description of the voice contact that is shown to an agent
+     *            in the Contact Control Panel (CCP).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartOutboundVoiceContactRequest withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A formatted URL that is shown to an agent in the Contact Control Panel
+     * (CCP). Contacts can have the following reference types at the time of
+     * creation: <code>URL</code> | <code>NUMBER</code> | <code>STRING</code> |
+     * <code>DATE</code> | <code>EMAIL</code>. <code>ATTACHMENT</code> is not a
+     * supported reference type during voice contact creation.
+     * </p>
+     *
+     * @return <p>
+     *         A formatted URL that is shown to an agent in the Contact Control
+     *         Panel (CCP). Contacts can have the following reference types at
+     *         the time of creation: <code>URL</code> | <code>NUMBER</code> |
+     *         <code>STRING</code> | <code>DATE</code> | <code>EMAIL</code>.
+     *         <code>ATTACHMENT</code> is not a supported reference type during
+     *         voice contact creation.
+     *         </p>
+     */
+    public java.util.Map<String, Reference> getReferences() {
+        return references;
+    }
+
+    /**
+     * <p>
+     * A formatted URL that is shown to an agent in the Contact Control Panel
+     * (CCP). Contacts can have the following reference types at the time of
+     * creation: <code>URL</code> | <code>NUMBER</code> | <code>STRING</code> |
+     * <code>DATE</code> | <code>EMAIL</code>. <code>ATTACHMENT</code> is not a
+     * supported reference type during voice contact creation.
+     * </p>
+     *
+     * @param references <p>
+     *            A formatted URL that is shown to an agent in the Contact
+     *            Control Panel (CCP). Contacts can have the following reference
+     *            types at the time of creation: <code>URL</code> |
+     *            <code>NUMBER</code> | <code>STRING</code> | <code>DATE</code>
+     *            | <code>EMAIL</code>. <code>ATTACHMENT</code> is not a
+     *            supported reference type during voice contact creation.
+     *            </p>
+     */
+    public void setReferences(java.util.Map<String, Reference> references) {
+        this.references = references;
+    }
+
+    /**
+     * <p>
+     * A formatted URL that is shown to an agent in the Contact Control Panel
+     * (CCP). Contacts can have the following reference types at the time of
+     * creation: <code>URL</code> | <code>NUMBER</code> | <code>STRING</code> |
+     * <code>DATE</code> | <code>EMAIL</code>. <code>ATTACHMENT</code> is not a
+     * supported reference type during voice contact creation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param references <p>
+     *            A formatted URL that is shown to an agent in the Contact
+     *            Control Panel (CCP). Contacts can have the following reference
+     *            types at the time of creation: <code>URL</code> |
+     *            <code>NUMBER</code> | <code>STRING</code> | <code>DATE</code>
+     *            | <code>EMAIL</code>. <code>ATTACHMENT</code> is not a
+     *            supported reference type during voice contact creation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartOutboundVoiceContactRequest withReferences(
+            java.util.Map<String, Reference> references) {
+        this.references = references;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A formatted URL that is shown to an agent in the Contact Control Panel
+     * (CCP). Contacts can have the following reference types at the time of
+     * creation: <code>URL</code> | <code>NUMBER</code> | <code>STRING</code> |
+     * <code>DATE</code> | <code>EMAIL</code>. <code>ATTACHMENT</code> is not a
+     * supported reference type during voice contact creation.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into References parameter, and
+     * returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param key The key of the entry to be added into References.
+     * @param value The corresponding value of the entry to be added into
+     *            References.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartOutboundVoiceContactRequest addReferencesEntry(String key, Reference value) {
+        if (null == this.references) {
+            this.references = new java.util.HashMap<String, Reference>();
+        }
+        if (this.references.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.references.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into References.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public StartOutboundVoiceContactRequest clearReferencesEntries() {
+        this.references = null;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The <code>contactId</code> that is related to this contact. Linking
+     * voice, task, or chat by using <code>RelatedContactID</code> copies over
+     * contact attributes from the related contact to the new contact. All
+     * updates to user-defined attributes in the new contact are limited to the
+     * individual contact ID. There are no limits to the number of contacts that
+     * can be linked by using <code>RelatedContactId</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @return <p>
+     *         The <code>contactId</code> that is related to this contact.
+     *         Linking voice, task, or chat by using
+     *         <code>RelatedContactID</code> copies over contact attributes from
+     *         the related contact to the new contact. All updates to
+     *         user-defined attributes in the new contact are limited to the
+     *         individual contact ID. There are no limits to the number of
+     *         contacts that can be linked by using
+     *         <code>RelatedContactId</code>.
+     *         </p>
+     */
+    public String getRelatedContactId() {
+        return relatedContactId;
+    }
+
+    /**
+     * <p>
+     * The <code>contactId</code> that is related to this contact. Linking
+     * voice, task, or chat by using <code>RelatedContactID</code> copies over
+     * contact attributes from the related contact to the new contact. All
+     * updates to user-defined attributes in the new contact are limited to the
+     * individual contact ID. There are no limits to the number of contacts that
+     * can be linked by using <code>RelatedContactId</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @param relatedContactId <p>
+     *            The <code>contactId</code> that is related to this contact.
+     *            Linking voice, task, or chat by using
+     *            <code>RelatedContactID</code> copies over contact attributes
+     *            from the related contact to the new contact. All updates to
+     *            user-defined attributes in the new contact are limited to the
+     *            individual contact ID. There are no limits to the number of
+     *            contacts that can be linked by using
+     *            <code>RelatedContactId</code>.
+     *            </p>
+     */
+    public void setRelatedContactId(String relatedContactId) {
+        this.relatedContactId = relatedContactId;
+    }
+
+    /**
+     * <p>
+     * The <code>contactId</code> that is related to this contact. Linking
+     * voice, task, or chat by using <code>RelatedContactID</code> copies over
+     * contact attributes from the related contact to the new contact. All
+     * updates to user-defined attributes in the new contact are limited to the
+     * individual contact ID. There are no limits to the number of contacts that
+     * can be linked by using <code>RelatedContactId</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @param relatedContactId <p>
+     *            The <code>contactId</code> that is related to this contact.
+     *            Linking voice, task, or chat by using
+     *            <code>RelatedContactID</code> copies over contact attributes
+     *            from the related contact to the new contact. All updates to
+     *            user-defined attributes in the new contact are limited to the
+     *            individual contact ID. There are no limits to the number of
+     *            contacts that can be linked by using
+     *            <code>RelatedContactId</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartOutboundVoiceContactRequest withRelatedContactId(String relatedContactId) {
+        this.relatedContactId = relatedContactId;
+        return this;
+    }
+
+    /**
+     * <p>
      * The phone number of the customer, in E.164 format.
      * </p>
      * <p>
@@ -239,11 +611,11 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The identifier of the flow for the outbound call. To see the
-     * ContactFlowId in the Amazon Connect console user interface, on the
-     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * flow. On the flow page, under the name of the flow, choose <b>Show
-     * additional flow information</b>. The ContactFlowId is the last part of
-     * the ARN, shown here in bold:
+     * ContactFlowId in the Amazon Connect admin website, on the navigation menu
+     * go to <b>Routing</b>, <b>Contact Flows</b>. Choose the flow. On the flow
+     * page, under the name of the flow, choose <b>Show additional flow
+     * information</b>. The ContactFlowId is the last part of the ARN, shown
+     * here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -255,8 +627,8 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      *
      * @return <p>
      *         The identifier of the flow for the outbound call. To see the
-     *         ContactFlowId in the Amazon Connect console user interface, on
-     *         the navigation menu go to <b>Routing</b>, <b>Contact Flows</b>.
+     *         ContactFlowId in the Amazon Connect admin website, on the
+     *         navigation menu go to <b>Routing</b>, <b>Contact Flows</b>.
      *         Choose the flow. On the flow page, under the name of the flow,
      *         choose <b>Show additional flow information</b>. The ContactFlowId
      *         is the last part of the ARN, shown here in bold:
@@ -274,11 +646,11 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The identifier of the flow for the outbound call. To see the
-     * ContactFlowId in the Amazon Connect console user interface, on the
-     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * flow. On the flow page, under the name of the flow, choose <b>Show
-     * additional flow information</b>. The ContactFlowId is the last part of
-     * the ARN, shown here in bold:
+     * ContactFlowId in the Amazon Connect admin website, on the navigation menu
+     * go to <b>Routing</b>, <b>Contact Flows</b>. Choose the flow. On the flow
+     * page, under the name of the flow, choose <b>Show additional flow
+     * information</b>. The ContactFlowId is the last part of the ARN, shown
+     * here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -290,12 +662,11 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      *
      * @param contactFlowId <p>
      *            The identifier of the flow for the outbound call. To see the
-     *            ContactFlowId in the Amazon Connect console user interface, on
-     *            the navigation menu go to <b>Routing</b>, <b>Contact
-     *            Flows</b>. Choose the flow. On the flow page, under the name
-     *            of the flow, choose <b>Show additional flow information</b>.
-     *            The ContactFlowId is the last part of the ARN, shown here in
-     *            bold:
+     *            ContactFlowId in the Amazon Connect admin website, on the
+     *            navigation menu go to <b>Routing</b>, <b>Contact Flows</b>.
+     *            Choose the flow. On the flow page, under the name of the flow,
+     *            choose <b>Show additional flow information</b>. The
+     *            ContactFlowId is the last part of the ARN, shown here in bold:
      *            </p>
      *            <p>
      *            arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-
@@ -310,11 +681,11 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The identifier of the flow for the outbound call. To see the
-     * ContactFlowId in the Amazon Connect console user interface, on the
-     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * flow. On the flow page, under the name of the flow, choose <b>Show
-     * additional flow information</b>. The ContactFlowId is the last part of
-     * the ARN, shown here in bold:
+     * ContactFlowId in the Amazon Connect admin website, on the navigation menu
+     * go to <b>Routing</b>, <b>Contact Flows</b>. Choose the flow. On the flow
+     * page, under the name of the flow, choose <b>Show additional flow
+     * information</b>. The ContactFlowId is the last part of the ARN, shown
+     * here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -329,12 +700,11 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      *
      * @param contactFlowId <p>
      *            The identifier of the flow for the outbound call. To see the
-     *            ContactFlowId in the Amazon Connect console user interface, on
-     *            the navigation menu go to <b>Routing</b>, <b>Contact
-     *            Flows</b>. Choose the flow. On the flow page, under the name
-     *            of the flow, choose <b>Show additional flow information</b>.
-     *            The ContactFlowId is the last part of the ARN, shown here in
-     *            bold:
+     *            ContactFlowId in the Amazon Connect admin website, on the
+     *            navigation menu go to <b>Routing</b>, <b>Contact Flows</b>.
+     *            Choose the flow. On the flow page, under the name of the flow,
+     *            choose <b>Show additional flow information</b>. The
+     *            ContactFlowId is the last part of the ARN, shown here in bold:
      *            </p>
      *            <p>
      *            arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-
@@ -1038,6 +1408,14 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getName() != null)
+            sb.append("Name: " + getName() + ",");
+        if (getDescription() != null)
+            sb.append("Description: " + getDescription() + ",");
+        if (getReferences() != null)
+            sb.append("References: " + getReferences() + ",");
+        if (getRelatedContactId() != null)
+            sb.append("RelatedContactId: " + getRelatedContactId() + ",");
         if (getDestinationPhoneNumber() != null)
             sb.append("DestinationPhoneNumber: " + getDestinationPhoneNumber() + ",");
         if (getContactFlowId() != null)
@@ -1067,6 +1445,12 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
+        hashCode = prime * hashCode
+                + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        hashCode = prime * hashCode + ((getReferences() == null) ? 0 : getReferences().hashCode());
+        hashCode = prime * hashCode
+                + ((getRelatedContactId() == null) ? 0 : getRelatedContactId().hashCode());
         hashCode = prime
                 * hashCode
                 + ((getDestinationPhoneNumber() == null) ? 0 : getDestinationPhoneNumber()
@@ -1101,6 +1485,25 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
             return false;
         StartOutboundVoiceContactRequest other = (StartOutboundVoiceContactRequest) obj;
 
+        if (other.getName() == null ^ this.getName() == null)
+            return false;
+        if (other.getName() != null && other.getName().equals(this.getName()) == false)
+            return false;
+        if (other.getDescription() == null ^ this.getDescription() == null)
+            return false;
+        if (other.getDescription() != null
+                && other.getDescription().equals(this.getDescription()) == false)
+            return false;
+        if (other.getReferences() == null ^ this.getReferences() == null)
+            return false;
+        if (other.getReferences() != null
+                && other.getReferences().equals(this.getReferences()) == false)
+            return false;
+        if (other.getRelatedContactId() == null ^ this.getRelatedContactId() == null)
+            return false;
+        if (other.getRelatedContactId() != null
+                && other.getRelatedContactId().equals(this.getRelatedContactId()) == false)
+            return false;
         if (other.getDestinationPhoneNumber() == null ^ this.getDestinationPhoneNumber() == null)
             return false;
         if (other.getDestinationPhoneNumber() != null

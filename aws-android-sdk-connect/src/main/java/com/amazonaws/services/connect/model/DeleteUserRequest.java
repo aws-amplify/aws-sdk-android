@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,6 +30,34 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Delete Users from Your Amazon Connect Instance</a> in the <i>Amazon Connect
  * Administrator Guide</i>.
  * </p>
+ * <important>
+ * <p>
+ * After calling DeleteUser, call <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DeleteQuickConnect.html"
+ * >DeleteQuickConnect</a> to delete any records related to the deleted users.
+ * This will help you:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * Avoid dangling resources that impact your service quotas.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Remove deleted users so they don't appear to agents as transfer options.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Avoid the disruption of other Amazon Connect processes, such as instance
+ * replication and syncing if you're using <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/setup-connect-global-resiliency.html"
+ * >Amazon Connect Global Resiliency</a>.
+ * </p>
+ * </li>
+ * </ul>
+ * </important>
  */
 public class DeleteUserRequest extends AmazonWebServiceRequest implements Serializable {
     /**
