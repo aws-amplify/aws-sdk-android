@@ -150,7 +150,9 @@ public class EncoderFrameSubmitter {
 
             final int pixelStride = codecInputImage.getPlanes()[i].getPixelStride();
 
-            // Accounting for the padding of non-multiple of 64 width resolutions is only supported for SemiPlanar at the moment.
+            // Accounting for horizontal padding that may have been added for camera optimization. For example, non-multiple-of-64-width
+            // resolutions may have had padding added to the rows to reach the nearest greater multiple of 64.
+            // This accounting for is only supported for SemiPlanar format at the moment.
             if(isRowPaddingPresent && isSemiPlanar) {
                 copyPaddedBuffer(sourceImagePlane, destinationImagePlane, imageWidth, imageRowStride, pixelStride);
             } else {
@@ -171,6 +173,8 @@ public class EncoderFrameSubmitter {
         return bytesToCopy;
     }
 
+    // This copy function will ignore the extra padding data when copying into the encoder's input buffer.
+    // This will only work for SemiPlanar format.
     private int copyPaddedBuffer(final ByteBuffer sourceBuffer,
                                  final ByteBuffer destinationBuffer,
                                  final int imageWidth, final int sourceBufferRowStride, final int pixelStride) {
