@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -38,7 +38,8 @@ public enum GrantOperation {
     GenerateDataKeyPair("GenerateDataKeyPair"),
     GenerateDataKeyPairWithoutPlaintext("GenerateDataKeyPairWithoutPlaintext"),
     GenerateMac("GenerateMac"),
-    VerifyMac("VerifyMac");
+    VerifyMac("VerifyMac"),
+    DeriveSharedSecret("DeriveSharedSecret");
 
     private String value;
 
@@ -70,6 +71,7 @@ public enum GrantOperation {
         enumMap.put("GenerateDataKeyPairWithoutPlaintext", GenerateDataKeyPairWithoutPlaintext);
         enumMap.put("GenerateMac", GenerateMac);
         enumMap.put("VerifyMac", VerifyMac);
+        enumMap.put("DeriveSharedSecret", DeriveSharedSecret);
     }
 
     /**

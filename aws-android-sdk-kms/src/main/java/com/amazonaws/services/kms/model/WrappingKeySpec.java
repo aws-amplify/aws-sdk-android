@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,8 @@ public enum WrappingKeySpec {
 
     RSA_2048("RSA_2048"),
     RSA_3072("RSA_3072"),
-    RSA_4096("RSA_4096");
+    RSA_4096("RSA_4096"),
+    SM2("SM2");
 
     private String value;
 
@@ -44,6 +45,7 @@ public enum WrappingKeySpec {
         enumMap.put("RSA_2048", RSA_2048);
         enumMap.put("RSA_3072", RSA_3072);
         enumMap.put("RSA_4096", RSA_4096);
+        enumMap.put("SM2", SM2);
     }
 
     /**
