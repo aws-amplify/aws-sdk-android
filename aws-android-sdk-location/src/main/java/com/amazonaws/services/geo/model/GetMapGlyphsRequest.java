@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,11 +27,22 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
+     * The map resource associated with the glyph ﬁle.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     */
+    private String mapName;
+
+    /**
+     * <p>
      * A comma-separated list of fonts to load glyphs from in order of
      * preference. For example, <code>Noto Sans Regular, Arial Unicode</code>.
      * </p>
      * <p>
-     * Valid fonts stacks for <a href=
+     * Valid font stacks for <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
      * >Esri</a> styles:
      * </p>
@@ -154,7 +165,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>^[0-9]+-[0-9]+\.pbf$<br/>
+     * <b>Pattern: </b>[0-9]+-[0-9]+\.pbf<br/>
      */
     private String fontUnicodeRange;
 
@@ -177,9 +188,55 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The map resource associated with the glyph ﬁle.
+     *         </p>
      */
-    private String mapName;
+    public String getMapName() {
+        return mapName;
+    }
+
+    /**
+     * <p>
+     * The map resource associated with the glyph ﬁle.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param mapName <p>
+     *            The map resource associated with the glyph ﬁle.
+     *            </p>
+     */
+    public void setMapName(String mapName) {
+        this.mapName = mapName;
+    }
+
+    /**
+     * <p>
+     * The map resource associated with the glyph ﬁle.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param mapName <p>
+     *            The map resource associated with the glyph ﬁle.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetMapGlyphsRequest withMapName(String mapName) {
+        this.mapName = mapName;
+        return this;
+    }
 
     /**
      * <p>
@@ -187,7 +244,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      * preference. For example, <code>Noto Sans Regular, Arial Unicode</code>.
      * </p>
      * <p>
-     * Valid fonts stacks for <a href=
+     * Valid font stacks for <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
      * >Esri</a> styles:
      * </p>
@@ -305,7 +362,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      *         <code>Noto Sans Regular, Arial Unicode</code>.
      *         </p>
      *         <p>
-     *         Valid fonts stacks for <a href=
+     *         Valid font stacks for <a href=
      *         "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
      *         >Esri</a> styles:
      *         </p>
@@ -431,7 +488,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      * preference. For example, <code>Noto Sans Regular, Arial Unicode</code>.
      * </p>
      * <p>
-     * Valid fonts stacks for <a href=
+     * Valid font stacks for <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
      * >Esri</a> styles:
      * </p>
@@ -549,7 +606,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      *            <code>Noto Sans Regular, Arial Unicode</code>.
      *            </p>
      *            <p>
-     *            Valid fonts stacks for <a href=
+     *            Valid font stacks for <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
      *            >Esri</a> styles:
      *            </p>
@@ -676,7 +733,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      * preference. For example, <code>Noto Sans Regular, Arial Unicode</code>.
      * </p>
      * <p>
-     * Valid fonts stacks for <a href=
+     * Valid font stacks for <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
      * >Esri</a> styles:
      * </p>
@@ -797,7 +854,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      *            <code>Noto Sans Regular, Arial Unicode</code>.
      *            </p>
      *            <p>
-     *            Valid fonts stacks for <a href=
+     *            Valid font stacks for <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
      *            >Esri</a> styles:
      *            </p>
@@ -930,7 +987,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>^[0-9]+-[0-9]+\.pbf$<br/>
+     * <b>Pattern: </b>[0-9]+-[0-9]+\.pbf<br/>
      *
      * @return <p>
      *         A Unicode range of characters to download glyphs for. Each
@@ -952,7 +1009,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>^[0-9]+-[0-9]+\.pbf$<br/>
+     * <b>Pattern: </b>[0-9]+-[0-9]+\.pbf<br/>
      *
      * @param fontUnicodeRange <p>
      *            A Unicode range of characters to download glyphs for. Each
@@ -977,7 +1034,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>^[0-9]+-[0-9]+\.pbf$<br/>
+     * <b>Pattern: </b>[0-9]+-[0-9]+\.pbf<br/>
      *
      * @param fontUnicodeRange <p>
      *            A Unicode range of characters to download glyphs for. Each
@@ -1060,63 +1117,6 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * <p>
-     * The map resource associated with the glyph ﬁle.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         The map resource associated with the glyph ﬁle.
-     *         </p>
-     */
-    public String getMapName() {
-        return mapName;
-    }
-
-    /**
-     * <p>
-     * The map resource associated with the glyph ﬁle.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param mapName <p>
-     *            The map resource associated with the glyph ﬁle.
-     *            </p>
-     */
-    public void setMapName(String mapName) {
-        this.mapName = mapName;
-    }
-
-    /**
-     * <p>
-     * The map resource associated with the glyph ﬁle.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param mapName <p>
-     *            The map resource associated with the glyph ﬁle.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetMapGlyphsRequest withMapName(String mapName) {
-        this.mapName = mapName;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1127,14 +1127,14 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getMapName() != null)
+            sb.append("MapName: " + getMapName() + ",");
         if (getFontStack() != null)
             sb.append("FontStack: " + getFontStack() + ",");
         if (getFontUnicodeRange() != null)
             sb.append("FontUnicodeRange: " + getFontUnicodeRange() + ",");
         if (getKey() != null)
-            sb.append("Key: " + getKey() + ",");
-        if (getMapName() != null)
-            sb.append("MapName: " + getMapName());
+            sb.append("Key: " + getKey());
         sb.append("}");
         return sb.toString();
     }
@@ -1144,11 +1144,11 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getMapName() == null) ? 0 : getMapName().hashCode());
         hashCode = prime * hashCode + ((getFontStack() == null) ? 0 : getFontStack().hashCode());
         hashCode = prime * hashCode
                 + ((getFontUnicodeRange() == null) ? 0 : getFontUnicodeRange().hashCode());
         hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
-        hashCode = prime * hashCode + ((getMapName() == null) ? 0 : getMapName().hashCode());
         return hashCode;
     }
 
@@ -1163,6 +1163,10 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
             return false;
         GetMapGlyphsRequest other = (GetMapGlyphsRequest) obj;
 
+        if (other.getMapName() == null ^ this.getMapName() == null)
+            return false;
+        if (other.getMapName() != null && other.getMapName().equals(this.getMapName()) == false)
+            return false;
         if (other.getFontStack() == null ^ this.getFontStack() == null)
             return false;
         if (other.getFontStack() != null
@@ -1176,10 +1180,6 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
         if (other.getKey() == null ^ this.getKey() == null)
             return false;
         if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
-            return false;
-        if (other.getMapName() == null ^ this.getMapName() == null)
-            return false;
-        if (other.getMapName() != null && other.getMapName().equals(this.getMapName()) == false)
             return false;
         return true;
     }

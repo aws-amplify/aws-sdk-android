@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -65,15 +65,15 @@ public class UpdateRouteCalculatorRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (updateRouteCalculatorRequest.getDescription() != null) {
-                String description = updateRouteCalculatorRequest.getDescription();
-                jsonWriter.name("Description");
-                jsonWriter.value(description);
-            }
             if (updateRouteCalculatorRequest.getPricingPlan() != null) {
                 String pricingPlan = updateRouteCalculatorRequest.getPricingPlan();
                 jsonWriter.name("PricingPlan");
                 jsonWriter.value(pricingPlan);
+            }
+            if (updateRouteCalculatorRequest.getDescription() != null) {
+                String description = updateRouteCalculatorRequest.getDescription();
+                jsonWriter.name("Description");
+                jsonWriter.value(description);
             }
 
             jsonWriter.endObject();
@@ -87,9 +87,9 @@ public class UpdateRouteCalculatorRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
-        request.setHostPrefix("routes.");
+        request.setHostPrefix("cp.routes.");
 
         return request;
     }

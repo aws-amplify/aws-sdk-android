@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -89,38 +89,9 @@ public class CalculateRouteMatrixRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String calculatorName;
-
-    /**
-     * <p>
-     * Specifies route preferences when traveling by <code>Car</code>, such as
-     * avoiding routes that use ferries or tolls.
-     * </p>
-     * <p>
-     * Requirements: <code>TravelMode</code> must be specified as
-     * <code>Car</code>.
-     * </p>
-     */
-    private CalculateRouteCarModeOptions carModeOptions;
-
-    /**
-     * <p>
-     * Sets the time of departure as the current time. Uses the current time to
-     * calculate the route matrix. You can't set both <code>DepartureTime</code>
-     * and <code>DepartNow</code>. If neither is set, the best time of day to
-     * travel with the best traffic conditions is used to calculate the route
-     * matrix.
-     * </p>
-     * <p>
-     * Default Value: <code>false</code>
-     * </p>
-     * <p>
-     * Valid Values: <code>false</code> | <code>true</code>
-     * </p>
-     */
-    private Boolean departNow;
 
     /**
      * <p>
@@ -156,31 +127,6 @@ public class CalculateRouteMatrixRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * Specifies the desired time of departure. Uses the given time to calculate
-     * the route matrix. You can't set both <code>DepartureTime</code> and
-     * <code>DepartNow</code>. If neither is set, the best time of day to travel
-     * with the best traffic conditions is used to calculate the route matrix.
-     * </p>
-     * <note>
-     * <p>
-     * Setting a departure time in the past returns a
-     * <code>400 ValidationException</code> error.
-     * </p>
-     * </note>
-     * <ul>
-     * <li>
-     * <p>
-     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
-     * <code>2020–07-2T12:15:20.000Z+01:00</code>
-     * </p>
-     * </li>
-     * </ul>
-     */
-    private java.util.Date departureTime;
-
-    /**
-     * <p>
      * The list of destination positions for the route matrix. An array of
      * points, each of which is itself a 2-value array defined in <a
      * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
@@ -210,31 +156,6 @@ public class CalculateRouteMatrixRequest extends AmazonWebServiceRequest impleme
      * </p>
      */
     private java.util.List<java.util.List<Double>> destinationPositions;
-
-    /**
-     * <p>
-     * Set the unit system to specify the distance.
-     * </p>
-     * <p>
-     * Default Value: <code>Kilometers</code>
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Kilometers, Miles
-     */
-    private String distanceUnit;
-
-    /**
-     * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     */
-    private String key;
 
     /**
      * <p>
@@ -284,6 +205,73 @@ public class CalculateRouteMatrixRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
+     * Specifies the desired time of departure. Uses the given time to calculate
+     * the route matrix. You can't set both <code>DepartureTime</code> and
+     * <code>DepartNow</code>. If neither is set, the best time of day to travel
+     * with the best traffic conditions is used to calculate the route matrix.
+     * </p>
+     * <note>
+     * <p>
+     * Setting a departure time in the past returns a
+     * <code>400 ValidationException</code> error.
+     * </p>
+     * </note>
+     * <ul>
+     * <li>
+     * <p>
+     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
+     * <code>2020–07-2T12:15:20.000Z+01:00</code>
+     * </p>
+     * </li>
+     * </ul>
+     */
+    private java.util.Date departureTime;
+
+    /**
+     * <p>
+     * Sets the time of departure as the current time. Uses the current time to
+     * calculate the route matrix. You can't set both <code>DepartureTime</code>
+     * and <code>DepartNow</code>. If neither is set, the best time of day to
+     * travel with the best traffic conditions is used to calculate the route
+     * matrix.
+     * </p>
+     * <p>
+     * Default Value: <code>false</code>
+     * </p>
+     * <p>
+     * Valid Values: <code>false</code> | <code>true</code>
+     * </p>
+     */
+    private Boolean departNow;
+
+    /**
+     * <p>
+     * Set the unit system to specify the distance.
+     * </p>
+     * <p>
+     * Default Value: <code>Kilometers</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Kilometers, Miles
+     */
+    private String distanceUnit;
+
+    /**
+     * <p>
+     * Specifies route preferences when traveling by <code>Car</code>, such as
+     * avoiding routes that use ferries or tolls.
+     * </p>
+     * <p>
+     * Requirements: <code>TravelMode</code> must be specified as
+     * <code>Car</code>.
+     * </p>
+     */
+    private CalculateRouteCarModeOptions carModeOptions;
+
+    /**
+     * <p>
      * Specifies route preferences when traveling by <code>Truck</code>, such as
      * avoiding routes that use ferries or tolls, and truck specifications to
      * consider when choosing an optimal road.
@@ -297,13 +285,25 @@ public class CalculateRouteMatrixRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     */
+    private String key;
+
+    /**
+     * <p>
      * The name of the route calculator resource that you want to use to
      * calculate the route matrix.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
      *         The name of the route calculator resource that you want to use to
@@ -322,7 +322,7 @@ public class CalculateRouteMatrixRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param calculatorName <p>
      *            The name of the route calculator resource that you want to use
@@ -344,7 +344,7 @@ public class CalculateRouteMatrixRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param calculatorName <p>
      *            The name of the route calculator resource that you want to use
@@ -355,220 +355,6 @@ public class CalculateRouteMatrixRequest extends AmazonWebServiceRequest impleme
      */
     public CalculateRouteMatrixRequest withCalculatorName(String calculatorName) {
         this.calculatorName = calculatorName;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Specifies route preferences when traveling by <code>Car</code>, such as
-     * avoiding routes that use ferries or tolls.
-     * </p>
-     * <p>
-     * Requirements: <code>TravelMode</code> must be specified as
-     * <code>Car</code>.
-     * </p>
-     *
-     * @return <p>
-     *         Specifies route preferences when traveling by <code>Car</code>,
-     *         such as avoiding routes that use ferries or tolls.
-     *         </p>
-     *         <p>
-     *         Requirements: <code>TravelMode</code> must be specified as
-     *         <code>Car</code>.
-     *         </p>
-     */
-    public CalculateRouteCarModeOptions getCarModeOptions() {
-        return carModeOptions;
-    }
-
-    /**
-     * <p>
-     * Specifies route preferences when traveling by <code>Car</code>, such as
-     * avoiding routes that use ferries or tolls.
-     * </p>
-     * <p>
-     * Requirements: <code>TravelMode</code> must be specified as
-     * <code>Car</code>.
-     * </p>
-     *
-     * @param carModeOptions <p>
-     *            Specifies route preferences when traveling by <code>Car</code>
-     *            , such as avoiding routes that use ferries or tolls.
-     *            </p>
-     *            <p>
-     *            Requirements: <code>TravelMode</code> must be specified as
-     *            <code>Car</code>.
-     *            </p>
-     */
-    public void setCarModeOptions(CalculateRouteCarModeOptions carModeOptions) {
-        this.carModeOptions = carModeOptions;
-    }
-
-    /**
-     * <p>
-     * Specifies route preferences when traveling by <code>Car</code>, such as
-     * avoiding routes that use ferries or tolls.
-     * </p>
-     * <p>
-     * Requirements: <code>TravelMode</code> must be specified as
-     * <code>Car</code>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param carModeOptions <p>
-     *            Specifies route preferences when traveling by <code>Car</code>
-     *            , such as avoiding routes that use ferries or tolls.
-     *            </p>
-     *            <p>
-     *            Requirements: <code>TravelMode</code> must be specified as
-     *            <code>Car</code>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CalculateRouteMatrixRequest withCarModeOptions(
-            CalculateRouteCarModeOptions carModeOptions) {
-        this.carModeOptions = carModeOptions;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Sets the time of departure as the current time. Uses the current time to
-     * calculate the route matrix. You can't set both <code>DepartureTime</code>
-     * and <code>DepartNow</code>. If neither is set, the best time of day to
-     * travel with the best traffic conditions is used to calculate the route
-     * matrix.
-     * </p>
-     * <p>
-     * Default Value: <code>false</code>
-     * </p>
-     * <p>
-     * Valid Values: <code>false</code> | <code>true</code>
-     * </p>
-     *
-     * @return <p>
-     *         Sets the time of departure as the current time. Uses the current
-     *         time to calculate the route matrix. You can't set both
-     *         <code>DepartureTime</code> and <code>DepartNow</code>. If neither
-     *         is set, the best time of day to travel with the best traffic
-     *         conditions is used to calculate the route matrix.
-     *         </p>
-     *         <p>
-     *         Default Value: <code>false</code>
-     *         </p>
-     *         <p>
-     *         Valid Values: <code>false</code> | <code>true</code>
-     *         </p>
-     */
-    public Boolean isDepartNow() {
-        return departNow;
-    }
-
-    /**
-     * <p>
-     * Sets the time of departure as the current time. Uses the current time to
-     * calculate the route matrix. You can't set both <code>DepartureTime</code>
-     * and <code>DepartNow</code>. If neither is set, the best time of day to
-     * travel with the best traffic conditions is used to calculate the route
-     * matrix.
-     * </p>
-     * <p>
-     * Default Value: <code>false</code>
-     * </p>
-     * <p>
-     * Valid Values: <code>false</code> | <code>true</code>
-     * </p>
-     *
-     * @return <p>
-     *         Sets the time of departure as the current time. Uses the current
-     *         time to calculate the route matrix. You can't set both
-     *         <code>DepartureTime</code> and <code>DepartNow</code>. If neither
-     *         is set, the best time of day to travel with the best traffic
-     *         conditions is used to calculate the route matrix.
-     *         </p>
-     *         <p>
-     *         Default Value: <code>false</code>
-     *         </p>
-     *         <p>
-     *         Valid Values: <code>false</code> | <code>true</code>
-     *         </p>
-     */
-    public Boolean getDepartNow() {
-        return departNow;
-    }
-
-    /**
-     * <p>
-     * Sets the time of departure as the current time. Uses the current time to
-     * calculate the route matrix. You can't set both <code>DepartureTime</code>
-     * and <code>DepartNow</code>. If neither is set, the best time of day to
-     * travel with the best traffic conditions is used to calculate the route
-     * matrix.
-     * </p>
-     * <p>
-     * Default Value: <code>false</code>
-     * </p>
-     * <p>
-     * Valid Values: <code>false</code> | <code>true</code>
-     * </p>
-     *
-     * @param departNow <p>
-     *            Sets the time of departure as the current time. Uses the
-     *            current time to calculate the route matrix. You can't set both
-     *            <code>DepartureTime</code> and <code>DepartNow</code>. If
-     *            neither is set, the best time of day to travel with the best
-     *            traffic conditions is used to calculate the route matrix.
-     *            </p>
-     *            <p>
-     *            Default Value: <code>false</code>
-     *            </p>
-     *            <p>
-     *            Valid Values: <code>false</code> | <code>true</code>
-     *            </p>
-     */
-    public void setDepartNow(Boolean departNow) {
-        this.departNow = departNow;
-    }
-
-    /**
-     * <p>
-     * Sets the time of departure as the current time. Uses the current time to
-     * calculate the route matrix. You can't set both <code>DepartureTime</code>
-     * and <code>DepartNow</code>. If neither is set, the best time of day to
-     * travel with the best traffic conditions is used to calculate the route
-     * matrix.
-     * </p>
-     * <p>
-     * Default Value: <code>false</code>
-     * </p>
-     * <p>
-     * Valid Values: <code>false</code> | <code>true</code>
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param departNow <p>
-     *            Sets the time of departure as the current time. Uses the
-     *            current time to calculate the route matrix. You can't set both
-     *            <code>DepartureTime</code> and <code>DepartNow</code>. If
-     *            neither is set, the best time of day to travel with the best
-     *            traffic conditions is used to calculate the route matrix.
-     *            </p>
-     *            <p>
-     *            Default Value: <code>false</code>
-     *            </p>
-     *            <p>
-     *            Valid Values: <code>false</code> | <code>true</code>
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CalculateRouteMatrixRequest withDepartNow(Boolean departNow) {
-        this.departNow = departNow;
         return this;
     }
 
@@ -865,165 +651,6 @@ public class CalculateRouteMatrixRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * Specifies the desired time of departure. Uses the given time to calculate
-     * the route matrix. You can't set both <code>DepartureTime</code> and
-     * <code>DepartNow</code>. If neither is set, the best time of day to travel
-     * with the best traffic conditions is used to calculate the route matrix.
-     * </p>
-     * <note>
-     * <p>
-     * Setting a departure time in the past returns a
-     * <code>400 ValidationException</code> error.
-     * </p>
-     * </note>
-     * <ul>
-     * <li>
-     * <p>
-     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
-     * <code>2020–07-2T12:15:20.000Z+01:00</code>
-     * </p>
-     * </li>
-     * </ul>
-     *
-     * @return <p>
-     *         Specifies the desired time of departure. Uses the given time to
-     *         calculate the route matrix. You can't set both
-     *         <code>DepartureTime</code> and <code>DepartNow</code>. If neither
-     *         is set, the best time of day to travel with the best traffic
-     *         conditions is used to calculate the route matrix.
-     *         </p>
-     *         <note>
-     *         <p>
-     *         Setting a departure time in the past returns a
-     *         <code>400 ValidationException</code> error.
-     *         </p>
-     *         </note>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         In <a
-     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For
-     *         example, <code>2020–07-2T12:15:20.000Z+01:00</code>
-     *         </p>
-     *         </li>
-     *         </ul>
-     */
-    public java.util.Date getDepartureTime() {
-        return departureTime;
-    }
-
-    /**
-     * <p>
-     * Specifies the desired time of departure. Uses the given time to calculate
-     * the route matrix. You can't set both <code>DepartureTime</code> and
-     * <code>DepartNow</code>. If neither is set, the best time of day to travel
-     * with the best traffic conditions is used to calculate the route matrix.
-     * </p>
-     * <note>
-     * <p>
-     * Setting a departure time in the past returns a
-     * <code>400 ValidationException</code> error.
-     * </p>
-     * </note>
-     * <ul>
-     * <li>
-     * <p>
-     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
-     * <code>2020–07-2T12:15:20.000Z+01:00</code>
-     * </p>
-     * </li>
-     * </ul>
-     *
-     * @param departureTime <p>
-     *            Specifies the desired time of departure. Uses the given time
-     *            to calculate the route matrix. You can't set both
-     *            <code>DepartureTime</code> and <code>DepartNow</code>. If
-     *            neither is set, the best time of day to travel with the best
-     *            traffic conditions is used to calculate the route matrix.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            Setting a departure time in the past returns a
-     *            <code>400 ValidationException</code> error.
-     *            </p>
-     *            </note>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            In <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For
-     *            example, <code>2020–07-2T12:15:20.000Z+01:00</code>
-     *            </p>
-     *            </li>
-     *            </ul>
-     */
-    public void setDepartureTime(java.util.Date departureTime) {
-        this.departureTime = departureTime;
-    }
-
-    /**
-     * <p>
-     * Specifies the desired time of departure. Uses the given time to calculate
-     * the route matrix. You can't set both <code>DepartureTime</code> and
-     * <code>DepartNow</code>. If neither is set, the best time of day to travel
-     * with the best traffic conditions is used to calculate the route matrix.
-     * </p>
-     * <note>
-     * <p>
-     * Setting a departure time in the past returns a
-     * <code>400 ValidationException</code> error.
-     * </p>
-     * </note>
-     * <ul>
-     * <li>
-     * <p>
-     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
-     * <code>2020–07-2T12:15:20.000Z+01:00</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param departureTime <p>
-     *            Specifies the desired time of departure. Uses the given time
-     *            to calculate the route matrix. You can't set both
-     *            <code>DepartureTime</code> and <code>DepartNow</code>. If
-     *            neither is set, the best time of day to travel with the best
-     *            traffic conditions is used to calculate the route matrix.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            Setting a departure time in the past returns a
-     *            <code>400 ValidationException</code> error.
-     *            </p>
-     *            </note>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            In <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For
-     *            example, <code>2020–07-2T12:15:20.000Z+01:00</code>
-     *            </p>
-     *            </li>
-     *            </ul>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CalculateRouteMatrixRequest withDepartureTime(java.util.Date departureTime) {
-        this.departureTime = departureTime;
-        return this;
-    }
-
-    /**
-     * <p>
      * The list of destination positions for the route matrix. An array of
      * points, each of which is itself a 2-value array defined in <a
      * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
@@ -1309,199 +936,6 @@ public class CalculateRouteMatrixRequest extends AmazonWebServiceRequest impleme
     public CalculateRouteMatrixRequest withDestinationPositions(
             java.util.Collection<java.util.List<Double>> destinationPositions) {
         setDestinationPositions(destinationPositions);
-        return this;
-    }
-
-    /**
-     * <p>
-     * Set the unit system to specify the distance.
-     * </p>
-     * <p>
-     * Default Value: <code>Kilometers</code>
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Kilometers, Miles
-     *
-     * @return <p>
-     *         Set the unit system to specify the distance.
-     *         </p>
-     *         <p>
-     *         Default Value: <code>Kilometers</code>
-     *         </p>
-     * @see DistanceUnit
-     */
-    public String getDistanceUnit() {
-        return distanceUnit;
-    }
-
-    /**
-     * <p>
-     * Set the unit system to specify the distance.
-     * </p>
-     * <p>
-     * Default Value: <code>Kilometers</code>
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Kilometers, Miles
-     *
-     * @param distanceUnit <p>
-     *            Set the unit system to specify the distance.
-     *            </p>
-     *            <p>
-     *            Default Value: <code>Kilometers</code>
-     *            </p>
-     * @see DistanceUnit
-     */
-    public void setDistanceUnit(String distanceUnit) {
-        this.distanceUnit = distanceUnit;
-    }
-
-    /**
-     * <p>
-     * Set the unit system to specify the distance.
-     * </p>
-     * <p>
-     * Default Value: <code>Kilometers</code>
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Kilometers, Miles
-     *
-     * @param distanceUnit <p>
-     *            Set the unit system to specify the distance.
-     *            </p>
-     *            <p>
-     *            Default Value: <code>Kilometers</code>
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see DistanceUnit
-     */
-    public CalculateRouteMatrixRequest withDistanceUnit(String distanceUnit) {
-        this.distanceUnit = distanceUnit;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Set the unit system to specify the distance.
-     * </p>
-     * <p>
-     * Default Value: <code>Kilometers</code>
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Kilometers, Miles
-     *
-     * @param distanceUnit <p>
-     *            Set the unit system to specify the distance.
-     *            </p>
-     *            <p>
-     *            Default Value: <code>Kilometers</code>
-     *            </p>
-     * @see DistanceUnit
-     */
-    public void setDistanceUnit(DistanceUnit distanceUnit) {
-        this.distanceUnit = distanceUnit.toString();
-    }
-
-    /**
-     * <p>
-     * Set the unit system to specify the distance.
-     * </p>
-     * <p>
-     * Default Value: <code>Kilometers</code>
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Kilometers, Miles
-     *
-     * @param distanceUnit <p>
-     *            Set the unit system to specify the distance.
-     *            </p>
-     *            <p>
-     *            Default Value: <code>Kilometers</code>
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see DistanceUnit
-     */
-    public CalculateRouteMatrixRequest withDistanceUnit(DistanceUnit distanceUnit) {
-        this.distanceUnit = distanceUnit.toString();
-        return this;
-    }
-
-    /**
-     * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @return <p>
-     *         The optional <a href=
-     *         "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     *         >API key</a> to authorize the request.
-     *         </p>
-     */
-    public String getKey() {
-        return key;
-    }
-
-    /**
-     * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param key <p>
-     *            The optional <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     *            >API key</a> to authorize the request.
-     *            </p>
-     */
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    /**
-     * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param key <p>
-     *            The optional <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     *            >API key</a> to authorize the request.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CalculateRouteMatrixRequest withKey(String key) {
-        this.key = key;
         return this;
     }
 
@@ -1979,6 +1413,506 @@ public class CalculateRouteMatrixRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
+     * Specifies the desired time of departure. Uses the given time to calculate
+     * the route matrix. You can't set both <code>DepartureTime</code> and
+     * <code>DepartNow</code>. If neither is set, the best time of day to travel
+     * with the best traffic conditions is used to calculate the route matrix.
+     * </p>
+     * <note>
+     * <p>
+     * Setting a departure time in the past returns a
+     * <code>400 ValidationException</code> error.
+     * </p>
+     * </note>
+     * <ul>
+     * <li>
+     * <p>
+     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
+     * <code>2020–07-2T12:15:20.000Z+01:00</code>
+     * </p>
+     * </li>
+     * </ul>
+     *
+     * @return <p>
+     *         Specifies the desired time of departure. Uses the given time to
+     *         calculate the route matrix. You can't set both
+     *         <code>DepartureTime</code> and <code>DepartNow</code>. If neither
+     *         is set, the best time of day to travel with the best traffic
+     *         conditions is used to calculate the route matrix.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         Setting a departure time in the past returns a
+     *         <code>400 ValidationException</code> error.
+     *         </p>
+     *         </note>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         In <a
+     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For
+     *         example, <code>2020–07-2T12:15:20.000Z+01:00</code>
+     *         </p>
+     *         </li>
+     *         </ul>
+     */
+    public java.util.Date getDepartureTime() {
+        return departureTime;
+    }
+
+    /**
+     * <p>
+     * Specifies the desired time of departure. Uses the given time to calculate
+     * the route matrix. You can't set both <code>DepartureTime</code> and
+     * <code>DepartNow</code>. If neither is set, the best time of day to travel
+     * with the best traffic conditions is used to calculate the route matrix.
+     * </p>
+     * <note>
+     * <p>
+     * Setting a departure time in the past returns a
+     * <code>400 ValidationException</code> error.
+     * </p>
+     * </note>
+     * <ul>
+     * <li>
+     * <p>
+     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
+     * <code>2020–07-2T12:15:20.000Z+01:00</code>
+     * </p>
+     * </li>
+     * </ul>
+     *
+     * @param departureTime <p>
+     *            Specifies the desired time of departure. Uses the given time
+     *            to calculate the route matrix. You can't set both
+     *            <code>DepartureTime</code> and <code>DepartNow</code>. If
+     *            neither is set, the best time of day to travel with the best
+     *            traffic conditions is used to calculate the route matrix.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Setting a departure time in the past returns a
+     *            <code>400 ValidationException</code> error.
+     *            </p>
+     *            </note>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            In <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For
+     *            example, <code>2020–07-2T12:15:20.000Z+01:00</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setDepartureTime(java.util.Date departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    /**
+     * <p>
+     * Specifies the desired time of departure. Uses the given time to calculate
+     * the route matrix. You can't set both <code>DepartureTime</code> and
+     * <code>DepartNow</code>. If neither is set, the best time of day to travel
+     * with the best traffic conditions is used to calculate the route matrix.
+     * </p>
+     * <note>
+     * <p>
+     * Setting a departure time in the past returns a
+     * <code>400 ValidationException</code> error.
+     * </p>
+     * </note>
+     * <ul>
+     * <li>
+     * <p>
+     * In <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example,
+     * <code>2020–07-2T12:15:20.000Z+01:00</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param departureTime <p>
+     *            Specifies the desired time of departure. Uses the given time
+     *            to calculate the route matrix. You can't set both
+     *            <code>DepartureTime</code> and <code>DepartNow</code>. If
+     *            neither is set, the best time of day to travel with the best
+     *            traffic conditions is used to calculate the route matrix.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Setting a departure time in the past returns a
+     *            <code>400 ValidationException</code> error.
+     *            </p>
+     *            </note>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            In <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For
+     *            example, <code>2020–07-2T12:15:20.000Z+01:00</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CalculateRouteMatrixRequest withDepartureTime(java.util.Date departureTime) {
+        this.departureTime = departureTime;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Sets the time of departure as the current time. Uses the current time to
+     * calculate the route matrix. You can't set both <code>DepartureTime</code>
+     * and <code>DepartNow</code>. If neither is set, the best time of day to
+     * travel with the best traffic conditions is used to calculate the route
+     * matrix.
+     * </p>
+     * <p>
+     * Default Value: <code>false</code>
+     * </p>
+     * <p>
+     * Valid Values: <code>false</code> | <code>true</code>
+     * </p>
+     *
+     * @return <p>
+     *         Sets the time of departure as the current time. Uses the current
+     *         time to calculate the route matrix. You can't set both
+     *         <code>DepartureTime</code> and <code>DepartNow</code>. If neither
+     *         is set, the best time of day to travel with the best traffic
+     *         conditions is used to calculate the route matrix.
+     *         </p>
+     *         <p>
+     *         Default Value: <code>false</code>
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>false</code> | <code>true</code>
+     *         </p>
+     */
+    public Boolean isDepartNow() {
+        return departNow;
+    }
+
+    /**
+     * <p>
+     * Sets the time of departure as the current time. Uses the current time to
+     * calculate the route matrix. You can't set both <code>DepartureTime</code>
+     * and <code>DepartNow</code>. If neither is set, the best time of day to
+     * travel with the best traffic conditions is used to calculate the route
+     * matrix.
+     * </p>
+     * <p>
+     * Default Value: <code>false</code>
+     * </p>
+     * <p>
+     * Valid Values: <code>false</code> | <code>true</code>
+     * </p>
+     *
+     * @return <p>
+     *         Sets the time of departure as the current time. Uses the current
+     *         time to calculate the route matrix. You can't set both
+     *         <code>DepartureTime</code> and <code>DepartNow</code>. If neither
+     *         is set, the best time of day to travel with the best traffic
+     *         conditions is used to calculate the route matrix.
+     *         </p>
+     *         <p>
+     *         Default Value: <code>false</code>
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>false</code> | <code>true</code>
+     *         </p>
+     */
+    public Boolean getDepartNow() {
+        return departNow;
+    }
+
+    /**
+     * <p>
+     * Sets the time of departure as the current time. Uses the current time to
+     * calculate the route matrix. You can't set both <code>DepartureTime</code>
+     * and <code>DepartNow</code>. If neither is set, the best time of day to
+     * travel with the best traffic conditions is used to calculate the route
+     * matrix.
+     * </p>
+     * <p>
+     * Default Value: <code>false</code>
+     * </p>
+     * <p>
+     * Valid Values: <code>false</code> | <code>true</code>
+     * </p>
+     *
+     * @param departNow <p>
+     *            Sets the time of departure as the current time. Uses the
+     *            current time to calculate the route matrix. You can't set both
+     *            <code>DepartureTime</code> and <code>DepartNow</code>. If
+     *            neither is set, the best time of day to travel with the best
+     *            traffic conditions is used to calculate the route matrix.
+     *            </p>
+     *            <p>
+     *            Default Value: <code>false</code>
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>false</code> | <code>true</code>
+     *            </p>
+     */
+    public void setDepartNow(Boolean departNow) {
+        this.departNow = departNow;
+    }
+
+    /**
+     * <p>
+     * Sets the time of departure as the current time. Uses the current time to
+     * calculate the route matrix. You can't set both <code>DepartureTime</code>
+     * and <code>DepartNow</code>. If neither is set, the best time of day to
+     * travel with the best traffic conditions is used to calculate the route
+     * matrix.
+     * </p>
+     * <p>
+     * Default Value: <code>false</code>
+     * </p>
+     * <p>
+     * Valid Values: <code>false</code> | <code>true</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param departNow <p>
+     *            Sets the time of departure as the current time. Uses the
+     *            current time to calculate the route matrix. You can't set both
+     *            <code>DepartureTime</code> and <code>DepartNow</code>. If
+     *            neither is set, the best time of day to travel with the best
+     *            traffic conditions is used to calculate the route matrix.
+     *            </p>
+     *            <p>
+     *            Default Value: <code>false</code>
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>false</code> | <code>true</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CalculateRouteMatrixRequest withDepartNow(Boolean departNow) {
+        this.departNow = departNow;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Set the unit system to specify the distance.
+     * </p>
+     * <p>
+     * Default Value: <code>Kilometers</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Kilometers, Miles
+     *
+     * @return <p>
+     *         Set the unit system to specify the distance.
+     *         </p>
+     *         <p>
+     *         Default Value: <code>Kilometers</code>
+     *         </p>
+     * @see DistanceUnit
+     */
+    public String getDistanceUnit() {
+        return distanceUnit;
+    }
+
+    /**
+     * <p>
+     * Set the unit system to specify the distance.
+     * </p>
+     * <p>
+     * Default Value: <code>Kilometers</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Kilometers, Miles
+     *
+     * @param distanceUnit <p>
+     *            Set the unit system to specify the distance.
+     *            </p>
+     *            <p>
+     *            Default Value: <code>Kilometers</code>
+     *            </p>
+     * @see DistanceUnit
+     */
+    public void setDistanceUnit(String distanceUnit) {
+        this.distanceUnit = distanceUnit;
+    }
+
+    /**
+     * <p>
+     * Set the unit system to specify the distance.
+     * </p>
+     * <p>
+     * Default Value: <code>Kilometers</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Kilometers, Miles
+     *
+     * @param distanceUnit <p>
+     *            Set the unit system to specify the distance.
+     *            </p>
+     *            <p>
+     *            Default Value: <code>Kilometers</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DistanceUnit
+     */
+    public CalculateRouteMatrixRequest withDistanceUnit(String distanceUnit) {
+        this.distanceUnit = distanceUnit;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Set the unit system to specify the distance.
+     * </p>
+     * <p>
+     * Default Value: <code>Kilometers</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Kilometers, Miles
+     *
+     * @param distanceUnit <p>
+     *            Set the unit system to specify the distance.
+     *            </p>
+     *            <p>
+     *            Default Value: <code>Kilometers</code>
+     *            </p>
+     * @see DistanceUnit
+     */
+    public void setDistanceUnit(DistanceUnit distanceUnit) {
+        this.distanceUnit = distanceUnit.toString();
+    }
+
+    /**
+     * <p>
+     * Set the unit system to specify the distance.
+     * </p>
+     * <p>
+     * Default Value: <code>Kilometers</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Kilometers, Miles
+     *
+     * @param distanceUnit <p>
+     *            Set the unit system to specify the distance.
+     *            </p>
+     *            <p>
+     *            Default Value: <code>Kilometers</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DistanceUnit
+     */
+    public CalculateRouteMatrixRequest withDistanceUnit(DistanceUnit distanceUnit) {
+        this.distanceUnit = distanceUnit.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies route preferences when traveling by <code>Car</code>, such as
+     * avoiding routes that use ferries or tolls.
+     * </p>
+     * <p>
+     * Requirements: <code>TravelMode</code> must be specified as
+     * <code>Car</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies route preferences when traveling by <code>Car</code>,
+     *         such as avoiding routes that use ferries or tolls.
+     *         </p>
+     *         <p>
+     *         Requirements: <code>TravelMode</code> must be specified as
+     *         <code>Car</code>.
+     *         </p>
+     */
+    public CalculateRouteCarModeOptions getCarModeOptions() {
+        return carModeOptions;
+    }
+
+    /**
+     * <p>
+     * Specifies route preferences when traveling by <code>Car</code>, such as
+     * avoiding routes that use ferries or tolls.
+     * </p>
+     * <p>
+     * Requirements: <code>TravelMode</code> must be specified as
+     * <code>Car</code>.
+     * </p>
+     *
+     * @param carModeOptions <p>
+     *            Specifies route preferences when traveling by <code>Car</code>
+     *            , such as avoiding routes that use ferries or tolls.
+     *            </p>
+     *            <p>
+     *            Requirements: <code>TravelMode</code> must be specified as
+     *            <code>Car</code>.
+     *            </p>
+     */
+    public void setCarModeOptions(CalculateRouteCarModeOptions carModeOptions) {
+        this.carModeOptions = carModeOptions;
+    }
+
+    /**
+     * <p>
+     * Specifies route preferences when traveling by <code>Car</code>, such as
+     * avoiding routes that use ferries or tolls.
+     * </p>
+     * <p>
+     * Requirements: <code>TravelMode</code> must be specified as
+     * <code>Car</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param carModeOptions <p>
+     *            Specifies route preferences when traveling by <code>Car</code>
+     *            , such as avoiding routes that use ferries or tolls.
+     *            </p>
+     *            <p>
+     *            Requirements: <code>TravelMode</code> must be specified as
+     *            <code>Car</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CalculateRouteMatrixRequest withCarModeOptions(
+            CalculateRouteCarModeOptions carModeOptions) {
+        this.carModeOptions = carModeOptions;
+        return this;
+    }
+
+    /**
+     * <p>
      * Specifies route preferences when traveling by <code>Truck</code>, such as
      * avoiding routes that use ferries or tolls, and truck specifications to
      * consider when choosing an optimal road.
@@ -2062,6 +1996,72 @@ public class CalculateRouteMatrixRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @return <p>
+     *         The optional <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *         >API key</a> to authorize the request.
+     *         </p>
+     */
+    public String getKey() {
+        return key;
+    }
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
+     *            </p>
+     */
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CalculateRouteMatrixRequest withKey(String key) {
+        this.key = key;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2074,24 +2074,24 @@ public class CalculateRouteMatrixRequest extends AmazonWebServiceRequest impleme
         sb.append("{");
         if (getCalculatorName() != null)
             sb.append("CalculatorName: " + getCalculatorName() + ",");
-        if (getCarModeOptions() != null)
-            sb.append("CarModeOptions: " + getCarModeOptions() + ",");
-        if (getDepartNow() != null)
-            sb.append("DepartNow: " + getDepartNow() + ",");
         if (getDeparturePositions() != null)
             sb.append("DeparturePositions: " + getDeparturePositions() + ",");
-        if (getDepartureTime() != null)
-            sb.append("DepartureTime: " + getDepartureTime() + ",");
         if (getDestinationPositions() != null)
             sb.append("DestinationPositions: " + getDestinationPositions() + ",");
-        if (getDistanceUnit() != null)
-            sb.append("DistanceUnit: " + getDistanceUnit() + ",");
-        if (getKey() != null)
-            sb.append("Key: " + getKey() + ",");
         if (getTravelMode() != null)
             sb.append("TravelMode: " + getTravelMode() + ",");
+        if (getDepartureTime() != null)
+            sb.append("DepartureTime: " + getDepartureTime() + ",");
+        if (getDepartNow() != null)
+            sb.append("DepartNow: " + getDepartNow() + ",");
+        if (getDistanceUnit() != null)
+            sb.append("DistanceUnit: " + getDistanceUnit() + ",");
+        if (getCarModeOptions() != null)
+            sb.append("CarModeOptions: " + getCarModeOptions() + ",");
         if (getTruckModeOptions() != null)
-            sb.append("TruckModeOptions: " + getTruckModeOptions());
+            sb.append("TruckModeOptions: " + getTruckModeOptions() + ",");
+        if (getKey() != null)
+            sb.append("Key: " + getKey());
         sb.append("}");
         return sb.toString();
     }
@@ -2104,20 +2104,20 @@ public class CalculateRouteMatrixRequest extends AmazonWebServiceRequest impleme
         hashCode = prime * hashCode
                 + ((getCalculatorName() == null) ? 0 : getCalculatorName().hashCode());
         hashCode = prime * hashCode
-                + ((getCarModeOptions() == null) ? 0 : getCarModeOptions().hashCode());
-        hashCode = prime * hashCode + ((getDepartNow() == null) ? 0 : getDepartNow().hashCode());
-        hashCode = prime * hashCode
                 + ((getDeparturePositions() == null) ? 0 : getDeparturePositions().hashCode());
         hashCode = prime * hashCode
-                + ((getDepartureTime() == null) ? 0 : getDepartureTime().hashCode());
-        hashCode = prime * hashCode
                 + ((getDestinationPositions() == null) ? 0 : getDestinationPositions().hashCode());
-        hashCode = prime * hashCode
-                + ((getDistanceUnit() == null) ? 0 : getDistanceUnit().hashCode());
-        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
         hashCode = prime * hashCode + ((getTravelMode() == null) ? 0 : getTravelMode().hashCode());
         hashCode = prime * hashCode
+                + ((getDepartureTime() == null) ? 0 : getDepartureTime().hashCode());
+        hashCode = prime * hashCode + ((getDepartNow() == null) ? 0 : getDepartNow().hashCode());
+        hashCode = prime * hashCode
+                + ((getDistanceUnit() == null) ? 0 : getDistanceUnit().hashCode());
+        hashCode = prime * hashCode
+                + ((getCarModeOptions() == null) ? 0 : getCarModeOptions().hashCode());
+        hashCode = prime * hashCode
                 + ((getTruckModeOptions() == null) ? 0 : getTruckModeOptions().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
         return hashCode;
     }
 
@@ -2137,49 +2137,49 @@ public class CalculateRouteMatrixRequest extends AmazonWebServiceRequest impleme
         if (other.getCalculatorName() != null
                 && other.getCalculatorName().equals(this.getCalculatorName()) == false)
             return false;
-        if (other.getCarModeOptions() == null ^ this.getCarModeOptions() == null)
-            return false;
-        if (other.getCarModeOptions() != null
-                && other.getCarModeOptions().equals(this.getCarModeOptions()) == false)
-            return false;
-        if (other.getDepartNow() == null ^ this.getDepartNow() == null)
-            return false;
-        if (other.getDepartNow() != null
-                && other.getDepartNow().equals(this.getDepartNow()) == false)
-            return false;
         if (other.getDeparturePositions() == null ^ this.getDeparturePositions() == null)
             return false;
         if (other.getDeparturePositions() != null
                 && other.getDeparturePositions().equals(this.getDeparturePositions()) == false)
-            return false;
-        if (other.getDepartureTime() == null ^ this.getDepartureTime() == null)
-            return false;
-        if (other.getDepartureTime() != null
-                && other.getDepartureTime().equals(this.getDepartureTime()) == false)
             return false;
         if (other.getDestinationPositions() == null ^ this.getDestinationPositions() == null)
             return false;
         if (other.getDestinationPositions() != null
                 && other.getDestinationPositions().equals(this.getDestinationPositions()) == false)
             return false;
-        if (other.getDistanceUnit() == null ^ this.getDistanceUnit() == null)
-            return false;
-        if (other.getDistanceUnit() != null
-                && other.getDistanceUnit().equals(this.getDistanceUnit()) == false)
-            return false;
-        if (other.getKey() == null ^ this.getKey() == null)
-            return false;
-        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
-            return false;
         if (other.getTravelMode() == null ^ this.getTravelMode() == null)
             return false;
         if (other.getTravelMode() != null
                 && other.getTravelMode().equals(this.getTravelMode()) == false)
             return false;
+        if (other.getDepartureTime() == null ^ this.getDepartureTime() == null)
+            return false;
+        if (other.getDepartureTime() != null
+                && other.getDepartureTime().equals(this.getDepartureTime()) == false)
+            return false;
+        if (other.getDepartNow() == null ^ this.getDepartNow() == null)
+            return false;
+        if (other.getDepartNow() != null
+                && other.getDepartNow().equals(this.getDepartNow()) == false)
+            return false;
+        if (other.getDistanceUnit() == null ^ this.getDistanceUnit() == null)
+            return false;
+        if (other.getDistanceUnit() != null
+                && other.getDistanceUnit().equals(this.getDistanceUnit()) == false)
+            return false;
+        if (other.getCarModeOptions() == null ^ this.getCarModeOptions() == null)
+            return false;
+        if (other.getCarModeOptions() != null
+                && other.getCarModeOptions().equals(this.getCarModeOptions()) == false)
+            return false;
         if (other.getTruckModeOptions() == null ^ this.getTruckModeOptions() == null)
             return false;
         if (other.getTruckModeOptions() != null
                 && other.getTruckModeOptions().equals(this.getTruckModeOptions()) == false)
+            return false;
+        if (other.getKey() == null ^ this.getKey() == null)
+            return false;
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
             return false;
         return true;
     }

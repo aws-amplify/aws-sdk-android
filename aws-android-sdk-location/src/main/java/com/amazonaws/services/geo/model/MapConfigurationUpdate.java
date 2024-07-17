@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,9 +41,25 @@ public class MapConfigurationUpdate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 3<br/>
-     * <b>Pattern: </b>^[A-Z]{3}$|^$<br/>
+     * <b>Pattern: </b>[A-Z]{3}$|^<br/>
      */
     private String politicalView;
+
+    /**
+     * <p>
+     * Specifies the custom layers for the style. Leave unset to not enable any
+     * custom layer, or, for styles that support custom layers, you can enable
+     * layer(s), such as POI layer for the VectorEsriNavigation style. Default
+     * is <code>unset</code>.
+     * </p>
+     * <note>
+     * <p>
+     * Not all map resources or styles support custom layers. See Custom Layers
+     * for more information.
+     * </p>
+     * </note>
+     */
+    private java.util.List<String> customLayers;
 
     /**
      * <p>
@@ -63,7 +79,7 @@ public class MapConfigurationUpdate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 3<br/>
-     * <b>Pattern: </b>^[A-Z]{3}$|^$<br/>
+     * <b>Pattern: </b>[A-Z]{3}$|^<br/>
      *
      * @return <p>
      *         Specifies the political view for the style. Set to an empty
@@ -102,7 +118,7 @@ public class MapConfigurationUpdate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 3<br/>
-     * <b>Pattern: </b>^[A-Z]{3}$|^$<br/>
+     * <b>Pattern: </b>[A-Z]{3}$|^<br/>
      *
      * @param politicalView <p>
      *            Specifies the political view for the style. Set to an empty
@@ -144,7 +160,7 @@ public class MapConfigurationUpdate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 3<br/>
-     * <b>Pattern: </b>^[A-Z]{3}$|^$<br/>
+     * <b>Pattern: </b>[A-Z]{3}$|^<br/>
      *
      * @param politicalView <p>
      *            Specifies the political view for the style. Set to an empty
@@ -169,6 +185,152 @@ public class MapConfigurationUpdate implements Serializable {
     }
 
     /**
+     * <p>
+     * Specifies the custom layers for the style. Leave unset to not enable any
+     * custom layer, or, for styles that support custom layers, you can enable
+     * layer(s), such as POI layer for the VectorEsriNavigation style. Default
+     * is <code>unset</code>.
+     * </p>
+     * <note>
+     * <p>
+     * Not all map resources or styles support custom layers. See Custom Layers
+     * for more information.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         Specifies the custom layers for the style. Leave unset to not
+     *         enable any custom layer, or, for styles that support custom
+     *         layers, you can enable layer(s), such as POI layer for the
+     *         VectorEsriNavigation style. Default is <code>unset</code>.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         Not all map resources or styles support custom layers. See Custom
+     *         Layers for more information.
+     *         </p>
+     *         </note>
+     */
+    public java.util.List<String> getCustomLayers() {
+        return customLayers;
+    }
+
+    /**
+     * <p>
+     * Specifies the custom layers for the style. Leave unset to not enable any
+     * custom layer, or, for styles that support custom layers, you can enable
+     * layer(s), such as POI layer for the VectorEsriNavigation style. Default
+     * is <code>unset</code>.
+     * </p>
+     * <note>
+     * <p>
+     * Not all map resources or styles support custom layers. See Custom Layers
+     * for more information.
+     * </p>
+     * </note>
+     *
+     * @param customLayers <p>
+     *            Specifies the custom layers for the style. Leave unset to not
+     *            enable any custom layer, or, for styles that support custom
+     *            layers, you can enable layer(s), such as POI layer for the
+     *            VectorEsriNavigation style. Default is <code>unset</code>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Not all map resources or styles support custom layers. See
+     *            Custom Layers for more information.
+     *            </p>
+     *            </note>
+     */
+    public void setCustomLayers(java.util.Collection<String> customLayers) {
+        if (customLayers == null) {
+            this.customLayers = null;
+            return;
+        }
+
+        this.customLayers = new java.util.ArrayList<String>(customLayers);
+    }
+
+    /**
+     * <p>
+     * Specifies the custom layers for the style. Leave unset to not enable any
+     * custom layer, or, for styles that support custom layers, you can enable
+     * layer(s), such as POI layer for the VectorEsriNavigation style. Default
+     * is <code>unset</code>.
+     * </p>
+     * <note>
+     * <p>
+     * Not all map resources or styles support custom layers. See Custom Layers
+     * for more information.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param customLayers <p>
+     *            Specifies the custom layers for the style. Leave unset to not
+     *            enable any custom layer, or, for styles that support custom
+     *            layers, you can enable layer(s), such as POI layer for the
+     *            VectorEsriNavigation style. Default is <code>unset</code>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Not all map resources or styles support custom layers. See
+     *            Custom Layers for more information.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public MapConfigurationUpdate withCustomLayers(String... customLayers) {
+        if (getCustomLayers() == null) {
+            this.customLayers = new java.util.ArrayList<String>(customLayers.length);
+        }
+        for (String value : customLayers) {
+            this.customLayers.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies the custom layers for the style. Leave unset to not enable any
+     * custom layer, or, for styles that support custom layers, you can enable
+     * layer(s), such as POI layer for the VectorEsriNavigation style. Default
+     * is <code>unset</code>.
+     * </p>
+     * <note>
+     * <p>
+     * Not all map resources or styles support custom layers. See Custom Layers
+     * for more information.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param customLayers <p>
+     *            Specifies the custom layers for the style. Leave unset to not
+     *            enable any custom layer, or, for styles that support custom
+     *            layers, you can enable layer(s), such as POI layer for the
+     *            VectorEsriNavigation style. Default is <code>unset</code>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Not all map resources or styles support custom layers. See
+     *            Custom Layers for more information.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public MapConfigurationUpdate withCustomLayers(java.util.Collection<String> customLayers) {
+        setCustomLayers(customLayers);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -180,7 +342,9 @@ public class MapConfigurationUpdate implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getPoliticalView() != null)
-            sb.append("PoliticalView: " + getPoliticalView());
+            sb.append("PoliticalView: " + getPoliticalView() + ",");
+        if (getCustomLayers() != null)
+            sb.append("CustomLayers: " + getCustomLayers());
         sb.append("}");
         return sb.toString();
     }
@@ -192,6 +356,8 @@ public class MapConfigurationUpdate implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getPoliticalView() == null) ? 0 : getPoliticalView().hashCode());
+        hashCode = prime * hashCode
+                + ((getCustomLayers() == null) ? 0 : getCustomLayers().hashCode());
         return hashCode;
     }
 
@@ -210,6 +376,11 @@ public class MapConfigurationUpdate implements Serializable {
             return false;
         if (other.getPoliticalView() != null
                 && other.getPoliticalView().equals(this.getPoliticalView()) == false)
+            return false;
+        if (other.getCustomLayers() == null ^ this.getCustomLayers() == null)
+            return false;
+        if (other.getCustomLayers() != null
+                && other.getCustomLayers().equals(this.getCustomLayers()) == false)
             return false;
         return true;
     }

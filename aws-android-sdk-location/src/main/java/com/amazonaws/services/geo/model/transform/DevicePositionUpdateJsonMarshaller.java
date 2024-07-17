@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,15 +27,15 @@ class DevicePositionUpdateJsonMarshaller {
     public void marshall(DevicePositionUpdate devicePositionUpdate, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
-        if (devicePositionUpdate.getAccuracy() != null) {
-            PositionalAccuracy accuracy = devicePositionUpdate.getAccuracy();
-            jsonWriter.name("Accuracy");
-            PositionalAccuracyJsonMarshaller.getInstance().marshall(accuracy, jsonWriter);
-        }
         if (devicePositionUpdate.getDeviceId() != null) {
             String deviceId = devicePositionUpdate.getDeviceId();
             jsonWriter.name("DeviceId");
             jsonWriter.value(deviceId);
+        }
+        if (devicePositionUpdate.getSampleTime() != null) {
+            java.util.Date sampleTime = devicePositionUpdate.getSampleTime();
+            jsonWriter.name("SampleTime");
+            jsonWriter.value(DateUtils.formatISO8601Date(sampleTime));
         }
         if (devicePositionUpdate.getPosition() != null) {
             java.util.List<Double> position = devicePositionUpdate.getPosition();
@@ -47,6 +47,11 @@ class DevicePositionUpdateJsonMarshaller {
                 }
             }
             jsonWriter.endArray();
+        }
+        if (devicePositionUpdate.getAccuracy() != null) {
+            PositionalAccuracy accuracy = devicePositionUpdate.getAccuracy();
+            jsonWriter.name("Accuracy");
+            PositionalAccuracyJsonMarshaller.getInstance().marshall(accuracy, jsonWriter);
         }
         if (devicePositionUpdate.getPositionProperties() != null) {
             java.util.Map<String, String> positionProperties = devicePositionUpdate
@@ -62,11 +67,6 @@ class DevicePositionUpdateJsonMarshaller {
                 }
             }
             jsonWriter.endObject();
-        }
-        if (devicePositionUpdate.getSampleTime() != null) {
-            java.util.Date sampleTime = devicePositionUpdate.getSampleTime();
-            jsonWriter.name("SampleTime");
-            jsonWriter.value(DateUtils.formatISO8601Date(sampleTime));
         }
         jsonWriter.endObject();
     }

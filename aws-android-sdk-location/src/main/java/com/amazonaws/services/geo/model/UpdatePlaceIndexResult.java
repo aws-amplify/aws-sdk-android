@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,6 +20,17 @@ import java.io.Serializable;
 public class UpdatePlaceIndexResult implements Serializable {
     /**
      * <p>
+     * The name of the updated place index resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     */
+    private String indexName;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) of the upated place index resource. Used
      * to specify a resource across Amazon Web Services.
      * </p>
@@ -35,21 +46,10 @@ public class UpdatePlaceIndexResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
      */
     private String indexArn;
-
-    /**
-     * <p>
-     * The name of the updated place index resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     */
-    private String indexName;
 
     /**
      * <p>
@@ -62,6 +62,63 @@ public class UpdatePlaceIndexResult implements Serializable {
 
     /**
      * <p>
+     * The name of the updated place index resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The name of the updated place index resource.
+     *         </p>
+     */
+    public String getIndexName() {
+        return indexName;
+    }
+
+    /**
+     * <p>
+     * The name of the updated place index resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param indexName <p>
+     *            The name of the updated place index resource.
+     *            </p>
+     */
+    public void setIndexName(String indexName) {
+        this.indexName = indexName;
+    }
+
+    /**
+     * <p>
+     * The name of the updated place index resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param indexName <p>
+     *            The name of the updated place index resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdatePlaceIndexResult withIndexName(String indexName) {
+        this.indexName = indexName;
+        return this;
+    }
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) of the upated place index resource. Used
      * to specify a resource across Amazon Web Services.
      * </p>
@@ -77,8 +134,8 @@ public class UpdatePlaceIndexResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the upated place index
@@ -114,8 +171,8 @@ public class UpdatePlaceIndexResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
      *
      * @param indexArn <p>
      *            The Amazon Resource Name (ARN) of the upated place index
@@ -155,8 +212,8 @@ public class UpdatePlaceIndexResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
      *
      * @param indexArn <p>
      *            The Amazon Resource Name (ARN) of the upated place index
@@ -176,63 +233,6 @@ public class UpdatePlaceIndexResult implements Serializable {
      */
     public UpdatePlaceIndexResult withIndexArn(String indexArn) {
         this.indexArn = indexArn;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The name of the updated place index resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         The name of the updated place index resource.
-     *         </p>
-     */
-    public String getIndexName() {
-        return indexName;
-    }
-
-    /**
-     * <p>
-     * The name of the updated place index resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param indexName <p>
-     *            The name of the updated place index resource.
-     *            </p>
-     */
-    public void setIndexName(String indexName) {
-        this.indexName = indexName;
-    }
-
-    /**
-     * <p>
-     * The name of the updated place index resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param indexName <p>
-     *            The name of the updated place index resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdatePlaceIndexResult withIndexName(String indexName) {
-        this.indexName = indexName;
         return this;
     }
 
@@ -307,10 +307,10 @@ public class UpdatePlaceIndexResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getIndexArn() != null)
-            sb.append("IndexArn: " + getIndexArn() + ",");
         if (getIndexName() != null)
             sb.append("IndexName: " + getIndexName() + ",");
+        if (getIndexArn() != null)
+            sb.append("IndexArn: " + getIndexArn() + ",");
         if (getUpdateTime() != null)
             sb.append("UpdateTime: " + getUpdateTime());
         sb.append("}");
@@ -322,8 +322,8 @@ public class UpdatePlaceIndexResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getIndexArn() == null) ? 0 : getIndexArn().hashCode());
         hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
+        hashCode = prime * hashCode + ((getIndexArn() == null) ? 0 : getIndexArn().hashCode());
         hashCode = prime * hashCode + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return hashCode;
     }
@@ -339,14 +339,14 @@ public class UpdatePlaceIndexResult implements Serializable {
             return false;
         UpdatePlaceIndexResult other = (UpdatePlaceIndexResult) obj;
 
-        if (other.getIndexArn() == null ^ this.getIndexArn() == null)
-            return false;
-        if (other.getIndexArn() != null && other.getIndexArn().equals(this.getIndexArn()) == false)
-            return false;
         if (other.getIndexName() == null ^ this.getIndexName() == null)
             return false;
         if (other.getIndexName() != null
                 && other.getIndexName().equals(this.getIndexName()) == false)
+            return false;
+        if (other.getIndexArn() == null ^ this.getIndexArn() == null)
+            return false;
+        if (other.getIndexArn() != null && other.getIndexArn().equals(this.getIndexArn()) == false)
             return false;
         if (other.getUpdateTime() == null ^ this.getUpdateTime() == null)
             return false;

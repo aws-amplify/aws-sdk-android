@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -60,35 +60,30 @@ public class CreateTrackerRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (createTrackerRequest.getDescription() != null) {
-                String description = createTrackerRequest.getDescription();
-                jsonWriter.name("Description");
-                jsonWriter.value(description);
-            }
-            if (createTrackerRequest.getEventBridgeEnabled() != null) {
-                Boolean eventBridgeEnabled = createTrackerRequest.getEventBridgeEnabled();
-                jsonWriter.name("EventBridgeEnabled");
-                jsonWriter.value(eventBridgeEnabled);
-            }
-            if (createTrackerRequest.getKmsKeyId() != null) {
-                String kmsKeyId = createTrackerRequest.getKmsKeyId();
-                jsonWriter.name("KmsKeyId");
-                jsonWriter.value(kmsKeyId);
-            }
-            if (createTrackerRequest.getPositionFiltering() != null) {
-                String positionFiltering = createTrackerRequest.getPositionFiltering();
-                jsonWriter.name("PositionFiltering");
-                jsonWriter.value(positionFiltering);
+            if (createTrackerRequest.getTrackerName() != null) {
+                String trackerName = createTrackerRequest.getTrackerName();
+                jsonWriter.name("TrackerName");
+                jsonWriter.value(trackerName);
             }
             if (createTrackerRequest.getPricingPlan() != null) {
                 String pricingPlan = createTrackerRequest.getPricingPlan();
                 jsonWriter.name("PricingPlan");
                 jsonWriter.value(pricingPlan);
             }
+            if (createTrackerRequest.getKmsKeyId() != null) {
+                String kmsKeyId = createTrackerRequest.getKmsKeyId();
+                jsonWriter.name("KmsKeyId");
+                jsonWriter.value(kmsKeyId);
+            }
             if (createTrackerRequest.getPricingPlanDataSource() != null) {
                 String pricingPlanDataSource = createTrackerRequest.getPricingPlanDataSource();
                 jsonWriter.name("PricingPlanDataSource");
                 jsonWriter.value(pricingPlanDataSource);
+            }
+            if (createTrackerRequest.getDescription() != null) {
+                String description = createTrackerRequest.getDescription();
+                jsonWriter.name("Description");
+                jsonWriter.value(description);
             }
             if (createTrackerRequest.getTags() != null) {
                 java.util.Map<String, String> tags = createTrackerRequest.getTags();
@@ -103,10 +98,21 @@ public class CreateTrackerRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
-            if (createTrackerRequest.getTrackerName() != null) {
-                String trackerName = createTrackerRequest.getTrackerName();
-                jsonWriter.name("TrackerName");
-                jsonWriter.value(trackerName);
+            if (createTrackerRequest.getPositionFiltering() != null) {
+                String positionFiltering = createTrackerRequest.getPositionFiltering();
+                jsonWriter.name("PositionFiltering");
+                jsonWriter.value(positionFiltering);
+            }
+            if (createTrackerRequest.getEventBridgeEnabled() != null) {
+                Boolean eventBridgeEnabled = createTrackerRequest.getEventBridgeEnabled();
+                jsonWriter.name("EventBridgeEnabled");
+                jsonWriter.value(eventBridgeEnabled);
+            }
+            if (createTrackerRequest.getKmsKeyEnableGeospatialQueries() != null) {
+                Boolean kmsKeyEnableGeospatialQueries = createTrackerRequest
+                        .getKmsKeyEnableGeospatialQueries();
+                jsonWriter.name("KmsKeyEnableGeospatialQueries");
+                jsonWriter.value(kmsKeyEnableGeospatialQueries);
             }
 
             jsonWriter.endObject();
@@ -120,9 +126,9 @@ public class CreateTrackerRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
-        request.setHostPrefix("tracking.");
+        request.setHostPrefix("cp.tracking.");
 
         return request;
     }

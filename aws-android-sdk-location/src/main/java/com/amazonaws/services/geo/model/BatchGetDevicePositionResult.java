@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,6 +20,14 @@ import java.io.Serializable;
 public class BatchGetDevicePositionResult implements Serializable {
     /**
      * <p>
+     * Contains error details for each device that failed to send its position
+     * to the tracker resource.
+     * </p>
+     */
+    private java.util.List<BatchGetDevicePositionError> errors;
+
+    /**
+     * <p>
      * Contains device position details such as the device ID, position, and
      * timestamps for when the position was received and sampled.
      * </p>
@@ -31,8 +39,83 @@ public class BatchGetDevicePositionResult implements Serializable {
      * Contains error details for each device that failed to send its position
      * to the tracker resource.
      * </p>
+     *
+     * @return <p>
+     *         Contains error details for each device that failed to send its
+     *         position to the tracker resource.
+     *         </p>
      */
-    private java.util.List<BatchGetDevicePositionError> errors;
+    public java.util.List<BatchGetDevicePositionError> getErrors() {
+        return errors;
+    }
+
+    /**
+     * <p>
+     * Contains error details for each device that failed to send its position
+     * to the tracker resource.
+     * </p>
+     *
+     * @param errors <p>
+     *            Contains error details for each device that failed to send its
+     *            position to the tracker resource.
+     *            </p>
+     */
+    public void setErrors(java.util.Collection<BatchGetDevicePositionError> errors) {
+        if (errors == null) {
+            this.errors = null;
+            return;
+        }
+
+        this.errors = new java.util.ArrayList<BatchGetDevicePositionError>(errors);
+    }
+
+    /**
+     * <p>
+     * Contains error details for each device that failed to send its position
+     * to the tracker resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param errors <p>
+     *            Contains error details for each device that failed to send its
+     *            position to the tracker resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public BatchGetDevicePositionResult withErrors(BatchGetDevicePositionError... errors) {
+        if (getErrors() == null) {
+            this.errors = new java.util.ArrayList<BatchGetDevicePositionError>(errors.length);
+        }
+        for (BatchGetDevicePositionError value : errors) {
+            this.errors.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contains error details for each device that failed to send its position
+     * to the tracker resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param errors <p>
+     *            Contains error details for each device that failed to send its
+     *            position to the tracker resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public BatchGetDevicePositionResult withErrors(
+            java.util.Collection<BatchGetDevicePositionError> errors) {
+        setErrors(errors);
+        return this;
+    }
 
     /**
      * <p>
@@ -121,89 +204,6 @@ public class BatchGetDevicePositionResult implements Serializable {
     }
 
     /**
-     * <p>
-     * Contains error details for each device that failed to send its position
-     * to the tracker resource.
-     * </p>
-     *
-     * @return <p>
-     *         Contains error details for each device that failed to send its
-     *         position to the tracker resource.
-     *         </p>
-     */
-    public java.util.List<BatchGetDevicePositionError> getErrors() {
-        return errors;
-    }
-
-    /**
-     * <p>
-     * Contains error details for each device that failed to send its position
-     * to the tracker resource.
-     * </p>
-     *
-     * @param errors <p>
-     *            Contains error details for each device that failed to send its
-     *            position to the tracker resource.
-     *            </p>
-     */
-    public void setErrors(java.util.Collection<BatchGetDevicePositionError> errors) {
-        if (errors == null) {
-            this.errors = null;
-            return;
-        }
-
-        this.errors = new java.util.ArrayList<BatchGetDevicePositionError>(errors);
-    }
-
-    /**
-     * <p>
-     * Contains error details for each device that failed to send its position
-     * to the tracker resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param errors <p>
-     *            Contains error details for each device that failed to send its
-     *            position to the tracker resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public BatchGetDevicePositionResult withErrors(BatchGetDevicePositionError... errors) {
-        if (getErrors() == null) {
-            this.errors = new java.util.ArrayList<BatchGetDevicePositionError>(errors.length);
-        }
-        for (BatchGetDevicePositionError value : errors) {
-            this.errors.add(value);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * Contains error details for each device that failed to send its position
-     * to the tracker resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param errors <p>
-     *            Contains error details for each device that failed to send its
-     *            position to the tracker resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public BatchGetDevicePositionResult withErrors(
-            java.util.Collection<BatchGetDevicePositionError> errors) {
-        setErrors(errors);
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -214,10 +214,10 @@ public class BatchGetDevicePositionResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getDevicePositions() != null)
-            sb.append("DevicePositions: " + getDevicePositions() + ",");
         if (getErrors() != null)
-            sb.append("Errors: " + getErrors());
+            sb.append("Errors: " + getErrors() + ",");
+        if (getDevicePositions() != null)
+            sb.append("DevicePositions: " + getDevicePositions());
         sb.append("}");
         return sb.toString();
     }
@@ -227,9 +227,9 @@ public class BatchGetDevicePositionResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getErrors() == null) ? 0 : getErrors().hashCode());
         hashCode = prime * hashCode
                 + ((getDevicePositions() == null) ? 0 : getDevicePositions().hashCode());
-        hashCode = prime * hashCode + ((getErrors() == null) ? 0 : getErrors().hashCode());
         return hashCode;
     }
 
@@ -244,14 +244,14 @@ public class BatchGetDevicePositionResult implements Serializable {
             return false;
         BatchGetDevicePositionResult other = (BatchGetDevicePositionResult) obj;
 
+        if (other.getErrors() == null ^ this.getErrors() == null)
+            return false;
+        if (other.getErrors() != null && other.getErrors().equals(this.getErrors()) == false)
+            return false;
         if (other.getDevicePositions() == null ^ this.getDevicePositions() == null)
             return false;
         if (other.getDevicePositions() != null
                 && other.getDevicePositions().equals(this.getDevicePositions()) == false)
-            return false;
-        if (other.getErrors() == null ^ this.getErrors() == null)
-            return false;
-        if (other.getErrors() != null && other.getErrors().equals(this.getErrors()) == false)
             return false;
         return true;
     }
