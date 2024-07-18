@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -70,6 +70,11 @@ public class SearchPlaceIndexForSuggestionsRequestMarshaller
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (searchPlaceIndexForSuggestionsRequest.getText() != null) {
+                String text = searchPlaceIndexForSuggestionsRequest.getText();
+                jsonWriter.name("Text");
+                jsonWriter.value(text);
+            }
             if (searchPlaceIndexForSuggestionsRequest.getBiasPosition() != null) {
                 java.util.List<Double> biasPosition = searchPlaceIndexForSuggestionsRequest
                         .getBiasPosition();
@@ -94,18 +99,6 @@ public class SearchPlaceIndexForSuggestionsRequestMarshaller
                 }
                 jsonWriter.endArray();
             }
-            if (searchPlaceIndexForSuggestionsRequest.getFilterCategories() != null) {
-                java.util.List<String> filterCategories = searchPlaceIndexForSuggestionsRequest
-                        .getFilterCategories();
-                jsonWriter.name("FilterCategories");
-                jsonWriter.beginArray();
-                for (String filterCategoriesItem : filterCategories) {
-                    if (filterCategoriesItem != null) {
-                        jsonWriter.value(filterCategoriesItem);
-                    }
-                }
-                jsonWriter.endArray();
-            }
             if (searchPlaceIndexForSuggestionsRequest.getFilterCountries() != null) {
                 java.util.List<String> filterCountries = searchPlaceIndexForSuggestionsRequest
                         .getFilterCountries();
@@ -118,20 +111,27 @@ public class SearchPlaceIndexForSuggestionsRequestMarshaller
                 }
                 jsonWriter.endArray();
             }
-            if (searchPlaceIndexForSuggestionsRequest.getLanguage() != null) {
-                String language = searchPlaceIndexForSuggestionsRequest.getLanguage();
-                jsonWriter.name("Language");
-                jsonWriter.value(language);
-            }
             if (searchPlaceIndexForSuggestionsRequest.getMaxResults() != null) {
                 Integer maxResults = searchPlaceIndexForSuggestionsRequest.getMaxResults();
                 jsonWriter.name("MaxResults");
                 jsonWriter.value(maxResults);
             }
-            if (searchPlaceIndexForSuggestionsRequest.getText() != null) {
-                String text = searchPlaceIndexForSuggestionsRequest.getText();
-                jsonWriter.name("Text");
-                jsonWriter.value(text);
+            if (searchPlaceIndexForSuggestionsRequest.getLanguage() != null) {
+                String language = searchPlaceIndexForSuggestionsRequest.getLanguage();
+                jsonWriter.name("Language");
+                jsonWriter.value(language);
+            }
+            if (searchPlaceIndexForSuggestionsRequest.getFilterCategories() != null) {
+                java.util.List<String> filterCategories = searchPlaceIndexForSuggestionsRequest
+                        .getFilterCategories();
+                jsonWriter.name("FilterCategories");
+                jsonWriter.beginArray();
+                for (String filterCategoriesItem : filterCategories) {
+                    if (filterCategoriesItem != null) {
+                        jsonWriter.value(filterCategoriesItem);
+                    }
+                }
+                jsonWriter.endArray();
             }
 
             jsonWriter.endObject();
@@ -145,7 +145,7 @@ public class SearchPlaceIndexForSuggestionsRequestMarshaller
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
         request.setHostPrefix("places.");
 

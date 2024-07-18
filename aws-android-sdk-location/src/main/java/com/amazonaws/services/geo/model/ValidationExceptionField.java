@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,13 +26,6 @@ import java.io.Serializable;
 public class ValidationExceptionField implements Serializable {
     /**
      * <p>
-     * A message with the reason for the validation exception error.
-     * </p>
-     */
-    private String message;
-
-    /**
-     * <p>
      * The field name where the invalid entry was detected.
      * </p>
      */
@@ -42,46 +35,8 @@ public class ValidationExceptionField implements Serializable {
      * <p>
      * A message with the reason for the validation exception error.
      * </p>
-     *
-     * @return <p>
-     *         A message with the reason for the validation exception error.
-     *         </p>
      */
-    public String getMessage() {
-        return message;
-    }
-
-    /**
-     * <p>
-     * A message with the reason for the validation exception error.
-     * </p>
-     *
-     * @param message <p>
-     *            A message with the reason for the validation exception error.
-     *            </p>
-     */
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    /**
-     * <p>
-     * A message with the reason for the validation exception error.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param message <p>
-     *            A message with the reason for the validation exception error.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public ValidationExceptionField withMessage(String message) {
-        this.message = message;
-        return this;
-    }
+    private String message;
 
     /**
      * <p>
@@ -129,6 +84,51 @@ public class ValidationExceptionField implements Serializable {
     }
 
     /**
+     * <p>
+     * A message with the reason for the validation exception error.
+     * </p>
+     *
+     * @return <p>
+     *         A message with the reason for the validation exception error.
+     *         </p>
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * <p>
+     * A message with the reason for the validation exception error.
+     * </p>
+     *
+     * @param message <p>
+     *            A message with the reason for the validation exception error.
+     *            </p>
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    /**
+     * <p>
+     * A message with the reason for the validation exception error.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param message <p>
+     *            A message with the reason for the validation exception error.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ValidationExceptionField withMessage(String message) {
+        this.message = message;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -139,10 +139,10 @@ public class ValidationExceptionField implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getMessage() != null)
-            sb.append("Message: " + getMessage() + ",");
         if (getName() != null)
-            sb.append("Name: " + getName());
+            sb.append("Name: " + getName() + ",");
+        if (getMessage() != null)
+            sb.append("Message: " + getMessage());
         sb.append("}");
         return sb.toString();
     }
@@ -152,8 +152,8 @@ public class ValidationExceptionField implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getMessage() == null) ? 0 : getMessage().hashCode());
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
+        hashCode = prime * hashCode + ((getMessage() == null) ? 0 : getMessage().hashCode());
         return hashCode;
     }
 
@@ -168,13 +168,13 @@ public class ValidationExceptionField implements Serializable {
             return false;
         ValidationExceptionField other = (ValidationExceptionField) obj;
 
-        if (other.getMessage() == null ^ this.getMessage() == null)
-            return false;
-        if (other.getMessage() != null && other.getMessage().equals(this.getMessage()) == false)
-            return false;
         if (other.getName() == null ^ this.getName() == null)
             return false;
         if (other.getName() != null && other.getName().equals(this.getName()) == false)
+            return false;
+        if (other.getMessage() == null ^ this.getMessage() == null)
+            return false;
+        if (other.getMessage() != null && other.getMessage().equals(this.getMessage()) == false)
             return false;
         return true;
     }

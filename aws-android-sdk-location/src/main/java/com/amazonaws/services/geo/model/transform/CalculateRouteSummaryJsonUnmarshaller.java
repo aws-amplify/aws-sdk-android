@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,23 +36,23 @@ class CalculateRouteSummaryJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("DataSource")) {
+            if (name.equals("RouteBBox")) {
+                calculateRouteSummary.setRouteBBox(new ListUnmarshaller<Double>(
+                        DoubleJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("DataSource")) {
                 calculateRouteSummary.setDataSource(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Distance")) {
                 calculateRouteSummary.setDistance(DoubleJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("DistanceUnit")) {
-                calculateRouteSummary.setDistanceUnit(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
             } else if (name.equals("DurationSeconds")) {
                 calculateRouteSummary.setDurationSeconds(DoubleJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("RouteBBox")) {
-                calculateRouteSummary.setRouteBBox(new ListUnmarshaller<Double>(
-                        DoubleJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+            } else if (name.equals("DistanceUnit")) {
+                calculateRouteSummary.setDistanceUnit(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

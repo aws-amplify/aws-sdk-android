@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,16 +34,16 @@ public class BatchGetDevicePositionResultJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("DevicePositions")) {
-                batchGetDevicePositionResult
-                        .setDevicePositions(new ListUnmarshaller<DevicePosition>(
-                                DevicePositionJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
-            } else if (name.equals("Errors")) {
+            if (name.equals("Errors")) {
                 batchGetDevicePositionResult
                         .setErrors(new ListUnmarshaller<BatchGetDevicePositionError>(
                                 BatchGetDevicePositionErrorJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("DevicePositions")) {
+                batchGetDevicePositionResult
+                        .setDevicePositions(new ListUnmarshaller<DevicePosition>(
+                                DevicePositionJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
             } else {

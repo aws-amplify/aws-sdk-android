@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,24 +34,17 @@ public class DescribeGeofenceCollectionResultJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("CollectionArn")) {
-                describeGeofenceCollectionResult.setCollectionArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("CollectionName")) {
+            if (name.equals("CollectionName")) {
                 describeGeofenceCollectionResult.setCollectionName(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
-            } else if (name.equals("CreateTime")) {
-                describeGeofenceCollectionResult.setCreateTime(DateJsonUnmarshaller.getInstance(
-                        TimestampFormat.ISO_8601)
+            } else if (name.equals("CollectionArn")) {
+                describeGeofenceCollectionResult.setCollectionArn(StringJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else if (name.equals("Description")) {
                 describeGeofenceCollectionResult.setDescription(StringJsonUnmarshaller
                         .getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("KmsKeyId")) {
-                describeGeofenceCollectionResult.setKmsKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("PricingPlan")) {
                 describeGeofenceCollectionResult.setPricingPlan(StringJsonUnmarshaller
@@ -61,14 +54,25 @@ public class DescribeGeofenceCollectionResultJsonUnmarshaller implements
                 describeGeofenceCollectionResult.setPricingPlanDataSource(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("KmsKeyId")) {
+                describeGeofenceCollectionResult.setKmsKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Tags")) {
                 describeGeofenceCollectionResult.setTags(new MapUnmarshaller<String>(
                         StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("CreateTime")) {
+                describeGeofenceCollectionResult.setCreateTime(DateJsonUnmarshaller.getInstance(
+                        TimestampFormat.ISO_8601)
+                        .unmarshall(context));
             } else if (name.equals("UpdateTime")) {
                 describeGeofenceCollectionResult.setUpdateTime(DateJsonUnmarshaller.getInstance(
                         TimestampFormat.ISO_8601)
+                        .unmarshall(context));
+            } else if (name.equals("GeofenceCount")) {
+                describeGeofenceCollectionResult.setGeofenceCount(IntegerJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

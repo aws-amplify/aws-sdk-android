@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -59,6 +59,16 @@ public class CreateKeyRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (createKeyRequest.getKeyName() != null) {
+                String keyName = createKeyRequest.getKeyName();
+                jsonWriter.name("KeyName");
+                jsonWriter.value(keyName);
+            }
+            if (createKeyRequest.getRestrictions() != null) {
+                ApiKeyRestrictions restrictions = createKeyRequest.getRestrictions();
+                jsonWriter.name("Restrictions");
+                ApiKeyRestrictionsJsonMarshaller.getInstance().marshall(restrictions, jsonWriter);
+            }
             if (createKeyRequest.getDescription() != null) {
                 String description = createKeyRequest.getDescription();
                 jsonWriter.name("Description");
@@ -69,20 +79,10 @@ public class CreateKeyRequestMarshaller implements
                 jsonWriter.name("ExpireTime");
                 jsonWriter.value(DateUtils.formatISO8601Date(expireTime));
             }
-            if (createKeyRequest.getKeyName() != null) {
-                String keyName = createKeyRequest.getKeyName();
-                jsonWriter.name("KeyName");
-                jsonWriter.value(keyName);
-            }
             if (createKeyRequest.getNoExpiry() != null) {
                 Boolean noExpiry = createKeyRequest.getNoExpiry();
                 jsonWriter.name("NoExpiry");
                 jsonWriter.value(noExpiry);
-            }
-            if (createKeyRequest.getRestrictions() != null) {
-                ApiKeyRestrictions restrictions = createKeyRequest.getRestrictions();
-                jsonWriter.name("Restrictions");
-                ApiKeyRestrictionsJsonMarshaller.getInstance().marshall(restrictions, jsonWriter);
             }
             if (createKeyRequest.getTags() != null) {
                 java.util.Map<String, String> tags = createKeyRequest.getTags();
@@ -109,9 +109,9 @@ public class CreateKeyRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
-        request.setHostPrefix("metadata.");
+        request.setHostPrefix("cp.metadata.");
 
         return request;
     }

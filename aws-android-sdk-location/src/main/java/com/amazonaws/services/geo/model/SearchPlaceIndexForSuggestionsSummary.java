@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,6 +26,13 @@ import java.io.Serializable;
 public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
     /**
      * <p>
+     * The free-form partial text input specified in the request.
+     * </p>
+     */
+    private String text;
+
+    /**
+     * <p>
      * Contains the coordinates for the optional bias position specified in the
      * request.
      * </p>
@@ -40,6 +47,28 @@ public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
      * </p>
      */
     private java.util.List<Double> biasPosition;
+
+    /**
+     * <p>
+     * Contains the coordinates for the optional bounding box specified in the
+     * request.
+     * </p>
+     */
+    private java.util.List<Double> filterBBox;
+
+    /**
+     * <p>
+     * Contains the optional country filter specified in the request.
+     * </p>
+     */
+    private java.util.List<String> filterCountries;
+
+    /**
+     * <p>
+     * Contains the optional result count limit specified in the request.
+     * </p>
+     */
+    private Integer maxResults;
 
     /**
      * <p>
@@ -73,28 +102,6 @@ public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
 
     /**
      * <p>
-     * Contains the coordinates for the optional bounding box specified in the
-     * request.
-     * </p>
-     */
-    private java.util.List<Double> filterBBox;
-
-    /**
-     * <p>
-     * The optional category filter specified in the request.
-     * </p>
-     */
-    private java.util.List<String> filterCategories;
-
-    /**
-     * <p>
-     * Contains the optional country filter specified in the request.
-     * </p>
-     */
-    private java.util.List<String> filterCountries;
-
-    /**
-     * <p>
      * The preferred language used to return results. Matches the language in
      * the request. The value is a valid <a
      * href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag, for
@@ -108,17 +115,55 @@ public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
 
     /**
      * <p>
-     * Contains the optional result count limit specified in the request.
+     * The optional category filter specified in the request.
      * </p>
      */
-    private Integer maxResults;
+    private java.util.List<String> filterCategories;
 
     /**
      * <p>
      * The free-form partial text input specified in the request.
      * </p>
+     *
+     * @return <p>
+     *         The free-form partial text input specified in the request.
+     *         </p>
      */
-    private String text;
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * <p>
+     * The free-form partial text input specified in the request.
+     * </p>
+     *
+     * @param text <p>
+     *            The free-form partial text input specified in the request.
+     *            </p>
+     */
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    /**
+     * <p>
+     * The free-form partial text input specified in the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param text <p>
+     *            The free-form partial text input specified in the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForSuggestionsSummary withText(String text) {
+        this.text = text;
+        return this;
+    }
 
     /**
      * <p>
@@ -276,6 +321,212 @@ public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
     public SearchPlaceIndexForSuggestionsSummary withBiasPosition(
             java.util.Collection<Double> biasPosition) {
         setBiasPosition(biasPosition);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contains the coordinates for the optional bounding box specified in the
+     * request.
+     * </p>
+     *
+     * @return <p>
+     *         Contains the coordinates for the optional bounding box specified
+     *         in the request.
+     *         </p>
+     */
+    public java.util.List<Double> getFilterBBox() {
+        return filterBBox;
+    }
+
+    /**
+     * <p>
+     * Contains the coordinates for the optional bounding box specified in the
+     * request.
+     * </p>
+     *
+     * @param filterBBox <p>
+     *            Contains the coordinates for the optional bounding box
+     *            specified in the request.
+     *            </p>
+     */
+    public void setFilterBBox(java.util.Collection<Double> filterBBox) {
+        if (filterBBox == null) {
+            this.filterBBox = null;
+            return;
+        }
+
+        this.filterBBox = new java.util.ArrayList<Double>(filterBBox);
+    }
+
+    /**
+     * <p>
+     * Contains the coordinates for the optional bounding box specified in the
+     * request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param filterBBox <p>
+     *            Contains the coordinates for the optional bounding box
+     *            specified in the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForSuggestionsSummary withFilterBBox(Double... filterBBox) {
+        if (getFilterBBox() == null) {
+            this.filterBBox = new java.util.ArrayList<Double>(filterBBox.length);
+        }
+        for (Double value : filterBBox) {
+            this.filterBBox.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contains the coordinates for the optional bounding box specified in the
+     * request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param filterBBox <p>
+     *            Contains the coordinates for the optional bounding box
+     *            specified in the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForSuggestionsSummary withFilterBBox(
+            java.util.Collection<Double> filterBBox) {
+        setFilterBBox(filterBBox);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contains the optional country filter specified in the request.
+     * </p>
+     *
+     * @return <p>
+     *         Contains the optional country filter specified in the request.
+     *         </p>
+     */
+    public java.util.List<String> getFilterCountries() {
+        return filterCountries;
+    }
+
+    /**
+     * <p>
+     * Contains the optional country filter specified in the request.
+     * </p>
+     *
+     * @param filterCountries <p>
+     *            Contains the optional country filter specified in the request.
+     *            </p>
+     */
+    public void setFilterCountries(java.util.Collection<String> filterCountries) {
+        if (filterCountries == null) {
+            this.filterCountries = null;
+            return;
+        }
+
+        this.filterCountries = new java.util.ArrayList<String>(filterCountries);
+    }
+
+    /**
+     * <p>
+     * Contains the optional country filter specified in the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param filterCountries <p>
+     *            Contains the optional country filter specified in the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForSuggestionsSummary withFilterCountries(String... filterCountries) {
+        if (getFilterCountries() == null) {
+            this.filterCountries = new java.util.ArrayList<String>(filterCountries.length);
+        }
+        for (String value : filterCountries) {
+            this.filterCountries.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contains the optional country filter specified in the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param filterCountries <p>
+     *            Contains the optional country filter specified in the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForSuggestionsSummary withFilterCountries(
+            java.util.Collection<String> filterCountries) {
+        setFilterCountries(filterCountries);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contains the optional result count limit specified in the request.
+     * </p>
+     *
+     * @return <p>
+     *         Contains the optional result count limit specified in the
+     *         request.
+     *         </p>
+     */
+    public Integer getMaxResults() {
+        return maxResults;
+    }
+
+    /**
+     * <p>
+     * Contains the optional result count limit specified in the request.
+     * </p>
+     *
+     * @param maxResults <p>
+     *            Contains the optional result count limit specified in the
+     *            request.
+     *            </p>
+     */
+    public void setMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
+    }
+
+    /**
+     * <p>
+     * Contains the optional result count limit specified in the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param maxResults <p>
+     *            Contains the optional result count limit specified in the
+     *            request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForSuggestionsSummary withMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
         return this;
     }
 
@@ -466,84 +717,73 @@ public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
 
     /**
      * <p>
-     * Contains the coordinates for the optional bounding box specified in the
-     * request.
+     * The preferred language used to return results. Matches the language in
+     * the request. The value is a valid <a
+     * href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag, for
+     * example, <code>en</code> for English.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>2 - 35<br/>
      *
      * @return <p>
-     *         Contains the coordinates for the optional bounding box specified
-     *         in the request.
+     *         The preferred language used to return results. Matches the
+     *         language in the request. The value is a valid <a
+     *         href="https://tools.ietf.org/search/bcp47">BCP 47</a> language
+     *         tag, for example, <code>en</code> for English.
      *         </p>
      */
-    public java.util.List<Double> getFilterBBox() {
-        return filterBBox;
+    public String getLanguage() {
+        return language;
     }
 
     /**
      * <p>
-     * Contains the coordinates for the optional bounding box specified in the
-     * request.
-     * </p>
-     *
-     * @param filterBBox <p>
-     *            Contains the coordinates for the optional bounding box
-     *            specified in the request.
-     *            </p>
-     */
-    public void setFilterBBox(java.util.Collection<Double> filterBBox) {
-        if (filterBBox == null) {
-            this.filterBBox = null;
-            return;
-        }
-
-        this.filterBBox = new java.util.ArrayList<Double>(filterBBox);
-    }
-
-    /**
-     * <p>
-     * Contains the coordinates for the optional bounding box specified in the
-     * request.
+     * The preferred language used to return results. Matches the language in
+     * the request. The value is a valid <a
+     * href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag, for
+     * example, <code>en</code> for English.
      * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>2 - 35<br/>
      *
-     * @param filterBBox <p>
-     *            Contains the coordinates for the optional bounding box
-     *            specified in the request.
+     * @param language <p>
+     *            The preferred language used to return results. Matches the
+     *            language in the request. The value is a valid <a
+     *            href="https://tools.ietf.org/search/bcp47">BCP 47</a> language
+     *            tag, for example, <code>en</code> for English.
      *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
      */
-    public SearchPlaceIndexForSuggestionsSummary withFilterBBox(Double... filterBBox) {
-        if (getFilterBBox() == null) {
-            this.filterBBox = new java.util.ArrayList<Double>(filterBBox.length);
-        }
-        for (Double value : filterBBox) {
-            this.filterBBox.add(value);
-        }
-        return this;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     /**
      * <p>
-     * Contains the coordinates for the optional bounding box specified in the
-     * request.
+     * The preferred language used to return results. Matches the language in
+     * the request. The value is a valid <a
+     * href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag, for
+     * example, <code>en</code> for English.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>2 - 35<br/>
      *
-     * @param filterBBox <p>
-     *            Contains the coordinates for the optional bounding box
-     *            specified in the request.
+     * @param language <p>
+     *            The preferred language used to return results. Matches the
+     *            language in the request. The value is a valid <a
+     *            href="https://tools.ietf.org/search/bcp47">BCP 47</a> language
+     *            tag, for example, <code>en</code> for English.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForSuggestionsSummary withFilterBBox(
-            java.util.Collection<Double> filterBBox) {
-        setFilterBBox(filterBBox);
+    public SearchPlaceIndexForSuggestionsSummary withLanguage(String language) {
+        this.language = language;
         return this;
     }
 
@@ -623,246 +863,6 @@ public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
     }
 
     /**
-     * <p>
-     * Contains the optional country filter specified in the request.
-     * </p>
-     *
-     * @return <p>
-     *         Contains the optional country filter specified in the request.
-     *         </p>
-     */
-    public java.util.List<String> getFilterCountries() {
-        return filterCountries;
-    }
-
-    /**
-     * <p>
-     * Contains the optional country filter specified in the request.
-     * </p>
-     *
-     * @param filterCountries <p>
-     *            Contains the optional country filter specified in the request.
-     *            </p>
-     */
-    public void setFilterCountries(java.util.Collection<String> filterCountries) {
-        if (filterCountries == null) {
-            this.filterCountries = null;
-            return;
-        }
-
-        this.filterCountries = new java.util.ArrayList<String>(filterCountries);
-    }
-
-    /**
-     * <p>
-     * Contains the optional country filter specified in the request.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param filterCountries <p>
-     *            Contains the optional country filter specified in the request.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForSuggestionsSummary withFilterCountries(String... filterCountries) {
-        if (getFilterCountries() == null) {
-            this.filterCountries = new java.util.ArrayList<String>(filterCountries.length);
-        }
-        for (String value : filterCountries) {
-            this.filterCountries.add(value);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * Contains the optional country filter specified in the request.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param filterCountries <p>
-     *            Contains the optional country filter specified in the request.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForSuggestionsSummary withFilterCountries(
-            java.util.Collection<String> filterCountries) {
-        setFilterCountries(filterCountries);
-        return this;
-    }
-
-    /**
-     * <p>
-     * The preferred language used to return results. Matches the language in
-     * the request. The value is a valid <a
-     * href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag, for
-     * example, <code>en</code> for English.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>2 - 35<br/>
-     *
-     * @return <p>
-     *         The preferred language used to return results. Matches the
-     *         language in the request. The value is a valid <a
-     *         href="https://tools.ietf.org/search/bcp47">BCP 47</a> language
-     *         tag, for example, <code>en</code> for English.
-     *         </p>
-     */
-    public String getLanguage() {
-        return language;
-    }
-
-    /**
-     * <p>
-     * The preferred language used to return results. Matches the language in
-     * the request. The value is a valid <a
-     * href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag, for
-     * example, <code>en</code> for English.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>2 - 35<br/>
-     *
-     * @param language <p>
-     *            The preferred language used to return results. Matches the
-     *            language in the request. The value is a valid <a
-     *            href="https://tools.ietf.org/search/bcp47">BCP 47</a> language
-     *            tag, for example, <code>en</code> for English.
-     *            </p>
-     */
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    /**
-     * <p>
-     * The preferred language used to return results. Matches the language in
-     * the request. The value is a valid <a
-     * href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag, for
-     * example, <code>en</code> for English.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>2 - 35<br/>
-     *
-     * @param language <p>
-     *            The preferred language used to return results. Matches the
-     *            language in the request. The value is a valid <a
-     *            href="https://tools.ietf.org/search/bcp47">BCP 47</a> language
-     *            tag, for example, <code>en</code> for English.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForSuggestionsSummary withLanguage(String language) {
-        this.language = language;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Contains the optional result count limit specified in the request.
-     * </p>
-     *
-     * @return <p>
-     *         Contains the optional result count limit specified in the
-     *         request.
-     *         </p>
-     */
-    public Integer getMaxResults() {
-        return maxResults;
-    }
-
-    /**
-     * <p>
-     * Contains the optional result count limit specified in the request.
-     * </p>
-     *
-     * @param maxResults <p>
-     *            Contains the optional result count limit specified in the
-     *            request.
-     *            </p>
-     */
-    public void setMaxResults(Integer maxResults) {
-        this.maxResults = maxResults;
-    }
-
-    /**
-     * <p>
-     * Contains the optional result count limit specified in the request.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param maxResults <p>
-     *            Contains the optional result count limit specified in the
-     *            request.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForSuggestionsSummary withMaxResults(Integer maxResults) {
-        this.maxResults = maxResults;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The free-form partial text input specified in the request.
-     * </p>
-     *
-     * @return <p>
-     *         The free-form partial text input specified in the request.
-     *         </p>
-     */
-    public String getText() {
-        return text;
-    }
-
-    /**
-     * <p>
-     * The free-form partial text input specified in the request.
-     * </p>
-     *
-     * @param text <p>
-     *            The free-form partial text input specified in the request.
-     *            </p>
-     */
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    /**
-     * <p>
-     * The free-form partial text input specified in the request.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param text <p>
-     *            The free-form partial text input specified in the request.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForSuggestionsSummary withText(String text) {
-        this.text = text;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -873,22 +873,22 @@ public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getText() != null)
+            sb.append("Text: " + getText() + ",");
         if (getBiasPosition() != null)
             sb.append("BiasPosition: " + getBiasPosition() + ",");
-        if (getDataSource() != null)
-            sb.append("DataSource: " + getDataSource() + ",");
         if (getFilterBBox() != null)
             sb.append("FilterBBox: " + getFilterBBox() + ",");
-        if (getFilterCategories() != null)
-            sb.append("FilterCategories: " + getFilterCategories() + ",");
         if (getFilterCountries() != null)
             sb.append("FilterCountries: " + getFilterCountries() + ",");
-        if (getLanguage() != null)
-            sb.append("Language: " + getLanguage() + ",");
         if (getMaxResults() != null)
             sb.append("MaxResults: " + getMaxResults() + ",");
-        if (getText() != null)
-            sb.append("Text: " + getText());
+        if (getDataSource() != null)
+            sb.append("DataSource: " + getDataSource() + ",");
+        if (getLanguage() != null)
+            sb.append("Language: " + getLanguage() + ",");
+        if (getFilterCategories() != null)
+            sb.append("FilterCategories: " + getFilterCategories());
         sb.append("}");
         return sb.toString();
     }
@@ -898,17 +898,17 @@ public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
         hashCode = prime * hashCode
                 + ((getBiasPosition() == null) ? 0 : getBiasPosition().hashCode());
-        hashCode = prime * hashCode + ((getDataSource() == null) ? 0 : getDataSource().hashCode());
         hashCode = prime * hashCode + ((getFilterBBox() == null) ? 0 : getFilterBBox().hashCode());
         hashCode = prime * hashCode
-                + ((getFilterCategories() == null) ? 0 : getFilterCategories().hashCode());
-        hashCode = prime * hashCode
                 + ((getFilterCountries() == null) ? 0 : getFilterCountries().hashCode());
-        hashCode = prime * hashCode + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
-        hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
+        hashCode = prime * hashCode + ((getDataSource() == null) ? 0 : getDataSource().hashCode());
+        hashCode = prime * hashCode + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
+        hashCode = prime * hashCode
+                + ((getFilterCategories() == null) ? 0 : getFilterCategories().hashCode());
         return hashCode;
     }
 
@@ -923,43 +923,43 @@ public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
             return false;
         SearchPlaceIndexForSuggestionsSummary other = (SearchPlaceIndexForSuggestionsSummary) obj;
 
+        if (other.getText() == null ^ this.getText() == null)
+            return false;
+        if (other.getText() != null && other.getText().equals(this.getText()) == false)
+            return false;
         if (other.getBiasPosition() == null ^ this.getBiasPosition() == null)
             return false;
         if (other.getBiasPosition() != null
                 && other.getBiasPosition().equals(this.getBiasPosition()) == false)
-            return false;
-        if (other.getDataSource() == null ^ this.getDataSource() == null)
-            return false;
-        if (other.getDataSource() != null
-                && other.getDataSource().equals(this.getDataSource()) == false)
             return false;
         if (other.getFilterBBox() == null ^ this.getFilterBBox() == null)
             return false;
         if (other.getFilterBBox() != null
                 && other.getFilterBBox().equals(this.getFilterBBox()) == false)
             return false;
-        if (other.getFilterCategories() == null ^ this.getFilterCategories() == null)
-            return false;
-        if (other.getFilterCategories() != null
-                && other.getFilterCategories().equals(this.getFilterCategories()) == false)
-            return false;
         if (other.getFilterCountries() == null ^ this.getFilterCountries() == null)
             return false;
         if (other.getFilterCountries() != null
                 && other.getFilterCountries().equals(this.getFilterCountries()) == false)
-            return false;
-        if (other.getLanguage() == null ^ this.getLanguage() == null)
-            return false;
-        if (other.getLanguage() != null && other.getLanguage().equals(this.getLanguage()) == false)
             return false;
         if (other.getMaxResults() == null ^ this.getMaxResults() == null)
             return false;
         if (other.getMaxResults() != null
                 && other.getMaxResults().equals(this.getMaxResults()) == false)
             return false;
-        if (other.getText() == null ^ this.getText() == null)
+        if (other.getDataSource() == null ^ this.getDataSource() == null)
             return false;
-        if (other.getText() != null && other.getText().equals(this.getText()) == false)
+        if (other.getDataSource() != null
+                && other.getDataSource().equals(this.getDataSource()) == false)
+            return false;
+        if (other.getLanguage() == null ^ this.getLanguage() == null)
+            return false;
+        if (other.getLanguage() != null && other.getLanguage().equals(this.getLanguage()) == false)
+            return false;
+        if (other.getFilterCategories() == null ^ this.getFilterCategories() == null)
+            return false;
+        if (other.getFilterCategories() != null
+                && other.getFilterCategories().equals(this.getFilterCategories()) == false)
             return false;
         return true;
     }

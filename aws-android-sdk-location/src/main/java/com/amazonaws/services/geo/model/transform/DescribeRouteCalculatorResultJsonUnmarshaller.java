@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,35 +34,35 @@ public class DescribeRouteCalculatorResultJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("CalculatorArn")) {
-                describeRouteCalculatorResult.setCalculatorArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("CalculatorName")) {
+            if (name.equals("CalculatorName")) {
                 describeRouteCalculatorResult.setCalculatorName(StringJsonUnmarshaller
                         .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("CalculatorArn")) {
+                describeRouteCalculatorResult.setCalculatorArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("PricingPlan")) {
+                describeRouteCalculatorResult.setPricingPlan(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Description")) {
+                describeRouteCalculatorResult.setDescription(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("CreateTime")) {
                 describeRouteCalculatorResult.setCreateTime(DateJsonUnmarshaller.getInstance(
                         TimestampFormat.ISO_8601)
                         .unmarshall(context));
+            } else if (name.equals("UpdateTime")) {
+                describeRouteCalculatorResult.setUpdateTime(DateJsonUnmarshaller.getInstance(
+                        TimestampFormat.ISO_8601)
+                        .unmarshall(context));
             } else if (name.equals("DataSource")) {
                 describeRouteCalculatorResult.setDataSource(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Description")) {
-                describeRouteCalculatorResult.setDescription(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("PricingPlan")) {
-                describeRouteCalculatorResult.setPricingPlan(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Tags")) {
                 describeRouteCalculatorResult.setTags(new MapUnmarshaller<String>(
                         StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("UpdateTime")) {
-                describeRouteCalculatorResult.setUpdateTime(DateJsonUnmarshaller.getInstance(
-                        TimestampFormat.ISO_8601)
-                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

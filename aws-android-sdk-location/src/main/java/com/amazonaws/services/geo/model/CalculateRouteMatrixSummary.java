@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -55,13 +55,15 @@ public class CalculateRouteMatrixSummary implements Serializable {
 
     /**
      * <p>
-     * The unit of measurement for route distances.
+     * The count of cells in the route matrix. Equal to the number of
+     * <code>DeparturePositions</code> multiplied by the number of
+     * <code>DestinationPositions</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Kilometers, Miles
+     * <b>Range: </b>1 - 160000<br/>
      */
-    private String distanceUnit;
+    private Integer routeCount;
 
     /**
      * <p>
@@ -76,15 +78,13 @@ public class CalculateRouteMatrixSummary implements Serializable {
 
     /**
      * <p>
-     * The count of cells in the route matrix. Equal to the number of
-     * <code>DeparturePositions</code> multiplied by the number of
-     * <code>DestinationPositions</code>.
+     * The unit of measurement for route distances.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 160000<br/>
+     * <b>Allowed Values: </b>Kilometers, Miles
      */
-    private Integer routeCount;
+    private String distanceUnit;
 
     /**
      * <p>
@@ -273,6 +273,132 @@ public class CalculateRouteMatrixSummary implements Serializable {
 
     /**
      * <p>
+     * The count of cells in the route matrix. Equal to the number of
+     * <code>DeparturePositions</code> multiplied by the number of
+     * <code>DestinationPositions</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 160000<br/>
+     *
+     * @return <p>
+     *         The count of cells in the route matrix. Equal to the number of
+     *         <code>DeparturePositions</code> multiplied by the number of
+     *         <code>DestinationPositions</code>.
+     *         </p>
+     */
+    public Integer getRouteCount() {
+        return routeCount;
+    }
+
+    /**
+     * <p>
+     * The count of cells in the route matrix. Equal to the number of
+     * <code>DeparturePositions</code> multiplied by the number of
+     * <code>DestinationPositions</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 160000<br/>
+     *
+     * @param routeCount <p>
+     *            The count of cells in the route matrix. Equal to the number of
+     *            <code>DeparturePositions</code> multiplied by the number of
+     *            <code>DestinationPositions</code>.
+     *            </p>
+     */
+    public void setRouteCount(Integer routeCount) {
+        this.routeCount = routeCount;
+    }
+
+    /**
+     * <p>
+     * The count of cells in the route matrix. Equal to the number of
+     * <code>DeparturePositions</code> multiplied by the number of
+     * <code>DestinationPositions</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 160000<br/>
+     *
+     * @param routeCount <p>
+     *            The count of cells in the route matrix. Equal to the number of
+     *            <code>DeparturePositions</code> multiplied by the number of
+     *            <code>DestinationPositions</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CalculateRouteMatrixSummary withRouteCount(Integer routeCount) {
+        this.routeCount = routeCount;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The count of error results in the route matrix. If this number is 0, all
+     * routes were calculated successfully.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 160000<br/>
+     *
+     * @return <p>
+     *         The count of error results in the route matrix. If this number is
+     *         0, all routes were calculated successfully.
+     *         </p>
+     */
+    public Integer getErrorCount() {
+        return errorCount;
+    }
+
+    /**
+     * <p>
+     * The count of error results in the route matrix. If this number is 0, all
+     * routes were calculated successfully.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 160000<br/>
+     *
+     * @param errorCount <p>
+     *            The count of error results in the route matrix. If this number
+     *            is 0, all routes were calculated successfully.
+     *            </p>
+     */
+    public void setErrorCount(Integer errorCount) {
+        this.errorCount = errorCount;
+    }
+
+    /**
+     * <p>
+     * The count of error results in the route matrix. If this number is 0, all
+     * routes were calculated successfully.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 160000<br/>
+     *
+     * @param errorCount <p>
+     *            The count of error results in the route matrix. If this number
+     *            is 0, all routes were calculated successfully.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CalculateRouteMatrixSummary withErrorCount(Integer errorCount) {
+        this.errorCount = errorCount;
+        return this;
+    }
+
+    /**
+     * <p>
      * The unit of measurement for route distances.
      * </p>
      * <p>
@@ -369,132 +495,6 @@ public class CalculateRouteMatrixSummary implements Serializable {
     }
 
     /**
-     * <p>
-     * The count of error results in the route matrix. If this number is 0, all
-     * routes were calculated successfully.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 160000<br/>
-     *
-     * @return <p>
-     *         The count of error results in the route matrix. If this number is
-     *         0, all routes were calculated successfully.
-     *         </p>
-     */
-    public Integer getErrorCount() {
-        return errorCount;
-    }
-
-    /**
-     * <p>
-     * The count of error results in the route matrix. If this number is 0, all
-     * routes were calculated successfully.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 160000<br/>
-     *
-     * @param errorCount <p>
-     *            The count of error results in the route matrix. If this number
-     *            is 0, all routes were calculated successfully.
-     *            </p>
-     */
-    public void setErrorCount(Integer errorCount) {
-        this.errorCount = errorCount;
-    }
-
-    /**
-     * <p>
-     * The count of error results in the route matrix. If this number is 0, all
-     * routes were calculated successfully.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 160000<br/>
-     *
-     * @param errorCount <p>
-     *            The count of error results in the route matrix. If this number
-     *            is 0, all routes were calculated successfully.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CalculateRouteMatrixSummary withErrorCount(Integer errorCount) {
-        this.errorCount = errorCount;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The count of cells in the route matrix. Equal to the number of
-     * <code>DeparturePositions</code> multiplied by the number of
-     * <code>DestinationPositions</code>.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 160000<br/>
-     *
-     * @return <p>
-     *         The count of cells in the route matrix. Equal to the number of
-     *         <code>DeparturePositions</code> multiplied by the number of
-     *         <code>DestinationPositions</code>.
-     *         </p>
-     */
-    public Integer getRouteCount() {
-        return routeCount;
-    }
-
-    /**
-     * <p>
-     * The count of cells in the route matrix. Equal to the number of
-     * <code>DeparturePositions</code> multiplied by the number of
-     * <code>DestinationPositions</code>.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 160000<br/>
-     *
-     * @param routeCount <p>
-     *            The count of cells in the route matrix. Equal to the number of
-     *            <code>DeparturePositions</code> multiplied by the number of
-     *            <code>DestinationPositions</code>.
-     *            </p>
-     */
-    public void setRouteCount(Integer routeCount) {
-        this.routeCount = routeCount;
-    }
-
-    /**
-     * <p>
-     * The count of cells in the route matrix. Equal to the number of
-     * <code>DeparturePositions</code> multiplied by the number of
-     * <code>DestinationPositions</code>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 160000<br/>
-     *
-     * @param routeCount <p>
-     *            The count of cells in the route matrix. Equal to the number of
-     *            <code>DeparturePositions</code> multiplied by the number of
-     *            <code>DestinationPositions</code>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CalculateRouteMatrixSummary withRouteCount(Integer routeCount) {
-        this.routeCount = routeCount;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -507,12 +507,12 @@ public class CalculateRouteMatrixSummary implements Serializable {
         sb.append("{");
         if (getDataSource() != null)
             sb.append("DataSource: " + getDataSource() + ",");
-        if (getDistanceUnit() != null)
-            sb.append("DistanceUnit: " + getDistanceUnit() + ",");
+        if (getRouteCount() != null)
+            sb.append("RouteCount: " + getRouteCount() + ",");
         if (getErrorCount() != null)
             sb.append("ErrorCount: " + getErrorCount() + ",");
-        if (getRouteCount() != null)
-            sb.append("RouteCount: " + getRouteCount());
+        if (getDistanceUnit() != null)
+            sb.append("DistanceUnit: " + getDistanceUnit());
         sb.append("}");
         return sb.toString();
     }
@@ -523,10 +523,10 @@ public class CalculateRouteMatrixSummary implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getDataSource() == null) ? 0 : getDataSource().hashCode());
+        hashCode = prime * hashCode + ((getRouteCount() == null) ? 0 : getRouteCount().hashCode());
+        hashCode = prime * hashCode + ((getErrorCount() == null) ? 0 : getErrorCount().hashCode());
         hashCode = prime * hashCode
                 + ((getDistanceUnit() == null) ? 0 : getDistanceUnit().hashCode());
-        hashCode = prime * hashCode + ((getErrorCount() == null) ? 0 : getErrorCount().hashCode());
-        hashCode = prime * hashCode + ((getRouteCount() == null) ? 0 : getRouteCount().hashCode());
         return hashCode;
     }
 
@@ -546,20 +546,20 @@ public class CalculateRouteMatrixSummary implements Serializable {
         if (other.getDataSource() != null
                 && other.getDataSource().equals(this.getDataSource()) == false)
             return false;
-        if (other.getDistanceUnit() == null ^ this.getDistanceUnit() == null)
+        if (other.getRouteCount() == null ^ this.getRouteCount() == null)
             return false;
-        if (other.getDistanceUnit() != null
-                && other.getDistanceUnit().equals(this.getDistanceUnit()) == false)
+        if (other.getRouteCount() != null
+                && other.getRouteCount().equals(this.getRouteCount()) == false)
             return false;
         if (other.getErrorCount() == null ^ this.getErrorCount() == null)
             return false;
         if (other.getErrorCount() != null
                 && other.getErrorCount().equals(this.getErrorCount()) == false)
             return false;
-        if (other.getRouteCount() == null ^ this.getRouteCount() == null)
+        if (other.getDistanceUnit() == null ^ this.getDistanceUnit() == null)
             return false;
-        if (other.getRouteCount() != null
-                && other.getRouteCount().equals(this.getRouteCount()) == false)
+        if (other.getDistanceUnit() != null
+                && other.getDistanceUnit().equals(this.getDistanceUnit()) == false)
             return false;
         return true;
     }

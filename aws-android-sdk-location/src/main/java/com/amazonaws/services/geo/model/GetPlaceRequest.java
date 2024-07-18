@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -56,21 +56,16 @@ public class GetPlaceRequest extends AmazonWebServiceRequest implements Serializ
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String indexName;
 
     /**
      * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
+     * The identifier of the place to find.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
      */
-    private String key;
+    private String placeId;
 
     /**
      * <p>
@@ -107,10 +102,15 @@ public class GetPlaceRequest extends AmazonWebServiceRequest implements Serializ
 
     /**
      * <p>
-     * The identifier of the place to find.
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
      */
-    private String placeId;
+    private String key;
 
     /**
      * <p>
@@ -119,7 +119,7 @@ public class GetPlaceRequest extends AmazonWebServiceRequest implements Serializ
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
      *         The name of the place index resource that you want to use for the
@@ -137,7 +137,7 @@ public class GetPlaceRequest extends AmazonWebServiceRequest implements Serializ
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param indexName <p>
      *            The name of the place index resource that you want to use for
@@ -158,7 +158,7 @@ public class GetPlaceRequest extends AmazonWebServiceRequest implements Serializ
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param indexName <p>
      *            The name of the place index resource that you want to use for
@@ -174,67 +174,46 @@ public class GetPlaceRequest extends AmazonWebServiceRequest implements Serializ
 
     /**
      * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
+     * The identifier of the place to find.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
      *
      * @return <p>
-     *         The optional <a href=
-     *         "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     *         >API key</a> to authorize the request.
+     *         The identifier of the place to find.
      *         </p>
      */
-    public String getKey() {
-        return key;
+    public String getPlaceId() {
+        return placeId;
     }
 
     /**
      * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
+     * The identifier of the place to find.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
      *
-     * @param key <p>
-     *            The optional <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     *            >API key</a> to authorize the request.
+     * @param placeId <p>
+     *            The identifier of the place to find.
      *            </p>
      */
-    public void setKey(String key) {
-        this.key = key;
+    public void setPlaceId(String placeId) {
+        this.placeId = placeId;
     }
 
     /**
      * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
+     * The identifier of the place to find.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
      *
-     * @param key <p>
-     *            The optional <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     *            >API key</a> to authorize the request.
+     * @param placeId <p>
+     *            The identifier of the place to find.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetPlaceRequest withKey(String key) {
-        this.key = key;
+    public GetPlaceRequest withPlaceId(String placeId) {
+        this.placeId = placeId;
         return this;
     }
 
@@ -432,46 +411,67 @@ public class GetPlaceRequest extends AmazonWebServiceRequest implements Serializ
 
     /**
      * <p>
-     * The identifier of the place to find.
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
      *
      * @return <p>
-     *         The identifier of the place to find.
+     *         The optional <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *         >API key</a> to authorize the request.
      *         </p>
      */
-    public String getPlaceId() {
-        return placeId;
+    public String getKey() {
+        return key;
     }
 
     /**
      * <p>
-     * The identifier of the place to find.
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
      *
-     * @param placeId <p>
-     *            The identifier of the place to find.
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
      *            </p>
      */
-    public void setPlaceId(String placeId) {
-        this.placeId = placeId;
+    public void setKey(String key) {
+        this.key = key;
     }
 
     /**
      * <p>
-     * The identifier of the place to find.
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
      *
-     * @param placeId <p>
-     *            The identifier of the place to find.
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetPlaceRequest withPlaceId(String placeId) {
-        this.placeId = placeId;
+    public GetPlaceRequest withKey(String key) {
+        this.key = key;
         return this;
     }
 
@@ -488,12 +488,12 @@ public class GetPlaceRequest extends AmazonWebServiceRequest implements Serializ
         sb.append("{");
         if (getIndexName() != null)
             sb.append("IndexName: " + getIndexName() + ",");
-        if (getKey() != null)
-            sb.append("Key: " + getKey() + ",");
+        if (getPlaceId() != null)
+            sb.append("PlaceId: " + getPlaceId() + ",");
         if (getLanguage() != null)
             sb.append("Language: " + getLanguage() + ",");
-        if (getPlaceId() != null)
-            sb.append("PlaceId: " + getPlaceId());
+        if (getKey() != null)
+            sb.append("Key: " + getKey());
         sb.append("}");
         return sb.toString();
     }
@@ -504,9 +504,9 @@ public class GetPlaceRequest extends AmazonWebServiceRequest implements Serializ
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
-        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
-        hashCode = prime * hashCode + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
         hashCode = prime * hashCode + ((getPlaceId() == null) ? 0 : getPlaceId().hashCode());
+        hashCode = prime * hashCode + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
         return hashCode;
     }
 
@@ -526,17 +526,17 @@ public class GetPlaceRequest extends AmazonWebServiceRequest implements Serializ
         if (other.getIndexName() != null
                 && other.getIndexName().equals(this.getIndexName()) == false)
             return false;
-        if (other.getKey() == null ^ this.getKey() == null)
+        if (other.getPlaceId() == null ^ this.getPlaceId() == null)
             return false;
-        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
+        if (other.getPlaceId() != null && other.getPlaceId().equals(this.getPlaceId()) == false)
             return false;
         if (other.getLanguage() == null ^ this.getLanguage() == null)
             return false;
         if (other.getLanguage() != null && other.getLanguage().equals(this.getLanguage()) == false)
             return false;
-        if (other.getPlaceId() == null ^ this.getPlaceId() == null)
+        if (other.getKey() == null ^ this.getKey() == null)
             return false;
-        if (other.getPlaceId() != null && other.getPlaceId().equals(this.getPlaceId()) == false)
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
             return false;
         return true;
     }
