@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,17 +30,9 @@ public class BatchUpdateDevicePositionError implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      */
     private String deviceId;
-
-    /**
-     * <p>
-     * Contains details related to the error code such as the error code and
-     * error message.
-     * </p>
-     */
-    private BatchItemError error;
 
     /**
      * <p>
@@ -53,12 +45,20 @@ public class BatchUpdateDevicePositionError implements Serializable {
 
     /**
      * <p>
+     * Contains details related to the error code such as the error code and
+     * error message.
+     * </p>
+     */
+    private BatchItemError error;
+
+    /**
+     * <p>
      * The device associated with the failed location update.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      *
      * @return <p>
      *         The device associated with the failed location update.
@@ -75,7 +75,7 @@ public class BatchUpdateDevicePositionError implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      *
      * @param deviceId <p>
      *            The device associated with the failed location update.
@@ -95,7 +95,7 @@ public class BatchUpdateDevicePositionError implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>[-._\p{L}\p{N}]+<br/>
      *
      * @param deviceId <p>
      *            The device associated with the failed location update.
@@ -105,57 +105,6 @@ public class BatchUpdateDevicePositionError implements Serializable {
      */
     public BatchUpdateDevicePositionError withDeviceId(String deviceId) {
         this.deviceId = deviceId;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Contains details related to the error code such as the error code and
-     * error message.
-     * </p>
-     *
-     * @return <p>
-     *         Contains details related to the error code such as the error code
-     *         and error message.
-     *         </p>
-     */
-    public BatchItemError getError() {
-        return error;
-    }
-
-    /**
-     * <p>
-     * Contains details related to the error code such as the error code and
-     * error message.
-     * </p>
-     *
-     * @param error <p>
-     *            Contains details related to the error code such as the error
-     *            code and error message.
-     *            </p>
-     */
-    public void setError(BatchItemError error) {
-        this.error = error;
-    }
-
-    /**
-     * <p>
-     * Contains details related to the error code such as the error code and
-     * error message.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param error <p>
-     *            Contains details related to the error code such as the error
-     *            code and error message.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public BatchUpdateDevicePositionError withError(BatchItemError error) {
-        this.error = error;
         return this;
     }
 
@@ -219,6 +168,57 @@ public class BatchUpdateDevicePositionError implements Serializable {
     }
 
     /**
+     * <p>
+     * Contains details related to the error code such as the error code and
+     * error message.
+     * </p>
+     *
+     * @return <p>
+     *         Contains details related to the error code such as the error code
+     *         and error message.
+     *         </p>
+     */
+    public BatchItemError getError() {
+        return error;
+    }
+
+    /**
+     * <p>
+     * Contains details related to the error code such as the error code and
+     * error message.
+     * </p>
+     *
+     * @param error <p>
+     *            Contains details related to the error code such as the error
+     *            code and error message.
+     *            </p>
+     */
+    public void setError(BatchItemError error) {
+        this.error = error;
+    }
+
+    /**
+     * <p>
+     * Contains details related to the error code such as the error code and
+     * error message.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param error <p>
+     *            Contains details related to the error code such as the error
+     *            code and error message.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public BatchUpdateDevicePositionError withError(BatchItemError error) {
+        this.error = error;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -231,10 +231,10 @@ public class BatchUpdateDevicePositionError implements Serializable {
         sb.append("{");
         if (getDeviceId() != null)
             sb.append("DeviceId: " + getDeviceId() + ",");
-        if (getError() != null)
-            sb.append("Error: " + getError() + ",");
         if (getSampleTime() != null)
-            sb.append("SampleTime: " + getSampleTime());
+            sb.append("SampleTime: " + getSampleTime() + ",");
+        if (getError() != null)
+            sb.append("Error: " + getError());
         sb.append("}");
         return sb.toString();
     }
@@ -245,8 +245,8 @@ public class BatchUpdateDevicePositionError implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getDeviceId() == null) ? 0 : getDeviceId().hashCode());
-        hashCode = prime * hashCode + ((getError() == null) ? 0 : getError().hashCode());
         hashCode = prime * hashCode + ((getSampleTime() == null) ? 0 : getSampleTime().hashCode());
+        hashCode = prime * hashCode + ((getError() == null) ? 0 : getError().hashCode());
         return hashCode;
     }
 
@@ -265,14 +265,14 @@ public class BatchUpdateDevicePositionError implements Serializable {
             return false;
         if (other.getDeviceId() != null && other.getDeviceId().equals(this.getDeviceId()) == false)
             return false;
-        if (other.getError() == null ^ this.getError() == null)
-            return false;
-        if (other.getError() != null && other.getError().equals(this.getError()) == false)
-            return false;
         if (other.getSampleTime() == null ^ this.getSampleTime() == null)
             return false;
         if (other.getSampleTime() != null
                 && other.getSampleTime().equals(this.getSampleTime()) == false)
+            return false;
+        if (other.getError() == null ^ this.getError() == null)
+            return false;
+        if (other.getError() != null && other.getError().equals(this.getError()) == false)
             return false;
         return true;
     }

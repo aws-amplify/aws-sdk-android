@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -69,6 +69,11 @@ public class SearchPlaceIndexForTextRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (searchPlaceIndexForTextRequest.getText() != null) {
+                String text = searchPlaceIndexForTextRequest.getText();
+                jsonWriter.name("Text");
+                jsonWriter.value(text);
+            }
             if (searchPlaceIndexForTextRequest.getBiasPosition() != null) {
                 java.util.List<Double> biasPosition = searchPlaceIndexForTextRequest
                         .getBiasPosition();
@@ -92,18 +97,6 @@ public class SearchPlaceIndexForTextRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
-            if (searchPlaceIndexForTextRequest.getFilterCategories() != null) {
-                java.util.List<String> filterCategories = searchPlaceIndexForTextRequest
-                        .getFilterCategories();
-                jsonWriter.name("FilterCategories");
-                jsonWriter.beginArray();
-                for (String filterCategoriesItem : filterCategories) {
-                    if (filterCategoriesItem != null) {
-                        jsonWriter.value(filterCategoriesItem);
-                    }
-                }
-                jsonWriter.endArray();
-            }
             if (searchPlaceIndexForTextRequest.getFilterCountries() != null) {
                 java.util.List<String> filterCountries = searchPlaceIndexForTextRequest
                         .getFilterCountries();
@@ -116,20 +109,27 @@ public class SearchPlaceIndexForTextRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
-            if (searchPlaceIndexForTextRequest.getLanguage() != null) {
-                String language = searchPlaceIndexForTextRequest.getLanguage();
-                jsonWriter.name("Language");
-                jsonWriter.value(language);
-            }
             if (searchPlaceIndexForTextRequest.getMaxResults() != null) {
                 Integer maxResults = searchPlaceIndexForTextRequest.getMaxResults();
                 jsonWriter.name("MaxResults");
                 jsonWriter.value(maxResults);
             }
-            if (searchPlaceIndexForTextRequest.getText() != null) {
-                String text = searchPlaceIndexForTextRequest.getText();
-                jsonWriter.name("Text");
-                jsonWriter.value(text);
+            if (searchPlaceIndexForTextRequest.getLanguage() != null) {
+                String language = searchPlaceIndexForTextRequest.getLanguage();
+                jsonWriter.name("Language");
+                jsonWriter.value(language);
+            }
+            if (searchPlaceIndexForTextRequest.getFilterCategories() != null) {
+                java.util.List<String> filterCategories = searchPlaceIndexForTextRequest
+                        .getFilterCategories();
+                jsonWriter.name("FilterCategories");
+                jsonWriter.beginArray();
+                for (String filterCategoriesItem : filterCategories) {
+                    if (filterCategoriesItem != null) {
+                        jsonWriter.value(filterCategoriesItem);
+                    }
+                }
+                jsonWriter.endArray();
             }
 
             jsonWriter.endObject();
@@ -143,7 +143,7 @@ public class SearchPlaceIndexForTextRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
         request.setHostPrefix("places.");
 

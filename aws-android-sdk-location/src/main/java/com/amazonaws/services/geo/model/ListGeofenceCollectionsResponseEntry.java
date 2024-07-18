@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,6 +21,12 @@ import java.io.Serializable;
  * <p>
  * Contains the geofence collection details.
  * </p>
+ * <note>
+ * <p>
+ * The returned geometry will always match the geometry format used when the
+ * geofence was created.
+ * </p>
+ * </note>
  */
 public class ListGeofenceCollectionsResponseEntry implements Serializable {
     /**
@@ -30,18 +36,9 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String collectionName;
-
-    /**
-     * <p>
-     * The timestamp for when the geofence collection was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-     * </p>
-     */
-    private java.util.Date createTime;
 
     /**
      * <p>
@@ -73,6 +70,15 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
+     * The timestamp for when the geofence collection was created in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
+     * </p>
+     */
+    private java.util.Date createTime;
+
+    /**
+     * <p>
      * Specifies a timestamp for when the resource was last updated in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
@@ -87,7 +93,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
      *         The name of the geofence collection.
@@ -104,7 +110,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param collectionName <p>
      *            The name of the geofence collection.
@@ -124,7 +130,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param collectionName <p>
      *            The name of the geofence collection.
@@ -134,65 +140,6 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
      */
     public ListGeofenceCollectionsResponseEntry withCollectionName(String collectionName) {
         this.collectionName = collectionName;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The timestamp for when the geofence collection was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-     * </p>
-     *
-     * @return <p>
-     *         The timestamp for when the geofence collection was created in <a
-     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-     *         </p>
-     */
-    public java.util.Date getCreateTime() {
-        return createTime;
-    }
-
-    /**
-     * <p>
-     * The timestamp for when the geofence collection was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-     * </p>
-     *
-     * @param createTime <p>
-     *            The timestamp for when the geofence collection was created in
-     *            <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-     *            </p>
-     */
-    public void setCreateTime(java.util.Date createTime) {
-        this.createTime = createTime;
-    }
-
-    /**
-     * <p>
-     * The timestamp for when the geofence collection was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param createTime <p>
-     *            The timestamp for when the geofence collection was created in
-     *            <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public ListGeofenceCollectionsResponseEntry withCreateTime(java.util.Date createTime) {
-        this.createTime = createTime;
         return this;
     }
 
@@ -400,6 +347,65 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
+     * The timestamp for when the geofence collection was created in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp for when the geofence collection was created in <a
+     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
+     *         </p>
+     */
+    public java.util.Date getCreateTime() {
+        return createTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp for when the geofence collection was created in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
+     * </p>
+     *
+     * @param createTime <p>
+     *            The timestamp for when the geofence collection was created in
+     *            <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
+     *            </p>
+     */
+    public void setCreateTime(java.util.Date createTime) {
+        this.createTime = createTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp for when the geofence collection was created in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param createTime <p>
+     *            The timestamp for when the geofence collection was created in
+     *            <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListGeofenceCollectionsResponseEntry withCreateTime(java.util.Date createTime) {
+        this.createTime = createTime;
+        return this;
+    }
+
+    /**
+     * <p>
      * Specifies a timestamp for when the resource was last updated in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
@@ -470,14 +476,14 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
         sb.append("{");
         if (getCollectionName() != null)
             sb.append("CollectionName: " + getCollectionName() + ",");
-        if (getCreateTime() != null)
-            sb.append("CreateTime: " + getCreateTime() + ",");
         if (getDescription() != null)
             sb.append("Description: " + getDescription() + ",");
         if (getPricingPlan() != null)
             sb.append("PricingPlan: " + getPricingPlan() + ",");
         if (getPricingPlanDataSource() != null)
             sb.append("PricingPlanDataSource: " + getPricingPlanDataSource() + ",");
+        if (getCreateTime() != null)
+            sb.append("CreateTime: " + getCreateTime() + ",");
         if (getUpdateTime() != null)
             sb.append("UpdateTime: " + getUpdateTime());
         sb.append("}");
@@ -491,7 +497,6 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getCollectionName() == null) ? 0 : getCollectionName().hashCode());
-        hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode
@@ -499,6 +504,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
         hashCode = prime
                 * hashCode
                 + ((getPricingPlanDataSource() == null) ? 0 : getPricingPlanDataSource().hashCode());
+        hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         hashCode = prime * hashCode + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return hashCode;
     }
@@ -519,11 +525,6 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
         if (other.getCollectionName() != null
                 && other.getCollectionName().equals(this.getCollectionName()) == false)
             return false;
-        if (other.getCreateTime() == null ^ this.getCreateTime() == null)
-            return false;
-        if (other.getCreateTime() != null
-                && other.getCreateTime().equals(this.getCreateTime()) == false)
-            return false;
         if (other.getDescription() == null ^ this.getDescription() == null)
             return false;
         if (other.getDescription() != null
@@ -538,6 +539,11 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
             return false;
         if (other.getPricingPlanDataSource() != null
                 && other.getPricingPlanDataSource().equals(this.getPricingPlanDataSource()) == false)
+            return false;
+        if (other.getCreateTime() == null ^ this.getCreateTime() == null)
+            return false;
+        if (other.getCreateTime() != null
+                && other.getCreateTime().equals(this.getCreateTime()) == false)
             return false;
         if (other.getUpdateTime() == null ^ this.getUpdateTime() == null)
             return false;

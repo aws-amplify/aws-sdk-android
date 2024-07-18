@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,21 +33,14 @@ public class DescribeTrackerResultJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("CreateTime")) {
-                describeTrackerResult.setCreateTime(DateJsonUnmarshaller.getInstance(
-                        TimestampFormat.ISO_8601)
+            if (name.equals("TrackerName")) {
+                describeTrackerResult.setTrackerName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TrackerArn")) {
+                describeTrackerResult.setTrackerArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Description")) {
                 describeTrackerResult.setDescription(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("EventBridgeEnabled")) {
-                describeTrackerResult.setEventBridgeEnabled(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("KmsKeyId")) {
-                describeTrackerResult.setKmsKeyId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("PositionFiltering")) {
-                describeTrackerResult.setPositionFiltering(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("PricingPlan")) {
                 describeTrackerResult.setPricingPlan(StringJsonUnmarshaller.getInstance()
@@ -60,15 +53,26 @@ public class DescribeTrackerResultJsonUnmarshaller implements
                         .getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("TrackerArn")) {
-                describeTrackerResult.setTrackerArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("TrackerName")) {
-                describeTrackerResult.setTrackerName(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("CreateTime")) {
+                describeTrackerResult.setCreateTime(DateJsonUnmarshaller.getInstance(
+                        TimestampFormat.ISO_8601)
                         .unmarshall(context));
             } else if (name.equals("UpdateTime")) {
                 describeTrackerResult.setUpdateTime(DateJsonUnmarshaller.getInstance(
                         TimestampFormat.ISO_8601)
+                        .unmarshall(context));
+            } else if (name.equals("KmsKeyId")) {
+                describeTrackerResult.setKmsKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("PositionFiltering")) {
+                describeTrackerResult.setPositionFiltering(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("EventBridgeEnabled")) {
+                describeTrackerResult.setEventBridgeEnabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("KmsKeyEnableGeospatialQueries")) {
+                describeTrackerResult.setKmsKeyEnableGeospatialQueries(BooleanJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
