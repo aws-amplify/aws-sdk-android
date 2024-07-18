@@ -1,3 +1,13 @@
+## [Release 2.76.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.76.0)
+
+### Features
+- **aws-android-sdk-kms:** update models to latest ([#3595](https://github.com/aws-amplify/aws-sdk-android/issues/3595))
+- **aws-android-sdk-polly:** update models to latest ([#3601](https://github.com/aws-amplify/aws-sdk-android/issues/3601))
+- **aws-android-sdk-location:** update models to latest ([#3590](https://github.com/aws-amplify/aws-sdk-android/issues/3590))
+- **kinesis:** Updates KinesisStreamRecordSender.java ([#3610](https://github.com/aws-amplify/aws-sdk-android/issues/3610))
+
+[See all changes between 2.75.2 and 2.76.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.75.2...release_v2.76.0)
+
 ## [Release 2.75.2](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.75.2)
 
 ### Bug Fixes
