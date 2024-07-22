@@ -141,8 +141,8 @@ public class EncoderFrameSubmitter {
         final int imageRowStride = cameraFrame.getPlanes()[0].getRowStride();
         final int imageChromaPixelStride = cameraFrame.getPlanes()[1].getPixelStride();
 
-        final boolean isRowPaddingPresent = imageWidth == imageRowStride ? false : true;
-        final boolean isSemiPlanar = imageChromaPixelStride == 1 ? false : true;
+        final boolean isRowPaddingPresent = imageWidth != imageRowStride;
+        final boolean isSemiPlanar = imageChromaPixelStride != 1;
 
         for (int i = 0; i < cameraFrame.getPlanes().length; i++) {
             final ByteBuffer sourceImagePlane = cameraFrame.getPlanes()[i].getBuffer();
@@ -177,7 +177,9 @@ public class EncoderFrameSubmitter {
     // This will only work for SemiPlanar format.
     private int copyPaddedBuffer(final ByteBuffer sourceBuffer,
                                  final ByteBuffer destinationBuffer,
-                                 final int imageWidth, final int sourceBufferRowStride, final int pixelStride) {
+                                 final int imageWidth, 
+                                 final int sourceBufferRowStride, 
+                                 final int pixelStride) {
         
         // For an unknown reason, the sourceBuffer's remaining bytes are slightly less than expected, rounding up fixes this.
         final int numRows = (int) Math.ceil((double) sourceBuffer.remaining() / sourceBufferRowStride);
