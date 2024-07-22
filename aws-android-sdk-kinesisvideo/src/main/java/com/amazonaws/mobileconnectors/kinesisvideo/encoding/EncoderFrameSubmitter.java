@@ -153,7 +153,7 @@ public class EncoderFrameSubmitter {
             // Accounting for horizontal padding that may have been added for camera optimization. For example, non-multiple-of-64-width
             // resolutions may have had padding added to the rows to reach the nearest greater multiple of 64.
             // This accounting for is only supported for SemiPlanar format at the moment.
-            if(isRowPaddingPresent && isSemiPlanar) {
+            if (isRowPaddingPresent && isSemiPlanar) {
                 copyPaddedBuffer(sourceImagePlane, destinationImagePlane, imageWidth, imageRowStride, pixelStride);
             } else {
                 copyBuffer(sourceImagePlane, destinationImagePlane);
