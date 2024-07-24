@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@ class ListTrackersResponseEntryJsonMarshaller {
     public void marshall(ListTrackersResponseEntry listTrackersResponseEntry,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (listTrackersResponseEntry.getCreateTime() != null) {
-            java.util.Date createTime = listTrackersResponseEntry.getCreateTime();
-            jsonWriter.name("CreateTime");
-            jsonWriter.value(DateUtils.formatISO8601Date(createTime));
+        if (listTrackersResponseEntry.getTrackerName() != null) {
+            String trackerName = listTrackersResponseEntry.getTrackerName();
+            jsonWriter.name("TrackerName");
+            jsonWriter.value(trackerName);
         }
         if (listTrackersResponseEntry.getDescription() != null) {
             String description = listTrackersResponseEntry.getDescription();
@@ -47,10 +47,10 @@ class ListTrackersResponseEntryJsonMarshaller {
             jsonWriter.name("PricingPlanDataSource");
             jsonWriter.value(pricingPlanDataSource);
         }
-        if (listTrackersResponseEntry.getTrackerName() != null) {
-            String trackerName = listTrackersResponseEntry.getTrackerName();
-            jsonWriter.name("TrackerName");
-            jsonWriter.value(trackerName);
+        if (listTrackersResponseEntry.getCreateTime() != null) {
+            java.util.Date createTime = listTrackersResponseEntry.getCreateTime();
+            jsonWriter.name("CreateTime");
+            jsonWriter.value(DateUtils.formatISO8601Date(createTime));
         }
         if (listTrackersResponseEntry.getUpdateTime() != null) {
             java.util.Date updateTime = listTrackersResponseEntry.getUpdateTime();

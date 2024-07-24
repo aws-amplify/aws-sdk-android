@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,11 +27,6 @@ class GeofenceGeometryJsonMarshaller {
     public void marshall(GeofenceGeometry geofenceGeometry, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
-        if (geofenceGeometry.getCircle() != null) {
-            Circle circle = geofenceGeometry.getCircle();
-            jsonWriter.name("Circle");
-            CircleJsonMarshaller.getInstance().marshall(circle, jsonWriter);
-        }
         if (geofenceGeometry.getPolygon() != null) {
             java.util.List<java.util.List<java.util.List<Double>>> polygon = geofenceGeometry
                     .getPolygon();
@@ -55,6 +50,16 @@ class GeofenceGeometryJsonMarshaller {
                 }
             }
             jsonWriter.endArray();
+        }
+        if (geofenceGeometry.getCircle() != null) {
+            Circle circle = geofenceGeometry.getCircle();
+            jsonWriter.name("Circle");
+            CircleJsonMarshaller.getInstance().marshall(circle, jsonWriter);
+        }
+        if (geofenceGeometry.getGeobuf() != null) {
+            java.nio.ByteBuffer geobuf = geofenceGeometry.getGeobuf();
+            jsonWriter.name("Geobuf");
+            jsonWriter.value(geobuf);
         }
         jsonWriter.endObject();
     }

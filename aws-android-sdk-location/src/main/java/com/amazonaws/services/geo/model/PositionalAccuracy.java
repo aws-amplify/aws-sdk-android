@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ public class PositionalAccuracy implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0.0 - 10000.0<br/>
+     * <b>Range: </b>0.0 - 1.0E7<br/>
      */
     private Double horizontal;
 
@@ -41,7 +41,7 @@ public class PositionalAccuracy implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0.0 - 10000.0<br/>
+     * <b>Range: </b>0.0 - 1.0E7<br/>
      *
      * @return <p>
      *         Estimated maximum distance, in meters, between the measured
@@ -60,7 +60,7 @@ public class PositionalAccuracy implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0.0 - 10000.0<br/>
+     * <b>Range: </b>0.0 - 1.0E7<br/>
      *
      * @param horizontal <p>
      *            Estimated maximum distance, in meters, between the measured
@@ -82,7 +82,7 @@ public class PositionalAccuracy implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0.0 - 10000.0<br/>
+     * <b>Range: </b>0.0 - 1.0E7<br/>
      *
      * @param horizontal <p>
      *            Estimated maximum distance, in meters, between the measured

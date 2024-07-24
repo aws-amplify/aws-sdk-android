@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,6 +27,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class BatchGetDevicePositionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
+     * The tracker resource retrieving the device position.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     */
+    private String trackerName;
+
+    /**
+     * <p>
      * Devices whose position you want to retrieve.
      * </p>
      * <ul>
@@ -47,9 +58,55 @@ public class BatchGetDevicePositionRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The tracker resource retrieving the device position.
+     *         </p>
      */
-    private String trackerName;
+    public String getTrackerName() {
+        return trackerName;
+    }
+
+    /**
+     * <p>
+     * The tracker resource retrieving the device position.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param trackerName <p>
+     *            The tracker resource retrieving the device position.
+     *            </p>
+     */
+    public void setTrackerName(String trackerName) {
+        this.trackerName = trackerName;
+    }
+
+    /**
+     * <p>
+     * The tracker resource retrieving the device position.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param trackerName <p>
+     *            The tracker resource retrieving the device position.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public BatchGetDevicePositionRequest withTrackerName(String trackerName) {
+        this.trackerName = trackerName;
+        return this;
+    }
 
     /**
      * <p>
@@ -190,63 +247,6 @@ public class BatchGetDevicePositionRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * <p>
-     * The tracker resource retrieving the device position.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         The tracker resource retrieving the device position.
-     *         </p>
-     */
-    public String getTrackerName() {
-        return trackerName;
-    }
-
-    /**
-     * <p>
-     * The tracker resource retrieving the device position.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param trackerName <p>
-     *            The tracker resource retrieving the device position.
-     *            </p>
-     */
-    public void setTrackerName(String trackerName) {
-        this.trackerName = trackerName;
-    }
-
-    /**
-     * <p>
-     * The tracker resource retrieving the device position.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param trackerName <p>
-     *            The tracker resource retrieving the device position.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public BatchGetDevicePositionRequest withTrackerName(String trackerName) {
-        this.trackerName = trackerName;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -257,10 +257,10 @@ public class BatchGetDevicePositionRequest extends AmazonWebServiceRequest imple
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getDeviceIds() != null)
-            sb.append("DeviceIds: " + getDeviceIds() + ",");
         if (getTrackerName() != null)
-            sb.append("TrackerName: " + getTrackerName());
+            sb.append("TrackerName: " + getTrackerName() + ",");
+        if (getDeviceIds() != null)
+            sb.append("DeviceIds: " + getDeviceIds());
         sb.append("}");
         return sb.toString();
     }
@@ -270,9 +270,9 @@ public class BatchGetDevicePositionRequest extends AmazonWebServiceRequest imple
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getDeviceIds() == null) ? 0 : getDeviceIds().hashCode());
         hashCode = prime * hashCode
                 + ((getTrackerName() == null) ? 0 : getTrackerName().hashCode());
+        hashCode = prime * hashCode + ((getDeviceIds() == null) ? 0 : getDeviceIds().hashCode());
         return hashCode;
     }
 
@@ -287,15 +287,15 @@ public class BatchGetDevicePositionRequest extends AmazonWebServiceRequest imple
             return false;
         BatchGetDevicePositionRequest other = (BatchGetDevicePositionRequest) obj;
 
-        if (other.getDeviceIds() == null ^ this.getDeviceIds() == null)
-            return false;
-        if (other.getDeviceIds() != null
-                && other.getDeviceIds().equals(this.getDeviceIds()) == false)
-            return false;
         if (other.getTrackerName() == null ^ this.getTrackerName() == null)
             return false;
         if (other.getTrackerName() != null
                 && other.getTrackerName().equals(this.getTrackerName()) == false)
+            return false;
+        if (other.getDeviceIds() == null ^ this.getDeviceIds() == null)
+            return false;
+        if (other.getDeviceIds() != null
+                && other.getDeviceIds().equals(this.getDeviceIds()) == false)
             return false;
         return true;
     }

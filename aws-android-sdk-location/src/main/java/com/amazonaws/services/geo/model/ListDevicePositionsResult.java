@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,10 +20,7 @@ import java.io.Serializable;
 public class ListDevicePositionsResult implements Serializable {
     /**
      * <p>
-     * Contains details about each device's last known position. These details
-     * includes the device ID, the time when the position was sampled on the
-     * device, the time that the service received the update, and the most
-     * recent coordinates.
+     * Contains details about each device's last known position.
      * </p>
      */
     private java.util.List<ListDevicePositionsResponseEntry> entries;
@@ -42,17 +39,11 @@ public class ListDevicePositionsResult implements Serializable {
 
     /**
      * <p>
-     * Contains details about each device's last known position. These details
-     * includes the device ID, the time when the position was sampled on the
-     * device, the time that the service received the update, and the most
-     * recent coordinates.
+     * Contains details about each device's last known position.
      * </p>
      *
      * @return <p>
-     *         Contains details about each device's last known position. These
-     *         details includes the device ID, the time when the position was
-     *         sampled on the device, the time that the service received the
-     *         update, and the most recent coordinates.
+     *         Contains details about each device's last known position.
      *         </p>
      */
     public java.util.List<ListDevicePositionsResponseEntry> getEntries() {
@@ -61,17 +52,11 @@ public class ListDevicePositionsResult implements Serializable {
 
     /**
      * <p>
-     * Contains details about each device's last known position. These details
-     * includes the device ID, the time when the position was sampled on the
-     * device, the time that the service received the update, and the most
-     * recent coordinates.
+     * Contains details about each device's last known position.
      * </p>
      *
      * @param entries <p>
      *            Contains details about each device's last known position.
-     *            These details includes the device ID, the time when the
-     *            position was sampled on the device, the time that the service
-     *            received the update, and the most recent coordinates.
      *            </p>
      */
     public void setEntries(java.util.Collection<ListDevicePositionsResponseEntry> entries) {
@@ -85,10 +70,7 @@ public class ListDevicePositionsResult implements Serializable {
 
     /**
      * <p>
-     * Contains details about each device's last known position. These details
-     * includes the device ID, the time when the position was sampled on the
-     * device, the time that the service received the update, and the most
-     * recent coordinates.
+     * Contains details about each device's last known position.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -96,9 +78,6 @@ public class ListDevicePositionsResult implements Serializable {
      *
      * @param entries <p>
      *            Contains details about each device's last known position.
-     *            These details includes the device ID, the time when the
-     *            position was sampled on the device, the time that the service
-     *            received the update, and the most recent coordinates.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -115,10 +94,7 @@ public class ListDevicePositionsResult implements Serializable {
 
     /**
      * <p>
-     * Contains details about each device's last known position. These details
-     * includes the device ID, the time when the position was sampled on the
-     * device, the time that the service received the update, and the most
-     * recent coordinates.
+     * Contains details about each device's last known position.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -126,9 +102,6 @@ public class ListDevicePositionsResult implements Serializable {
      *
      * @param entries <p>
      *            Contains details about each device's last known position.
-     *            These details includes the device ID, the time when the
-     *            position was sampled on the device, the time that the service
-     *            received the update, and the most recent coordinates.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

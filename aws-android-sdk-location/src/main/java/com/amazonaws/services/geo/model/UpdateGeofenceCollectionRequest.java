@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,19 +33,9 @@ public class UpdateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String collectionName;
-
-    /**
-     * <p>
-     * Updates the description for the geofence collection.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     */
-    private String description;
 
     /**
      * <p>
@@ -68,12 +58,22 @@ public class UpdateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
+     * Updates the description for the geofence collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     */
+    private String description;
+
+    /**
+     * <p>
      * The name of the geofence collection to update.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @return <p>
      *         The name of the geofence collection to update.
@@ -90,7 +90,7 @@ public class UpdateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param collectionName <p>
      *            The name of the geofence collection to update.
@@ -110,7 +110,7 @@ public class UpdateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      *
      * @param collectionName <p>
      *            The name of the geofence collection to update.
@@ -120,60 +120,6 @@ public class UpdateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      */
     public UpdateGeofenceCollectionRequest withCollectionName(String collectionName) {
         this.collectionName = collectionName;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Updates the description for the geofence collection.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @return <p>
-     *         Updates the description for the geofence collection.
-     *         </p>
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * <p>
-     * Updates the description for the geofence collection.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param description <p>
-     *            Updates the description for the geofence collection.
-     *            </p>
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * <p>
-     * Updates the description for the geofence collection.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param description <p>
-     *            Updates the description for the geofence collection.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateGeofenceCollectionRequest withDescription(String description) {
-        this.description = description;
         return this;
     }
 
@@ -335,6 +281,60 @@ public class UpdateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
     }
 
     /**
+     * <p>
+     * Updates the description for the geofence collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @return <p>
+     *         Updates the description for the geofence collection.
+     *         </p>
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * <p>
+     * Updates the description for the geofence collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            Updates the description for the geofence collection.
+     *            </p>
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * <p>
+     * Updates the description for the geofence collection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            Updates the description for the geofence collection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateGeofenceCollectionRequest withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -347,12 +347,12 @@ public class UpdateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
         sb.append("{");
         if (getCollectionName() != null)
             sb.append("CollectionName: " + getCollectionName() + ",");
-        if (getDescription() != null)
-            sb.append("Description: " + getDescription() + ",");
         if (getPricingPlan() != null)
             sb.append("PricingPlan: " + getPricingPlan() + ",");
         if (getPricingPlanDataSource() != null)
-            sb.append("PricingPlanDataSource: " + getPricingPlanDataSource());
+            sb.append("PricingPlanDataSource: " + getPricingPlanDataSource() + ",");
+        if (getDescription() != null)
+            sb.append("Description: " + getDescription());
         sb.append("}");
         return sb.toString();
     }
@@ -365,12 +365,12 @@ public class UpdateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
         hashCode = prime * hashCode
                 + ((getCollectionName() == null) ? 0 : getCollectionName().hashCode());
         hashCode = prime * hashCode
-                + ((getDescription() == null) ? 0 : getDescription().hashCode());
-        hashCode = prime * hashCode
                 + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
         hashCode = prime
                 * hashCode
                 + ((getPricingPlanDataSource() == null) ? 0 : getPricingPlanDataSource().hashCode());
+        hashCode = prime * hashCode
+                + ((getDescription() == null) ? 0 : getDescription().hashCode());
         return hashCode;
     }
 
@@ -390,11 +390,6 @@ public class UpdateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
         if (other.getCollectionName() != null
                 && other.getCollectionName().equals(this.getCollectionName()) == false)
             return false;
-        if (other.getDescription() == null ^ this.getDescription() == null)
-            return false;
-        if (other.getDescription() != null
-                && other.getDescription().equals(this.getDescription()) == false)
-            return false;
         if (other.getPricingPlan() == null ^ this.getPricingPlan() == null)
             return false;
         if (other.getPricingPlan() != null
@@ -404,6 +399,11 @@ public class UpdateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
             return false;
         if (other.getPricingPlanDataSource() != null
                 && other.getPricingPlanDataSource().equals(this.getPricingPlanDataSource()) == false)
+            return false;
+        if (other.getDescription() == null ^ this.getDescription() == null)
+            return false;
+        if (other.getDescription() != null
+                && other.getDescription().equals(this.getDescription()) == false)
             return false;
         return true;
     }

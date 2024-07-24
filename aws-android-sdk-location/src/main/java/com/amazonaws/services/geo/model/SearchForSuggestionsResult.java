@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,17 +26,11 @@ import java.io.Serializable;
 public class SearchForSuggestionsResult implements Serializable {
     /**
      * <p>
-     * The Amazon Location categories that describe the Place.
-     * </p>
-     * <p>
-     * For more information about using categories, including a list of Amazon
-     * Location categories, see <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     * >Categories and filtering</a>, in the <i>Amazon Location Service
-     * Developer Guide</i>.
+     * The text of the place suggestion, typically formatted as an address
+     * string.
      * </p>
      */
-    private java.util.List<String> categories;
+    private String text;
 
     /**
      * <p>
@@ -61,6 +55,20 @@ public class SearchForSuggestionsResult implements Serializable {
 
     /**
      * <p>
+     * The Amazon Location categories that describe the Place.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     */
+    private java.util.List<String> categories;
+
+    /**
+     * <p>
      * Categories from the data provider that describe the Place that are not
      * mapped to any Amazon Location categories.
      * </p>
@@ -72,136 +80,49 @@ public class SearchForSuggestionsResult implements Serializable {
      * The text of the place suggestion, typically formatted as an address
      * string.
      * </p>
-     */
-    private String text;
-
-    /**
-     * <p>
-     * The Amazon Location categories that describe the Place.
-     * </p>
-     * <p>
-     * For more information about using categories, including a list of Amazon
-     * Location categories, see <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     * >Categories and filtering</a>, in the <i>Amazon Location Service
-     * Developer Guide</i>.
-     * </p>
      *
      * @return <p>
-     *         The Amazon Location categories that describe the Place.
-     *         </p>
-     *         <p>
-     *         For more information about using categories, including a list of
-     *         Amazon Location categories, see <a href=
-     *         "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     *         >Categories and filtering</a>, in the <i>Amazon Location Service
-     *         Developer Guide</i>.
+     *         The text of the place suggestion, typically formatted as an
+     *         address string.
      *         </p>
      */
-    public java.util.List<String> getCategories() {
-        return categories;
+    public String getText() {
+        return text;
     }
 
     /**
      * <p>
-     * The Amazon Location categories that describe the Place.
-     * </p>
-     * <p>
-     * For more information about using categories, including a list of Amazon
-     * Location categories, see <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     * >Categories and filtering</a>, in the <i>Amazon Location Service
-     * Developer Guide</i>.
+     * The text of the place suggestion, typically formatted as an address
+     * string.
      * </p>
      *
-     * @param categories <p>
-     *            The Amazon Location categories that describe the Place.
-     *            </p>
-     *            <p>
-     *            For more information about using categories, including a list
-     *            of Amazon Location categories, see <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     *            >Categories and filtering</a>, in the <i>Amazon Location
-     *            Service Developer Guide</i>.
+     * @param text <p>
+     *            The text of the place suggestion, typically formatted as an
+     *            address string.
      *            </p>
      */
-    public void setCategories(java.util.Collection<String> categories) {
-        if (categories == null) {
-            this.categories = null;
-            return;
-        }
-
-        this.categories = new java.util.ArrayList<String>(categories);
+    public void setText(String text) {
+        this.text = text;
     }
 
     /**
      * <p>
-     * The Amazon Location categories that describe the Place.
-     * </p>
-     * <p>
-     * For more information about using categories, including a list of Amazon
-     * Location categories, see <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     * >Categories and filtering</a>, in the <i>Amazon Location Service
-     * Developer Guide</i>.
+     * The text of the place suggestion, typically formatted as an address
+     * string.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param categories <p>
-     *            The Amazon Location categories that describe the Place.
-     *            </p>
-     *            <p>
-     *            For more information about using categories, including a list
-     *            of Amazon Location categories, see <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     *            >Categories and filtering</a>, in the <i>Amazon Location
-     *            Service Developer Guide</i>.
+     * @param text <p>
+     *            The text of the place suggestion, typically formatted as an
+     *            address string.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchForSuggestionsResult withCategories(String... categories) {
-        if (getCategories() == null) {
-            this.categories = new java.util.ArrayList<String>(categories.length);
-        }
-        for (String value : categories) {
-            this.categories.add(value);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * The Amazon Location categories that describe the Place.
-     * </p>
-     * <p>
-     * For more information about using categories, including a list of Amazon
-     * Location categories, see <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     * >Categories and filtering</a>, in the <i>Amazon Location Service
-     * Developer Guide</i>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param categories <p>
-     *            The Amazon Location categories that describe the Place.
-     *            </p>
-     *            <p>
-     *            For more information about using categories, including a list
-     *            of Amazon Location categories, see <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     *            >Categories and filtering</a>, in the <i>Amazon Location
-     *            Service Developer Guide</i>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchForSuggestionsResult withCategories(java.util.Collection<String> categories) {
-        setCategories(categories);
+    public SearchForSuggestionsResult withText(String text) {
+        this.text = text;
         return this;
     }
 
@@ -339,6 +260,136 @@ public class SearchForSuggestionsResult implements Serializable {
 
     /**
      * <p>
+     * The Amazon Location categories that describe the Place.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         The Amazon Location categories that describe the Place.
+     *         </p>
+     *         <p>
+     *         For more information about using categories, including a list of
+     *         Amazon Location categories, see <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *         >Categories and filtering</a>, in the <i>Amazon Location Service
+     *         Developer Guide</i>.
+     *         </p>
+     */
+    public java.util.List<String> getCategories() {
+        return categories;
+    }
+
+    /**
+     * <p>
+     * The Amazon Location categories that describe the Place.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @param categories <p>
+     *            The Amazon Location categories that describe the Place.
+     *            </p>
+     *            <p>
+     *            For more information about using categories, including a list
+     *            of Amazon Location categories, see <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *            >Categories and filtering</a>, in the <i>Amazon Location
+     *            Service Developer Guide</i>.
+     *            </p>
+     */
+    public void setCategories(java.util.Collection<String> categories) {
+        if (categories == null) {
+            this.categories = null;
+            return;
+        }
+
+        this.categories = new java.util.ArrayList<String>(categories);
+    }
+
+    /**
+     * <p>
+     * The Amazon Location categories that describe the Place.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param categories <p>
+     *            The Amazon Location categories that describe the Place.
+     *            </p>
+     *            <p>
+     *            For more information about using categories, including a list
+     *            of Amazon Location categories, see <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *            >Categories and filtering</a>, in the <i>Amazon Location
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchForSuggestionsResult withCategories(String... categories) {
+        if (getCategories() == null) {
+            this.categories = new java.util.ArrayList<String>(categories.length);
+        }
+        for (String value : categories) {
+            this.categories.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Location categories that describe the Place.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param categories <p>
+     *            The Amazon Location categories that describe the Place.
+     *            </p>
+     *            <p>
+     *            For more information about using categories, including a list
+     *            of Amazon Location categories, see <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *            >Categories and filtering</a>, in the <i>Amazon Location
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchForSuggestionsResult withCategories(java.util.Collection<String> categories) {
+        setCategories(categories);
+        return this;
+    }
+
+    /**
+     * <p>
      * Categories from the data provider that describe the Place that are not
      * mapped to any Amazon Location categories.
      * </p>
@@ -422,57 +473,6 @@ public class SearchForSuggestionsResult implements Serializable {
     }
 
     /**
-     * <p>
-     * The text of the place suggestion, typically formatted as an address
-     * string.
-     * </p>
-     *
-     * @return <p>
-     *         The text of the place suggestion, typically formatted as an
-     *         address string.
-     *         </p>
-     */
-    public String getText() {
-        return text;
-    }
-
-    /**
-     * <p>
-     * The text of the place suggestion, typically formatted as an address
-     * string.
-     * </p>
-     *
-     * @param text <p>
-     *            The text of the place suggestion, typically formatted as an
-     *            address string.
-     *            </p>
-     */
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    /**
-     * <p>
-     * The text of the place suggestion, typically formatted as an address
-     * string.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param text <p>
-     *            The text of the place suggestion, typically formatted as an
-     *            address string.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchForSuggestionsResult withText(String text) {
-        this.text = text;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -483,14 +483,14 @@ public class SearchForSuggestionsResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCategories() != null)
-            sb.append("Categories: " + getCategories() + ",");
+        if (getText() != null)
+            sb.append("Text: " + getText() + ",");
         if (getPlaceId() != null)
             sb.append("PlaceId: " + getPlaceId() + ",");
+        if (getCategories() != null)
+            sb.append("Categories: " + getCategories() + ",");
         if (getSupplementalCategories() != null)
-            sb.append("SupplementalCategories: " + getSupplementalCategories() + ",");
-        if (getText() != null)
-            sb.append("Text: " + getText());
+            sb.append("SupplementalCategories: " + getSupplementalCategories());
         sb.append("}");
         return sb.toString();
     }
@@ -500,13 +500,13 @@ public class SearchForSuggestionsResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getCategories() == null) ? 0 : getCategories().hashCode());
+        hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
         hashCode = prime * hashCode + ((getPlaceId() == null) ? 0 : getPlaceId().hashCode());
+        hashCode = prime * hashCode + ((getCategories() == null) ? 0 : getCategories().hashCode());
         hashCode = prime
                 * hashCode
                 + ((getSupplementalCategories() == null) ? 0 : getSupplementalCategories()
                         .hashCode());
-        hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
         return hashCode;
     }
 
@@ -521,23 +521,23 @@ public class SearchForSuggestionsResult implements Serializable {
             return false;
         SearchForSuggestionsResult other = (SearchForSuggestionsResult) obj;
 
-        if (other.getCategories() == null ^ this.getCategories() == null)
+        if (other.getText() == null ^ this.getText() == null)
             return false;
-        if (other.getCategories() != null
-                && other.getCategories().equals(this.getCategories()) == false)
+        if (other.getText() != null && other.getText().equals(this.getText()) == false)
             return false;
         if (other.getPlaceId() == null ^ this.getPlaceId() == null)
             return false;
         if (other.getPlaceId() != null && other.getPlaceId().equals(this.getPlaceId()) == false)
             return false;
+        if (other.getCategories() == null ^ this.getCategories() == null)
+            return false;
+        if (other.getCategories() != null
+                && other.getCategories().equals(this.getCategories()) == false)
+            return false;
         if (other.getSupplementalCategories() == null ^ this.getSupplementalCategories() == null)
             return false;
         if (other.getSupplementalCategories() != null
                 && other.getSupplementalCategories().equals(this.getSupplementalCategories()) == false)
-            return false;
-        if (other.getText() == null ^ this.getText() == null)
-            return false;
-        if (other.getText() != null && other.getText().equals(this.getText()) == false)
             return false;
         return true;
     }

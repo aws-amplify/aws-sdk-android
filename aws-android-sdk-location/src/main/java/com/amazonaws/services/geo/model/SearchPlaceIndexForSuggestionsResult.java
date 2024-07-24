@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,6 +20,17 @@ import java.io.Serializable;
 public class SearchPlaceIndexForSuggestionsResult implements Serializable {
     /**
      * <p>
+     * Contains a summary of the request. Echoes the input values for
+     * <code>BiasPosition</code>, <code>FilterBBox</code>,
+     * <code>FilterCountries</code>, <code>Language</code>,
+     * <code>MaxResults</code>, and <code>Text</code>. Also includes the
+     * <code>DataSource</code> of the place index.
+     * </p>
+     */
+    private SearchPlaceIndexForSuggestionsSummary summary;
+
+    /**
+     * <p>
      * A list of place suggestions that best match the search text.
      * </p>
      */
@@ -33,8 +44,67 @@ public class SearchPlaceIndexForSuggestionsResult implements Serializable {
      * <code>MaxResults</code>, and <code>Text</code>. Also includes the
      * <code>DataSource</code> of the place index.
      * </p>
+     *
+     * @return <p>
+     *         Contains a summary of the request. Echoes the input values for
+     *         <code>BiasPosition</code>, <code>FilterBBox</code>,
+     *         <code>FilterCountries</code>, <code>Language</code>,
+     *         <code>MaxResults</code>, and <code>Text</code>. Also includes the
+     *         <code>DataSource</code> of the place index.
+     *         </p>
      */
-    private SearchPlaceIndexForSuggestionsSummary summary;
+    public SearchPlaceIndexForSuggestionsSummary getSummary() {
+        return summary;
+    }
+
+    /**
+     * <p>
+     * Contains a summary of the request. Echoes the input values for
+     * <code>BiasPosition</code>, <code>FilterBBox</code>,
+     * <code>FilterCountries</code>, <code>Language</code>,
+     * <code>MaxResults</code>, and <code>Text</code>. Also includes the
+     * <code>DataSource</code> of the place index.
+     * </p>
+     *
+     * @param summary <p>
+     *            Contains a summary of the request. Echoes the input values for
+     *            <code>BiasPosition</code>, <code>FilterBBox</code>,
+     *            <code>FilterCountries</code>, <code>Language</code>,
+     *            <code>MaxResults</code>, and <code>Text</code>. Also includes
+     *            the <code>DataSource</code> of the place index.
+     *            </p>
+     */
+    public void setSummary(SearchPlaceIndexForSuggestionsSummary summary) {
+        this.summary = summary;
+    }
+
+    /**
+     * <p>
+     * Contains a summary of the request. Echoes the input values for
+     * <code>BiasPosition</code>, <code>FilterBBox</code>,
+     * <code>FilterCountries</code>, <code>Language</code>,
+     * <code>MaxResults</code>, and <code>Text</code>. Also includes the
+     * <code>DataSource</code> of the place index.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param summary <p>
+     *            Contains a summary of the request. Echoes the input values for
+     *            <code>BiasPosition</code>, <code>FilterBBox</code>,
+     *            <code>FilterCountries</code>, <code>Language</code>,
+     *            <code>MaxResults</code>, and <code>Text</code>. Also includes
+     *            the <code>DataSource</code> of the place index.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForSuggestionsResult withSummary(
+            SearchPlaceIndexForSuggestionsSummary summary) {
+        this.summary = summary;
+        return this;
+    }
 
     /**
      * <p>
@@ -112,76 +182,6 @@ public class SearchPlaceIndexForSuggestionsResult implements Serializable {
     }
 
     /**
-     * <p>
-     * Contains a summary of the request. Echoes the input values for
-     * <code>BiasPosition</code>, <code>FilterBBox</code>,
-     * <code>FilterCountries</code>, <code>Language</code>,
-     * <code>MaxResults</code>, and <code>Text</code>. Also includes the
-     * <code>DataSource</code> of the place index.
-     * </p>
-     *
-     * @return <p>
-     *         Contains a summary of the request. Echoes the input values for
-     *         <code>BiasPosition</code>, <code>FilterBBox</code>,
-     *         <code>FilterCountries</code>, <code>Language</code>,
-     *         <code>MaxResults</code>, and <code>Text</code>. Also includes the
-     *         <code>DataSource</code> of the place index.
-     *         </p>
-     */
-    public SearchPlaceIndexForSuggestionsSummary getSummary() {
-        return summary;
-    }
-
-    /**
-     * <p>
-     * Contains a summary of the request. Echoes the input values for
-     * <code>BiasPosition</code>, <code>FilterBBox</code>,
-     * <code>FilterCountries</code>, <code>Language</code>,
-     * <code>MaxResults</code>, and <code>Text</code>. Also includes the
-     * <code>DataSource</code> of the place index.
-     * </p>
-     *
-     * @param summary <p>
-     *            Contains a summary of the request. Echoes the input values for
-     *            <code>BiasPosition</code>, <code>FilterBBox</code>,
-     *            <code>FilterCountries</code>, <code>Language</code>,
-     *            <code>MaxResults</code>, and <code>Text</code>. Also includes
-     *            the <code>DataSource</code> of the place index.
-     *            </p>
-     */
-    public void setSummary(SearchPlaceIndexForSuggestionsSummary summary) {
-        this.summary = summary;
-    }
-
-    /**
-     * <p>
-     * Contains a summary of the request. Echoes the input values for
-     * <code>BiasPosition</code>, <code>FilterBBox</code>,
-     * <code>FilterCountries</code>, <code>Language</code>,
-     * <code>MaxResults</code>, and <code>Text</code>. Also includes the
-     * <code>DataSource</code> of the place index.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param summary <p>
-     *            Contains a summary of the request. Echoes the input values for
-     *            <code>BiasPosition</code>, <code>FilterBBox</code>,
-     *            <code>FilterCountries</code>, <code>Language</code>,
-     *            <code>MaxResults</code>, and <code>Text</code>. Also includes
-     *            the <code>DataSource</code> of the place index.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForSuggestionsResult withSummary(
-            SearchPlaceIndexForSuggestionsSummary summary) {
-        this.summary = summary;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -192,10 +192,10 @@ public class SearchPlaceIndexForSuggestionsResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getResults() != null)
-            sb.append("Results: " + getResults() + ",");
         if (getSummary() != null)
-            sb.append("Summary: " + getSummary());
+            sb.append("Summary: " + getSummary() + ",");
+        if (getResults() != null)
+            sb.append("Results: " + getResults());
         sb.append("}");
         return sb.toString();
     }
@@ -205,8 +205,8 @@ public class SearchPlaceIndexForSuggestionsResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getResults() == null) ? 0 : getResults().hashCode());
         hashCode = prime * hashCode + ((getSummary() == null) ? 0 : getSummary().hashCode());
+        hashCode = prime * hashCode + ((getResults() == null) ? 0 : getResults().hashCode());
         return hashCode;
     }
 
@@ -221,13 +221,13 @@ public class SearchPlaceIndexForSuggestionsResult implements Serializable {
             return false;
         SearchPlaceIndexForSuggestionsResult other = (SearchPlaceIndexForSuggestionsResult) obj;
 
-        if (other.getResults() == null ^ this.getResults() == null)
-            return false;
-        if (other.getResults() != null && other.getResults().equals(this.getResults()) == false)
-            return false;
         if (other.getSummary() == null ^ this.getSummary() == null)
             return false;
         if (other.getSummary() != null && other.getSummary().equals(this.getSummary()) == false)
+            return false;
+        if (other.getResults() == null ^ this.getResults() == null)
+            return false;
+        if (other.getResults() != null && other.getResults().equals(this.getResults()) == false)
             return false;
         return true;
     }

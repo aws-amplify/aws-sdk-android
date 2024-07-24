@@ -33,7 +33,7 @@ import java.util.UUID;
 /**
  * A implementation of {@link RecordSender} for Amazon Kinesis.
  */
-class KinesisStreamRecordSender implements RecordSender {
+public class KinesisStreamRecordSender implements RecordSender {
 
     private final AmazonKinesis client;
     private final String userAgent;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,30 +27,30 @@ class ListPlaceIndexesResponseEntryJsonMarshaller {
     public void marshall(ListPlaceIndexesResponseEntry listPlaceIndexesResponseEntry,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (listPlaceIndexesResponseEntry.getCreateTime() != null) {
-            java.util.Date createTime = listPlaceIndexesResponseEntry.getCreateTime();
-            jsonWriter.name("CreateTime");
-            jsonWriter.value(DateUtils.formatISO8601Date(createTime));
-        }
-        if (listPlaceIndexesResponseEntry.getDataSource() != null) {
-            String dataSource = listPlaceIndexesResponseEntry.getDataSource();
-            jsonWriter.name("DataSource");
-            jsonWriter.value(dataSource);
+        if (listPlaceIndexesResponseEntry.getIndexName() != null) {
+            String indexName = listPlaceIndexesResponseEntry.getIndexName();
+            jsonWriter.name("IndexName");
+            jsonWriter.value(indexName);
         }
         if (listPlaceIndexesResponseEntry.getDescription() != null) {
             String description = listPlaceIndexesResponseEntry.getDescription();
             jsonWriter.name("Description");
             jsonWriter.value(description);
         }
-        if (listPlaceIndexesResponseEntry.getIndexName() != null) {
-            String indexName = listPlaceIndexesResponseEntry.getIndexName();
-            jsonWriter.name("IndexName");
-            jsonWriter.value(indexName);
+        if (listPlaceIndexesResponseEntry.getDataSource() != null) {
+            String dataSource = listPlaceIndexesResponseEntry.getDataSource();
+            jsonWriter.name("DataSource");
+            jsonWriter.value(dataSource);
         }
         if (listPlaceIndexesResponseEntry.getPricingPlan() != null) {
             String pricingPlan = listPlaceIndexesResponseEntry.getPricingPlan();
             jsonWriter.name("PricingPlan");
             jsonWriter.value(pricingPlan);
+        }
+        if (listPlaceIndexesResponseEntry.getCreateTime() != null) {
+            java.util.Date createTime = listPlaceIndexesResponseEntry.getCreateTime();
+            jsonWriter.name("CreateTime");
+            jsonWriter.value(DateUtils.formatISO8601Date(createTime));
         }
         if (listPlaceIndexesResponseEntry.getUpdateTime() != null) {
             java.util.Date updateTime = listPlaceIndexesResponseEntry.getUpdateTime();

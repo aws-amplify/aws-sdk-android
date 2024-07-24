@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,12 +20,75 @@ import java.io.Serializable;
 public class DescribePlaceIndexResult implements Serializable {
     /**
      * <p>
+     * The name of the place index resource being described.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     */
+    private String indexName;
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) for the place index resource. Used to
+     * specify a resource across Amazon Web Services.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1600<br/>
+     * <b>Pattern:
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
+     */
+    private String indexArn;
+
+    /**
+     * <p>
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     */
+    private String pricingPlan;
+
+    /**
+     * <p>
+     * The optional description for the place index resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     */
+    private String description;
+
+    /**
+     * <p>
      * The timestamp for when the place index resource was created in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      */
     private java.util.Date createTime;
+
+    /**
+     * <p>
+     * The timestamp for when the place index resource was last updated in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     */
+    private java.util.Date updateTime;
 
     /**
      * <p>
@@ -65,13 +128,67 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The optional description for the place index resource.
+     * Tags associated with place index resource.
+     * </p>
+     */
+    private java.util.Map<String, String> tags;
+
+    /**
+     * <p>
+     * The name of the place index resource being described.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The name of the place index resource being described.
+     *         </p>
      */
-    private String description;
+    public String getIndexName() {
+        return indexName;
+    }
+
+    /**
+     * <p>
+     * The name of the place index resource being described.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param indexName <p>
+     *            The name of the place index resource being described.
+     *            </p>
+     */
+    public void setIndexName(String indexName) {
+        this.indexName = indexName;
+    }
+
+    /**
+     * <p>
+     * The name of the place index resource being described.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param indexName <p>
+     *            The name of the place index resource being described.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribePlaceIndexResult withIndexName(String indexName) {
+        this.indexName = indexName;
+        return this;
+    }
 
     /**
      * <p>
@@ -90,21 +207,105 @@ public class DescribePlaceIndexResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) for the place index resource. Used
+     *         to specify a resource across Amazon Web Services.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Format example:
+     *         <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     *         </p>
+     *         </li>
+     *         </ul>
      */
-    private String indexArn;
+    public String getIndexArn() {
+        return indexArn;
+    }
 
     /**
      * <p>
-     * The name of the place index resource being described.
+     * The Amazon Resource Name (ARN) for the place index resource. Used to
+     * specify a resource across Amazon Web Services.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Length: </b>0 - 1600<br/>
+     * <b>Pattern:
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
+     *
+     * @param indexArn <p>
+     *            The Amazon Resource Name (ARN) for the place index resource.
+     *            Used to specify a resource across Amazon Web Services.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      */
-    private String indexName;
+    public void setIndexArn(String indexArn) {
+        this.indexArn = indexArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) for the place index resource. Used to
+     * specify a resource across Amazon Web Services.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1600<br/>
+     * <b>Pattern:
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
+     *
+     * @param indexArn <p>
+     *            The Amazon Resource Name (ARN) for the place index resource.
+     *            Used to specify a resource across Amazon Web Services.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribePlaceIndexResult withIndexArn(String indexArn) {
+        this.indexArn = indexArn;
+        return this;
+    }
 
     /**
      * <p>
@@ -114,24 +315,153 @@ public class DescribePlaceIndexResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
      * MobileAssetManagement
+     *
+     * @return <p>
+     *         No longer used. Always returns <code>RequestBasedUsage</code>.
+     *         </p>
+     * @see PricingPlan
      */
-    private String pricingPlan;
+    public String getPricingPlan() {
+        return pricingPlan;
+    }
 
     /**
      * <p>
-     * Tags associated with place index resource.
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @param pricingPlan <p>
+     *            No longer used. Always returns <code>RequestBasedUsage</code>.
+     *            </p>
+     * @see PricingPlan
      */
-    private java.util.Map<String, String> tags;
+    public void setPricingPlan(String pricingPlan) {
+        this.pricingPlan = pricingPlan;
+    }
 
     /**
      * <p>
-     * The timestamp for when the place index resource was last updated in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @param pricingPlan <p>
+     *            No longer used. Always returns <code>RequestBasedUsage</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see PricingPlan
      */
-    private java.util.Date updateTime;
+    public DescribePlaceIndexResult withPricingPlan(String pricingPlan) {
+        this.pricingPlan = pricingPlan;
+        return this;
+    }
+
+    /**
+     * <p>
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @param pricingPlan <p>
+     *            No longer used. Always returns <code>RequestBasedUsage</code>.
+     *            </p>
+     * @see PricingPlan
+     */
+    public void setPricingPlan(PricingPlan pricingPlan) {
+        this.pricingPlan = pricingPlan.toString();
+    }
+
+    /**
+     * <p>
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @param pricingPlan <p>
+     *            No longer used. Always returns <code>RequestBasedUsage</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see PricingPlan
+     */
+    public DescribePlaceIndexResult withPricingPlan(PricingPlan pricingPlan) {
+        this.pricingPlan = pricingPlan.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The optional description for the place index resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @return <p>
+     *         The optional description for the place index resource.
+     *         </p>
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * <p>
+     * The optional description for the place index resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            The optional description for the place index resource.
+     *            </p>
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * <p>
+     * The optional description for the place index resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param description <p>
+     *            The optional description for the place index resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribePlaceIndexResult withDescription(String description) {
+        this.description = description;
+        return this;
+    }
 
     /**
      * <p>
@@ -189,6 +519,66 @@ public class DescribePlaceIndexResult implements Serializable {
      */
     public DescribePlaceIndexResult withCreateTime(java.util.Date createTime) {
         this.createTime = createTime;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The timestamp for when the place index resource was last updated in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp for when the place index resource was last updated
+     *         in <a
+     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *         </p>
+     */
+    public java.util.Date getUpdateTime() {
+        return updateTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp for when the place index resource was last updated in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     *
+     * @param updateTime <p>
+     *            The timestamp for when the place index resource was last
+     *            updated in <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *            </p>
+     */
+    public void setUpdateTime(java.util.Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp for when the place index resource was last updated in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param updateTime <p>
+     *            The timestamp for when the place index resource was last
+     *            updated in <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribePlaceIndexResult withUpdateTime(java.util.Date updateTime) {
+        this.updateTime = updateTime;
         return this;
     }
 
@@ -420,336 +810,6 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The optional description for the place index resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @return <p>
-     *         The optional description for the place index resource.
-     *         </p>
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * <p>
-     * The optional description for the place index resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param description <p>
-     *            The optional description for the place index resource.
-     *            </p>
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * <p>
-     * The optional description for the place index resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param description <p>
-     *            The optional description for the place index resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public DescribePlaceIndexResult withDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The Amazon Resource Name (ARN) for the place index resource. Used to
-     * specify a resource across Amazon Web Services.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Format example:
-     * <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1600<br/>
-     * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
-     *
-     * @return <p>
-     *         The Amazon Resource Name (ARN) for the place index resource. Used
-     *         to specify a resource across Amazon Web Services.
-     *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         Format example:
-     *         <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
-     *         </p>
-     *         </li>
-     *         </ul>
-     */
-    public String getIndexArn() {
-        return indexArn;
-    }
-
-    /**
-     * <p>
-     * The Amazon Resource Name (ARN) for the place index resource. Used to
-     * specify a resource across Amazon Web Services.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Format example:
-     * <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1600<br/>
-     * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
-     *
-     * @param indexArn <p>
-     *            The Amazon Resource Name (ARN) for the place index resource.
-     *            Used to specify a resource across Amazon Web Services.
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Format example:
-     *            <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
-     *            </p>
-     *            </li>
-     *            </ul>
-     */
-    public void setIndexArn(String indexArn) {
-        this.indexArn = indexArn;
-    }
-
-    /**
-     * <p>
-     * The Amazon Resource Name (ARN) for the place index resource. Used to
-     * specify a resource across Amazon Web Services.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Format example:
-     * <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1600<br/>
-     * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
-     *
-     * @param indexArn <p>
-     *            The Amazon Resource Name (ARN) for the place index resource.
-     *            Used to specify a resource across Amazon Web Services.
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Format example:
-     *            <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
-     *            </p>
-     *            </li>
-     *            </ul>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public DescribePlaceIndexResult withIndexArn(String indexArn) {
-        this.indexArn = indexArn;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The name of the place index resource being described.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         The name of the place index resource being described.
-     *         </p>
-     */
-    public String getIndexName() {
-        return indexName;
-    }
-
-    /**
-     * <p>
-     * The name of the place index resource being described.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param indexName <p>
-     *            The name of the place index resource being described.
-     *            </p>
-     */
-    public void setIndexName(String indexName) {
-        this.indexName = indexName;
-    }
-
-    /**
-     * <p>
-     * The name of the place index resource being described.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param indexName <p>
-     *            The name of the place index resource being described.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public DescribePlaceIndexResult withIndexName(String indexName) {
-        this.indexName = indexName;
-        return this;
-    }
-
-    /**
-     * <p>
-     * No longer used. Always returns <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
-     * MobileAssetManagement
-     *
-     * @return <p>
-     *         No longer used. Always returns <code>RequestBasedUsage</code>.
-     *         </p>
-     * @see PricingPlan
-     */
-    public String getPricingPlan() {
-        return pricingPlan;
-    }
-
-    /**
-     * <p>
-     * No longer used. Always returns <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
-     * MobileAssetManagement
-     *
-     * @param pricingPlan <p>
-     *            No longer used. Always returns <code>RequestBasedUsage</code>.
-     *            </p>
-     * @see PricingPlan
-     */
-    public void setPricingPlan(String pricingPlan) {
-        this.pricingPlan = pricingPlan;
-    }
-
-    /**
-     * <p>
-     * No longer used. Always returns <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
-     * MobileAssetManagement
-     *
-     * @param pricingPlan <p>
-     *            No longer used. Always returns <code>RequestBasedUsage</code>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see PricingPlan
-     */
-    public DescribePlaceIndexResult withPricingPlan(String pricingPlan) {
-        this.pricingPlan = pricingPlan;
-        return this;
-    }
-
-    /**
-     * <p>
-     * No longer used. Always returns <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
-     * MobileAssetManagement
-     *
-     * @param pricingPlan <p>
-     *            No longer used. Always returns <code>RequestBasedUsage</code>.
-     *            </p>
-     * @see PricingPlan
-     */
-    public void setPricingPlan(PricingPlan pricingPlan) {
-        this.pricingPlan = pricingPlan.toString();
-    }
-
-    /**
-     * <p>
-     * No longer used. Always returns <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
-     * MobileAssetManagement
-     *
-     * @param pricingPlan <p>
-     *            No longer used. Always returns <code>RequestBasedUsage</code>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see PricingPlan
-     */
-    public DescribePlaceIndexResult withPricingPlan(PricingPlan pricingPlan) {
-        this.pricingPlan = pricingPlan.toString();
-        return this;
-    }
-
-    /**
-     * <p>
      * Tags associated with place index resource.
      * </p>
      *
@@ -829,66 +889,6 @@ public class DescribePlaceIndexResult implements Serializable {
     }
 
     /**
-     * <p>
-     * The timestamp for when the place index resource was last updated in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     * </p>
-     *
-     * @return <p>
-     *         The timestamp for when the place index resource was last updated
-     *         in <a
-     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     *         </p>
-     */
-    public java.util.Date getUpdateTime() {
-        return updateTime;
-    }
-
-    /**
-     * <p>
-     * The timestamp for when the place index resource was last updated in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     * </p>
-     *
-     * @param updateTime <p>
-     *            The timestamp for when the place index resource was last
-     *            updated in <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     *            </p>
-     */
-    public void setUpdateTime(java.util.Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    /**
-     * <p>
-     * The timestamp for when the place index resource was last updated in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param updateTime <p>
-     *            The timestamp for when the place index resource was last
-     *            updated in <a href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public DescribePlaceIndexResult withUpdateTime(java.util.Date updateTime) {
-        this.updateTime = updateTime;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -899,24 +899,24 @@ public class DescribePlaceIndexResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getIndexName() != null)
+            sb.append("IndexName: " + getIndexName() + ",");
+        if (getIndexArn() != null)
+            sb.append("IndexArn: " + getIndexArn() + ",");
+        if (getPricingPlan() != null)
+            sb.append("PricingPlan: " + getPricingPlan() + ",");
+        if (getDescription() != null)
+            sb.append("Description: " + getDescription() + ",");
         if (getCreateTime() != null)
             sb.append("CreateTime: " + getCreateTime() + ",");
+        if (getUpdateTime() != null)
+            sb.append("UpdateTime: " + getUpdateTime() + ",");
         if (getDataSource() != null)
             sb.append("DataSource: " + getDataSource() + ",");
         if (getDataSourceConfiguration() != null)
             sb.append("DataSourceConfiguration: " + getDataSourceConfiguration() + ",");
-        if (getDescription() != null)
-            sb.append("Description: " + getDescription() + ",");
-        if (getIndexArn() != null)
-            sb.append("IndexArn: " + getIndexArn() + ",");
-        if (getIndexName() != null)
-            sb.append("IndexName: " + getIndexName() + ",");
-        if (getPricingPlan() != null)
-            sb.append("PricingPlan: " + getPricingPlan() + ",");
         if (getTags() != null)
-            sb.append("Tags: " + getTags() + ",");
-        if (getUpdateTime() != null)
-            sb.append("UpdateTime: " + getUpdateTime());
+            sb.append("Tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -926,20 +926,20 @@ public class DescribePlaceIndexResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
+        hashCode = prime * hashCode + ((getIndexArn() == null) ? 0 : getIndexArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
+        hashCode = prime * hashCode
+                + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        hashCode = prime * hashCode + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         hashCode = prime * hashCode + ((getDataSource() == null) ? 0 : getDataSource().hashCode());
         hashCode = prime
                 * hashCode
                 + ((getDataSourceConfiguration() == null) ? 0 : getDataSourceConfiguration()
                         .hashCode());
-        hashCode = prime * hashCode
-                + ((getDescription() == null) ? 0 : getDescription().hashCode());
-        hashCode = prime * hashCode + ((getIndexArn() == null) ? 0 : getIndexArn().hashCode());
-        hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
-        hashCode = prime * hashCode
-                + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
-        hashCode = prime * hashCode + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return hashCode;
     }
 
@@ -954,10 +954,34 @@ public class DescribePlaceIndexResult implements Serializable {
             return false;
         DescribePlaceIndexResult other = (DescribePlaceIndexResult) obj;
 
+        if (other.getIndexName() == null ^ this.getIndexName() == null)
+            return false;
+        if (other.getIndexName() != null
+                && other.getIndexName().equals(this.getIndexName()) == false)
+            return false;
+        if (other.getIndexArn() == null ^ this.getIndexArn() == null)
+            return false;
+        if (other.getIndexArn() != null && other.getIndexArn().equals(this.getIndexArn()) == false)
+            return false;
+        if (other.getPricingPlan() == null ^ this.getPricingPlan() == null)
+            return false;
+        if (other.getPricingPlan() != null
+                && other.getPricingPlan().equals(this.getPricingPlan()) == false)
+            return false;
+        if (other.getDescription() == null ^ this.getDescription() == null)
+            return false;
+        if (other.getDescription() != null
+                && other.getDescription().equals(this.getDescription()) == false)
+            return false;
         if (other.getCreateTime() == null ^ this.getCreateTime() == null)
             return false;
         if (other.getCreateTime() != null
                 && other.getCreateTime().equals(this.getCreateTime()) == false)
+            return false;
+        if (other.getUpdateTime() == null ^ this.getUpdateTime() == null)
+            return false;
+        if (other.getUpdateTime() != null
+                && other.getUpdateTime().equals(this.getUpdateTime()) == false)
             return false;
         if (other.getDataSource() == null ^ this.getDataSource() == null)
             return false;
@@ -969,33 +993,9 @@ public class DescribePlaceIndexResult implements Serializable {
         if (other.getDataSourceConfiguration() != null
                 && other.getDataSourceConfiguration().equals(this.getDataSourceConfiguration()) == false)
             return false;
-        if (other.getDescription() == null ^ this.getDescription() == null)
-            return false;
-        if (other.getDescription() != null
-                && other.getDescription().equals(this.getDescription()) == false)
-            return false;
-        if (other.getIndexArn() == null ^ this.getIndexArn() == null)
-            return false;
-        if (other.getIndexArn() != null && other.getIndexArn().equals(this.getIndexArn()) == false)
-            return false;
-        if (other.getIndexName() == null ^ this.getIndexName() == null)
-            return false;
-        if (other.getIndexName() != null
-                && other.getIndexName().equals(this.getIndexName()) == false)
-            return false;
-        if (other.getPricingPlan() == null ^ this.getPricingPlan() == null)
-            return false;
-        if (other.getPricingPlan() != null
-                && other.getPricingPlan().equals(this.getPricingPlan()) == false)
-            return false;
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
-            return false;
-        if (other.getUpdateTime() == null ^ this.getUpdateTime() == null)
-            return false;
-        if (other.getUpdateTime() != null
-                && other.getUpdateTime().equals(this.getUpdateTime()) == false)
             return false;
         return true;
     }

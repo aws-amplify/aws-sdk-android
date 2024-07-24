@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,15 +27,30 @@ class ListGeofenceResponseEntryJsonMarshaller {
     public void marshall(ListGeofenceResponseEntry listGeofenceResponseEntry,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (listGeofenceResponseEntry.getGeofenceId() != null) {
+            String geofenceId = listGeofenceResponseEntry.getGeofenceId();
+            jsonWriter.name("GeofenceId");
+            jsonWriter.value(geofenceId);
+        }
+        if (listGeofenceResponseEntry.getGeometry() != null) {
+            GeofenceGeometry geometry = listGeofenceResponseEntry.getGeometry();
+            jsonWriter.name("Geometry");
+            GeofenceGeometryJsonMarshaller.getInstance().marshall(geometry, jsonWriter);
+        }
+        if (listGeofenceResponseEntry.getStatus() != null) {
+            String status = listGeofenceResponseEntry.getStatus();
+            jsonWriter.name("Status");
+            jsonWriter.value(status);
+        }
         if (listGeofenceResponseEntry.getCreateTime() != null) {
             java.util.Date createTime = listGeofenceResponseEntry.getCreateTime();
             jsonWriter.name("CreateTime");
             jsonWriter.value(DateUtils.formatISO8601Date(createTime));
         }
-        if (listGeofenceResponseEntry.getGeofenceId() != null) {
-            String geofenceId = listGeofenceResponseEntry.getGeofenceId();
-            jsonWriter.name("GeofenceId");
-            jsonWriter.value(geofenceId);
+        if (listGeofenceResponseEntry.getUpdateTime() != null) {
+            java.util.Date updateTime = listGeofenceResponseEntry.getUpdateTime();
+            jsonWriter.name("UpdateTime");
+            jsonWriter.value(DateUtils.formatISO8601Date(updateTime));
         }
         if (listGeofenceResponseEntry.getGeofenceProperties() != null) {
             java.util.Map<String, String> geofenceProperties = listGeofenceResponseEntry
@@ -51,21 +66,6 @@ class ListGeofenceResponseEntryJsonMarshaller {
                 }
             }
             jsonWriter.endObject();
-        }
-        if (listGeofenceResponseEntry.getGeometry() != null) {
-            GeofenceGeometry geometry = listGeofenceResponseEntry.getGeometry();
-            jsonWriter.name("Geometry");
-            GeofenceGeometryJsonMarshaller.getInstance().marshall(geometry, jsonWriter);
-        }
-        if (listGeofenceResponseEntry.getStatus() != null) {
-            String status = listGeofenceResponseEntry.getStatus();
-            jsonWriter.name("Status");
-            jsonWriter.value(status);
-        }
-        if (listGeofenceResponseEntry.getUpdateTime() != null) {
-            java.util.Date updateTime = listGeofenceResponseEntry.getUpdateTime();
-            jsonWriter.name("UpdateTime");
-            jsonWriter.value(DateUtils.formatISO8601Date(updateTime));
         }
         jsonWriter.endObject();
     }

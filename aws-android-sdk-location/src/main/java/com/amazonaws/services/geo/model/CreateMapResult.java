@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,12 +20,14 @@ import java.io.Serializable;
 public class CreateMapResult implements Serializable {
     /**
      * <p>
-     * The timestamp for when the map resource was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * The name of the map resource.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
-    private java.util.Date createTime;
+    private String mapName;
 
     /**
      * <p>
@@ -43,10 +45,19 @@ public class CreateMapResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
      */
     private String mapArn;
+
+    /**
+     * <p>
+     * The timestamp for when the map resource was created in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     */
+    private java.util.Date createTime;
 
     /**
      * <p>
@@ -55,9 +66,169 @@ public class CreateMapResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The name of the map resource.
+     *         </p>
      */
-    private String mapName;
+    public String getMapName() {
+        return mapName;
+    }
+
+    /**
+     * <p>
+     * The name of the map resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param mapName <p>
+     *            The name of the map resource.
+     *            </p>
+     */
+    public void setMapName(String mapName) {
+        this.mapName = mapName;
+    }
+
+    /**
+     * <p>
+     * The name of the map resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param mapName <p>
+     *            The name of the map resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateMapResult withMapName(String mapName) {
+        this.mapName = mapName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) for the map resource. Used to specify a
+     * resource across all Amazon Web Services.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example: <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1600<br/>
+     * <b>Pattern:
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) for the map resource. Used to
+     *         specify a resource across all Amazon Web Services.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Format example:
+     *         <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
+     *         </p>
+     *         </li>
+     *         </ul>
+     */
+    public String getMapArn() {
+        return mapArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) for the map resource. Used to specify a
+     * resource across all Amazon Web Services.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example: <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1600<br/>
+     * <b>Pattern:
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
+     *
+     * @param mapArn <p>
+     *            The Amazon Resource Name (ARN) for the map resource. Used to
+     *            specify a resource across all Amazon Web Services.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setMapArn(String mapArn) {
+        this.mapArn = mapArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) for the map resource. Used to specify a
+     * resource across all Amazon Web Services.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example: <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1600<br/>
+     * <b>Pattern:
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-
+     * 9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))<br/>
+     *
+     * @param mapArn <p>
+     *            The Amazon Resource Name (ARN) for the map resource. Used to
+     *            specify a resource across all Amazon Web Services.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateMapResult withMapArn(String mapArn) {
+        this.mapArn = mapArn;
+        return this;
+    }
 
     /**
      * <p>
@@ -119,177 +290,6 @@ public class CreateMapResult implements Serializable {
     }
 
     /**
-     * <p>
-     * The Amazon Resource Name (ARN) for the map resource. Used to specify a
-     * resource across all Amazon Web Services.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Format example: <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1600<br/>
-     * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
-     *
-     * @return <p>
-     *         The Amazon Resource Name (ARN) for the map resource. Used to
-     *         specify a resource across all Amazon Web Services.
-     *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         Format example:
-     *         <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
-     *         </p>
-     *         </li>
-     *         </ul>
-     */
-    public String getMapArn() {
-        return mapArn;
-    }
-
-    /**
-     * <p>
-     * The Amazon Resource Name (ARN) for the map resource. Used to specify a
-     * resource across all Amazon Web Services.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Format example: <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1600<br/>
-     * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
-     *
-     * @param mapArn <p>
-     *            The Amazon Resource Name (ARN) for the map resource. Used to
-     *            specify a resource across all Amazon Web Services.
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Format example:
-     *            <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
-     *            </p>
-     *            </li>
-     *            </ul>
-     */
-    public void setMapArn(String mapArn) {
-        this.mapArn = mapArn;
-    }
-
-    /**
-     * <p>
-     * The Amazon Resource Name (ARN) for the map resource. Used to specify a
-     * resource across all Amazon Web Services.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Format example: <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1600<br/>
-     * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
-     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
-     *
-     * @param mapArn <p>
-     *            The Amazon Resource Name (ARN) for the map resource. Used to
-     *            specify a resource across all Amazon Web Services.
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Format example:
-     *            <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
-     *            </p>
-     *            </li>
-     *            </ul>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateMapResult withMapArn(String mapArn) {
-        this.mapArn = mapArn;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The name of the map resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         The name of the map resource.
-     *         </p>
-     */
-    public String getMapName() {
-        return mapName;
-    }
-
-    /**
-     * <p>
-     * The name of the map resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param mapName <p>
-     *            The name of the map resource.
-     *            </p>
-     */
-    public void setMapName(String mapName) {
-        this.mapName = mapName;
-    }
-
-    /**
-     * <p>
-     * The name of the map resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param mapName <p>
-     *            The name of the map resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateMapResult withMapName(String mapName) {
-        this.mapName = mapName;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -300,12 +300,12 @@ public class CreateMapResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCreateTime() != null)
-            sb.append("CreateTime: " + getCreateTime() + ",");
+        if (getMapName() != null)
+            sb.append("MapName: " + getMapName() + ",");
         if (getMapArn() != null)
             sb.append("MapArn: " + getMapArn() + ",");
-        if (getMapName() != null)
-            sb.append("MapName: " + getMapName());
+        if (getCreateTime() != null)
+            sb.append("CreateTime: " + getCreateTime());
         sb.append("}");
         return sb.toString();
     }
@@ -315,9 +315,9 @@ public class CreateMapResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
-        hashCode = prime * hashCode + ((getMapArn() == null) ? 0 : getMapArn().hashCode());
         hashCode = prime * hashCode + ((getMapName() == null) ? 0 : getMapName().hashCode());
+        hashCode = prime * hashCode + ((getMapArn() == null) ? 0 : getMapArn().hashCode());
+        hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         return hashCode;
     }
 
@@ -332,18 +332,18 @@ public class CreateMapResult implements Serializable {
             return false;
         CreateMapResult other = (CreateMapResult) obj;
 
-        if (other.getCreateTime() == null ^ this.getCreateTime() == null)
+        if (other.getMapName() == null ^ this.getMapName() == null)
             return false;
-        if (other.getCreateTime() != null
-                && other.getCreateTime().equals(this.getCreateTime()) == false)
+        if (other.getMapName() != null && other.getMapName().equals(this.getMapName()) == false)
             return false;
         if (other.getMapArn() == null ^ this.getMapArn() == null)
             return false;
         if (other.getMapArn() != null && other.getMapArn().equals(this.getMapArn()) == false)
             return false;
-        if (other.getMapName() == null ^ this.getMapName() == null)
+        if (other.getCreateTime() == null ^ this.getCreateTime() == null)
             return false;
-        if (other.getMapName() != null && other.getMapName().equals(this.getMapName()) == false)
+        if (other.getCreateTime() != null
+                && other.getCreateTime().equals(this.getCreateTime()) == false)
             return false;
         return true;
     }

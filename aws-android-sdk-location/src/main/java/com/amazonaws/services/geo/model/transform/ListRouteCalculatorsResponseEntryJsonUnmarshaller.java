@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,21 +41,21 @@ class ListRouteCalculatorsResponseEntryJsonUnmarshaller implements
                 listRouteCalculatorsResponseEntry.setCalculatorName(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
-            } else if (name.equals("CreateTime")) {
-                listRouteCalculatorsResponseEntry.setCreateTime(DateJsonUnmarshaller.getInstance(
-                        TimestampFormat.ISO_8601)
+            } else if (name.equals("Description")) {
+                listRouteCalculatorsResponseEntry.setDescription(StringJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else if (name.equals("DataSource")) {
                 listRouteCalculatorsResponseEntry.setDataSource(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
-            } else if (name.equals("Description")) {
-                listRouteCalculatorsResponseEntry.setDescription(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
             } else if (name.equals("PricingPlan")) {
                 listRouteCalculatorsResponseEntry.setPricingPlan(StringJsonUnmarshaller
                         .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("CreateTime")) {
+                listRouteCalculatorsResponseEntry.setCreateTime(DateJsonUnmarshaller.getInstance(
+                        TimestampFormat.ISO_8601)
                         .unmarshall(context));
             } else if (name.equals("UpdateTime")) {
                 listRouteCalculatorsResponseEntry.setUpdateTime(DateJsonUnmarshaller.getInstance(

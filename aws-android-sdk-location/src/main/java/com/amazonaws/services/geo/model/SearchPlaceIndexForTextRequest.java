@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,6 +41,28 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  */
 public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest implements Serializable {
+    /**
+     * <p>
+     * The name of the place index resource you want to use for the search.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     */
+    private String indexName;
+
+    /**
+     * <p>
+     * The address, name, city, or region to be used in the search in free-form
+     * text format. For example, <code>123 Any Street</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 200<br/>
+     */
+    private String text;
+
     /**
      * <p>
      * An optional parameter that indicates a preference for places that are
@@ -95,22 +117,6 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * A list of one or more Amazon Location categories to filter the returned
-     * places. If you include more than one category, the results will include
-     * results that match <i>any</i> of the categories listed.
-     * </p>
-     * <p>
-     * For more information about using categories, including a list of Amazon
-     * Location categories, see <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     * >Categories and filtering</a>, in the <i>Amazon Location Service
-     * Developer Guide</i>.
-     * </p>
-     */
-    private java.util.List<String> filterCategories;
-
-    /**
-     * <p>
      * An optional parameter that limits the search results by returning only
      * places that are in a specified list of countries.
      * </p>
@@ -129,26 +135,17 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the place index resource you want to use for the search.
+     * An optional parameter. The maximum number of results returned per
+     * request.
+     * </p>
+     * <p>
+     * The default: <code>50</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Range: </b>1 - 50<br/>
      */
-    private String indexName;
-
-    /**
-     * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     */
-    private String key;
+    private Integer maxResults;
 
     /**
      * <p>
@@ -185,17 +182,91 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * An optional parameter. The maximum number of results returned per
-     * request.
+     * A list of one or more Amazon Location categories to filter the returned
+     * places. If you include more than one category, the results will include
+     * results that match <i>any</i> of the categories listed.
      * </p>
      * <p>
-     * The default: <code>50</code>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     */
+    private java.util.List<String> filterCategories;
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
+     * <b>Length: </b>0 - 1000<br/>
      */
-    private Integer maxResults;
+    private String key;
+
+    /**
+     * <p>
+     * The name of the place index resource you want to use for the search.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The name of the place index resource you want to use for the
+     *         search.
+     *         </p>
+     */
+    public String getIndexName() {
+        return indexName;
+    }
+
+    /**
+     * <p>
+     * The name of the place index resource you want to use for the search.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param indexName <p>
+     *            The name of the place index resource you want to use for the
+     *            search.
+     *            </p>
+     */
+    public void setIndexName(String indexName) {
+        this.indexName = indexName;
+    }
+
+    /**
+     * <p>
+     * The name of the place index resource you want to use for the search.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param indexName <p>
+     *            The name of the place index resource you want to use for the
+     *            search.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForTextRequest withIndexName(String indexName) {
+        this.indexName = indexName;
+        return this;
+    }
 
     /**
      * <p>
@@ -205,8 +276,59 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 200<br/>
+     *
+     * @return <p>
+     *         The address, name, city, or region to be used in the search in
+     *         free-form text format. For example, <code>123 Any Street</code>.
+     *         </p>
      */
-    private String text;
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * <p>
+     * The address, name, city, or region to be used in the search in free-form
+     * text format. For example, <code>123 Any Street</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 200<br/>
+     *
+     * @param text <p>
+     *            The address, name, city, or region to be used in the search in
+     *            free-form text format. For example,
+     *            <code>123 Any Street</code>.
+     *            </p>
+     */
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    /**
+     * <p>
+     * The address, name, city, or region to be used in the search in free-form
+     * text format. For example, <code>123 Any Street</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 200<br/>
+     *
+     * @param text <p>
+     *            The address, name, city, or region to be used in the search in
+     *            free-form text format. For example,
+     *            <code>123 Any Street</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForTextRequest withText(String text) {
+        this.text = text;
+        return this;
+    }
 
     /**
      * <p>
@@ -683,157 +805,6 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * A list of one or more Amazon Location categories to filter the returned
-     * places. If you include more than one category, the results will include
-     * results that match <i>any</i> of the categories listed.
-     * </p>
-     * <p>
-     * For more information about using categories, including a list of Amazon
-     * Location categories, see <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     * >Categories and filtering</a>, in the <i>Amazon Location Service
-     * Developer Guide</i>.
-     * </p>
-     *
-     * @return <p>
-     *         A list of one or more Amazon Location categories to filter the
-     *         returned places. If you include more than one category, the
-     *         results will include results that match <i>any</i> of the
-     *         categories listed.
-     *         </p>
-     *         <p>
-     *         For more information about using categories, including a list of
-     *         Amazon Location categories, see <a href=
-     *         "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     *         >Categories and filtering</a>, in the <i>Amazon Location Service
-     *         Developer Guide</i>.
-     *         </p>
-     */
-    public java.util.List<String> getFilterCategories() {
-        return filterCategories;
-    }
-
-    /**
-     * <p>
-     * A list of one or more Amazon Location categories to filter the returned
-     * places. If you include more than one category, the results will include
-     * results that match <i>any</i> of the categories listed.
-     * </p>
-     * <p>
-     * For more information about using categories, including a list of Amazon
-     * Location categories, see <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     * >Categories and filtering</a>, in the <i>Amazon Location Service
-     * Developer Guide</i>.
-     * </p>
-     *
-     * @param filterCategories <p>
-     *            A list of one or more Amazon Location categories to filter the
-     *            returned places. If you include more than one category, the
-     *            results will include results that match <i>any</i> of the
-     *            categories listed.
-     *            </p>
-     *            <p>
-     *            For more information about using categories, including a list
-     *            of Amazon Location categories, see <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     *            >Categories and filtering</a>, in the <i>Amazon Location
-     *            Service Developer Guide</i>.
-     *            </p>
-     */
-    public void setFilterCategories(java.util.Collection<String> filterCategories) {
-        if (filterCategories == null) {
-            this.filterCategories = null;
-            return;
-        }
-
-        this.filterCategories = new java.util.ArrayList<String>(filterCategories);
-    }
-
-    /**
-     * <p>
-     * A list of one or more Amazon Location categories to filter the returned
-     * places. If you include more than one category, the results will include
-     * results that match <i>any</i> of the categories listed.
-     * </p>
-     * <p>
-     * For more information about using categories, including a list of Amazon
-     * Location categories, see <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     * >Categories and filtering</a>, in the <i>Amazon Location Service
-     * Developer Guide</i>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param filterCategories <p>
-     *            A list of one or more Amazon Location categories to filter the
-     *            returned places. If you include more than one category, the
-     *            results will include results that match <i>any</i> of the
-     *            categories listed.
-     *            </p>
-     *            <p>
-     *            For more information about using categories, including a list
-     *            of Amazon Location categories, see <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     *            >Categories and filtering</a>, in the <i>Amazon Location
-     *            Service Developer Guide</i>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForTextRequest withFilterCategories(String... filterCategories) {
-        if (getFilterCategories() == null) {
-            this.filterCategories = new java.util.ArrayList<String>(filterCategories.length);
-        }
-        for (String value : filterCategories) {
-            this.filterCategories.add(value);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * A list of one or more Amazon Location categories to filter the returned
-     * places. If you include more than one category, the results will include
-     * results that match <i>any</i> of the categories listed.
-     * </p>
-     * <p>
-     * For more information about using categories, including a list of Amazon
-     * Location categories, see <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     * >Categories and filtering</a>, in the <i>Amazon Location Service
-     * Developer Guide</i>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param filterCategories <p>
-     *            A list of one or more Amazon Location categories to filter the
-     *            returned places. If you include more than one category, the
-     *            results will include results that match <i>any</i> of the
-     *            categories listed.
-     *            </p>
-     *            <p>
-     *            For more information about using categories, including a list
-     *            of Amazon Location categories, see <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
-     *            >Categories and filtering</a>, in the <i>Amazon Location
-     *            Service Developer Guide</i>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForTextRequest withFilterCategories(
-            java.util.Collection<String> filterCategories) {
-        setFilterCategories(filterCategories);
-        return this;
-    }
-
-    /**
-     * <p>
      * An optional parameter that limits the search results by returning only
      * places that are in a specified list of countries.
      * </p>
@@ -1000,127 +971,79 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the place index resource you want to use for the search.
+     * An optional parameter. The maximum number of results returned per
+     * request.
+     * </p>
+     * <p>
+     * The default: <code>50</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Range: </b>1 - 50<br/>
      *
      * @return <p>
-     *         The name of the place index resource you want to use for the
-     *         search.
+     *         An optional parameter. The maximum number of results returned per
+     *         request.
+     *         </p>
+     *         <p>
+     *         The default: <code>50</code>
      *         </p>
      */
-    public String getIndexName() {
-        return indexName;
+    public Integer getMaxResults() {
+        return maxResults;
     }
 
     /**
      * <p>
-     * The name of the place index resource you want to use for the search.
+     * An optional parameter. The maximum number of results returned per
+     * request.
+     * </p>
+     * <p>
+     * The default: <code>50</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Range: </b>1 - 50<br/>
      *
-     * @param indexName <p>
-     *            The name of the place index resource you want to use for the
-     *            search.
+     * @param maxResults <p>
+     *            An optional parameter. The maximum number of results returned
+     *            per request.
+     *            </p>
+     *            <p>
+     *            The default: <code>50</code>
      *            </p>
      */
-    public void setIndexName(String indexName) {
-        this.indexName = indexName;
+    public void setMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
     }
 
     /**
      * <p>
-     * The name of the place index resource you want to use for the search.
+     * An optional parameter. The maximum number of results returned per
+     * request.
+     * </p>
+     * <p>
+     * The default: <code>50</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Range: </b>1 - 50<br/>
      *
-     * @param indexName <p>
-     *            The name of the place index resource you want to use for the
-     *            search.
+     * @param maxResults <p>
+     *            An optional parameter. The maximum number of results returned
+     *            per request.
+     *            </p>
+     *            <p>
+     *            The default: <code>50</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextRequest withIndexName(String indexName) {
-        this.indexName = indexName;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @return <p>
-     *         The optional <a href=
-     *         "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     *         >API key</a> to authorize the request.
-     *         </p>
-     */
-    public String getKey() {
-        return key;
-    }
-
-    /**
-     * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param key <p>
-     *            The optional <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     *            >API key</a> to authorize the request.
-     *            </p>
-     */
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    /**
-     * <p>
-     * The optional <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     * >API key</a> to authorize the request.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1000<br/>
-     *
-     * @param key <p>
-     *            The optional <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
-     *            >API key</a> to authorize the request.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForTextRequest withKey(String key) {
-        this.key = key;
+    public SearchPlaceIndexForTextRequest withMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
         return this;
     }
 
@@ -1318,141 +1241,218 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * An optional parameter. The maximum number of results returned per
-     * request.
+     * A list of one or more Amazon Location categories to filter the returned
+     * places. If you include more than one category, the results will include
+     * results that match <i>any</i> of the categories listed.
      * </p>
      * <p>
-     * The default: <code>50</code>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
      *
      * @return <p>
-     *         An optional parameter. The maximum number of results returned per
-     *         request.
+     *         A list of one or more Amazon Location categories to filter the
+     *         returned places. If you include more than one category, the
+     *         results will include results that match <i>any</i> of the
+     *         categories listed.
      *         </p>
      *         <p>
-     *         The default: <code>50</code>
+     *         For more information about using categories, including a list of
+     *         Amazon Location categories, see <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *         >Categories and filtering</a>, in the <i>Amazon Location Service
+     *         Developer Guide</i>.
      *         </p>
      */
-    public Integer getMaxResults() {
-        return maxResults;
+    public java.util.List<String> getFilterCategories() {
+        return filterCategories;
     }
 
     /**
      * <p>
-     * An optional parameter. The maximum number of results returned per
-     * request.
+     * A list of one or more Amazon Location categories to filter the returned
+     * places. If you include more than one category, the results will include
+     * results that match <i>any</i> of the categories listed.
      * </p>
      * <p>
-     * The default: <code>50</code>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
      *
-     * @param maxResults <p>
-     *            An optional parameter. The maximum number of results returned
-     *            per request.
+     * @param filterCategories <p>
+     *            A list of one or more Amazon Location categories to filter the
+     *            returned places. If you include more than one category, the
+     *            results will include results that match <i>any</i> of the
+     *            categories listed.
      *            </p>
      *            <p>
-     *            The default: <code>50</code>
+     *            For more information about using categories, including a list
+     *            of Amazon Location categories, see <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *            >Categories and filtering</a>, in the <i>Amazon Location
+     *            Service Developer Guide</i>.
      *            </p>
      */
-    public void setMaxResults(Integer maxResults) {
-        this.maxResults = maxResults;
+    public void setFilterCategories(java.util.Collection<String> filterCategories) {
+        if (filterCategories == null) {
+            this.filterCategories = null;
+            return;
+        }
+
+        this.filterCategories = new java.util.ArrayList<String>(filterCategories);
     }
 
     /**
      * <p>
-     * An optional parameter. The maximum number of results returned per
-     * request.
+     * A list of one or more Amazon Location categories to filter the returned
+     * places. If you include more than one category, the results will include
+     * results that match <i>any</i> of the categories listed.
      * </p>
      * <p>
-     * The default: <code>50</code>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
      *
-     * @param maxResults <p>
-     *            An optional parameter. The maximum number of results returned
-     *            per request.
+     * @param filterCategories <p>
+     *            A list of one or more Amazon Location categories to filter the
+     *            returned places. If you include more than one category, the
+     *            results will include results that match <i>any</i> of the
+     *            categories listed.
      *            </p>
      *            <p>
-     *            The default: <code>50</code>
+     *            For more information about using categories, including a list
+     *            of Amazon Location categories, see <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *            >Categories and filtering</a>, in the <i>Amazon Location
+     *            Service Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextRequest withMaxResults(Integer maxResults) {
-        this.maxResults = maxResults;
+    public SearchPlaceIndexForTextRequest withFilterCategories(String... filterCategories) {
+        if (getFilterCategories() == null) {
+            this.filterCategories = new java.util.ArrayList<String>(filterCategories.length);
+        }
+        for (String value : filterCategories) {
+            this.filterCategories.add(value);
+        }
         return this;
     }
 
     /**
      * <p>
-     * The address, name, city, or region to be used in the search in free-form
-     * text format. For example, <code>123 Any Street</code>.
+     * A list of one or more Amazon Location categories to filter the returned
+     * places. If you include more than one category, the results will include
+     * results that match <i>any</i> of the categories listed.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param filterCategories <p>
+     *            A list of one or more Amazon Location categories to filter the
+     *            returned places. If you include more than one category, the
+     *            results will include results that match <i>any</i> of the
+     *            categories listed.
+     *            </p>
+     *            <p>
+     *            For more information about using categories, including a list
+     *            of Amazon Location categories, see <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *            >Categories and filtering</a>, in the <i>Amazon Location
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForTextRequest withFilterCategories(
+            java.util.Collection<String> filterCategories) {
+        setFilterCategories(filterCategories);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 200<br/>
+     * <b>Length: </b>0 - 1000<br/>
      *
      * @return <p>
-     *         The address, name, city, or region to be used in the search in
-     *         free-form text format. For example, <code>123 Any Street</code>.
+     *         The optional <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *         >API key</a> to authorize the request.
      *         </p>
      */
-    public String getText() {
-        return text;
+    public String getKey() {
+        return key;
     }
 
     /**
      * <p>
-     * The address, name, city, or region to be used in the search in free-form
-     * text format. For example, <code>123 Any Street</code>.
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 200<br/>
+     * <b>Length: </b>0 - 1000<br/>
      *
-     * @param text <p>
-     *            The address, name, city, or region to be used in the search in
-     *            free-form text format. For example,
-     *            <code>123 Any Street</code>.
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
      *            </p>
      */
-    public void setText(String text) {
-        this.text = text;
+    public void setKey(String key) {
+        this.key = key;
     }
 
     /**
      * <p>
-     * The address, name, city, or region to be used in the search in free-form
-     * text format. For example, <code>123 Any Street</code>.
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 200<br/>
+     * <b>Length: </b>0 - 1000<br/>
      *
-     * @param text <p>
-     *            The address, name, city, or region to be used in the search in
-     *            free-form text format. For example,
-     *            <code>123 Any Street</code>.
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextRequest withText(String text) {
-        this.text = text;
+    public SearchPlaceIndexForTextRequest withKey(String key) {
+        this.key = key;
         return this;
     }
 
@@ -1467,24 +1467,24 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getIndexName() != null)
+            sb.append("IndexName: " + getIndexName() + ",");
+        if (getText() != null)
+            sb.append("Text: " + getText() + ",");
         if (getBiasPosition() != null)
             sb.append("BiasPosition: " + getBiasPosition() + ",");
         if (getFilterBBox() != null)
             sb.append("FilterBBox: " + getFilterBBox() + ",");
-        if (getFilterCategories() != null)
-            sb.append("FilterCategories: " + getFilterCategories() + ",");
         if (getFilterCountries() != null)
             sb.append("FilterCountries: " + getFilterCountries() + ",");
-        if (getIndexName() != null)
-            sb.append("IndexName: " + getIndexName() + ",");
-        if (getKey() != null)
-            sb.append("Key: " + getKey() + ",");
-        if (getLanguage() != null)
-            sb.append("Language: " + getLanguage() + ",");
         if (getMaxResults() != null)
             sb.append("MaxResults: " + getMaxResults() + ",");
-        if (getText() != null)
-            sb.append("Text: " + getText());
+        if (getLanguage() != null)
+            sb.append("Language: " + getLanguage() + ",");
+        if (getFilterCategories() != null)
+            sb.append("FilterCategories: " + getFilterCategories() + ",");
+        if (getKey() != null)
+            sb.append("Key: " + getKey());
         sb.append("}");
         return sb.toString();
     }
@@ -1494,18 +1494,18 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
+        hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
         hashCode = prime * hashCode
                 + ((getBiasPosition() == null) ? 0 : getBiasPosition().hashCode());
         hashCode = prime * hashCode + ((getFilterBBox() == null) ? 0 : getFilterBBox().hashCode());
         hashCode = prime * hashCode
-                + ((getFilterCategories() == null) ? 0 : getFilterCategories().hashCode());
-        hashCode = prime * hashCode
                 + ((getFilterCountries() == null) ? 0 : getFilterCountries().hashCode());
-        hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
-        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
-        hashCode = prime * hashCode + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
-        hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
+        hashCode = prime * hashCode + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
+        hashCode = prime * hashCode
+                + ((getFilterCategories() == null) ? 0 : getFilterCategories().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
         return hashCode;
     }
 
@@ -1520,6 +1520,15 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
             return false;
         SearchPlaceIndexForTextRequest other = (SearchPlaceIndexForTextRequest) obj;
 
+        if (other.getIndexName() == null ^ this.getIndexName() == null)
+            return false;
+        if (other.getIndexName() != null
+                && other.getIndexName().equals(this.getIndexName()) == false)
+            return false;
+        if (other.getText() == null ^ this.getText() == null)
+            return false;
+        if (other.getText() != null && other.getText().equals(this.getText()) == false)
+            return false;
         if (other.getBiasPosition() == null ^ this.getBiasPosition() == null)
             return false;
         if (other.getBiasPosition() != null
@@ -1530,37 +1539,28 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
         if (other.getFilterBBox() != null
                 && other.getFilterBBox().equals(this.getFilterBBox()) == false)
             return false;
-        if (other.getFilterCategories() == null ^ this.getFilterCategories() == null)
-            return false;
-        if (other.getFilterCategories() != null
-                && other.getFilterCategories().equals(this.getFilterCategories()) == false)
-            return false;
         if (other.getFilterCountries() == null ^ this.getFilterCountries() == null)
             return false;
         if (other.getFilterCountries() != null
                 && other.getFilterCountries().equals(this.getFilterCountries()) == false)
-            return false;
-        if (other.getIndexName() == null ^ this.getIndexName() == null)
-            return false;
-        if (other.getIndexName() != null
-                && other.getIndexName().equals(this.getIndexName()) == false)
-            return false;
-        if (other.getKey() == null ^ this.getKey() == null)
-            return false;
-        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
-            return false;
-        if (other.getLanguage() == null ^ this.getLanguage() == null)
-            return false;
-        if (other.getLanguage() != null && other.getLanguage().equals(this.getLanguage()) == false)
             return false;
         if (other.getMaxResults() == null ^ this.getMaxResults() == null)
             return false;
         if (other.getMaxResults() != null
                 && other.getMaxResults().equals(this.getMaxResults()) == false)
             return false;
-        if (other.getText() == null ^ this.getText() == null)
+        if (other.getLanguage() == null ^ this.getLanguage() == null)
             return false;
-        if (other.getText() != null && other.getText().equals(this.getText()) == false)
+        if (other.getLanguage() != null && other.getLanguage().equals(this.getLanguage()) == false)
+            return false;
+        if (other.getFilterCategories() == null ^ this.getFilterCategories() == null)
+            return false;
+        if (other.getFilterCategories() != null
+                && other.getFilterCategories().equals(this.getFilterCategories()) == false)
+            return false;
+        if (other.getKey() == null ^ this.getKey() == null)
+            return false;
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
             return false;
         return true;
     }
