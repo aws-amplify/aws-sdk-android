@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -69,16 +69,6 @@ public class SearchPlaceIndexForPositionRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (searchPlaceIndexForPositionRequest.getLanguage() != null) {
-                String language = searchPlaceIndexForPositionRequest.getLanguage();
-                jsonWriter.name("Language");
-                jsonWriter.value(language);
-            }
-            if (searchPlaceIndexForPositionRequest.getMaxResults() != null) {
-                Integer maxResults = searchPlaceIndexForPositionRequest.getMaxResults();
-                jsonWriter.name("MaxResults");
-                jsonWriter.value(maxResults);
-            }
             if (searchPlaceIndexForPositionRequest.getPosition() != null) {
                 java.util.List<Double> position = searchPlaceIndexForPositionRequest.getPosition();
                 jsonWriter.name("Position");
@@ -89,6 +79,16 @@ public class SearchPlaceIndexForPositionRequestMarshaller implements
                     }
                 }
                 jsonWriter.endArray();
+            }
+            if (searchPlaceIndexForPositionRequest.getMaxResults() != null) {
+                Integer maxResults = searchPlaceIndexForPositionRequest.getMaxResults();
+                jsonWriter.name("MaxResults");
+                jsonWriter.value(maxResults);
+            }
+            if (searchPlaceIndexForPositionRequest.getLanguage() != null) {
+                String language = searchPlaceIndexForPositionRequest.getLanguage();
+                jsonWriter.name("Language");
+                jsonWriter.value(language);
             }
 
             jsonWriter.endObject();
@@ -102,7 +102,7 @@ public class SearchPlaceIndexForPositionRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
         request.setHostPrefix("places.");
 

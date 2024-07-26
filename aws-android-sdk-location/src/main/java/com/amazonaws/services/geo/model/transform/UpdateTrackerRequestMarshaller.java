@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -64,21 +64,6 @@ public class UpdateTrackerRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (updateTrackerRequest.getDescription() != null) {
-                String description = updateTrackerRequest.getDescription();
-                jsonWriter.name("Description");
-                jsonWriter.value(description);
-            }
-            if (updateTrackerRequest.getEventBridgeEnabled() != null) {
-                Boolean eventBridgeEnabled = updateTrackerRequest.getEventBridgeEnabled();
-                jsonWriter.name("EventBridgeEnabled");
-                jsonWriter.value(eventBridgeEnabled);
-            }
-            if (updateTrackerRequest.getPositionFiltering() != null) {
-                String positionFiltering = updateTrackerRequest.getPositionFiltering();
-                jsonWriter.name("PositionFiltering");
-                jsonWriter.value(positionFiltering);
-            }
             if (updateTrackerRequest.getPricingPlan() != null) {
                 String pricingPlan = updateTrackerRequest.getPricingPlan();
                 jsonWriter.name("PricingPlan");
@@ -88,6 +73,27 @@ public class UpdateTrackerRequestMarshaller implements
                 String pricingPlanDataSource = updateTrackerRequest.getPricingPlanDataSource();
                 jsonWriter.name("PricingPlanDataSource");
                 jsonWriter.value(pricingPlanDataSource);
+            }
+            if (updateTrackerRequest.getDescription() != null) {
+                String description = updateTrackerRequest.getDescription();
+                jsonWriter.name("Description");
+                jsonWriter.value(description);
+            }
+            if (updateTrackerRequest.getPositionFiltering() != null) {
+                String positionFiltering = updateTrackerRequest.getPositionFiltering();
+                jsonWriter.name("PositionFiltering");
+                jsonWriter.value(positionFiltering);
+            }
+            if (updateTrackerRequest.getEventBridgeEnabled() != null) {
+                Boolean eventBridgeEnabled = updateTrackerRequest.getEventBridgeEnabled();
+                jsonWriter.name("EventBridgeEnabled");
+                jsonWriter.value(eventBridgeEnabled);
+            }
+            if (updateTrackerRequest.getKmsKeyEnableGeospatialQueries() != null) {
+                Boolean kmsKeyEnableGeospatialQueries = updateTrackerRequest
+                        .getKmsKeyEnableGeospatialQueries();
+                jsonWriter.name("KmsKeyEnableGeospatialQueries");
+                jsonWriter.value(kmsKeyEnableGeospatialQueries);
             }
 
             jsonWriter.endObject();
@@ -101,9 +107,9 @@ public class UpdateTrackerRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
-        request.setHostPrefix("tracking.");
+        request.setHostPrefix("cp.tracking.");
 
         return request;
     }

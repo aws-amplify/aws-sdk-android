@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -63,6 +63,36 @@ import java.io.Serializable;
 public class Leg implements Serializable {
     /**
      * <p>
+     * The starting position of the leg. Follows the format
+     * <code>[longitude,latitude]</code>.
+     * </p>
+     * <note>
+     * <p>
+     * If the <code>StartPosition</code> isn't located on a road, it's <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     * >snapped to a nearby road</a>.
+     * </p>
+     * </note>
+     */
+    private java.util.List<Double> startPosition;
+
+    /**
+     * <p>
+     * The terminating position of the leg. Follows the format
+     * <code>[longitude,latitude]</code>.
+     * </p>
+     * <note>
+     * <p>
+     * If the <code>EndPosition</code> isn't located on a road, it's <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
+     * >snapped to a nearby road</a>.
+     * </p>
+     * </note>
+     */
+    private java.util.List<Double> endPosition;
+
+    /**
+     * <p>
      * The distance between the leg's <code>StartPosition</code> and
      * <code>EndPosition</code> along a calculated route.
      * </p>
@@ -94,25 +124,20 @@ public class Leg implements Serializable {
 
     /**
      * <p>
-     * The terminating position of the leg. Follows the format
-     * <code>[longitude,latitude]</code>.
-     * </p>
-     * <note>
-     * <p>
-     * If the <code>EndPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
-     * >snapped to a nearby road</a>.
-     * </p>
-     * </note>
-     */
-    private java.util.List<Double> endPosition;
-
-    /**
-     * <p>
      * Contains the calculated route's path as a linestring geometry.
      * </p>
      */
     private LegGeometry geometry;
+
+    /**
+     * <p>
+     * Contains a list of steps, which represent subsections of a leg. Each step
+     * provides instructions for how to move to the next step in the leg such as
+     * the step's start position, end position, travel distance, travel
+     * duration, and geometry offset.
+     * </p>
+     */
+    private java.util.List<Step> steps;
 
     /**
      * <p>
@@ -126,18 +151,277 @@ public class Leg implements Serializable {
      * >snapped to a nearby road</a>.
      * </p>
      * </note>
+     *
+     * @return <p>
+     *         The starting position of the leg. Follows the format
+     *         <code>[longitude,latitude]</code>.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         If the <code>StartPosition</code> isn't located on a road, it's
+     *         <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     *         >snapped to a nearby road</a>.
+     *         </p>
+     *         </note>
      */
-    private java.util.List<Double> startPosition;
+    public java.util.List<Double> getStartPosition() {
+        return startPosition;
+    }
 
     /**
      * <p>
-     * Contains a list of steps, which represent subsections of a leg. Each step
-     * provides instructions for how to move to the next step in the leg such as
-     * the step's start position, end position, travel distance, travel
-     * duration, and geometry offset.
+     * The starting position of the leg. Follows the format
+     * <code>[longitude,latitude]</code>.
      * </p>
+     * <note>
+     * <p>
+     * If the <code>StartPosition</code> isn't located on a road, it's <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     * >snapped to a nearby road</a>.
+     * </p>
+     * </note>
+     *
+     * @param startPosition <p>
+     *            The starting position of the leg. Follows the format
+     *            <code>[longitude,latitude]</code>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            If the <code>StartPosition</code> isn't located on a road,
+     *            it's <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     *            >snapped to a nearby road</a>.
+     *            </p>
+     *            </note>
      */
-    private java.util.List<Step> steps;
+    public void setStartPosition(java.util.Collection<Double> startPosition) {
+        if (startPosition == null) {
+            this.startPosition = null;
+            return;
+        }
+
+        this.startPosition = new java.util.ArrayList<Double>(startPosition);
+    }
+
+    /**
+     * <p>
+     * The starting position of the leg. Follows the format
+     * <code>[longitude,latitude]</code>.
+     * </p>
+     * <note>
+     * <p>
+     * If the <code>StartPosition</code> isn't located on a road, it's <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     * >snapped to a nearby road</a>.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param startPosition <p>
+     *            The starting position of the leg. Follows the format
+     *            <code>[longitude,latitude]</code>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            If the <code>StartPosition</code> isn't located on a road,
+     *            it's <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     *            >snapped to a nearby road</a>.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Leg withStartPosition(Double... startPosition) {
+        if (getStartPosition() == null) {
+            this.startPosition = new java.util.ArrayList<Double>(startPosition.length);
+        }
+        for (Double value : startPosition) {
+            this.startPosition.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The starting position of the leg. Follows the format
+     * <code>[longitude,latitude]</code>.
+     * </p>
+     * <note>
+     * <p>
+     * If the <code>StartPosition</code> isn't located on a road, it's <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     * >snapped to a nearby road</a>.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param startPosition <p>
+     *            The starting position of the leg. Follows the format
+     *            <code>[longitude,latitude]</code>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            If the <code>StartPosition</code> isn't located on a road,
+     *            it's <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
+     *            >snapped to a nearby road</a>.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Leg withStartPosition(java.util.Collection<Double> startPosition) {
+        setStartPosition(startPosition);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The terminating position of the leg. Follows the format
+     * <code>[longitude,latitude]</code>.
+     * </p>
+     * <note>
+     * <p>
+     * If the <code>EndPosition</code> isn't located on a road, it's <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
+     * >snapped to a nearby road</a>.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         The terminating position of the leg. Follows the format
+     *         <code>[longitude,latitude]</code>.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         If the <code>EndPosition</code> isn't located on a road, it's <a
+     *         href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
+     *         >snapped to a nearby road</a>.
+     *         </p>
+     *         </note>
+     */
+    public java.util.List<Double> getEndPosition() {
+        return endPosition;
+    }
+
+    /**
+     * <p>
+     * The terminating position of the leg. Follows the format
+     * <code>[longitude,latitude]</code>.
+     * </p>
+     * <note>
+     * <p>
+     * If the <code>EndPosition</code> isn't located on a road, it's <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
+     * >snapped to a nearby road</a>.
+     * </p>
+     * </note>
+     *
+     * @param endPosition <p>
+     *            The terminating position of the leg. Follows the format
+     *            <code>[longitude,latitude]</code>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            If the <code>EndPosition</code> isn't located on a road, it's
+     *            <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
+     *            >snapped to a nearby road</a>.
+     *            </p>
+     *            </note>
+     */
+    public void setEndPosition(java.util.Collection<Double> endPosition) {
+        if (endPosition == null) {
+            this.endPosition = null;
+            return;
+        }
+
+        this.endPosition = new java.util.ArrayList<Double>(endPosition);
+    }
+
+    /**
+     * <p>
+     * The terminating position of the leg. Follows the format
+     * <code>[longitude,latitude]</code>.
+     * </p>
+     * <note>
+     * <p>
+     * If the <code>EndPosition</code> isn't located on a road, it's <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
+     * >snapped to a nearby road</a>.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param endPosition <p>
+     *            The terminating position of the leg. Follows the format
+     *            <code>[longitude,latitude]</code>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            If the <code>EndPosition</code> isn't located on a road, it's
+     *            <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
+     *            >snapped to a nearby road</a>.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Leg withEndPosition(Double... endPosition) {
+        if (getEndPosition() == null) {
+            this.endPosition = new java.util.ArrayList<Double>(endPosition.length);
+        }
+        for (Double value : endPosition) {
+            this.endPosition.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The terminating position of the leg. Follows the format
+     * <code>[longitude,latitude]</code>.
+     * </p>
+     * <note>
+     * <p>
+     * If the <code>EndPosition</code> isn't located on a road, it's <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
+     * >snapped to a nearby road</a>.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param endPosition <p>
+     *            The terminating position of the leg. Follows the format
+     *            <code>[longitude,latitude]</code>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            If the <code>EndPosition</code> isn't located on a road, it's
+     *            <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
+     *            >snapped to a nearby road</a>.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Leg withEndPosition(java.util.Collection<Double> endPosition) {
+        setEndPosition(endPosition);
+        return this;
+    }
 
     /**
      * <p>
@@ -321,148 +605,6 @@ public class Leg implements Serializable {
 
     /**
      * <p>
-     * The terminating position of the leg. Follows the format
-     * <code>[longitude,latitude]</code>.
-     * </p>
-     * <note>
-     * <p>
-     * If the <code>EndPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
-     * >snapped to a nearby road</a>.
-     * </p>
-     * </note>
-     *
-     * @return <p>
-     *         The terminating position of the leg. Follows the format
-     *         <code>[longitude,latitude]</code>.
-     *         </p>
-     *         <note>
-     *         <p>
-     *         If the <code>EndPosition</code> isn't located on a road, it's <a
-     *         href=
-     *         "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
-     *         >snapped to a nearby road</a>.
-     *         </p>
-     *         </note>
-     */
-    public java.util.List<Double> getEndPosition() {
-        return endPosition;
-    }
-
-    /**
-     * <p>
-     * The terminating position of the leg. Follows the format
-     * <code>[longitude,latitude]</code>.
-     * </p>
-     * <note>
-     * <p>
-     * If the <code>EndPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
-     * >snapped to a nearby road</a>.
-     * </p>
-     * </note>
-     *
-     * @param endPosition <p>
-     *            The terminating position of the leg. Follows the format
-     *            <code>[longitude,latitude]</code>.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            If the <code>EndPosition</code> isn't located on a road, it's
-     *            <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
-     *            >snapped to a nearby road</a>.
-     *            </p>
-     *            </note>
-     */
-    public void setEndPosition(java.util.Collection<Double> endPosition) {
-        if (endPosition == null) {
-            this.endPosition = null;
-            return;
-        }
-
-        this.endPosition = new java.util.ArrayList<Double>(endPosition);
-    }
-
-    /**
-     * <p>
-     * The terminating position of the leg. Follows the format
-     * <code>[longitude,latitude]</code>.
-     * </p>
-     * <note>
-     * <p>
-     * If the <code>EndPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
-     * >snapped to a nearby road</a>.
-     * </p>
-     * </note>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param endPosition <p>
-     *            The terminating position of the leg. Follows the format
-     *            <code>[longitude,latitude]</code>.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            If the <code>EndPosition</code> isn't located on a road, it's
-     *            <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
-     *            >snapped to a nearby road</a>.
-     *            </p>
-     *            </note>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public Leg withEndPosition(Double... endPosition) {
-        if (getEndPosition() == null) {
-            this.endPosition = new java.util.ArrayList<Double>(endPosition.length);
-        }
-        for (Double value : endPosition) {
-            this.endPosition.add(value);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * The terminating position of the leg. Follows the format
-     * <code>[longitude,latitude]</code>.
-     * </p>
-     * <note>
-     * <p>
-     * If the <code>EndPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
-     * >snapped to a nearby road</a>.
-     * </p>
-     * </note>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param endPosition <p>
-     *            The terminating position of the leg. Follows the format
-     *            <code>[longitude,latitude]</code>.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            If the <code>EndPosition</code> isn't located on a road, it's
-     *            <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
-     *            >snapped to a nearby road</a>.
-     *            </p>
-     *            </note>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public Leg withEndPosition(java.util.Collection<Double> endPosition) {
-        setEndPosition(endPosition);
-        return this;
-    }
-
-    /**
-     * <p>
      * Contains the calculated route's path as a linestring geometry.
      * </p>
      *
@@ -503,148 +645,6 @@ public class Leg implements Serializable {
      */
     public Leg withGeometry(LegGeometry geometry) {
         this.geometry = geometry;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The starting position of the leg. Follows the format
-     * <code>[longitude,latitude]</code>.
-     * </p>
-     * <note>
-     * <p>
-     * If the <code>StartPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     * >snapped to a nearby road</a>.
-     * </p>
-     * </note>
-     *
-     * @return <p>
-     *         The starting position of the leg. Follows the format
-     *         <code>[longitude,latitude]</code>.
-     *         </p>
-     *         <note>
-     *         <p>
-     *         If the <code>StartPosition</code> isn't located on a road, it's
-     *         <a href=
-     *         "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     *         >snapped to a nearby road</a>.
-     *         </p>
-     *         </note>
-     */
-    public java.util.List<Double> getStartPosition() {
-        return startPosition;
-    }
-
-    /**
-     * <p>
-     * The starting position of the leg. Follows the format
-     * <code>[longitude,latitude]</code>.
-     * </p>
-     * <note>
-     * <p>
-     * If the <code>StartPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     * >snapped to a nearby road</a>.
-     * </p>
-     * </note>
-     *
-     * @param startPosition <p>
-     *            The starting position of the leg. Follows the format
-     *            <code>[longitude,latitude]</code>.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            If the <code>StartPosition</code> isn't located on a road,
-     *            it's <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     *            >snapped to a nearby road</a>.
-     *            </p>
-     *            </note>
-     */
-    public void setStartPosition(java.util.Collection<Double> startPosition) {
-        if (startPosition == null) {
-            this.startPosition = null;
-            return;
-        }
-
-        this.startPosition = new java.util.ArrayList<Double>(startPosition);
-    }
-
-    /**
-     * <p>
-     * The starting position of the leg. Follows the format
-     * <code>[longitude,latitude]</code>.
-     * </p>
-     * <note>
-     * <p>
-     * If the <code>StartPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     * >snapped to a nearby road</a>.
-     * </p>
-     * </note>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param startPosition <p>
-     *            The starting position of the leg. Follows the format
-     *            <code>[longitude,latitude]</code>.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            If the <code>StartPosition</code> isn't located on a road,
-     *            it's <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     *            >snapped to a nearby road</a>.
-     *            </p>
-     *            </note>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public Leg withStartPosition(Double... startPosition) {
-        if (getStartPosition() == null) {
-            this.startPosition = new java.util.ArrayList<Double>(startPosition.length);
-        }
-        for (Double value : startPosition) {
-            this.startPosition.add(value);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * The starting position of the leg. Follows the format
-     * <code>[longitude,latitude]</code>.
-     * </p>
-     * <note>
-     * <p>
-     * If the <code>StartPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     * >snapped to a nearby road</a>.
-     * </p>
-     * </note>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param startPosition <p>
-     *            The starting position of the leg. Follows the format
-     *            <code>[longitude,latitude]</code>.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            If the <code>StartPosition</code> isn't located on a road,
-     *            it's <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
-     *            >snapped to a nearby road</a>.
-     *            </p>
-     *            </note>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public Leg withStartPosition(java.util.Collection<Double> startPosition) {
-        setStartPosition(startPosition);
         return this;
     }
 
@@ -760,16 +760,16 @@ public class Leg implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getStartPosition() != null)
+            sb.append("StartPosition: " + getStartPosition() + ",");
+        if (getEndPosition() != null)
+            sb.append("EndPosition: " + getEndPosition() + ",");
         if (getDistance() != null)
             sb.append("Distance: " + getDistance() + ",");
         if (getDurationSeconds() != null)
             sb.append("DurationSeconds: " + getDurationSeconds() + ",");
-        if (getEndPosition() != null)
-            sb.append("EndPosition: " + getEndPosition() + ",");
         if (getGeometry() != null)
             sb.append("Geometry: " + getGeometry() + ",");
-        if (getStartPosition() != null)
-            sb.append("StartPosition: " + getStartPosition() + ",");
         if (getSteps() != null)
             sb.append("Steps: " + getSteps());
         sb.append("}");
@@ -781,14 +781,14 @@ public class Leg implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode
+                + ((getStartPosition() == null) ? 0 : getStartPosition().hashCode());
+        hashCode = prime * hashCode
+                + ((getEndPosition() == null) ? 0 : getEndPosition().hashCode());
         hashCode = prime * hashCode + ((getDistance() == null) ? 0 : getDistance().hashCode());
         hashCode = prime * hashCode
                 + ((getDurationSeconds() == null) ? 0 : getDurationSeconds().hashCode());
-        hashCode = prime * hashCode
-                + ((getEndPosition() == null) ? 0 : getEndPosition().hashCode());
         hashCode = prime * hashCode + ((getGeometry() == null) ? 0 : getGeometry().hashCode());
-        hashCode = prime * hashCode
-                + ((getStartPosition() == null) ? 0 : getStartPosition().hashCode());
         hashCode = prime * hashCode + ((getSteps() == null) ? 0 : getSteps().hashCode());
         return hashCode;
     }
@@ -804,6 +804,16 @@ public class Leg implements Serializable {
             return false;
         Leg other = (Leg) obj;
 
+        if (other.getStartPosition() == null ^ this.getStartPosition() == null)
+            return false;
+        if (other.getStartPosition() != null
+                && other.getStartPosition().equals(this.getStartPosition()) == false)
+            return false;
+        if (other.getEndPosition() == null ^ this.getEndPosition() == null)
+            return false;
+        if (other.getEndPosition() != null
+                && other.getEndPosition().equals(this.getEndPosition()) == false)
+            return false;
         if (other.getDistance() == null ^ this.getDistance() == null)
             return false;
         if (other.getDistance() != null && other.getDistance().equals(this.getDistance()) == false)
@@ -813,19 +823,9 @@ public class Leg implements Serializable {
         if (other.getDurationSeconds() != null
                 && other.getDurationSeconds().equals(this.getDurationSeconds()) == false)
             return false;
-        if (other.getEndPosition() == null ^ this.getEndPosition() == null)
-            return false;
-        if (other.getEndPosition() != null
-                && other.getEndPosition().equals(this.getEndPosition()) == false)
-            return false;
         if (other.getGeometry() == null ^ this.getGeometry() == null)
             return false;
         if (other.getGeometry() != null && other.getGeometry().equals(this.getGeometry()) == false)
-            return false;
-        if (other.getStartPosition() == null ^ this.getStartPosition() == null)
-            return false;
-        if (other.getStartPosition() != null
-                && other.getStartPosition().equals(this.getStartPosition()) == false)
             return false;
         if (other.getSteps() == null ^ this.getSteps() == null)
             return false;

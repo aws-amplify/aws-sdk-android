@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,14 +25,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  */
 public class ListKeysRequest extends AmazonWebServiceRequest implements Serializable {
-    /**
-     * <p>
-     * Optionally filter the list to only <code>Active</code> or
-     * <code>Expired</code> API keys.
-     * </p>
-     */
-    private ApiKeyFilter filter;
-
     /**
      * <p>
      * An optional limit for the number of resources returned in a single call.
@@ -65,51 +57,8 @@ public class ListKeysRequest extends AmazonWebServiceRequest implements Serializ
      * Optionally filter the list to only <code>Active</code> or
      * <code>Expired</code> API keys.
      * </p>
-     *
-     * @return <p>
-     *         Optionally filter the list to only <code>Active</code> or
-     *         <code>Expired</code> API keys.
-     *         </p>
      */
-    public ApiKeyFilter getFilter() {
-        return filter;
-    }
-
-    /**
-     * <p>
-     * Optionally filter the list to only <code>Active</code> or
-     * <code>Expired</code> API keys.
-     * </p>
-     *
-     * @param filter <p>
-     *            Optionally filter the list to only <code>Active</code> or
-     *            <code>Expired</code> API keys.
-     *            </p>
-     */
-    public void setFilter(ApiKeyFilter filter) {
-        this.filter = filter;
-    }
-
-    /**
-     * <p>
-     * Optionally filter the list to only <code>Active</code> or
-     * <code>Expired</code> API keys.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param filter <p>
-     *            Optionally filter the list to only <code>Active</code> or
-     *            <code>Expired</code> API keys.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public ListKeysRequest withFilter(ApiKeyFilter filter) {
-        this.filter = filter;
-        return this;
-    }
+    private ApiKeyFilter filter;
 
     /**
      * <p>
@@ -268,6 +217,57 @@ public class ListKeysRequest extends AmazonWebServiceRequest implements Serializ
     }
 
     /**
+     * <p>
+     * Optionally filter the list to only <code>Active</code> or
+     * <code>Expired</code> API keys.
+     * </p>
+     *
+     * @return <p>
+     *         Optionally filter the list to only <code>Active</code> or
+     *         <code>Expired</code> API keys.
+     *         </p>
+     */
+    public ApiKeyFilter getFilter() {
+        return filter;
+    }
+
+    /**
+     * <p>
+     * Optionally filter the list to only <code>Active</code> or
+     * <code>Expired</code> API keys.
+     * </p>
+     *
+     * @param filter <p>
+     *            Optionally filter the list to only <code>Active</code> or
+     *            <code>Expired</code> API keys.
+     *            </p>
+     */
+    public void setFilter(ApiKeyFilter filter) {
+        this.filter = filter;
+    }
+
+    /**
+     * <p>
+     * Optionally filter the list to only <code>Active</code> or
+     * <code>Expired</code> API keys.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param filter <p>
+     *            Optionally filter the list to only <code>Active</code> or
+     *            <code>Expired</code> API keys.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListKeysRequest withFilter(ApiKeyFilter filter) {
+        this.filter = filter;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -278,12 +278,12 @@ public class ListKeysRequest extends AmazonWebServiceRequest implements Serializ
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getFilter() != null)
-            sb.append("Filter: " + getFilter() + ",");
         if (getMaxResults() != null)
             sb.append("MaxResults: " + getMaxResults() + ",");
         if (getNextToken() != null)
-            sb.append("NextToken: " + getNextToken());
+            sb.append("NextToken: " + getNextToken() + ",");
+        if (getFilter() != null)
+            sb.append("Filter: " + getFilter());
         sb.append("}");
         return sb.toString();
     }
@@ -293,9 +293,9 @@ public class ListKeysRequest extends AmazonWebServiceRequest implements Serializ
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getFilter() == null) ? 0 : getFilter().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
+        hashCode = prime * hashCode + ((getFilter() == null) ? 0 : getFilter().hashCode());
         return hashCode;
     }
 
@@ -310,10 +310,6 @@ public class ListKeysRequest extends AmazonWebServiceRequest implements Serializ
             return false;
         ListKeysRequest other = (ListKeysRequest) obj;
 
-        if (other.getFilter() == null ^ this.getFilter() == null)
-            return false;
-        if (other.getFilter() != null && other.getFilter().equals(this.getFilter()) == false)
-            return false;
         if (other.getMaxResults() == null ^ this.getMaxResults() == null)
             return false;
         if (other.getMaxResults() != null
@@ -323,6 +319,10 @@ public class ListKeysRequest extends AmazonWebServiceRequest implements Serializ
             return false;
         if (other.getNextToken() != null
                 && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
+        if (other.getFilter() == null ^ this.getFilter() == null)
+            return false;
+        if (other.getFilter() != null && other.getFilter().equals(this.getFilter()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,11 +33,11 @@ public class UpdatePlaceIndexResultJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("IndexArn")) {
-                updatePlaceIndexResult.setIndexArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("IndexName")) {
+            if (name.equals("IndexName")) {
                 updatePlaceIndexResult.setIndexName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("IndexArn")) {
+                updatePlaceIndexResult.setIndexArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("UpdateTime")) {
                 updatePlaceIndexResult.setUpdateTime(DateJsonUnmarshaller.getInstance(

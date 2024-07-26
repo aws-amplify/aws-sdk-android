@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -60,10 +60,25 @@ public class CreatePlaceIndexRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (createPlaceIndexRequest.getIndexName() != null) {
+                String indexName = createPlaceIndexRequest.getIndexName();
+                jsonWriter.name("IndexName");
+                jsonWriter.value(indexName);
+            }
             if (createPlaceIndexRequest.getDataSource() != null) {
                 String dataSource = createPlaceIndexRequest.getDataSource();
                 jsonWriter.name("DataSource");
                 jsonWriter.value(dataSource);
+            }
+            if (createPlaceIndexRequest.getPricingPlan() != null) {
+                String pricingPlan = createPlaceIndexRequest.getPricingPlan();
+                jsonWriter.name("PricingPlan");
+                jsonWriter.value(pricingPlan);
+            }
+            if (createPlaceIndexRequest.getDescription() != null) {
+                String description = createPlaceIndexRequest.getDescription();
+                jsonWriter.name("Description");
+                jsonWriter.value(description);
             }
             if (createPlaceIndexRequest.getDataSourceConfiguration() != null) {
                 DataSourceConfiguration dataSourceConfiguration = createPlaceIndexRequest
@@ -71,21 +86,6 @@ public class CreatePlaceIndexRequestMarshaller implements
                 jsonWriter.name("DataSourceConfiguration");
                 DataSourceConfigurationJsonMarshaller.getInstance().marshall(
                         dataSourceConfiguration, jsonWriter);
-            }
-            if (createPlaceIndexRequest.getDescription() != null) {
-                String description = createPlaceIndexRequest.getDescription();
-                jsonWriter.name("Description");
-                jsonWriter.value(description);
-            }
-            if (createPlaceIndexRequest.getIndexName() != null) {
-                String indexName = createPlaceIndexRequest.getIndexName();
-                jsonWriter.name("IndexName");
-                jsonWriter.value(indexName);
-            }
-            if (createPlaceIndexRequest.getPricingPlan() != null) {
-                String pricingPlan = createPlaceIndexRequest.getPricingPlan();
-                jsonWriter.name("PricingPlan");
-                jsonWriter.value(pricingPlan);
             }
             if (createPlaceIndexRequest.getTags() != null) {
                 java.util.Map<String, String> tags = createPlaceIndexRequest.getTags();
@@ -112,9 +112,9 @@ public class CreatePlaceIndexRequestMarshaller implements
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
         if (!request.getHeaders().containsKey("Content-Type")) {
-            request.addHeader("Content-Type", "application/x-amz-json-1.1");
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
-        request.setHostPrefix("places.");
+        request.setHostPrefix("cp.places.");
 
         return request;
     }

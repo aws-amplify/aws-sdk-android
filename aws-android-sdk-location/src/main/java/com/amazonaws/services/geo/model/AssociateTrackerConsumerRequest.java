@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,36 +40,13 @@ public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest imp
         Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the geofence collection to be
-     * associated to tracker resource. Used when you need to specify a resource
-     * across all Amazon Web Services.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Format example:
-     * <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollectionConsumer</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1600<br/>
-     * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
-     */
-    private String consumerArn;
-
-    /**
-     * <p>
      * The name of the tracker resource to be associated with a geofence
      * collection.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
      */
     private String trackerName;
 
@@ -91,8 +68,94 @@ public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest imp
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
+     */
+    private String consumerArn;
+
+    /**
+     * <p>
+     * The name of the tracker resource to be associated with a geofence
+     * collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The name of the tracker resource to be associated with a geofence
+     *         collection.
+     *         </p>
+     */
+    public String getTrackerName() {
+        return trackerName;
+    }
+
+    /**
+     * <p>
+     * The name of the tracker resource to be associated with a geofence
+     * collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param trackerName <p>
+     *            The name of the tracker resource to be associated with a
+     *            geofence collection.
+     *            </p>
+     */
+    public void setTrackerName(String trackerName) {
+        this.trackerName = trackerName;
+    }
+
+    /**
+     * <p>
+     * The name of the tracker resource to be associated with a geofence
+     * collection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param trackerName <p>
+     *            The name of the tracker resource to be associated with a
+     *            geofence collection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AssociateTrackerConsumerRequest withTrackerName(String trackerName) {
+        this.trackerName = trackerName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) for the geofence collection to be
+     * associated to tracker resource. Used when you need to specify a resource
+     * across all Amazon Web Services.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollectionConsumer</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1600<br/>
+     * <b>Pattern:
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for the geofence collection to be
@@ -130,8 +193,8 @@ public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest imp
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      *
      * @param consumerArn <p>
      *            The Amazon Resource Name (ARN) for the geofence collection to
@@ -172,8 +235,8 @@ public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest imp
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      *
      * @param consumerArn <p>
      *            The Amazon Resource Name (ARN) for the geofence collection to
@@ -197,69 +260,6 @@ public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest imp
     }
 
     /**
-     * <p>
-     * The name of the tracker resource to be associated with a geofence
-     * collection.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         The name of the tracker resource to be associated with a geofence
-     *         collection.
-     *         </p>
-     */
-    public String getTrackerName() {
-        return trackerName;
-    }
-
-    /**
-     * <p>
-     * The name of the tracker resource to be associated with a geofence
-     * collection.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param trackerName <p>
-     *            The name of the tracker resource to be associated with a
-     *            geofence collection.
-     *            </p>
-     */
-    public void setTrackerName(String trackerName) {
-        this.trackerName = trackerName;
-    }
-
-    /**
-     * <p>
-     * The name of the tracker resource to be associated with a geofence
-     * collection.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param trackerName <p>
-     *            The name of the tracker resource to be associated with a
-     *            geofence collection.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public AssociateTrackerConsumerRequest withTrackerName(String trackerName) {
-        this.trackerName = trackerName;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -270,10 +270,10 @@ public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest imp
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getConsumerArn() != null)
-            sb.append("ConsumerArn: " + getConsumerArn() + ",");
         if (getTrackerName() != null)
-            sb.append("TrackerName: " + getTrackerName());
+            sb.append("TrackerName: " + getTrackerName() + ",");
+        if (getConsumerArn() != null)
+            sb.append("ConsumerArn: " + getConsumerArn());
         sb.append("}");
         return sb.toString();
     }
@@ -284,9 +284,9 @@ public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest imp
         int hashCode = 1;
 
         hashCode = prime * hashCode
-                + ((getConsumerArn() == null) ? 0 : getConsumerArn().hashCode());
-        hashCode = prime * hashCode
                 + ((getTrackerName() == null) ? 0 : getTrackerName().hashCode());
+        hashCode = prime * hashCode
+                + ((getConsumerArn() == null) ? 0 : getConsumerArn().hashCode());
         return hashCode;
     }
 
@@ -301,15 +301,15 @@ public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest imp
             return false;
         AssociateTrackerConsumerRequest other = (AssociateTrackerConsumerRequest) obj;
 
-        if (other.getConsumerArn() == null ^ this.getConsumerArn() == null)
-            return false;
-        if (other.getConsumerArn() != null
-                && other.getConsumerArn().equals(this.getConsumerArn()) == false)
-            return false;
         if (other.getTrackerName() == null ^ this.getTrackerName() == null)
             return false;
         if (other.getTrackerName() != null
                 && other.getTrackerName().equals(this.getTrackerName()) == false)
+            return false;
+        if (other.getConsumerArn() == null ^ this.getConsumerArn() == null)
+            return false;
+        if (other.getConsumerArn() != null
+                && other.getConsumerArn().equals(this.getConsumerArn()) == false)
             return false;
         return true;
     }

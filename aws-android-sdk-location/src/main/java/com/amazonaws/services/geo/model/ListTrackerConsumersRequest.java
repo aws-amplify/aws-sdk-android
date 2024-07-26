@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,6 +26,18 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  */
 public class ListTrackerConsumersRequest extends AmazonWebServiceRequest implements Serializable {
+    /**
+     * <p>
+     * The tracker resource whose associated geofence collections you want to
+     * list.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     */
+    private String trackerName;
+
     /**
      * <p>
      * An optional limit for the number of resources returned in a single call.
@@ -61,9 +73,60 @@ public class ListTrackerConsumersRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The tracker resource whose associated geofence collections you
+     *         want to list.
+     *         </p>
      */
-    private String trackerName;
+    public String getTrackerName() {
+        return trackerName;
+    }
+
+    /**
+     * <p>
+     * The tracker resource whose associated geofence collections you want to
+     * list.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param trackerName <p>
+     *            The tracker resource whose associated geofence collections you
+     *            want to list.
+     *            </p>
+     */
+    public void setTrackerName(String trackerName) {
+        this.trackerName = trackerName;
+    }
+
+    /**
+     * <p>
+     * The tracker resource whose associated geofence collections you want to
+     * list.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param trackerName <p>
+     *            The tracker resource whose associated geofence collections you
+     *            want to list.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListTrackerConsumersRequest withTrackerName(String trackerName) {
+        this.trackerName = trackerName;
+        return this;
+    }
 
     /**
      * <p>
@@ -222,69 +285,6 @@ public class ListTrackerConsumersRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * <p>
-     * The tracker resource whose associated geofence collections you want to
-     * list.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         The tracker resource whose associated geofence collections you
-     *         want to list.
-     *         </p>
-     */
-    public String getTrackerName() {
-        return trackerName;
-    }
-
-    /**
-     * <p>
-     * The tracker resource whose associated geofence collections you want to
-     * list.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param trackerName <p>
-     *            The tracker resource whose associated geofence collections you
-     *            want to list.
-     *            </p>
-     */
-    public void setTrackerName(String trackerName) {
-        this.trackerName = trackerName;
-    }
-
-    /**
-     * <p>
-     * The tracker resource whose associated geofence collections you want to
-     * list.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param trackerName <p>
-     *            The tracker resource whose associated geofence collections you
-     *            want to list.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public ListTrackerConsumersRequest withTrackerName(String trackerName) {
-        this.trackerName = trackerName;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -295,12 +295,12 @@ public class ListTrackerConsumersRequest extends AmazonWebServiceRequest impleme
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getTrackerName() != null)
+            sb.append("TrackerName: " + getTrackerName() + ",");
         if (getMaxResults() != null)
             sb.append("MaxResults: " + getMaxResults() + ",");
         if (getNextToken() != null)
-            sb.append("NextToken: " + getNextToken() + ",");
-        if (getTrackerName() != null)
-            sb.append("TrackerName: " + getTrackerName());
+            sb.append("NextToken: " + getNextToken());
         sb.append("}");
         return sb.toString();
     }
@@ -310,10 +310,10 @@ public class ListTrackerConsumersRequest extends AmazonWebServiceRequest impleme
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
-        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode
                 + ((getTrackerName() == null) ? 0 : getTrackerName().hashCode());
+        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
 
@@ -328,6 +328,11 @@ public class ListTrackerConsumersRequest extends AmazonWebServiceRequest impleme
             return false;
         ListTrackerConsumersRequest other = (ListTrackerConsumersRequest) obj;
 
+        if (other.getTrackerName() == null ^ this.getTrackerName() == null)
+            return false;
+        if (other.getTrackerName() != null
+                && other.getTrackerName().equals(this.getTrackerName()) == false)
+            return false;
         if (other.getMaxResults() == null ^ this.getMaxResults() == null)
             return false;
         if (other.getMaxResults() != null
@@ -337,11 +342,6 @@ public class ListTrackerConsumersRequest extends AmazonWebServiceRequest impleme
             return false;
         if (other.getNextToken() != null
                 && other.getNextToken().equals(this.getNextToken()) == false)
-            return false;
-        if (other.getTrackerName() == null ^ this.getTrackerName() == null)
-            return false;
-        if (other.getTrackerName() != null
-                && other.getTrackerName().equals(this.getTrackerName()) == false)
             return false;
         return true;
     }

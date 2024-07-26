@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,33 +33,33 @@ public class DescribeMapResultJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Configuration")) {
-                describeMapResult.setConfiguration(MapConfigurationJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("CreateTime")) {
-                describeMapResult.setCreateTime(DateJsonUnmarshaller.getInstance(
-                        TimestampFormat.ISO_8601)
-                        .unmarshall(context));
-            } else if (name.equals("DataSource")) {
-                describeMapResult.setDataSource(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Description")) {
-                describeMapResult.setDescription(StringJsonUnmarshaller.getInstance()
+            if (name.equals("MapName")) {
+                describeMapResult.setMapName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("MapArn")) {
                 describeMapResult.setMapArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("MapName")) {
-                describeMapResult.setMapName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
             } else if (name.equals("PricingPlan")) {
                 describeMapResult.setPricingPlan(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DataSource")) {
+                describeMapResult.setDataSource(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Configuration")) {
+                describeMapResult.setConfiguration(MapConfigurationJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Description")) {
+                describeMapResult.setDescription(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Tags")) {
                 describeMapResult.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("CreateTime")) {
+                describeMapResult.setCreateTime(DateJsonUnmarshaller.getInstance(
+                        TimestampFormat.ISO_8601)
+                        .unmarshall(context));
             } else if (name.equals("UpdateTime")) {
                 describeMapResult.setUpdateTime(DateJsonUnmarshaller.getInstance(
                         TimestampFormat.ISO_8601)

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,30 +27,30 @@ class ListKeysResponseEntryJsonMarshaller {
     public void marshall(ListKeysResponseEntry listKeysResponseEntry, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
-        if (listKeysResponseEntry.getCreateTime() != null) {
-            java.util.Date createTime = listKeysResponseEntry.getCreateTime();
-            jsonWriter.name("CreateTime");
-            jsonWriter.value(DateUtils.formatISO8601Date(createTime));
-        }
-        if (listKeysResponseEntry.getDescription() != null) {
-            String description = listKeysResponseEntry.getDescription();
-            jsonWriter.name("Description");
-            jsonWriter.value(description);
+        if (listKeysResponseEntry.getKeyName() != null) {
+            String keyName = listKeysResponseEntry.getKeyName();
+            jsonWriter.name("KeyName");
+            jsonWriter.value(keyName);
         }
         if (listKeysResponseEntry.getExpireTime() != null) {
             java.util.Date expireTime = listKeysResponseEntry.getExpireTime();
             jsonWriter.name("ExpireTime");
             jsonWriter.value(DateUtils.formatISO8601Date(expireTime));
         }
-        if (listKeysResponseEntry.getKeyName() != null) {
-            String keyName = listKeysResponseEntry.getKeyName();
-            jsonWriter.name("KeyName");
-            jsonWriter.value(keyName);
+        if (listKeysResponseEntry.getDescription() != null) {
+            String description = listKeysResponseEntry.getDescription();
+            jsonWriter.name("Description");
+            jsonWriter.value(description);
         }
         if (listKeysResponseEntry.getRestrictions() != null) {
             ApiKeyRestrictions restrictions = listKeysResponseEntry.getRestrictions();
             jsonWriter.name("Restrictions");
             ApiKeyRestrictionsJsonMarshaller.getInstance().marshall(restrictions, jsonWriter);
+        }
+        if (listKeysResponseEntry.getCreateTime() != null) {
+            java.util.Date createTime = listKeysResponseEntry.getCreateTime();
+            jsonWriter.name("CreateTime");
+            jsonWriter.value(DateUtils.formatISO8601Date(createTime));
         }
         if (listKeysResponseEntry.getUpdateTime() != null) {
             java.util.Date updateTime = listKeysResponseEntry.getUpdateTime();

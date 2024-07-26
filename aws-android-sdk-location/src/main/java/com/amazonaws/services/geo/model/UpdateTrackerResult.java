@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,6 +20,17 @@ import java.io.Serializable;
 public class UpdateTrackerResult implements Serializable {
     /**
      * <p>
+     * The name of the updated tracker resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     */
+    private String trackerName;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) of the updated tracker resource. Used to
      * specify a resource across AWS.
      * </p>
@@ -35,21 +46,10 @@ public class UpdateTrackerResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      */
     private String trackerArn;
-
-    /**
-     * <p>
-     * The name of the updated tracker resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     */
-    private String trackerName;
 
     /**
      * <p>
@@ -62,6 +62,63 @@ public class UpdateTrackerResult implements Serializable {
 
     /**
      * <p>
+     * The name of the updated tracker resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @return <p>
+     *         The name of the updated tracker resource.
+     *         </p>
+     */
+    public String getTrackerName() {
+        return trackerName;
+    }
+
+    /**
+     * <p>
+     * The name of the updated tracker resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param trackerName <p>
+     *            The name of the updated tracker resource.
+     *            </p>
+     */
+    public void setTrackerName(String trackerName) {
+        this.trackerName = trackerName;
+    }
+
+    /**
+     * <p>
+     * The name of the updated tracker resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     * <b>Pattern: </b>[-._\w]+<br/>
+     *
+     * @param trackerName <p>
+     *            The name of the updated tracker resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateTrackerResult withTrackerName(String trackerName) {
+        this.trackerName = trackerName;
+        return this;
+    }
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) of the updated tracker resource. Used to
      * specify a resource across AWS.
      * </p>
@@ -77,8 +134,8 @@ public class UpdateTrackerResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the updated tracker resource.
@@ -114,8 +171,8 @@ public class UpdateTrackerResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      *
      * @param trackerArn <p>
      *            The Amazon Resource Name (ARN) of the updated tracker
@@ -154,8 +211,8 @@ public class UpdateTrackerResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9
+     * ]+)*)?){2}:([^/].*)?<br/>
      *
      * @param trackerArn <p>
      *            The Amazon Resource Name (ARN) of the updated tracker
@@ -174,63 +231,6 @@ public class UpdateTrackerResult implements Serializable {
      */
     public UpdateTrackerResult withTrackerArn(String trackerArn) {
         this.trackerArn = trackerArn;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The name of the updated tracker resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @return <p>
-     *         The name of the updated tracker resource.
-     *         </p>
-     */
-    public String getTrackerName() {
-        return trackerName;
-    }
-
-    /**
-     * <p>
-     * The name of the updated tracker resource.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param trackerName <p>
-     *            The name of the updated tracker resource.
-     *            </p>
-     */
-    public void setTrackerName(String trackerName) {
-        this.trackerName = trackerName;
-    }
-
-    /**
-     * <p>
-     * The name of the updated tracker resource.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\w]+$<br/>
-     *
-     * @param trackerName <p>
-     *            The name of the updated tracker resource.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateTrackerResult withTrackerName(String trackerName) {
-        this.trackerName = trackerName;
         return this;
     }
 
@@ -304,10 +304,10 @@ public class UpdateTrackerResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getTrackerArn() != null)
-            sb.append("TrackerArn: " + getTrackerArn() + ",");
         if (getTrackerName() != null)
             sb.append("TrackerName: " + getTrackerName() + ",");
+        if (getTrackerArn() != null)
+            sb.append("TrackerArn: " + getTrackerArn() + ",");
         if (getUpdateTime() != null)
             sb.append("UpdateTime: " + getUpdateTime());
         sb.append("}");
@@ -319,9 +319,9 @@ public class UpdateTrackerResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getTrackerArn() == null) ? 0 : getTrackerArn().hashCode());
         hashCode = prime * hashCode
                 + ((getTrackerName() == null) ? 0 : getTrackerName().hashCode());
+        hashCode = prime * hashCode + ((getTrackerArn() == null) ? 0 : getTrackerArn().hashCode());
         hashCode = prime * hashCode + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return hashCode;
     }
@@ -337,15 +337,15 @@ public class UpdateTrackerResult implements Serializable {
             return false;
         UpdateTrackerResult other = (UpdateTrackerResult) obj;
 
-        if (other.getTrackerArn() == null ^ this.getTrackerArn() == null)
-            return false;
-        if (other.getTrackerArn() != null
-                && other.getTrackerArn().equals(this.getTrackerArn()) == false)
-            return false;
         if (other.getTrackerName() == null ^ this.getTrackerName() == null)
             return false;
         if (other.getTrackerName() != null
                 && other.getTrackerName().equals(this.getTrackerName()) == false)
+            return false;
+        if (other.getTrackerArn() == null ^ this.getTrackerArn() == null)
+            return false;
+        if (other.getTrackerArn() != null
+                && other.getTrackerArn().equals(this.getTrackerArn()) == false)
             return false;
         if (other.getUpdateTime() == null ^ this.getUpdateTime() == null)
             return false;

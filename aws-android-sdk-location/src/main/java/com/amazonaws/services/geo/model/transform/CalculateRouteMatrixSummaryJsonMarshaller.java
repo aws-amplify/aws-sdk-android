@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,20 +32,20 @@ class CalculateRouteMatrixSummaryJsonMarshaller {
             jsonWriter.name("DataSource");
             jsonWriter.value(dataSource);
         }
-        if (calculateRouteMatrixSummary.getDistanceUnit() != null) {
-            String distanceUnit = calculateRouteMatrixSummary.getDistanceUnit();
-            jsonWriter.name("DistanceUnit");
-            jsonWriter.value(distanceUnit);
+        if (calculateRouteMatrixSummary.getRouteCount() != null) {
+            Integer routeCount = calculateRouteMatrixSummary.getRouteCount();
+            jsonWriter.name("RouteCount");
+            jsonWriter.value(routeCount);
         }
         if (calculateRouteMatrixSummary.getErrorCount() != null) {
             Integer errorCount = calculateRouteMatrixSummary.getErrorCount();
             jsonWriter.name("ErrorCount");
             jsonWriter.value(errorCount);
         }
-        if (calculateRouteMatrixSummary.getRouteCount() != null) {
-            Integer routeCount = calculateRouteMatrixSummary.getRouteCount();
-            jsonWriter.name("RouteCount");
-            jsonWriter.value(routeCount);
+        if (calculateRouteMatrixSummary.getDistanceUnit() != null) {
+            String distanceUnit = calculateRouteMatrixSummary.getDistanceUnit();
+            jsonWriter.name("DistanceUnit");
+            jsonWriter.value(distanceUnit);
         }
         jsonWriter.endObject();
     }
