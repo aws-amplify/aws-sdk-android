@@ -1,3 +1,11 @@
+## [Release 2.76.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.76.1)
+
+### Miscellaneous
+- Set the ForegroundServiceType for TransferService ([#3620](https://github.com/aws-amplify/aws-sdk-android/issues/3620))
+- KVS - Add Support for More Resolution Widths ([#3609](https://github.com/aws-amplify/aws-sdk-android/issues/3609))
+
+[See all changes between 2.76.0 and 2.76.1](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.76.0...release_v2.76.1)
+
 ## [Release 2.76.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.76.0)
 
 ### Features
