@@ -43,7 +43,7 @@ public class UserStateDetails {
         this.exception = exception;
     }
 
-    protected Exception getException() {
+    public Exception getException() {
         return this.exception;
     }
 
