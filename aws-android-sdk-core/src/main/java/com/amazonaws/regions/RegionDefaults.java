@@ -695,6 +695,33 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.ap-southeast-4.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.ap-southeast-4.amazonaws.com", false, true);
 
+        // Support for Asia Pacific (Malaysia) `ap-southeast-5` region
+        region = new Region("ap-southeast-5", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "cognito-identity", "cognito-identity.ap-southeast-5.amazonaws.com",
+                false, true);
+        updateRegion(region, "cognito-idp", "cognito-idp.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "cognito-sync", "cognito-sync.ap-southeast-5.amazonaws.com", false,
+                true);
+        updateRegion(region, "data.iot", "data.iot.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "iot", "iot.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "kinesis", "kinesis.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "sdb", "sdb.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.ap-southeast-5.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.ap-southeast-5.amazonaws.com", false, true);
+
         // Support for Israel (Tel Aviv) `il-central-1` region
         region = new Region("il-central-1", "amazonaws.com");
         ret.add(region);
