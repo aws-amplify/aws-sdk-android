@@ -1,3 +1,24 @@
+## [Release 2.77.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.77.0)
+
+### Features
+- support for ap-southeast-5 ([#3629](https://github.com/aws-amplify/aws-sdk-android/issues/3629))
+
+### Miscellaneous
+- update rexml ([#3623](https://github.com/aws-amplify/aws-sdk-android/issues/3623))
+- update docs links for gen2 ([#3622](https://github.com/aws-amplify/aws-sdk-android/issues/3622))
+- Update Conscrypt to support 16KB page size ([#3627](https://github.com/aws-amplify/aws-sdk-android/issues/3627))
+- Make exception within UserStateDetails public ([#3628](https://github.com/aws-amplify/aws-sdk-android/issues/3628))
+
+[See all changes between 2.76.1 and 2.77.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.76.1...release_v2.77.0)
+
+## [Release 2.76.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.76.1)
+
+### Miscellaneous
+- Set the ForegroundServiceType for TransferService ([#3620](https://github.com/aws-amplify/aws-sdk-android/issues/3620))
+- KVS - Add Support for More Resolution Widths ([#3609](https://github.com/aws-amplify/aws-sdk-android/issues/3609))
+
+[See all changes between 2.76.0 and 2.76.1](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.76.0...release_v2.76.1)
+
 ## [Release 2.76.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.76.0)
 
 ### Features

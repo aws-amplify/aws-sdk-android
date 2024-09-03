@@ -20,6 +20,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.ServiceInfo;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.IBinder;
@@ -144,13 +145,18 @@ public class TransferService extends Service {
                     if (userProvidedNotification != null) {
                         // Get the notification Id from the intent, if it's null, the default notification Id will be returned.
                         ongoingNotificationId = (int) intent.getIntExtra(INTENT_KEY_NOTIFICATION_ID, ongoingNotificationId);
-                        
+
                         // Get removeNotification from the intent, if it's null, removeNotification will be returned.
                         removeNotification = (boolean) intent.getBooleanExtra(INTENT_KEY_REMOVE_NOTIFICATION, removeNotification);
 
                         // Put the service in foreground state
                         LOGGER.info("Putting the service in Foreground state.");
-                        startForeground(ongoingNotificationId, userProvidedNotification);
+                        if (Build.VERSION.SDK_INT >= 34 /* UPSIDE_DOWN_CAKE */) {
+                            // We must provide a service type flag when application is targeting sdk >= 34
+                            startForeground(ongoingNotificationId, userProvidedNotification, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
+                        } else {
+                            startForeground(ongoingNotificationId, userProvidedNotification);
+                        }
                     } else {
                         LOGGER.error("No notification is passed in the intent. "
                             + "Unable to transition to foreground.");
