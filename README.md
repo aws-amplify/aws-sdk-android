@@ -8,17 +8,17 @@
 >
 > AWS Amplify Library for Android is new opinionated solution/implementation to complex problems faced in developing mobile application. It is recommended one for new app development.
 > 
-> For existing customers planning to migrate to the new Amplify Android v2, we recommend reviewing our [migration guide](https://github.com/aws-amplify/amplify-android/blob/main/documents/MobileSDK_To_AmplifyAndroid.md).
+> For existing customers planning to migrate to the new Amplify Android v2, we recommend reviewing our [Migration guide](https://github.com/aws-amplify/amplify-android/blob/main/documents/MobileSDK_To_AmplifyAndroid.md).
 >
 > For new projects, we recommend using the latest v2 version of [AWS Amplify Library for Android](https://docs.amplify.aws/android/start/quickstart/) to quickly implement common app use cases like Authentication, Storage, Push Notifications and more.
 >
-> Note: v2 of Amplify Library for Android (currently GA) is built on top of [the AWS SDK for Kotlin](https://aws.amazon.com/sdk-for-kotlin/). You can access this underlying SDK via [the Escape Hatch from AWS Amplify](https://docs.amplify.aws/lib/project-setup/upgrade-guide/q/platform/android/#escape-hatches).
+> Note: v2 of Amplify Library for Android (currently GA) is built on top of the [AWS SDK for Kotlin](https://aws.amazon.com/sdk-for-kotlin/). You can access this underlying SDK via the [Escape Hatch from AWS Amplify](https://docs.amplify.aws/lib/project-setup/upgrade-guide/q/platform/android/#escape-hatches).
 >
-> You can also use AWS Amplify with [your existing AWS cloud resources](https://docs.amplify.aws/android/start/connect-existing-aws-resources/). If you are unable to find features you are looking for in Amplify, please open an issue in [the Amplify Library for Android GitHub repo](https://github.com/aws-amplify/amplify-android/issues/new/choose) and we will be happy to consider you request.
+> You can also use AWS Amplify with [your existing AWS cloud resources](https://docs.amplify.aws/android/start/connect-existing-aws-resources/). If you are unable to find features you are looking for in Amplify, please open an issue in the [Amplify Library for Android GitHub repo](https://github.com/aws-amplify/amplify-android/issues/new/choose) and we will be happy to consider you request.
 >
-> If you still wish to use the AWS SDK for Android directly, you can refer to [the AWS SDK Documentation here](https://docs.amplify.aws/sdk/q/platform/android/) and follow the installation instructions below.
+> If you still wish to use the AWS SDK for Android directly, you can refer to the [AWS SDK Documentation here](https://docs.amplify.aws/sdk/q/platform/android/) and follow the installation instructions below.
 >
-> This repo will continue be maintained with bug fixes and security updates.
+> This repo will continue to be maintained with bug fixes and security updates.
 
 The AWS SDK for Android is a collection of low-level libraries for direct interaction with AWS backend services. For use cases not covered by the Amplify Framework, you may directly integrate these clients into your Android app.
 
