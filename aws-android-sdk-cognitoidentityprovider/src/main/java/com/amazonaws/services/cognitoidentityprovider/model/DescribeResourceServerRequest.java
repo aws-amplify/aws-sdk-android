@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -38,7 +38,16 @@ public class DescribeResourceServerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identifier for the resource server
+     * A unique resource server identifier for the resource server. The
+     * identifier can be an API friendly name like
+     * <code>solar-system-data</code>. You can also set an API URL like
+     * <code>https://solar-system-data-api.example.com</code> as your
+     * identifier.
+     * </p>
+     * <p>
+     * Amazon Cognito represents scopes in the access token in the format
+     * <code>$resource-server-identifier/$scope</code>. Longer scope-identifier
+     * strings increase the size of your access tokens.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -109,7 +118,16 @@ public class DescribeResourceServerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identifier for the resource server
+     * A unique resource server identifier for the resource server. The
+     * identifier can be an API friendly name like
+     * <code>solar-system-data</code>. You can also set an API URL like
+     * <code>https://solar-system-data-api.example.com</code> as your
+     * identifier.
+     * </p>
+     * <p>
+     * Amazon Cognito represents scopes in the access token in the format
+     * <code>$resource-server-identifier/$scope</code>. Longer scope-identifier
+     * strings increase the size of your access tokens.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -117,7 +135,16 @@ public class DescribeResourceServerRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\x21\x23-\x5B\x5D-\x7E]+<br/>
      *
      * @return <p>
-     *         The identifier for the resource server
+     *         A unique resource server identifier for the resource server. The
+     *         identifier can be an API friendly name like
+     *         <code>solar-system-data</code>. You can also set an API URL like
+     *         <code>https://solar-system-data-api.example.com</code> as your
+     *         identifier.
+     *         </p>
+     *         <p>
+     *         Amazon Cognito represents scopes in the access token in the
+     *         format <code>$resource-server-identifier/$scope</code>. Longer
+     *         scope-identifier strings increase the size of your access tokens.
      *         </p>
      */
     public String getIdentifier() {
@@ -126,7 +153,16 @@ public class DescribeResourceServerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identifier for the resource server
+     * A unique resource server identifier for the resource server. The
+     * identifier can be an API friendly name like
+     * <code>solar-system-data</code>. You can also set an API URL like
+     * <code>https://solar-system-data-api.example.com</code> as your
+     * identifier.
+     * </p>
+     * <p>
+     * Amazon Cognito represents scopes in the access token in the format
+     * <code>$resource-server-identifier/$scope</code>. Longer scope-identifier
+     * strings increase the size of your access tokens.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -134,7 +170,17 @@ public class DescribeResourceServerRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\x21\x23-\x5B\x5D-\x7E]+<br/>
      *
      * @param identifier <p>
-     *            The identifier for the resource server
+     *            A unique resource server identifier for the resource server.
+     *            The identifier can be an API friendly name like
+     *            <code>solar-system-data</code>. You can also set an API URL
+     *            like <code>https://solar-system-data-api.example.com</code> as
+     *            your identifier.
+     *            </p>
+     *            <p>
+     *            Amazon Cognito represents scopes in the access token in the
+     *            format <code>$resource-server-identifier/$scope</code>. Longer
+     *            scope-identifier strings increase the size of your access
+     *            tokens.
      *            </p>
      */
     public void setIdentifier(String identifier) {
@@ -143,7 +189,16 @@ public class DescribeResourceServerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identifier for the resource server
+     * A unique resource server identifier for the resource server. The
+     * identifier can be an API friendly name like
+     * <code>solar-system-data</code>. You can also set an API URL like
+     * <code>https://solar-system-data-api.example.com</code> as your
+     * identifier.
+     * </p>
+     * <p>
+     * Amazon Cognito represents scopes in the access token in the format
+     * <code>$resource-server-identifier/$scope</code>. Longer scope-identifier
+     * strings increase the size of your access tokens.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -154,7 +209,17 @@ public class DescribeResourceServerRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\x21\x23-\x5B\x5D-\x7E]+<br/>
      *
      * @param identifier <p>
-     *            The identifier for the resource server
+     *            A unique resource server identifier for the resource server.
+     *            The identifier can be an API friendly name like
+     *            <code>solar-system-data</code>. You can also set an API URL
+     *            like <code>https://solar-system-data-api.example.com</code> as
+     *            your identifier.
+     *            </p>
+     *            <p>
+     *            Amazon Cognito represents scopes in the access token in the
+     *            format <code>$resource-server-identifier/$scope</code>. Longer
+     *            scope-identifier strings increase the size of your access
+     *            tokens.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
