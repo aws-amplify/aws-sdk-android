@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Replicates an Amazon Connect instance in the specified Amazon Web Services
- * Region.
+ * Region and copies configuration information for Amazon Connect resources
+ * across Amazon Web Services Regions.
  * </p>
  * <p>
  * For more information about replicating an Amazon Connect instance, see <a

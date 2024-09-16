@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -77,6 +77,30 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
      * contact. Attribute keys can include only alphanumeric, dash, and
      * underscore characters.
      * </p>
+     * <p>
+     * When the attributes for a contact exceed 32 KB, the contact is routed
+     * down the Error branch of the flow. As a mitigation, consider the
+     * following options:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Remove unnecessary attributes by setting their values to empty.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the attributes are only used in one flow and don't need to be referred
+     * to outside of that flow (for example, by a Lambda or another flow), then
+     * use flow attributes. This way you aren't needlessly persisting the 32 KB
+     * of information from one flow to another. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/set-contact-attributes.html"
+     * >Flow block: Set contact attributes</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
      */
     private java.util.Map<String, String> attributes;
 
@@ -227,6 +251,30 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
      * contact. Attribute keys can include only alphanumeric, dash, and
      * underscore characters.
      * </p>
+     * <p>
+     * When the attributes for a contact exceed 32 KB, the contact is routed
+     * down the Error branch of the flow. As a mitigation, consider the
+     * following options:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Remove unnecessary attributes by setting their values to empty.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the attributes are only used in one flow and don't need to be referred
+     * to outside of that flow (for example, by a Lambda or another flow), then
+     * use flow attributes. This way you aren't needlessly persisting the 32 KB
+     * of information from one flow to another. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/set-contact-attributes.html"
+     * >Flow block: Set contact attributes</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @return <p>
      *         The Amazon Connect attributes. These attributes can be accessed
@@ -237,6 +285,30 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
      *         contact. Attribute keys can include only alphanumeric, dash, and
      *         underscore characters.
      *         </p>
+     *         <p>
+     *         When the attributes for a contact exceed 32 KB, the contact is
+     *         routed down the Error branch of the flow. As a mitigation,
+     *         consider the following options:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Remove unnecessary attributes by setting their values to empty.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         If the attributes are only used in one flow and don't need to be
+     *         referred to outside of that flow (for example, by a Lambda or
+     *         another flow), then use flow attributes. This way you aren't
+     *         needlessly persisting the 32 KB of information from one flow to
+     *         another. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/set-contact-attributes.html"
+     *         >Flow block: Set contact attributes</a> in the <i>Amazon Connect
+     *         Administrator Guide</i>.
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public java.util.Map<String, String> getAttributes() {
         return attributes;
@@ -252,6 +324,30 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
      * contact. Attribute keys can include only alphanumeric, dash, and
      * underscore characters.
      * </p>
+     * <p>
+     * When the attributes for a contact exceed 32 KB, the contact is routed
+     * down the Error branch of the flow. As a mitigation, consider the
+     * following options:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Remove unnecessary attributes by setting their values to empty.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the attributes are only used in one flow and don't need to be referred
+     * to outside of that flow (for example, by a Lambda or another flow), then
+     * use flow attributes. This way you aren't needlessly persisting the 32 KB
+     * of information from one flow to another. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/set-contact-attributes.html"
+     * >Flow block: Set contact attributes</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @param attributes <p>
      *            The Amazon Connect attributes. These attributes can be
@@ -262,6 +358,31 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
      *            for a contact. Attribute keys can include only alphanumeric,
      *            dash, and underscore characters.
      *            </p>
+     *            <p>
+     *            When the attributes for a contact exceed 32 KB, the contact is
+     *            routed down the Error branch of the flow. As a mitigation,
+     *            consider the following options:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Remove unnecessary attributes by setting their values to
+     *            empty.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If the attributes are only used in one flow and don't need to
+     *            be referred to outside of that flow (for example, by a Lambda
+     *            or another flow), then use flow attributes. This way you
+     *            aren't needlessly persisting the 32 KB of information from one
+     *            flow to another. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/set-contact-attributes.html"
+     *            >Flow block: Set contact attributes</a> in the <i>Amazon
+     *            Connect Administrator Guide</i>.
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setAttributes(java.util.Map<String, String> attributes) {
         this.attributes = attributes;
@@ -278,6 +399,30 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
      * underscore characters.
      * </p>
      * <p>
+     * When the attributes for a contact exceed 32 KB, the contact is routed
+     * down the Error branch of the flow. As a mitigation, consider the
+     * following options:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Remove unnecessary attributes by setting their values to empty.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the attributes are only used in one flow and don't need to be referred
+     * to outside of that flow (for example, by a Lambda or another flow), then
+     * use flow attributes. This way you aren't needlessly persisting the 32 KB
+     * of information from one flow to another. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/set-contact-attributes.html"
+     * >Flow block: Set contact attributes</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -290,6 +435,31 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
      *            for a contact. Attribute keys can include only alphanumeric,
      *            dash, and underscore characters.
      *            </p>
+     *            <p>
+     *            When the attributes for a contact exceed 32 KB, the contact is
+     *            routed down the Error branch of the flow. As a mitigation,
+     *            consider the following options:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Remove unnecessary attributes by setting their values to
+     *            empty.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If the attributes are only used in one flow and don't need to
+     *            be referred to outside of that flow (for example, by a Lambda
+     *            or another flow), then use flow attributes. This way you
+     *            aren't needlessly persisting the 32 KB of information from one
+     *            flow to another. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/set-contact-attributes.html"
+     *            >Flow block: Set contact attributes</a> in the <i>Amazon
+     *            Connect Administrator Guide</i>.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -308,6 +478,30 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
      * contact. Attribute keys can include only alphanumeric, dash, and
      * underscore characters.
      * </p>
+     * <p>
+     * When the attributes for a contact exceed 32 KB, the contact is routed
+     * down the Error branch of the flow. As a mitigation, consider the
+     * following options:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Remove unnecessary attributes by setting their values to empty.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the attributes are only used in one flow and don't need to be referred
+     * to outside of that flow (for example, by a Lambda or another flow), then
+     * use flow attributes. This way you aren't needlessly persisting the 32 KB
+     * of information from one flow to another. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/set-contact-attributes.html"
+     * >Flow block: Set contact attributes</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * The method adds a new key-value pair into Attributes parameter, and
      * returns a reference to this object so that method calls can be chained
