@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,33 +19,36 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Response for ListEndpointsByPlatformApplication action.
+ * Response for <code>ListEndpointsByPlatformApplication</code> action.
  * </p>
  */
 public class ListEndpointsByPlatformApplicationResult implements Serializable {
     /**
      * <p>
-     * Endpoints returned for ListEndpointsByPlatformApplication action.
+     * Endpoints returned for <code>ListEndpointsByPlatformApplication</code>
+     * action.
      * </p>
      */
     private java.util.List<Endpoint> endpoints = new java.util.ArrayList<Endpoint>();
 
     /**
      * <p>
-     * NextToken string is returned when calling
-     * ListEndpointsByPlatformApplication action if additional records are
-     * available after the first page results.
+     * <code>NextToken</code> string is returned when calling
+     * <code>ListEndpointsByPlatformApplication</code> action if additional
+     * records are available after the first page results.
      * </p>
      */
     private String nextToken;
 
     /**
      * <p>
-     * Endpoints returned for ListEndpointsByPlatformApplication action.
+     * Endpoints returned for <code>ListEndpointsByPlatformApplication</code>
+     * action.
      * </p>
      *
      * @return <p>
-     *         Endpoints returned for ListEndpointsByPlatformApplication action.
+     *         Endpoints returned for
+     *         <code>ListEndpointsByPlatformApplication</code> action.
      *         </p>
      */
     public java.util.List<Endpoint> getEndpoints() {
@@ -54,12 +57,13 @@ public class ListEndpointsByPlatformApplicationResult implements Serializable {
 
     /**
      * <p>
-     * Endpoints returned for ListEndpointsByPlatformApplication action.
+     * Endpoints returned for <code>ListEndpointsByPlatformApplication</code>
+     * action.
      * </p>
      *
      * @param endpoints <p>
-     *            Endpoints returned for ListEndpointsByPlatformApplication
-     *            action.
+     *            Endpoints returned for
+     *            <code>ListEndpointsByPlatformApplication</code> action.
      *            </p>
      */
     public void setEndpoints(java.util.Collection<Endpoint> endpoints) {
@@ -73,15 +77,16 @@ public class ListEndpointsByPlatformApplicationResult implements Serializable {
 
     /**
      * <p>
-     * Endpoints returned for ListEndpointsByPlatformApplication action.
+     * Endpoints returned for <code>ListEndpointsByPlatformApplication</code>
+     * action.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param endpoints <p>
-     *            Endpoints returned for ListEndpointsByPlatformApplication
-     *            action.
+     *            Endpoints returned for
+     *            <code>ListEndpointsByPlatformApplication</code> action.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -98,15 +103,16 @@ public class ListEndpointsByPlatformApplicationResult implements Serializable {
 
     /**
      * <p>
-     * Endpoints returned for ListEndpointsByPlatformApplication action.
+     * Endpoints returned for <code>ListEndpointsByPlatformApplication</code>
+     * action.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param endpoints <p>
-     *            Endpoints returned for ListEndpointsByPlatformApplication
-     *            action.
+     *            Endpoints returned for
+     *            <code>ListEndpointsByPlatformApplication</code> action.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -119,15 +125,15 @@ public class ListEndpointsByPlatformApplicationResult implements Serializable {
 
     /**
      * <p>
-     * NextToken string is returned when calling
-     * ListEndpointsByPlatformApplication action if additional records are
-     * available after the first page results.
+     * <code>NextToken</code> string is returned when calling
+     * <code>ListEndpointsByPlatformApplication</code> action if additional
+     * records are available after the first page results.
      * </p>
      *
      * @return <p>
-     *         NextToken string is returned when calling
-     *         ListEndpointsByPlatformApplication action if additional records
-     *         are available after the first page results.
+     *         <code>NextToken</code> string is returned when calling
+     *         <code>ListEndpointsByPlatformApplication</code> action if
+     *         additional records are available after the first page results.
      *         </p>
      */
     public String getNextToken() {
@@ -136,15 +142,15 @@ public class ListEndpointsByPlatformApplicationResult implements Serializable {
 
     /**
      * <p>
-     * NextToken string is returned when calling
-     * ListEndpointsByPlatformApplication action if additional records are
-     * available after the first page results.
+     * <code>NextToken</code> string is returned when calling
+     * <code>ListEndpointsByPlatformApplication</code> action if additional
+     * records are available after the first page results.
      * </p>
      *
      * @param nextToken <p>
-     *            NextToken string is returned when calling
-     *            ListEndpointsByPlatformApplication action if additional
-     *            records are available after the first page results.
+     *            <code>NextToken</code> string is returned when calling
+     *            <code>ListEndpointsByPlatformApplication</code> action if
+     *            additional records are available after the first page results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -153,18 +159,18 @@ public class ListEndpointsByPlatformApplicationResult implements Serializable {
 
     /**
      * <p>
-     * NextToken string is returned when calling
-     * ListEndpointsByPlatformApplication action if additional records are
-     * available after the first page results.
+     * <code>NextToken</code> string is returned when calling
+     * <code>ListEndpointsByPlatformApplication</code> action if additional
+     * records are available after the first page results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            NextToken string is returned when calling
-     *            ListEndpointsByPlatformApplication action if additional
-     *            records are available after the first page results.
+     *            <code>NextToken</code> string is returned when calling
+     *            <code>ListEndpointsByPlatformApplication</code> action if
+     *            additional records are available after the first page results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
