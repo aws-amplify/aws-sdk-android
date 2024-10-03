@@ -28,51 +28,61 @@ import android.media.MediaFormat;
 import android.util.Log;
 import android.view.Surface;
 
-import com.amazonaws.kinesisvideo.client.mediasource.CameraMediaSourceConfiguration;
+import com.amazonaws.kinesisvideo.client.mediasource.AbstractMediaSourceConfiguration;
 
+/**
+ * Factory class to create and configure emcoders based on a given media configuration.
+ */
 public class EncoderFactory {
     private static final String TAG = EncoderFactory.class.getSimpleName();
     private static final Surface NULL_SURFACE = null;
     private static final MediaCrypto NULL_CRYPTO = null;
     private static final int IFRAME_EVERY_2_SEC = 2;
 
+    /**
+     * Creates and configure emcoders based on a given media configuration.
+     * @param mediaSourceConfiguration The MediaSourceConfiguration to be used to configure the encoder.
+     * @return The encoder MediaCodec object.
+     */
     public static MediaCodec createConfiguredEncoder(
-            final CameraMediaSourceConfiguration mediaSourceConfiguration) {
+            final AbstractMediaSourceConfiguration mediaSourceConfiguration) {
 
         return createMediaCodec(mediaSourceConfiguration);
     }
 
-    private static MediaCodec createMediaCodec(final CameraMediaSourceConfiguration mediaSourceConfiguration) {
+    /**
+     * Helper fucntion to create a MediaCodec and configure it based on the given MediaSourceConfiguration.
+     * @param mediaSourceConfiguration The MediaSourceConfiguration to be used to configure the encoder.
+     * @return The encoder MediaCodec object.
+     */
+    private static MediaCodec createMediaCodec(final AbstractMediaSourceConfiguration mediaSourceConfiguration) {
         try {
             final MediaCodec encoder = MediaCodec.createEncoderByType(mediaSourceConfiguration.getEncoderMimeType());
-            try {
-                encoder.configure(
-                        configureMediaFormat(mediaSourceConfiguration,
-                                MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420SemiPlanar),
-                        NULL_SURFACE,
-                        NULL_CRYPTO,
-                        MediaCodec.CONFIGURE_FLAG_ENCODE);
-                logSupportedColorFormats(encoder, mediaSourceConfiguration);
-            } catch (MediaCodec.CodecException e) {
-                Log.d(TAG, "Failed configuring MediaCodec with Semi-planar pixel format, falling back to planar");
 
-                encoder.configure(
-                        configureMediaFormat(mediaSourceConfiguration,
-                                MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420Planar),
-                        NULL_SURFACE,
-                        NULL_CRYPTO,
-                        MediaCodec.CONFIGURE_FLAG_ENCODE);
-                logSupportedColorFormats(encoder, mediaSourceConfiguration);
-            }
+            // Use YUV420Flexible to be able to support a wide range of devices and scenarios.
+            encoder.configure(
+                    configureMediaFormat(mediaSourceConfiguration,
+                            MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420Flexible),
+                    NULL_SURFACE,
+                    NULL_CRYPTO,
+                    MediaCodec.CONFIGURE_FLAG_ENCODE);
 
+            logSupportedColorFormats(encoder, mediaSourceConfiguration);
             return encoder;
+
         } catch (final IOException e) {
             throw new RuntimeException("unable to create encoder", e);
         }
     }
 
+    /**
+     * Helper function to create and prepare a MediaFormat matching the provided MediaSourceConfiguration.
+     * @param mediaSourceConfiguration The MediaSourceConfiguration to be used to configure the encoder.
+     * @param colorFormat The MediaFormat object based on the provided configuration.
+     * @return
+     */
     private static MediaFormat configureMediaFormat(
-            final CameraMediaSourceConfiguration mediaSourceConfiguration,
+            final AbstractMediaSourceConfiguration mediaSourceConfiguration,
             final int colorFormat) {
 
         Log.d(TAG, mediaSourceConfiguration.getEncoderMimeType() + " output "
@@ -98,9 +108,14 @@ public class EncoderFactory {
         return format;
     }
 
+    /**
+     * Debugging helper function to log all supported color formats of a given encoder.
+     * @param encoder The MediaCodec encoder to be inspected.
+     * @param mediaSourceConfiguration The MediaSourceConfiguration used to configure the encoder.
+     */
     private static void logSupportedColorFormats(
             final MediaCodec encoder,
-            final CameraMediaSourceConfiguration mediaSourceConfiguration) {
+            final AbstractMediaSourceConfiguration mediaSourceConfiguration) {
 
         final MediaCodecInfo.CodecCapabilities capabilities =
                 encoder.getCodecInfo().getCapabilitiesForType(mediaSourceConfiguration.getEncoderMimeType());
