@@ -256,6 +256,8 @@ public class AndroidUrlMediaSource implements MediaSource {
 
         mDecoderThread = new Thread(() -> decodeVideoToYUV(mMediaSourceConfiguration.getUrl()));
         mDecoderThread.start();
+
+        Log.i(TAG, "Decoding started");
     }
 
     /**
@@ -273,6 +275,8 @@ public class AndroidUrlMediaSource implements MediaSource {
                 e.printStackTrace();
             }
         }
+
+        Log.i(TAG, "Decoding stopped");
     }
 
     /**
@@ -313,6 +317,7 @@ public class AndroidUrlMediaSource implements MediaSource {
             Log.e(TAG, "Error setting data source", e);
 
         } finally {
+            Log.i(TAG, "Decoding thread clean up begin.");
             // Clean up in a thread safe way.
             synchronized (AndroidUrlMediaSource.this){
                 if (decoder != null) {
@@ -326,6 +331,7 @@ public class AndroidUrlMediaSource implements MediaSource {
                 mEncoderWrapper = null;
                 mDecoderThread = null;
             }
+            Log.i(TAG, "Decoding thread clean up done.");
         }
     }
 
@@ -408,6 +414,7 @@ public class AndroidUrlMediaSource implements MediaSource {
                     // Pass to EncoderWrapper in thread safe way.
                     synchronized (AndroidUrlMediaSource.this) {
                         if (mEncoderWrapper == null) {
+                            Log.i(TAG, "Quitting decoding loop.");
                             break outer;
                         }
 
