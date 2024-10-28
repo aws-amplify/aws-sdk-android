@@ -128,7 +128,7 @@ GEM
       mini_mime (~> 1.0)
       representable (~> 3.0)
       retriable (>= 2.0, < 4.a)
-      rexml
+      rexml (>= 3.3.9)
     google-apis-iamcredentials_v1 (0.17.0)
       google-apis-core (>= 0.11.0, < 2.a)
     google-apis-playcustomapp_v1 (0.13.0)
