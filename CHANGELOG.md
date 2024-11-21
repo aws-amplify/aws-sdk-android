@@ -1,3 +1,11 @@
+## [Release 2.77.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.77.1)
+
+### Miscellaneous
+- update rexml ([#3632](https://github.com/aws-amplify/aws-sdk-android/issues/3632))
+- update License to Apache 2.0 ([#3634](https://github.com/aws-amplify/aws-sdk-android/pull/3634))
+
+[See all changes between 2.77.0 and 2.77.1](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.77.0...release_v2.77.1)
+
 ## [Release 2.77.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.77.0)
 
 ### Features
