@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Response for GetPlatformApplicationAttributes action.
+ * Response for <code>GetPlatformApplicationAttributes</code> action.
  * </p>
  */
 public class GetPlatformApplicationAttributesResult implements Serializable {
@@ -45,6 +45,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      * <code>ApplePlatformBundleID</code> – The app identifier used to configure
      * token-based authentication.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>AuthenticationMethod</code> – Returns the credential type used when
+     * sending push notifications from application to APNS/APNS_Sandbox, or
+     * application to GCM.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * APNS – Returns the token or certificate.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * GCM – Returns the token or key.
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * <li>
      * <p>
@@ -100,6 +119,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>AuthenticationMethod</code> – Returns the credential type used when
+     * sending push notifications from application to APNS/APNS_Sandbox, or
+     * application to GCM.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * APNS – Returns the token or certificate.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * GCM – Returns the token or key.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
      * <code>EventEndpointCreated</code> – Topic ARN to which EndpointCreated
      * event notifications should be sent.
      * </p>
@@ -147,6 +185,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      *         <code>ApplePlatformBundleID</code> – The app identifier used to
      *         configure token-based authentication.
      *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>AuthenticationMethod</code> – Returns the credential type
+     *         used when sending push notifications from application to
+     *         APNS/APNS_Sandbox, or application to GCM.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         APNS – Returns the token or certificate.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         GCM – Returns the token or key.
+     *         </p>
+     *         </li>
+     *         </ul>
      *         </li>
      *         <li>
      *         <p>
@@ -205,6 +262,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>AuthenticationMethod</code> – Returns the credential type used when
+     * sending push notifications from application to APNS/APNS_Sandbox, or
+     * application to GCM.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * APNS – Returns the token or certificate.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * GCM – Returns the token or key.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
      * <code>EventEndpointCreated</code> – Topic ARN to which EndpointCreated
      * event notifications should be sent.
      * </p>
@@ -252,6 +328,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      *            <code>ApplePlatformBundleID</code> – The app identifier used
      *            to configure token-based authentication.
      *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>AuthenticationMethod</code> – Returns the credential
+     *            type used when sending push notifications from application to
+     *            APNS/APNS_Sandbox, or application to GCM.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            APNS – Returns the token or certificate.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            GCM – Returns the token or key.
+     *            </p>
+     *            </li>
+     *            </ul>
      *            </li>
      *            <li>
      *            <p>
@@ -310,6 +405,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>AuthenticationMethod</code> – Returns the credential type used when
+     * sending push notifications from application to APNS/APNS_Sandbox, or
+     * application to GCM.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * APNS – Returns the token or certificate.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * GCM – Returns the token or key.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
      * <code>EventEndpointCreated</code> – Topic ARN to which EndpointCreated
      * event notifications should be sent.
      * </p>
@@ -360,6 +474,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      *            <code>ApplePlatformBundleID</code> – The app identifier used
      *            to configure token-based authentication.
      *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>AuthenticationMethod</code> – Returns the credential
+     *            type used when sending push notifications from application to
+     *            APNS/APNS_Sandbox, or application to GCM.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            APNS – Returns the token or certificate.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            GCM – Returns the token or key.
+     *            </p>
+     *            </li>
+     *            </ul>
      *            </li>
      *            <li>
      *            <p>
@@ -419,6 +552,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      * <code>ApplePlatformBundleID</code> – The app identifier used to configure
      * token-based authentication.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>AuthenticationMethod</code> – Returns the credential type used when
+     * sending push notifications from application to APNS/APNS_Sandbox, or
+     * application to GCM.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * APNS – Returns the token or certificate.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * GCM – Returns the token or key.
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * <li>
      * <p>
