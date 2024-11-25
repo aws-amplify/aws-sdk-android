@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -62,6 +62,11 @@ class ClaimedPhoneNumberSummaryJsonMarshaller {
             jsonWriter.name("TargetArn");
             jsonWriter.value(targetArn);
         }
+        if (claimedPhoneNumberSummary.getInstanceId() != null) {
+            String instanceId = claimedPhoneNumberSummary.getInstanceId();
+            jsonWriter.name("InstanceId");
+            jsonWriter.value(instanceId);
+        }
         if (claimedPhoneNumberSummary.getTags() != null) {
             java.util.Map<String, String> tags = claimedPhoneNumberSummary.getTags();
             jsonWriter.name("Tags");
@@ -79,6 +84,11 @@ class ClaimedPhoneNumberSummaryJsonMarshaller {
             PhoneNumberStatus phoneNumberStatus = claimedPhoneNumberSummary.getPhoneNumberStatus();
             jsonWriter.name("PhoneNumberStatus");
             PhoneNumberStatusJsonMarshaller.getInstance().marshall(phoneNumberStatus, jsonWriter);
+        }
+        if (claimedPhoneNumberSummary.getSourcePhoneNumberArn() != null) {
+            String sourcePhoneNumberArn = claimedPhoneNumberSummary.getSourcePhoneNumberArn();
+            jsonWriter.name("SourcePhoneNumberArn");
+            jsonWriter.value(sourcePhoneNumberArn);
         }
         jsonWriter.endObject();
     }

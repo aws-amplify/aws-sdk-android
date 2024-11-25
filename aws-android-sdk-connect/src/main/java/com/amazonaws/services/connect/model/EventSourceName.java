@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,11 +25,15 @@ public enum EventSourceName {
 
     OnPostCallAnalysisAvailable("OnPostCallAnalysisAvailable"),
     OnRealTimeCallAnalysisAvailable("OnRealTimeCallAnalysisAvailable"),
+    OnRealTimeChatAnalysisAvailable("OnRealTimeChatAnalysisAvailable"),
     OnPostChatAnalysisAvailable("OnPostChatAnalysisAvailable"),
     OnZendeskTicketCreate("OnZendeskTicketCreate"),
     OnZendeskTicketStatusUpdate("OnZendeskTicketStatusUpdate"),
     OnSalesforceCaseCreate("OnSalesforceCaseCreate"),
-    OnContactEvaluationSubmit("OnContactEvaluationSubmit");
+    OnContactEvaluationSubmit("OnContactEvaluationSubmit"),
+    OnMetricDataUpdate("OnMetricDataUpdate"),
+    OnCaseCreate("OnCaseCreate"),
+    OnCaseUpdate("OnCaseUpdate");
 
     private String value;
 
@@ -47,11 +51,15 @@ public enum EventSourceName {
         enumMap = new HashMap<String, EventSourceName>();
         enumMap.put("OnPostCallAnalysisAvailable", OnPostCallAnalysisAvailable);
         enumMap.put("OnRealTimeCallAnalysisAvailable", OnRealTimeCallAnalysisAvailable);
+        enumMap.put("OnRealTimeChatAnalysisAvailable", OnRealTimeChatAnalysisAvailable);
         enumMap.put("OnPostChatAnalysisAvailable", OnPostChatAnalysisAvailable);
         enumMap.put("OnZendeskTicketCreate", OnZendeskTicketCreate);
         enumMap.put("OnZendeskTicketStatusUpdate", OnZendeskTicketStatusUpdate);
         enumMap.put("OnSalesforceCaseCreate", OnSalesforceCaseCreate);
         enumMap.put("OnContactEvaluationSubmit", OnContactEvaluationSubmit);
+        enumMap.put("OnMetricDataUpdate", OnMetricDataUpdate);
+        enumMap.put("OnCaseCreate", OnCaseCreate);
+        enumMap.put("OnCaseUpdate", OnCaseUpdate);
     }
 
     /**

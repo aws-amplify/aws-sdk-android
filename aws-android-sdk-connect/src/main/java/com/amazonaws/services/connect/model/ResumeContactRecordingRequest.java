@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * When a contact is being recorded, and the recording has been suspended using
- * SuspendContactRecording, this API resumes recording the call or screen.
+ * SuspendContactRecording, this API resumes recording whatever recording is
+ * selected in the flow configuration: call, screen, or both. If only call
+ * recording or only screen recording is enabled, then it would resume.
  * </p>
  * <p>
  * Voice and screen recordings are supported.
