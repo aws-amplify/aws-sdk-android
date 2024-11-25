@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,13 +21,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes an Amazon Rekognition Custom Labels model.
+ * Deletes a Rekognition project model or project version, like a Amazon
+ * Rekognition Custom Labels model or a custom adapter.
  * </p>
  * <p>
- * You can't delete a model if it is running or if it is training. To check the
- * status of a model, use the <code>Status</code> field returned from
- * <a>DescribeProjectVersions</a>. To stop a running model call
- * <a>StopProjectVersion</a>. If the model is training, wait until it finishes.
+ * You can't delete a project version if it is running or if it is training. To
+ * check the status of a project version, use the Status field returned from
+ * <a>DescribeProjectVersions</a>. To stop a project version call
+ * <a>StopProjectVersion</a>. If the project version is training, wait until it
+ * finishes.
  * </p>
  * <p>
  * This operation requires permissions to perform the
@@ -37,7 +39,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DeleteProjectVersionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the model version that you want to
+     * The Amazon Resource Name (ARN) of the project version that you want to
      * delete.
      * </p>
      * <p>
@@ -51,7 +53,7 @@ public class DeleteProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the model version that you want to
+     * The Amazon Resource Name (ARN) of the project version that you want to
      * delete.
      * </p>
      * <p>
@@ -62,8 +64,8 @@ public class DeleteProjectVersionRequest extends AmazonWebServiceRequest impleme
      * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the model version that you want
-     *         to delete.
+     *         The Amazon Resource Name (ARN) of the project version that you
+     *         want to delete.
      *         </p>
      */
     public String getProjectVersionArn() {
@@ -72,7 +74,7 @@ public class DeleteProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the model version that you want to
+     * The Amazon Resource Name (ARN) of the project version that you want to
      * delete.
      * </p>
      * <p>
@@ -83,7 +85,7 @@ public class DeleteProjectVersionRequest extends AmazonWebServiceRequest impleme
      * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @param projectVersionArn <p>
-     *            The Amazon Resource Name (ARN) of the model version that you
+     *            The Amazon Resource Name (ARN) of the project version that you
      *            want to delete.
      *            </p>
      */
@@ -93,7 +95,7 @@ public class DeleteProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the model version that you want to
+     * The Amazon Resource Name (ARN) of the project version that you want to
      * delete.
      * </p>
      * <p>
@@ -107,7 +109,7 @@ public class DeleteProjectVersionRequest extends AmazonWebServiceRequest impleme
      * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @param projectVersionArn <p>
-     *            The Amazon Resource Name (ARN) of the model version that you
+     *            The Amazon Resource Name (ARN) of the project version that you
      *            want to delete.
      *            </p>
      * @return A reference to this updated object so that method calls can be
