@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * <p>
      * The maximum number of custom medical vocabularies to return in each page
      * of results. If there are fewer results than the value that you specify,
-     * only the actual results are returned. If you don't specify a value, a
+     * only the actual results are returned. If you do not specify a value, a
      * default of 5 is used.
      * </p>
      * <p>
@@ -64,7 +64,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * <p>
      * Returns only custom medical vocabularies with the specified state. Custom
      * vocabularies are ordered by creation date, with the newest vocabulary
-     * first. If you don't include <code>StateEquals</code>, all custom medical
+     * first. If you do not include <code>StateEquals</code>, all custom medical
      * vocabularies are returned.
      * </p>
      * <p>
@@ -176,7 +176,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * <p>
      * The maximum number of custom medical vocabularies to return in each page
      * of results. If there are fewer results than the value that you specify,
-     * only the actual results are returned. If you don't specify a value, a
+     * only the actual results are returned. If you do not specify a value, a
      * default of 5 is used.
      * </p>
      * <p>
@@ -186,8 +186,8 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * @return <p>
      *         The maximum number of custom medical vocabularies to return in
      *         each page of results. If there are fewer results than the value
-     *         that you specify, only the actual results are returned. If you
-     *         don't specify a value, a default of 5 is used.
+     *         that you specify, only the actual results are returned. If you do
+     *         not specify a value, a default of 5 is used.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -198,7 +198,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * <p>
      * The maximum number of custom medical vocabularies to return in each page
      * of results. If there are fewer results than the value that you specify,
-     * only the actual results are returned. If you don't specify a value, a
+     * only the actual results are returned. If you do not specify a value, a
      * default of 5 is used.
      * </p>
      * <p>
@@ -209,7 +209,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      *            The maximum number of custom medical vocabularies to return in
      *            each page of results. If there are fewer results than the
      *            value that you specify, only the actual results are returned.
-     *            If you don't specify a value, a default of 5 is used.
+     *            If you do not specify a value, a default of 5 is used.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -220,7 +220,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * <p>
      * The maximum number of custom medical vocabularies to return in each page
      * of results. If there are fewer results than the value that you specify,
-     * only the actual results are returned. If you don't specify a value, a
+     * only the actual results are returned. If you do not specify a value, a
      * default of 5 is used.
      * </p>
      * <p>
@@ -234,7 +234,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      *            The maximum number of custom medical vocabularies to return in
      *            each page of results. If there are fewer results than the
      *            value that you specify, only the actual results are returned.
-     *            If you don't specify a value, a default of 5 is used.
+     *            If you do not specify a value, a default of 5 is used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -248,7 +248,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * <p>
      * Returns only custom medical vocabularies with the specified state. Custom
      * vocabularies are ordered by creation date, with the newest vocabulary
-     * first. If you don't include <code>StateEquals</code>, all custom medical
+     * first. If you do not include <code>StateEquals</code>, all custom medical
      * vocabularies are returned.
      * </p>
      * <p>
@@ -258,7 +258,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * @return <p>
      *         Returns only custom medical vocabularies with the specified
      *         state. Custom vocabularies are ordered by creation date, with the
-     *         newest vocabulary first. If you don't include
+     *         newest vocabulary first. If you do not include
      *         <code>StateEquals</code>, all custom medical vocabularies are
      *         returned.
      *         </p>
@@ -272,7 +272,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * <p>
      * Returns only custom medical vocabularies with the specified state. Custom
      * vocabularies are ordered by creation date, with the newest vocabulary
-     * first. If you don't include <code>StateEquals</code>, all custom medical
+     * first. If you do not include <code>StateEquals</code>, all custom medical
      * vocabularies are returned.
      * </p>
      * <p>
@@ -282,7 +282,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * @param stateEquals <p>
      *            Returns only custom medical vocabularies with the specified
      *            state. Custom vocabularies are ordered by creation date, with
-     *            the newest vocabulary first. If you don't include
+     *            the newest vocabulary first. If you do not include
      *            <code>StateEquals</code>, all custom medical vocabularies are
      *            returned.
      *            </p>
@@ -296,7 +296,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * <p>
      * Returns only custom medical vocabularies with the specified state. Custom
      * vocabularies are ordered by creation date, with the newest vocabulary
-     * first. If you don't include <code>StateEquals</code>, all custom medical
+     * first. If you do not include <code>StateEquals</code>, all custom medical
      * vocabularies are returned.
      * </p>
      * <p>
@@ -309,7 +309,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * @param stateEquals <p>
      *            Returns only custom medical vocabularies with the specified
      *            state. Custom vocabularies are ordered by creation date, with
-     *            the newest vocabulary first. If you don't include
+     *            the newest vocabulary first. If you do not include
      *            <code>StateEquals</code>, all custom medical vocabularies are
      *            returned.
      *            </p>
@@ -326,7 +326,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * <p>
      * Returns only custom medical vocabularies with the specified state. Custom
      * vocabularies are ordered by creation date, with the newest vocabulary
-     * first. If you don't include <code>StateEquals</code>, all custom medical
+     * first. If you do not include <code>StateEquals</code>, all custom medical
      * vocabularies are returned.
      * </p>
      * <p>
@@ -336,7 +336,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * @param stateEquals <p>
      *            Returns only custom medical vocabularies with the specified
      *            state. Custom vocabularies are ordered by creation date, with
-     *            the newest vocabulary first. If you don't include
+     *            the newest vocabulary first. If you do not include
      *            <code>StateEquals</code>, all custom medical vocabularies are
      *            returned.
      *            </p>
@@ -350,7 +350,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * <p>
      * Returns only custom medical vocabularies with the specified state. Custom
      * vocabularies are ordered by creation date, with the newest vocabulary
-     * first. If you don't include <code>StateEquals</code>, all custom medical
+     * first. If you do not include <code>StateEquals</code>, all custom medical
      * vocabularies are returned.
      * </p>
      * <p>
@@ -363,7 +363,7 @@ public class ListMedicalVocabulariesRequest extends AmazonWebServiceRequest impl
      * @param stateEquals <p>
      *            Returns only custom medical vocabularies with the specified
      *            state. Custom vocabularies are ordered by creation date, with
-     *            the newest vocabulary first. If you don't include
+     *            the newest vocabulary first. If you do not include
      *            <code>StateEquals</code>, all custom medical vocabularies are
      *            returned.
      *            </p>
