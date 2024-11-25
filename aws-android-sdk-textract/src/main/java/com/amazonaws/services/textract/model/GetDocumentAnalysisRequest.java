@@ -144,7 +144,7 @@ public class GetDocumentAnalysisRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>.*\S.*<br/>
      */
     private String nextToken;
@@ -301,7 +301,7 @@ public class GetDocumentAnalysisRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @return <p>
@@ -323,7 +323,7 @@ public class GetDocumentAnalysisRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param nextToken <p>
@@ -348,7 +348,7 @@ public class GetDocumentAnalysisRequest extends AmazonWebServiceRequest implemen
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param nextToken <p>
