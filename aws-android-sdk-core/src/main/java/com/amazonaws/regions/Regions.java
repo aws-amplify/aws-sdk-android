@@ -83,6 +83,9 @@ public enum Regions {
     /** ap-southeast-7. */
     AP_SOUTHEAST_7("ap-southeast-7"),
 
+    /** mx-central-1. */
+    MX_CENTRAL_1("mx-central-1"),
+
     /** ap-northeast-1. */
     AP_NORTHEAST_1("ap-northeast-1"),
 
