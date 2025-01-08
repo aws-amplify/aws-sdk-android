@@ -1,3 +1,10 @@
+## [Release 2.78.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.78.0)
+
+### Features
+- Support for ap-southeast-7 ([#3654](https://github.com/aws-amplify/aws-sdk-android/issues/3654))
+
+[See all changes between 2.77.1 and 2.78.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.77.1...release_v2.78.0)
+
 ## [Release 2.77.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.77.1)
 
 ### Miscellaneous
