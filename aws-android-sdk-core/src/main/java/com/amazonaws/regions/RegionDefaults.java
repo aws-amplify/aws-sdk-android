@@ -749,6 +749,33 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.ap-southeast-7.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.ap-southeast-7.amazonaws.com", false, true);
 
+        // Support for Mexico `mx-central-1` region
+        region = new Region("mx-central-1", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "cognito-identity", "cognito-identity.mx-central-1.amazonaws.com",
+                false, true);
+        updateRegion(region, "cognito-idp", "cognito-idp.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "cognito-sync", "cognito-sync.mx-central-1.amazonaws.com", false,
+                true);
+        updateRegion(region, "data.iot", "data.iot.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "iot", "iot.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "kinesis", "kinesis.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "sdb", "sdb.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.mx-central-1.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.mx-central-1.amazonaws.com", false, true);
+
         // Support for Israel (Tel Aviv) `il-central-1` region
         region = new Region("il-central-1", "amazonaws.com");
         ret.add(region);

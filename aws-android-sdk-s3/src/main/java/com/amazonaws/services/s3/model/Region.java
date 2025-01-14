@@ -413,6 +413,18 @@ public enum Region {
     AP_Bangkok("ap-southeast-7"),
 
     /**
+     * The Mexico Region. This region uses Amazon S3 servers
+     * located in Mexico.
+     * <p>
+     * When using buckets in this region, set the client endpoint to
+     * <code>s3-mx-central-1.amazonaws.com</code> on all requests to these buckets
+     * to reduce any latency experienced after the first hour of creating a
+     * bucket in this region.
+     * </p>
+     */
+    MX_CENTRAL("mx-central-1"),
+
+    /**
      * The Israel (Tel Aviv) Region. This region uses Amazon S3 servers
      * located in Tel Aviv.
      * <p>
