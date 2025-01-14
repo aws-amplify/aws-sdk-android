@@ -1,3 +1,10 @@
+## [Release 2.79.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.79.0)
+
+### Features
+- Support for mx-central-1 ([#3656](https://github.com/aws-amplify/aws-sdk-android/issues/3656))
+
+[See all changes between 2.78.0 and 2.79.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.78.0...release_v2.79.0)
+
 ## [Release 2.78.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.78.0)
 
 ### Features
