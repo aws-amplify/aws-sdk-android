@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,18 +32,21 @@ public class DeletePlatformApplicationRequest extends AmazonWebServiceRequest im
         Serializable {
     /**
      * <p>
-     * PlatformApplicationArn of platform application object to delete.
+     * <code>PlatformApplicationArn</code> of platform application object to
+     * delete.
      * </p>
      */
     private String platformApplicationArn;
 
     /**
      * <p>
-     * PlatformApplicationArn of platform application object to delete.
+     * <code>PlatformApplicationArn</code> of platform application object to
+     * delete.
      * </p>
      *
      * @return <p>
-     *         PlatformApplicationArn of platform application object to delete.
+     *         <code>PlatformApplicationArn</code> of platform application
+     *         object to delete.
      *         </p>
      */
     public String getPlatformApplicationArn() {
@@ -52,12 +55,13 @@ public class DeletePlatformApplicationRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * PlatformApplicationArn of platform application object to delete.
+     * <code>PlatformApplicationArn</code> of platform application object to
+     * delete.
      * </p>
      *
      * @param platformApplicationArn <p>
-     *            PlatformApplicationArn of platform application object to
-     *            delete.
+     *            <code>PlatformApplicationArn</code> of platform application
+     *            object to delete.
      *            </p>
      */
     public void setPlatformApplicationArn(String platformApplicationArn) {
@@ -66,15 +70,16 @@ public class DeletePlatformApplicationRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * PlatformApplicationArn of platform application object to delete.
+     * <code>PlatformApplicationArn</code> of platform application object to
+     * delete.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param platformApplicationArn <p>
-     *            PlatformApplicationArn of platform application object to
-     *            delete.
+     *            <code>PlatformApplicationArn</code> of platform application
+     *            object to delete.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
