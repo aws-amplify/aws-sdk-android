@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -751,8 +751,8 @@ public interface AWSIot {
      * <note>
      * <p>
      * The CSR must include a public key that is either an RSA key with a length
-     * of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves.
-     * For supported certificates, consult <a href=
+     * of at least 2048 bits or an ECC key from NIST P-256, NIST P-384, or NIST
+     * P-521 curves. For supported certificates, consult <a href=
      * "https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms"
      * > Certificate signing algorithms supported by IoT</a>.
      * </p>
@@ -825,6 +825,56 @@ public interface AWSIot {
      */
     CreateCertificateFromCsrResult createCertificateFromCsr(
             CreateCertificateFromCsrRequest createCertificateFromCsrRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates an Amazon Web Services IoT Core certificate provider. You can use
+     * Amazon Web Services IoT Core certificate provider to customize how to
+     * sign a certificate signing request (CSR) in IoT fleet provisioning. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provisioning-cert-provider.html"
+     * >Customizing certificate signing using Amazon Web Services IoT Core
+     * certificate provider</a> from <i>Amazon Web Services IoT Core Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateCertificateProvider</a> action.
+     * </p>
+     * <important>
+     * <p>
+     * After you create a certificate provider, the behavior of <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/fleet-provision-api.html#create-cert-csr"
+     * > <code>CreateCertificateFromCsr</code> API for fleet provisioning</a>
+     * will change and all API calls to <code>CreateCertificateFromCsr</code>
+     * will invoke the certificate provider to create the certificates. It can
+     * take up to a few minutes for this behavior to change after a certificate
+     * provider is created.
+     * </p>
+     * </important>
+     * 
+     * @param createCertificateProviderRequest
+     * @return createCertificateProviderResult The response from the
+     *         CreateCertificateProvider service method, as returned by AWS IoT.
+     * @throws LimitExceededException
+     * @throws ResourceAlreadyExistsException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateCertificateProviderResult createCertificateProvider(
+            CreateCertificateProviderRequest createCertificateProviderRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1585,6 +1635,11 @@ public interface AWSIot {
      * >Authorization</a> for information about authorizing control plane
      * actions.
      * </p>
+     * <p>
+     * If the <code>ThingGroup</code> that you create has the exact same
+     * attributes as an existing <code>ThingGroup</code>, you will get a 200
+     * success response.
+     * </p>
      * </note>
      * <p>
      * Requires permission to access the <a href=
@@ -1896,6 +1951,43 @@ public interface AWSIot {
      *             or a server side issue.
      */
     void deleteCertificate(DeleteCertificateRequest deleteCertificateRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a certificate provider.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteCertificateProvider</a> action.
+     * </p>
+     * <p>
+     * If you delete the certificate provider resource, the behavior of
+     * <code>CreateCertificateFromCsr</code> will resume, and IoT will create
+     * certificates signed by IoT from a certificate signing request (CSR).
+     * </p>
+     * 
+     * @param deleteCertificateProviderRequest
+     * @return deleteCertificateProviderResult The response from the
+     *         DeleteCertificateProvider service method, as returned by AWS IoT.
+     * @throws DeleteConflictException
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteCertificateProviderResult deleteCertificateProvider(
+            DeleteCertificateProviderRequest deleteCertificateProviderRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2236,8 +2328,8 @@ public interface AWSIot {
      * </p>
      * <p>
      * <b>Note:</b> If a package version is designated as default, you must
-     * remove the designation from the package using the <a>UpdatePackage</a>
-     * action.
+     * remove the designation from the software package using the
+     * <a>UpdatePackage</a> action.
      * </p>
      * 
      * @param deletePackageVersionRequest
@@ -3047,6 +3139,38 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Describes a certificate provider.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeCertificateProvider</a> action.
+     * </p>
+     * 
+     * @param describeCertificateProviderRequest
+     * @return describeCertificateProviderResult The response from the
+     *         DescribeCertificateProvider service method, as returned by AWS
+     *         IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeCertificateProviderResult describeCertificateProvider(
+            DescribeCertificateProviderRequest describeCertificateProviderRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets information about a Device Defender detect custom metric.
      * </p>
      * <p>
@@ -3198,9 +3322,16 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Returns a unique endpoint specific to the Amazon Web Services account
-     * making the call.
+     * Returns or creates a unique endpoint specific to the Amazon Web Services
+     * account making the call.
      * </p>
+     * <note>
+     * <p>
+     * The first time <code>DescribeEndpoint</code> is called, an endpoint is
+     * created. All subsequent calls to <code>DescribeEndpoint</code> return the
+     * same endpoint.
+     * </p>
+     * </note>
      * <p>
      * Requires permission to access the <a href=
      * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
@@ -4404,6 +4535,12 @@ public interface AWSIot {
      * Gets a registration code used to register a CA certificate with IoT.
      * </p>
      * <p>
+     * IoT will create a registration code as part of this API call if the
+     * registration code doesn't exist or has been deleted. If you already have
+     * a registration code, this API call will return the same registration
+     * code.
+     * </p>
+     * <p>
      * Requires permission to access the <a href=
      * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
      * >GetRegistrationCode</a> action.
@@ -4850,6 +4987,36 @@ public interface AWSIot {
      *             or a server side issue.
      */
     ListCACertificatesResult listCACertificates(ListCACertificatesRequest listCACertificatesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists all your certificate providers in your Amazon Web Services account.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListCertificateProviders</a> action.
+     * </p>
+     * 
+     * @param listCertificateProvidersRequest
+     * @return listCertificateProvidersResult The response from the
+     *         ListCertificateProviders service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListCertificateProvidersResult listCertificateProviders(
+            ListCertificateProvidersRequest listCertificateProvidersRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -7420,6 +7587,37 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Updates a certificate provider.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateCertificateProvider</a> action.
+     * </p>
+     * 
+     * @param updateCertificateProviderRequest
+     * @return updateCertificateProviderResult The response from the
+     *         UpdateCertificateProvider service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateCertificateProviderResult updateCertificateProvider(
+            UpdateCertificateProviderRequest updateCertificateProviderRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Updates a Device Defender detect custom metric.
      * </p>
      * <p>
@@ -7687,7 +7885,7 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Updates the supported fields for a specific package.
+     * Updates the supported fields for a specific software package.
      * </p>
      * <p>
      * Requires permission to access the <a href=
@@ -7701,6 +7899,7 @@ public interface AWSIot {
      * @return updatePackageResult The response from the UpdatePackage service
      *         method, as returned by AWS IoT.
      * @throws ThrottlingException
+     * @throws ConflictException
      * @throws InternalServerException
      * @throws ValidationException
      * @throws ResourceNotFoundException
@@ -7717,7 +7916,7 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Updates the package configuration.
+     * Updates the software package configuration.
      * </p>
      * <p>
      * Requires permission to access the <a href=
@@ -7732,6 +7931,7 @@ public interface AWSIot {
      *         UpdatePackageConfiguration service method, as returned by AWS
      *         IoT.
      * @throws ThrottlingException
+     * @throws ConflictException
      * @throws InternalServerException
      * @throws ValidationException
      * @throws AmazonClientException If any internal errors are encountered
@@ -7762,6 +7962,7 @@ public interface AWSIot {
      * @return updatePackageVersionResult The response from the
      *         UpdatePackageVersion service method, as returned by AWS IoT.
      * @throws ThrottlingException
+     * @throws ConflictException
      * @throws InternalServerException
      * @throws ValidationException
      * @throws ResourceNotFoundException
