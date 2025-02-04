@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,24 +20,8 @@ import java.util.Map;
 
 /**
  * <p>
- * Specifies the type of Amazon Textract features to apply. If you chose
- * <code>TEXTRACT_ANALYZE_DOCUMENT</code> as the read action, you must specify
- * one or both of the following values:
+ * TABLES or FORMS
  * </p>
- * <ul>
- * <li>
- * <p>
- * <code>TABLES</code> - Returns additional information about any tables that
- * are detected in the input document.
- * </p>
- * </li>
- * <li>
- * <p>
- * <code>FORMS</code> - Returns additional information about any forms that are
- * detected in the input document.
- * </p>
- * </li>
- * </ul>
  */
 public enum DocumentReadFeatureTypes {
 

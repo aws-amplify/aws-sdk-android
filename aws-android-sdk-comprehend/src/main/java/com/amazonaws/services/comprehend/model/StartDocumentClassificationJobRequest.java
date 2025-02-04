@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,9 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Starts an asynchronous document classification job. Use the
- * <code>DescribeDocumentClassificationJob</code> operation to track the
- * progress of the job.
+ * Starts an asynchronous document classification job using a custom
+ * classification model. Use the <code>DescribeDocumentClassificationJob</code>
+ * operation to track the progress of the job.
  * </p>
  */
 public class StartDocumentClassificationJobRequest extends AmazonWebServiceRequest implements
