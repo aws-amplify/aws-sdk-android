@@ -38,10 +38,6 @@ public class HostedUIOptions {
         return builder.signOutQueryParameters;
     }
 
-    public Map<String, String> getTokenQueryParameters() {
-        return builder.tokenQueryParameters;
-    }
-
     public static Builder builder() {
         return new Builder();
     }
@@ -54,7 +50,6 @@ public class HostedUIOptions {
         private String federationProviderName;
         private Map<String, String> signInQueryParameters;
         private Map<String, String> signOutQueryParameters;
-        private Map<String, String> tokenQueryParameters;
 
         public Builder() { }
 
@@ -65,11 +60,6 @@ public class HostedUIOptions {
 
         public Builder signOutQueryParameters(final Map<String, String> signOutQueryParameters) {
             this.signOutQueryParameters = signOutQueryParameters;
-            return this;
-        }
-
-        public Builder tokenQueryParameters(final Map<String, String> tokenQueryParameters) {
-            this.tokenQueryParameters = tokenQueryParameters;
             return this;
         }
 
