@@ -1,3 +1,13 @@
+## [Release 2.80.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.80.0)
+
+### Features
+- Support for ap-east-2 ([#3665](https://github.com/aws-amplify/aws-sdk-android/issues/3665))
+
+### Miscellaneous
+- Update release_pr.yml ([#3667](https://github.com/aws-amplify/aws-sdk-android/issues/3667))
+
+[See all changes between 2.79.0 and 2.80.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.79.0...release_v2.80.0)
+
 ## [Release 2.79.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.79.0)
 
 ### Features

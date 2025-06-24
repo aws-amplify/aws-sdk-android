@@ -559,6 +559,33 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.ap-east-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.ap-east-1.amazonaws.com", false, true);
 
+        // Support Asia Pacific (Taipei) `ap-east-2` region
+        region = new Region("ap-east-2", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "cognito-identity", "cognito-identity.ap-east-2.amazonaws.com",
+                false, true);
+        updateRegion(region, "cognito-idp", "cognito-idp.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "cognito-sync", "cognito-sync.ap-east-2.amazonaws.com", false,
+                true);
+        updateRegion(region, "data.iot", "data.iot.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "iot", "iot.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "kinesis", "kinesis.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "sdb", "sdb.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.ap-east-2.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.ap-east-2.amazonaws.com", false, true);
+
         // Support Middle East (Bahrain) `me-south-1` region
         region = new Region("me-south-1", "amazonaws.com");
         ret.add(region);
