@@ -1,3 +1,11 @@
+## [Release 2.80.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.80.1)
+
+### Miscellaneous
+- Remove special characters before calling xargs in notify comment ([#3661](https://github.com/aws-amplify/aws-sdk-android/issues/3661))
+- Remove support for setting query parameters for the tokens endpoint ([#3669](https://github.com/aws-amplify/aws-sdk-android/issues/3669))
+
+[See all changes between 2.80.0 and 2.80.1](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.80.0...release_v2.80.1)
+
 ## [Release 2.80.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.80.0)
 
 ### Features
