@@ -3359,18 +3359,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         return;
                     }
                 }
-                if (hostedUIOptions.getTokenQueryParameters() != null) {
-                    try {
-                    JSONObject tokenParams = new JSONObject();
-                    for (Map.Entry<String, String> e : hostedUIOptions.getTokenQueryParameters().entrySet()) {
-                            tokenParams.put(e.getKey(), e.getValue());
-                    }
-                    hostedUIJSON.put("TokenQueryParameters", tokenParams);
-                    } catch (JSONException e1) {
-                        callback.onError(new Exception("Failed to construct token query parameters", e1));
-                        return;
-                    }
-                }
 
                 mStore.set(HOSTED_UI_KEY, hostedUIJSON.toString());
 
@@ -3389,21 +3377,15 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     throw new RuntimeException("Failed to construct authorization url for OAuth", e);
                 }
 
-                Uri.Builder tokensUriBuilder;
+                final Uri tokensUri;
                 final Map<String, String> tokensBody = new HashMap<String, String>();
                 try {
-                    tokensUriBuilder = Uri.parse(hostedUIJSON.getString("TokenURI")).buildUpon();
-                    if (hostedUIOptions.getTokenQueryParameters() != null) {
-                        for (Map.Entry<String, String> e : hostedUIOptions.getTokenQueryParameters().entrySet()) {
-                            tokensUriBuilder.appendQueryParameter(e.getKey(), e.getValue());
-                        }
-                    }
+                    tokensUri = Uri.parse(hostedUIJSON.getString("TokenURI"));
                     tokensBody.put("client_id", hostedUIJSON.getString("AppClientId"));
                     tokensBody.put("redirect_uri", hostedUIJSON.getString("SignInRedirectURI"));
                 } catch (Exception e) {
                     throw new RuntimeException("Failed to construct tokens url for OAuth", e);
                 }
-                final Uri tokensUri = tokensUriBuilder.build();
 
                 mOAuth2Client.authorize(authorizeUriBuilder.build(), new Callback<AuthorizeResponse>() {
                     @Override
@@ -3489,18 +3471,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         hostedUIJSON.put("SignOutQueryParameters", signOutParams);
                     } catch (JSONException e1) {
                         callback.onError(new Exception("Failed to construct sign-out query parameters", e1));
-                        return;
-                    }
-                }
-                if (hostedUIOptions.getTokenQueryParameters() != null) {
-                    try {
-                        JSONObject tokenParams = new JSONObject();
-                        for (Map.Entry<String, String> e : hostedUIOptions.getTokenQueryParameters().entrySet()) {
-                            tokenParams.put(e.getKey(), e.getValue());
-                        }
-                        hostedUIJSON.put("TokenQueryParameters", tokenParams);
-                    } catch (JSONException e1) {
-                        callback.onError(new Exception("Failed to construct token query parameters", e1));
                         return;
                     }
                 }
