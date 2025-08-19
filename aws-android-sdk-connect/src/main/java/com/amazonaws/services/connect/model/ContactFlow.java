@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -77,6 +77,16 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
+     * The status of the contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     */
+    private String status;
+
+    /**
+     * <p>
      * The description of the flow.
      * </p>
      */
@@ -84,7 +94,13 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      */
     private String content;
@@ -92,7 +108,7 @@ public class ContactFlow implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -491,6 +507,103 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
+     * The status of the contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     *
+     * @return <p>
+     *         The status of the contact flow.
+     *         </p>
+     * @see ContactFlowStatus
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * <p>
+     * The status of the contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     *
+     * @param status <p>
+     *            The status of the contact flow.
+     *            </p>
+     * @see ContactFlowStatus
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
+     * <p>
+     * The status of the contact flow.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     *
+     * @param status <p>
+     *            The status of the contact flow.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ContactFlowStatus
+     */
+    public ContactFlow withStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The status of the contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     *
+     * @param status <p>
+     *            The status of the contact flow.
+     *            </p>
+     * @see ContactFlowStatus
+     */
+    public void setStatus(ContactFlowStatus status) {
+        this.status = status.toString();
+    }
+
+    /**
+     * <p>
+     * The status of the contact flow.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     *
+     * @param status <p>
+     *            The status of the contact flow.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ContactFlowStatus
+     */
+    public ContactFlow withStatus(ContactFlowStatus status) {
+        this.status = status.toString();
+        return this;
+    }
+
+    /**
+     * <p>
      * The description of the flow.
      * </p>
      *
@@ -536,11 +649,24 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      *
      * @return <p>
-     *         The content of the flow.
+     *         The JSON string that represents the content of the flow. For an
+     *         example, see <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     *         >Example flow in Amazon Connect Flow language</a>.
+     *         </p>
+     *         <p>
+     *         Length Constraints: Minimum length of 1. Maximum length of
+     *         256000.
      *         </p>
      */
     public String getContent() {
@@ -549,11 +675,24 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      *
      * @param content <p>
-     *            The content of the flow.
+     *            The JSON string that represents the content of the flow. For
+     *            an example, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     *            >Example flow in Amazon Connect Flow language</a>.
+     *            </p>
+     *            <p>
+     *            Length Constraints: Minimum length of 1. Maximum length of
+     *            256000.
      *            </p>
      */
     public void setContent(String content) {
@@ -562,14 +701,27 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param content <p>
-     *            The content of the flow.
+     *            The JSON string that represents the content of the flow. For
+     *            an example, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     *            >Example flow in Amazon Connect Flow language</a>.
+     *            </p>
+     *            <p>
+     *            Length Constraints: Minimum length of 1. Maximum length of
+     *            256000.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -582,12 +734,12 @@ public class ContactFlow implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource. For example, { "tags": {"key1":"value1",
+     *         resource. For example, { "Tags": {"key1":"value1",
      *         "key2":"value2"} }.
      *         </p>
      */
@@ -598,12 +750,12 @@ public class ContactFlow implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      */
@@ -614,7 +766,7 @@ public class ContactFlow implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -622,7 +774,7 @@ public class ContactFlow implements Serializable {
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -636,7 +788,7 @@ public class ContactFlow implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a
@@ -690,6 +842,8 @@ public class ContactFlow implements Serializable {
             sb.append("Type: " + getType() + ",");
         if (getState() != null)
             sb.append("State: " + getState() + ",");
+        if (getStatus() != null)
+            sb.append("Status: " + getStatus() + ",");
         if (getDescription() != null)
             sb.append("Description: " + getDescription() + ",");
         if (getContent() != null)
@@ -710,6 +864,7 @@ public class ContactFlow implements Serializable {
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode + ((getType() == null) ? 0 : getType().hashCode());
         hashCode = prime * hashCode + ((getState() == null) ? 0 : getState().hashCode());
+        hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getContent() == null) ? 0 : getContent().hashCode());
@@ -747,6 +902,10 @@ public class ContactFlow implements Serializable {
         if (other.getState() == null ^ this.getState() == null)
             return false;
         if (other.getState() != null && other.getState().equals(this.getState()) == false)
+            return false;
+        if (other.getStatus() == null ^ this.getStatus() == null)
+            return false;
+        if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
             return false;
         if (other.getDescription() == null ^ this.getDescription() == null)
             return false;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,7 +42,11 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The After Call Work (ACW) timeout setting, in seconds.
+     * The After Call Work (ACW) timeout setting, in seconds. This parameter has
+     * a minimum value of 0 and a maximum value of 2,000,000 seconds (24 days).
+     * Enter 0 if you don't want to allocate a specific amount of ACW time. It
+     * essentially means an indefinite amount of time. When the conversation
+     * ends, ACW starts; the agent must choose Close contact to end ACW.
      * </p>
      * <note>
      * <p>
@@ -223,7 +227,11 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The After Call Work (ACW) timeout setting, in seconds.
+     * The After Call Work (ACW) timeout setting, in seconds. This parameter has
+     * a minimum value of 0 and a maximum value of 2,000,000 seconds (24 days).
+     * Enter 0 if you don't want to allocate a specific amount of ACW time. It
+     * essentially means an indefinite amount of time. When the conversation
+     * ends, ACW starts; the agent must choose Close contact to end ACW.
      * </p>
      * <note>
      * <p>
@@ -236,7 +244,12 @@ public class UserPhoneConfig implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The After Call Work (ACW) timeout setting, in seconds.
+     *         The After Call Work (ACW) timeout setting, in seconds. This
+     *         parameter has a minimum value of 0 and a maximum value of
+     *         2,000,000 seconds (24 days). Enter 0 if you don't want to
+     *         allocate a specific amount of ACW time. It essentially means an
+     *         indefinite amount of time. When the conversation ends, ACW
+     *         starts; the agent must choose Close contact to end ACW.
      *         </p>
      *         <note>
      *         <p>
@@ -252,7 +265,11 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The After Call Work (ACW) timeout setting, in seconds.
+     * The After Call Work (ACW) timeout setting, in seconds. This parameter has
+     * a minimum value of 0 and a maximum value of 2,000,000 seconds (24 days).
+     * Enter 0 if you don't want to allocate a specific amount of ACW time. It
+     * essentially means an indefinite amount of time. When the conversation
+     * ends, ACW starts; the agent must choose Close contact to end ACW.
      * </p>
      * <note>
      * <p>
@@ -265,7 +282,12 @@ public class UserPhoneConfig implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param afterContactWorkTimeLimit <p>
-     *            The After Call Work (ACW) timeout setting, in seconds.
+     *            The After Call Work (ACW) timeout setting, in seconds. This
+     *            parameter has a minimum value of 0 and a maximum value of
+     *            2,000,000 seconds (24 days). Enter 0 if you don't want to
+     *            allocate a specific amount of ACW time. It essentially means
+     *            an indefinite amount of time. When the conversation ends, ACW
+     *            starts; the agent must choose Close contact to end ACW.
      *            </p>
      *            <note>
      *            <p>
@@ -281,7 +303,11 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The After Call Work (ACW) timeout setting, in seconds.
+     * The After Call Work (ACW) timeout setting, in seconds. This parameter has
+     * a minimum value of 0 and a maximum value of 2,000,000 seconds (24 days).
+     * Enter 0 if you don't want to allocate a specific amount of ACW time. It
+     * essentially means an indefinite amount of time. When the conversation
+     * ends, ACW starts; the agent must choose Close contact to end ACW.
      * </p>
      * <note>
      * <p>
@@ -297,7 +323,12 @@ public class UserPhoneConfig implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param afterContactWorkTimeLimit <p>
-     *            The After Call Work (ACW) timeout setting, in seconds.
+     *            The After Call Work (ACW) timeout setting, in seconds. This
+     *            parameter has a minimum value of 0 and a maximum value of
+     *            2,000,000 seconds (24 days). Enter 0 if you don't want to
+     *            allocate a specific amount of ACW time. It essentially means
+     *            an indefinite amount of time. When the conversation ends, ACW
+     *            starts; the agent must choose Close contact to end ACW.
      *            </p>
      *            <note>
      *            <p>
