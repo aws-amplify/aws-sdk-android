@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,30 +41,30 @@ public class ListEndpointsByPlatformApplicationRequest extends AmazonWebServiceR
         Serializable {
     /**
      * <p>
-     * PlatformApplicationArn for ListEndpointsByPlatformApplicationInput
-     * action.
+     * <code>PlatformApplicationArn</code> for
+     * <code>ListEndpointsByPlatformApplicationInput</code> action.
      * </p>
      */
     private String platformApplicationArn;
 
     /**
      * <p>
-     * NextToken string is used when calling ListEndpointsByPlatformApplication
-     * action to retrieve additional records that are available after the first
-     * page results.
+     * <code>NextToken</code> string is used when calling
+     * <code>ListEndpointsByPlatformApplication</code> action to retrieve
+     * additional records that are available after the first page results.
      * </p>
      */
     private String nextToken;
 
     /**
      * <p>
-     * PlatformApplicationArn for ListEndpointsByPlatformApplicationInput
-     * action.
+     * <code>PlatformApplicationArn</code> for
+     * <code>ListEndpointsByPlatformApplicationInput</code> action.
      * </p>
      *
      * @return <p>
-     *         PlatformApplicationArn for
-     *         ListEndpointsByPlatformApplicationInput action.
+     *         <code>PlatformApplicationArn</code> for
+     *         <code>ListEndpointsByPlatformApplicationInput</code> action.
      *         </p>
      */
     public String getPlatformApplicationArn() {
@@ -73,13 +73,13 @@ public class ListEndpointsByPlatformApplicationRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * PlatformApplicationArn for ListEndpointsByPlatformApplicationInput
-     * action.
+     * <code>PlatformApplicationArn</code> for
+     * <code>ListEndpointsByPlatformApplicationInput</code> action.
      * </p>
      *
      * @param platformApplicationArn <p>
-     *            PlatformApplicationArn for
-     *            ListEndpointsByPlatformApplicationInput action.
+     *            <code>PlatformApplicationArn</code> for
+     *            <code>ListEndpointsByPlatformApplicationInput</code> action.
      *            </p>
      */
     public void setPlatformApplicationArn(String platformApplicationArn) {
@@ -88,16 +88,16 @@ public class ListEndpointsByPlatformApplicationRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * PlatformApplicationArn for ListEndpointsByPlatformApplicationInput
-     * action.
+     * <code>PlatformApplicationArn</code> for
+     * <code>ListEndpointsByPlatformApplicationInput</code> action.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param platformApplicationArn <p>
-     *            PlatformApplicationArn for
-     *            ListEndpointsByPlatformApplicationInput action.
+     *            <code>PlatformApplicationArn</code> for
+     *            <code>ListEndpointsByPlatformApplicationInput</code> action.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -110,15 +110,16 @@ public class ListEndpointsByPlatformApplicationRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * NextToken string is used when calling ListEndpointsByPlatformApplication
-     * action to retrieve additional records that are available after the first
-     * page results.
+     * <code>NextToken</code> string is used when calling
+     * <code>ListEndpointsByPlatformApplication</code> action to retrieve
+     * additional records that are available after the first page results.
      * </p>
      *
      * @return <p>
-     *         NextToken string is used when calling
-     *         ListEndpointsByPlatformApplication action to retrieve additional
-     *         records that are available after the first page results.
+     *         <code>NextToken</code> string is used when calling
+     *         <code>ListEndpointsByPlatformApplication</code> action to
+     *         retrieve additional records that are available after the first
+     *         page results.
      *         </p>
      */
     public String getNextToken() {
@@ -127,16 +128,16 @@ public class ListEndpointsByPlatformApplicationRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * NextToken string is used when calling ListEndpointsByPlatformApplication
-     * action to retrieve additional records that are available after the first
-     * page results.
+     * <code>NextToken</code> string is used when calling
+     * <code>ListEndpointsByPlatformApplication</code> action to retrieve
+     * additional records that are available after the first page results.
      * </p>
      *
      * @param nextToken <p>
-     *            NextToken string is used when calling
-     *            ListEndpointsByPlatformApplication action to retrieve
-     *            additional records that are available after the first page
-     *            results.
+     *            <code>NextToken</code> string is used when calling
+     *            <code>ListEndpointsByPlatformApplication</code> action to
+     *            retrieve additional records that are available after the first
+     *            page results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -145,19 +146,19 @@ public class ListEndpointsByPlatformApplicationRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * NextToken string is used when calling ListEndpointsByPlatformApplication
-     * action to retrieve additional records that are available after the first
-     * page results.
+     * <code>NextToken</code> string is used when calling
+     * <code>ListEndpointsByPlatformApplication</code> action to retrieve
+     * additional records that are available after the first page results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            NextToken string is used when calling
-     *            ListEndpointsByPlatformApplication action to retrieve
-     *            additional records that are available after the first page
-     *            results.
+     *            <code>NextToken</code> string is used when calling
+     *            <code>ListEndpointsByPlatformApplication</code> action to
+     *            retrieve additional records that are available after the first
+     *            page results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
