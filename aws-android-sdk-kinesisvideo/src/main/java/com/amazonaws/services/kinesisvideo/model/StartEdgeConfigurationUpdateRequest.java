@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -38,6 +38,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * connectivity of the stream’s edge configuration and the Edge Agent will be
  * retried for 15 minutes. After 15 minutes, the status will transition into the
  * <code>SYNC_FAILED</code> state.
+ * </p>
+ * <p>
+ * To move an edge configuration from one device to another, use
+ * <a>DeleteEdgeConfiguration</a> to delete the current edge configuration. You
+ * can then invoke StartEdgeConfigurationUpdate with an updated Hub Device ARN.
  * </p>
  */
 public class StartEdgeConfigurationUpdateRequest extends AmazonWebServiceRequest implements
