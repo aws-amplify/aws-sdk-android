@@ -1,3 +1,14 @@
+## [Release 2.81.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.81.1)
+
+### Bug Fixes
+- Update native libraries with 16KB page alignment support ([#3677](https://github.com/aws-amplify/aws-sdk-android/issues/3677))
+
+### Miscellaneous
+- Maintenance Mode Announcement ([#3675](https://github.com/aws-amplify/aws-sdk-android/issues/3675))
+- Update rexml to 3.4.2 to resolve dependabot alert ([#3676](https://github.com/aws-amplify/aws-sdk-android/issues/3676))
+
+[See all changes between 2.81.0 and 2.81.1](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.81.0...release_v2.81.1)
+
 ## [Release 2.81.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.81.0)
 
 ### Features
