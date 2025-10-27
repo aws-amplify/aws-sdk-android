@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -63,8 +63,8 @@ public class LanguageIdSettings implements Serializable {
      * </p>
      * <p>
      * The language of the specified custom vocabulary must match the language
-     * code that you specify in your transcription request. If the languages
-     * don't match, the custom vocabulary isn't applied. There are no errors or
+     * code that you specify in your transcription request. If the languages do
+     * not match, the custom vocabulary isn't applied. There are no errors or
      * warnings associated with a language mismatch.
      * </p>
      * <p>
@@ -83,7 +83,7 @@ public class LanguageIdSettings implements Serializable {
      * <p>
      * The language of the specified custom vocabulary filter must match the
      * language code that you specify in your transcription request. If the
-     * languages don't match, the custom vocabulary filter isn't applied. There
+     * languages do not match, the custom vocabulary filter isn't applied. There
      * are no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
@@ -106,8 +106,8 @@ public class LanguageIdSettings implements Serializable {
      * <p>
      * The language of the specified custom language model must match the
      * language code that you specify in your transcription request. If the
-     * languages don't match, the custom language model isn't applied. There are
-     * no errors or warnings associated with a language mismatch.
+     * languages do not match, the custom language model isn't applied. There
+     * are no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -123,8 +123,8 @@ public class LanguageIdSettings implements Serializable {
      * </p>
      * <p>
      * The language of the specified custom vocabulary must match the language
-     * code that you specify in your transcription request. If the languages
-     * don't match, the custom vocabulary isn't applied. There are no errors or
+     * code that you specify in your transcription request. If the languages do
+     * not match, the custom vocabulary isn't applied. There are no errors or
      * warnings associated with a language mismatch.
      * </p>
      * <p>
@@ -140,7 +140,7 @@ public class LanguageIdSettings implements Serializable {
      *         <p>
      *         The language of the specified custom vocabulary must match the
      *         language code that you specify in your transcription request. If
-     *         the languages don't match, the custom vocabulary isn't applied.
+     *         the languages do not match, the custom vocabulary isn't applied.
      *         There are no errors or warnings associated with a language
      *         mismatch.
      *         </p>
@@ -156,8 +156,8 @@ public class LanguageIdSettings implements Serializable {
      * </p>
      * <p>
      * The language of the specified custom vocabulary must match the language
-     * code that you specify in your transcription request. If the languages
-     * don't match, the custom vocabulary isn't applied. There are no errors or
+     * code that you specify in your transcription request. If the languages do
+     * not match, the custom vocabulary isn't applied. There are no errors or
      * warnings associated with a language mismatch.
      * </p>
      * <p>
@@ -173,7 +173,7 @@ public class LanguageIdSettings implements Serializable {
      *            <p>
      *            The language of the specified custom vocabulary must match the
      *            language code that you specify in your transcription request.
-     *            If the languages don't match, the custom vocabulary isn't
+     *            If the languages do not match, the custom vocabulary isn't
      *            applied. There are no errors or warnings associated with a
      *            language mismatch.
      *            </p>
@@ -189,8 +189,8 @@ public class LanguageIdSettings implements Serializable {
      * </p>
      * <p>
      * The language of the specified custom vocabulary must match the language
-     * code that you specify in your transcription request. If the languages
-     * don't match, the custom vocabulary isn't applied. There are no errors or
+     * code that you specify in your transcription request. If the languages do
+     * not match, the custom vocabulary isn't applied. There are no errors or
      * warnings associated with a language mismatch.
      * </p>
      * <p>
@@ -209,7 +209,7 @@ public class LanguageIdSettings implements Serializable {
      *            <p>
      *            The language of the specified custom vocabulary must match the
      *            language code that you specify in your transcription request.
-     *            If the languages don't match, the custom vocabulary isn't
+     *            If the languages do not match, the custom vocabulary isn't
      *            applied. There are no errors or warnings associated with a
      *            language mismatch.
      *            </p>
@@ -230,7 +230,7 @@ public class LanguageIdSettings implements Serializable {
      * <p>
      * The language of the specified custom vocabulary filter must match the
      * language code that you specify in your transcription request. If the
-     * languages don't match, the custom vocabulary filter isn't applied. There
+     * languages do not match, the custom vocabulary filter isn't applied. There
      * are no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
@@ -250,7 +250,7 @@ public class LanguageIdSettings implements Serializable {
      *         <p>
      *         The language of the specified custom vocabulary filter must match
      *         the language code that you specify in your transcription request.
-     *         If the languages don't match, the custom vocabulary filter isn't
+     *         If the languages do not match, the custom vocabulary filter isn't
      *         applied. There are no errors or warnings associated with a
      *         language mismatch.
      *         </p>
@@ -273,7 +273,7 @@ public class LanguageIdSettings implements Serializable {
      * <p>
      * The language of the specified custom vocabulary filter must match the
      * language code that you specify in your transcription request. If the
-     * languages don't match, the custom vocabulary filter isn't applied. There
+     * languages do not match, the custom vocabulary filter isn't applied. There
      * are no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
@@ -293,7 +293,7 @@ public class LanguageIdSettings implements Serializable {
      *            <p>
      *            The language of the specified custom vocabulary filter must
      *            match the language code that you specify in your transcription
-     *            request. If the languages don't match, the custom vocabulary
+     *            request. If the languages do not match, the custom vocabulary
      *            filter isn't applied. There are no errors or warnings
      *            associated with a language mismatch.
      *            </p>
@@ -316,7 +316,7 @@ public class LanguageIdSettings implements Serializable {
      * <p>
      * The language of the specified custom vocabulary filter must match the
      * language code that you specify in your transcription request. If the
-     * languages don't match, the custom vocabulary filter isn't applied. There
+     * languages do not match, the custom vocabulary filter isn't applied. There
      * are no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
@@ -339,7 +339,7 @@ public class LanguageIdSettings implements Serializable {
      *            <p>
      *            The language of the specified custom vocabulary filter must
      *            match the language code that you specify in your transcription
-     *            request. If the languages don't match, the custom vocabulary
+     *            request. If the languages do not match, the custom vocabulary
      *            filter isn't applied. There are no errors or warnings
      *            associated with a language mismatch.
      *            </p>
@@ -365,8 +365,8 @@ public class LanguageIdSettings implements Serializable {
      * <p>
      * The language of the specified custom language model must match the
      * language code that you specify in your transcription request. If the
-     * languages don't match, the custom language model isn't applied. There are
-     * no errors or warnings associated with a language mismatch.
+     * languages do not match, the custom language model isn't applied. There
+     * are no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -381,7 +381,7 @@ public class LanguageIdSettings implements Serializable {
      *         <p>
      *         The language of the specified custom language model must match
      *         the language code that you specify in your transcription request.
-     *         If the languages don't match, the custom language model isn't
+     *         If the languages do not match, the custom language model isn't
      *         applied. There are no errors or warnings associated with a
      *         language mismatch.
      *         </p>
@@ -399,8 +399,8 @@ public class LanguageIdSettings implements Serializable {
      * <p>
      * The language of the specified custom language model must match the
      * language code that you specify in your transcription request. If the
-     * languages don't match, the custom language model isn't applied. There are
-     * no errors or warnings associated with a language mismatch.
+     * languages do not match, the custom language model isn't applied. There
+     * are no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -415,7 +415,7 @@ public class LanguageIdSettings implements Serializable {
      *            <p>
      *            The language of the specified custom language model must match
      *            the language code that you specify in your transcription
-     *            request. If the languages don't match, the custom language
+     *            request. If the languages do not match, the custom language
      *            model isn't applied. There are no errors or warnings
      *            associated with a language mismatch.
      *            </p>
@@ -433,8 +433,8 @@ public class LanguageIdSettings implements Serializable {
      * <p>
      * The language of the specified custom language model must match the
      * language code that you specify in your transcription request. If the
-     * languages don't match, the custom language model isn't applied. There are
-     * no errors or warnings associated with a language mismatch.
+     * languages do not match, the custom language model isn't applied. There
+     * are no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -452,7 +452,7 @@ public class LanguageIdSettings implements Serializable {
      *            <p>
      *            The language of the specified custom language model must match
      *            the language code that you specify in your transcription
-     *            request. If the languages don't match, the custom language
+     *            request. If the languages do not match, the custom language
      *            model isn't applied. There are no errors or warnings
      *            associated with a language mismatch.
      *            </p>
