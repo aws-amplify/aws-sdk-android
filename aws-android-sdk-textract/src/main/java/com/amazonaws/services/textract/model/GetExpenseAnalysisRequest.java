@@ -87,7 +87,7 @@ public class GetExpenseAnalysisRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>.*\S.*<br/>
      */
     private String nextToken;
@@ -241,7 +241,7 @@ public class GetExpenseAnalysisRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @return <p>
@@ -263,7 +263,7 @@ public class GetExpenseAnalysisRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param nextToken <p>
@@ -288,7 +288,7 @@ public class GetExpenseAnalysisRequest extends AmazonWebServiceRequest implement
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param nextToken <p>
