@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,40 +19,59 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides additional detail about why the request failed:
+ * Provides additional detail about why the request failed.
  * </p>
- * <ul>
- * <li>
- * <p>
- * Document size is too large - Check the size of your file and resubmit the
- * request.
- * </p>
- * </li>
- * <li>
- * <p>
- * Document type is not supported - Check the file type and resubmit the
- * request.
- * </p>
- * </li>
- * <li>
- * <p>
- * Too many pages in the document - Check the number of pages in your file and
- * resubmit the request.
- * </p>
- * </li>
- * <li>
- * <p>
- * Access denied to Amazon Textract - Verify that your account has permission to
- * use Amazon Textract API operations and resubmit the request.
- * </p>
- * </li>
- * </ul>
  */
 public class InvalidRequestDetail implements Serializable {
     /**
      * <p>
-     * Reason code is <code>INVALID_DOCUMENT</code>.
+     * Reason codes include the following values:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * DOCUMENT_SIZE_EXCEEDED - Document size is too large. Check the size of
+     * your file and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * UNSUPPORTED_DOC_TYPE - Document type is not supported. Check the file
+     * type and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * PAGE_LIMIT_EXCEEDED - Too many pages in the document. Check the number of
+     * pages in your file and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * TEXTRACT_ACCESS_DENIED - Access denied to Amazon Textract. Verify that
+     * your account has permission to use Amazon Textract API operations and
+     * resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * NOT_TEXTRACT_JSON - Document is not Amazon Textract JSON format. Verify
+     * the format and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * MISMATCHED_TOTAL_PAGE_COUNT - Check the number of pages in your file and
+     * resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * INVALID_DOCUMENT - Invalid document. Check the file and resubmit the
+     * request.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DOCUMENT_SIZE_EXCEEDED, UNSUPPORTED_DOC_TYPE,
@@ -62,16 +81,106 @@ public class InvalidRequestDetail implements Serializable {
 
     /**
      * <p>
-     * Reason code is <code>INVALID_DOCUMENT</code>.
+     * Reason codes include the following values:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * DOCUMENT_SIZE_EXCEEDED - Document size is too large. Check the size of
+     * your file and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * UNSUPPORTED_DOC_TYPE - Document type is not supported. Check the file
+     * type and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * PAGE_LIMIT_EXCEEDED - Too many pages in the document. Check the number of
+     * pages in your file and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * TEXTRACT_ACCESS_DENIED - Access denied to Amazon Textract. Verify that
+     * your account has permission to use Amazon Textract API operations and
+     * resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * NOT_TEXTRACT_JSON - Document is not Amazon Textract JSON format. Verify
+     * the format and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * MISMATCHED_TOTAL_PAGE_COUNT - Check the number of pages in your file and
+     * resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * INVALID_DOCUMENT - Invalid document. Check the file and resubmit the
+     * request.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DOCUMENT_SIZE_EXCEEDED, UNSUPPORTED_DOC_TYPE,
      * PAGE_LIMIT_EXCEEDED, TEXTRACT_ACCESS_DENIED
      *
      * @return <p>
-     *         Reason code is <code>INVALID_DOCUMENT</code>.
+     *         Reason codes include the following values:
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         DOCUMENT_SIZE_EXCEEDED - Document size is too large. Check the
+     *         size of your file and resubmit the request.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         UNSUPPORTED_DOC_TYPE - Document type is not supported. Check the
+     *         file type and resubmit the request.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         PAGE_LIMIT_EXCEEDED - Too many pages in the document. Check the
+     *         number of pages in your file and resubmit the request.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         TEXTRACT_ACCESS_DENIED - Access denied to Amazon Textract. Verify
+     *         that your account has permission to use Amazon Textract API
+     *         operations and resubmit the request.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         NOT_TEXTRACT_JSON - Document is not Amazon Textract JSON format.
+     *         Verify the format and resubmit the request.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         MISMATCHED_TOTAL_PAGE_COUNT - Check the number of pages in your
+     *         file and resubmit the request.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         INVALID_DOCUMENT - Invalid document. Check the file and resubmit
+     *         the request.
+     *         </p>
+     *         </li>
+     *         </ul>
      * @see InvalidRequestDetailReason
      */
     public String getReason() {
@@ -80,16 +189,106 @@ public class InvalidRequestDetail implements Serializable {
 
     /**
      * <p>
-     * Reason code is <code>INVALID_DOCUMENT</code>.
+     * Reason codes include the following values:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * DOCUMENT_SIZE_EXCEEDED - Document size is too large. Check the size of
+     * your file and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * UNSUPPORTED_DOC_TYPE - Document type is not supported. Check the file
+     * type and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * PAGE_LIMIT_EXCEEDED - Too many pages in the document. Check the number of
+     * pages in your file and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * TEXTRACT_ACCESS_DENIED - Access denied to Amazon Textract. Verify that
+     * your account has permission to use Amazon Textract API operations and
+     * resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * NOT_TEXTRACT_JSON - Document is not Amazon Textract JSON format. Verify
+     * the format and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * MISMATCHED_TOTAL_PAGE_COUNT - Check the number of pages in your file and
+     * resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * INVALID_DOCUMENT - Invalid document. Check the file and resubmit the
+     * request.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DOCUMENT_SIZE_EXCEEDED, UNSUPPORTED_DOC_TYPE,
      * PAGE_LIMIT_EXCEEDED, TEXTRACT_ACCESS_DENIED
      *
      * @param reason <p>
-     *            Reason code is <code>INVALID_DOCUMENT</code>.
+     *            Reason codes include the following values:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            DOCUMENT_SIZE_EXCEEDED - Document size is too large. Check the
+     *            size of your file and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            UNSUPPORTED_DOC_TYPE - Document type is not supported. Check
+     *            the file type and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            PAGE_LIMIT_EXCEEDED - Too many pages in the document. Check
+     *            the number of pages in your file and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            TEXTRACT_ACCESS_DENIED - Access denied to Amazon Textract.
+     *            Verify that your account has permission to use Amazon Textract
+     *            API operations and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            NOT_TEXTRACT_JSON - Document is not Amazon Textract JSON
+     *            format. Verify the format and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            MISMATCHED_TOTAL_PAGE_COUNT - Check the number of pages in
+     *            your file and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            INVALID_DOCUMENT - Invalid document. Check the file and
+     *            resubmit the request.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @see InvalidRequestDetailReason
      */
     public void setReason(String reason) {
@@ -98,8 +297,53 @@ public class InvalidRequestDetail implements Serializable {
 
     /**
      * <p>
-     * Reason code is <code>INVALID_DOCUMENT</code>.
+     * Reason codes include the following values:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * DOCUMENT_SIZE_EXCEEDED - Document size is too large. Check the size of
+     * your file and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * UNSUPPORTED_DOC_TYPE - Document type is not supported. Check the file
+     * type and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * PAGE_LIMIT_EXCEEDED - Too many pages in the document. Check the number of
+     * pages in your file and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * TEXTRACT_ACCESS_DENIED - Access denied to Amazon Textract. Verify that
+     * your account has permission to use Amazon Textract API operations and
+     * resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * NOT_TEXTRACT_JSON - Document is not Amazon Textract JSON format. Verify
+     * the format and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * MISMATCHED_TOTAL_PAGE_COUNT - Check the number of pages in your file and
+     * resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * INVALID_DOCUMENT - Invalid document. Check the file and resubmit the
+     * request.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -109,8 +353,53 @@ public class InvalidRequestDetail implements Serializable {
      * PAGE_LIMIT_EXCEEDED, TEXTRACT_ACCESS_DENIED
      *
      * @param reason <p>
-     *            Reason code is <code>INVALID_DOCUMENT</code>.
+     *            Reason codes include the following values:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            DOCUMENT_SIZE_EXCEEDED - Document size is too large. Check the
+     *            size of your file and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            UNSUPPORTED_DOC_TYPE - Document type is not supported. Check
+     *            the file type and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            PAGE_LIMIT_EXCEEDED - Too many pages in the document. Check
+     *            the number of pages in your file and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            TEXTRACT_ACCESS_DENIED - Access denied to Amazon Textract.
+     *            Verify that your account has permission to use Amazon Textract
+     *            API operations and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            NOT_TEXTRACT_JSON - Document is not Amazon Textract JSON
+     *            format. Verify the format and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            MISMATCHED_TOTAL_PAGE_COUNT - Check the number of pages in
+     *            your file and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            INVALID_DOCUMENT - Invalid document. Check the file and
+     *            resubmit the request.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see InvalidRequestDetailReason
@@ -122,16 +411,106 @@ public class InvalidRequestDetail implements Serializable {
 
     /**
      * <p>
-     * Reason code is <code>INVALID_DOCUMENT</code>.
+     * Reason codes include the following values:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * DOCUMENT_SIZE_EXCEEDED - Document size is too large. Check the size of
+     * your file and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * UNSUPPORTED_DOC_TYPE - Document type is not supported. Check the file
+     * type and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * PAGE_LIMIT_EXCEEDED - Too many pages in the document. Check the number of
+     * pages in your file and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * TEXTRACT_ACCESS_DENIED - Access denied to Amazon Textract. Verify that
+     * your account has permission to use Amazon Textract API operations and
+     * resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * NOT_TEXTRACT_JSON - Document is not Amazon Textract JSON format. Verify
+     * the format and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * MISMATCHED_TOTAL_PAGE_COUNT - Check the number of pages in your file and
+     * resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * INVALID_DOCUMENT - Invalid document. Check the file and resubmit the
+     * request.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DOCUMENT_SIZE_EXCEEDED, UNSUPPORTED_DOC_TYPE,
      * PAGE_LIMIT_EXCEEDED, TEXTRACT_ACCESS_DENIED
      *
      * @param reason <p>
-     *            Reason code is <code>INVALID_DOCUMENT</code>.
+     *            Reason codes include the following values:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            DOCUMENT_SIZE_EXCEEDED - Document size is too large. Check the
+     *            size of your file and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            UNSUPPORTED_DOC_TYPE - Document type is not supported. Check
+     *            the file type and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            PAGE_LIMIT_EXCEEDED - Too many pages in the document. Check
+     *            the number of pages in your file and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            TEXTRACT_ACCESS_DENIED - Access denied to Amazon Textract.
+     *            Verify that your account has permission to use Amazon Textract
+     *            API operations and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            NOT_TEXTRACT_JSON - Document is not Amazon Textract JSON
+     *            format. Verify the format and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            MISMATCHED_TOTAL_PAGE_COUNT - Check the number of pages in
+     *            your file and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            INVALID_DOCUMENT - Invalid document. Check the file and
+     *            resubmit the request.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @see InvalidRequestDetailReason
      */
     public void setReason(InvalidRequestDetailReason reason) {
@@ -140,8 +519,53 @@ public class InvalidRequestDetail implements Serializable {
 
     /**
      * <p>
-     * Reason code is <code>INVALID_DOCUMENT</code>.
+     * Reason codes include the following values:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * DOCUMENT_SIZE_EXCEEDED - Document size is too large. Check the size of
+     * your file and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * UNSUPPORTED_DOC_TYPE - Document type is not supported. Check the file
+     * type and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * PAGE_LIMIT_EXCEEDED - Too many pages in the document. Check the number of
+     * pages in your file and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * TEXTRACT_ACCESS_DENIED - Access denied to Amazon Textract. Verify that
+     * your account has permission to use Amazon Textract API operations and
+     * resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * NOT_TEXTRACT_JSON - Document is not Amazon Textract JSON format. Verify
+     * the format and resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * MISMATCHED_TOTAL_PAGE_COUNT - Check the number of pages in your file and
+     * resubmit the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * INVALID_DOCUMENT - Invalid document. Check the file and resubmit the
+     * request.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -151,8 +575,53 @@ public class InvalidRequestDetail implements Serializable {
      * PAGE_LIMIT_EXCEEDED, TEXTRACT_ACCESS_DENIED
      *
      * @param reason <p>
-     *            Reason code is <code>INVALID_DOCUMENT</code>.
+     *            Reason codes include the following values:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            DOCUMENT_SIZE_EXCEEDED - Document size is too large. Check the
+     *            size of your file and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            UNSUPPORTED_DOC_TYPE - Document type is not supported. Check
+     *            the file type and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            PAGE_LIMIT_EXCEEDED - Too many pages in the document. Check
+     *            the number of pages in your file and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            TEXTRACT_ACCESS_DENIED - Access denied to Amazon Textract.
+     *            Verify that your account has permission to use Amazon Textract
+     *            API operations and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            NOT_TEXTRACT_JSON - Document is not Amazon Textract JSON
+     *            format. Verify the format and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            MISMATCHED_TOTAL_PAGE_COUNT - Check the number of pages in
+     *            your file and resubmit the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            INVALID_DOCUMENT - Invalid document. Check the file and
+     *            resubmit the request.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see InvalidRequestDetailReason

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
      * Comprehend read access to your input data. For more information, see <a
      * href=
-     * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions"
      * >Role-based permissions</a>.
      * </p>
      * <p>
@@ -244,7 +244,7 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
      * Comprehend read access to your input data. For more information, see <a
      * href=
-     * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions"
      * >Role-based permissions</a>.
      * </p>
      * <p>
@@ -256,7 +256,7 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      *         The Amazon Resource Name (ARN) of the IAM role that grants Amazon
      *         Comprehend read access to your input data. For more information,
      *         see <a href=
-     *         "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
+     *         "https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions"
      *         >Role-based permissions</a>.
      *         </p>
      */
@@ -269,7 +269,7 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
      * Comprehend read access to your input data. For more information, see <a
      * href=
-     * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions"
      * >Role-based permissions</a>.
      * </p>
      * <p>
@@ -281,7 +281,7 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      *            The Amazon Resource Name (ARN) of the IAM role that grants
      *            Amazon Comprehend read access to your input data. For more
      *            information, see <a href=
-     *            "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
+     *            "https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions"
      *            >Role-based permissions</a>.
      *            </p>
      */
@@ -294,7 +294,7 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
      * Comprehend read access to your input data. For more information, see <a
      * href=
-     * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions"
      * >Role-based permissions</a>.
      * </p>
      * <p>
@@ -309,7 +309,7 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      *            The Amazon Resource Name (ARN) of the IAM role that grants
      *            Amazon Comprehend read access to your input data. For more
      *            information, see <a href=
-     *            "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
+     *            "https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions"
      *            >Role-based permissions</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
