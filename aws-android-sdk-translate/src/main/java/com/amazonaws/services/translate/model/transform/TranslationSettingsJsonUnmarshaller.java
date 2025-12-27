@@ -42,6 +42,9 @@ class TranslationSettingsJsonUnmarshaller implements
             } else if (name.equals("Profanity")) {
                 translationSettings.setProfanity(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Brevity")) {
+                translationSettings.setBrevity(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
