@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -142,6 +142,19 @@ public class UpdateSecurityProfileRequestMarshaller implements
                         .getDeleteAdditionalMetricsToRetain();
                 jsonWriter.name("deleteAdditionalMetricsToRetain");
                 jsonWriter.value(deleteAdditionalMetricsToRetain);
+            }
+            if (updateSecurityProfileRequest.getMetricsExportConfig() != null) {
+                MetricsExportConfig metricsExportConfig = updateSecurityProfileRequest
+                        .getMetricsExportConfig();
+                jsonWriter.name("metricsExportConfig");
+                MetricsExportConfigJsonMarshaller.getInstance().marshall(metricsExportConfig,
+                        jsonWriter);
+            }
+            if (updateSecurityProfileRequest.getDeleteMetricsExportConfig() != null) {
+                Boolean deleteMetricsExportConfig = updateSecurityProfileRequest
+                        .getDeleteMetricsExportConfig();
+                jsonWriter.name("deleteMetricsExportConfig");
+                jsonWriter.value(deleteMetricsExportConfig);
             }
 
             jsonWriter.endObject();

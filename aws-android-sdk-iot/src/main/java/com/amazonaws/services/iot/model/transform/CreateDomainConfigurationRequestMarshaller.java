@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -115,6 +115,13 @@ public class CreateDomainConfigurationRequestMarshaller implements
                 TlsConfig tlsConfig = createDomainConfigurationRequest.getTlsConfig();
                 jsonWriter.name("tlsConfig");
                 TlsConfigJsonMarshaller.getInstance().marshall(tlsConfig, jsonWriter);
+            }
+            if (createDomainConfigurationRequest.getServerCertificateConfig() != null) {
+                ServerCertificateConfig serverCertificateConfig = createDomainConfigurationRequest
+                        .getServerCertificateConfig();
+                jsonWriter.name("serverCertificateConfig");
+                ServerCertificateConfigJsonMarshaller.getInstance().marshall(
+                        serverCertificateConfig, jsonWriter);
             }
 
             jsonWriter.endObject();
