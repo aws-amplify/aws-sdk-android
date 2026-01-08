@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,11 +27,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * body. In the request, you must specify either the <code>StreamName</code> or
  * the <code>StreamARN</code>.
  * </p>
- * <note>
- * <p>
- * The retention period that you specify replaces the current value.
- * </p>
- * </note>
  * <p>
  * This operation requires permission for the
  * <code>KinesisVideo:UpdateDataRetention</code> action.
@@ -108,8 +103,13 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The retention period, in hours. The value you specify replaces the
-     * current value. The maximum value for this parameter is 87600 (ten years).
+     * The number of hours to adjust the current retention by. The value you
+     * specify is added to or subtracted from the current value, depending on
+     * the <code>operation</code>.
+     * </p>
+     * <p>
+     * The minimum value for data retention is 0 and the maximum value is 87600
+     * (ten years).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -420,17 +420,26 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The retention period, in hours. The value you specify replaces the
-     * current value. The maximum value for this parameter is 87600 (ten years).
+     * The number of hours to adjust the current retention by. The value you
+     * specify is added to or subtracted from the current value, depending on
+     * the <code>operation</code>.
+     * </p>
+     * <p>
+     * The minimum value for data retention is 0 and the maximum value is 87600
+     * (ten years).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
      * @return <p>
-     *         The retention period, in hours. The value you specify replaces
-     *         the current value. The maximum value for this parameter is 87600
-     *         (ten years).
+     *         The number of hours to adjust the current retention by. The value
+     *         you specify is added to or subtracted from the current value,
+     *         depending on the <code>operation</code>.
+     *         </p>
+     *         <p>
+     *         The minimum value for data retention is 0 and the maximum value
+     *         is 87600 (ten years).
      *         </p>
      */
     public Integer getDataRetentionChangeInHours() {
@@ -439,17 +448,26 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The retention period, in hours. The value you specify replaces the
-     * current value. The maximum value for this parameter is 87600 (ten years).
+     * The number of hours to adjust the current retention by. The value you
+     * specify is added to or subtracted from the current value, depending on
+     * the <code>operation</code>.
+     * </p>
+     * <p>
+     * The minimum value for data retention is 0 and the maximum value is 87600
+     * (ten years).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
      * @param dataRetentionChangeInHours <p>
-     *            The retention period, in hours. The value you specify replaces
-     *            the current value. The maximum value for this parameter is
-     *            87600 (ten years).
+     *            The number of hours to adjust the current retention by. The
+     *            value you specify is added to or subtracted from the current
+     *            value, depending on the <code>operation</code>.
+     *            </p>
+     *            <p>
+     *            The minimum value for data retention is 0 and the maximum
+     *            value is 87600 (ten years).
      *            </p>
      */
     public void setDataRetentionChangeInHours(Integer dataRetentionChangeInHours) {
@@ -458,8 +476,13 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The retention period, in hours. The value you specify replaces the
-     * current value. The maximum value for this parameter is 87600 (ten years).
+     * The number of hours to adjust the current retention by. The value you
+     * specify is added to or subtracted from the current value, depending on
+     * the <code>operation</code>.
+     * </p>
+     * <p>
+     * The minimum value for data retention is 0 and the maximum value is 87600
+     * (ten years).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -469,9 +492,13 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
      * <b>Range: </b>1 - <br/>
      *
      * @param dataRetentionChangeInHours <p>
-     *            The retention period, in hours. The value you specify replaces
-     *            the current value. The maximum value for this parameter is
-     *            87600 (ten years).
+     *            The number of hours to adjust the current retention by. The
+     *            value you specify is added to or subtracted from the current
+     *            value, depending on the <code>operation</code>.
+     *            </p>
+     *            <p>
+     *            The minimum value for data retention is 0 and the maximum
+     *            value is 87600 (ten years).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
