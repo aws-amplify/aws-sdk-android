@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -63,6 +63,12 @@ class QueueJsonUnmarshaller implements Unmarshaller<Queue, JsonUnmarshallerConte
                 queue.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                queue.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                queue.setLastModifiedRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -47,21 +47,21 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </important>
  * <p>
- * If you plan to claim and release numbers frequently during a 30 day period,
- * contact us for a service quota exception. Otherwise, it is possible you will
- * be blocked from claiming and releasing any more numbers until 30 days past
- * the oldest number released has expired.
+ * If you plan to claim and release numbers frequently, contact us for a service
+ * quota exception. Otherwise, it is possible you will be blocked from claiming
+ * and releasing any more numbers until up to 180 days past the oldest number
+ * released has expired.
  * </p>
  * <p>
  * By default you can claim and release up to 200% of your maximum number of
- * active phone numbers during any 30 day period. If you claim and release phone
- * numbers using the UI or API during a rolling 30 day cycle that exceeds 200%
- * of your phone number service level quota, you will be blocked from claiming
- * any more numbers until 30 days past the oldest number released has expired.
+ * active phone numbers. If you claim and release phone numbers using the UI or
+ * API during a rolling 180 day cycle that exceeds 200% of your phone number
+ * service level quota, you will be blocked from claiming any more numbers until
+ * 180 days past the oldest number released has expired.
  * </p>
  * <p>
  * For example, if you already have 99 claimed numbers and a service level quota
- * of 99 phone numbers, and in any 30 day period you release 99, claim 99, and
+ * of 99 phone numbers, and in any 180 day period you release 99, claim 99, and
  * then release 99, you will have exceeded the 200% limit. At that point you are
  * blocked from claiming any more numbers until you open an Amazon Web Services
  * support ticket.
@@ -71,10 +71,26 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
+     * You must enter <code>InstanceId</code> or <code>TargetArn</code>.
      * </p>
      */
     private String targetArn;
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. You must enter <code>InstanceId</code> or
+     * <code>TargetArn</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     */
+    private String instanceId;
 
     /**
      * <p>
@@ -101,7 +117,7 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -128,12 +144,15 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
+     * You must enter <code>InstanceId</code> or <code>TargetArn</code>.
      * </p>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *         traffic distribution groups that phone numbers are claimed to.
+     *         traffic distribution groups that phone number inbound traffic is
+     *         routed through. You must enter <code>InstanceId</code> or
+     *         <code>TargetArn</code>.
      *         </p>
      */
     public String getTargetArn() {
@@ -143,12 +162,15 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
+     * You must enter <code>InstanceId</code> or <code>TargetArn</code>.
      * </p>
      *
      * @param targetArn <p>
      *            The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *            traffic distribution groups that phone numbers are claimed to.
+     *            traffic distribution groups that phone number inbound traffic
+     *            is routed through. You must enter <code>InstanceId</code> or
+     *            <code>TargetArn</code>.
      *            </p>
      */
     public void setTargetArn(String targetArn) {
@@ -158,7 +180,8 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
+     * You must enter <code>InstanceId</code> or <code>TargetArn</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -166,13 +189,99 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      *
      * @param targetArn <p>
      *            The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *            traffic distribution groups that phone numbers are claimed to.
+     *            traffic distribution groups that phone number inbound traffic
+     *            is routed through. You must enter <code>InstanceId</code> or
+     *            <code>TargetArn</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ClaimPhoneNumberRequest withTargetArn(String targetArn) {
         this.targetArn = targetArn;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. You must enter <code>InstanceId</code> or
+     * <code>TargetArn</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @return <p>
+     *         The identifier of the Amazon Connect instance that phone numbers
+     *         are claimed to. You can <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *         >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *         the instance. You must enter <code>InstanceId</code> or
+     *         <code>TargetArn</code>.
+     *         </p>
+     */
+    public String getInstanceId() {
+        return instanceId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. You must enter <code>InstanceId</code> or
+     * <code>TargetArn</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @param instanceId <p>
+     *            The identifier of the Amazon Connect instance that phone
+     *            numbers are claimed to. You can <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance. You must enter <code>InstanceId</code> or
+     *            <code>TargetArn</code>.
+     *            </p>
+     */
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. You must enter <code>InstanceId</code> or
+     * <code>TargetArn</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @param instanceId <p>
+     *            The identifier of the Amazon Connect instance that phone
+     *            numbers are claimed to. You can <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance. You must enter <code>InstanceId</code> or
+     *            <code>TargetArn</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ClaimPhoneNumberRequest withInstanceId(String instanceId) {
+        this.instanceId = instanceId;
         return this;
     }
 
@@ -301,12 +410,12 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource. For example, { "tags": {"key1":"value1",
+     *         resource. For example, { "Tags": {"key1":"value1",
      *         "key2":"value2"} }.
      *         </p>
      */
@@ -317,12 +426,12 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      */
@@ -333,7 +442,7 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -341,7 +450,7 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -355,7 +464,7 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a
@@ -509,6 +618,8 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
         sb.append("{");
         if (getTargetArn() != null)
             sb.append("TargetArn: " + getTargetArn() + ",");
+        if (getInstanceId() != null)
+            sb.append("InstanceId: " + getInstanceId() + ",");
         if (getPhoneNumber() != null)
             sb.append("PhoneNumber: " + getPhoneNumber() + ",");
         if (getPhoneNumberDescription() != null)
@@ -527,6 +638,7 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getTargetArn() == null) ? 0 : getTargetArn().hashCode());
+        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
         hashCode = prime * hashCode
                 + ((getPhoneNumber() == null) ? 0 : getPhoneNumber().hashCode());
         hashCode = prime
@@ -554,6 +666,11 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
             return false;
         if (other.getTargetArn() != null
                 && other.getTargetArn().equals(this.getTargetArn()) == false)
+            return false;
+        if (other.getInstanceId() == null ^ this.getInstanceId() == null)
+            return false;
+        if (other.getInstanceId() != null
+                && other.getInstanceId().equals(this.getInstanceId()) == false)
             return false;
         if (other.getPhoneNumber() == null ^ this.getPhoneNumber() == null)
             return false;

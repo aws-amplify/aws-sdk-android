@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -45,6 +45,40 @@ public class UserSearchFilter implements Serializable {
      * </ul>
      */
     private ControlPlaneTagFilter tagFilter;
+
+    /**
+     * <p>
+     * An object that can be used to specify Tag conditions or Hierarchy Group
+     * conditions inside the SearchFilter.
+     * </p>
+     * <p>
+     * This accepts an <code>OR</code> of <code>AND</code> (List of List) input
+     * where:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The top level list specifies conditions that need to be applied with
+     * <code>OR</code> operator.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The inner list specifies conditions that need to be applied with
+     * <code>AND</code> operator.
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * Only one field can be populated. This object can’t be used along with
+     * TagFilter. Request can either contain TagFilter or UserAttributeFilter if
+     * SearchFilter is specified, combination of both is not supported and such
+     * request will throw AccessDeniedException.
+     * </p>
+     * </note>
+     */
+    private ControlPlaneUserAttributeFilter userAttributeFilter;
 
     /**
      * <p>
@@ -188,6 +222,217 @@ public class UserSearchFilter implements Serializable {
     }
 
     /**
+     * <p>
+     * An object that can be used to specify Tag conditions or Hierarchy Group
+     * conditions inside the SearchFilter.
+     * </p>
+     * <p>
+     * This accepts an <code>OR</code> of <code>AND</code> (List of List) input
+     * where:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The top level list specifies conditions that need to be applied with
+     * <code>OR</code> operator.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The inner list specifies conditions that need to be applied with
+     * <code>AND</code> operator.
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * Only one field can be populated. This object can’t be used along with
+     * TagFilter. Request can either contain TagFilter or UserAttributeFilter if
+     * SearchFilter is specified, combination of both is not supported and such
+     * request will throw AccessDeniedException.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         An object that can be used to specify Tag conditions or Hierarchy
+     *         Group conditions inside the SearchFilter.
+     *         </p>
+     *         <p>
+     *         This accepts an <code>OR</code> of <code>AND</code> (List of
+     *         List) input where:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         The top level list specifies conditions that need to be applied
+     *         with <code>OR</code> operator.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         The inner list specifies conditions that need to be applied with
+     *         <code>AND</code> operator.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <note>
+     *         <p>
+     *         Only one field can be populated. This object can’t be used along
+     *         with TagFilter. Request can either contain TagFilter or
+     *         UserAttributeFilter if SearchFilter is specified, combination of
+     *         both is not supported and such request will throw
+     *         AccessDeniedException.
+     *         </p>
+     *         </note>
+     */
+    public ControlPlaneUserAttributeFilter getUserAttributeFilter() {
+        return userAttributeFilter;
+    }
+
+    /**
+     * <p>
+     * An object that can be used to specify Tag conditions or Hierarchy Group
+     * conditions inside the SearchFilter.
+     * </p>
+     * <p>
+     * This accepts an <code>OR</code> of <code>AND</code> (List of List) input
+     * where:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The top level list specifies conditions that need to be applied with
+     * <code>OR</code> operator.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The inner list specifies conditions that need to be applied with
+     * <code>AND</code> operator.
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * Only one field can be populated. This object can’t be used along with
+     * TagFilter. Request can either contain TagFilter or UserAttributeFilter if
+     * SearchFilter is specified, combination of both is not supported and such
+     * request will throw AccessDeniedException.
+     * </p>
+     * </note>
+     *
+     * @param userAttributeFilter <p>
+     *            An object that can be used to specify Tag conditions or
+     *            Hierarchy Group conditions inside the SearchFilter.
+     *            </p>
+     *            <p>
+     *            This accepts an <code>OR</code> of <code>AND</code> (List of
+     *            List) input where:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            The top level list specifies conditions that need to be
+     *            applied with <code>OR</code> operator.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            The inner list specifies conditions that need to be applied
+     *            with <code>AND</code> operator.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <note>
+     *            <p>
+     *            Only one field can be populated. This object can’t be used
+     *            along with TagFilter. Request can either contain TagFilter or
+     *            UserAttributeFilter if SearchFilter is specified, combination
+     *            of both is not supported and such request will throw
+     *            AccessDeniedException.
+     *            </p>
+     *            </note>
+     */
+    public void setUserAttributeFilter(ControlPlaneUserAttributeFilter userAttributeFilter) {
+        this.userAttributeFilter = userAttributeFilter;
+    }
+
+    /**
+     * <p>
+     * An object that can be used to specify Tag conditions or Hierarchy Group
+     * conditions inside the SearchFilter.
+     * </p>
+     * <p>
+     * This accepts an <code>OR</code> of <code>AND</code> (List of List) input
+     * where:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The top level list specifies conditions that need to be applied with
+     * <code>OR</code> operator.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The inner list specifies conditions that need to be applied with
+     * <code>AND</code> operator.
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * Only one field can be populated. This object can’t be used along with
+     * TagFilter. Request can either contain TagFilter or UserAttributeFilter if
+     * SearchFilter is specified, combination of both is not supported and such
+     * request will throw AccessDeniedException.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param userAttributeFilter <p>
+     *            An object that can be used to specify Tag conditions or
+     *            Hierarchy Group conditions inside the SearchFilter.
+     *            </p>
+     *            <p>
+     *            This accepts an <code>OR</code> of <code>AND</code> (List of
+     *            List) input where:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            The top level list specifies conditions that need to be
+     *            applied with <code>OR</code> operator.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            The inner list specifies conditions that need to be applied
+     *            with <code>AND</code> operator.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <note>
+     *            <p>
+     *            Only one field can be populated. This object can’t be used
+     *            along with TagFilter. Request can either contain TagFilter or
+     *            UserAttributeFilter if SearchFilter is specified, combination
+     *            of both is not supported and such request will throw
+     *            AccessDeniedException.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UserSearchFilter withUserAttributeFilter(
+            ControlPlaneUserAttributeFilter userAttributeFilter) {
+        this.userAttributeFilter = userAttributeFilter;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -199,7 +444,9 @@ public class UserSearchFilter implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getTagFilter() != null)
-            sb.append("TagFilter: " + getTagFilter());
+            sb.append("TagFilter: " + getTagFilter() + ",");
+        if (getUserAttributeFilter() != null)
+            sb.append("UserAttributeFilter: " + getUserAttributeFilter());
         sb.append("}");
         return sb.toString();
     }
@@ -210,6 +457,8 @@ public class UserSearchFilter implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getTagFilter() == null) ? 0 : getTagFilter().hashCode());
+        hashCode = prime * hashCode
+                + ((getUserAttributeFilter() == null) ? 0 : getUserAttributeFilter().hashCode());
         return hashCode;
     }
 
@@ -228,6 +477,11 @@ public class UserSearchFilter implements Serializable {
             return false;
         if (other.getTagFilter() != null
                 && other.getTagFilter().equals(this.getTagFilter()) == false)
+            return false;
+        if (other.getUserAttributeFilter() == null ^ this.getUserAttributeFilter() == null)
+            return false;
+        if (other.getUserAttributeFilter() != null
+                && other.getUserAttributeFilter().equals(this.getUserAttributeFilter()) == false)
             return false;
         return true;
     }

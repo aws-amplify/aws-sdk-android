@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -54,7 +54,8 @@ public class RoutingProfileSearchCriteria implements Serializable {
      * <note>
      * <p>
      * The currently supported values for <code>FieldName</code> are
-     * <code>name</code>, <code>description</code>, and <code>resourceID</code>.
+     * <code>associatedQueueIds</code>, <code>name</code>,
+     * <code>description</code>, and <code>resourceID</code>.
      * </p>
      * </note>
      */
@@ -237,7 +238,8 @@ public class RoutingProfileSearchCriteria implements Serializable {
      * <note>
      * <p>
      * The currently supported values for <code>FieldName</code> are
-     * <code>name</code>, <code>description</code>, and <code>resourceID</code>.
+     * <code>associatedQueueIds</code>, <code>name</code>,
+     * <code>description</code>, and <code>resourceID</code>.
      * </p>
      * </note>
      *
@@ -248,8 +250,8 @@ public class RoutingProfileSearchCriteria implements Serializable {
      *         <note>
      *         <p>
      *         The currently supported values for <code>FieldName</code> are
-     *         <code>name</code>, <code>description</code>, and
-     *         <code>resourceID</code>.
+     *         <code>associatedQueueIds</code>, <code>name</code>,
+     *         <code>description</code>, and <code>resourceID</code>.
      *         </p>
      *         </note>
      */
@@ -264,7 +266,8 @@ public class RoutingProfileSearchCriteria implements Serializable {
      * <note>
      * <p>
      * The currently supported values for <code>FieldName</code> are
-     * <code>name</code>, <code>description</code>, and <code>resourceID</code>.
+     * <code>associatedQueueIds</code>, <code>name</code>,
+     * <code>description</code>, and <code>resourceID</code>.
      * </p>
      * </note>
      *
@@ -275,8 +278,8 @@ public class RoutingProfileSearchCriteria implements Serializable {
      *            <note>
      *            <p>
      *            The currently supported values for <code>FieldName</code> are
-     *            <code>name</code>, <code>description</code>, and
-     *            <code>resourceID</code>.
+     *            <code>associatedQueueIds</code>, <code>name</code>,
+     *            <code>description</code>, and <code>resourceID</code>.
      *            </p>
      *            </note>
      */
@@ -291,7 +294,8 @@ public class RoutingProfileSearchCriteria implements Serializable {
      * <note>
      * <p>
      * The currently supported values for <code>FieldName</code> are
-     * <code>name</code>, <code>description</code>, and <code>resourceID</code>.
+     * <code>associatedQueueIds</code>, <code>name</code>,
+     * <code>description</code>, and <code>resourceID</code>.
      * </p>
      * </note>
      * <p>
@@ -305,8 +309,8 @@ public class RoutingProfileSearchCriteria implements Serializable {
      *            <note>
      *            <p>
      *            The currently supported values for <code>FieldName</code> are
-     *            <code>name</code>, <code>description</code>, and
-     *            <code>resourceID</code>.
+     *            <code>associatedQueueIds</code>, <code>name</code>,
+     *            <code>description</code>, and <code>resourceID</code>.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be
