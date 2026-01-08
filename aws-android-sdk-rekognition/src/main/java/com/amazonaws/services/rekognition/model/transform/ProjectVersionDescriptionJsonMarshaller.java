@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -104,6 +104,27 @@ class ProjectVersionDescriptionJsonMarshaller {
             String sourceProjectVersionArn = projectVersionDescription.getSourceProjectVersionArn();
             jsonWriter.name("SourceProjectVersionArn");
             jsonWriter.value(sourceProjectVersionArn);
+        }
+        if (projectVersionDescription.getVersionDescription() != null) {
+            String versionDescription = projectVersionDescription.getVersionDescription();
+            jsonWriter.name("VersionDescription");
+            jsonWriter.value(versionDescription);
+        }
+        if (projectVersionDescription.getFeature() != null) {
+            String feature = projectVersionDescription.getFeature();
+            jsonWriter.name("Feature");
+            jsonWriter.value(feature);
+        }
+        if (projectVersionDescription.getBaseModelVersion() != null) {
+            String baseModelVersion = projectVersionDescription.getBaseModelVersion();
+            jsonWriter.name("BaseModelVersion");
+            jsonWriter.value(baseModelVersion);
+        }
+        if (projectVersionDescription.getFeatureConfig() != null) {
+            CustomizationFeatureConfig featureConfig = projectVersionDescription.getFeatureConfig();
+            jsonWriter.name("FeatureConfig");
+            CustomizationFeatureConfigJsonMarshaller.getInstance().marshall(featureConfig,
+                    jsonWriter);
         }
         jsonWriter.endObject();
     }
