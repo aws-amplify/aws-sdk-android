@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,6 +27,38 @@ import com.amazonaws.AmazonWebServiceRequest;
  * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
  * >Enable persistent chat</a>.
  * </p>
+ * <p>
+ * If you have a process that consumes events in the transcript of an chat that
+ * has ended, note that chat transcripts contain the following event content
+ * types if the event has occurred during the chat session:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <code>application/vnd.amazonaws.connect.event.participant.left</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>application/vnd.amazonaws.connect.event.participant.joined</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>application/vnd.amazonaws.connect.event.chat.ended</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>application/vnd.amazonaws.connect.event.transfer.succeeded</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>application/vnd.amazonaws.connect.event.transfer.failed</code>
+ * </p>
+ * </li>
+ * </ul>
  * <note>
  * <p>
  * <code>ConnectionToken</code> is used for invoking this API instead of

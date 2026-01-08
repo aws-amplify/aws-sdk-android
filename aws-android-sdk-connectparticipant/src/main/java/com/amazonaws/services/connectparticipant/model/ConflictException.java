@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,7 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * An attachment with that identifier is already being uploaded.
+ * The requested operation conflicts with the current state of a service
+ * resource associated with the request.
  * </p>
  */
 public class ConflictException extends AmazonServiceException {
