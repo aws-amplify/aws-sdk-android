@@ -5,6 +5,10 @@ env:
   GIT_USER_NAME: awsmobilesdk-dev+ghops
   GIT_USER_EMAIL: awsmobilesdk-dev+ghops@amazon.com
   BASE_BRANCH: main
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   create_pr_for_next_release:
     runs-on: ubuntu-latest
