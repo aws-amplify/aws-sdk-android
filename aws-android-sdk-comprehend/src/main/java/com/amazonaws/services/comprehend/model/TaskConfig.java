@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Configuration about the custom classifier associated with the flywheel.
+ * Configuration about the model associated with a flywheel.
  * </p>
  */
 public class TaskConfig implements Serializable {
@@ -35,7 +35,7 @@ public class TaskConfig implements Serializable {
 
     /**
      * <p>
-     * Configuration required for a classification model.
+     * Configuration required for a document classification model.
      * </p>
      */
     private DocumentClassificationConfig documentClassificationConfig;
@@ -146,11 +146,11 @@ public class TaskConfig implements Serializable {
 
     /**
      * <p>
-     * Configuration required for a classification model.
+     * Configuration required for a document classification model.
      * </p>
      *
      * @return <p>
-     *         Configuration required for a classification model.
+     *         Configuration required for a document classification model.
      *         </p>
      */
     public DocumentClassificationConfig getDocumentClassificationConfig() {
@@ -159,11 +159,11 @@ public class TaskConfig implements Serializable {
 
     /**
      * <p>
-     * Configuration required for a classification model.
+     * Configuration required for a document classification model.
      * </p>
      *
      * @param documentClassificationConfig <p>
-     *            Configuration required for a classification model.
+     *            Configuration required for a document classification model.
      *            </p>
      */
     public void setDocumentClassificationConfig(
@@ -173,14 +173,14 @@ public class TaskConfig implements Serializable {
 
     /**
      * <p>
-     * Configuration required for a classification model.
+     * Configuration required for a document classification model.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param documentClassificationConfig <p>
-     *            Configuration required for a classification model.
+     *            Configuration required for a document classification model.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
