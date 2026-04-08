@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,6 +31,13 @@ class UserSearchFilterJsonMarshaller {
             ControlPlaneTagFilter tagFilter = userSearchFilter.getTagFilter();
             jsonWriter.name("TagFilter");
             ControlPlaneTagFilterJsonMarshaller.getInstance().marshall(tagFilter, jsonWriter);
+        }
+        if (userSearchFilter.getUserAttributeFilter() != null) {
+            ControlPlaneUserAttributeFilter userAttributeFilter = userSearchFilter
+                    .getUserAttributeFilter();
+            jsonWriter.name("UserAttributeFilter");
+            ControlPlaneUserAttributeFilterJsonMarshaller.getInstance().marshall(
+                    userAttributeFilter, jsonWriter);
         }
         jsonWriter.endObject();
     }

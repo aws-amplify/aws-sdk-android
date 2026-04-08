@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,6 +21,12 @@ import java.io.Serializable;
  * <p>
  * A leaf node condition which can be used to specify a string condition.
  * </p>
+ * <note>
+ * <p>
+ * The currently supported values for <code>FieldName</code> are
+ * <code>name</code> and <code>description</code>.
+ * </p>
+ * </note>
  */
 public class StringCondition implements Serializable {
     /**
