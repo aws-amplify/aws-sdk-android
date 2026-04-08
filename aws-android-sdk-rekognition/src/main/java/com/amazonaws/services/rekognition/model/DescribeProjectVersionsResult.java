@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@ import java.io.Serializable;
 public class DescribeProjectVersionsResult implements Serializable {
     /**
      * <p>
-     * A list of model descriptions. The list is sorted by the creation date and
-     * time of the model versions, latest to earliest.
+     * A list of project version descriptions. The list is sorted by the
+     * creation date and time of the project versions, latest to earliest.
      * </p>
      */
     private java.util.List<ProjectVersionDescription> projectVersionDescriptions;
@@ -29,9 +29,8 @@ public class DescribeProjectVersionsResult implements Serializable {
     /**
      * <p>
      * If the previous response was incomplete (because there is more results to
-     * retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-     * the response. You can use this pagination token to retrieve the next set
-     * of results.
+     * retrieve), Amazon Rekognition returns a pagination token in the response.
+     * You can use this pagination token to retrieve the next set of results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -41,13 +40,14 @@ public class DescribeProjectVersionsResult implements Serializable {
 
     /**
      * <p>
-     * A list of model descriptions. The list is sorted by the creation date and
-     * time of the model versions, latest to earliest.
+     * A list of project version descriptions. The list is sorted by the
+     * creation date and time of the project versions, latest to earliest.
      * </p>
      *
      * @return <p>
-     *         A list of model descriptions. The list is sorted by the creation
-     *         date and time of the model versions, latest to earliest.
+     *         A list of project version descriptions. The list is sorted by the
+     *         creation date and time of the project versions, latest to
+     *         earliest.
      *         </p>
      */
     public java.util.List<ProjectVersionDescription> getProjectVersionDescriptions() {
@@ -56,13 +56,13 @@ public class DescribeProjectVersionsResult implements Serializable {
 
     /**
      * <p>
-     * A list of model descriptions. The list is sorted by the creation date and
-     * time of the model versions, latest to earliest.
+     * A list of project version descriptions. The list is sorted by the
+     * creation date and time of the project versions, latest to earliest.
      * </p>
      *
      * @param projectVersionDescriptions <p>
-     *            A list of model descriptions. The list is sorted by the
-     *            creation date and time of the model versions, latest to
+     *            A list of project version descriptions. The list is sorted by
+     *            the creation date and time of the project versions, latest to
      *            earliest.
      *            </p>
      */
@@ -79,16 +79,16 @@ public class DescribeProjectVersionsResult implements Serializable {
 
     /**
      * <p>
-     * A list of model descriptions. The list is sorted by the creation date and
-     * time of the model versions, latest to earliest.
+     * A list of project version descriptions. The list is sorted by the
+     * creation date and time of the project versions, latest to earliest.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param projectVersionDescriptions <p>
-     *            A list of model descriptions. The list is sorted by the
-     *            creation date and time of the model versions, latest to
+     *            A list of project version descriptions. The list is sorted by
+     *            the creation date and time of the project versions, latest to
      *            earliest.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -108,16 +108,16 @@ public class DescribeProjectVersionsResult implements Serializable {
 
     /**
      * <p>
-     * A list of model descriptions. The list is sorted by the creation date and
-     * time of the model versions, latest to earliest.
+     * A list of project version descriptions. The list is sorted by the
+     * creation date and time of the project versions, latest to earliest.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param projectVersionDescriptions <p>
-     *            A list of model descriptions. The list is sorted by the
-     *            creation date and time of the model versions, latest to
+     *            A list of project version descriptions. The list is sorted by
+     *            the creation date and time of the project versions, latest to
      *            earliest.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -132,9 +132,8 @@ public class DescribeProjectVersionsResult implements Serializable {
     /**
      * <p>
      * If the previous response was incomplete (because there is more results to
-     * retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-     * the response. You can use this pagination token to retrieve the next set
-     * of results.
+     * retrieve), Amazon Rekognition returns a pagination token in the response.
+     * You can use this pagination token to retrieve the next set of results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -142,9 +141,9 @@ public class DescribeProjectVersionsResult implements Serializable {
      *
      * @return <p>
      *         If the previous response was incomplete (because there is more
-     *         results to retrieve), Amazon Rekognition Custom Labels returns a
-     *         pagination token in the response. You can use this pagination
-     *         token to retrieve the next set of results.
+     *         results to retrieve), Amazon Rekognition returns a pagination
+     *         token in the response. You can use this pagination token to
+     *         retrieve the next set of results.
      *         </p>
      */
     public String getNextToken() {
@@ -154,9 +153,8 @@ public class DescribeProjectVersionsResult implements Serializable {
     /**
      * <p>
      * If the previous response was incomplete (because there is more results to
-     * retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-     * the response. You can use this pagination token to retrieve the next set
-     * of results.
+     * retrieve), Amazon Rekognition returns a pagination token in the response.
+     * You can use this pagination token to retrieve the next set of results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -164,9 +162,9 @@ public class DescribeProjectVersionsResult implements Serializable {
      *
      * @param nextToken <p>
      *            If the previous response was incomplete (because there is more
-     *            results to retrieve), Amazon Rekognition Custom Labels returns
-     *            a pagination token in the response. You can use this
-     *            pagination token to retrieve the next set of results.
+     *            results to retrieve), Amazon Rekognition returns a pagination
+     *            token in the response. You can use this pagination token to
+     *            retrieve the next set of results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -176,9 +174,8 @@ public class DescribeProjectVersionsResult implements Serializable {
     /**
      * <p>
      * If the previous response was incomplete (because there is more results to
-     * retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-     * the response. You can use this pagination token to retrieve the next set
-     * of results.
+     * retrieve), Amazon Rekognition returns a pagination token in the response.
+     * You can use this pagination token to retrieve the next set of results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -189,9 +186,9 @@ public class DescribeProjectVersionsResult implements Serializable {
      *
      * @param nextToken <p>
      *            If the previous response was incomplete (because there is more
-     *            results to retrieve), Amazon Rekognition Custom Labels returns
-     *            a pagination token in the response. You can use this
-     *            pagination token to retrieve the next set of results.
+     *            results to retrieve), Amazon Rekognition returns a pagination
+     *            token in the response. You can use this pagination token to
+     *            retrieve the next set of results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
