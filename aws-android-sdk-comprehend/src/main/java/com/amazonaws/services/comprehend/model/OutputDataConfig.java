@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -55,7 +55,11 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * ID for the Amazon Web Services Key Management Service (KMS) key that
      * Amazon Comprehend uses to encrypt the output results from an analysis
-     * job. The KmsKeyId can be one of the following formats:
+     * job. Specify the Key Id of a symmetric key, because you cannot use an
+     * asymmetric key for uploading data to S3.
+     * </p>
+     * <p>
+     * The KmsKeyId can be one of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -247,7 +251,11 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * ID for the Amazon Web Services Key Management Service (KMS) key that
      * Amazon Comprehend uses to encrypt the output results from an analysis
-     * job. The KmsKeyId can be one of the following formats:
+     * job. Specify the Key Id of a symmetric key, because you cannot use an
+     * asymmetric key for uploading data to S3.
+     * </p>
+     * <p>
+     * The KmsKeyId can be one of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -281,7 +289,11 @@ public class OutputDataConfig implements Serializable {
      * @return <p>
      *         ID for the Amazon Web Services Key Management Service (KMS) key
      *         that Amazon Comprehend uses to encrypt the output results from an
-     *         analysis job. The KmsKeyId can be one of the following formats:
+     *         analysis job. Specify the Key Id of a symmetric key, because you
+     *         cannot use an asymmetric key for uploading data to S3.
+     *         </p>
+     *         <p>
+     *         The KmsKeyId can be one of the following formats:
      *         </p>
      *         <ul>
      *         <li>
@@ -316,7 +328,11 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * ID for the Amazon Web Services Key Management Service (KMS) key that
      * Amazon Comprehend uses to encrypt the output results from an analysis
-     * job. The KmsKeyId can be one of the following formats:
+     * job. Specify the Key Id of a symmetric key, because you cannot use an
+     * asymmetric key for uploading data to S3.
+     * </p>
+     * <p>
+     * The KmsKeyId can be one of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -350,8 +366,12 @@ public class OutputDataConfig implements Serializable {
      * @param kmsKeyId <p>
      *            ID for the Amazon Web Services Key Management Service (KMS)
      *            key that Amazon Comprehend uses to encrypt the output results
-     *            from an analysis job. The KmsKeyId can be one of the following
-     *            formats:
+     *            from an analysis job. Specify the Key Id of a symmetric key,
+     *            because you cannot use an asymmetric key for uploading data to
+     *            S3.
+     *            </p>
+     *            <p>
+     *            The KmsKeyId can be one of the following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -387,7 +407,11 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * ID for the Amazon Web Services Key Management Service (KMS) key that
      * Amazon Comprehend uses to encrypt the output results from an analysis
-     * job. The KmsKeyId can be one of the following formats:
+     * job. Specify the Key Id of a symmetric key, because you cannot use an
+     * asymmetric key for uploading data to S3.
+     * </p>
+     * <p>
+     * The KmsKeyId can be one of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -424,8 +448,12 @@ public class OutputDataConfig implements Serializable {
      * @param kmsKeyId <p>
      *            ID for the Amazon Web Services Key Management Service (KMS)
      *            key that Amazon Comprehend uses to encrypt the output results
-     *            from an analysis job. The KmsKeyId can be one of the following
-     *            formats:
+     *            from an analysis job. Specify the Key Id of a symmetric key,
+     *            because you cannot use an asymmetric key for uploading data to
+     *            S3.
+     *            </p>
+     *            <p>
+     *            The KmsKeyId can be one of the following formats:
      *            </p>
      *            <ul>
      *            <li>

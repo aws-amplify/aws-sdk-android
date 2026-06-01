@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ public class EntityTypesListItem implements Serializable {
      * <p>
      * Entity types must not contain the following invalid characters: \n (line
      * break), \\n (escaped line break, \r (carriage return), \\r (escaped
-     * carriage return), \t (tab), \\t (escaped tab), space, and , (comma).
+     * carriage return), \t (tab), \\t (escaped tab), and , (comma).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,7 +49,7 @@ public class EntityTypesListItem implements Serializable {
      * <p>
      * Entity types must not contain the following invalid characters: \n (line
      * break), \\n (escaped line break, \r (carriage return), \\r (escaped
-     * carriage return), \t (tab), \\t (escaped tab), space, and , (comma).
+     * carriage return), \t (tab), \\t (escaped tab), and , (comma).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,8 +63,8 @@ public class EntityTypesListItem implements Serializable {
      *         <p>
      *         Entity types must not contain the following invalid characters:
      *         \n (line break), \\n (escaped line break, \r (carriage return),
-     *         \\r (escaped carriage return), \t (tab), \\t (escaped tab),
-     *         space, and , (comma).
+     *         \\r (escaped carriage return), \t (tab), \\t (escaped tab), and ,
+     *         (comma).
      *         </p>
      */
     public String getType() {
@@ -79,7 +79,7 @@ public class EntityTypesListItem implements Serializable {
      * <p>
      * Entity types must not contain the following invalid characters: \n (line
      * break), \\n (escaped line break, \r (carriage return), \\r (escaped
-     * carriage return), \t (tab), \\t (escaped tab), space, and , (comma).
+     * carriage return), \t (tab), \\t (escaped tab), and , (comma).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -94,7 +94,7 @@ public class EntityTypesListItem implements Serializable {
      *            Entity types must not contain the following invalid
      *            characters: \n (line break), \\n (escaped line break, \r
      *            (carriage return), \\r (escaped carriage return), \t (tab),
-     *            \\t (escaped tab), space, and , (comma).
+     *            \\t (escaped tab), and , (comma).
      *            </p>
      */
     public void setType(String type) {
@@ -109,7 +109,7 @@ public class EntityTypesListItem implements Serializable {
      * <p>
      * Entity types must not contain the following invalid characters: \n (line
      * break), \\n (escaped line break, \r (carriage return), \\r (escaped
-     * carriage return), \t (tab), \\t (escaped tab), space, and , (comma).
+     * carriage return), \t (tab), \\t (escaped tab), and , (comma).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -127,7 +127,7 @@ public class EntityTypesListItem implements Serializable {
      *            Entity types must not contain the following invalid
      *            characters: \n (line break), \\n (escaped line break, \r
      *            (carriage return), \\r (escaped carriage return), \t (tab),
-     *            \\t (escaped tab), space, and , (comma).
+     *            \\t (escaped tab), and , (comma).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

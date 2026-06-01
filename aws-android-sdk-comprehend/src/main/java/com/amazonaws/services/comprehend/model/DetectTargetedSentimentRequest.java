@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For more information about targeted sentiment, see <a href=
  * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
- * >Targeted sentiment</a>.
+ * >Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.
  * </p>
  */
 public class DetectTargetedSentimentRequest extends AmazonWebServiceRequest implements Serializable {

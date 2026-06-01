@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,8 +39,7 @@ public class ContainsPiiEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -104,16 +103,14 @@ public class ContainsPiiEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @return <p>
-     *         The language of the input documents. Currently, English is the
-     *         only valid language.
+     *         The language of the input documents.
      *         </p>
      * @see LanguageCode
      */
@@ -123,16 +120,14 @@ public class ContainsPiiEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. Currently, English is the
-     *            only valid language.
+     *            The language of the input documents.
      *            </p>
      * @see LanguageCode
      */
@@ -142,8 +137,7 @@ public class ContainsPiiEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -153,8 +147,7 @@ public class ContainsPiiEntitiesRequest extends AmazonWebServiceRequest implemen
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. Currently, English is the
-     *            only valid language.
+     *            The language of the input documents.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -167,16 +160,14 @@ public class ContainsPiiEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. Currently, English is the
-     *            only valid language.
+     *            The language of the input documents.
      *            </p>
      * @see LanguageCode
      */
@@ -186,8 +177,7 @@ public class ContainsPiiEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -197,8 +187,7 @@ public class ContainsPiiEntitiesRequest extends AmazonWebServiceRequest implemen
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. Currently, English is the
-     *            only valid language.
+     *            The language of the input documents.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,35 +29,8 @@ public class InvalidRequestException extends AmazonServiceException {
 
     /**
      * <p>
-     * Provides additional detail about why the request failed:
+     * Provides additional detail about why the request failed.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Document size is too large - Check the size of your file and resubmit the
-     * request.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Document type is not supported - Check the file type and resubmit the
-     * request.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Too many pages in the document - Check the number of pages in your file
-     * and resubmit the request.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Access denied to Amazon Textract - Verify that your account has
-     * permission to use Amazon Textract API operations and resubmit the
-     * request.
-     * </p>
-     * </li>
-     * </ul>
      */
     private InvalidRequestDetail detail;
 
@@ -99,66 +72,12 @@ public class InvalidRequestException extends AmazonServiceException {
 
     /**
      * <p>
-     * Provides additional detail about why the request failed:
+     * Provides additional detail about why the request failed.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Document size is too large - Check the size of your file and resubmit the
-     * request.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Document type is not supported - Check the file type and resubmit the
-     * request.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Too many pages in the document - Check the number of pages in your file
-     * and resubmit the request.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Access denied to Amazon Textract - Verify that your account has
-     * permission to use Amazon Textract API operations and resubmit the
-     * request.
-     * </p>
-     * </li>
-     * </ul>
      *
      * @return <p>
-     *         Provides additional detail about why the request failed:
+     *         Provides additional detail about why the request failed.
      *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         Document size is too large - Check the size of your file and
-     *         resubmit the request.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Document type is not supported - Check the file type and resubmit
-     *         the request.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Too many pages in the document - Check the number of pages in
-     *         your file and resubmit the request.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Access denied to Amazon Textract - Verify that your account has
-     *         permission to use Amazon Textract API operations and resubmit the
-     *         request.
-     *         </p>
-     *         </li>
-     *         </ul>
      */
     public InvalidRequestDetail getDetail() {
         return detail;
@@ -166,66 +85,12 @@ public class InvalidRequestException extends AmazonServiceException {
 
     /**
      * <p>
-     * Provides additional detail about why the request failed:
+     * Provides additional detail about why the request failed.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Document size is too large - Check the size of your file and resubmit the
-     * request.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Document type is not supported - Check the file type and resubmit the
-     * request.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Too many pages in the document - Check the number of pages in your file
-     * and resubmit the request.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Access denied to Amazon Textract - Verify that your account has
-     * permission to use Amazon Textract API operations and resubmit the
-     * request.
-     * </p>
-     * </li>
-     * </ul>
      *
      * @param detail <p>
-     *            Provides additional detail about why the request failed:
+     *            Provides additional detail about why the request failed.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Document size is too large - Check the size of your file and
-     *            resubmit the request.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Document type is not supported - Check the file type and
-     *            resubmit the request.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Too many pages in the document - Check the number of pages in
-     *            your file and resubmit the request.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Access denied to Amazon Textract - Verify that your account
-     *            has permission to use Amazon Textract API operations and
-     *            resubmit the request.
-     *            </p>
-     *            </li>
-     *            </ul>
      */
     public void setDetail(InvalidRequestDetail detail) {
         this.detail = detail;
