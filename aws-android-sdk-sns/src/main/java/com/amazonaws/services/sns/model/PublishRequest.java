@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -193,9 +193,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * present, in the standard JSON messages delivered to other endpoints.
      * </p>
      * <p>
-     * Constraints: Subjects must be ASCII text that begins with a letter,
-     * number, or punctuation mark; must not include line breaks or control
-     * characters; and must be less than 100 characters long.
+     * Constraints: Subjects must be UTF-8 text with no line breaks or control
+     * characters, and less than 100 characters long.
      * </p>
      */
     private String subject;
@@ -529,10 +528,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      *            delivered to other endpoints.
      *            </p>
      *            <p>
-     *            Constraints: Subjects must be ASCII text that begins with a
-     *            letter, number, or punctuation mark; must not include line
-     *            breaks or control characters; and must be less than 100
-     *            characters long.
+     *            Constraints: Subjects must be UTF-8 text with no line breaks
+     *            or control characters, and less than 100 characters long.
      *            </p>
      */
     public PublishRequest(String topicArn, String message, String subject) {
@@ -1375,9 +1372,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * present, in the standard JSON messages delivered to other endpoints.
      * </p>
      * <p>
-     * Constraints: Subjects must be ASCII text that begins with a letter,
-     * number, or punctuation mark; must not include line breaks or control
-     * characters; and must be less than 100 characters long.
+     * Constraints: Subjects must be UTF-8 text with no line breaks or control
+     * characters, and less than 100 characters long.
      * </p>
      *
      * @return <p>
@@ -1387,9 +1383,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      *         other endpoints.
      *         </p>
      *         <p>
-     *         Constraints: Subjects must be ASCII text that begins with a
-     *         letter, number, or punctuation mark; must not include line breaks
-     *         or control characters; and must be less than 100 characters long.
+     *         Constraints: Subjects must be UTF-8 text with no line breaks or
+     *         control characters, and less than 100 characters long.
      *         </p>
      */
     public String getSubject() {
@@ -1403,9 +1398,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * present, in the standard JSON messages delivered to other endpoints.
      * </p>
      * <p>
-     * Constraints: Subjects must be ASCII text that begins with a letter,
-     * number, or punctuation mark; must not include line breaks or control
-     * characters; and must be less than 100 characters long.
+     * Constraints: Subjects must be UTF-8 text with no line breaks or control
+     * characters, and less than 100 characters long.
      * </p>
      *
      * @param subject <p>
@@ -1415,10 +1409,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      *            delivered to other endpoints.
      *            </p>
      *            <p>
-     *            Constraints: Subjects must be ASCII text that begins with a
-     *            letter, number, or punctuation mark; must not include line
-     *            breaks or control characters; and must be less than 100
-     *            characters long.
+     *            Constraints: Subjects must be UTF-8 text with no line breaks
+     *            or control characters, and less than 100 characters long.
      *            </p>
      */
     public void setSubject(String subject) {
@@ -1432,9 +1424,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * present, in the standard JSON messages delivered to other endpoints.
      * </p>
      * <p>
-     * Constraints: Subjects must be ASCII text that begins with a letter,
-     * number, or punctuation mark; must not include line breaks or control
-     * characters; and must be less than 100 characters long.
+     * Constraints: Subjects must be UTF-8 text with no line breaks or control
+     * characters, and less than 100 characters long.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1447,10 +1438,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      *            delivered to other endpoints.
      *            </p>
      *            <p>
-     *            Constraints: Subjects must be ASCII text that begins with a
-     *            letter, number, or punctuation mark; must not include line
-     *            breaks or control characters; and must be less than 100
-     *            characters long.
+     *            Constraints: Subjects must be UTF-8 text with no line breaks
+     *            or control characters, and less than 100 characters long.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

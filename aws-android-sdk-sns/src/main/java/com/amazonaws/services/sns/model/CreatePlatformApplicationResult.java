@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,18 +25,18 @@ import java.io.Serializable;
 public class CreatePlatformApplicationResult implements Serializable {
     /**
      * <p>
-     * PlatformApplicationArn is returned.
+     * <code>PlatformApplicationArn</code> is returned.
      * </p>
      */
     private String platformApplicationArn;
 
     /**
      * <p>
-     * PlatformApplicationArn is returned.
+     * <code>PlatformApplicationArn</code> is returned.
      * </p>
      *
      * @return <p>
-     *         PlatformApplicationArn is returned.
+     *         <code>PlatformApplicationArn</code> is returned.
      *         </p>
      */
     public String getPlatformApplicationArn() {
@@ -45,11 +45,11 @@ public class CreatePlatformApplicationResult implements Serializable {
 
     /**
      * <p>
-     * PlatformApplicationArn is returned.
+     * <code>PlatformApplicationArn</code> is returned.
      * </p>
      *
      * @param platformApplicationArn <p>
-     *            PlatformApplicationArn is returned.
+     *            <code>PlatformApplicationArn</code> is returned.
      *            </p>
      */
     public void setPlatformApplicationArn(String platformApplicationArn) {
@@ -58,14 +58,14 @@ public class CreatePlatformApplicationResult implements Serializable {
 
     /**
      * <p>
-     * PlatformApplicationArn is returned.
+     * <code>PlatformApplicationArn</code> is returned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param platformApplicationArn <p>
-     *            PlatformApplicationArn is returned.
+     *            <code>PlatformApplicationArn</code> is returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
