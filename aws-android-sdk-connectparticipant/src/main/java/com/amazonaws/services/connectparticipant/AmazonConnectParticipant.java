@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -103,7 +103,9 @@ public interface AmazonConnectParticipant {
     /**
      * <p>
      * Allows you to confirm that the attachment has been uploaded using the
-     * pre-signed URL provided in StartAttachmentUpload API.
+     * pre-signed URL provided in StartAttachmentUpload API. A conflict
+     * exception is thrown when an attachment with that identifier is already
+     * being uploaded.
      * </p>
      * <note>
      * <p>
@@ -320,6 +322,38 @@ public interface AmazonConnectParticipant {
      * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
      * >Enable persistent chat</a>.
      * </p>
+     * <p>
+     * If you have a process that consumes events in the transcript of an chat
+     * that has ended, note that chat transcripts contain the following event
+     * content types if the event has occurred during the chat session:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>application/vnd.amazonaws.connect.event.participant.left</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>application/vnd.amazonaws.connect.event.participant.joined</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>application/vnd.amazonaws.connect.event.chat.ended</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>application/vnd.amazonaws.connect.event.transfer.succeeded</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>application/vnd.amazonaws.connect.event.transfer.failed</code>
+     * </p>
+     * </li>
+     * </ul>
      * <note>
      * <p>
      * <code>ConnectionToken</code> is used for invoking this API instead of
@@ -351,8 +385,22 @@ public interface AmazonConnectParticipant {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * <note>
      * <p>
-     * Sends an event.
+     * The
+     * <code>application/vnd.amazonaws.connect.event.connection.acknowledged</code>
+     * ContentType will no longer be supported starting December 31, 2024. This
+     * event has been migrated to the <a href=
+     * "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html"
+     * >CreateParticipantConnection</a> API using the
+     * <code>ConnectParticipant</code> field.
+     * </p>
+     * </note>
+     * <p>
+     * Sends an event. Message receipts are not supported when there are more
+     * than two active participants in the chat. Using the SendEvent API for
+     * message receipts when a supervisor is barged-in will result in a conflict
+     * exception.
      * </p>
      * <note>
      * <p>
@@ -373,6 +421,7 @@ public interface AmazonConnectParticipant {
      * @throws InternalServerException
      * @throws ThrottlingException
      * @throws ValidationException
+     * @throws ConflictException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
