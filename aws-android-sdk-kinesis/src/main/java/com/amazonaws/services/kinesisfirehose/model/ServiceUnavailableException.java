@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import com.amazonaws.AmazonServiceException;
  * exceeded. For more information about limits and how to request an increase,
  * see <a
  * href="https://docs.aws.amazon.com/firehose/latest/dev/limits.html">Amazon
- * Kinesis Data Firehose Limits</a>.
+ * Firehose Limits</a>.
  * </p>
  */
 public class ServiceUnavailableException extends AmazonServiceException {

@@ -19,19 +19,39 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The specified input parameter has a value that is not valid.
+ * Only requests from CloudWatch Logs are supported when CloudWatch Logs
+ * decompression is enabled.
  * </p>
  */
-public class InvalidArgumentException extends AmazonServiceException {
+public class InvalidSourceException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
+    private String code;
+
     /**
-     * Constructs a new InvalidArgumentException with the specified error
-     * message.
+     * Constructs a new InvalidSourceException with the specified error message.
      *
      * @param message Describes the error encountered.
      */
-    public InvalidArgumentException(String message) {
+    public InvalidSourceException(String message) {
         super(message);
+    }
+
+    /**
+     * Returns the value of the code property for this object.
+     *
+     * @return The value of the code property for this object.
+     */
+    public String getCode() {
+        return code;
+    }
+
+    /**
+     * Sets the value of code
+     *
+     * @param code The new value for the code property for this object.
+     */
+    public void setCode(String code) {
+        this.code = code;
     }
 }

@@ -18,24 +18,25 @@ package com.amazonaws.services.kinesisfirehose.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.services.kinesisfirehose.model.InvalidArgumentException;
+import com.amazonaws.services.kinesisfirehose.model.InvalidSourceException;
 
-public class InvalidArgumentExceptionUnmarshaller extends JsonErrorUnmarshaller {
+public class InvalidSourceExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
-    public InvalidArgumentExceptionUnmarshaller() {
-        super(InvalidArgumentException.class);
+    public InvalidSourceExceptionUnmarshaller() {
+        super(InvalidSourceException.class);
     }
 
     @Override
     public boolean match(JsonErrorResponse error) throws Exception {
-        return error.getErrorCode().equals("InvalidArgumentException");
+        return error.getErrorCode().equals("InvalidSourceException");
     }
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
 
-        InvalidArgumentException e = (InvalidArgumentException) super.unmarshall(error);
-        e.setErrorCode("InvalidArgumentException");
+        InvalidSourceException e = (InvalidSourceException) super.unmarshall(error);
+        e.setErrorCode("InvalidSourceException");
+        e.setCode(String.valueOf(error.get("code")));
 
         return e;
     }
