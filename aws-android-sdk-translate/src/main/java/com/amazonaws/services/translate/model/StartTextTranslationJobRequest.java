@@ -185,10 +185,26 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Settings to configure your translation output, including the option to
-     * set the formality level of the output text and the option to mask profane
-     * words and phrases.
+     * Settings to configure your translation output. You can configure the
+     * following options:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Brevity: not supported.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Formality: sets the formality level of the output text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Profanity: masks profane words and phrases in your translation output.
+     * </p>
+     * </li>
+     * </ul>
      */
     private TranslationSettings settings;
 
@@ -1259,16 +1275,49 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Settings to configure your translation output, including the option to
-     * set the formality level of the output text and the option to mask profane
-     * words and phrases.
+     * Settings to configure your translation output. You can configure the
+     * following options:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Brevity: not supported.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Formality: sets the formality level of the output text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Profanity: masks profane words and phrases in your translation output.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @return <p>
-     *         Settings to configure your translation output, including the
-     *         option to set the formality level of the output text and the
-     *         option to mask profane words and phrases.
+     *         Settings to configure your translation output. You can configure
+     *         the following options:
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Brevity: not supported.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Formality: sets the formality level of the output text.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Profanity: masks profane words and phrases in your translation
+     *         output.
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public TranslationSettings getSettings() {
         return settings;
@@ -1276,16 +1325,49 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Settings to configure your translation output, including the option to
-     * set the formality level of the output text and the option to mask profane
-     * words and phrases.
+     * Settings to configure your translation output. You can configure the
+     * following options:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Brevity: not supported.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Formality: sets the formality level of the output text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Profanity: masks profane words and phrases in your translation output.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @param settings <p>
-     *            Settings to configure your translation output, including the
-     *            option to set the formality level of the output text and the
-     *            option to mask profane words and phrases.
+     *            Settings to configure your translation output. You can
+     *            configure the following options:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Brevity: not supported.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Formality: sets the formality level of the output text.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Profanity: masks profane words and phrases in your translation
+     *            output.
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setSettings(TranslationSettings settings) {
         this.settings = settings;
@@ -1293,19 +1375,52 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Settings to configure your translation output, including the option to
-     * set the formality level of the output text and the option to mask profane
-     * words and phrases.
+     * Settings to configure your translation output. You can configure the
+     * following options:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Brevity: not supported.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Formality: sets the formality level of the output text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Profanity: masks profane words and phrases in your translation output.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param settings <p>
-     *            Settings to configure your translation output, including the
-     *            option to set the formality level of the output text and the
-     *            option to mask profane words and phrases.
+     *            Settings to configure your translation output. You can
+     *            configure the following options:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Brevity: not supported.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Formality: sets the formality level of the output text.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Profanity: masks profane words and phrases in your translation
+     *            output.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
