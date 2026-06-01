@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -78,6 +78,11 @@ public class DetectModerationLabelsRequestMarshaller implements
                         .getHumanLoopConfig();
                 jsonWriter.name("HumanLoopConfig");
                 HumanLoopConfigJsonMarshaller.getInstance().marshall(humanLoopConfig, jsonWriter);
+            }
+            if (detectModerationLabelsRequest.getProjectVersion() != null) {
+                String projectVersion = detectModerationLabelsRequest.getProjectVersion();
+                jsonWriter.name("ProjectVersion");
+                jsonWriter.value(projectVersion);
             }
 
             jsonWriter.endObject();

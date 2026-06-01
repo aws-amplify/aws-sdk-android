@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -79,6 +79,17 @@ public class DescribeProjectsRequestMarshaller implements
                 for (String projectNamesItem : projectNames) {
                     if (projectNamesItem != null) {
                         jsonWriter.value(projectNamesItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (describeProjectsRequest.getFeatures() != null) {
+                java.util.List<String> features = describeProjectsRequest.getFeatures();
+                jsonWriter.name("Features");
+                jsonWriter.beginArray();
+                for (String featuresItem : features) {
+                    if (featuresItem != null) {
+                        jsonWriter.value(featuresItem);
                     }
                 }
                 jsonWriter.endArray();

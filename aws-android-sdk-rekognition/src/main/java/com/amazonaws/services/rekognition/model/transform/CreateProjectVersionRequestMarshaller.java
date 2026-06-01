@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -105,6 +105,18 @@ public class CreateProjectVersionRequestMarshaller implements
                 String kmsKeyId = createProjectVersionRequest.getKmsKeyId();
                 jsonWriter.name("KmsKeyId");
                 jsonWriter.value(kmsKeyId);
+            }
+            if (createProjectVersionRequest.getVersionDescription() != null) {
+                String versionDescription = createProjectVersionRequest.getVersionDescription();
+                jsonWriter.name("VersionDescription");
+                jsonWriter.value(versionDescription);
+            }
+            if (createProjectVersionRequest.getFeatureConfig() != null) {
+                CustomizationFeatureConfig featureConfig = createProjectVersionRequest
+                        .getFeatureConfig();
+                jsonWriter.name("FeatureConfig");
+                CustomizationFeatureConfigJsonMarshaller.getInstance().marshall(featureConfig,
+                        jsonWriter);
             }
 
             jsonWriter.endObject();

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -91,6 +91,20 @@ class ProjectVersionDescriptionJsonUnmarshaller implements
                 projectVersionDescription.setSourceProjectVersionArn(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("VersionDescription")) {
+                projectVersionDescription.setVersionDescription(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Feature")) {
+                projectVersionDescription.setFeature(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("BaseModelVersion")) {
+                projectVersionDescription.setBaseModelVersion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("FeatureConfig")) {
+                projectVersionDescription
+                        .setFeatureConfig(CustomizationFeatureConfigJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

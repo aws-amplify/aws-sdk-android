@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class CreateProjectVersionResult implements Serializable {
     /**
      * <p>
-     * The ARN of the model version that was created. Use
+     * The ARN of the model or the project version that was created. Use
      * <code>DescribeProjectVersion</code> to get the current status of the
      * training operation.
      * </p>
@@ -35,7 +35,7 @@ public class CreateProjectVersionResult implements Serializable {
 
     /**
      * <p>
-     * The ARN of the model version that was created. Use
+     * The ARN of the model or the project version that was created. Use
      * <code>DescribeProjectVersion</code> to get the current status of the
      * training operation.
      * </p>
@@ -47,7 +47,7 @@ public class CreateProjectVersionResult implements Serializable {
      * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @return <p>
-     *         The ARN of the model version that was created. Use
+     *         The ARN of the model or the project version that was created. Use
      *         <code>DescribeProjectVersion</code> to get the current status of
      *         the training operation.
      *         </p>
@@ -58,7 +58,7 @@ public class CreateProjectVersionResult implements Serializable {
 
     /**
      * <p>
-     * The ARN of the model version that was created. Use
+     * The ARN of the model or the project version that was created. Use
      * <code>DescribeProjectVersion</code> to get the current status of the
      * training operation.
      * </p>
@@ -70,9 +70,9 @@ public class CreateProjectVersionResult implements Serializable {
      * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @param projectVersionArn <p>
-     *            The ARN of the model version that was created. Use
-     *            <code>DescribeProjectVersion</code> to get the current status
-     *            of the training operation.
+     *            The ARN of the model or the project version that was created.
+     *            Use <code>DescribeProjectVersion</code> to get the current
+     *            status of the training operation.
      *            </p>
      */
     public void setProjectVersionArn(String projectVersionArn) {
@@ -81,7 +81,7 @@ public class CreateProjectVersionResult implements Serializable {
 
     /**
      * <p>
-     * The ARN of the model version that was created. Use
+     * The ARN of the model or the project version that was created. Use
      * <code>DescribeProjectVersion</code> to get the current status of the
      * training operation.
      * </p>
@@ -96,9 +96,9 @@ public class CreateProjectVersionResult implements Serializable {
      * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @param projectVersionArn <p>
-     *            The ARN of the model version that was created. Use
-     *            <code>DescribeProjectVersion</code> to get the current status
-     *            of the training operation.
+     *            The ARN of the model or the project version that was created.
+     *            Use <code>DescribeProjectVersion</code> to get the current
+     *            status of the training operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
