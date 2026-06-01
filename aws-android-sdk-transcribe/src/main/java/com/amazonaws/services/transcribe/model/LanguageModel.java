@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -117,9 +117,8 @@ public class LanguageModel implements Serializable {
      * For a list of supported languages and their associated language codes,
      * refer to the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a> table. Note that U.S. English (
-     * <code>en-US</code>) is the only language supported with Amazon Transcribe
-     * Medical.
+     * >Supported languages</a> table. Note that US English (<code>en-US</code>)
+     * is the only language supported with Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -450,9 +449,8 @@ public class LanguageModel implements Serializable {
      * For a list of supported languages and their associated language codes,
      * refer to the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a> table. Note that U.S. English (
-     * <code>en-US</code>) is the only language supported with Amazon Transcribe
-     * Medical.
+     * >Supported languages</a> table. Note that US English (<code>en-US</code>)
+     * is the only language supported with Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -468,7 +466,7 @@ public class LanguageModel implements Serializable {
      *         For a list of supported languages and their associated language
      *         codes, refer to the <a href=
      *         "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     *         >Supported languages</a> table. Note that U.S. English (
+     *         >Supported languages</a> table. Note that US English (
      *         <code>en-US</code>) is the only language supported with Amazon
      *         Transcribe Medical.
      *         </p>
@@ -489,9 +487,8 @@ public class LanguageModel implements Serializable {
      * For a list of supported languages and their associated language codes,
      * refer to the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a> table. Note that U.S. English (
-     * <code>en-US</code>) is the only language supported with Amazon Transcribe
-     * Medical.
+     * >Supported languages</a> table. Note that US English (<code>en-US</code>)
+     * is the only language supported with Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -508,7 +505,7 @@ public class LanguageModel implements Serializable {
      *            For a list of supported languages and their associated
      *            language codes, refer to the <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     *            >Supported languages</a> table. Note that U.S. English (
+     *            >Supported languages</a> table. Note that US English (
      *            <code>en-US</code>) is the only language supported with Amazon
      *            Transcribe Medical.
      *            </p>
@@ -529,9 +526,8 @@ public class LanguageModel implements Serializable {
      * For a list of supported languages and their associated language codes,
      * refer to the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a> table. Note that U.S. English (
-     * <code>en-US</code>) is the only language supported with Amazon Transcribe
-     * Medical.
+     * >Supported languages</a> table. Note that US English (<code>en-US</code>)
+     * is the only language supported with Amazon Transcribe Medical.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -551,7 +547,7 @@ public class LanguageModel implements Serializable {
      *            For a list of supported languages and their associated
      *            language codes, refer to the <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     *            >Supported languages</a> table. Note that U.S. English (
+     *            >Supported languages</a> table. Note that US English (
      *            <code>en-US</code>) is the only language supported with Amazon
      *            Transcribe Medical.
      *            </p>
@@ -575,9 +571,8 @@ public class LanguageModel implements Serializable {
      * For a list of supported languages and their associated language codes,
      * refer to the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a> table. Note that U.S. English (
-     * <code>en-US</code>) is the only language supported with Amazon Transcribe
-     * Medical.
+     * >Supported languages</a> table. Note that US English (<code>en-US</code>)
+     * is the only language supported with Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -594,7 +589,7 @@ public class LanguageModel implements Serializable {
      *            For a list of supported languages and their associated
      *            language codes, refer to the <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     *            >Supported languages</a> table. Note that U.S. English (
+     *            >Supported languages</a> table. Note that US English (
      *            <code>en-US</code>) is the only language supported with Amazon
      *            Transcribe Medical.
      *            </p>
@@ -615,9 +610,8 @@ public class LanguageModel implements Serializable {
      * For a list of supported languages and their associated language codes,
      * refer to the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a> table. Note that U.S. English (
-     * <code>en-US</code>) is the only language supported with Amazon Transcribe
-     * Medical.
+     * >Supported languages</a> table. Note that US English (<code>en-US</code>)
+     * is the only language supported with Amazon Transcribe Medical.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -637,7 +631,7 @@ public class LanguageModel implements Serializable {
      *            For a list of supported languages and their associated
      *            language codes, refer to the <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     *            >Supported languages</a> table. Note that U.S. English (
+     *            >Supported languages</a> table. Note that US English (
      *            <code>en-US</code>) is the only language supported with Amazon
      *            Transcribe Medical.
      *            </p>
