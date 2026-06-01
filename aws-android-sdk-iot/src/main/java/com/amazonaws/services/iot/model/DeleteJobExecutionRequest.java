@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -98,7 +98,10 @@ public class DeleteJobExecutionRequest extends AmazonWebServiceRequest implement
      * </p>
      * <note>
      * <p>
-     * The <code>namespaceId</code> feature is in public preview.
+     * The <code>namespaceId</code> feature is only supported by IoT Greengrass
+     * at this time. For more information, see <a href=
+     * "https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html"
+     * >Setting up IoT Greengrass core devices.</a>
      * </p>
      * </note>
      * <p>
@@ -475,7 +478,10 @@ public class DeleteJobExecutionRequest extends AmazonWebServiceRequest implement
      * </p>
      * <note>
      * <p>
-     * The <code>namespaceId</code> feature is in public preview.
+     * The <code>namespaceId</code> feature is only supported by IoT Greengrass
+     * at this time. For more information, see <a href=
+     * "https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html"
+     * >Setting up IoT Greengrass core devices.</a>
      * </p>
      * </note>
      * <p>
@@ -496,7 +502,10 @@ public class DeleteJobExecutionRequest extends AmazonWebServiceRequest implement
      *         </p>
      *         <note>
      *         <p>
-     *         The <code>namespaceId</code> feature is in public preview.
+     *         The <code>namespaceId</code> feature is only supported by IoT
+     *         Greengrass at this time. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html"
+     *         >Setting up IoT Greengrass core devices.</a>
      *         </p>
      *         </note>
      */
@@ -518,7 +527,10 @@ public class DeleteJobExecutionRequest extends AmazonWebServiceRequest implement
      * </p>
      * <note>
      * <p>
-     * The <code>namespaceId</code> feature is in public preview.
+     * The <code>namespaceId</code> feature is only supported by IoT Greengrass
+     * at this time. For more information, see <a href=
+     * "https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html"
+     * >Setting up IoT Greengrass core devices.</a>
      * </p>
      * </note>
      * <p>
@@ -539,7 +551,10 @@ public class DeleteJobExecutionRequest extends AmazonWebServiceRequest implement
      *            </p>
      *            <note>
      *            <p>
-     *            The <code>namespaceId</code> feature is in public preview.
+     *            The <code>namespaceId</code> feature is only supported by IoT
+     *            Greengrass at this time. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html"
+     *            >Setting up IoT Greengrass core devices.</a>
      *            </p>
      *            </note>
      */
@@ -561,7 +576,10 @@ public class DeleteJobExecutionRequest extends AmazonWebServiceRequest implement
      * </p>
      * <note>
      * <p>
-     * The <code>namespaceId</code> feature is in public preview.
+     * The <code>namespaceId</code> feature is only supported by IoT Greengrass
+     * at this time. For more information, see <a href=
+     * "https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html"
+     * >Setting up IoT Greengrass core devices.</a>
      * </p>
      * </note>
      * <p>
@@ -585,7 +603,10 @@ public class DeleteJobExecutionRequest extends AmazonWebServiceRequest implement
      *            </p>
      *            <note>
      *            <p>
-     *            The <code>namespaceId</code> feature is in public preview.
+     *            The <code>namespaceId</code> feature is only supported by IoT
+     *            Greengrass at this time. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html"
+     *            >Setting up IoT Greengrass core devices.</a>
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be

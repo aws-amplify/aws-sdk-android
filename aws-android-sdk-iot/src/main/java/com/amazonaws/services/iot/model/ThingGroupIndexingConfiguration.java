@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,6 +42,11 @@ public class ThingGroupIndexingConfiguration implements Serializable {
      * >Managed fields</a> in the <i>Amazon Web Services IoT Core Developer
      * Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * You can't modify managed fields by updating fleet indexing configuration.
+     * </p>
+     * </note>
      */
     private java.util.List<Field> managedFields;
 
@@ -164,6 +169,11 @@ public class ThingGroupIndexingConfiguration implements Serializable {
      * >Managed fields</a> in the <i>Amazon Web Services IoT Core Developer
      * Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * You can't modify managed fields by updating fleet indexing configuration.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         Contains fields that are indexed and whose types are already
@@ -173,6 +183,12 @@ public class ThingGroupIndexingConfiguration implements Serializable {
      *         >Managed fields</a> in the <i>Amazon Web Services IoT Core
      *         Developer Guide</i>.
      *         </p>
+     *         <note>
+     *         <p>
+     *         You can't modify managed fields by updating fleet indexing
+     *         configuration.
+     *         </p>
+     *         </note>
      */
     public java.util.List<Field> getManagedFields() {
         return managedFields;
@@ -187,6 +203,11 @@ public class ThingGroupIndexingConfiguration implements Serializable {
      * >Managed fields</a> in the <i>Amazon Web Services IoT Core Developer
      * Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * You can't modify managed fields by updating fleet indexing configuration.
+     * </p>
+     * </note>
      *
      * @param managedFields <p>
      *            Contains fields that are indexed and whose types are already
@@ -196,6 +217,12 @@ public class ThingGroupIndexingConfiguration implements Serializable {
      *            >Managed fields</a> in the <i>Amazon Web Services IoT Core
      *            Developer Guide</i>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            You can't modify managed fields by updating fleet indexing
+     *            configuration.
+     *            </p>
+     *            </note>
      */
     public void setManagedFields(java.util.Collection<Field> managedFields) {
         if (managedFields == null) {
@@ -215,6 +242,11 @@ public class ThingGroupIndexingConfiguration implements Serializable {
      * >Managed fields</a> in the <i>Amazon Web Services IoT Core Developer
      * Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * You can't modify managed fields by updating fleet indexing configuration.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -227,6 +259,12 @@ public class ThingGroupIndexingConfiguration implements Serializable {
      *            >Managed fields</a> in the <i>Amazon Web Services IoT Core
      *            Developer Guide</i>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            You can't modify managed fields by updating fleet indexing
+     *            configuration.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -249,6 +287,11 @@ public class ThingGroupIndexingConfiguration implements Serializable {
      * >Managed fields</a> in the <i>Amazon Web Services IoT Core Developer
      * Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * You can't modify managed fields by updating fleet indexing configuration.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -261,6 +304,12 @@ public class ThingGroupIndexingConfiguration implements Serializable {
      *            >Managed fields</a> in the <i>Amazon Web Services IoT Core
      *            Developer Guide</i>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            You can't modify managed fields by updating fleet indexing
+     *            configuration.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

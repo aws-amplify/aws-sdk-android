@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -56,6 +56,12 @@ public class Behavior implements Serializable {
      * The criteria that determine if a device is behaving normally in regard to
      * the <code>metric</code>.
      * </p>
+     * <note>
+     * <p>
+     * In the IoT console, you can choose to be sent an alert through Amazon SNS
+     * when IoT Device Defender detects that a device is behaving anomalously.
+     * </p>
+     * </note>
      */
     private BehaviorCriteria criteria;
 
@@ -65,6 +71,14 @@ public class Behavior implements Serializable {
      * </p>
      */
     private Boolean suppressAlerts;
+
+    /**
+     * <p>
+     * Value indicates exporting metrics related to the behavior when it is
+     * true.
+     * </p>
+     */
+    private Boolean exportMetric;
 
     /**
      * <p>
@@ -239,11 +253,24 @@ public class Behavior implements Serializable {
      * The criteria that determine if a device is behaving normally in regard to
      * the <code>metric</code>.
      * </p>
+     * <note>
+     * <p>
+     * In the IoT console, you can choose to be sent an alert through Amazon SNS
+     * when IoT Device Defender detects that a device is behaving anomalously.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         The criteria that determine if a device is behaving normally in
      *         regard to the <code>metric</code>.
      *         </p>
+     *         <note>
+     *         <p>
+     *         In the IoT console, you can choose to be sent an alert through
+     *         Amazon SNS when IoT Device Defender detects that a device is
+     *         behaving anomalously.
+     *         </p>
+     *         </note>
      */
     public BehaviorCriteria getCriteria() {
         return criteria;
@@ -254,11 +281,24 @@ public class Behavior implements Serializable {
      * The criteria that determine if a device is behaving normally in regard to
      * the <code>metric</code>.
      * </p>
+     * <note>
+     * <p>
+     * In the IoT console, you can choose to be sent an alert through Amazon SNS
+     * when IoT Device Defender detects that a device is behaving anomalously.
+     * </p>
+     * </note>
      *
      * @param criteria <p>
      *            The criteria that determine if a device is behaving normally
      *            in regard to the <code>metric</code>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            In the IoT console, you can choose to be sent an alert through
+     *            Amazon SNS when IoT Device Defender detects that a device is
+     *            behaving anomalously.
+     *            </p>
+     *            </note>
      */
     public void setCriteria(BehaviorCriteria criteria) {
         this.criteria = criteria;
@@ -269,6 +309,12 @@ public class Behavior implements Serializable {
      * The criteria that determine if a device is behaving normally in regard to
      * the <code>metric</code>.
      * </p>
+     * <note>
+     * <p>
+     * In the IoT console, you can choose to be sent an alert through Amazon SNS
+     * when IoT Device Defender detects that a device is behaving anomalously.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -277,6 +323,13 @@ public class Behavior implements Serializable {
      *            The criteria that determine if a device is behaving normally
      *            in regard to the <code>metric</code>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            In the IoT console, you can choose to be sent an alert through
+     *            Amazon SNS when IoT Device Defender detects that a device is
+     *            behaving anomalously.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -344,6 +397,72 @@ public class Behavior implements Serializable {
     }
 
     /**
+     * <p>
+     * Value indicates exporting metrics related to the behavior when it is
+     * true.
+     * </p>
+     *
+     * @return <p>
+     *         Value indicates exporting metrics related to the behavior when it
+     *         is true.
+     *         </p>
+     */
+    public Boolean isExportMetric() {
+        return exportMetric;
+    }
+
+    /**
+     * <p>
+     * Value indicates exporting metrics related to the behavior when it is
+     * true.
+     * </p>
+     *
+     * @return <p>
+     *         Value indicates exporting metrics related to the behavior when it
+     *         is true.
+     *         </p>
+     */
+    public Boolean getExportMetric() {
+        return exportMetric;
+    }
+
+    /**
+     * <p>
+     * Value indicates exporting metrics related to the behavior when it is
+     * true.
+     * </p>
+     *
+     * @param exportMetric <p>
+     *            Value indicates exporting metrics related to the behavior when
+     *            it is true.
+     *            </p>
+     */
+    public void setExportMetric(Boolean exportMetric) {
+        this.exportMetric = exportMetric;
+    }
+
+    /**
+     * <p>
+     * Value indicates exporting metrics related to the behavior when it is
+     * true.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param exportMetric <p>
+     *            Value indicates exporting metrics related to the behavior when
+     *            it is true.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Behavior withExportMetric(Boolean exportMetric) {
+        this.exportMetric = exportMetric;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -363,7 +482,9 @@ public class Behavior implements Serializable {
         if (getCriteria() != null)
             sb.append("criteria: " + getCriteria() + ",");
         if (getSuppressAlerts() != null)
-            sb.append("suppressAlerts: " + getSuppressAlerts());
+            sb.append("suppressAlerts: " + getSuppressAlerts() + ",");
+        if (getExportMetric() != null)
+            sb.append("exportMetric: " + getExportMetric());
         sb.append("}");
         return sb.toString();
     }
@@ -380,6 +501,8 @@ public class Behavior implements Serializable {
         hashCode = prime * hashCode + ((getCriteria() == null) ? 0 : getCriteria().hashCode());
         hashCode = prime * hashCode
                 + ((getSuppressAlerts() == null) ? 0 : getSuppressAlerts().hashCode());
+        hashCode = prime * hashCode
+                + ((getExportMetric() == null) ? 0 : getExportMetric().hashCode());
         return hashCode;
     }
 
@@ -415,6 +538,11 @@ public class Behavior implements Serializable {
             return false;
         if (other.getSuppressAlerts() != null
                 && other.getSuppressAlerts().equals(this.getSuppressAlerts()) == false)
+            return false;
+        if (other.getExportMetric() == null ^ this.getExportMetric() == null)
+            return false;
+        if (other.getExportMetric() != null
+                && other.getExportMetric().equals(this.getExportMetric()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -58,6 +58,13 @@ public class KafkaAction implements Serializable {
      * </p>
      */
     private java.util.Map<String, String> clientProperties;
+
+    /**
+     * <p>
+     * The list of Kafka headers that you specify.
+     * </p>
+     */
+    private java.util.List<KafkaActionHeader> headers;
 
     /**
      * <p>
@@ -324,6 +331,80 @@ public class KafkaAction implements Serializable {
     }
 
     /**
+     * <p>
+     * The list of Kafka headers that you specify.
+     * </p>
+     *
+     * @return <p>
+     *         The list of Kafka headers that you specify.
+     *         </p>
+     */
+    public java.util.List<KafkaActionHeader> getHeaders() {
+        return headers;
+    }
+
+    /**
+     * <p>
+     * The list of Kafka headers that you specify.
+     * </p>
+     *
+     * @param headers <p>
+     *            The list of Kafka headers that you specify.
+     *            </p>
+     */
+    public void setHeaders(java.util.Collection<KafkaActionHeader> headers) {
+        if (headers == null) {
+            this.headers = null;
+            return;
+        }
+
+        this.headers = new java.util.ArrayList<KafkaActionHeader>(headers);
+    }
+
+    /**
+     * <p>
+     * The list of Kafka headers that you specify.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param headers <p>
+     *            The list of Kafka headers that you specify.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public KafkaAction withHeaders(KafkaActionHeader... headers) {
+        if (getHeaders() == null) {
+            this.headers = new java.util.ArrayList<KafkaActionHeader>(headers.length);
+        }
+        for (KafkaActionHeader value : headers) {
+            this.headers.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The list of Kafka headers that you specify.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param headers <p>
+     *            The list of Kafka headers that you specify.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public KafkaAction withHeaders(java.util.Collection<KafkaActionHeader> headers) {
+        setHeaders(headers);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -343,7 +424,9 @@ public class KafkaAction implements Serializable {
         if (getPartition() != null)
             sb.append("partition: " + getPartition() + ",");
         if (getClientProperties() != null)
-            sb.append("clientProperties: " + getClientProperties());
+            sb.append("clientProperties: " + getClientProperties() + ",");
+        if (getHeaders() != null)
+            sb.append("headers: " + getHeaders());
         sb.append("}");
         return sb.toString();
     }
@@ -360,6 +443,7 @@ public class KafkaAction implements Serializable {
         hashCode = prime * hashCode + ((getPartition() == null) ? 0 : getPartition().hashCode());
         hashCode = prime * hashCode
                 + ((getClientProperties() == null) ? 0 : getClientProperties().hashCode());
+        hashCode = prime * hashCode + ((getHeaders() == null) ? 0 : getHeaders().hashCode());
         return hashCode;
     }
 
@@ -396,6 +480,10 @@ public class KafkaAction implements Serializable {
             return false;
         if (other.getClientProperties() != null
                 && other.getClientProperties().equals(this.getClientProperties()) == false)
+            return false;
+        if (other.getHeaders() == null ^ this.getHeaders() == null)
+            return false;
+        if (other.getHeaders() != null && other.getHeaders().equals(this.getHeaders()) == false)
             return false;
         return true;
     }

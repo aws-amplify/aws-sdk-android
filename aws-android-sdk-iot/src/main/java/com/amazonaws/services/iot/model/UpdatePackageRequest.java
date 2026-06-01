@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates the supported fields for a specific package.
+ * Updates the supported fields for a specific software package.
  * </p>
  * <p>
  * Requires permission to access the <a href=
@@ -34,7 +34,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class UpdatePackageRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the target package.
+     * The name of the target software package.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -99,7 +99,7 @@ public class UpdatePackageRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The name of the target package.
+     * The name of the target software package.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -107,7 +107,7 @@ public class UpdatePackageRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[a-zA-Z0-9-_.]+<br/>
      *
      * @return <p>
-     *         The name of the target package.
+     *         The name of the target software package.
      *         </p>
      */
     public String getPackageName() {
@@ -116,7 +116,7 @@ public class UpdatePackageRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The name of the target package.
+     * The name of the target software package.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -124,7 +124,7 @@ public class UpdatePackageRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[a-zA-Z0-9-_.]+<br/>
      *
      * @param packageName <p>
-     *            The name of the target package.
+     *            The name of the target software package.
      *            </p>
      */
     public void setPackageName(String packageName) {
@@ -133,7 +133,7 @@ public class UpdatePackageRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The name of the target package.
+     * The name of the target software package.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -144,7 +144,7 @@ public class UpdatePackageRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[a-zA-Z0-9-_.]+<br/>
      *
      * @param packageName <p>
-     *            The name of the target package.
+     *            The name of the target software package.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

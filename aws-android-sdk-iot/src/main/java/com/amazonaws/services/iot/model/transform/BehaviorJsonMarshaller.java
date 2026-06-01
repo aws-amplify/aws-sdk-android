@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -50,6 +50,11 @@ class BehaviorJsonMarshaller {
             Boolean suppressAlerts = behavior.getSuppressAlerts();
             jsonWriter.name("suppressAlerts");
             jsonWriter.value(suppressAlerts);
+        }
+        if (behavior.getExportMetric() != null) {
+            Boolean exportMetric = behavior.getExportMetric();
+            jsonWriter.name("exportMetric");
+            jsonWriter.value(exportMetric);
         }
         jsonWriter.endObject();
     }

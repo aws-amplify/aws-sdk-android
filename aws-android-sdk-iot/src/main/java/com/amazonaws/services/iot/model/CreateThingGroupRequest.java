@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,6 +28,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This is a control plane operation. See <a href=
  * "https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html"
  * >Authorization</a> for information about authorizing control plane actions.
+ * </p>
+ * <p>
+ * If the <code>ThingGroup</code> that you create has the exact same attributes
+ * as an existing <code>ThingGroup</code>, you will get a 200 success response.
  * </p>
  * </note>
  * <p>
