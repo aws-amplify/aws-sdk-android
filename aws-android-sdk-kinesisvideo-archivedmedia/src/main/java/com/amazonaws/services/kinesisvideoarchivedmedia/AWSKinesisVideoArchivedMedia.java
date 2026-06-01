@@ -707,7 +707,7 @@ public interface AWSKinesisVideoArchivedMedia {
 
     /**
      * <p>
-     * Retrieves a list of Images corresponding to each timestamp for a given
+     * Retrieves a list of images corresponding to each timestamp for a given
      * time range, sampling interval, and image format configuration.
      * </p>
      * 
@@ -718,6 +718,7 @@ public interface AWSKinesisVideoArchivedMedia {
      * @throws InvalidArgumentException
      * @throws ClientLimitExceededException
      * @throws NotAuthorizedException
+     * @throws NoDataRetentionException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

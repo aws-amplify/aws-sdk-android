@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * A streaming session was requested for a stream that does not retain data
+ * <code>GetImages</code> was requested for a stream that does not retain data
  * (that is, has a <code>DataRetentionInHours</code> of 0).
  * </p>
  */
