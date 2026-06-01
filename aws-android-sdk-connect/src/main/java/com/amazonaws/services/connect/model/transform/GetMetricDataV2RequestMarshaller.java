@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -74,6 +74,11 @@ public class GetMetricDataV2RequestMarshaller implements
                 java.util.Date endTime = getMetricDataV2Request.getEndTime();
                 jsonWriter.name("EndTime");
                 jsonWriter.value(endTime);
+            }
+            if (getMetricDataV2Request.getInterval() != null) {
+                IntervalDetails interval = getMetricDataV2Request.getInterval();
+                jsonWriter.name("Interval");
+                IntervalDetailsJsonMarshaller.getInstance().marshall(interval, jsonWriter);
             }
             if (getMetricDataV2Request.getFilters() != null) {
                 java.util.List<FilterV2> filters = getMetricDataV2Request.getFilters();

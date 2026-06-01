@@ -1,0 +1,349 @@
+/*
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+package com.amazonaws.services.connect.model;
+
+import java.io.Serializable;
+
+/**
+ * <p>
+ * The interval period with the start and end time for the metrics.
+ * </p>
+ */
+public class MetricInterval implements Serializable {
+    /**
+     * <p>
+     * The interval period provided in the API request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FIFTEEN_MIN, THIRTY_MIN, HOUR, DAY, WEEK, TOTAL
+     */
+    private String interval;
+
+    /**
+     * <p>
+     * The timestamp, in UNIX Epoch time format. Start time is based on the
+     * interval period selected.
+     * </p>
+     */
+    private java.util.Date startTime;
+
+    /**
+     * <p>
+     * The timestamp, in UNIX Epoch time format. End time is based on the
+     * interval period selected. For example, If <code>IntervalPeriod</code> is
+     * selected <code>THIRTY_MIN</code>, <code>StartTime</code> and
+     * <code>EndTime</code> in the API request differs by 1 day, then 48 results
+     * are returned in the response. Each result is aggregated by the 30 minutes
+     * period, with each <code>StartTime</code> and <code>EndTime</code>
+     * differing by 30 minutes.
+     * </p>
+     */
+    private java.util.Date endTime;
+
+    /**
+     * <p>
+     * The interval period provided in the API request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FIFTEEN_MIN, THIRTY_MIN, HOUR, DAY, WEEK, TOTAL
+     *
+     * @return <p>
+     *         The interval period provided in the API request.
+     *         </p>
+     * @see IntervalPeriod
+     */
+    public String getInterval() {
+        return interval;
+    }
+
+    /**
+     * <p>
+     * The interval period provided in the API request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FIFTEEN_MIN, THIRTY_MIN, HOUR, DAY, WEEK, TOTAL
+     *
+     * @param interval <p>
+     *            The interval period provided in the API request.
+     *            </p>
+     * @see IntervalPeriod
+     */
+    public void setInterval(String interval) {
+        this.interval = interval;
+    }
+
+    /**
+     * <p>
+     * The interval period provided in the API request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FIFTEEN_MIN, THIRTY_MIN, HOUR, DAY, WEEK, TOTAL
+     *
+     * @param interval <p>
+     *            The interval period provided in the API request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see IntervalPeriod
+     */
+    public MetricInterval withInterval(String interval) {
+        this.interval = interval;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The interval period provided in the API request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FIFTEEN_MIN, THIRTY_MIN, HOUR, DAY, WEEK, TOTAL
+     *
+     * @param interval <p>
+     *            The interval period provided in the API request.
+     *            </p>
+     * @see IntervalPeriod
+     */
+    public void setInterval(IntervalPeriod interval) {
+        this.interval = interval.toString();
+    }
+
+    /**
+     * <p>
+     * The interval period provided in the API request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FIFTEEN_MIN, THIRTY_MIN, HOUR, DAY, WEEK, TOTAL
+     *
+     * @param interval <p>
+     *            The interval period provided in the API request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see IntervalPeriod
+     */
+    public MetricInterval withInterval(IntervalPeriod interval) {
+        this.interval = interval.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The timestamp, in UNIX Epoch time format. Start time is based on the
+     * interval period selected.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp, in UNIX Epoch time format. Start time is based on
+     *         the interval period selected.
+     *         </p>
+     */
+    public java.util.Date getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp, in UNIX Epoch time format. Start time is based on the
+     * interval period selected.
+     * </p>
+     *
+     * @param startTime <p>
+     *            The timestamp, in UNIX Epoch time format. Start time is based
+     *            on the interval period selected.
+     *            </p>
+     */
+    public void setStartTime(java.util.Date startTime) {
+        this.startTime = startTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp, in UNIX Epoch time format. Start time is based on the
+     * interval period selected.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param startTime <p>
+     *            The timestamp, in UNIX Epoch time format. Start time is based
+     *            on the interval period selected.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public MetricInterval withStartTime(java.util.Date startTime) {
+        this.startTime = startTime;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The timestamp, in UNIX Epoch time format. End time is based on the
+     * interval period selected. For example, If <code>IntervalPeriod</code> is
+     * selected <code>THIRTY_MIN</code>, <code>StartTime</code> and
+     * <code>EndTime</code> in the API request differs by 1 day, then 48 results
+     * are returned in the response. Each result is aggregated by the 30 minutes
+     * period, with each <code>StartTime</code> and <code>EndTime</code>
+     * differing by 30 minutes.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp, in UNIX Epoch time format. End time is based on
+     *         the interval period selected. For example, If
+     *         <code>IntervalPeriod</code> is selected <code>THIRTY_MIN</code>,
+     *         <code>StartTime</code> and <code>EndTime</code> in the API
+     *         request differs by 1 day, then 48 results are returned in the
+     *         response. Each result is aggregated by the 30 minutes period,
+     *         with each <code>StartTime</code> and <code>EndTime</code>
+     *         differing by 30 minutes.
+     *         </p>
+     */
+    public java.util.Date getEndTime() {
+        return endTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp, in UNIX Epoch time format. End time is based on the
+     * interval period selected. For example, If <code>IntervalPeriod</code> is
+     * selected <code>THIRTY_MIN</code>, <code>StartTime</code> and
+     * <code>EndTime</code> in the API request differs by 1 day, then 48 results
+     * are returned in the response. Each result is aggregated by the 30 minutes
+     * period, with each <code>StartTime</code> and <code>EndTime</code>
+     * differing by 30 minutes.
+     * </p>
+     *
+     * @param endTime <p>
+     *            The timestamp, in UNIX Epoch time format. End time is based on
+     *            the interval period selected. For example, If
+     *            <code>IntervalPeriod</code> is selected
+     *            <code>THIRTY_MIN</code>, <code>StartTime</code> and
+     *            <code>EndTime</code> in the API request differs by 1 day, then
+     *            48 results are returned in the response. Each result is
+     *            aggregated by the 30 minutes period, with each
+     *            <code>StartTime</code> and <code>EndTime</code> differing by
+     *            30 minutes.
+     *            </p>
+     */
+    public void setEndTime(java.util.Date endTime) {
+        this.endTime = endTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp, in UNIX Epoch time format. End time is based on the
+     * interval period selected. For example, If <code>IntervalPeriod</code> is
+     * selected <code>THIRTY_MIN</code>, <code>StartTime</code> and
+     * <code>EndTime</code> in the API request differs by 1 day, then 48 results
+     * are returned in the response. Each result is aggregated by the 30 minutes
+     * period, with each <code>StartTime</code> and <code>EndTime</code>
+     * differing by 30 minutes.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param endTime <p>
+     *            The timestamp, in UNIX Epoch time format. End time is based on
+     *            the interval period selected. For example, If
+     *            <code>IntervalPeriod</code> is selected
+     *            <code>THIRTY_MIN</code>, <code>StartTime</code> and
+     *            <code>EndTime</code> in the API request differs by 1 day, then
+     *            48 results are returned in the response. Each result is
+     *            aggregated by the 30 minutes period, with each
+     *            <code>StartTime</code> and <code>EndTime</code> differing by
+     *            30 minutes.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public MetricInterval withEndTime(java.util.Date endTime) {
+        this.endTime = endTime;
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getInterval() != null)
+            sb.append("Interval: " + getInterval() + ",");
+        if (getStartTime() != null)
+            sb.append("StartTime: " + getStartTime() + ",");
+        if (getEndTime() != null)
+            sb.append("EndTime: " + getEndTime());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getInterval() == null) ? 0 : getInterval().hashCode());
+        hashCode = prime * hashCode + ((getStartTime() == null) ? 0 : getStartTime().hashCode());
+        hashCode = prime * hashCode + ((getEndTime() == null) ? 0 : getEndTime().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof MetricInterval == false)
+            return false;
+        MetricInterval other = (MetricInterval) obj;
+
+        if (other.getInterval() == null ^ this.getInterval() == null)
+            return false;
+        if (other.getInterval() != null && other.getInterval().equals(this.getInterval()) == false)
+            return false;
+        if (other.getStartTime() == null ^ this.getStartTime() == null)
+            return false;
+        if (other.getStartTime() != null
+                && other.getStartTime().equals(this.getStartTime()) == false)
+            return false;
+        if (other.getEndTime() == null ^ this.getEndTime() == null)
+            return false;
+        if (other.getEndTime() != null && other.getEndTime().equals(this.getEndTime()) == false)
+            return false;
+        return true;
+    }
+}

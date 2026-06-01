@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,6 +41,16 @@ class HierarchyGroupSummaryJsonMarshaller {
             String name = hierarchyGroupSummary.getName();
             jsonWriter.name("Name");
             jsonWriter.value(name);
+        }
+        if (hierarchyGroupSummary.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = hierarchyGroupSummary.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (hierarchyGroupSummary.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = hierarchyGroupSummary.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
         }
         jsonWriter.endObject();
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,7 +28,10 @@ public enum IntegrationType {
     PINPOINT_APP("PINPOINT_APP"),
     WISDOM_ASSISTANT("WISDOM_ASSISTANT"),
     WISDOM_KNOWLEDGE_BASE("WISDOM_KNOWLEDGE_BASE"),
-    CASES_DOMAIN("CASES_DOMAIN");
+    WISDOM_QUICK_RESPONSES("WISDOM_QUICK_RESPONSES"),
+    CASES_DOMAIN("CASES_DOMAIN"),
+    APPLICATION("APPLICATION"),
+    FILE_SCANNER("FILE_SCANNER");
 
     private String value;
 
@@ -49,7 +52,10 @@ public enum IntegrationType {
         enumMap.put("PINPOINT_APP", PINPOINT_APP);
         enumMap.put("WISDOM_ASSISTANT", WISDOM_ASSISTANT);
         enumMap.put("WISDOM_KNOWLEDGE_BASE", WISDOM_KNOWLEDGE_BASE);
+        enumMap.put("WISDOM_QUICK_RESPONSES", WISDOM_QUICK_RESPONSES);
         enumMap.put("CASES_DOMAIN", CASES_DOMAIN);
+        enumMap.put("APPLICATION", APPLICATION);
+        enumMap.put("FILE_SCANNER", FILE_SCANNER);
     }
 
     /**

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,7 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The distribution of allowing signing in to the instance and its replica(s).
+ * The distribution that determines which Amazon Web Services Regions should be
+ * used to sign in agents in to both the instance and its replica(s).
  * </p>
  */
 public class SignInConfig implements Serializable {

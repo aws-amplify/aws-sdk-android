@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -38,6 +38,11 @@ class MetricResultV2JsonMarshaller {
                 }
             }
             jsonWriter.endObject();
+        }
+        if (metricResultV2.getMetricInterval() != null) {
+            MetricInterval metricInterval = metricResultV2.getMetricInterval();
+            jsonWriter.name("MetricInterval");
+            MetricIntervalJsonMarshaller.getInstance().marshall(metricInterval, jsonWriter);
         }
         if (metricResultV2.getCollections() != null) {
             java.util.List<MetricDataV2> collections = metricResultV2.getCollections();

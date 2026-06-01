@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -61,6 +61,35 @@ public class StartOutboundVoiceContactRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (startOutboundVoiceContactRequest.getName() != null) {
+                String name = startOutboundVoiceContactRequest.getName();
+                jsonWriter.name("Name");
+                jsonWriter.value(name);
+            }
+            if (startOutboundVoiceContactRequest.getDescription() != null) {
+                String description = startOutboundVoiceContactRequest.getDescription();
+                jsonWriter.name("Description");
+                jsonWriter.value(description);
+            }
+            if (startOutboundVoiceContactRequest.getReferences() != null) {
+                java.util.Map<String, Reference> references = startOutboundVoiceContactRequest
+                        .getReferences();
+                jsonWriter.name("References");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, Reference> referencesEntry : references.entrySet()) {
+                    Reference referencesValue = referencesEntry.getValue();
+                    if (referencesValue != null) {
+                        jsonWriter.name(referencesEntry.getKey());
+                        ReferenceJsonMarshaller.getInstance().marshall(referencesValue, jsonWriter);
+                    }
+                }
+                jsonWriter.endObject();
+            }
+            if (startOutboundVoiceContactRequest.getRelatedContactId() != null) {
+                String relatedContactId = startOutboundVoiceContactRequest.getRelatedContactId();
+                jsonWriter.name("RelatedContactId");
+                jsonWriter.value(relatedContactId);
+            }
             if (startOutboundVoiceContactRequest.getDestinationPhoneNumber() != null) {
                 String destinationPhoneNumber = startOutboundVoiceContactRequest
                         .getDestinationPhoneNumber();

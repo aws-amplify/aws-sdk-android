@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -74,10 +74,27 @@ public class HoursOfOperation implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
+
+    /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     */
+    private java.util.Date lastModifiedTime;
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     */
+    private String lastModifiedRegion;
 
     /**
      * <p>
@@ -399,12 +416,12 @@ public class HoursOfOperation implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource. For example, { "tags": {"key1":"value1",
+     *         resource. For example, { "Tags": {"key1":"value1",
      *         "key2":"value2"} }.
      *         </p>
      */
@@ -415,12 +432,12 @@ public class HoursOfOperation implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      */
@@ -431,7 +448,7 @@ public class HoursOfOperation implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -439,7 +456,7 @@ public class HoursOfOperation implements Serializable {
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -453,7 +470,7 @@ public class HoursOfOperation implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a
@@ -487,6 +504,108 @@ public class HoursOfOperation implements Serializable {
     }
 
     /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp when this resource was last modified.
+     *         </p>
+     */
+    public java.util.Date getLastModifiedTime() {
+        return lastModifiedTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     *
+     * @param lastModifiedTime <p>
+     *            The timestamp when this resource was last modified.
+     *            </p>
+     */
+    public void setLastModifiedTime(java.util.Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lastModifiedTime <p>
+     *            The timestamp when this resource was last modified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public HoursOfOperation withLastModifiedTime(java.util.Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     *
+     * @return <p>
+     *         The Amazon Web Services Region where this resource was last
+     *         modified.
+     *         </p>
+     */
+    public String getLastModifiedRegion() {
+        return lastModifiedRegion;
+    }
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     *
+     * @param lastModifiedRegion <p>
+     *            The Amazon Web Services Region where this resource was last
+     *            modified.
+     *            </p>
+     */
+    public void setLastModifiedRegion(String lastModifiedRegion) {
+        this.lastModifiedRegion = lastModifiedRegion;
+    }
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     *
+     * @param lastModifiedRegion <p>
+     *            The Amazon Web Services Region where this resource was last
+     *            modified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public HoursOfOperation withLastModifiedRegion(String lastModifiedRegion) {
+        this.lastModifiedRegion = lastModifiedRegion;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -510,7 +629,11 @@ public class HoursOfOperation implements Serializable {
         if (getConfig() != null)
             sb.append("Config: " + getConfig() + ",");
         if (getTags() != null)
-            sb.append("Tags: " + getTags());
+            sb.append("Tags: " + getTags() + ",");
+        if (getLastModifiedTime() != null)
+            sb.append("LastModifiedTime: " + getLastModifiedTime() + ",");
+        if (getLastModifiedRegion() != null)
+            sb.append("LastModifiedRegion: " + getLastModifiedRegion());
         sb.append("}");
         return sb.toString();
     }
@@ -530,6 +653,10 @@ public class HoursOfOperation implements Serializable {
         hashCode = prime * hashCode + ((getTimeZone() == null) ? 0 : getTimeZone().hashCode());
         hashCode = prime * hashCode + ((getConfig() == null) ? 0 : getConfig().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime * hashCode
+                + ((getLastModifiedTime() == null) ? 0 : getLastModifiedTime().hashCode());
+        hashCode = prime * hashCode
+                + ((getLastModifiedRegion() == null) ? 0 : getLastModifiedRegion().hashCode());
         return hashCode;
     }
 
@@ -574,6 +701,16 @@ public class HoursOfOperation implements Serializable {
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getLastModifiedTime() == null ^ this.getLastModifiedTime() == null)
+            return false;
+        if (other.getLastModifiedTime() != null
+                && other.getLastModifiedTime().equals(this.getLastModifiedTime()) == false)
+            return false;
+        if (other.getLastModifiedRegion() == null ^ this.getLastModifiedRegion() == null)
+            return false;
+        if (other.getLastModifiedRegion() != null
+                && other.getLastModifiedRegion().equals(this.getLastModifiedRegion()) == false)
             return false;
         return true;
     }

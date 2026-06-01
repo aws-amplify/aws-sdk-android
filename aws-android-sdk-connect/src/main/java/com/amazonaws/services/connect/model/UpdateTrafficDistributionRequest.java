@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,8 +25,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * You can change the <code>SignInConfig</code> only for a default
- * <code>TrafficDistributionGroup</code>. If you call
+ * The <code>SignInConfig</code> distribution is available only on a default
+ * <code>TrafficDistributionGroup</code> (see the <code>IsDefault</code>
+ * parameter in the <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+ * >TrafficDistributionGroup</a> data type). If you call
  * <code>UpdateTrafficDistribution</code> with a modified
  * <code>SignInConfig</code> and a non-default
  * <code>TrafficDistributionGroup</code>, an
@@ -69,8 +72,8 @@ public class UpdateTrafficDistributionRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The distribution of allowing signing in to the instance and its
-     * replica(s).
+     * The distribution that determines which Amazon Web Services Regions should
+     * be used to sign in agents in to both the instance and its replica(s).
      * </p>
      */
     private SignInConfig signInConfig;
@@ -216,13 +219,14 @@ public class UpdateTrafficDistributionRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The distribution of allowing signing in to the instance and its
-     * replica(s).
+     * The distribution that determines which Amazon Web Services Regions should
+     * be used to sign in agents in to both the instance and its replica(s).
      * </p>
      *
      * @return <p>
-     *         The distribution of allowing signing in to the instance and its
-     *         replica(s).
+     *         The distribution that determines which Amazon Web Services
+     *         Regions should be used to sign in agents in to both the instance
+     *         and its replica(s).
      *         </p>
      */
     public SignInConfig getSignInConfig() {
@@ -231,13 +235,14 @@ public class UpdateTrafficDistributionRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The distribution of allowing signing in to the instance and its
-     * replica(s).
+     * The distribution that determines which Amazon Web Services Regions should
+     * be used to sign in agents in to both the instance and its replica(s).
      * </p>
      *
      * @param signInConfig <p>
-     *            The distribution of allowing signing in to the instance and
-     *            its replica(s).
+     *            The distribution that determines which Amazon Web Services
+     *            Regions should be used to sign in agents in to both the
+     *            instance and its replica(s).
      *            </p>
      */
     public void setSignInConfig(SignInConfig signInConfig) {
@@ -246,16 +251,17 @@ public class UpdateTrafficDistributionRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The distribution of allowing signing in to the instance and its
-     * replica(s).
+     * The distribution that determines which Amazon Web Services Regions should
+     * be used to sign in agents in to both the instance and its replica(s).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param signInConfig <p>
-     *            The distribution of allowing signing in to the instance and
-     *            its replica(s).
+     *            The distribution that determines which Amazon Web Services
+     *            Regions should be used to sign in agents in to both the
+     *            instance and its replica(s).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

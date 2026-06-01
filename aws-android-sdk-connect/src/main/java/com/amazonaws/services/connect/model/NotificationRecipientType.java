@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ public class NotificationRecipientType implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }. Amazon
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }. Amazon
      * Connect users with the specified tags will be notified.
      * </p>
      */
@@ -42,13 +42,13 @@ public class NotificationRecipientType implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }. Amazon
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }. Amazon
      * Connect users with the specified tags will be notified.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource. For example, { "tags": {"key1":"value1",
+     *         resource. For example, { "Tags": {"key1":"value1",
      *         "key2":"value2"} }. Amazon Connect users with the specified tags
      *         will be notified.
      *         </p>
@@ -60,13 +60,13 @@ public class NotificationRecipientType implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }. Amazon
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }. Amazon
      * Connect users with the specified tags will be notified.
      * </p>
      *
      * @param userTags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }. Amazon Connect users with the specified
      *            tags will be notified.
      *            </p>
@@ -78,7 +78,7 @@ public class NotificationRecipientType implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }. Amazon
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }. Amazon
      * Connect users with the specified tags will be notified.
      * </p>
      * <p>
@@ -87,7 +87,7 @@ public class NotificationRecipientType implements Serializable {
      *
      * @param userTags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }. Amazon Connect users with the specified
      *            tags will be notified.
      *            </p>
@@ -102,7 +102,7 @@ public class NotificationRecipientType implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }. Amazon
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }. Amazon
      * Connect users with the specified tags will be notified.
      * </p>
      * <p>

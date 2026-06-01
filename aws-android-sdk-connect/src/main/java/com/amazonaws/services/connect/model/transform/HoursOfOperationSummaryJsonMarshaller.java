@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,6 +41,16 @@ class HoursOfOperationSummaryJsonMarshaller {
             String name = hoursOfOperationSummary.getName();
             jsonWriter.name("Name");
             jsonWriter.value(name);
+        }
+        if (hoursOfOperationSummary.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = hoursOfOperationSummary.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (hoursOfOperationSummary.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = hoursOfOperationSummary.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
         }
         jsonWriter.endObject();
     }

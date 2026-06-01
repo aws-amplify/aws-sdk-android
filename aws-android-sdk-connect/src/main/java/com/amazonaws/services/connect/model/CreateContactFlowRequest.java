@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -74,15 +74,35 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      */
     private String content;
 
     /**
      * <p>
+     * Indicates the flow status as either <code>SAVED</code> or
+     * <code>PUBLISHED</code>. The <code>PUBLISHED</code> status will initiate
+     * validation on the content. the <code>SAVED</code> status does not
+     * initiate validation of the content. <code>SAVED</code> |
+     * <code>PUBLISHED</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     */
+    private String status;
+
+    /**
+     * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -384,11 +404,24 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      *
      * @return <p>
-     *         The content of the flow.
+     *         The JSON string that represents the content of the flow. For an
+     *         example, see <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     *         >Example flow in Amazon Connect Flow language</a>.
+     *         </p>
+     *         <p>
+     *         Length Constraints: Minimum length of 1. Maximum length of
+     *         256000.
      *         </p>
      */
     public String getContent() {
@@ -397,11 +430,24 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      *
      * @param content <p>
-     *            The content of the flow.
+     *            The JSON string that represents the content of the flow. For
+     *            an example, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     *            >Example flow in Amazon Connect Flow language</a>.
+     *            </p>
+     *            <p>
+     *            Length Constraints: Minimum length of 1. Maximum length of
+     *            256000.
      *            </p>
      */
     public void setContent(String content) {
@@ -410,14 +456,27 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param content <p>
-     *            The content of the flow.
+     *            The JSON string that represents the content of the flow. For
+     *            an example, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     *            >Example flow in Amazon Connect Flow language</a>.
+     *            </p>
+     *            <p>
+     *            Length Constraints: Minimum length of 1. Maximum length of
+     *            256000.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -429,13 +488,150 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
+     * Indicates the flow status as either <code>SAVED</code> or
+     * <code>PUBLISHED</code>. The <code>PUBLISHED</code> status will initiate
+     * validation on the content. the <code>SAVED</code> status does not
+     * initiate validation of the content. <code>SAVED</code> |
+     * <code>PUBLISHED</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     *
+     * @return <p>
+     *         Indicates the flow status as either <code>SAVED</code> or
+     *         <code>PUBLISHED</code>. The <code>PUBLISHED</code> status will
+     *         initiate validation on the content. the <code>SAVED</code> status
+     *         does not initiate validation of the content. <code>SAVED</code> |
+     *         <code>PUBLISHED</code>.
+     *         </p>
+     * @see ContactFlowStatus
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * <p>
+     * Indicates the flow status as either <code>SAVED</code> or
+     * <code>PUBLISHED</code>. The <code>PUBLISHED</code> status will initiate
+     * validation on the content. the <code>SAVED</code> status does not
+     * initiate validation of the content. <code>SAVED</code> |
+     * <code>PUBLISHED</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     *
+     * @param status <p>
+     *            Indicates the flow status as either <code>SAVED</code> or
+     *            <code>PUBLISHED</code>. The <code>PUBLISHED</code> status will
+     *            initiate validation on the content. the <code>SAVED</code>
+     *            status does not initiate validation of the content.
+     *            <code>SAVED</code> | <code>PUBLISHED</code>.
+     *            </p>
+     * @see ContactFlowStatus
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
+     * <p>
+     * Indicates the flow status as either <code>SAVED</code> or
+     * <code>PUBLISHED</code>. The <code>PUBLISHED</code> status will initiate
+     * validation on the content. the <code>SAVED</code> status does not
+     * initiate validation of the content. <code>SAVED</code> |
+     * <code>PUBLISHED</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     *
+     * @param status <p>
+     *            Indicates the flow status as either <code>SAVED</code> or
+     *            <code>PUBLISHED</code>. The <code>PUBLISHED</code> status will
+     *            initiate validation on the content. the <code>SAVED</code>
+     *            status does not initiate validation of the content.
+     *            <code>SAVED</code> | <code>PUBLISHED</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ContactFlowStatus
+     */
+    public CreateContactFlowRequest withStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Indicates the flow status as either <code>SAVED</code> or
+     * <code>PUBLISHED</code>. The <code>PUBLISHED</code> status will initiate
+     * validation on the content. the <code>SAVED</code> status does not
+     * initiate validation of the content. <code>SAVED</code> |
+     * <code>PUBLISHED</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     *
+     * @param status <p>
+     *            Indicates the flow status as either <code>SAVED</code> or
+     *            <code>PUBLISHED</code>. The <code>PUBLISHED</code> status will
+     *            initiate validation on the content. the <code>SAVED</code>
+     *            status does not initiate validation of the content.
+     *            <code>SAVED</code> | <code>PUBLISHED</code>.
+     *            </p>
+     * @see ContactFlowStatus
+     */
+    public void setStatus(ContactFlowStatus status) {
+        this.status = status.toString();
+    }
+
+    /**
+     * <p>
+     * Indicates the flow status as either <code>SAVED</code> or
+     * <code>PUBLISHED</code>. The <code>PUBLISHED</code> status will initiate
+     * validation on the content. the <code>SAVED</code> status does not
+     * initiate validation of the content. <code>SAVED</code> |
+     * <code>PUBLISHED</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PUBLISHED, SAVED
+     *
+     * @param status <p>
+     *            Indicates the flow status as either <code>SAVED</code> or
+     *            <code>PUBLISHED</code>. The <code>PUBLISHED</code> status will
+     *            initiate validation on the content. the <code>SAVED</code>
+     *            status does not initiate validation of the content.
+     *            <code>SAVED</code> | <code>PUBLISHED</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ContactFlowStatus
+     */
+    public CreateContactFlowRequest withStatus(ContactFlowStatus status) {
+        this.status = status.toString();
+        return this;
+    }
+
+    /**
+     * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource. For example, { "tags": {"key1":"value1",
+     *         resource. For example, { "Tags": {"key1":"value1",
      *         "key2":"value2"} }.
      *         </p>
      */
@@ -446,12 +642,12 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      */
@@ -462,7 +658,7 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -470,7 +666,7 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -484,7 +680,7 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a
@@ -538,6 +734,8 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
             sb.append("Description: " + getDescription() + ",");
         if (getContent() != null)
             sb.append("Content: " + getContent() + ",");
+        if (getStatus() != null)
+            sb.append("Status: " + getStatus() + ",");
         if (getTags() != null)
             sb.append("Tags: " + getTags());
         sb.append("}");
@@ -555,6 +753,7 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getContent() == null) ? 0 : getContent().hashCode());
+        hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
@@ -591,6 +790,10 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
         if (other.getContent() == null ^ this.getContent() == null)
             return false;
         if (other.getContent() != null && other.getContent().equals(this.getContent()) == false)
+            return false;
+        if (other.getStatus() == null ^ this.getStatus() == null)
+            return false;
+        if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
             return false;
         if (other.getTags() == null ^ this.getTags() == null)
             return false;

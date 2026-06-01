@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -91,6 +91,34 @@ class SecurityProfileJsonMarshaller {
                 }
             }
             jsonWriter.endArray();
+        }
+        if (securityProfile.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = securityProfile.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (securityProfile.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = securityProfile.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
+        }
+        if (securityProfile.getHierarchyRestrictedResources() != null) {
+            java.util.List<String> hierarchyRestrictedResources = securityProfile
+                    .getHierarchyRestrictedResources();
+            jsonWriter.name("HierarchyRestrictedResources");
+            jsonWriter.beginArray();
+            for (String hierarchyRestrictedResourcesItem : hierarchyRestrictedResources) {
+                if (hierarchyRestrictedResourcesItem != null) {
+                    jsonWriter.value(hierarchyRestrictedResourcesItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (securityProfile.getAllowedAccessControlHierarchyGroupId() != null) {
+            String allowedAccessControlHierarchyGroupId = securityProfile
+                    .getAllowedAccessControlHierarchyGroupId();
+            jsonWriter.name("AllowedAccessControlHierarchyGroupId");
+            jsonWriter.value(allowedAccessControlHierarchyGroupId);
         }
         jsonWriter.endObject();
     }

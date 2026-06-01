@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,10 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * When a contact is being recorded, this API suspends recording the call or
- * screen. For example, you might suspend the call or screen recording while
- * collecting sensitive information, such as a credit card number. Then use
- * ResumeContactRecording to restart recording.
+ * When a contact is being recorded, this API suspends recording whatever is
+ * selected in the flow configuration: call, screen, or both. If only call
+ * recording or only screen recording is enabled, then it would be suspended.
+ * For example, you might suspend the screen recording while collecting
+ * sensitive information, such as a credit card number. Then use
+ * ResumeContactRecording to restart recording the screen.
  * </p>
  * <p>
  * The period of time that the recording is suspended is filled with silence in

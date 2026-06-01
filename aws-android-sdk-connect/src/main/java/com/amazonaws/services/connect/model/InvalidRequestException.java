@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,6 +26,13 @@ public class InvalidRequestException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
+     * <p>
+     * Reason why the request was invalid.
+     * </p>
+     */
+    private InvalidRequestExceptionReason reason;
+
+    /**
      * Constructs a new InvalidRequestException with the specified error
      * message.
      *
@@ -33,5 +40,31 @@ public class InvalidRequestException extends AmazonServiceException {
      */
     public InvalidRequestException(String message) {
         super(message);
+    }
+
+    /**
+     * <p>
+     * Reason why the request was invalid.
+     * </p>
+     *
+     * @return <p>
+     *         Reason why the request was invalid.
+     *         </p>
+     */
+    public InvalidRequestExceptionReason getReason() {
+        return reason;
+    }
+
+    /**
+     * <p>
+     * Reason why the request was invalid.
+     * </p>
+     *
+     * @param reason <p>
+     *            Reason why the request was invalid.
+     *            </p>
+     */
+    public void setReason(InvalidRequestExceptionReason reason) {
+        this.reason = reason;
     }
 }

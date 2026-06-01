@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,6 +29,26 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Enable real-time chat message streaming</a> in the <i>Amazon Connect
  * Administrator Guide</i>.
  * </p>
+ * <p>
+ * For more information about chat, see the following topics in the <i>Amazon
+ * Connect Administrator Guide</i>:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/web-and-mobile-chat.html"
+ * >Concepts: Web and mobile messaging capabilities in Amazon Connect</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/security-best-practices.html#bp-security-chat"
+ * >Amazon Connect Chat security best practices</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class StartContactStreamingRequest extends AmazonWebServiceRequest implements Serializable {
     /**

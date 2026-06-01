@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,31 +28,31 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <important>
  * <p>
  * To release phone numbers from a traffic distribution group, use the
- * <code>ReleasePhoneNumber</code> API, not the Amazon Connect console.
+ * <code>ReleasePhoneNumber</code> API, not the Amazon Connect admin website.
  * </p>
  * <p>
  * After releasing a phone number, the phone number enters into a cooldown
- * period of 30 days. It cannot be searched for or claimed again until the
- * period has ended. If you accidentally release a phone number, contact Amazon
- * Web Services Support.
+ * period for up to 180 days. It cannot be searched for or claimed again until
+ * the period has ended. If you accidentally release a phone number, contact
+ * Amazon Web Services Support.
  * </p>
  * </important>
  * <p>
- * If you plan to claim and release numbers frequently during a 30 day period,
- * contact us for a service quota exception. Otherwise, it is possible you will
- * be blocked from claiming and releasing any more numbers until 30 days past
- * the oldest number released has expired.
+ * If you plan to claim and release numbers frequently, contact us for a service
+ * quota exception. Otherwise, it is possible you will be blocked from claiming
+ * and releasing any more numbers until up to 180 days past the oldest number
+ * released has expired.
  * </p>
  * <p>
  * By default you can claim and release up to 200% of your maximum number of
- * active phone numbers during any 30 day period. If you claim and release phone
- * numbers using the UI or API during a rolling 30 day cycle that exceeds 200%
- * of your phone number service level quota, you will be blocked from claiming
- * any more numbers until 30 days past the oldest number released has expired.
+ * active phone numbers. If you claim and release phone numbers using the UI or
+ * API during a rolling 180 day cycle that exceeds 200% of your phone number
+ * service level quota, you will be blocked from claiming any more numbers until
+ * 180 days past the oldest number released has expired.
  * </p>
  * <p>
  * For example, if you already have 99 claimed numbers and a service level quota
- * of 99 phone numbers, and in any 30 day period you release 99, claim 99, and
+ * of 99 phone numbers, and in any 180 day period you release 99, claim 99, and
  * then release 99, you will have exceeded the 200% limit. At that point you are
  * blocked from claiming any more numbers until you open an Amazon Web Services
  * support ticket.
