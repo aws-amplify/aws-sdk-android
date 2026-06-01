@@ -327,6 +327,7 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
         jsonErrorUnmarshallers.add(new AccessDeniedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new BadDocumentExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new DocumentTooLargeExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new HumanLoopQuotaExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new IdempotentParameterMismatchExceptionUnmarshaller());
@@ -337,8 +338,11 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
         jsonErrorUnmarshallers.add(new InvalidS3ObjectExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ProvisionedThroughputExceededExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ServiceQuotaExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ThrottlingExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnsupportedDocumentExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ValidationExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
@@ -619,6 +623,243 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
+     * Creates an adapter, which can be fine-tuned for enhanced performance on
+     * user provided documents. Takes an AdapterName and FeatureType. Currently
+     * the only supported feature type is <code>QUERIES</code>. You can also
+     * provide a Description, Tags, and a ClientRequestToken. You can choose
+     * whether or not the adapter should be AutoUpdated with the AutoUpdate
+     * argument. By default, AutoUpdate is set to DISABLED.
+     * </p>
+     * 
+     * @param createAdapterRequest
+     * @return createAdapterResult The response from the CreateAdapter service
+     *         method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws IdempotentParameterMismatchException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateAdapterResult createAdapter(CreateAdapterRequest createAdapterRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createAdapterRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateAdapterRequest> request = null;
+        Response<CreateAdapterResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateAdapterRequestMarshaller().marshall(createAdapterRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateAdapterResult, JsonUnmarshallerContext> unmarshaller = new CreateAdapterResultJsonUnmarshaller();
+            JsonResponseHandler<CreateAdapterResult> responseHandler = new JsonResponseHandler<CreateAdapterResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a new version of an adapter. Operates on a provided AdapterId and
+     * a specified dataset provided via the DatasetConfig argument. Requires
+     * that you specify an Amazon S3 bucket with the OutputConfig argument. You
+     * can provide an optional KMSKeyId, an optional ClientRequestToken, and
+     * optional tags.
+     * </p>
+     * 
+     * @param createAdapterVersionRequest
+     * @return createAdapterVersionResult The response from the
+     *         CreateAdapterVersion service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws IdempotentParameterMismatchException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceNotFoundException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateAdapterVersionResult createAdapterVersion(
+            CreateAdapterVersionRequest createAdapterVersionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createAdapterVersionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateAdapterVersionRequest> request = null;
+        Response<CreateAdapterVersionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateAdapterVersionRequestMarshaller()
+                        .marshall(createAdapterVersionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateAdapterVersionResult, JsonUnmarshallerContext> unmarshaller = new CreateAdapterVersionResultJsonUnmarshaller();
+            JsonResponseHandler<CreateAdapterVersionResult> responseHandler = new JsonResponseHandler<CreateAdapterVersionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes an Amazon Textract adapter. Takes an AdapterId and deletes the
+     * adapter specified by the ID.
+     * </p>
+     * 
+     * @param deleteAdapterRequest
+     * @return deleteAdapterResult The response from the DeleteAdapter service
+     *         method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeleteAdapterResult deleteAdapter(DeleteAdapterRequest deleteAdapterRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteAdapterRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteAdapterRequest> request = null;
+        Response<DeleteAdapterResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteAdapterRequestMarshaller().marshall(deleteAdapterRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteAdapterResult, JsonUnmarshallerContext> unmarshaller = new DeleteAdapterResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteAdapterResult> responseHandler = new JsonResponseHandler<DeleteAdapterResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes an Amazon Textract adapter version. Requires that you specify
+     * both an AdapterId and a AdapterVersion. Deletes the adapter version
+     * specified by the AdapterId and the AdapterVersion.
+     * </p>
+     * 
+     * @param deleteAdapterVersionRequest
+     * @return deleteAdapterVersionResult The response from the
+     *         DeleteAdapterVersion service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeleteAdapterVersionResult deleteAdapterVersion(
+            DeleteAdapterVersionRequest deleteAdapterVersionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteAdapterVersionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteAdapterVersionRequest> request = null;
+        Response<DeleteAdapterVersionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteAdapterVersionRequestMarshaller()
+                        .marshall(deleteAdapterVersionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteAdapterVersionResult, JsonUnmarshallerContext> unmarshaller = new DeleteAdapterVersionResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteAdapterVersionResult> responseHandler = new JsonResponseHandler<DeleteAdapterVersionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Detects text in the input document. Amazon Textract can detect lines of
      * text and the words that make up a line of text. The input document must
      * be in one of the following image formats: JPEG, PNG, PDF, or TIFF.
@@ -683,6 +924,117 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
             }
             Unmarshaller<DetectDocumentTextResult, JsonUnmarshallerContext> unmarshaller = new DetectDocumentTextResultJsonUnmarshaller();
             JsonResponseHandler<DetectDocumentTextResult> responseHandler = new JsonResponseHandler<DetectDocumentTextResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets configuration information for an adapter specified by an AdapterId,
+     * returning information on AdapterName, Description, CreationTime,
+     * AutoUpdate status, and FeatureTypes.
+     * </p>
+     * 
+     * @param getAdapterRequest
+     * @return getAdapterResult The response from the GetAdapter service method,
+     *         as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public GetAdapterResult getAdapter(GetAdapterRequest getAdapterRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getAdapterRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetAdapterRequest> request = null;
+        Response<GetAdapterResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetAdapterRequestMarshaller().marshall(getAdapterRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetAdapterResult, JsonUnmarshallerContext> unmarshaller = new GetAdapterResultJsonUnmarshaller();
+            JsonResponseHandler<GetAdapterResult> responseHandler = new JsonResponseHandler<GetAdapterResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets configuration information for the specified adapter version,
+     * including: AdapterId, AdapterVersion, FeatureTypes, Status,
+     * StatusMessage, DatasetConfig, KMSKeyId, OutputConfig, Tags and
+     * EvaluationMetrics.
+     * </p>
+     * 
+     * @param getAdapterVersionRequest
+     * @return getAdapterVersionResult The response from the GetAdapterVersion
+     *         service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public GetAdapterVersionResult getAdapterVersion(
+            GetAdapterVersionRequest getAdapterVersionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getAdapterVersionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetAdapterVersionRequest> request = null;
+        Response<GetAdapterVersionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetAdapterVersionRequestMarshaller()
+                        .marshall(getAdapterVersionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetAdapterVersionResult, JsonUnmarshallerContext> unmarshaller = new GetAdapterVersionResultJsonUnmarshaller();
+            JsonResponseHandler<GetAdapterVersionResult> responseHandler = new JsonResponseHandler<GetAdapterVersionResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1169,6 +1521,168 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
+     * List all version of an adapter that meet the specified filtration
+     * criteria.
+     * </p>
+     * 
+     * @param listAdapterVersionsRequest
+     * @return listAdapterVersionsResult The response from the
+     *         ListAdapterVersions service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListAdapterVersionsResult listAdapterVersions(
+            ListAdapterVersionsRequest listAdapterVersionsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listAdapterVersionsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListAdapterVersionsRequest> request = null;
+        Response<ListAdapterVersionsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListAdapterVersionsRequestMarshaller()
+                        .marshall(listAdapterVersionsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListAdapterVersionsResult, JsonUnmarshallerContext> unmarshaller = new ListAdapterVersionsResultJsonUnmarshaller();
+            JsonResponseHandler<ListAdapterVersionsResult> responseHandler = new JsonResponseHandler<ListAdapterVersionsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists all adapters that match the specified filtration criteria.
+     * </p>
+     * 
+     * @param listAdaptersRequest
+     * @return listAdaptersResult The response from the ListAdapters service
+     *         method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListAdaptersResult listAdapters(ListAdaptersRequest listAdaptersRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listAdaptersRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListAdaptersRequest> request = null;
+        Response<ListAdaptersResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListAdaptersRequestMarshaller().marshall(listAdaptersRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListAdaptersResult, JsonUnmarshallerContext> unmarshaller = new ListAdaptersResultJsonUnmarshaller();
+            JsonResponseHandler<ListAdaptersResult> responseHandler = new JsonResponseHandler<ListAdaptersResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists all tags for an Amazon Textract resource.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         Textract.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listTagsForResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListTagsForResourceRequest> request = null;
+        Response<ListTagsForResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListTagsForResourceRequestMarshaller()
+                        .marshall(listTagsForResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListTagsForResourceResult, JsonUnmarshallerContext> unmarshaller = new ListTagsForResourceResultJsonUnmarshaller();
+            JsonResponseHandler<ListTagsForResourceResult> responseHandler = new JsonResponseHandler<ListTagsForResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Starts the asynchronous analysis of an input document for relationships
      * between detected items such as key-value pairs, tables, and selection
      * elements.
@@ -1515,6 +2029,166 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
             }
             Unmarshaller<StartLendingAnalysisResult, JsonUnmarshallerContext> unmarshaller = new StartLendingAnalysisResultJsonUnmarshaller();
             JsonResponseHandler<StartLendingAnalysisResult> responseHandler = new JsonResponseHandler<StartLendingAnalysisResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Adds one or more tags to the specified resource.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @return tagResourceResult The response from the TagResource service
+     *         method, as returned by Amazon Textract.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws ServiceQuotaExceededException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public TagResourceResult tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(tagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<TagResourceRequest> request = null;
+        Response<TagResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new TagResourceRequestMarshaller().marshall(tagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<TagResourceResult, JsonUnmarshallerContext> unmarshaller = new TagResourceResultJsonUnmarshaller();
+            JsonResponseHandler<TagResourceResult> responseHandler = new JsonResponseHandler<TagResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes any tags with the specified keys from the specified resource.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @return untagResourceResult The response from the UntagResource service
+     *         method, as returned by Amazon Textract.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UntagResourceResult untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(untagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UntagResourceRequest> request = null;
+        Response<UntagResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UntagResourceRequestMarshaller().marshall(untagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UntagResourceResult, JsonUnmarshallerContext> unmarshaller = new UntagResourceResultJsonUnmarshaller();
+            JsonResponseHandler<UntagResourceResult> responseHandler = new JsonResponseHandler<UntagResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Update the configuration for an adapter. FeatureTypes configurations
+     * cannot be updated. At least one new parameter must be specified as an
+     * argument.
+     * </p>
+     * 
+     * @param updateAdapterRequest
+     * @return updateAdapterResult The response from the UpdateAdapter service
+     *         method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateAdapterResult updateAdapter(UpdateAdapterRequest updateAdapterRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateAdapterRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateAdapterRequest> request = null;
+        Response<UpdateAdapterResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateAdapterRequestMarshaller().marshall(updateAdapterRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateAdapterResult, JsonUnmarshallerContext> unmarshaller = new UpdateAdapterResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateAdapterResult> responseHandler = new JsonResponseHandler<UpdateAdapterResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

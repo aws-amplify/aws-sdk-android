@@ -26,7 +26,8 @@ public enum FeatureType {
     TABLES("TABLES"),
     FORMS("FORMS"),
     QUERIES("QUERIES"),
-    SIGNATURES("SIGNATURES");
+    SIGNATURES("SIGNATURES"),
+    LAYOUT("LAYOUT");
 
     private String value;
 
@@ -46,6 +47,7 @@ public enum FeatureType {
         enumMap.put("FORMS", FORMS);
         enumMap.put("QUERIES", QUERIES);
         enumMap.put("SIGNATURES", SIGNATURES);
+        enumMap.put("LAYOUT", LAYOUT);
     }
 
     /**

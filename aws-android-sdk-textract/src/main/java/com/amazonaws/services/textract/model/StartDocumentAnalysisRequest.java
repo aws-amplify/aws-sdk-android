@@ -139,6 +139,13 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
+     * Specifies the adapter to be used when analyzing a document.
+     * </p>
+     */
+    private AdaptersConfig adaptersConfig;
+
+    /**
+     * <p>
      * The location of the document to be processed.
      * </p>
      *
@@ -707,6 +714,51 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
     }
 
     /**
+     * <p>
+     * Specifies the adapter to be used when analyzing a document.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies the adapter to be used when analyzing a document.
+     *         </p>
+     */
+    public AdaptersConfig getAdaptersConfig() {
+        return adaptersConfig;
+    }
+
+    /**
+     * <p>
+     * Specifies the adapter to be used when analyzing a document.
+     * </p>
+     *
+     * @param adaptersConfig <p>
+     *            Specifies the adapter to be used when analyzing a document.
+     *            </p>
+     */
+    public void setAdaptersConfig(AdaptersConfig adaptersConfig) {
+        this.adaptersConfig = adaptersConfig;
+    }
+
+    /**
+     * <p>
+     * Specifies the adapter to be used when analyzing a document.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param adaptersConfig <p>
+     *            Specifies the adapter to be used when analyzing a document.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartDocumentAnalysisRequest withAdaptersConfig(AdaptersConfig adaptersConfig) {
+        this.adaptersConfig = adaptersConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -732,7 +784,9 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
         if (getKMSKeyId() != null)
             sb.append("KMSKeyId: " + getKMSKeyId() + ",");
         if (getQueriesConfig() != null)
-            sb.append("QueriesConfig: " + getQueriesConfig());
+            sb.append("QueriesConfig: " + getQueriesConfig() + ",");
+        if (getAdaptersConfig() != null)
+            sb.append("AdaptersConfig: " + getAdaptersConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -756,6 +810,8 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
         hashCode = prime * hashCode + ((getKMSKeyId() == null) ? 0 : getKMSKeyId().hashCode());
         hashCode = prime * hashCode
                 + ((getQueriesConfig() == null) ? 0 : getQueriesConfig().hashCode());
+        hashCode = prime * hashCode
+                + ((getAdaptersConfig() == null) ? 0 : getAdaptersConfig().hashCode());
         return hashCode;
     }
 
@@ -807,6 +863,11 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
             return false;
         if (other.getQueriesConfig() != null
                 && other.getQueriesConfig().equals(this.getQueriesConfig()) == false)
+            return false;
+        if (other.getAdaptersConfig() == null ^ this.getAdaptersConfig() == null)
+            return false;
+        if (other.getAdaptersConfig() != null
+                && other.getAdaptersConfig().equals(this.getAdaptersConfig()) == false)
             return false;
         return true;
     }
