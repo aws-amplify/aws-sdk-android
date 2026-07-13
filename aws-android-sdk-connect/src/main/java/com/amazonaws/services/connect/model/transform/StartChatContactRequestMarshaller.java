@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -126,6 +126,23 @@ public class StartChatContactRequestMarshaller implements
                 String relatedContactId = startChatContactRequest.getRelatedContactId();
                 jsonWriter.name("RelatedContactId");
                 jsonWriter.value(relatedContactId);
+            }
+            if (startChatContactRequest.getSegmentAttributes() != null) {
+                java.util.Map<String, SegmentAttributeValue> segmentAttributes = startChatContactRequest
+                        .getSegmentAttributes();
+                jsonWriter.name("SegmentAttributes");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, SegmentAttributeValue> segmentAttributesEntry : segmentAttributes
+                        .entrySet()) {
+                    SegmentAttributeValue segmentAttributesValue = segmentAttributesEntry
+                            .getValue();
+                    if (segmentAttributesValue != null) {
+                        jsonWriter.name(segmentAttributesEntry.getKey());
+                        SegmentAttributeValueJsonMarshaller.getInstance().marshall(
+                                segmentAttributesValue, jsonWriter);
+                    }
+                }
+                jsonWriter.endObject();
             }
 
             jsonWriter.endObject();

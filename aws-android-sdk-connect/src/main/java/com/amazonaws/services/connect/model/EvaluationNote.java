@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,9 +27,18 @@ public class EvaluationNote implements Serializable {
      * <p>
      * The note for an item (section or question) in a contact evaluation.
      * </p>
+     * <note>
+     * <p>
+     * Even though a note in an evaluation can have up to 3072 chars, there is
+     * also a limit on the total number of chars for all the notes in the
+     * evaluation combined. Assuming there are N questions in the evaluation
+     * being submitted, then the max char limit for all notes combined is N x
+     * 1024.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1024<br/>
+     * <b>Length: </b>0 - 3072<br/>
      */
     private String value;
 
@@ -37,14 +46,32 @@ public class EvaluationNote implements Serializable {
      * <p>
      * The note for an item (section or question) in a contact evaluation.
      * </p>
+     * <note>
+     * <p>
+     * Even though a note in an evaluation can have up to 3072 chars, there is
+     * also a limit on the total number of chars for all the notes in the
+     * evaluation combined. Assuming there are N questions in the evaluation
+     * being submitted, then the max char limit for all notes combined is N x
+     * 1024.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1024<br/>
+     * <b>Length: </b>0 - 3072<br/>
      *
      * @return <p>
      *         The note for an item (section or question) in a contact
      *         evaluation.
      *         </p>
+     *         <note>
+     *         <p>
+     *         Even though a note in an evaluation can have up to 3072 chars,
+     *         there is also a limit on the total number of chars for all the
+     *         notes in the evaluation combined. Assuming there are N questions
+     *         in the evaluation being submitted, then the max char limit for
+     *         all notes combined is N x 1024.
+     *         </p>
+     *         </note>
      */
     public String getValue() {
         return value;
@@ -54,14 +81,32 @@ public class EvaluationNote implements Serializable {
      * <p>
      * The note for an item (section or question) in a contact evaluation.
      * </p>
+     * <note>
+     * <p>
+     * Even though a note in an evaluation can have up to 3072 chars, there is
+     * also a limit on the total number of chars for all the notes in the
+     * evaluation combined. Assuming there are N questions in the evaluation
+     * being submitted, then the max char limit for all notes combined is N x
+     * 1024.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1024<br/>
+     * <b>Length: </b>0 - 3072<br/>
      *
      * @param value <p>
      *            The note for an item (section or question) in a contact
      *            evaluation.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Even though a note in an evaluation can have up to 3072 chars,
+     *            there is also a limit on the total number of chars for all the
+     *            notes in the evaluation combined. Assuming there are N
+     *            questions in the evaluation being submitted, then the max char
+     *            limit for all notes combined is N x 1024.
+     *            </p>
+     *            </note>
      */
     public void setValue(String value) {
         this.value = value;
@@ -71,17 +116,35 @@ public class EvaluationNote implements Serializable {
      * <p>
      * The note for an item (section or question) in a contact evaluation.
      * </p>
+     * <note>
+     * <p>
+     * Even though a note in an evaluation can have up to 3072 chars, there is
+     * also a limit on the total number of chars for all the notes in the
+     * evaluation combined. Assuming there are N questions in the evaluation
+     * being submitted, then the max char limit for all notes combined is N x
+     * 1024.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1024<br/>
+     * <b>Length: </b>0 - 3072<br/>
      *
      * @param value <p>
      *            The note for an item (section or question) in a contact
      *            evaluation.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Even though a note in an evaluation can have up to 3072 chars,
+     *            there is also a limit on the total number of chars for all the
+     *            notes in the evaluation combined. Assuming there are N
+     *            questions in the evaluation being submitted, then the max char
+     *            limit for all notes combined is N x 1024.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

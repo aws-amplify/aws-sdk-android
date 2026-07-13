@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -56,7 +56,7 @@ public class SearchQueuesRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 100<br/>
+     * <b>Range: </b>1 - 500<br/>
      */
     private Integer maxResults;
 
@@ -228,7 +228,7 @@ public class SearchQueuesRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 100<br/>
+     * <b>Range: </b>1 - 500<br/>
      *
      * @return <p>
      *         The maximum number of results to return per page.
@@ -244,7 +244,7 @@ public class SearchQueuesRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 100<br/>
+     * <b>Range: </b>1 - 500<br/>
      *
      * @param maxResults <p>
      *            The maximum number of results to return per page.
@@ -263,7 +263,7 @@ public class SearchQueuesRequest extends AmazonWebServiceRequest implements Seri
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 100<br/>
+     * <b>Range: </b>1 - 500<br/>
      *
      * @param maxResults <p>
      *            The maximum number of results to return per page.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -47,7 +47,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      */
     private String integrationType;
 
@@ -94,14 +95,14 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SALESFORCE, ZENDESK
+     * <b>Allowed Values: </b>SALESFORCE, ZENDESK, CASES
      */
     private String sourceType;
 
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -187,7 +188,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @return <p>
      *         The type of information to be ingested.
@@ -205,7 +207,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The type of information to be ingested.
@@ -226,7 +229,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The type of information to be ingested.
@@ -247,7 +251,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The type of information to be ingested.
@@ -268,7 +273,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The type of information to be ingested.
@@ -494,7 +500,7 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SALESFORCE, ZENDESK
+     * <b>Allowed Values: </b>SALESFORCE, ZENDESK, CASES
      *
      * @return <p>
      *         The type of the data source. This field is only required for the
@@ -513,7 +519,7 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SALESFORCE, ZENDESK
+     * <b>Allowed Values: </b>SALESFORCE, ZENDESK, CASES
      *
      * @param sourceType <p>
      *            The type of the data source. This field is only required for
@@ -535,7 +541,7 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SALESFORCE, ZENDESK
+     * <b>Allowed Values: </b>SALESFORCE, ZENDESK, CASES
      *
      * @param sourceType <p>
      *            The type of the data source. This field is only required for
@@ -557,7 +563,7 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SALESFORCE, ZENDESK
+     * <b>Allowed Values: </b>SALESFORCE, ZENDESK, CASES
      *
      * @param sourceType <p>
      *            The type of the data source. This field is only required for
@@ -579,7 +585,7 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SALESFORCE, ZENDESK
+     * <b>Allowed Values: </b>SALESFORCE, ZENDESK, CASES
      *
      * @param sourceType <p>
      *            The type of the data source. This field is only required for
@@ -597,12 +603,12 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource. For example, { "tags": {"key1":"value1",
+     *         resource. For example, { "Tags": {"key1":"value1",
      *         "key2":"value2"} }.
      *         </p>
      */
@@ -613,12 +619,12 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      */
@@ -629,7 +635,7 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -637,7 +643,7 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -651,7 +657,7 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -64,6 +64,11 @@ public class ClaimPhoneNumberRequestMarshaller implements
                 String targetArn = claimPhoneNumberRequest.getTargetArn();
                 jsonWriter.name("TargetArn");
                 jsonWriter.value(targetArn);
+            }
+            if (claimPhoneNumberRequest.getInstanceId() != null) {
+                String instanceId = claimPhoneNumberRequest.getInstanceId();
+                jsonWriter.name("InstanceId");
+                jsonWriter.value(instanceId);
             }
             if (claimPhoneNumberRequest.getPhoneNumber() != null) {
                 String phoneNumber = claimPhoneNumberRequest.getPhoneNumber();

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,6 +24,19 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Creates a traffic distribution group given an Amazon Connect instance that
  * has been replicated.
  * </p>
+ * <note>
+ * <p>
+ * The <code>SignInConfig</code> distribution is available only on a default
+ * <code>TrafficDistributionGroup</code> (see the <code>IsDefault</code>
+ * parameter in the <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+ * >TrafficDistributionGroup</a> data type). If you call
+ * <code>UpdateTrafficDistribution</code> with a modified
+ * <code>SignInConfig</code> and a non-default
+ * <code>TrafficDistributionGroup</code>, an
+ * <code>InvalidRequestException</code> is returned.
+ * </p>
+ * </note>
  * <p>
  * For more information about creating traffic distribution groups, see <a href=
  * "https://docs.aws.amazon.com/connect/latest/adminguide/setup-traffic-distribution-groups.html"
@@ -88,7 +101,7 @@ public class CreateTrafficDistributionGroupRequest extends AmazonWebServiceReque
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -369,12 +382,12 @@ public class CreateTrafficDistributionGroupRequest extends AmazonWebServiceReque
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource. For example, { "tags": {"key1":"value1",
+     *         resource. For example, { "Tags": {"key1":"value1",
      *         "key2":"value2"} }.
      *         </p>
      */
@@ -385,12 +398,12 @@ public class CreateTrafficDistributionGroupRequest extends AmazonWebServiceReque
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      */
@@ -401,7 +414,7 @@ public class CreateTrafficDistributionGroupRequest extends AmazonWebServiceReque
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -409,7 +422,7 @@ public class CreateTrafficDistributionGroupRequest extends AmazonWebServiceReque
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -423,7 +436,7 @@ public class CreateTrafficDistributionGroupRequest extends AmazonWebServiceReque
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a

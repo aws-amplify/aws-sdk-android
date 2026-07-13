@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,7 +32,8 @@ public enum InstanceAttributeType {
     EARLY_MEDIA("EARLY_MEDIA"),
     MULTI_PARTY_CONFERENCE("MULTI_PARTY_CONFERENCE"),
     HIGH_VOLUME_OUTBOUND("HIGH_VOLUME_OUTBOUND"),
-    ENHANCED_CONTACT_MONITORING("ENHANCED_CONTACT_MONITORING");
+    ENHANCED_CONTACT_MONITORING("ENHANCED_CONTACT_MONITORING"),
+    ENHANCED_CHAT_MONITORING("ENHANCED_CHAT_MONITORING");
 
     private String value;
 
@@ -58,6 +59,7 @@ public enum InstanceAttributeType {
         enumMap.put("MULTI_PARTY_CONFERENCE", MULTI_PARTY_CONFERENCE);
         enumMap.put("HIGH_VOLUME_OUTBOUND", HIGH_VOLUME_OUTBOUND);
         enumMap.put("ENHANCED_CONTACT_MONITORING", ENHANCED_CONTACT_MONITORING);
+        enumMap.put("ENHANCED_CHAT_MONITORING", ENHANCED_CHAT_MONITORING);
     }
 
     /**

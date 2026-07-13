@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -91,6 +91,26 @@ class ContactJsonMarshaller {
             jsonWriter.name("LastUpdateTimestamp");
             jsonWriter.value(lastUpdateTimestamp);
         }
+        if (contact.getLastPausedTimestamp() != null) {
+            java.util.Date lastPausedTimestamp = contact.getLastPausedTimestamp();
+            jsonWriter.name("LastPausedTimestamp");
+            jsonWriter.value(lastPausedTimestamp);
+        }
+        if (contact.getLastResumedTimestamp() != null) {
+            java.util.Date lastResumedTimestamp = contact.getLastResumedTimestamp();
+            jsonWriter.name("LastResumedTimestamp");
+            jsonWriter.value(lastResumedTimestamp);
+        }
+        if (contact.getTotalPauseCount() != null) {
+            Integer totalPauseCount = contact.getTotalPauseCount();
+            jsonWriter.name("TotalPauseCount");
+            jsonWriter.value(totalPauseCount);
+        }
+        if (contact.getTotalPauseDurationInSeconds() != null) {
+            Integer totalPauseDurationInSeconds = contact.getTotalPauseDurationInSeconds();
+            jsonWriter.name("TotalPauseDurationInSeconds");
+            jsonWriter.value(totalPauseDurationInSeconds);
+        }
         if (contact.getScheduledTimestamp() != null) {
             java.util.Date scheduledTimestamp = contact.getScheduledTimestamp();
             jsonWriter.name("ScheduledTimestamp");
@@ -105,6 +125,86 @@ class ContactJsonMarshaller {
             WisdomInfo wisdomInfo = contact.getWisdomInfo();
             jsonWriter.name("WisdomInfo");
             WisdomInfoJsonMarshaller.getInstance().marshall(wisdomInfo, jsonWriter);
+        }
+        if (contact.getQueueTimeAdjustmentSeconds() != null) {
+            Integer queueTimeAdjustmentSeconds = contact.getQueueTimeAdjustmentSeconds();
+            jsonWriter.name("QueueTimeAdjustmentSeconds");
+            jsonWriter.value(queueTimeAdjustmentSeconds);
+        }
+        if (contact.getQueuePriority() != null) {
+            Long queuePriority = contact.getQueuePriority();
+            jsonWriter.name("QueuePriority");
+            jsonWriter.value(queuePriority);
+        }
+        if (contact.getTags() != null) {
+            java.util.Map<String, String> tags = contact.getTags();
+            jsonWriter.name("Tags");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
+                String tagsValue = tagsEntry.getValue();
+                if (tagsValue != null) {
+                    jsonWriter.name(tagsEntry.getKey());
+                    jsonWriter.value(tagsValue);
+                }
+            }
+            jsonWriter.endObject();
+        }
+        if (contact.getConnectedToSystemTimestamp() != null) {
+            java.util.Date connectedToSystemTimestamp = contact.getConnectedToSystemTimestamp();
+            jsonWriter.name("ConnectedToSystemTimestamp");
+            jsonWriter.value(connectedToSystemTimestamp);
+        }
+        if (contact.getRoutingCriteria() != null) {
+            RoutingCriteria routingCriteria = contact.getRoutingCriteria();
+            jsonWriter.name("RoutingCriteria");
+            RoutingCriteriaJsonMarshaller.getInstance().marshall(routingCriteria, jsonWriter);
+        }
+        if (contact.getCustomer() != null) {
+            Customer customer = contact.getCustomer();
+            jsonWriter.name("Customer");
+            CustomerJsonMarshaller.getInstance().marshall(customer, jsonWriter);
+        }
+        if (contact.getCampaign() != null) {
+            Campaign campaign = contact.getCampaign();
+            jsonWriter.name("Campaign");
+            CampaignJsonMarshaller.getInstance().marshall(campaign, jsonWriter);
+        }
+        if (contact.getAnsweringMachineDetectionStatus() != null) {
+            String answeringMachineDetectionStatus = contact.getAnsweringMachineDetectionStatus();
+            jsonWriter.name("AnsweringMachineDetectionStatus");
+            jsonWriter.value(answeringMachineDetectionStatus);
+        }
+        if (contact.getCustomerVoiceActivity() != null) {
+            CustomerVoiceActivity customerVoiceActivity = contact.getCustomerVoiceActivity();
+            jsonWriter.name("CustomerVoiceActivity");
+            CustomerVoiceActivityJsonMarshaller.getInstance().marshall(customerVoiceActivity,
+                    jsonWriter);
+        }
+        if (contact.getQualityMetrics() != null) {
+            QualityMetrics qualityMetrics = contact.getQualityMetrics();
+            jsonWriter.name("QualityMetrics");
+            QualityMetricsJsonMarshaller.getInstance().marshall(qualityMetrics, jsonWriter);
+        }
+        if (contact.getDisconnectDetails() != null) {
+            DisconnectDetails disconnectDetails = contact.getDisconnectDetails();
+            jsonWriter.name("DisconnectDetails");
+            DisconnectDetailsJsonMarshaller.getInstance().marshall(disconnectDetails, jsonWriter);
+        }
+        if (contact.getSegmentAttributes() != null) {
+            java.util.Map<String, SegmentAttributeValue> segmentAttributes = contact
+                    .getSegmentAttributes();
+            jsonWriter.name("SegmentAttributes");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, SegmentAttributeValue> segmentAttributesEntry : segmentAttributes
+                    .entrySet()) {
+                SegmentAttributeValue segmentAttributesValue = segmentAttributesEntry.getValue();
+                if (segmentAttributesValue != null) {
+                    jsonWriter.name(segmentAttributesEntry.getKey());
+                    SegmentAttributeValueJsonMarshaller.getInstance().marshall(
+                            segmentAttributesValue, jsonWriter);
+                }
+            }
+            jsonWriter.endObject();
         }
         jsonWriter.endObject();
     }

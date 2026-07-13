@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -80,6 +80,19 @@ class InstanceJsonMarshaller {
             String instanceAccessUrl = instance.getInstanceAccessUrl();
             jsonWriter.name("InstanceAccessUrl");
             jsonWriter.value(instanceAccessUrl);
+        }
+        if (instance.getTags() != null) {
+            java.util.Map<String, String> tags = instance.getTags();
+            jsonWriter.name("Tags");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
+                String tagsValue = tagsEntry.getValue();
+                if (tagsValue != null) {
+                    jsonWriter.name(tagsEntry.getKey());
+                    jsonWriter.value(tagsValue);
+                }
+            }
+            jsonWriter.endObject();
         }
         jsonWriter.endObject();
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -46,6 +46,16 @@ public class Dimensions implements Serializable {
      * </p>
      */
     private RoutingProfileReference routingProfile;
+
+    /**
+     * <p>
+     * The expression of a step in a routing criteria.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 3000<br/>
+     */
+    private String routingStepExpression;
 
     /**
      * <p>
@@ -235,6 +245,60 @@ public class Dimensions implements Serializable {
     }
 
     /**
+     * <p>
+     * The expression of a step in a routing criteria.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 3000<br/>
+     *
+     * @return <p>
+     *         The expression of a step in a routing criteria.
+     *         </p>
+     */
+    public String getRoutingStepExpression() {
+        return routingStepExpression;
+    }
+
+    /**
+     * <p>
+     * The expression of a step in a routing criteria.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 3000<br/>
+     *
+     * @param routingStepExpression <p>
+     *            The expression of a step in a routing criteria.
+     *            </p>
+     */
+    public void setRoutingStepExpression(String routingStepExpression) {
+        this.routingStepExpression = routingStepExpression;
+    }
+
+    /**
+     * <p>
+     * The expression of a step in a routing criteria.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 3000<br/>
+     *
+     * @param routingStepExpression <p>
+     *            The expression of a step in a routing criteria.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Dimensions withRoutingStepExpression(String routingStepExpression) {
+        this.routingStepExpression = routingStepExpression;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -250,7 +314,9 @@ public class Dimensions implements Serializable {
         if (getChannel() != null)
             sb.append("Channel: " + getChannel() + ",");
         if (getRoutingProfile() != null)
-            sb.append("RoutingProfile: " + getRoutingProfile());
+            sb.append("RoutingProfile: " + getRoutingProfile() + ",");
+        if (getRoutingStepExpression() != null)
+            sb.append("RoutingStepExpression: " + getRoutingStepExpression());
         sb.append("}");
         return sb.toString();
     }
@@ -264,6 +330,9 @@ public class Dimensions implements Serializable {
         hashCode = prime * hashCode + ((getChannel() == null) ? 0 : getChannel().hashCode());
         hashCode = prime * hashCode
                 + ((getRoutingProfile() == null) ? 0 : getRoutingProfile().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getRoutingStepExpression() == null) ? 0 : getRoutingStepExpression().hashCode());
         return hashCode;
     }
 
@@ -290,6 +359,11 @@ public class Dimensions implements Serializable {
             return false;
         if (other.getRoutingProfile() != null
                 && other.getRoutingProfile().equals(this.getRoutingProfile()) == false)
+            return false;
+        if (other.getRoutingStepExpression() == null ^ this.getRoutingStepExpression() == null)
+            return false;
+        if (other.getRoutingStepExpression() != null
+                && other.getRoutingStepExpression().equals(this.getRoutingStepExpression()) == false)
             return false;
         return true;
     }

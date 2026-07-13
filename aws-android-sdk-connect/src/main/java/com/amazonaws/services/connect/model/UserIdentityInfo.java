@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,6 +21,15 @@ import java.io.Serializable;
  * <p>
  * Contains information about the identity of a user.
  * </p>
+ * <note>
+ * <p>
+ * For Amazon Connect instances that are created with the
+ * <code>EXISTING_DIRECTORY</code> identity management type,
+ * <code>FirstName</code>, <code>LastName</code>, and <code>Email</code> cannot
+ * be updated from within Amazon Connect because they are managed by the
+ * directory.
+ * </p>
+ * </note>
  */
 public class UserIdentityInfo implements Serializable {
     /**

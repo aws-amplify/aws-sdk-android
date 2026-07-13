@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -96,6 +96,32 @@ class RoutingProfileJsonMarshaller {
             String agentAvailabilityTimer = routingProfile.getAgentAvailabilityTimer();
             jsonWriter.name("AgentAvailabilityTimer");
             jsonWriter.value(agentAvailabilityTimer);
+        }
+        if (routingProfile.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = routingProfile.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (routingProfile.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = routingProfile.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
+        }
+        if (routingProfile.getIsDefault() != null) {
+            Boolean isDefault = routingProfile.getIsDefault();
+            jsonWriter.name("IsDefault");
+            jsonWriter.value(isDefault);
+        }
+        if (routingProfile.getAssociatedQueueIds() != null) {
+            java.util.List<String> associatedQueueIds = routingProfile.getAssociatedQueueIds();
+            jsonWriter.name("AssociatedQueueIds");
+            jsonWriter.beginArray();
+            for (String associatedQueueIdsItem : associatedQueueIds) {
+                if (associatedQueueIdsItem != null) {
+                    jsonWriter.value(associatedQueueIdsItem);
+                }
+            }
+            jsonWriter.endArray();
         }
         jsonWriter.endObject();
     }

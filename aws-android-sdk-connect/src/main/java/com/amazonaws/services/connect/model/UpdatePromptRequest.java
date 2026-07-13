@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -70,12 +70,16 @@ public class UpdatePromptRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The URI for the S3 bucket where the prompt is stored.
+     * The URI for the S3 bucket where the prompt is stored. You can provide S3
+     * pre-signed URLs returned by the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_GetPromptFile.html"
+     * >GetPromptFile</a> API instead of providing S3 URIs.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 512<br/>
-     * <b>Pattern: </b>s3://\S+/.+<br/>
+     * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern:
+     * </b>s3://\S+/.+|https://\\S+\\.s3\\.\\S+\\.amazonaws\\.com/\\S+<br/>
      */
     private String s3Uri;
 
@@ -317,15 +321,22 @@ public class UpdatePromptRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The URI for the S3 bucket where the prompt is stored.
+     * The URI for the S3 bucket where the prompt is stored. You can provide S3
+     * pre-signed URLs returned by the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_GetPromptFile.html"
+     * >GetPromptFile</a> API instead of providing S3 URIs.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 512<br/>
-     * <b>Pattern: </b>s3://\S+/.+<br/>
+     * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern:
+     * </b>s3://\S+/.+|https://\\S+\\.s3\\.\\S+\\.amazonaws\\.com/\\S+<br/>
      *
      * @return <p>
-     *         The URI for the S3 bucket where the prompt is stored.
+     *         The URI for the S3 bucket where the prompt is stored. You can
+     *         provide S3 pre-signed URLs returned by the <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_GetPromptFile.html"
+     *         >GetPromptFile</a> API instead of providing S3 URIs.
      *         </p>
      */
     public String getS3Uri() {
@@ -334,15 +345,22 @@ public class UpdatePromptRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The URI for the S3 bucket where the prompt is stored.
+     * The URI for the S3 bucket where the prompt is stored. You can provide S3
+     * pre-signed URLs returned by the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_GetPromptFile.html"
+     * >GetPromptFile</a> API instead of providing S3 URIs.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 512<br/>
-     * <b>Pattern: </b>s3://\S+/.+<br/>
+     * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern:
+     * </b>s3://\S+/.+|https://\\S+\\.s3\\.\\S+\\.amazonaws\\.com/\\S+<br/>
      *
      * @param s3Uri <p>
-     *            The URI for the S3 bucket where the prompt is stored.
+     *            The URI for the S3 bucket where the prompt is stored. You can
+     *            provide S3 pre-signed URLs returned by the <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_GetPromptFile.html"
+     *            >GetPromptFile</a> API instead of providing S3 URIs.
      *            </p>
      */
     public void setS3Uri(String s3Uri) {
@@ -351,18 +369,25 @@ public class UpdatePromptRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The URI for the S3 bucket where the prompt is stored.
+     * The URI for the S3 bucket where the prompt is stored. You can provide S3
+     * pre-signed URLs returned by the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_GetPromptFile.html"
+     * >GetPromptFile</a> API instead of providing S3 URIs.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 512<br/>
-     * <b>Pattern: </b>s3://\S+/.+<br/>
+     * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern:
+     * </b>s3://\S+/.+|https://\\S+\\.s3\\.\\S+\\.amazonaws\\.com/\\S+<br/>
      *
      * @param s3Uri <p>
-     *            The URI for the S3 bucket where the prompt is stored.
+     *            The URI for the S3 bucket where the prompt is stored. You can
+     *            provide S3 pre-signed URLs returned by the <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_GetPromptFile.html"
+     *            >GetPromptFile</a> API instead of providing S3 URIs.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
