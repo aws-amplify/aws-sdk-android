@@ -100,7 +100,7 @@ public class GetDocumentTextDetectionRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>.*\S.*<br/>
      */
     private String nextToken;
@@ -257,7 +257,7 @@ public class GetDocumentTextDetectionRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @return <p>
@@ -279,7 +279,7 @@ public class GetDocumentTextDetectionRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param nextToken <p>
@@ -304,7 +304,7 @@ public class GetDocumentTextDetectionRequest extends AmazonWebServiceRequest imp
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param nextToken <p>

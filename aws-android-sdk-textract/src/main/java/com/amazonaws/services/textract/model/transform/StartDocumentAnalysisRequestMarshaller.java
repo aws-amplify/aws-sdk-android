@@ -113,6 +113,11 @@ public class StartDocumentAnalysisRequestMarshaller implements
                 jsonWriter.name("QueriesConfig");
                 QueriesConfigJsonMarshaller.getInstance().marshall(queriesConfig, jsonWriter);
             }
+            if (startDocumentAnalysisRequest.getAdaptersConfig() != null) {
+                AdaptersConfig adaptersConfig = startDocumentAnalysisRequest.getAdaptersConfig();
+                jsonWriter.name("AdaptersConfig");
+                AdaptersConfigJsonMarshaller.getInstance().marshall(adaptersConfig, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
