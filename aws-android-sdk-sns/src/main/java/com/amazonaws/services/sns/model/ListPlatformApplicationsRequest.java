@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,24 +40,25 @@ public class ListPlatformApplicationsRequest extends AmazonWebServiceRequest imp
         Serializable {
     /**
      * <p>
-     * NextToken string is used when calling ListPlatformApplications action to
-     * retrieve additional records that are available after the first page
-     * results.
+     * <code>NextToken</code> string is used when calling
+     * <code>ListPlatformApplications</code> action to retrieve additional
+     * records that are available after the first page results.
      * </p>
      */
     private String nextToken;
 
     /**
      * <p>
-     * NextToken string is used when calling ListPlatformApplications action to
-     * retrieve additional records that are available after the first page
-     * results.
+     * <code>NextToken</code> string is used when calling
+     * <code>ListPlatformApplications</code> action to retrieve additional
+     * records that are available after the first page results.
      * </p>
      *
      * @return <p>
-     *         NextToken string is used when calling ListPlatformApplications
-     *         action to retrieve additional records that are available after
-     *         the first page results.
+     *         <code>NextToken</code> string is used when calling
+     *         <code>ListPlatformApplications</code> action to retrieve
+     *         additional records that are available after the first page
+     *         results.
      *         </p>
      */
     public String getNextToken() {
@@ -66,15 +67,16 @@ public class ListPlatformApplicationsRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * NextToken string is used when calling ListPlatformApplications action to
-     * retrieve additional records that are available after the first page
-     * results.
+     * <code>NextToken</code> string is used when calling
+     * <code>ListPlatformApplications</code> action to retrieve additional
+     * records that are available after the first page results.
      * </p>
      *
      * @param nextToken <p>
-     *            NextToken string is used when calling ListPlatformApplications
-     *            action to retrieve additional records that are available after
-     *            the first page results.
+     *            <code>NextToken</code> string is used when calling
+     *            <code>ListPlatformApplications</code> action to retrieve
+     *            additional records that are available after the first page
+     *            results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -83,18 +85,19 @@ public class ListPlatformApplicationsRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * NextToken string is used when calling ListPlatformApplications action to
-     * retrieve additional records that are available after the first page
-     * results.
+     * <code>NextToken</code> string is used when calling
+     * <code>ListPlatformApplications</code> action to retrieve additional
+     * records that are available after the first page results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            NextToken string is used when calling ListPlatformApplications
-     *            action to retrieve additional records that are available after
-     *            the first page results.
+     *            <code>NextToken</code> string is used when calling
+     *            <code>ListPlatformApplications</code> action to retrieve
+     *            additional records that are available after the first page
+     *            results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

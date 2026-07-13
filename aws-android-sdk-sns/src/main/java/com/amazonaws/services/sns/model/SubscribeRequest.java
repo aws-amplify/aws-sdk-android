@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * You call the <code>ConfirmSubscription</code> action with the token from the
- * subscription response. Confirmation tokens are valid for three days.
+ * subscription response. Confirmation tokens are valid for two days.
  * </p>
  * <p>
  * This action is throttled at 100 transactions per second (TPS).
@@ -224,8 +224,8 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * </ul>
      * <p>
-     * The following attribute applies only to Amazon Kinesis Data Firehose
-     * delivery stream subscriptions:
+     * The following attribute applies only to Amazon Data Firehose delivery
+     * stream subscriptions:
      * </p>
      * <ul>
      * <li>
@@ -236,7 +236,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * Permission to write to the Kinesis Data Firehose delivery stream
+     * Permission to write to the Firehose delivery stream
      * </p>
      * </li>
      * <li>
@@ -246,13 +246,58 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * </ul>
      * <p>
-     * Specifying a valid ARN for this attribute is required for Kinesis Data
-     * Firehose delivery stream subscriptions. For more information, see <a
-     * href=
+     * Specifying a valid ARN for this attribute is required for Firehose
+     * delivery stream subscriptions. For more information, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
-     * SNS Developer Guide</i>.
+     * >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attributes apply only to <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     * >FIFO topics</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ReplayPolicy</code> – Adds or updates an inline policy document for
+     * a subscription to replay messages stored in the specified Amazon SNS
+     * topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ReplayStatus</code> – Retrieves the status of the subscription
+     * message replay, which can be one of the following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>Completed</code> – The replay has successfully redelivered all
+     * messages, and is now delivering newly published messages. If an ending
+     * point was specified in the <code>ReplayPolicy</code> then the
+     * subscription will no longer receive newly published messages.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>In progress</code> – The replay is currently replaying the selected
+     * messages.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Failed</code> – The replay was unable to complete.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Pending</code> – The default state while the replay initiates.
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * </ul>
      */
@@ -1273,8 +1318,8 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * </ul>
      * <p>
-     * The following attribute applies only to Amazon Kinesis Data Firehose
-     * delivery stream subscriptions:
+     * The following attribute applies only to Amazon Data Firehose delivery
+     * stream subscriptions:
      * </p>
      * <ul>
      * <li>
@@ -1285,7 +1330,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * Permission to write to the Kinesis Data Firehose delivery stream
+     * Permission to write to the Firehose delivery stream
      * </p>
      * </li>
      * <li>
@@ -1295,13 +1340,58 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * </ul>
      * <p>
-     * Specifying a valid ARN for this attribute is required for Kinesis Data
-     * Firehose delivery stream subscriptions. For more information, see <a
-     * href=
+     * Specifying a valid ARN for this attribute is required for Firehose
+     * delivery stream subscriptions. For more information, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
-     * SNS Developer Guide</i>.
+     * >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attributes apply only to <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     * >FIFO topics</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ReplayPolicy</code> – Adds or updates an inline policy document for
+     * a subscription to replay messages stored in the specified Amazon SNS
+     * topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ReplayStatus</code> – Retrieves the status of the subscription
+     * message replay, which can be one of the following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>Completed</code> – The replay has successfully redelivered all
+     * messages, and is now delivering newly published messages. If an ending
+     * point was specified in the <code>ReplayPolicy</code> then the
+     * subscription will no longer receive newly published messages.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>In progress</code> – The replay is currently replaying the selected
+     * messages.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Failed</code> – The replay was unable to complete.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Pending</code> – The default state while the replay initiates.
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * </ul>
      *
@@ -1369,8 +1459,8 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         </li>
      *         </ul>
      *         <p>
-     *         The following attribute applies only to Amazon Kinesis Data
-     *         Firehose delivery stream subscriptions:
+     *         The following attribute applies only to Amazon Data Firehose
+     *         delivery stream subscriptions:
      *         </p>
      *         <ul>
      *         <li>
@@ -1381,7 +1471,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         <ul>
      *         <li>
      *         <p>
-     *         Permission to write to the Kinesis Data Firehose delivery stream
+     *         Permission to write to the Firehose delivery stream
      *         </p>
      *         </li>
      *         <li>
@@ -1391,13 +1481,61 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         </li>
      *         </ul>
      *         <p>
-     *         Specifying a valid ARN for this attribute is required for Kinesis
-     *         Data Firehose delivery stream subscriptions. For more
-     *         information, see <a href=
+     *         Specifying a valid ARN for this attribute is required for
+     *         Firehose delivery stream subscriptions. For more information, see
+     *         <a href=
      *         "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     *         >Fanout to Kinesis Data Firehose delivery streams</a> in the
-     *         <i>Amazon SNS Developer Guide</i>.
+     *         >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS
+     *         Developer Guide</i>.
      *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         The following attributes apply only to <a href=
+     *         "https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     *         >FIFO topics</a>:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>ReplayPolicy</code> – Adds or updates an inline policy
+     *         document for a subscription to replay messages stored in the
+     *         specified Amazon SNS topic.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ReplayStatus</code> – Retrieves the status of the
+     *         subscription message replay, which can be one of the following:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>Completed</code> – The replay has successfully redelivered
+     *         all messages, and is now delivering newly published messages. If
+     *         an ending point was specified in the <code>ReplayPolicy</code>
+     *         then the subscription will no longer receive newly published
+     *         messages.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>In progress</code> – The replay is currently replaying the
+     *         selected messages.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>Failed</code> – The replay was unable to complete.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>Pending</code> – The default state while the replay
+     *         initiates.
+     *         </p>
+     *         </li>
+     *         </ul>
      *         </li>
      *         </ul>
      */
@@ -1466,8 +1604,8 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * </ul>
      * <p>
-     * The following attribute applies only to Amazon Kinesis Data Firehose
-     * delivery stream subscriptions:
+     * The following attribute applies only to Amazon Data Firehose delivery
+     * stream subscriptions:
      * </p>
      * <ul>
      * <li>
@@ -1478,7 +1616,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * Permission to write to the Kinesis Data Firehose delivery stream
+     * Permission to write to the Firehose delivery stream
      * </p>
      * </li>
      * <li>
@@ -1488,13 +1626,58 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * </ul>
      * <p>
-     * Specifying a valid ARN for this attribute is required for Kinesis Data
-     * Firehose delivery stream subscriptions. For more information, see <a
-     * href=
+     * Specifying a valid ARN for this attribute is required for Firehose
+     * delivery stream subscriptions. For more information, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
-     * SNS Developer Guide</i>.
+     * >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attributes apply only to <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     * >FIFO topics</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ReplayPolicy</code> – Adds or updates an inline policy document for
+     * a subscription to replay messages stored in the specified Amazon SNS
+     * topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ReplayStatus</code> – Retrieves the status of the subscription
+     * message replay, which can be one of the following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>Completed</code> – The replay has successfully redelivered all
+     * messages, and is now delivering newly published messages. If an ending
+     * point was specified in the <code>ReplayPolicy</code> then the
+     * subscription will no longer receive newly published messages.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>In progress</code> – The replay is currently replaying the selected
+     * messages.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Failed</code> – The replay was unable to complete.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Pending</code> – The default state while the replay initiates.
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * </ul>
      *
@@ -1563,8 +1746,8 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            </li>
      *            </ul>
      *            <p>
-     *            The following attribute applies only to Amazon Kinesis Data
-     *            Firehose delivery stream subscriptions:
+     *            The following attribute applies only to Amazon Data Firehose
+     *            delivery stream subscriptions:
      *            </p>
      *            <ul>
      *            <li>
@@ -1575,8 +1758,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <ul>
      *            <li>
      *            <p>
-     *            Permission to write to the Kinesis Data Firehose delivery
-     *            stream
+     *            Permission to write to the Firehose delivery stream
      *            </p>
      *            </li>
      *            <li>
@@ -1587,12 +1769,61 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            </ul>
      *            <p>
      *            Specifying a valid ARN for this attribute is required for
-     *            Kinesis Data Firehose delivery stream subscriptions. For more
-     *            information, see <a href=
+     *            Firehose delivery stream subscriptions. For more information,
+     *            see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     *            >Fanout to Kinesis Data Firehose delivery streams</a> in the
-     *            <i>Amazon SNS Developer Guide</i>.
+     *            >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS
+     *            Developer Guide</i>.
      *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The following attributes apply only to <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     *            >FIFO topics</a>:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>ReplayPolicy</code> – Adds or updates an inline policy
+     *            document for a subscription to replay messages stored in the
+     *            specified Amazon SNS topic.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ReplayStatus</code> – Retrieves the status of the
+     *            subscription message replay, which can be one of the
+     *            following:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>Completed</code> – The replay has successfully
+     *            redelivered all messages, and is now delivering newly
+     *            published messages. If an ending point was specified in the
+     *            <code>ReplayPolicy</code> then the subscription will no longer
+     *            receive newly published messages.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>In progress</code> – The replay is currently replaying
+     *            the selected messages.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Failed</code> – The replay was unable to complete.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Pending</code> – The default state while the replay
+     *            initiates.
+     *            </p>
+     *            </li>
+     *            </ul>
      *            </li>
      *            </ul>
      */
@@ -1661,8 +1892,8 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * </ul>
      * <p>
-     * The following attribute applies only to Amazon Kinesis Data Firehose
-     * delivery stream subscriptions:
+     * The following attribute applies only to Amazon Data Firehose delivery
+     * stream subscriptions:
      * </p>
      * <ul>
      * <li>
@@ -1673,7 +1904,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * Permission to write to the Kinesis Data Firehose delivery stream
+     * Permission to write to the Firehose delivery stream
      * </p>
      * </li>
      * <li>
@@ -1683,13 +1914,58 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * </ul>
      * <p>
-     * Specifying a valid ARN for this attribute is required for Kinesis Data
-     * Firehose delivery stream subscriptions. For more information, see <a
-     * href=
+     * Specifying a valid ARN for this attribute is required for Firehose
+     * delivery stream subscriptions. For more information, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
-     * SNS Developer Guide</i>.
+     * >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attributes apply only to <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     * >FIFO topics</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ReplayPolicy</code> – Adds or updates an inline policy document for
+     * a subscription to replay messages stored in the specified Amazon SNS
+     * topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ReplayStatus</code> – Retrieves the status of the subscription
+     * message replay, which can be one of the following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>Completed</code> – The replay has successfully redelivered all
+     * messages, and is now delivering newly published messages. If an ending
+     * point was specified in the <code>ReplayPolicy</code> then the
+     * subscription will no longer receive newly published messages.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>In progress</code> – The replay is currently replaying the selected
+     * messages.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Failed</code> – The replay was unable to complete.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Pending</code> – The default state while the replay initiates.
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * </ul>
      * <p>
@@ -1761,8 +2037,8 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            </li>
      *            </ul>
      *            <p>
-     *            The following attribute applies only to Amazon Kinesis Data
-     *            Firehose delivery stream subscriptions:
+     *            The following attribute applies only to Amazon Data Firehose
+     *            delivery stream subscriptions:
      *            </p>
      *            <ul>
      *            <li>
@@ -1773,8 +2049,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <ul>
      *            <li>
      *            <p>
-     *            Permission to write to the Kinesis Data Firehose delivery
-     *            stream
+     *            Permission to write to the Firehose delivery stream
      *            </p>
      *            </li>
      *            <li>
@@ -1785,12 +2060,61 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            </ul>
      *            <p>
      *            Specifying a valid ARN for this attribute is required for
-     *            Kinesis Data Firehose delivery stream subscriptions. For more
-     *            information, see <a href=
+     *            Firehose delivery stream subscriptions. For more information,
+     *            see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     *            >Fanout to Kinesis Data Firehose delivery streams</a> in the
-     *            <i>Amazon SNS Developer Guide</i>.
+     *            >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS
+     *            Developer Guide</i>.
      *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The following attributes apply only to <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     *            >FIFO topics</a>:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>ReplayPolicy</code> – Adds or updates an inline policy
+     *            document for a subscription to replay messages stored in the
+     *            specified Amazon SNS topic.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ReplayStatus</code> – Retrieves the status of the
+     *            subscription message replay, which can be one of the
+     *            following:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>Completed</code> – The replay has successfully
+     *            redelivered all messages, and is now delivering newly
+     *            published messages. If an ending point was specified in the
+     *            <code>ReplayPolicy</code> then the subscription will no longer
+     *            receive newly published messages.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>In progress</code> – The replay is currently replaying
+     *            the selected messages.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Failed</code> – The replay was unable to complete.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Pending</code> – The default state while the replay
+     *            initiates.
+     *            </p>
+     *            </li>
+     *            </ul>
      *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
@@ -1862,8 +2186,8 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * </ul>
      * <p>
-     * The following attribute applies only to Amazon Kinesis Data Firehose
-     * delivery stream subscriptions:
+     * The following attribute applies only to Amazon Data Firehose delivery
+     * stream subscriptions:
      * </p>
      * <ul>
      * <li>
@@ -1874,7 +2198,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * Permission to write to the Kinesis Data Firehose delivery stream
+     * Permission to write to the Firehose delivery stream
      * </p>
      * </li>
      * <li>
@@ -1884,13 +2208,58 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * </ul>
      * <p>
-     * Specifying a valid ARN for this attribute is required for Kinesis Data
-     * Firehose delivery stream subscriptions. For more information, see <a
-     * href=
+     * Specifying a valid ARN for this attribute is required for Firehose
+     * delivery stream subscriptions. For more information, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
-     * SNS Developer Guide</i>.
+     * >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attributes apply only to <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     * >FIFO topics</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ReplayPolicy</code> – Adds or updates an inline policy document for
+     * a subscription to replay messages stored in the specified Amazon SNS
+     * topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ReplayStatus</code> – Retrieves the status of the subscription
+     * message replay, which can be one of the following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>Completed</code> – The replay has successfully redelivered all
+     * messages, and is now delivering newly published messages. If an ending
+     * point was specified in the <code>ReplayPolicy</code> then the
+     * subscription will no longer receive newly published messages.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>In progress</code> – The replay is currently replaying the selected
+     * messages.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Failed</code> – The replay was unable to complete.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Pending</code> – The default state while the replay initiates.
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * </ul>
      * <p>

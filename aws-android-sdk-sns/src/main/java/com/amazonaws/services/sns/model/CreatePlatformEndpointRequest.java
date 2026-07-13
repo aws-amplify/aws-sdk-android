@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -46,8 +46,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * PlatformApplicationArn returned from CreatePlatformApplication is used to
-     * create a an endpoint.
+     * <code>PlatformApplicationArn</code> returned from
+     * CreatePlatformApplication is used to create a an endpoint.
      * </p>
      */
     private String platformApplicationArn;
@@ -76,20 +76,20 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      * <p>
      * For a list of attributes, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
-     * >SetEndpointAttributes</a>.
+     * > <code>SetEndpointAttributes</code> </a>.
      * </p>
      */
     private java.util.Map<String, String> attributes = new java.util.HashMap<String, String>();
 
     /**
      * <p>
-     * PlatformApplicationArn returned from CreatePlatformApplication is used to
-     * create a an endpoint.
+     * <code>PlatformApplicationArn</code> returned from
+     * CreatePlatformApplication is used to create a an endpoint.
      * </p>
      *
      * @return <p>
-     *         PlatformApplicationArn returned from CreatePlatformApplication is
-     *         used to create a an endpoint.
+     *         <code>PlatformApplicationArn</code> returned from
+     *         CreatePlatformApplication is used to create a an endpoint.
      *         </p>
      */
     public String getPlatformApplicationArn() {
@@ -98,13 +98,13 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * PlatformApplicationArn returned from CreatePlatformApplication is used to
-     * create a an endpoint.
+     * <code>PlatformApplicationArn</code> returned from
+     * CreatePlatformApplication is used to create a an endpoint.
      * </p>
      *
      * @param platformApplicationArn <p>
-     *            PlatformApplicationArn returned from CreatePlatformApplication
-     *            is used to create a an endpoint.
+     *            <code>PlatformApplicationArn</code> returned from
+     *            CreatePlatformApplication is used to create a an endpoint.
      *            </p>
      */
     public void setPlatformApplicationArn(String platformApplicationArn) {
@@ -113,16 +113,16 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * PlatformApplicationArn returned from CreatePlatformApplication is used to
-     * create a an endpoint.
+     * <code>PlatformApplicationArn</code> returned from
+     * CreatePlatformApplication is used to create a an endpoint.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param platformApplicationArn <p>
-     *            PlatformApplicationArn returned from CreatePlatformApplication
-     *            is used to create a an endpoint.
+     *            <code>PlatformApplicationArn</code> returned from
+     *            CreatePlatformApplication is used to create a an endpoint.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -267,13 +267,13 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      * <p>
      * For a list of attributes, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
-     * >SetEndpointAttributes</a>.
+     * > <code>SetEndpointAttributes</code> </a>.
      * </p>
      *
      * @return <p>
      *         For a list of attributes, see <a href=
      *         "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
-     *         >SetEndpointAttributes</a>.
+     *         > <code>SetEndpointAttributes</code> </a>.
      *         </p>
      */
     public java.util.Map<String, String> getAttributes() {
@@ -284,13 +284,13 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      * <p>
      * For a list of attributes, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
-     * >SetEndpointAttributes</a>.
+     * > <code>SetEndpointAttributes</code> </a>.
      * </p>
      *
      * @param attributes <p>
      *            For a list of attributes, see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
-     *            >SetEndpointAttributes</a>.
+     *            > <code>SetEndpointAttributes</code> </a>.
      *            </p>
      */
     public void setAttributes(java.util.Map<String, String> attributes) {
@@ -301,7 +301,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      * <p>
      * For a list of attributes, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
-     * >SetEndpointAttributes</a>.
+     * > <code>SetEndpointAttributes</code> </a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -310,7 +310,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      * @param attributes <p>
      *            For a list of attributes, see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
-     *            >SetEndpointAttributes</a>.
+     *            > <code>SetEndpointAttributes</code> </a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -324,7 +324,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      * <p>
      * For a list of attributes, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
-     * >SetEndpointAttributes</a>.
+     * > <code>SetEndpointAttributes</code> </a>.
      * </p>
      * <p>
      * The method adds a new key-value pair into Attributes parameter, and

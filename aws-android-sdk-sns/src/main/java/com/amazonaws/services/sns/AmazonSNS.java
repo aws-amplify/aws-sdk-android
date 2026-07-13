@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -193,6 +193,7 @@ public interface AmazonSNS {
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -220,51 +221,57 @@ public interface AmazonSNS {
      * <ul>
      * <li>
      * <p>
-     * For <code>ADM</code>, <code>PlatformPrincipal</code> is
-     * <code>client id</code> and <code>PlatformCredential</code> is
-     * <code>client secret</code>.
+     * For ADM, <code>PlatformPrincipal</code> is <code>client id</code> and
+     * <code>PlatformCredential</code> is <code>client secret</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>Baidu</code>, <code>PlatformPrincipal</code> is
-     * <code>API key</code> and <code>PlatformCredential</code> is
-     * <code>secret key</code>.
+     * For APNS and <code>APNS_SANDBOX</code> using certificate credentials,
+     * <code>PlatformPrincipal</code> is <code>SSL certificate</code> and
+     * <code>PlatformCredential</code> is <code>private key</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>APNS</code> and <code>APNS_SANDBOX</code> using certificate
-     * credentials, <code>PlatformPrincipal</code> is
-     * <code>SSL certificate</code> and <code>PlatformCredential</code> is
-     * <code>private key</code>.
+     * For APNS and <code>APNS_SANDBOX</code> using token credentials,
+     * <code>PlatformPrincipal</code> is <code>signing key ID</code> and
+     * <code>PlatformCredential</code> is <code>signing key</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>APNS</code> and <code>APNS_SANDBOX</code> using token
-     * credentials, <code>PlatformPrincipal</code> is
-     * <code>signing key ID</code> and <code>PlatformCredential</code> is
-     * <code>signing key</code>.
+     * For Baidu, <code>PlatformPrincipal</code> is <code>API key</code> and
+     * <code>PlatformCredential</code> is <code>secret key</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>GCM</code> (Firebase Cloud Messaging), there is no
-     * <code>PlatformPrincipal</code> and the <code>PlatformCredential</code> is
+     * For GCM (Firebase Cloud Messaging) using key credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is
      * <code>API key</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>MPNS</code>, <code>PlatformPrincipal</code> is
-     * <code>TLS certificate</code> and <code>PlatformCredential</code> is
-     * <code>private key</code>.
+     * For GCM (Firebase Cloud Messaging) using token credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is a
+     * JSON formatted private key file. When using the Amazon Web Services CLI,
+     * the file must be in string format and special characters must be ignored.
+     * To format the file correctly, Amazon SNS recommends using the following
+     * command:
+     * <code>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>WNS</code>, <code>PlatformPrincipal</code> is
+     * For MPNS, <code>PlatformPrincipal</code> is <code>TLS certificate</code>
+     * and <code>PlatformCredential</code> is <code>private key</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For WNS, <code>PlatformPrincipal</code> is
      * <code>Package Security Identifier</code> and
      * <code>PlatformCredential</code> is <code>secret key</code>.
      * </p>
@@ -432,7 +439,7 @@ public interface AmazonSNS {
      * </p>
      * 
      * @param deleteEndpointRequest <p>
-     *            Input for DeleteEndpoint action.
+     *            Input for <code>DeleteEndpoint</code> action.
      *            </p>
      * @throws InvalidParameterException
      * @throws InternalErrorException
@@ -458,7 +465,7 @@ public interface AmazonSNS {
      * </p>
      * 
      * @param deletePlatformApplicationRequest <p>
-     *            Input for DeletePlatformApplication action.
+     *            Input for <code>DeletePlatformApplication</code> action.
      *            </p>
      * @throws InvalidParameterException
      * @throws InternalErrorException
@@ -524,6 +531,7 @@ public interface AmazonSNS {
      * 
      * @param deleteTopicRequest
      * @throws InvalidParameterException
+     * @throws InvalidStateException
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws NotFoundException
@@ -578,7 +586,7 @@ public interface AmazonSNS {
      * </p>
      * 
      * @param getEndpointAttributesRequest <p>
-     *            Input for GetEndpointAttributes action.
+     *            Input for <code>GetEndpointAttributes</code> action.
      *            </p>
      * @return getEndpointAttributesResult The response from the
      *         GetEndpointAttributes service method, as returned by Amazon
@@ -609,7 +617,8 @@ public interface AmazonSNS {
      * </p>
      * 
      * @param getPlatformApplicationAttributesRequest <p>
-     *            Input for GetPlatformApplicationAttributes action.
+     *            Input for <code>GetPlatformApplicationAttributes</code>
+     *            action.
      *            </p>
      * @return getPlatformApplicationAttributesResult The response from the
      *         GetPlatformApplicationAttributes service method, as returned by
@@ -771,7 +780,8 @@ public interface AmazonSNS {
      * </p>
      * 
      * @param listEndpointsByPlatformApplicationRequest <p>
-     *            Input for ListEndpointsByPlatformApplication action.
+     *            Input for <code>ListEndpointsByPlatformApplication</code>
+     *            action.
      *            </p>
      * @return listEndpointsByPlatformApplicationResult The response from the
      *         ListEndpointsByPlatformApplication service method, as returned by
@@ -879,7 +889,7 @@ public interface AmazonSNS {
      * </p>
      * 
      * @param listPlatformApplicationsRequest <p>
-     *            Input for ListPlatformApplications action.
+     *            Input for <code>ListPlatformApplications</code> action.
      *            </p>
      * @return listPlatformApplicationsResult The response from the
      *         ListPlatformApplications service method, as returned by Amazon
@@ -1298,7 +1308,7 @@ public interface AmazonSNS {
      * </p>
      * 
      * @param setEndpointAttributesRequest <p>
-     *            Input for SetEndpointAttributes action.
+     *            Input for <code>SetEndpointAttributes</code> action.
      *            </p>
      * @throws InvalidParameterException
      * @throws InternalErrorException
@@ -1328,7 +1338,8 @@ public interface AmazonSNS {
      * </p>
      * 
      * @param setPlatformApplicationAttributesRequest <p>
-     *            Input for SetPlatformApplicationAttributes action.
+     *            Input for <code>SetPlatformApplicationAttributes</code>
+     *            action.
      *            </p>
      * @throws InvalidParameterException
      * @throws InternalErrorException
@@ -1400,6 +1411,7 @@ public interface AmazonSNS {
      *            </p>
      * @throws InvalidParameterException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InternalErrorException
      * @throws NotFoundException
      * @throws AuthorizationErrorException
@@ -1455,7 +1467,7 @@ public interface AmazonSNS {
      * </p>
      * <p>
      * You call the <code>ConfirmSubscription</code> action with the token from
-     * the subscription response. Confirmation tokens are valid for three days.
+     * the subscription response. Confirmation tokens are valid for two days.
      * </p>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
@@ -1468,6 +1480,7 @@ public interface AmazonSNS {
      *         as returned by Amazon Simple Notification Service.
      * @throws SubscriptionLimitExceededException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InvalidParameterException
      * @throws InternalErrorException
      * @throws NotFoundException
@@ -1730,8 +1743,8 @@ public interface AmazonSNS {
      *            </li>
      *            </ul>
      *            <p>
-     *            The following attribute applies only to Amazon Kinesis Data
-     *            Firehose delivery stream subscriptions:
+     *            The following attribute applies only to Amazon Data Firehose
+     *            delivery stream subscriptions:
      *            </p>
      *            <ul>
      *            <li>
@@ -1742,8 +1755,7 @@ public interface AmazonSNS {
      *            <ul>
      *            <li>
      *            <p>
-     *            Permission to write to the Kinesis Data Firehose delivery
-     *            stream
+     *            Permission to write to the Firehose delivery stream
      *            </p>
      *            </li>
      *            <li>
@@ -1754,11 +1766,11 @@ public interface AmazonSNS {
      *            </ul>
      *            <p>
      *            Specifying a valid ARN for this attribute is required for
-     *            Kinesis Data Firehose delivery stream subscriptions. For more
-     *            information, see <a href=
+     *            Firehose delivery stream subscriptions. For more information,
+     *            see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     *            >Fanout to Kinesis Data Firehose delivery streams</a> in the
-     *            <i>Amazon SNS Developer Guide</i>.
+     *            >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS
+     *            Developer Guide</i>.
      *            </p>
      *            </li>
      *            </ul>
@@ -1767,6 +1779,7 @@ public interface AmazonSNS {
      *            </p>
      * @throws InvalidParameterException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InternalErrorException
      * @throws NotFoundException
      * @throws AuthorizationErrorException
@@ -1816,7 +1829,7 @@ public interface AmazonSNS {
      * </p>
      * <p>
      * You call the <code>ConfirmSubscription</code> action with the token from
-     * the subscription response. Confirmation tokens are valid for three days.
+     * the subscription response. Confirmation tokens are valid for two days.
      * </p>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
@@ -1947,6 +1960,7 @@ public interface AmazonSNS {
      *         as returned by Amazon Simple Notification Service.
      * @throws SubscriptionLimitExceededException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InvalidParameterException
      * @throws InternalErrorException
      * @throws NotFoundException
@@ -2167,6 +2181,7 @@ public interface AmazonSNS {
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2204,6 +2219,7 @@ public interface AmazonSNS {
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2592,6 +2608,7 @@ public interface AmazonSNS {
      *            The ARN of the topic you want to delete.
      *            </p>
      * @throws InvalidParameterException
+     * @throws InvalidStateException
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws NotFoundException
@@ -2971,10 +2988,8 @@ public interface AmazonSNS {
      *            delivered to other endpoints.
      *            </p>
      *            <p>
-     *            Constraints: Subjects must be ASCII text that begins with a
-     *            letter, number, or punctuation mark; must not include line
-     *            breaks or control characters; and must be less than 100
-     *            characters long.
+     *            Constraints: Subjects must be UTF-8 text with no line breaks
+     *            or control characters, and less than 100 characters long.
      *            </p>
      * @return publishResult The response from the Publish service method, as
      *         returned by Amazon Simple Notification Service.
