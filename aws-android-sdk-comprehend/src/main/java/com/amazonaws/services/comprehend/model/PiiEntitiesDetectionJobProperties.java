@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -137,7 +137,7 @@ public class PiiEntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The language code of the input documents
+     * The language code of the input documents.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -868,14 +868,14 @@ public class PiiEntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The language code of the input documents
+     * The language code of the input documents.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @return <p>
-     *         The language code of the input documents
+     *         The language code of the input documents.
      *         </p>
      * @see LanguageCode
      */
@@ -885,14 +885,14 @@ public class PiiEntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The language code of the input documents
+     * The language code of the input documents.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language code of the input documents
+     *            The language code of the input documents.
      *            </p>
      * @see LanguageCode
      */
@@ -902,7 +902,7 @@ public class PiiEntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The language code of the input documents
+     * The language code of the input documents.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -912,7 +912,7 @@ public class PiiEntitiesDetectionJobProperties implements Serializable {
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language code of the input documents
+     *            The language code of the input documents.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -925,14 +925,14 @@ public class PiiEntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The language code of the input documents
+     * The language code of the input documents.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language code of the input documents
+     *            The language code of the input documents.
      *            </p>
      * @see LanguageCode
      */
@@ -942,7 +942,7 @@ public class PiiEntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The language code of the input documents
+     * The language code of the input documents.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -952,7 +952,7 @@ public class PiiEntitiesDetectionJobProperties implements Serializable {
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language code of the input documents
+     *            The language code of the input documents.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

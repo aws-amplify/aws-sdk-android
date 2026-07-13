@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -181,7 +181,7 @@ public class DocumentClassificationJobProperties implements Serializable {
      * Configuration parameters for a private Virtual Private Cloud (VPC)
      * containing the resources you are using for your document classification
      * job. For more information, see <a href=
-     * "https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html"
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
      */
@@ -1118,7 +1118,7 @@ public class DocumentClassificationJobProperties implements Serializable {
      * Configuration parameters for a private Virtual Private Cloud (VPC)
      * containing the resources you are using for your document classification
      * job. For more information, see <a href=
-     * "https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html"
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
      *
@@ -1126,7 +1126,7 @@ public class DocumentClassificationJobProperties implements Serializable {
      *         Configuration parameters for a private Virtual Private Cloud
      *         (VPC) containing the resources you are using for your document
      *         classification job. For more information, see <a href=
-     *         "https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html"
+     *         "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      *         >Amazon VPC</a>.
      *         </p>
      */
@@ -1139,7 +1139,7 @@ public class DocumentClassificationJobProperties implements Serializable {
      * Configuration parameters for a private Virtual Private Cloud (VPC)
      * containing the resources you are using for your document classification
      * job. For more information, see <a href=
-     * "https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html"
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
      *
@@ -1147,7 +1147,7 @@ public class DocumentClassificationJobProperties implements Serializable {
      *            Configuration parameters for a private Virtual Private Cloud
      *            (VPC) containing the resources you are using for your document
      *            classification job. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html"
+     *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      *            >Amazon VPC</a>.
      *            </p>
      */
@@ -1160,7 +1160,7 @@ public class DocumentClassificationJobProperties implements Serializable {
      * Configuration parameters for a private Virtual Private Cloud (VPC)
      * containing the resources you are using for your document classification
      * job. For more information, see <a href=
-     * "https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html"
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
      * <p>
@@ -1171,7 +1171,7 @@ public class DocumentClassificationJobProperties implements Serializable {
      *            Configuration parameters for a private Virtual Private Cloud
      *            (VPC) containing the resources you are using for your document
      *            classification job. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html"
+     *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      *            >Amazon VPC</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

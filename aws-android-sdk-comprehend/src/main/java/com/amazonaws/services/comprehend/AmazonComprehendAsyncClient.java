@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -659,7 +659,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * <p>
      * For more information about targeted sentiment, see <a href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
-     * >Targeted sentiment</a>.
+     * >Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.
      * </p>
      * 
      * @param batchDetectTargetedSentimentRequest
@@ -697,7 +697,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * <p>
      * For more information about targeted sentiment, see <a href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
-     * >Targeted sentiment</a>.
+     * >Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.
      * </p>
      * 
      * @param batchDetectTargetedSentimentRequest
@@ -738,17 +738,37 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
-     * Creates a new document classification request to analyze a single
-     * document in real-time, using a previously created and trained custom
-     * model and an endpoint.
+     * Creates a classification request to analyze a single document in
+     * real-time. <code>ClassifyDocument</code> supports the following model
+     * types:
      * </p>
+     * <ul>
+     * <li>
      * <p>
-     * You can input plain text or you can upload a single-page input document
-     * (text, PDF, Word, or image).
+     * Custom classifier - a custom model that you have created and trained. For
+     * input, you can provide plain text, a single-page document (PDF, Word, or
+     * image), or Amazon Textract API output. For more information, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html"
+     * >Custom classification</a> in the <i>Amazon Comprehend Developer
+     * Guide</i>.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Prompt safety classifier - Amazon Comprehend provides a pre-trained model
+     * for classifying input prompts for generative AI applications. For input,
+     * you provide English plain text input. For prompt safety classification,
+     * the response includes only the <code>Classes</code> field. For more
+     * information about prompt safety classifiers, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/trust-safety.html#prompt-classification"
+     * >Prompt safety classification</a> in the <i>Amazon Comprehend Developer
+     * Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * If the system detects errors while processing a page in the input
-     * document, the API response includes an entry in <code>Errors</code> that
+     * document, the API response includes an <code>Errors</code> field that
      * describes the errors.
      * </p>
      * <p>
@@ -788,17 +808,37 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
-     * Creates a new document classification request to analyze a single
-     * document in real-time, using a previously created and trained custom
-     * model and an endpoint.
+     * Creates a classification request to analyze a single document in
+     * real-time. <code>ClassifyDocument</code> supports the following model
+     * types:
      * </p>
+     * <ul>
+     * <li>
      * <p>
-     * You can input plain text or you can upload a single-page input document
-     * (text, PDF, Word, or image).
+     * Custom classifier - a custom model that you have created and trained. For
+     * input, you can provide plain text, a single-page document (PDF, Word, or
+     * image), or Amazon Textract API output. For more information, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html"
+     * >Custom classification</a> in the <i>Amazon Comprehend Developer
+     * Guide</i>.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Prompt safety classifier - Amazon Comprehend provides a pre-trained model
+     * for classifying input prompts for generative AI applications. For input,
+     * you provide English plain text input. For prompt safety classification,
+     * the response includes only the <code>Classes</code> field. For more
+     * information about prompt safety classifiers, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/trust-safety.html#prompt-classification"
+     * >Prompt safety classification</a> in the <i>Amazon Comprehend Developer
+     * Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * If the system detects errors while processing a page in the input
-     * document, the API response includes an entry in <code>Errors</code> that
+     * document, the API response includes an <code>Errors</code> field that
      * describes the errors.
      * </p>
      * <p>
@@ -3484,7 +3524,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * <p>
      * For more information about targeted sentiment, see <a href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
-     * >Targeted sentiment</a>.
+     * >Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.
      * </p>
      * 
      * @param detectTargetedSentimentRequest
@@ -3521,7 +3561,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * <p>
      * For more information about targeted sentiment, see <a href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
-     * >Targeted sentiment</a>.
+     * >Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.
      * </p>
      * 
      * @param detectTargetedSentimentRequest
@@ -3554,6 +3594,87 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(detectTargetedSentimentRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Performs toxicity analysis on the list of text strings that you provide
+     * as input. The API response contains a results list that matches the size
+     * of the input list. For more information about toxicity detection, see <a
+     * href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/toxicity-detection.html"
+     * >Toxicity detection</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param detectToxicContentRequest
+     * @return A Java Future object containing the response from the
+     *         DetectToxicContent service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DetectToxicContentResult> detectToxicContentAsync(
+            final DetectToxicContentRequest detectToxicContentRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DetectToxicContentResult>() {
+            public DetectToxicContentResult call() throws Exception {
+                return detectToxicContent(detectToxicContentRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Performs toxicity analysis on the list of text strings that you provide
+     * as input. The API response contains a results list that matches the size
+     * of the input list. For more information about toxicity detection, see <a
+     * href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/toxicity-detection.html"
+     * >Toxicity detection</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param detectToxicContentRequest
+     * @return A Java Future object containing the response from the
+     *         DetectToxicContent service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DetectToxicContentResult> detectToxicContentAsync(
+            final DetectToxicContentRequest detectToxicContentRequest,
+            final AsyncHandler<DetectToxicContentRequest, DetectToxicContentResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DetectToxicContentResult>() {
+            public DetectToxicContentResult call() throws Exception {
+                DetectToxicContentResult result = null;
+                try {
+                    result = detectToxicContent(detectToxicContentRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(detectToxicContentRequest, result);
                 return result;
             }
         });
@@ -5045,7 +5166,8 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
-     * Starts an asynchronous document classification job. Use the
+     * Starts an asynchronous document classification job using a custom
+     * classification model. Use the
      * <code>DescribeDocumentClassificationJob</code> operation to track the
      * progress of the job.
      * </p>
@@ -5082,7 +5204,8 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
-     * Starts an asynchronous document classification job. Use the
+     * Starts an asynchronous document classification job using a custom
+     * classification model. Use the
      * <code>DescribeDocumentClassificationJob</code> operation to track the
      * progress of the job.
      * </p>
