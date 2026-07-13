@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -106,6 +106,13 @@ public class DescribeDomainConfigurationResult implements Serializable {
      * </p>
      */
     private TlsConfig tlsConfig;
+
+    /**
+     * <p>
+     * The server certificate configuration.
+     * </p>
+     */
+    private ServerCertificateConfig serverCertificateConfig;
 
     /**
      * <p>
@@ -800,6 +807,52 @@ public class DescribeDomainConfigurationResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The server certificate configuration.
+     * </p>
+     *
+     * @return <p>
+     *         The server certificate configuration.
+     *         </p>
+     */
+    public ServerCertificateConfig getServerCertificateConfig() {
+        return serverCertificateConfig;
+    }
+
+    /**
+     * <p>
+     * The server certificate configuration.
+     * </p>
+     *
+     * @param serverCertificateConfig <p>
+     *            The server certificate configuration.
+     *            </p>
+     */
+    public void setServerCertificateConfig(ServerCertificateConfig serverCertificateConfig) {
+        this.serverCertificateConfig = serverCertificateConfig;
+    }
+
+    /**
+     * <p>
+     * The server certificate configuration.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param serverCertificateConfig <p>
+     *            The server certificate configuration.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeDomainConfigurationResult withServerCertificateConfig(
+            ServerCertificateConfig serverCertificateConfig) {
+        this.serverCertificateConfig = serverCertificateConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -829,7 +882,9 @@ public class DescribeDomainConfigurationResult implements Serializable {
         if (getLastStatusChangeDate() != null)
             sb.append("lastStatusChangeDate: " + getLastStatusChangeDate() + ",");
         if (getTlsConfig() != null)
-            sb.append("tlsConfig: " + getTlsConfig());
+            sb.append("tlsConfig: " + getTlsConfig() + ",");
+        if (getServerCertificateConfig() != null)
+            sb.append("serverCertificateConfig: " + getServerCertificateConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -862,6 +917,10 @@ public class DescribeDomainConfigurationResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getLastStatusChangeDate() == null) ? 0 : getLastStatusChangeDate().hashCode());
         hashCode = prime * hashCode + ((getTlsConfig() == null) ? 0 : getTlsConfig().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getServerCertificateConfig() == null) ? 0 : getServerCertificateConfig()
+                        .hashCode());
         return hashCode;
     }
 
@@ -926,6 +985,11 @@ public class DescribeDomainConfigurationResult implements Serializable {
             return false;
         if (other.getTlsConfig() != null
                 && other.getTlsConfig().equals(this.getTlsConfig()) == false)
+            return false;
+        if (other.getServerCertificateConfig() == null ^ this.getServerCertificateConfig() == null)
+            return false;
+        if (other.getServerCertificateConfig() != null
+                && other.getServerCertificateConfig().equals(this.getServerCertificateConfig()) == false)
             return false;
         return true;
     }

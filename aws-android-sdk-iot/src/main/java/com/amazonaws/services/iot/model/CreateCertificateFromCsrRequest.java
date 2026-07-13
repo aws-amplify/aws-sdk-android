@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,8 +31,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <note>
  * <p>
  * The CSR must include a public key that is either an RSA key with a length of
- * at least 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves. For
- * supported certificates, consult <a href=
+ * at least 2048 bits or an ECC key from NIST P-256, NIST P-384, or NIST P-521
+ * curves. For supported certificates, consult <a href=
  * "https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms"
  * > Certificate signing algorithms supported by IoT</a>.
  * </p>

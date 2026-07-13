@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -51,25 +51,19 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * An S3 link to the job document to use in the template. Required if you
-     * don't specify a value for <code>document</code>.
-     * </p>
-     * <note>
-     * <p>
-     * If the job document resides in an S3 bucket, you must use a placeholder
-     * link when specifying the document.
+     * An S3 link, or S3 object URL, to the job document. The link is an Amazon
+     * S3 object URL and is required if you don't specify a value for
+     * <code>document</code>.
      * </p>
      * <p>
-     * The placeholder link is of the following form:
+     * For example,
+     * <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>
      * </p>
      * <p>
-     * <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-bucket-intro.html"
+     * >Methods for accessing a bucket</a>.
      * </p>
-     * <p>
-     * where <i>bucket</i> is your bucket name and <i>key</i> is the object in
-     * the bucket to which you are linking.
-     * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1350<br/>
@@ -155,11 +149,15 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The package version Amazon Resource Names (ARNs) that are installed on
-     * the device when the job successfully completes.
+     * the device when the job successfully completes. The package version must
+     * be in either the Published or Deprecated state when the job deploys. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     * >Package version lifecycle</a>.
      * </p>
      * <p>
-     * <b>Note:</b>The following Length Constraints relates to a single string.
-     * Up to five strings are allowed.
+     * <b>Note:</b>The following Length Constraints relates to a single ARN. Up
+     * to 25 package version ARNs are allowed.
      * </p>
      */
     private java.util.List<String> destinationPackageVersions;
@@ -277,49 +275,37 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * An S3 link to the job document to use in the template. Required if you
-     * don't specify a value for <code>document</code>.
-     * </p>
-     * <note>
-     * <p>
-     * If the job document resides in an S3 bucket, you must use a placeholder
-     * link when specifying the document.
+     * An S3 link, or S3 object URL, to the job document. The link is an Amazon
+     * S3 object URL and is required if you don't specify a value for
+     * <code>document</code>.
      * </p>
      * <p>
-     * The placeholder link is of the following form:
+     * For example,
+     * <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>
      * </p>
      * <p>
-     * <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-bucket-intro.html"
+     * >Methods for accessing a bucket</a>.
      * </p>
-     * <p>
-     * where <i>bucket</i> is your bucket name and <i>key</i> is the object in
-     * the bucket to which you are linking.
-     * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1350<br/>
      *
      * @return <p>
-     *         An S3 link to the job document to use in the template. Required
-     *         if you don't specify a value for <code>document</code>.
-     *         </p>
-     *         <note>
-     *         <p>
-     *         If the job document resides in an S3 bucket, you must use a
-     *         placeholder link when specifying the document.
+     *         An S3 link, or S3 object URL, to the job document. The link is an
+     *         Amazon S3 object URL and is required if you don't specify a value
+     *         for <code>document</code>.
      *         </p>
      *         <p>
-     *         The placeholder link is of the following form:
+     *         For example,
+     *         <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>
      *         </p>
      *         <p>
-     *         <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-bucket-intro.html"
+     *         >Methods for accessing a bucket</a>.
      *         </p>
-     *         <p>
-     *         where <i>bucket</i> is your bucket name and <i>key</i> is the
-     *         object in the bucket to which you are linking.
-     *         </p>
-     *         </note>
      */
     public String getDocumentSource() {
         return documentSource;
@@ -327,50 +313,37 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * An S3 link to the job document to use in the template. Required if you
-     * don't specify a value for <code>document</code>.
-     * </p>
-     * <note>
-     * <p>
-     * If the job document resides in an S3 bucket, you must use a placeholder
-     * link when specifying the document.
+     * An S3 link, or S3 object URL, to the job document. The link is an Amazon
+     * S3 object URL and is required if you don't specify a value for
+     * <code>document</code>.
      * </p>
      * <p>
-     * The placeholder link is of the following form:
+     * For example,
+     * <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>
      * </p>
      * <p>
-     * <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-bucket-intro.html"
+     * >Methods for accessing a bucket</a>.
      * </p>
-     * <p>
-     * where <i>bucket</i> is your bucket name and <i>key</i> is the object in
-     * the bucket to which you are linking.
-     * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1350<br/>
      *
      * @param documentSource <p>
-     *            An S3 link to the job document to use in the template.
-     *            Required if you don't specify a value for
-     *            <code>document</code>.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            If the job document resides in an S3 bucket, you must use a
-     *            placeholder link when specifying the document.
+     *            An S3 link, or S3 object URL, to the job document. The link is
+     *            an Amazon S3 object URL and is required if you don't specify a
+     *            value for <code>document</code>.
      *            </p>
      *            <p>
-     *            The placeholder link is of the following form:
+     *            For example,
+     *            <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>
      *            </p>
      *            <p>
-     *            <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-bucket-intro.html"
+     *            >Methods for accessing a bucket</a>.
      *            </p>
-     *            <p>
-     *            where <i>bucket</i> is your bucket name and <i>key</i> is the
-     *            object in the bucket to which you are linking.
-     *            </p>
-     *            </note>
      */
     public void setDocumentSource(String documentSource) {
         this.documentSource = documentSource;
@@ -378,25 +351,19 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * An S3 link to the job document to use in the template. Required if you
-     * don't specify a value for <code>document</code>.
-     * </p>
-     * <note>
-     * <p>
-     * If the job document resides in an S3 bucket, you must use a placeholder
-     * link when specifying the document.
+     * An S3 link, or S3 object URL, to the job document. The link is an Amazon
+     * S3 object URL and is required if you don't specify a value for
+     * <code>document</code>.
      * </p>
      * <p>
-     * The placeholder link is of the following form:
+     * For example,
+     * <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>
      * </p>
      * <p>
-     * <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-bucket-intro.html"
+     * >Methods for accessing a bucket</a>.
      * </p>
-     * <p>
-     * where <i>bucket</i> is your bucket name and <i>key</i> is the object in
-     * the bucket to which you are linking.
-     * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -405,26 +372,19 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 1350<br/>
      *
      * @param documentSource <p>
-     *            An S3 link to the job document to use in the template.
-     *            Required if you don't specify a value for
-     *            <code>document</code>.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            If the job document resides in an S3 bucket, you must use a
-     *            placeholder link when specifying the document.
+     *            An S3 link, or S3 object URL, to the job document. The link is
+     *            an Amazon S3 object URL and is required if you don't specify a
+     *            value for <code>document</code>.
      *            </p>
      *            <p>
-     *            The placeholder link is of the following form:
+     *            For example,
+     *            <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>
      *            </p>
      *            <p>
-     *            <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-bucket-intro.html"
+     *            >Methods for accessing a bucket</a>.
      *            </p>
-     *            <p>
-     *            where <i>bucket</i> is your bucket name and <i>key</i> is the
-     *            object in the bucket to which you are linking.
-     *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -970,20 +930,28 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The package version Amazon Resource Names (ARNs) that are installed on
-     * the device when the job successfully completes.
+     * the device when the job successfully completes. The package version must
+     * be in either the Published or Deprecated state when the job deploys. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     * >Package version lifecycle</a>.
      * </p>
      * <p>
-     * <b>Note:</b>The following Length Constraints relates to a single string.
-     * Up to five strings are allowed.
+     * <b>Note:</b>The following Length Constraints relates to a single ARN. Up
+     * to 25 package version ARNs are allowed.
      * </p>
      *
      * @return <p>
      *         The package version Amazon Resource Names (ARNs) that are
-     *         installed on the device when the job successfully completes.
+     *         installed on the device when the job successfully completes. The
+     *         package version must be in either the Published or Deprecated
+     *         state when the job deploys. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     *         >Package version lifecycle</a>.
      *         </p>
      *         <p>
      *         <b>Note:</b>The following Length Constraints relates to a single
-     *         string. Up to five strings are allowed.
+     *         ARN. Up to 25 package version ARNs are allowed.
      *         </p>
      */
     public java.util.List<String> getDestinationPackageVersions() {
@@ -993,20 +961,29 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The package version Amazon Resource Names (ARNs) that are installed on
-     * the device when the job successfully completes.
+     * the device when the job successfully completes. The package version must
+     * be in either the Published or Deprecated state when the job deploys. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     * >Package version lifecycle</a>.
      * </p>
      * <p>
-     * <b>Note:</b>The following Length Constraints relates to a single string.
-     * Up to five strings are allowed.
+     * <b>Note:</b>The following Length Constraints relates to a single ARN. Up
+     * to 25 package version ARNs are allowed.
      * </p>
      *
      * @param destinationPackageVersions <p>
      *            The package version Amazon Resource Names (ARNs) that are
      *            installed on the device when the job successfully completes.
+     *            The package version must be in either the Published or
+     *            Deprecated state when the job deploys. For more information,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     *            >Package version lifecycle</a>.
      *            </p>
      *            <p>
      *            <b>Note:</b>The following Length Constraints relates to a
-     *            single string. Up to five strings are allowed.
+     *            single ARN. Up to 25 package version ARNs are allowed.
      *            </p>
      */
     public void setDestinationPackageVersions(
@@ -1023,11 +1000,15 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The package version Amazon Resource Names (ARNs) that are installed on
-     * the device when the job successfully completes.
+     * the device when the job successfully completes. The package version must
+     * be in either the Published or Deprecated state when the job deploys. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     * >Package version lifecycle</a>.
      * </p>
      * <p>
-     * <b>Note:</b>The following Length Constraints relates to a single string.
-     * Up to five strings are allowed.
+     * <b>Note:</b>The following Length Constraints relates to a single ARN. Up
+     * to 25 package version ARNs are allowed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1036,10 +1017,15 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
      * @param destinationPackageVersions <p>
      *            The package version Amazon Resource Names (ARNs) that are
      *            installed on the device when the job successfully completes.
+     *            The package version must be in either the Published or
+     *            Deprecated state when the job deploys. For more information,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     *            >Package version lifecycle</a>.
      *            </p>
      *            <p>
      *            <b>Note:</b>The following Length Constraints relates to a
-     *            single string. Up to five strings are allowed.
+     *            single ARN. Up to 25 package version ARNs are allowed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1059,11 +1045,15 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The package version Amazon Resource Names (ARNs) that are installed on
-     * the device when the job successfully completes.
+     * the device when the job successfully completes. The package version must
+     * be in either the Published or Deprecated state when the job deploys. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     * >Package version lifecycle</a>.
      * </p>
      * <p>
-     * <b>Note:</b>The following Length Constraints relates to a single string.
-     * Up to five strings are allowed.
+     * <b>Note:</b>The following Length Constraints relates to a single ARN. Up
+     * to 25 package version ARNs are allowed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1072,10 +1062,15 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
      * @param destinationPackageVersions <p>
      *            The package version Amazon Resource Names (ARNs) that are
      *            installed on the device when the job successfully completes.
+     *            The package version must be in either the Published or
+     *            Deprecated state when the job deploys. For more information,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     *            >Package version lifecycle</a>.
      *            </p>
      *            <p>
      *            <b>Note:</b>The following Length Constraints relates to a
-     *            single string. Up to five strings are allowed.
+     *            single ARN. Up to 25 package version ARNs are allowed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

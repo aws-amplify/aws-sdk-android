@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,9 +21,16 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns a unique endpoint specific to the Amazon Web Services account making
- * the call.
+ * Returns or creates a unique endpoint specific to the Amazon Web Services
+ * account making the call.
  * </p>
+ * <note>
+ * <p>
+ * The first time <code>DescribeEndpoint</code> is called, an endpoint is
+ * created. All subsequent calls to <code>DescribeEndpoint</code> return the
+ * same endpoint.
+ * </p>
+ * </note>
  * <p>
  * Requires permission to access the <a href=
  * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
@@ -68,7 +75,8 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * <p>
      * We strongly recommend that customers use the newer
      * <code>iot:Data-ATS</code> endpoint type to avoid issues related to the
-     * widespread distrust of Symantec certificate authorities.
+     * widespread distrust of Symantec certificate authorities. ATS Signed
+     * Certificates are more secure and are trusted by most popular browsers.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -114,7 +122,8 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * <p>
      * We strongly recommend that customers use the newer
      * <code>iot:Data-ATS</code> endpoint type to avoid issues related to the
-     * widespread distrust of Symantec certificate authorities.
+     * widespread distrust of Symantec certificate authorities. ATS Signed
+     * Certificates are more secure and are trusted by most popular browsers.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -158,6 +167,8 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      *         We strongly recommend that customers use the newer
      *         <code>iot:Data-ATS</code> endpoint type to avoid issues related
      *         to the widespread distrust of Symantec certificate authorities.
+     *         ATS Signed Certificates are more secure and are trusted by most
+     *         popular browsers.
      *         </p>
      */
     public String getEndpointType() {
@@ -201,7 +212,8 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * <p>
      * We strongly recommend that customers use the newer
      * <code>iot:Data-ATS</code> endpoint type to avoid issues related to the
-     * widespread distrust of Symantec certificate authorities.
+     * widespread distrust of Symantec certificate authorities. ATS Signed
+     * Certificates are more secure and are trusted by most popular browsers.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -247,7 +259,8 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      *            We strongly recommend that customers use the newer
      *            <code>iot:Data-ATS</code> endpoint type to avoid issues
      *            related to the widespread distrust of Symantec certificate
-     *            authorities.
+     *            authorities. ATS Signed Certificates are more secure and are
+     *            trusted by most popular browsers.
      *            </p>
      */
     public void setEndpointType(String endpointType) {
@@ -291,7 +304,8 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * <p>
      * We strongly recommend that customers use the newer
      * <code>iot:Data-ATS</code> endpoint type to avoid issues related to the
-     * widespread distrust of Symantec certificate authorities.
+     * widespread distrust of Symantec certificate authorities. ATS Signed
+     * Certificates are more secure and are trusted by most popular browsers.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -340,7 +354,8 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      *            We strongly recommend that customers use the newer
      *            <code>iot:Data-ATS</code> endpoint type to avoid issues
      *            related to the widespread distrust of Symantec certificate
-     *            authorities.
+     *            authorities. ATS Signed Certificates are more secure and are
+     *            trusted by most popular browsers.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

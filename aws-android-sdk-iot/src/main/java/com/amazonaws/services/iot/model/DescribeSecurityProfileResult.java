@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -107,6 +107,13 @@ public class DescribeSecurityProfileResult implements Serializable {
      * </p>
      */
     private java.util.Date lastModifiedDate;
+
+    /**
+     * <p>
+     * Specifies the MQTT topic and role ARN required for metric export.
+     * </p>
+     */
+    private MetricsExportConfig metricsExportConfig;
 
     /**
      * <p>
@@ -819,6 +826,54 @@ public class DescribeSecurityProfileResult implements Serializable {
     }
 
     /**
+     * <p>
+     * Specifies the MQTT topic and role ARN required for metric export.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies the MQTT topic and role ARN required for metric export.
+     *         </p>
+     */
+    public MetricsExportConfig getMetricsExportConfig() {
+        return metricsExportConfig;
+    }
+
+    /**
+     * <p>
+     * Specifies the MQTT topic and role ARN required for metric export.
+     * </p>
+     *
+     * @param metricsExportConfig <p>
+     *            Specifies the MQTT topic and role ARN required for metric
+     *            export.
+     *            </p>
+     */
+    public void setMetricsExportConfig(MetricsExportConfig metricsExportConfig) {
+        this.metricsExportConfig = metricsExportConfig;
+    }
+
+    /**
+     * <p>
+     * Specifies the MQTT topic and role ARN required for metric export.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param metricsExportConfig <p>
+     *            Specifies the MQTT topic and role ARN required for metric
+     *            export.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeSecurityProfileResult withMetricsExportConfig(
+            MetricsExportConfig metricsExportConfig) {
+        this.metricsExportConfig = metricsExportConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -848,7 +903,9 @@ public class DescribeSecurityProfileResult implements Serializable {
         if (getCreationDate() != null)
             sb.append("creationDate: " + getCreationDate() + ",");
         if (getLastModifiedDate() != null)
-            sb.append("lastModifiedDate: " + getLastModifiedDate());
+            sb.append("lastModifiedDate: " + getLastModifiedDate() + ",");
+        if (getMetricsExportConfig() != null)
+            sb.append("metricsExportConfig: " + getMetricsExportConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -882,6 +939,8 @@ public class DescribeSecurityProfileResult implements Serializable {
                 + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode());
         hashCode = prime * hashCode
                 + ((getLastModifiedDate() == null) ? 0 : getLastModifiedDate().hashCode());
+        hashCode = prime * hashCode
+                + ((getMetricsExportConfig() == null) ? 0 : getMetricsExportConfig().hashCode());
         return hashCode;
     }
 
@@ -949,6 +1008,11 @@ public class DescribeSecurityProfileResult implements Serializable {
             return false;
         if (other.getLastModifiedDate() != null
                 && other.getLastModifiedDate().equals(this.getLastModifiedDate()) == false)
+            return false;
+        if (other.getMetricsExportConfig() == null ^ this.getMetricsExportConfig() == null)
+            return false;
+        if (other.getMetricsExportConfig() != null
+                && other.getMetricsExportConfig().equals(this.getMetricsExportConfig()) == false)
             return false;
         return true;
     }
