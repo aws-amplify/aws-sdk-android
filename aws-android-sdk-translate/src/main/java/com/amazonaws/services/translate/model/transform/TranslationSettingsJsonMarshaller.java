@@ -37,6 +37,11 @@ class TranslationSettingsJsonMarshaller {
             jsonWriter.name("Profanity");
             jsonWriter.value(profanity);
         }
+        if (translationSettings.getBrevity() != null) {
+            String brevity = translationSettings.getBrevity();
+            jsonWriter.name("Brevity");
+            jsonWriter.value(brevity);
+        }
         jsonWriter.endObject();
     }
 

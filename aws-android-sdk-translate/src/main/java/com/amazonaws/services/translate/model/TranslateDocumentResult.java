@@ -56,10 +56,27 @@ public class TranslateDocumentResult implements Serializable {
 
     /**
      * <p>
-     * Settings to configure your translation output, including the option to
-     * set the formality level of the output text and the option to mask profane
-     * words and phrases.
+     * Settings to configure your translation output. You can configure the
+     * following options:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Brevity: reduces the length of the translation output for most
+     * translations. Available for <code>TranslateText</code> only.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Formality: sets the formality level of the translation output.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Profanity: masks profane words and phrases in the translation output.
+     * </p>
+     * </li>
+     * </ul>
      */
     private TranslationSettings appliedSettings;
 
@@ -314,16 +331,51 @@ public class TranslateDocumentResult implements Serializable {
 
     /**
      * <p>
-     * Settings to configure your translation output, including the option to
-     * set the formality level of the output text and the option to mask profane
-     * words and phrases.
+     * Settings to configure your translation output. You can configure the
+     * following options:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Brevity: reduces the length of the translation output for most
+     * translations. Available for <code>TranslateText</code> only.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Formality: sets the formality level of the translation output.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Profanity: masks profane words and phrases in the translation output.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @return <p>
-     *         Settings to configure your translation output, including the
-     *         option to set the formality level of the output text and the
-     *         option to mask profane words and phrases.
+     *         Settings to configure your translation output. You can configure
+     *         the following options:
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Brevity: reduces the length of the translation output for most
+     *         translations. Available for <code>TranslateText</code> only.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Formality: sets the formality level of the translation output.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Profanity: masks profane words and phrases in the translation
+     *         output.
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public TranslationSettings getAppliedSettings() {
         return appliedSettings;
@@ -331,16 +383,51 @@ public class TranslateDocumentResult implements Serializable {
 
     /**
      * <p>
-     * Settings to configure your translation output, including the option to
-     * set the formality level of the output text and the option to mask profane
-     * words and phrases.
+     * Settings to configure your translation output. You can configure the
+     * following options:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Brevity: reduces the length of the translation output for most
+     * translations. Available for <code>TranslateText</code> only.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Formality: sets the formality level of the translation output.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Profanity: masks profane words and phrases in the translation output.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @param appliedSettings <p>
-     *            Settings to configure your translation output, including the
-     *            option to set the formality level of the output text and the
-     *            option to mask profane words and phrases.
+     *            Settings to configure your translation output. You can
+     *            configure the following options:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Brevity: reduces the length of the translation output for most
+     *            translations. Available for <code>TranslateText</code> only.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Formality: sets the formality level of the translation output.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Profanity: masks profane words and phrases in the translation
+     *            output.
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setAppliedSettings(TranslationSettings appliedSettings) {
         this.appliedSettings = appliedSettings;
@@ -348,19 +435,54 @@ public class TranslateDocumentResult implements Serializable {
 
     /**
      * <p>
-     * Settings to configure your translation output, including the option to
-     * set the formality level of the output text and the option to mask profane
-     * words and phrases.
+     * Settings to configure your translation output. You can configure the
+     * following options:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Brevity: reduces the length of the translation output for most
+     * translations. Available for <code>TranslateText</code> only.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Formality: sets the formality level of the translation output.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Profanity: masks profane words and phrases in the translation output.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param appliedSettings <p>
-     *            Settings to configure your translation output, including the
-     *            option to set the formality level of the output text and the
-     *            option to mask profane words and phrases.
+     *            Settings to configure your translation output. You can
+     *            configure the following options:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Brevity: reduces the length of the translation output for most
+     *            translations. Available for <code>TranslateText</code> only.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Formality: sets the formality level of the translation output.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Profanity: masks profane words and phrases in the translation
+     *            output.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

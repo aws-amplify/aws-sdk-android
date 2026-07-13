@@ -44,14 +44,20 @@ public class Document implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * text/html - The input data consists of HTML content. Amazon Translate
-     * translates only the text in the HTML element.
+     * <code>text/html</code> - The input data consists of HTML content. Amazon
+     * Translate translates only the text in the HTML element.
      * </p>
      * </li>
      * <li>
      * <p>
-     * text/plain - The input data consists of unformatted text. Amazon
-     * Translate translates every character in the content.
+     * <code>text/plain</code> - The input data consists of unformatted text.
+     * Amazon Translate translates every character in the content.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>application/vnd.openxmlformats-officedocument.wordprocessingml.document</code>
+     * - The input data consists of a Word document (.docx).
      * </p>
      * </li>
      * </ul>
@@ -145,14 +151,20 @@ public class Document implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * text/html - The input data consists of HTML content. Amazon Translate
-     * translates only the text in the HTML element.
+     * <code>text/html</code> - The input data consists of HTML content. Amazon
+     * Translate translates only the text in the HTML element.
      * </p>
      * </li>
      * <li>
      * <p>
-     * text/plain - The input data consists of unformatted text. Amazon
-     * Translate translates every character in the content.
+     * <code>text/plain</code> - The input data consists of unformatted text.
+     * Amazon Translate translates every character in the content.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>application/vnd.openxmlformats-officedocument.wordprocessingml.document</code>
+     * - The input data consists of a Word document (.docx).
      * </p>
      * </li>
      * </ul>
@@ -168,14 +180,20 @@ public class Document implements Serializable {
      *         <ul>
      *         <li>
      *         <p>
-     *         text/html - The input data consists of HTML content. Amazon
-     *         Translate translates only the text in the HTML element.
+     *         <code>text/html</code> - The input data consists of HTML content.
+     *         Amazon Translate translates only the text in the HTML element.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         text/plain - The input data consists of unformatted text. Amazon
-     *         Translate translates every character in the content.
+     *         <code>text/plain</code> - The input data consists of unformatted
+     *         text. Amazon Translate translates every character in the content.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>application/vnd.openxmlformats-officedocument.wordprocessingml.document</code>
+     *         - The input data consists of a Word document (.docx).
      *         </p>
      *         </li>
      *         </ul>
@@ -192,14 +210,20 @@ public class Document implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * text/html - The input data consists of HTML content. Amazon Translate
-     * translates only the text in the HTML element.
+     * <code>text/html</code> - The input data consists of HTML content. Amazon
+     * Translate translates only the text in the HTML element.
      * </p>
      * </li>
      * <li>
      * <p>
-     * text/plain - The input data consists of unformatted text. Amazon
-     * Translate translates every character in the content.
+     * <code>text/plain</code> - The input data consists of unformatted text.
+     * Amazon Translate translates every character in the content.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>application/vnd.openxmlformats-officedocument.wordprocessingml.document</code>
+     * - The input data consists of a Word document (.docx).
      * </p>
      * </li>
      * </ul>
@@ -215,14 +239,22 @@ public class Document implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            text/html - The input data consists of HTML content. Amazon
-     *            Translate translates only the text in the HTML element.
+     *            <code>text/html</code> - The input data consists of HTML
+     *            content. Amazon Translate translates only the text in the HTML
+     *            element.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            text/plain - The input data consists of unformatted text.
-     *            Amazon Translate translates every character in the content.
+     *            <code>text/plain</code> - The input data consists of
+     *            unformatted text. Amazon Translate translates every character
+     *            in the content.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>application/vnd.openxmlformats-officedocument.wordprocessingml.document</code>
+     *            - The input data consists of a Word document (.docx).
      *            </p>
      *            </li>
      *            </ul>
@@ -239,14 +271,20 @@ public class Document implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * text/html - The input data consists of HTML content. Amazon Translate
-     * translates only the text in the HTML element.
+     * <code>text/html</code> - The input data consists of HTML content. Amazon
+     * Translate translates only the text in the HTML element.
      * </p>
      * </li>
      * <li>
      * <p>
-     * text/plain - The input data consists of unformatted text. Amazon
-     * Translate translates every character in the content.
+     * <code>text/plain</code> - The input data consists of unformatted text.
+     * Amazon Translate translates every character in the content.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>application/vnd.openxmlformats-officedocument.wordprocessingml.document</code>
+     * - The input data consists of a Word document (.docx).
      * </p>
      * </li>
      * </ul>
@@ -265,14 +303,22 @@ public class Document implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            text/html - The input data consists of HTML content. Amazon
-     *            Translate translates only the text in the HTML element.
+     *            <code>text/html</code> - The input data consists of HTML
+     *            content. Amazon Translate translates only the text in the HTML
+     *            element.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            text/plain - The input data consists of unformatted text.
-     *            Amazon Translate translates every character in the content.
+     *            <code>text/plain</code> - The input data consists of
+     *            unformatted text. Amazon Translate translates every character
+     *            in the content.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>application/vnd.openxmlformats-officedocument.wordprocessingml.document</code>
+     *            - The input data consists of a Word document (.docx).
      *            </p>
      *            </li>
      *            </ul>
