@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,8 @@ public enum ParticipantRole {
     AGENT("AGENT"),
     CUSTOMER("CUSTOMER"),
     SYSTEM("SYSTEM"),
-    CUSTOM_BOT("CUSTOM_BOT");
+    CUSTOM_BOT("CUSTOM_BOT"),
+    SUPERVISOR("SUPERVISOR");
 
     private String value;
 
@@ -46,6 +47,7 @@ public enum ParticipantRole {
         enumMap.put("CUSTOMER", CUSTOMER);
         enumMap.put("SYSTEM", SYSTEM);
         enumMap.put("CUSTOM_BOT", CUSTOM_BOT);
+        enumMap.put("SUPERVISOR", SUPERVISOR);
     }
 
     /**
