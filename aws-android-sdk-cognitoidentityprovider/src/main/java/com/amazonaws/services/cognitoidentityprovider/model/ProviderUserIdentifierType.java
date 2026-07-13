@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ public class ProviderUserIdentifierType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
+     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\p{Z}]+<br/>
      */
     private String providerName;
 
@@ -63,7 +63,7 @@ public class ProviderUserIdentifierType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
+     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\p{Z}]+<br/>
      *
      * @return <p>
      *         The name of the provider, such as Facebook, Google, or Login with
@@ -81,7 +81,7 @@ public class ProviderUserIdentifierType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
+     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\p{Z}]+<br/>
      *
      * @param providerName <p>
      *            The name of the provider, such as Facebook, Google, or Login
@@ -102,7 +102,7 @@ public class ProviderUserIdentifierType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
+     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\p{Z}]+<br/>
      *
      * @param providerName <p>
      *            The name of the provider, such as Facebook, Google, or Login

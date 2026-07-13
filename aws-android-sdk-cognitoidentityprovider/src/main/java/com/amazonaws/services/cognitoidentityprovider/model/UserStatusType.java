@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,7 +28,8 @@ public enum UserStatusType {
     ARCHIVED("ARCHIVED"),
     COMPROMISED("COMPROMISED"),
     RESET_REQUIRED("RESET_REQUIRED"),
-    FORCE_CHANGE_PASSWORD("FORCE_CHANGE_PASSWORD");
+    FORCE_CHANGE_PASSWORD("FORCE_CHANGE_PASSWORD"),
+    EXTERNAL_PROVIDER("EXTERNAL_PROVIDER");
 
     private String value;
 
@@ -50,6 +51,7 @@ public enum UserStatusType {
         enumMap.put("COMPROMISED", COMPROMISED);
         enumMap.put("RESET_REQUIRED", RESET_REQUIRED);
         enumMap.put("FORCE_CHANGE_PASSWORD", FORCE_CHANGE_PASSWORD);
+        enumMap.put("EXTERNAL_PROVIDER", EXTERNAL_PROVIDER);
     }
 
     /**

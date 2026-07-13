@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -67,7 +67,11 @@ public class AdminDisableUserRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The user name of the user you want to disable.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, this value must be the <code>sub</code> of a local
+     * user or the username of a user from a third-party IdP.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -138,7 +142,11 @@ public class AdminDisableUserRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The user name of the user you want to disable.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, this value must be the <code>sub</code> of a local
+     * user or the username of a user from a third-party IdP.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -146,7 +154,12 @@ public class AdminDisableUserRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The user name of the user you want to disable.
+     *         The username of the user that you want to query or modify. The
+     *         value of this parameter is typically your user's username, but it
+     *         can be any of their alias attributes. If <code>username</code>
+     *         isn't an alias attribute in your user pool, this value must be
+     *         the <code>sub</code> of a local user or the username of a user
+     *         from a third-party IdP.
      *         </p>
      */
     public String getUsername() {
@@ -155,7 +168,11 @@ public class AdminDisableUserRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The user name of the user you want to disable.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, this value must be the <code>sub</code> of a local
+     * user or the username of a user from a third-party IdP.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -163,7 +180,12 @@ public class AdminDisableUserRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user you want to disable.
+     *            The username of the user that you want to query or modify. The
+     *            value of this parameter is typically your user's username, but
+     *            it can be any of their alias attributes. If
+     *            <code>username</code> isn't an alias attribute in your user
+     *            pool, this value must be the <code>sub</code> of a local user
+     *            or the username of a user from a third-party IdP.
      *            </p>
      */
     public void setUsername(String username) {
@@ -172,7 +194,11 @@ public class AdminDisableUserRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The user name of the user you want to disable.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, this value must be the <code>sub</code> of a local
+     * user or the username of a user from a third-party IdP.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -183,7 +209,12 @@ public class AdminDisableUserRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user you want to disable.
+     *            The username of the user that you want to query or modify. The
+     *            value of this parameter is typically your user's username, but
+     *            it can be any of their alias attributes. If
+     *            <code>username</code> isn't an alias attribute in your user
+     *            pool, this value must be the <code>sub</code> of a local user
+     *            or the username of a user from a third-party IdP.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
