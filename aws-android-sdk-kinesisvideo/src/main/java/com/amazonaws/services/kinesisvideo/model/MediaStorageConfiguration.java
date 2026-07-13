@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,11 +22,26 @@ import java.io.Serializable;
  * A structure that encapsulates, or contains, the media storage configuration
  * properties.
  * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * If <code>StorageStatus</code> is enabled, the data will be stored in the
+ * <code>StreamARN</code> provided. In order for WebRTC Ingestion to work, the
+ * stream must have data retention enabled.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * If <code>StorageStatus</code> is disabled, no data will be stored, and the
+ * <code>StreamARN</code> parameter will not be needed.
+ * </p>
+ * </li>
+ * </ul>
  */
 public class MediaStorageConfiguration implements Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the stream
+     * The Amazon Resource Name (ARN) of the stream.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,7 +64,7 @@ public class MediaStorageConfiguration implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the stream
+     * The Amazon Resource Name (ARN) of the stream.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,7 +74,7 @@ public class MediaStorageConfiguration implements Serializable {
      * Z0-9_.-]+/[0-9]+<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the stream
+     *         The Amazon Resource Name (ARN) of the stream.
      *         </p>
      */
     public String getStreamARN() {
@@ -68,7 +83,7 @@ public class MediaStorageConfiguration implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the stream
+     * The Amazon Resource Name (ARN) of the stream.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -78,7 +93,7 @@ public class MediaStorageConfiguration implements Serializable {
      * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param streamARN <p>
-     *            The Amazon Resource Name (ARN) of the stream
+     *            The Amazon Resource Name (ARN) of the stream.
      *            </p>
      */
     public void setStreamARN(String streamARN) {
@@ -87,7 +102,7 @@ public class MediaStorageConfiguration implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the stream
+     * The Amazon Resource Name (ARN) of the stream.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -100,7 +115,7 @@ public class MediaStorageConfiguration implements Serializable {
      * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param streamARN <p>
-     *            The Amazon Resource Name (ARN) of the stream
+     *            The Amazon Resource Name (ARN) of the stream.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
