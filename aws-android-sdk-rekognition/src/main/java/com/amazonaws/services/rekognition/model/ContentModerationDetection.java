@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -73,6 +73,15 @@ public class ContentModerationDetection implements Serializable {
      * <b>Range: </b>0 - <br/>
      */
     private Long durationMillis;
+
+    /**
+     * <p>
+     * A list of predicted results for the type of content an image contains.
+     * For example, the image content might be from animation, sports, or a
+     * video game.
+     * </p>
+     */
+    private java.util.List<ContentType> contentTypes;
 
     /**
      * <p>
@@ -363,6 +372,97 @@ public class ContentModerationDetection implements Serializable {
     }
 
     /**
+     * <p>
+     * A list of predicted results for the type of content an image contains.
+     * For example, the image content might be from animation, sports, or a
+     * video game.
+     * </p>
+     *
+     * @return <p>
+     *         A list of predicted results for the type of content an image
+     *         contains. For example, the image content might be from animation,
+     *         sports, or a video game.
+     *         </p>
+     */
+    public java.util.List<ContentType> getContentTypes() {
+        return contentTypes;
+    }
+
+    /**
+     * <p>
+     * A list of predicted results for the type of content an image contains.
+     * For example, the image content might be from animation, sports, or a
+     * video game.
+     * </p>
+     *
+     * @param contentTypes <p>
+     *            A list of predicted results for the type of content an image
+     *            contains. For example, the image content might be from
+     *            animation, sports, or a video game.
+     *            </p>
+     */
+    public void setContentTypes(java.util.Collection<ContentType> contentTypes) {
+        if (contentTypes == null) {
+            this.contentTypes = null;
+            return;
+        }
+
+        this.contentTypes = new java.util.ArrayList<ContentType>(contentTypes);
+    }
+
+    /**
+     * <p>
+     * A list of predicted results for the type of content an image contains.
+     * For example, the image content might be from animation, sports, or a
+     * video game.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param contentTypes <p>
+     *            A list of predicted results for the type of content an image
+     *            contains. For example, the image content might be from
+     *            animation, sports, or a video game.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ContentModerationDetection withContentTypes(ContentType... contentTypes) {
+        if (getContentTypes() == null) {
+            this.contentTypes = new java.util.ArrayList<ContentType>(contentTypes.length);
+        }
+        for (ContentType value : contentTypes) {
+            this.contentTypes.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of predicted results for the type of content an image contains.
+     * For example, the image content might be from animation, sports, or a
+     * video game.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param contentTypes <p>
+     *            A list of predicted results for the type of content an image
+     *            contains. For example, the image content might be from
+     *            animation, sports, or a video game.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ContentModerationDetection withContentTypes(
+            java.util.Collection<ContentType> contentTypes) {
+        setContentTypes(contentTypes);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -382,7 +482,9 @@ public class ContentModerationDetection implements Serializable {
         if (getEndTimestampMillis() != null)
             sb.append("EndTimestampMillis: " + getEndTimestampMillis() + ",");
         if (getDurationMillis() != null)
-            sb.append("DurationMillis: " + getDurationMillis());
+            sb.append("DurationMillis: " + getDurationMillis() + ",");
+        if (getContentTypes() != null)
+            sb.append("ContentTypes: " + getContentTypes());
         sb.append("}");
         return sb.toString();
     }
@@ -401,6 +503,8 @@ public class ContentModerationDetection implements Serializable {
                 + ((getEndTimestampMillis() == null) ? 0 : getEndTimestampMillis().hashCode());
         hashCode = prime * hashCode
                 + ((getDurationMillis() == null) ? 0 : getDurationMillis().hashCode());
+        hashCode = prime * hashCode
+                + ((getContentTypes() == null) ? 0 : getContentTypes().hashCode());
         return hashCode;
     }
 
@@ -439,6 +543,11 @@ public class ContentModerationDetection implements Serializable {
             return false;
         if (other.getDurationMillis() != null
                 && other.getDurationMillis().equals(this.getDurationMillis()) == false)
+            return false;
+        if (other.getContentTypes() == null ^ this.getContentTypes() == null)
+            return false;
+        if (other.getContentTypes() != null
+                && other.getContentTypes().equals(this.getContentTypes()) == false)
             return false;
         return true;
     }

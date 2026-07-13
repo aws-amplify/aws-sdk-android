@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,6 +20,11 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
+ * <note>
+ * <p>
+ * This operation applies only to Amazon Rekognition Custom Labels.
+ * </p>
+ * </note>
  * <p>
  * Copies a version of an Amazon Rekognition Custom Labels model from a source
  * project to a destination project. The source and destination projects can be
@@ -43,6 +48,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * don't need to create a project policy.
  * </p>
  * <note>
+ * <p>
+ * Copying project versions is supported only for Custom Labels models.
+ * </p>
  * <p>
  * To copy a model, the destination project, source project, and source model
  * version must already exist.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A description of a version of an Amazon Rekognition Custom Labels model.
+ * A description of a version of a Amazon Rekognition project version.
  * </p>
  */
 public class ProjectVersionDescription implements Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the model version.
+     * The Amazon Resource Name (ARN) of the project version.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,8 +45,9 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The minimum number of inference units used by the model. For more
-     * information, see <a>StartProjectVersion</a>.
+     * The minimum number of inference units used by the model. Applies only to
+     * Custom Labels projects. For more information, see
+     * <a>StartProjectVersion</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -62,7 +63,8 @@ public class ProjectVersionDescription implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
      * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
-     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED, DEPRECATED,
+     * EXPIRED
      */
     private String status;
 
@@ -143,9 +145,9 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The maximum number of inference units Amazon Rekognition Custom Labels
-     * uses to auto-scale the model. For more information, see
-     * <a>StartProjectVersion</a>.
+     * The maximum number of inference units Amazon Rekognition uses to
+     * auto-scale the model. Applies only to Custom Labels projects. For more
+     * information, see <a>StartProjectVersion</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -170,7 +172,42 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the model version.
+     * A user-provided description of the project version.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-_. ()':,;?]+<br/>
+     */
+    private String versionDescription;
+
+    /**
+     * <p>
+     * The feature that was customized.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>CONTENT_MODERATION, CUSTOM_LABELS
+     */
+    private String feature;
+
+    /**
+     * <p>
+     * The base detection model version used to create the project version.
+     * </p>
+     */
+    private String baseModelVersion;
+
+    /**
+     * <p>
+     * Feature specific configuration that was applied during training.
+     * </p>
+     */
+    private CustomizationFeatureConfig featureConfig;
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the project version.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -180,7 +217,7 @@ public class ProjectVersionDescription implements Serializable {
      * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the model version.
+     *         The Amazon Resource Name (ARN) of the project version.
      *         </p>
      */
     public String getProjectVersionArn() {
@@ -189,7 +226,7 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the model version.
+     * The Amazon Resource Name (ARN) of the project version.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -199,7 +236,7 @@ public class ProjectVersionDescription implements Serializable {
      * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @param projectVersionArn <p>
-     *            The Amazon Resource Name (ARN) of the model version.
+     *            The Amazon Resource Name (ARN) of the project version.
      *            </p>
      */
     public void setProjectVersionArn(String projectVersionArn) {
@@ -208,7 +245,7 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the model version.
+     * The Amazon Resource Name (ARN) of the project version.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -221,7 +258,7 @@ public class ProjectVersionDescription implements Serializable {
      * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @param projectVersionArn <p>
-     *            The Amazon Resource Name (ARN) of the model version.
+     *            The Amazon Resource Name (ARN) of the project version.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -278,16 +315,18 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The minimum number of inference units used by the model. For more
-     * information, see <a>StartProjectVersion</a>.
+     * The minimum number of inference units used by the model. Applies only to
+     * Custom Labels projects. For more information, see
+     * <a>StartProjectVersion</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
      * @return <p>
-     *         The minimum number of inference units used by the model. For more
-     *         information, see <a>StartProjectVersion</a>.
+     *         The minimum number of inference units used by the model. Applies
+     *         only to Custom Labels projects. For more information, see
+     *         <a>StartProjectVersion</a>.
      *         </p>
      */
     public Integer getMinInferenceUnits() {
@@ -296,16 +335,18 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The minimum number of inference units used by the model. For more
-     * information, see <a>StartProjectVersion</a>.
+     * The minimum number of inference units used by the model. Applies only to
+     * Custom Labels projects. For more information, see
+     * <a>StartProjectVersion</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
      * @param minInferenceUnits <p>
-     *            The minimum number of inference units used by the model. For
-     *            more information, see <a>StartProjectVersion</a>.
+     *            The minimum number of inference units used by the model.
+     *            Applies only to Custom Labels projects. For more information,
+     *            see <a>StartProjectVersion</a>.
      *            </p>
      */
     public void setMinInferenceUnits(Integer minInferenceUnits) {
@@ -314,8 +355,9 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The minimum number of inference units used by the model. For more
-     * information, see <a>StartProjectVersion</a>.
+     * The minimum number of inference units used by the model. Applies only to
+     * Custom Labels projects. For more information, see
+     * <a>StartProjectVersion</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -325,8 +367,9 @@ public class ProjectVersionDescription implements Serializable {
      * <b>Range: </b>1 - <br/>
      *
      * @param minInferenceUnits <p>
-     *            The minimum number of inference units used by the model. For
-     *            more information, see <a>StartProjectVersion</a>.
+     *            The minimum number of inference units used by the model.
+     *            Applies only to Custom Labels projects. For more information,
+     *            see <a>StartProjectVersion</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -344,7 +387,8 @@ public class ProjectVersionDescription implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
      * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
-     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED, DEPRECATED,
+     * EXPIRED
      *
      * @return <p>
      *         The current status of the model version.
@@ -363,7 +407,8 @@ public class ProjectVersionDescription implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
      * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
-     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED, DEPRECATED,
+     * EXPIRED
      *
      * @param status <p>
      *            The current status of the model version.
@@ -385,7 +430,8 @@ public class ProjectVersionDescription implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
      * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
-     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED, DEPRECATED,
+     * EXPIRED
      *
      * @param status <p>
      *            The current status of the model version.
@@ -407,7 +453,8 @@ public class ProjectVersionDescription implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
      * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
-     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED, DEPRECATED,
+     * EXPIRED
      *
      * @param status <p>
      *            The current status of the model version.
@@ -429,7 +476,8 @@ public class ProjectVersionDescription implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
      * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
-     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED, DEPRECATED,
+     * EXPIRED
      *
      * @param status <p>
      *            The current status of the model version.
@@ -905,18 +953,18 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The maximum number of inference units Amazon Rekognition Custom Labels
-     * uses to auto-scale the model. For more information, see
-     * <a>StartProjectVersion</a>.
+     * The maximum number of inference units Amazon Rekognition uses to
+     * auto-scale the model. Applies only to Custom Labels projects. For more
+     * information, see <a>StartProjectVersion</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
      * @return <p>
-     *         The maximum number of inference units Amazon Rekognition Custom
-     *         Labels uses to auto-scale the model. For more information, see
-     *         <a>StartProjectVersion</a>.
+     *         The maximum number of inference units Amazon Rekognition uses to
+     *         auto-scale the model. Applies only to Custom Labels projects. For
+     *         more information, see <a>StartProjectVersion</a>.
      *         </p>
      */
     public Integer getMaxInferenceUnits() {
@@ -925,18 +973,19 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The maximum number of inference units Amazon Rekognition Custom Labels
-     * uses to auto-scale the model. For more information, see
-     * <a>StartProjectVersion</a>.
+     * The maximum number of inference units Amazon Rekognition uses to
+     * auto-scale the model. Applies only to Custom Labels projects. For more
+     * information, see <a>StartProjectVersion</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
      * @param maxInferenceUnits <p>
-     *            The maximum number of inference units Amazon Rekognition
-     *            Custom Labels uses to auto-scale the model. For more
-     *            information, see <a>StartProjectVersion</a>.
+     *            The maximum number of inference units Amazon Rekognition uses
+     *            to auto-scale the model. Applies only to Custom Labels
+     *            projects. For more information, see
+     *            <a>StartProjectVersion</a>.
      *            </p>
      */
     public void setMaxInferenceUnits(Integer maxInferenceUnits) {
@@ -945,9 +994,9 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The maximum number of inference units Amazon Rekognition Custom Labels
-     * uses to auto-scale the model. For more information, see
-     * <a>StartProjectVersion</a>.
+     * The maximum number of inference units Amazon Rekognition uses to
+     * auto-scale the model. Applies only to Custom Labels projects. For more
+     * information, see <a>StartProjectVersion</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -957,9 +1006,10 @@ public class ProjectVersionDescription implements Serializable {
      * <b>Range: </b>1 - <br/>
      *
      * @param maxInferenceUnits <p>
-     *            The maximum number of inference units Amazon Rekognition
-     *            Custom Labels uses to auto-scale the model. For more
-     *            information, see <a>StartProjectVersion</a>.
+     *            The maximum number of inference units Amazon Rekognition uses
+     *            to auto-scale the model. Applies only to Custom Labels
+     *            projects. For more information, see
+     *            <a>StartProjectVersion</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1045,6 +1095,255 @@ public class ProjectVersionDescription implements Serializable {
     }
 
     /**
+     * <p>
+     * A user-provided description of the project version.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-_. ()':,;?]+<br/>
+     *
+     * @return <p>
+     *         A user-provided description of the project version.
+     *         </p>
+     */
+    public String getVersionDescription() {
+        return versionDescription;
+    }
+
+    /**
+     * <p>
+     * A user-provided description of the project version.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-_. ()':,;?]+<br/>
+     *
+     * @param versionDescription <p>
+     *            A user-provided description of the project version.
+     *            </p>
+     */
+    public void setVersionDescription(String versionDescription) {
+        this.versionDescription = versionDescription;
+    }
+
+    /**
+     * <p>
+     * A user-provided description of the project version.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-_. ()':,;?]+<br/>
+     *
+     * @param versionDescription <p>
+     *            A user-provided description of the project version.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ProjectVersionDescription withVersionDescription(String versionDescription) {
+        this.versionDescription = versionDescription;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The feature that was customized.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>CONTENT_MODERATION, CUSTOM_LABELS
+     *
+     * @return <p>
+     *         The feature that was customized.
+     *         </p>
+     * @see CustomizationFeature
+     */
+    public String getFeature() {
+        return feature;
+    }
+
+    /**
+     * <p>
+     * The feature that was customized.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>CONTENT_MODERATION, CUSTOM_LABELS
+     *
+     * @param feature <p>
+     *            The feature that was customized.
+     *            </p>
+     * @see CustomizationFeature
+     */
+    public void setFeature(String feature) {
+        this.feature = feature;
+    }
+
+    /**
+     * <p>
+     * The feature that was customized.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>CONTENT_MODERATION, CUSTOM_LABELS
+     *
+     * @param feature <p>
+     *            The feature that was customized.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see CustomizationFeature
+     */
+    public ProjectVersionDescription withFeature(String feature) {
+        this.feature = feature;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The feature that was customized.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>CONTENT_MODERATION, CUSTOM_LABELS
+     *
+     * @param feature <p>
+     *            The feature that was customized.
+     *            </p>
+     * @see CustomizationFeature
+     */
+    public void setFeature(CustomizationFeature feature) {
+        this.feature = feature.toString();
+    }
+
+    /**
+     * <p>
+     * The feature that was customized.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>CONTENT_MODERATION, CUSTOM_LABELS
+     *
+     * @param feature <p>
+     *            The feature that was customized.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see CustomizationFeature
+     */
+    public ProjectVersionDescription withFeature(CustomizationFeature feature) {
+        this.feature = feature.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The base detection model version used to create the project version.
+     * </p>
+     *
+     * @return <p>
+     *         The base detection model version used to create the project
+     *         version.
+     *         </p>
+     */
+    public String getBaseModelVersion() {
+        return baseModelVersion;
+    }
+
+    /**
+     * <p>
+     * The base detection model version used to create the project version.
+     * </p>
+     *
+     * @param baseModelVersion <p>
+     *            The base detection model version used to create the project
+     *            version.
+     *            </p>
+     */
+    public void setBaseModelVersion(String baseModelVersion) {
+        this.baseModelVersion = baseModelVersion;
+    }
+
+    /**
+     * <p>
+     * The base detection model version used to create the project version.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param baseModelVersion <p>
+     *            The base detection model version used to create the project
+     *            version.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ProjectVersionDescription withBaseModelVersion(String baseModelVersion) {
+        this.baseModelVersion = baseModelVersion;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Feature specific configuration that was applied during training.
+     * </p>
+     *
+     * @return <p>
+     *         Feature specific configuration that was applied during training.
+     *         </p>
+     */
+    public CustomizationFeatureConfig getFeatureConfig() {
+        return featureConfig;
+    }
+
+    /**
+     * <p>
+     * Feature specific configuration that was applied during training.
+     * </p>
+     *
+     * @param featureConfig <p>
+     *            Feature specific configuration that was applied during
+     *            training.
+     *            </p>
+     */
+    public void setFeatureConfig(CustomizationFeatureConfig featureConfig) {
+        this.featureConfig = featureConfig;
+    }
+
+    /**
+     * <p>
+     * Feature specific configuration that was applied during training.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param featureConfig <p>
+     *            Feature specific configuration that was applied during
+     *            training.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ProjectVersionDescription withFeatureConfig(CustomizationFeatureConfig featureConfig) {
+        this.featureConfig = featureConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1084,7 +1383,15 @@ public class ProjectVersionDescription implements Serializable {
         if (getMaxInferenceUnits() != null)
             sb.append("MaxInferenceUnits: " + getMaxInferenceUnits() + ",");
         if (getSourceProjectVersionArn() != null)
-            sb.append("SourceProjectVersionArn: " + getSourceProjectVersionArn());
+            sb.append("SourceProjectVersionArn: " + getSourceProjectVersionArn() + ",");
+        if (getVersionDescription() != null)
+            sb.append("VersionDescription: " + getVersionDescription() + ",");
+        if (getFeature() != null)
+            sb.append("Feature: " + getFeature() + ",");
+        if (getBaseModelVersion() != null)
+            sb.append("BaseModelVersion: " + getBaseModelVersion() + ",");
+        if (getFeatureConfig() != null)
+            sb.append("FeatureConfig: " + getFeatureConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -1126,6 +1433,13 @@ public class ProjectVersionDescription implements Serializable {
                 * hashCode
                 + ((getSourceProjectVersionArn() == null) ? 0 : getSourceProjectVersionArn()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getVersionDescription() == null) ? 0 : getVersionDescription().hashCode());
+        hashCode = prime * hashCode + ((getFeature() == null) ? 0 : getFeature().hashCode());
+        hashCode = prime * hashCode
+                + ((getBaseModelVersion() == null) ? 0 : getBaseModelVersion().hashCode());
+        hashCode = prime * hashCode
+                + ((getFeatureConfig() == null) ? 0 : getFeatureConfig().hashCode());
         return hashCode;
     }
 
@@ -1214,6 +1528,25 @@ public class ProjectVersionDescription implements Serializable {
             return false;
         if (other.getSourceProjectVersionArn() != null
                 && other.getSourceProjectVersionArn().equals(this.getSourceProjectVersionArn()) == false)
+            return false;
+        if (other.getVersionDescription() == null ^ this.getVersionDescription() == null)
+            return false;
+        if (other.getVersionDescription() != null
+                && other.getVersionDescription().equals(this.getVersionDescription()) == false)
+            return false;
+        if (other.getFeature() == null ^ this.getFeature() == null)
+            return false;
+        if (other.getFeature() != null && other.getFeature().equals(this.getFeature()) == false)
+            return false;
+        if (other.getBaseModelVersion() == null ^ this.getBaseModelVersion() == null)
+            return false;
+        if (other.getBaseModelVersion() != null
+                && other.getBaseModelVersion().equals(this.getBaseModelVersion()) == false)
+            return false;
+        if (other.getFeatureConfig() == null ^ this.getFeatureConfig() == null)
+            return false;
+        if (other.getFeatureConfig() != null
+                && other.getFeatureConfig().equals(this.getFeatureConfig()) == false)
             return false;
         return true;
     }

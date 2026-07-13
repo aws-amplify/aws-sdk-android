@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,8 @@ public class StartProjectVersionResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
      * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
-     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED, DEPRECATED,
+     * EXPIRED
      */
     private String status;
 
@@ -38,7 +39,8 @@ public class StartProjectVersionResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
      * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
-     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED, DEPRECATED,
+     * EXPIRED
      *
      * @return <p>
      *         The current running status of the model.
@@ -57,7 +59,8 @@ public class StartProjectVersionResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
      * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
-     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED, DEPRECATED,
+     * EXPIRED
      *
      * @param status <p>
      *            The current running status of the model.
@@ -79,7 +82,8 @@ public class StartProjectVersionResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
      * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
-     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED, DEPRECATED,
+     * EXPIRED
      *
      * @param status <p>
      *            The current running status of the model.
@@ -101,7 +105,8 @@ public class StartProjectVersionResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
      * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
-     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED, DEPRECATED,
+     * EXPIRED
      *
      * @param status <p>
      *            The current running status of the model.
@@ -123,7 +128,8 @@ public class StartProjectVersionResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
      * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
-     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED, DEPRECATED,
+     * EXPIRED
      *
      * @param status <p>
      *            The current running status of the model.

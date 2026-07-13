@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,9 +20,9 @@ import java.io.Serializable;
 public class AssociateFacesResult implements Serializable {
     /**
      * <p>
-     * An array of AssociatedFace objects containing FaceIDs that are
-     * successfully associated with the UserID is returned. Returned if the
-     * AssociateFaces action is successful.
+     * An array of AssociatedFace objects containing FaceIDs that have been
+     * successfully associated with the UserID. Returned if the AssociateFaces
+     * action is successful.
      * </p>
      */
     private java.util.List<AssociatedFace> associatedFaces;
@@ -49,15 +49,15 @@ public class AssociateFacesResult implements Serializable {
 
     /**
      * <p>
-     * An array of AssociatedFace objects containing FaceIDs that are
-     * successfully associated with the UserID is returned. Returned if the
-     * AssociateFaces action is successful.
+     * An array of AssociatedFace objects containing FaceIDs that have been
+     * successfully associated with the UserID. Returned if the AssociateFaces
+     * action is successful.
      * </p>
      *
      * @return <p>
-     *         An array of AssociatedFace objects containing FaceIDs that are
-     *         successfully associated with the UserID is returned. Returned if
-     *         the AssociateFaces action is successful.
+     *         An array of AssociatedFace objects containing FaceIDs that have
+     *         been successfully associated with the UserID. Returned if the
+     *         AssociateFaces action is successful.
      *         </p>
      */
     public java.util.List<AssociatedFace> getAssociatedFaces() {
@@ -66,15 +66,15 @@ public class AssociateFacesResult implements Serializable {
 
     /**
      * <p>
-     * An array of AssociatedFace objects containing FaceIDs that are
-     * successfully associated with the UserID is returned. Returned if the
-     * AssociateFaces action is successful.
+     * An array of AssociatedFace objects containing FaceIDs that have been
+     * successfully associated with the UserID. Returned if the AssociateFaces
+     * action is successful.
      * </p>
      *
      * @param associatedFaces <p>
-     *            An array of AssociatedFace objects containing FaceIDs that are
-     *            successfully associated with the UserID is returned. Returned
-     *            if the AssociateFaces action is successful.
+     *            An array of AssociatedFace objects containing FaceIDs that
+     *            have been successfully associated with the UserID. Returned if
+     *            the AssociateFaces action is successful.
      *            </p>
      */
     public void setAssociatedFaces(java.util.Collection<AssociatedFace> associatedFaces) {
@@ -88,18 +88,18 @@ public class AssociateFacesResult implements Serializable {
 
     /**
      * <p>
-     * An array of AssociatedFace objects containing FaceIDs that are
-     * successfully associated with the UserID is returned. Returned if the
-     * AssociateFaces action is successful.
+     * An array of AssociatedFace objects containing FaceIDs that have been
+     * successfully associated with the UserID. Returned if the AssociateFaces
+     * action is successful.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param associatedFaces <p>
-     *            An array of AssociatedFace objects containing FaceIDs that are
-     *            successfully associated with the UserID is returned. Returned
-     *            if the AssociateFaces action is successful.
+     *            An array of AssociatedFace objects containing FaceIDs that
+     *            have been successfully associated with the UserID. Returned if
+     *            the AssociateFaces action is successful.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -116,18 +116,18 @@ public class AssociateFacesResult implements Serializable {
 
     /**
      * <p>
-     * An array of AssociatedFace objects containing FaceIDs that are
-     * successfully associated with the UserID is returned. Returned if the
-     * AssociateFaces action is successful.
+     * An array of AssociatedFace objects containing FaceIDs that have been
+     * successfully associated with the UserID. Returned if the AssociateFaces
+     * action is successful.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param associatedFaces <p>
-     *            An array of AssociatedFace objects containing FaceIDs that are
-     *            successfully associated with the UserID is returned. Returned
-     *            if the AssociateFaces action is successful.
+     *            An array of AssociatedFace objects containing FaceIDs that
+     *            have been successfully associated with the UserID. Returned if
+     *            the AssociateFaces action is successful.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

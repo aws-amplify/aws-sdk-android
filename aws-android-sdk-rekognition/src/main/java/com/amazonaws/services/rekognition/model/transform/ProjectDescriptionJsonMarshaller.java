@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -52,6 +52,16 @@ class ProjectDescriptionJsonMarshaller {
                 }
             }
             jsonWriter.endArray();
+        }
+        if (projectDescription.getFeature() != null) {
+            String feature = projectDescription.getFeature();
+            jsonWriter.name("Feature");
+            jsonWriter.value(feature);
+        }
+        if (projectDescription.getAutoUpdate() != null) {
+            String autoUpdate = projectDescription.getAutoUpdate();
+            jsonWriter.name("AutoUpdate");
+            jsonWriter.value(autoUpdate);
         }
         jsonWriter.endObject();
     }
