@@ -1,3 +1,12 @@
+## [Release 2.81.2](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.81.2)
+
+### Miscellaneous
+- ci: scope down GitHub Token permissions ([#3680](https://github.com/aws-amplify/aws-sdk-android/issues/3680))
+- Update json dep in gemfile ([#3688](https://github.com/aws-amplify/aws-sdk-android/issues/3688))
+- Bump excon to 1.5.0 to address GHSA-48rx-c7pg-q66r ([#3695](https://github.com/aws-amplify/aws-sdk-android/issues/3695))
+
+[See all changes between 2.81.1 and 2.81.2](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.81.1...release_v2.81.2)
+
 ## [Release 2.81.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.81.1)
 
 ### Bug Fixes
