@@ -4,12 +4,7 @@
 [![GitHub release](https://img.shields.io/github/release/aws-amplify/aws-sdk-android.svg)](https://github.com/aws-amplify/aws-sdk-android/releases)
 [![Maven Central](https://img.shields.io/maven-central/v/com.amazonaws/aws-android-sdk-core.svg)](https://search.maven.org/search?q=a:aws-android-sdk-core)
 
-# ⚠️ The AWS SDK for Android entered Maintenance Phase as of August 1, 2025.
-
-During this maintenance period:
-* Critical bug fixes and security patches will continue to be provided
-* No new features or enhancements will be added
-* Existing functionality will remain supported
+# ⚠️ The AWS SDK for Android is Deprecated
 
 We recommend that you start using [AWS Amplify for Android](https://github.com/aws-amplify/amplify-android), our modern feature-rich library designed specifically for building cloud-connected apps powered by AWS. You can refer to the [AWS SDK for Android migration guide](https://github.com/aws-amplify/amplify-android/blob/main/documents/MobileSDK_To_AmplifyAndroid.md) to help you transition to AWS Amplify for Android.
 This version is scheduled to reach End of Support on **August 1, 2026**. After this date, no further updates of any kind will be provided. See [maintenance policy](https://docs.amplify.aws/reference/maintenance-policy) for more information about the Amplify Client Library lifecycle.
