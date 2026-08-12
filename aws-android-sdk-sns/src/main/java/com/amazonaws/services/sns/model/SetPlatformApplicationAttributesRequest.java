@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,7 +35,8 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
         Serializable {
     /**
      * <p>
-     * PlatformApplicationArn for SetPlatformApplicationAttributes action.
+     * <code>PlatformApplicationArn</code> for
+     * <code>SetPlatformApplicationAttributes</code> action.
      * </p>
      */
     private String platformApplicationArn;
@@ -71,8 +72,20 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * </li>
      * <li>
      * <p>
-     * For GCM (Firebase Cloud Messaging), <code>PlatformCredential</code> is
-     * API key.
+     * For GCM (Firebase Cloud Messaging) using key credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is
+     * <code>API key</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For GCM (Firebase Cloud Messaging) using token credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is a
+     * JSON formatted private key file. When using the Amazon Web Services CLI,
+     * the file must be in string format and special characters must be ignored.
+     * To format the file correctly, Amazon SNS recommends using the following
+     * command:
+     * <code>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</code>.
      * </p>
      * </li>
      * </ul>
@@ -180,12 +193,13 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
 
     /**
      * <p>
-     * PlatformApplicationArn for SetPlatformApplicationAttributes action.
+     * <code>PlatformApplicationArn</code> for
+     * <code>SetPlatformApplicationAttributes</code> action.
      * </p>
      *
      * @return <p>
-     *         PlatformApplicationArn for SetPlatformApplicationAttributes
-     *         action.
+     *         <code>PlatformApplicationArn</code> for
+     *         <code>SetPlatformApplicationAttributes</code> action.
      *         </p>
      */
     public String getPlatformApplicationArn() {
@@ -194,12 +208,13 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
 
     /**
      * <p>
-     * PlatformApplicationArn for SetPlatformApplicationAttributes action.
+     * <code>PlatformApplicationArn</code> for
+     * <code>SetPlatformApplicationAttributes</code> action.
      * </p>
      *
      * @param platformApplicationArn <p>
-     *            PlatformApplicationArn for SetPlatformApplicationAttributes
-     *            action.
+     *            <code>PlatformApplicationArn</code> for
+     *            <code>SetPlatformApplicationAttributes</code> action.
      *            </p>
      */
     public void setPlatformApplicationArn(String platformApplicationArn) {
@@ -208,15 +223,16 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
 
     /**
      * <p>
-     * PlatformApplicationArn for SetPlatformApplicationAttributes action.
+     * <code>PlatformApplicationArn</code> for
+     * <code>SetPlatformApplicationAttributes</code> action.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param platformApplicationArn <p>
-     *            PlatformApplicationArn for SetPlatformApplicationAttributes
-     *            action.
+     *            <code>PlatformApplicationArn</code> for
+     *            <code>SetPlatformApplicationAttributes</code> action.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -258,8 +274,20 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * </li>
      * <li>
      * <p>
-     * For GCM (Firebase Cloud Messaging), <code>PlatformCredential</code> is
-     * API key.
+     * For GCM (Firebase Cloud Messaging) using key credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is
+     * <code>API key</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For GCM (Firebase Cloud Messaging) using token credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is a
+     * JSON formatted private key file. When using the Amazon Web Services CLI,
+     * the file must be in string format and special characters must be ignored.
+     * To format the file correctly, Amazon SNS recommends using the following
+     * command:
+     * <code>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</code>.
      * </p>
      * </li>
      * </ul>
@@ -393,8 +421,22 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      *         </li>
      *         <li>
      *         <p>
-     *         For GCM (Firebase Cloud Messaging),
-     *         <code>PlatformCredential</code> is API key.
+     *         For GCM (Firebase Cloud Messaging) using key credentials, there
+     *         is no <code>PlatformPrincipal</code>. The
+     *         <code>PlatformCredential</code> is <code>API key</code>.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         For GCM (Firebase Cloud Messaging) using token credentials, there
+     *         is no <code>PlatformPrincipal</code>. The
+     *         <code>PlatformCredential</code> is a JSON formatted private key
+     *         file. When using the Amazon Web Services CLI, the file must be in
+     *         string format and special characters must be ignored. To format
+     *         the file correctly, Amazon SNS recommends using the following
+     *         command:
+     *         <code>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</code>
+     *         .
      *         </p>
      *         </li>
      *         </ul>
@@ -533,8 +575,20 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * </li>
      * <li>
      * <p>
-     * For GCM (Firebase Cloud Messaging), <code>PlatformCredential</code> is
-     * API key.
+     * For GCM (Firebase Cloud Messaging) using key credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is
+     * <code>API key</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For GCM (Firebase Cloud Messaging) using token credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is a
+     * JSON formatted private key file. When using the Amazon Web Services CLI,
+     * the file must be in string format and special characters must be ignored.
+     * To format the file correctly, Amazon SNS recommends using the following
+     * command:
+     * <code>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</code>.
      * </p>
      * </li>
      * </ul>
@@ -668,8 +722,22 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      *            </li>
      *            <li>
      *            <p>
-     *            For GCM (Firebase Cloud Messaging),
-     *            <code>PlatformCredential</code> is API key.
+     *            For GCM (Firebase Cloud Messaging) using key credentials,
+     *            there is no <code>PlatformPrincipal</code>. The
+     *            <code>PlatformCredential</code> is <code>API key</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For GCM (Firebase Cloud Messaging) using token credentials,
+     *            there is no <code>PlatformPrincipal</code>. The
+     *            <code>PlatformCredential</code> is a JSON formatted private
+     *            key file. When using the Amazon Web Services CLI, the file
+     *            must be in string format and special characters must be
+     *            ignored. To format the file correctly, Amazon SNS recommends
+     *            using the following command:
+     *            <code>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</code>
+     *            .
      *            </p>
      *            </li>
      *            </ul>
@@ -810,8 +878,20 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * </li>
      * <li>
      * <p>
-     * For GCM (Firebase Cloud Messaging), <code>PlatformCredential</code> is
-     * API key.
+     * For GCM (Firebase Cloud Messaging) using key credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is
+     * <code>API key</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For GCM (Firebase Cloud Messaging) using token credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is a
+     * JSON formatted private key file. When using the Amazon Web Services CLI,
+     * the file must be in string format and special characters must be ignored.
+     * To format the file correctly, Amazon SNS recommends using the following
+     * command:
+     * <code>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</code>.
      * </p>
      * </li>
      * </ul>
@@ -948,8 +1028,22 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      *            </li>
      *            <li>
      *            <p>
-     *            For GCM (Firebase Cloud Messaging),
-     *            <code>PlatformCredential</code> is API key.
+     *            For GCM (Firebase Cloud Messaging) using key credentials,
+     *            there is no <code>PlatformPrincipal</code>. The
+     *            <code>PlatformCredential</code> is <code>API key</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For GCM (Firebase Cloud Messaging) using token credentials,
+     *            there is no <code>PlatformPrincipal</code>. The
+     *            <code>PlatformCredential</code> is a JSON formatted private
+     *            key file. When using the Amazon Web Services CLI, the file
+     *            must be in string format and special characters must be
+     *            ignored. To format the file correctly, Amazon SNS recommends
+     *            using the following command:
+     *            <code>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</code>
+     *            .
      *            </p>
      *            </li>
      *            </ul>
@@ -1094,8 +1188,20 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * </li>
      * <li>
      * <p>
-     * For GCM (Firebase Cloud Messaging), <code>PlatformCredential</code> is
-     * API key.
+     * For GCM (Firebase Cloud Messaging) using key credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is
+     * <code>API key</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For GCM (Firebase Cloud Messaging) using token credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is a
+     * JSON formatted private key file. When using the Amazon Web Services CLI,
+     * the file must be in string format and special characters must be ignored.
+     * To format the file correctly, Amazon SNS recommends using the following
+     * command:
+     * <code>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</code>.
      * </p>
      * </li>
      * </ul>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -119,8 +119,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * The following attribute applies only to Amazon Kinesis Data Firehose
-     * delivery stream subscriptions:
+     * The following attribute applies only to Amazon Data Firehose delivery
+     * stream subscriptions:
      * </p>
      * <ul>
      * <li>
@@ -131,7 +131,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Permission to write to the Kinesis Data Firehose delivery stream
+     * Permission to write to the Firehose delivery stream
      * </p>
      * </li>
      * <li>
@@ -141,12 +141,11 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * Specifying a valid ARN for this attribute is required for Kinesis Data
-     * Firehose delivery stream subscriptions. For more information, see <a
-     * href=
+     * Specifying a valid ARN for this attribute is required for Firehose
+     * delivery stream subscriptions. For more information, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
-     * SNS Developer Guide</i>.
+     * >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
      * </li>
      * </ul>
@@ -249,8 +248,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * The following attribute applies only to Amazon Kinesis Data Firehose
-     * delivery stream subscriptions:
+     * The following attribute applies only to Amazon Data Firehose delivery
+     * stream subscriptions:
      * </p>
      * <ul>
      * <li>
@@ -261,7 +260,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Permission to write to the Kinesis Data Firehose delivery stream
+     * Permission to write to the Firehose delivery stream
      * </p>
      * </li>
      * <li>
@@ -271,12 +270,11 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * Specifying a valid ARN for this attribute is required for Kinesis Data
-     * Firehose delivery stream subscriptions. For more information, see <a
-     * href=
+     * Specifying a valid ARN for this attribute is required for Firehose
+     * delivery stream subscriptions. For more information, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
-     * SNS Developer Guide</i>.
+     * >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
      * </li>
      * </ul>
@@ -381,8 +379,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *         </li>
      *         </ul>
      *         <p>
-     *         The following attribute applies only to Amazon Kinesis Data
-     *         Firehose delivery stream subscriptions:
+     *         The following attribute applies only to Amazon Data Firehose
+     *         delivery stream subscriptions:
      *         </p>
      *         <ul>
      *         <li>
@@ -393,7 +391,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *         <ul>
      *         <li>
      *         <p>
-     *         Permission to write to the Kinesis Data Firehose delivery stream
+     *         Permission to write to the Firehose delivery stream
      *         </p>
      *         </li>
      *         <li>
@@ -403,12 +401,12 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *         </li>
      *         </ul>
      *         <p>
-     *         Specifying a valid ARN for this attribute is required for Kinesis
-     *         Data Firehose delivery stream subscriptions. For more
-     *         information, see <a href=
+     *         Specifying a valid ARN for this attribute is required for
+     *         Firehose delivery stream subscriptions. For more information, see
+     *         <a href=
      *         "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     *         >Fanout to Kinesis Data Firehose delivery streams</a> in the
-     *         <i>Amazon SNS Developer Guide</i>.
+     *         >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS
+     *         Developer Guide</i>.
      *         </p>
      *         </li>
      *         </ul>
@@ -513,8 +511,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * The following attribute applies only to Amazon Kinesis Data Firehose
-     * delivery stream subscriptions:
+     * The following attribute applies only to Amazon Data Firehose delivery
+     * stream subscriptions:
      * </p>
      * <ul>
      * <li>
@@ -525,7 +523,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Permission to write to the Kinesis Data Firehose delivery stream
+     * Permission to write to the Firehose delivery stream
      * </p>
      * </li>
      * <li>
@@ -535,12 +533,11 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * Specifying a valid ARN for this attribute is required for Kinesis Data
-     * Firehose delivery stream subscriptions. For more information, see <a
-     * href=
+     * Specifying a valid ARN for this attribute is required for Firehose
+     * delivery stream subscriptions. For more information, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
-     * SNS Developer Guide</i>.
+     * >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
      * </li>
      * </ul>
@@ -646,8 +643,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *            </li>
      *            </ul>
      *            <p>
-     *            The following attribute applies only to Amazon Kinesis Data
-     *            Firehose delivery stream subscriptions:
+     *            The following attribute applies only to Amazon Data Firehose
+     *            delivery stream subscriptions:
      *            </p>
      *            <ul>
      *            <li>
@@ -658,8 +655,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            Permission to write to the Kinesis Data Firehose delivery
-     *            stream
+     *            Permission to write to the Firehose delivery stream
      *            </p>
      *            </li>
      *            <li>
@@ -670,11 +666,11 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *            </ul>
      *            <p>
      *            Specifying a valid ARN for this attribute is required for
-     *            Kinesis Data Firehose delivery stream subscriptions. For more
-     *            information, see <a href=
+     *            Firehose delivery stream subscriptions. For more information,
+     *            see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     *            >Fanout to Kinesis Data Firehose delivery streams</a> in the
-     *            <i>Amazon SNS Developer Guide</i>.
+     *            >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS
+     *            Developer Guide</i>.
      *            </p>
      *            </li>
      *            </ul>
@@ -779,8 +775,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * The following attribute applies only to Amazon Kinesis Data Firehose
-     * delivery stream subscriptions:
+     * The following attribute applies only to Amazon Data Firehose delivery
+     * stream subscriptions:
      * </p>
      * <ul>
      * <li>
@@ -791,7 +787,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Permission to write to the Kinesis Data Firehose delivery stream
+     * Permission to write to the Firehose delivery stream
      * </p>
      * </li>
      * <li>
@@ -801,12 +797,11 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * Specifying a valid ARN for this attribute is required for Kinesis Data
-     * Firehose delivery stream subscriptions. For more information, see <a
-     * href=
+     * Specifying a valid ARN for this attribute is required for Firehose
+     * delivery stream subscriptions. For more information, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
-     * SNS Developer Guide</i>.
+     * >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
      * </li>
      * </ul>
@@ -915,8 +910,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *            </li>
      *            </ul>
      *            <p>
-     *            The following attribute applies only to Amazon Kinesis Data
-     *            Firehose delivery stream subscriptions:
+     *            The following attribute applies only to Amazon Data Firehose
+     *            delivery stream subscriptions:
      *            </p>
      *            <ul>
      *            <li>
@@ -927,8 +922,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            Permission to write to the Kinesis Data Firehose delivery
-     *            stream
+     *            Permission to write to the Firehose delivery stream
      *            </p>
      *            </li>
      *            <li>
@@ -939,11 +933,11 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *            </ul>
      *            <p>
      *            Specifying a valid ARN for this attribute is required for
-     *            Kinesis Data Firehose delivery stream subscriptions. For more
-     *            information, see <a href=
+     *            Firehose delivery stream subscriptions. For more information,
+     *            see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     *            >Fanout to Kinesis Data Firehose delivery streams</a> in the
-     *            <i>Amazon SNS Developer Guide</i>.
+     *            >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS
+     *            Developer Guide</i>.
      *            </p>
      *            </li>
      *            </ul>
@@ -1051,8 +1045,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * The following attribute applies only to Amazon Kinesis Data Firehose
-     * delivery stream subscriptions:
+     * The following attribute applies only to Amazon Data Firehose delivery
+     * stream subscriptions:
      * </p>
      * <ul>
      * <li>
@@ -1063,7 +1057,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Permission to write to the Kinesis Data Firehose delivery stream
+     * Permission to write to the Firehose delivery stream
      * </p>
      * </li>
      * <li>
@@ -1073,12 +1067,11 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * Specifying a valid ARN for this attribute is required for Kinesis Data
-     * Firehose delivery stream subscriptions. For more information, see <a
-     * href=
+     * Specifying a valid ARN for this attribute is required for Firehose
+     * delivery stream subscriptions. For more information, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
-     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
-     * SNS Developer Guide</i>.
+     * >Fanout to Firehose delivery streams</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
      * </li>
      * </ul>

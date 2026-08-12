@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -217,6 +217,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -254,6 +255,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -282,51 +284,57 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * <ul>
      * <li>
      * <p>
-     * For <code>ADM</code>, <code>PlatformPrincipal</code> is
-     * <code>client id</code> and <code>PlatformCredential</code> is
-     * <code>client secret</code>.
+     * For ADM, <code>PlatformPrincipal</code> is <code>client id</code> and
+     * <code>PlatformCredential</code> is <code>client secret</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>Baidu</code>, <code>PlatformPrincipal</code> is
-     * <code>API key</code> and <code>PlatformCredential</code> is
-     * <code>secret key</code>.
+     * For APNS and <code>APNS_SANDBOX</code> using certificate credentials,
+     * <code>PlatformPrincipal</code> is <code>SSL certificate</code> and
+     * <code>PlatformCredential</code> is <code>private key</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>APNS</code> and <code>APNS_SANDBOX</code> using certificate
-     * credentials, <code>PlatformPrincipal</code> is
-     * <code>SSL certificate</code> and <code>PlatformCredential</code> is
-     * <code>private key</code>.
+     * For APNS and <code>APNS_SANDBOX</code> using token credentials,
+     * <code>PlatformPrincipal</code> is <code>signing key ID</code> and
+     * <code>PlatformCredential</code> is <code>signing key</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>APNS</code> and <code>APNS_SANDBOX</code> using token
-     * credentials, <code>PlatformPrincipal</code> is
-     * <code>signing key ID</code> and <code>PlatformCredential</code> is
-     * <code>signing key</code>.
+     * For Baidu, <code>PlatformPrincipal</code> is <code>API key</code> and
+     * <code>PlatformCredential</code> is <code>secret key</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>GCM</code> (Firebase Cloud Messaging), there is no
-     * <code>PlatformPrincipal</code> and the <code>PlatformCredential</code> is
+     * For GCM (Firebase Cloud Messaging) using key credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is
      * <code>API key</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>MPNS</code>, <code>PlatformPrincipal</code> is
-     * <code>TLS certificate</code> and <code>PlatformCredential</code> is
-     * <code>private key</code>.
+     * For GCM (Firebase Cloud Messaging) using token credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is a
+     * JSON formatted private key file. When using the Amazon Web Services CLI,
+     * the file must be in string format and special characters must be ignored.
+     * To format the file correctly, Amazon SNS recommends using the following
+     * command:
+     * <code>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>WNS</code>, <code>PlatformPrincipal</code> is
+     * For MPNS, <code>PlatformPrincipal</code> is <code>TLS certificate</code>
+     * and <code>PlatformCredential</code> is <code>private key</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For WNS, <code>PlatformPrincipal</code> is
      * <code>Package Security Identifier</code> and
      * <code>PlatformCredential</code> is <code>secret key</code>.
      * </p>
@@ -373,51 +381,57 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * <ul>
      * <li>
      * <p>
-     * For <code>ADM</code>, <code>PlatformPrincipal</code> is
-     * <code>client id</code> and <code>PlatformCredential</code> is
-     * <code>client secret</code>.
+     * For ADM, <code>PlatformPrincipal</code> is <code>client id</code> and
+     * <code>PlatformCredential</code> is <code>client secret</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>Baidu</code>, <code>PlatformPrincipal</code> is
-     * <code>API key</code> and <code>PlatformCredential</code> is
-     * <code>secret key</code>.
+     * For APNS and <code>APNS_SANDBOX</code> using certificate credentials,
+     * <code>PlatformPrincipal</code> is <code>SSL certificate</code> and
+     * <code>PlatformCredential</code> is <code>private key</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>APNS</code> and <code>APNS_SANDBOX</code> using certificate
-     * credentials, <code>PlatformPrincipal</code> is
-     * <code>SSL certificate</code> and <code>PlatformCredential</code> is
-     * <code>private key</code>.
+     * For APNS and <code>APNS_SANDBOX</code> using token credentials,
+     * <code>PlatformPrincipal</code> is <code>signing key ID</code> and
+     * <code>PlatformCredential</code> is <code>signing key</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>APNS</code> and <code>APNS_SANDBOX</code> using token
-     * credentials, <code>PlatformPrincipal</code> is
-     * <code>signing key ID</code> and <code>PlatformCredential</code> is
-     * <code>signing key</code>.
+     * For Baidu, <code>PlatformPrincipal</code> is <code>API key</code> and
+     * <code>PlatformCredential</code> is <code>secret key</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>GCM</code> (Firebase Cloud Messaging), there is no
-     * <code>PlatformPrincipal</code> and the <code>PlatformCredential</code> is
+     * For GCM (Firebase Cloud Messaging) using key credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is
      * <code>API key</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>MPNS</code>, <code>PlatformPrincipal</code> is
-     * <code>TLS certificate</code> and <code>PlatformCredential</code> is
-     * <code>private key</code>.
+     * For GCM (Firebase Cloud Messaging) using token credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is a
+     * JSON formatted private key file. When using the Amazon Web Services CLI,
+     * the file must be in string format and special characters must be ignored.
+     * To format the file correctly, Amazon SNS recommends using the following
+     * command:
+     * <code>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>WNS</code>, <code>PlatformPrincipal</code> is
+     * For MPNS, <code>PlatformPrincipal</code> is <code>TLS certificate</code>
+     * and <code>PlatformCredential</code> is <code>private key</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For WNS, <code>PlatformPrincipal</code> is
      * <code>Package Security Identifier</code> and
      * <code>PlatformCredential</code> is <code>secret key</code>.
      * </p>
@@ -730,7 +744,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param deleteEndpointRequest <p>
-     *            Input for DeleteEndpoint action.
+     *            Input for <code>DeleteEndpoint</code> action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         DeleteEndpoint service method, as returned by Amazon Simple
@@ -762,7 +776,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param deleteEndpointRequest <p>
-     *            Input for DeleteEndpoint action.
+     *            Input for <code>DeleteEndpoint</code> action.
      *            </p>
      * @param asyncHandler Asynchronous callback handler for events in the
      *            life-cycle of the request. Users could provide the
@@ -796,7 +810,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param deletePlatformApplicationRequest <p>
-     *            Input for DeletePlatformApplication action.
+     *            Input for <code>DeletePlatformApplication</code> action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         DeletePlatformApplication service method, as returned by Amazon
@@ -826,7 +840,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param deletePlatformApplicationRequest <p>
-     *            Input for DeletePlatformApplication action.
+     *            Input for <code>DeletePlatformApplication</code> action.
      *            </p>
      * @param asyncHandler Asynchronous callback handler for events in the
      *            life-cycle of the request. Users could provide the
@@ -949,6 +963,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      *         service method, as returned by Amazon Simple Notification
      *         Service.
      * @throws InvalidParameterException
+     * @throws InvalidStateException
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws NotFoundException
@@ -983,6 +998,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      *         service method, as returned by Amazon Simple Notification
      *         Service.
      * @throws InvalidParameterException
+     * @throws InvalidStateException
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws NotFoundException
@@ -1070,7 +1086,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param getEndpointAttributesRequest <p>
-     *            Input for GetEndpointAttributes action.
+     *            Input for <code>GetEndpointAttributes</code> action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         GetEndpointAttributes service method, as returned by Amazon
@@ -1101,7 +1117,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param getEndpointAttributesRequest <p>
-     *            Input for GetEndpointAttributes action.
+     *            Input for <code>GetEndpointAttributes</code> action.
      *            </p>
      * @param asyncHandler Asynchronous callback handler for events in the
      *            life-cycle of the request. Users could provide the
@@ -1137,7 +1153,8 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param getPlatformApplicationAttributesRequest <p>
-     *            Input for GetPlatformApplicationAttributes action.
+     *            Input for <code>GetPlatformApplicationAttributes</code>
+     *            action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         GetPlatformApplicationAttributes service method, as returned by
@@ -1168,7 +1185,8 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param getPlatformApplicationAttributesRequest <p>
-     *            Input for GetPlatformApplicationAttributes action.
+     *            Input for <code>GetPlatformApplicationAttributes</code>
+     *            action.
      *            </p>
      * @param asyncHandler Asynchronous callback handler for events in the
      *            life-cycle of the request. Users could provide the
@@ -1481,7 +1499,8 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param listEndpointsByPlatformApplicationRequest <p>
-     *            Input for ListEndpointsByPlatformApplication action.
+     *            Input for <code>ListEndpointsByPlatformApplication</code>
+     *            action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         ListEndpointsByPlatformApplication service method, as returned by
@@ -1521,7 +1540,8 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param listEndpointsByPlatformApplicationRequest <p>
-     *            Input for ListEndpointsByPlatformApplication action.
+     *            Input for <code>ListEndpointsByPlatformApplication</code>
+     *            action.
      *            </p>
      * @param asyncHandler Asynchronous callback handler for events in the
      *            life-cycle of the request. Users could provide the
@@ -1712,7 +1732,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param listPlatformApplicationsRequest <p>
-     *            Input for ListPlatformApplications action.
+     *            Input for <code>ListPlatformApplications</code> action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         ListPlatformApplications service method, as returned by Amazon
@@ -1751,7 +1771,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param listPlatformApplicationsRequest <p>
-     *            Input for ListPlatformApplications action.
+     *            Input for <code>ListPlatformApplications</code> action.
      *            </p>
      * @param asyncHandler Asynchronous callback handler for events in the
      *            life-cycle of the request. Users could provide the
@@ -2638,7 +2658,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param setEndpointAttributesRequest <p>
-     *            Input for SetEndpointAttributes action.
+     *            Input for <code>SetEndpointAttributes</code> action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         SetEndpointAttributes service method, as returned by Amazon
@@ -2669,7 +2689,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param setEndpointAttributesRequest <p>
-     *            Input for SetEndpointAttributes action.
+     *            Input for <code>SetEndpointAttributes</code> action.
      *            </p>
      * @param asyncHandler Asynchronous callback handler for events in the
      *            life-cycle of the request. Users could provide the
@@ -2708,7 +2728,8 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param setPlatformApplicationAttributesRequest <p>
-     *            Input for SetPlatformApplicationAttributes action.
+     *            Input for <code>SetPlatformApplicationAttributes</code>
+     *            action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         SetPlatformApplicationAttributes service method, as returned by
@@ -2742,7 +2763,8 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * 
      * @param setPlatformApplicationAttributesRequest <p>
-     *            Input for SetPlatformApplicationAttributes action.
+     *            Input for <code>SetPlatformApplicationAttributes</code>
+     *            action.
      *            </p>
      * @param asyncHandler Asynchronous callback handler for events in the
      *            life-cycle of the request. Users could provide the
@@ -2875,6 +2897,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      *         Simple Notification Service.
      * @throws InvalidParameterException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InternalErrorException
      * @throws NotFoundException
      * @throws AuthorizationErrorException
@@ -2908,6 +2931,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      *         Simple Notification Service.
      * @throws InvalidParameterException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InternalErrorException
      * @throws NotFoundException
      * @throws AuthorizationErrorException
@@ -3008,7 +3032,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * <p>
      * You call the <code>ConfirmSubscription</code> action with the token from
-     * the subscription response. Confirmation tokens are valid for three days.
+     * the subscription response. Confirmation tokens are valid for two days.
      * </p>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
@@ -3022,6 +3046,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      *         Service.
      * @throws SubscriptionLimitExceededException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InvalidParameterException
      * @throws InternalErrorException
      * @throws NotFoundException
@@ -3047,7 +3072,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * </p>
      * <p>
      * You call the <code>ConfirmSubscription</code> action with the token from
-     * the subscription response. Confirmation tokens are valid for three days.
+     * the subscription response. Confirmation tokens are valid for two days.
      * </p>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
@@ -3065,6 +3090,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      *         Service.
      * @throws SubscriptionLimitExceededException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InvalidParameterException
      * @throws InternalErrorException
      * @throws NotFoundException

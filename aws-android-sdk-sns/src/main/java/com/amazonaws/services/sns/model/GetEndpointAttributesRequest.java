@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,18 +31,19 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetEndpointAttributesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * EndpointArn for GetEndpointAttributes input.
+     * <code>EndpointArn</code> for <code>GetEndpointAttributes</code> input.
      * </p>
      */
     private String endpointArn;
 
     /**
      * <p>
-     * EndpointArn for GetEndpointAttributes input.
+     * <code>EndpointArn</code> for <code>GetEndpointAttributes</code> input.
      * </p>
      *
      * @return <p>
-     *         EndpointArn for GetEndpointAttributes input.
+     *         <code>EndpointArn</code> for <code>GetEndpointAttributes</code>
+     *         input.
      *         </p>
      */
     public String getEndpointArn() {
@@ -51,11 +52,12 @@ public class GetEndpointAttributesRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * EndpointArn for GetEndpointAttributes input.
+     * <code>EndpointArn</code> for <code>GetEndpointAttributes</code> input.
      * </p>
      *
      * @param endpointArn <p>
-     *            EndpointArn for GetEndpointAttributes input.
+     *            <code>EndpointArn</code> for
+     *            <code>GetEndpointAttributes</code> input.
      *            </p>
      */
     public void setEndpointArn(String endpointArn) {
@@ -64,14 +66,15 @@ public class GetEndpointAttributesRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * EndpointArn for GetEndpointAttributes input.
+     * <code>EndpointArn</code> for <code>GetEndpointAttributes</code> input.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param endpointArn <p>
-     *            EndpointArn for GetEndpointAttributes input.
+     *            <code>EndpointArn</code> for
+     *            <code>GetEndpointAttributes</code> input.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
