@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Configuration required for a custom classification model.
+ * Configuration required for a document classification model.
  * </p>
  */
 public class DocumentClassificationConfig implements Serializable {
