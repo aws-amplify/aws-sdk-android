@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the quick connect.
+     * A unique name of the quick connect.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,7 +68,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -149,14 +149,14 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the quick connect.
+     * A unique name of the quick connect.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 127<br/>
      *
      * @return <p>
-     *         The name of the quick connect.
+     *         A unique name of the quick connect.
      *         </p>
      */
     public String getName() {
@@ -165,14 +165,14 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the quick connect.
+     * A unique name of the quick connect.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 127<br/>
      *
      * @param name <p>
-     *            The name of the quick connect.
+     *            A unique name of the quick connect.
      *            </p>
      */
     public void setName(String name) {
@@ -181,7 +181,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the quick connect.
+     * A unique name of the quick connect.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -191,7 +191,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      * <b>Length: </b>1 - 127<br/>
      *
      * @param name <p>
-     *            The name of the quick connect.
+     *            A unique name of the quick connect.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -303,12 +303,12 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource. For example, { "tags": {"key1":"value1",
+     *         resource. For example, { "Tags": {"key1":"value1",
      *         "key2":"value2"} }.
      *         </p>
      */
@@ -319,12 +319,12 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      */
@@ -335,7 +335,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -343,7 +343,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -357,7 +357,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a

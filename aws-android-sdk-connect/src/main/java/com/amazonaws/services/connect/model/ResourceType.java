@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,7 +29,8 @@ public enum ResourceType {
     PARTICIPANT("PARTICIPANT"),
     HIERARCHY_LEVEL("HIERARCHY_LEVEL"),
     HIERARCHY_GROUP("HIERARCHY_GROUP"),
-    USER("USER");
+    USER("USER"),
+    PHONE_NUMBER("PHONE_NUMBER");
 
     private String value;
 
@@ -52,6 +53,7 @@ public enum ResourceType {
         enumMap.put("HIERARCHY_LEVEL", HIERARCHY_LEVEL);
         enumMap.put("HIERARCHY_GROUP", HIERARCHY_GROUP);
         enumMap.put("USER", USER);
+        enumMap.put("PHONE_NUMBER", PHONE_NUMBER);
     }
 
     /**

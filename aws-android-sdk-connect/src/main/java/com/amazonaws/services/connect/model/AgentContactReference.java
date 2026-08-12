@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -62,6 +62,14 @@ public class AgentContactReference implements Serializable {
      * "https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html"
      * >state of the contact</a>.
      * </p>
+     * <note>
+     * <p>
+     * When <code>AgentContactState</code> is set to
+     * <code>CONNECTED_ONHOLD</code>, <code>StateStartTimestamp</code> is not
+     * changed. Instead, <code>StateStartTimestamp</code> reflects the time the
+     * contact was <code>CONNECTED</code> to the agent.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCOMING, PENDING, CONNECTING, CONNECTED,
@@ -352,6 +360,14 @@ public class AgentContactReference implements Serializable {
      * "https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html"
      * >state of the contact</a>.
      * </p>
+     * <note>
+     * <p>
+     * When <code>AgentContactState</code> is set to
+     * <code>CONNECTED_ONHOLD</code>, <code>StateStartTimestamp</code> is not
+     * changed. Instead, <code>StateStartTimestamp</code> reflects the time the
+     * contact was <code>CONNECTED</code> to the agent.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCOMING, PENDING, CONNECTING, CONNECTED,
@@ -362,6 +378,15 @@ public class AgentContactReference implements Serializable {
      *         "https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html"
      *         >state of the contact</a>.
      *         </p>
+     *         <note>
+     *         <p>
+     *         When <code>AgentContactState</code> is set to
+     *         <code>CONNECTED_ONHOLD</code>, <code>StateStartTimestamp</code>
+     *         is not changed. Instead, <code>StateStartTimestamp</code>
+     *         reflects the time the contact was <code>CONNECTED</code> to the
+     *         agent.
+     *         </p>
+     *         </note>
      * @see ContactState
      */
     public String getAgentContactState() {
@@ -374,6 +399,14 @@ public class AgentContactReference implements Serializable {
      * "https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html"
      * >state of the contact</a>.
      * </p>
+     * <note>
+     * <p>
+     * When <code>AgentContactState</code> is set to
+     * <code>CONNECTED_ONHOLD</code>, <code>StateStartTimestamp</code> is not
+     * changed. Instead, <code>StateStartTimestamp</code> reflects the time the
+     * contact was <code>CONNECTED</code> to the agent.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCOMING, PENDING, CONNECTING, CONNECTED,
@@ -384,6 +417,15 @@ public class AgentContactReference implements Serializable {
      *            "https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html"
      *            >state of the contact</a>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            When <code>AgentContactState</code> is set to
+     *            <code>CONNECTED_ONHOLD</code>,
+     *            <code>StateStartTimestamp</code> is not changed. Instead,
+     *            <code>StateStartTimestamp</code> reflects the time the contact
+     *            was <code>CONNECTED</code> to the agent.
+     *            </p>
+     *            </note>
      * @see ContactState
      */
     public void setAgentContactState(String agentContactState) {
@@ -396,6 +438,14 @@ public class AgentContactReference implements Serializable {
      * "https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html"
      * >state of the contact</a>.
      * </p>
+     * <note>
+     * <p>
+     * When <code>AgentContactState</code> is set to
+     * <code>CONNECTED_ONHOLD</code>, <code>StateStartTimestamp</code> is not
+     * changed. Instead, <code>StateStartTimestamp</code> reflects the time the
+     * contact was <code>CONNECTED</code> to the agent.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -409,6 +459,15 @@ public class AgentContactReference implements Serializable {
      *            "https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html"
      *            >state of the contact</a>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            When <code>AgentContactState</code> is set to
+     *            <code>CONNECTED_ONHOLD</code>,
+     *            <code>StateStartTimestamp</code> is not changed. Instead,
+     *            <code>StateStartTimestamp</code> reflects the time the contact
+     *            was <code>CONNECTED</code> to the agent.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ContactState
@@ -424,6 +483,14 @@ public class AgentContactReference implements Serializable {
      * "https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html"
      * >state of the contact</a>.
      * </p>
+     * <note>
+     * <p>
+     * When <code>AgentContactState</code> is set to
+     * <code>CONNECTED_ONHOLD</code>, <code>StateStartTimestamp</code> is not
+     * changed. Instead, <code>StateStartTimestamp</code> reflects the time the
+     * contact was <code>CONNECTED</code> to the agent.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCOMING, PENDING, CONNECTING, CONNECTED,
@@ -434,6 +501,15 @@ public class AgentContactReference implements Serializable {
      *            "https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html"
      *            >state of the contact</a>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            When <code>AgentContactState</code> is set to
+     *            <code>CONNECTED_ONHOLD</code>,
+     *            <code>StateStartTimestamp</code> is not changed. Instead,
+     *            <code>StateStartTimestamp</code> reflects the time the contact
+     *            was <code>CONNECTED</code> to the agent.
+     *            </p>
+     *            </note>
      * @see ContactState
      */
     public void setAgentContactState(ContactState agentContactState) {
@@ -446,6 +522,14 @@ public class AgentContactReference implements Serializable {
      * "https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html"
      * >state of the contact</a>.
      * </p>
+     * <note>
+     * <p>
+     * When <code>AgentContactState</code> is set to
+     * <code>CONNECTED_ONHOLD</code>, <code>StateStartTimestamp</code> is not
+     * changed. Instead, <code>StateStartTimestamp</code> reflects the time the
+     * contact was <code>CONNECTED</code> to the agent.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -459,6 +543,15 @@ public class AgentContactReference implements Serializable {
      *            "https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html"
      *            >state of the contact</a>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            When <code>AgentContactState</code> is set to
+     *            <code>CONNECTED_ONHOLD</code>,
+     *            <code>StateStartTimestamp</code> is not changed. Instead,
+     *            <code>StateStartTimestamp</code> reflects the time the contact
+     *            was <code>CONNECTED</code> to the agent.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ContactState

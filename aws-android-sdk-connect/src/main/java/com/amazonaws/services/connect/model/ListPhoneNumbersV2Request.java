@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -53,13 +53,31 @@ public class ListPhoneNumbersV2Request extends AmazonWebServiceRequest implement
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to. If
-     * <code>TargetArn</code> input is not provided, this API lists numbers
-     * claimed to all the Amazon Connect instances belonging to your account in
-     * the same Amazon Web Services Region as the request.
+     * distribution groups that phone number inbound traffic is routed through.
+     * If both <code>TargetArn</code> and <code>InstanceId</code> input are not
+     * provided, this API lists numbers claimed to all the Amazon Connect
+     * instances belonging to your account in the same Amazon Web Services
+     * Region as the request.
      * </p>
      */
     private String targetArn;
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. If both <code>TargetArn</code> and <code>InstanceId</code> are
+     * not provided, this API lists numbers claimed to all the Amazon Connect
+     * instances belonging to your account in the same AWS Region as the
+     * request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     */
+    private String instanceId;
 
     /**
      * <p>
@@ -111,16 +129,18 @@ public class ListPhoneNumbersV2Request extends AmazonWebServiceRequest implement
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to. If
-     * <code>TargetArn</code> input is not provided, this API lists numbers
-     * claimed to all the Amazon Connect instances belonging to your account in
-     * the same Amazon Web Services Region as the request.
+     * distribution groups that phone number inbound traffic is routed through.
+     * If both <code>TargetArn</code> and <code>InstanceId</code> input are not
+     * provided, this API lists numbers claimed to all the Amazon Connect
+     * instances belonging to your account in the same Amazon Web Services
+     * Region as the request.
      * </p>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *         traffic distribution groups that phone numbers are claimed to. If
-     *         <code>TargetArn</code> input is not provided, this API lists
+     *         traffic distribution groups that phone number inbound traffic is
+     *         routed through. If both <code>TargetArn</code> and
+     *         <code>InstanceId</code> input are not provided, this API lists
      *         numbers claimed to all the Amazon Connect instances belonging to
      *         your account in the same Amazon Web Services Region as the
      *         request.
@@ -133,19 +153,21 @@ public class ListPhoneNumbersV2Request extends AmazonWebServiceRequest implement
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to. If
-     * <code>TargetArn</code> input is not provided, this API lists numbers
-     * claimed to all the Amazon Connect instances belonging to your account in
-     * the same Amazon Web Services Region as the request.
+     * distribution groups that phone number inbound traffic is routed through.
+     * If both <code>TargetArn</code> and <code>InstanceId</code> input are not
+     * provided, this API lists numbers claimed to all the Amazon Connect
+     * instances belonging to your account in the same Amazon Web Services
+     * Region as the request.
      * </p>
      *
      * @param targetArn <p>
      *            The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *            traffic distribution groups that phone numbers are claimed to.
-     *            If <code>TargetArn</code> input is not provided, this API
-     *            lists numbers claimed to all the Amazon Connect instances
-     *            belonging to your account in the same Amazon Web Services
-     *            Region as the request.
+     *            traffic distribution groups that phone number inbound traffic
+     *            is routed through. If both <code>TargetArn</code> and
+     *            <code>InstanceId</code> input are not provided, this API lists
+     *            numbers claimed to all the Amazon Connect instances belonging
+     *            to your account in the same Amazon Web Services Region as the
+     *            request.
      *            </p>
      */
     public void setTargetArn(String targetArn) {
@@ -155,10 +177,11 @@ public class ListPhoneNumbersV2Request extends AmazonWebServiceRequest implement
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to. If
-     * <code>TargetArn</code> input is not provided, this API lists numbers
-     * claimed to all the Amazon Connect instances belonging to your account in
-     * the same Amazon Web Services Region as the request.
+     * distribution groups that phone number inbound traffic is routed through.
+     * If both <code>TargetArn</code> and <code>InstanceId</code> input are not
+     * provided, this API lists numbers claimed to all the Amazon Connect
+     * instances belonging to your account in the same Amazon Web Services
+     * Region as the request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -166,17 +189,114 @@ public class ListPhoneNumbersV2Request extends AmazonWebServiceRequest implement
      *
      * @param targetArn <p>
      *            The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *            traffic distribution groups that phone numbers are claimed to.
-     *            If <code>TargetArn</code> input is not provided, this API
-     *            lists numbers claimed to all the Amazon Connect instances
-     *            belonging to your account in the same Amazon Web Services
-     *            Region as the request.
+     *            traffic distribution groups that phone number inbound traffic
+     *            is routed through. If both <code>TargetArn</code> and
+     *            <code>InstanceId</code> input are not provided, this API lists
+     *            numbers claimed to all the Amazon Connect instances belonging
+     *            to your account in the same Amazon Web Services Region as the
+     *            request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ListPhoneNumbersV2Request withTargetArn(String targetArn) {
         this.targetArn = targetArn;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. If both <code>TargetArn</code> and <code>InstanceId</code> are
+     * not provided, this API lists numbers claimed to all the Amazon Connect
+     * instances belonging to your account in the same AWS Region as the
+     * request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @return <p>
+     *         The identifier of the Amazon Connect instance that phone numbers
+     *         are claimed to. You can <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *         >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *         the instance. If both <code>TargetArn</code> and
+     *         <code>InstanceId</code> are not provided, this API lists numbers
+     *         claimed to all the Amazon Connect instances belonging to your
+     *         account in the same AWS Region as the request.
+     *         </p>
+     */
+    public String getInstanceId() {
+        return instanceId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. If both <code>TargetArn</code> and <code>InstanceId</code> are
+     * not provided, this API lists numbers claimed to all the Amazon Connect
+     * instances belonging to your account in the same AWS Region as the
+     * request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @param instanceId <p>
+     *            The identifier of the Amazon Connect instance that phone
+     *            numbers are claimed to. You can <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance. If both <code>TargetArn</code> and
+     *            <code>InstanceId</code> are not provided, this API lists
+     *            numbers claimed to all the Amazon Connect instances belonging
+     *            to your account in the same AWS Region as the request.
+     *            </p>
+     */
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. If both <code>TargetArn</code> and <code>InstanceId</code> are
+     * not provided, this API lists numbers claimed to all the Amazon Connect
+     * instances belonging to your account in the same AWS Region as the
+     * request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @param instanceId <p>
+     *            The identifier of the Amazon Connect instance that phone
+     *            numbers are claimed to. You can <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance. If both <code>TargetArn</code> and
+     *            <code>InstanceId</code> are not provided, this API lists
+     *            numbers claimed to all the Amazon Connect instances belonging
+     *            to your account in the same AWS Region as the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListPhoneNumbersV2Request withInstanceId(String instanceId) {
+        this.instanceId = instanceId;
         return this;
     }
 
@@ -524,6 +644,8 @@ public class ListPhoneNumbersV2Request extends AmazonWebServiceRequest implement
         sb.append("{");
         if (getTargetArn() != null)
             sb.append("TargetArn: " + getTargetArn() + ",");
+        if (getInstanceId() != null)
+            sb.append("InstanceId: " + getInstanceId() + ",");
         if (getMaxResults() != null)
             sb.append("MaxResults: " + getMaxResults() + ",");
         if (getNextToken() != null)
@@ -544,6 +666,7 @@ public class ListPhoneNumbersV2Request extends AmazonWebServiceRequest implement
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getTargetArn() == null) ? 0 : getTargetArn().hashCode());
+        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime
@@ -572,6 +695,11 @@ public class ListPhoneNumbersV2Request extends AmazonWebServiceRequest implement
             return false;
         if (other.getTargetArn() != null
                 && other.getTargetArn().equals(this.getTargetArn()) == false)
+            return false;
+        if (other.getInstanceId() == null ^ this.getInstanceId() == null)
+            return false;
+        if (other.getInstanceId() != null
+                && other.getInstanceId().equals(this.getInstanceId()) == false)
             return false;
         if (other.getMaxResults() == null ^ this.getMaxResults() == null)
             return false;

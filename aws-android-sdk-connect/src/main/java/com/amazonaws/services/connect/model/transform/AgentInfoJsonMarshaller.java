@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,6 +35,26 @@ class AgentInfoJsonMarshaller {
             java.util.Date connectedToAgentTimestamp = agentInfo.getConnectedToAgentTimestamp();
             jsonWriter.name("ConnectedToAgentTimestamp");
             jsonWriter.value(connectedToAgentTimestamp);
+        }
+        if (agentInfo.getAgentPauseDurationInSeconds() != null) {
+            Integer agentPauseDurationInSeconds = agentInfo.getAgentPauseDurationInSeconds();
+            jsonWriter.name("AgentPauseDurationInSeconds");
+            jsonWriter.value(agentPauseDurationInSeconds);
+        }
+        if (agentInfo.getHierarchyGroups() != null) {
+            HierarchyGroups hierarchyGroups = agentInfo.getHierarchyGroups();
+            jsonWriter.name("HierarchyGroups");
+            HierarchyGroupsJsonMarshaller.getInstance().marshall(hierarchyGroups, jsonWriter);
+        }
+        if (agentInfo.getDeviceInfo() != null) {
+            DeviceInfo deviceInfo = agentInfo.getDeviceInfo();
+            jsonWriter.name("DeviceInfo");
+            DeviceInfoJsonMarshaller.getInstance().marshall(deviceInfo, jsonWriter);
+        }
+        if (agentInfo.getCapabilities() != null) {
+            ParticipantCapabilities capabilities = agentInfo.getCapabilities();
+            jsonWriter.name("Capabilities");
+            ParticipantCapabilitiesJsonMarshaller.getInstance().marshall(capabilities, jsonWriter);
         }
         jsonWriter.endObject();
     }

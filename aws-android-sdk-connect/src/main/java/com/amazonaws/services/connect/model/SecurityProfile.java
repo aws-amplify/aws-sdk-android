@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ public class SecurityProfile implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -87,6 +87,40 @@ public class SecurityProfile implements Serializable {
      * </p>
      */
     private java.util.List<String> tagRestrictedResources;
+
+    /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     */
+    private java.util.Date lastModifiedTime;
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     */
+    private String lastModifiedRegion;
+
+    /**
+     * <p>
+     * The list of resources that a security profile applies hierarchy
+     * restrictions to in Amazon Connect. Following are acceptable
+     * ResourceNames: <code>User</code>.
+     * </p>
+     */
+    private java.util.List<String> hierarchyRestrictedResources;
+
+    /**
+     * <p>
+     * The identifier of the hierarchy group that a security profile uses to
+     * restrict access to resources in Amazon Connect.
+     * </p>
+     */
+    private String allowedAccessControlHierarchyGroupId;
 
     /**
      * <p>
@@ -334,12 +368,12 @@ public class SecurityProfile implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource. For example, { "tags": {"key1":"value1",
+     *         resource. For example, { "Tags": {"key1":"value1",
      *         "key2":"value2"} }.
      *         </p>
      */
@@ -350,12 +384,12 @@ public class SecurityProfile implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      */
@@ -366,7 +400,7 @@ public class SecurityProfile implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -374,7 +408,7 @@ public class SecurityProfile implements Serializable {
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -388,7 +422,7 @@ public class SecurityProfile implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a
@@ -597,6 +631,254 @@ public class SecurityProfile implements Serializable {
     }
 
     /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp when this resource was last modified.
+     *         </p>
+     */
+    public java.util.Date getLastModifiedTime() {
+        return lastModifiedTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     *
+     * @param lastModifiedTime <p>
+     *            The timestamp when this resource was last modified.
+     *            </p>
+     */
+    public void setLastModifiedTime(java.util.Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lastModifiedTime <p>
+     *            The timestamp when this resource was last modified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SecurityProfile withLastModifiedTime(java.util.Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     *
+     * @return <p>
+     *         The Amazon Web Services Region where this resource was last
+     *         modified.
+     *         </p>
+     */
+    public String getLastModifiedRegion() {
+        return lastModifiedRegion;
+    }
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     *
+     * @param lastModifiedRegion <p>
+     *            The Amazon Web Services Region where this resource was last
+     *            modified.
+     *            </p>
+     */
+    public void setLastModifiedRegion(String lastModifiedRegion) {
+        this.lastModifiedRegion = lastModifiedRegion;
+    }
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     *
+     * @param lastModifiedRegion <p>
+     *            The Amazon Web Services Region where this resource was last
+     *            modified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SecurityProfile withLastModifiedRegion(String lastModifiedRegion) {
+        this.lastModifiedRegion = lastModifiedRegion;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The list of resources that a security profile applies hierarchy
+     * restrictions to in Amazon Connect. Following are acceptable
+     * ResourceNames: <code>User</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The list of resources that a security profile applies hierarchy
+     *         restrictions to in Amazon Connect. Following are acceptable
+     *         ResourceNames: <code>User</code>.
+     *         </p>
+     */
+    public java.util.List<String> getHierarchyRestrictedResources() {
+        return hierarchyRestrictedResources;
+    }
+
+    /**
+     * <p>
+     * The list of resources that a security profile applies hierarchy
+     * restrictions to in Amazon Connect. Following are acceptable
+     * ResourceNames: <code>User</code>.
+     * </p>
+     *
+     * @param hierarchyRestrictedResources <p>
+     *            The list of resources that a security profile applies
+     *            hierarchy restrictions to in Amazon Connect. Following are
+     *            acceptable ResourceNames: <code>User</code>.
+     *            </p>
+     */
+    public void setHierarchyRestrictedResources(
+            java.util.Collection<String> hierarchyRestrictedResources) {
+        if (hierarchyRestrictedResources == null) {
+            this.hierarchyRestrictedResources = null;
+            return;
+        }
+
+        this.hierarchyRestrictedResources = new java.util.ArrayList<String>(
+                hierarchyRestrictedResources);
+    }
+
+    /**
+     * <p>
+     * The list of resources that a security profile applies hierarchy
+     * restrictions to in Amazon Connect. Following are acceptable
+     * ResourceNames: <code>User</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param hierarchyRestrictedResources <p>
+     *            The list of resources that a security profile applies
+     *            hierarchy restrictions to in Amazon Connect. Following are
+     *            acceptable ResourceNames: <code>User</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SecurityProfile withHierarchyRestrictedResources(String... hierarchyRestrictedResources) {
+        if (getHierarchyRestrictedResources() == null) {
+            this.hierarchyRestrictedResources = new java.util.ArrayList<String>(
+                    hierarchyRestrictedResources.length);
+        }
+        for (String value : hierarchyRestrictedResources) {
+            this.hierarchyRestrictedResources.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The list of resources that a security profile applies hierarchy
+     * restrictions to in Amazon Connect. Following are acceptable
+     * ResourceNames: <code>User</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param hierarchyRestrictedResources <p>
+     *            The list of resources that a security profile applies
+     *            hierarchy restrictions to in Amazon Connect. Following are
+     *            acceptable ResourceNames: <code>User</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SecurityProfile withHierarchyRestrictedResources(
+            java.util.Collection<String> hierarchyRestrictedResources) {
+        setHierarchyRestrictedResources(hierarchyRestrictedResources);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The identifier of the hierarchy group that a security profile uses to
+     * restrict access to resources in Amazon Connect.
+     * </p>
+     *
+     * @return <p>
+     *         The identifier of the hierarchy group that a security profile
+     *         uses to restrict access to resources in Amazon Connect.
+     *         </p>
+     */
+    public String getAllowedAccessControlHierarchyGroupId() {
+        return allowedAccessControlHierarchyGroupId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the hierarchy group that a security profile uses to
+     * restrict access to resources in Amazon Connect.
+     * </p>
+     *
+     * @param allowedAccessControlHierarchyGroupId <p>
+     *            The identifier of the hierarchy group that a security profile
+     *            uses to restrict access to resources in Amazon Connect.
+     *            </p>
+     */
+    public void setAllowedAccessControlHierarchyGroupId(String allowedAccessControlHierarchyGroupId) {
+        this.allowedAccessControlHierarchyGroupId = allowedAccessControlHierarchyGroupId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the hierarchy group that a security profile uses to
+     * restrict access to resources in Amazon Connect.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param allowedAccessControlHierarchyGroupId <p>
+     *            The identifier of the hierarchy group that a security profile
+     *            uses to restrict access to resources in Amazon Connect.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SecurityProfile withAllowedAccessControlHierarchyGroupId(
+            String allowedAccessControlHierarchyGroupId) {
+        this.allowedAccessControlHierarchyGroupId = allowedAccessControlHierarchyGroupId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -622,7 +904,16 @@ public class SecurityProfile implements Serializable {
         if (getAllowedAccessControlTags() != null)
             sb.append("AllowedAccessControlTags: " + getAllowedAccessControlTags() + ",");
         if (getTagRestrictedResources() != null)
-            sb.append("TagRestrictedResources: " + getTagRestrictedResources());
+            sb.append("TagRestrictedResources: " + getTagRestrictedResources() + ",");
+        if (getLastModifiedTime() != null)
+            sb.append("LastModifiedTime: " + getLastModifiedTime() + ",");
+        if (getLastModifiedRegion() != null)
+            sb.append("LastModifiedRegion: " + getLastModifiedRegion() + ",");
+        if (getHierarchyRestrictedResources() != null)
+            sb.append("HierarchyRestrictedResources: " + getHierarchyRestrictedResources() + ",");
+        if (getAllowedAccessControlHierarchyGroupId() != null)
+            sb.append("AllowedAccessControlHierarchyGroupId: "
+                    + getAllowedAccessControlHierarchyGroupId());
         sb.append("}");
         return sb.toString();
     }
@@ -651,6 +942,18 @@ public class SecurityProfile implements Serializable {
                 * hashCode
                 + ((getTagRestrictedResources() == null) ? 0 : getTagRestrictedResources()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getLastModifiedTime() == null) ? 0 : getLastModifiedTime().hashCode());
+        hashCode = prime * hashCode
+                + ((getLastModifiedRegion() == null) ? 0 : getLastModifiedRegion().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getHierarchyRestrictedResources() == null) ? 0
+                        : getHierarchyRestrictedResources().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAllowedAccessControlHierarchyGroupId() == null) ? 0
+                        : getAllowedAccessControlHierarchyGroupId().hashCode());
         return hashCode;
     }
 
@@ -702,6 +1005,30 @@ public class SecurityProfile implements Serializable {
             return false;
         if (other.getTagRestrictedResources() != null
                 && other.getTagRestrictedResources().equals(this.getTagRestrictedResources()) == false)
+            return false;
+        if (other.getLastModifiedTime() == null ^ this.getLastModifiedTime() == null)
+            return false;
+        if (other.getLastModifiedTime() != null
+                && other.getLastModifiedTime().equals(this.getLastModifiedTime()) == false)
+            return false;
+        if (other.getLastModifiedRegion() == null ^ this.getLastModifiedRegion() == null)
+            return false;
+        if (other.getLastModifiedRegion() != null
+                && other.getLastModifiedRegion().equals(this.getLastModifiedRegion()) == false)
+            return false;
+        if (other.getHierarchyRestrictedResources() == null
+                ^ this.getHierarchyRestrictedResources() == null)
+            return false;
+        if (other.getHierarchyRestrictedResources() != null
+                && other.getHierarchyRestrictedResources().equals(
+                        this.getHierarchyRestrictedResources()) == false)
+            return false;
+        if (other.getAllowedAccessControlHierarchyGroupId() == null
+                ^ this.getAllowedAccessControlHierarchyGroupId() == null)
+            return false;
+        if (other.getAllowedAccessControlHierarchyGroupId() != null
+                && other.getAllowedAccessControlHierarchyGroupId().equals(
+                        this.getAllowedAccessControlHierarchyGroupId()) == false)
             return false;
         return true;
     }

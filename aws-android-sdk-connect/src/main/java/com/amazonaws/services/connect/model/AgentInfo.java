@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,6 +39,38 @@ public class AgentInfo implements Serializable {
      * </p>
      */
     private java.util.Date connectedToAgentTimestamp;
+
+    /**
+     * <p>
+     * Agent pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     */
+    private Integer agentPauseDurationInSeconds;
+
+    /**
+     * <p>
+     * The agent hierarchy groups for the agent.
+     * </p>
+     */
+    private HierarchyGroups hierarchyGroups;
+
+    /**
+     * <p>
+     * Information regarding Agent’s device.
+     * </p>
+     */
+    private DeviceInfo deviceInfo;
+
+    /**
+     * <p>
+     * The configuration for the allowed capabilities for participants present
+     * over the call.
+     * </p>
+     */
+    private ParticipantCapabilities capabilities;
 
     /**
      * <p>
@@ -140,6 +172,201 @@ public class AgentInfo implements Serializable {
     }
 
     /**
+     * <p>
+     * Agent pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @return <p>
+     *         Agent pause duration for a contact in seconds.
+     *         </p>
+     */
+    public Integer getAgentPauseDurationInSeconds() {
+        return agentPauseDurationInSeconds;
+    }
+
+    /**
+     * <p>
+     * Agent pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param agentPauseDurationInSeconds <p>
+     *            Agent pause duration for a contact in seconds.
+     *            </p>
+     */
+    public void setAgentPauseDurationInSeconds(Integer agentPauseDurationInSeconds) {
+        this.agentPauseDurationInSeconds = agentPauseDurationInSeconds;
+    }
+
+    /**
+     * <p>
+     * Agent pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param agentPauseDurationInSeconds <p>
+     *            Agent pause duration for a contact in seconds.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AgentInfo withAgentPauseDurationInSeconds(Integer agentPauseDurationInSeconds) {
+        this.agentPauseDurationInSeconds = agentPauseDurationInSeconds;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The agent hierarchy groups for the agent.
+     * </p>
+     *
+     * @return <p>
+     *         The agent hierarchy groups for the agent.
+     *         </p>
+     */
+    public HierarchyGroups getHierarchyGroups() {
+        return hierarchyGroups;
+    }
+
+    /**
+     * <p>
+     * The agent hierarchy groups for the agent.
+     * </p>
+     *
+     * @param hierarchyGroups <p>
+     *            The agent hierarchy groups for the agent.
+     *            </p>
+     */
+    public void setHierarchyGroups(HierarchyGroups hierarchyGroups) {
+        this.hierarchyGroups = hierarchyGroups;
+    }
+
+    /**
+     * <p>
+     * The agent hierarchy groups for the agent.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param hierarchyGroups <p>
+     *            The agent hierarchy groups for the agent.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AgentInfo withHierarchyGroups(HierarchyGroups hierarchyGroups) {
+        this.hierarchyGroups = hierarchyGroups;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Information regarding Agent’s device.
+     * </p>
+     *
+     * @return <p>
+     *         Information regarding Agent’s device.
+     *         </p>
+     */
+    public DeviceInfo getDeviceInfo() {
+        return deviceInfo;
+    }
+
+    /**
+     * <p>
+     * Information regarding Agent’s device.
+     * </p>
+     *
+     * @param deviceInfo <p>
+     *            Information regarding Agent’s device.
+     *            </p>
+     */
+    public void setDeviceInfo(DeviceInfo deviceInfo) {
+        this.deviceInfo = deviceInfo;
+    }
+
+    /**
+     * <p>
+     * Information regarding Agent’s device.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param deviceInfo <p>
+     *            Information regarding Agent’s device.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AgentInfo withDeviceInfo(DeviceInfo deviceInfo) {
+        this.deviceInfo = deviceInfo;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The configuration for the allowed capabilities for participants present
+     * over the call.
+     * </p>
+     *
+     * @return <p>
+     *         The configuration for the allowed capabilities for participants
+     *         present over the call.
+     *         </p>
+     */
+    public ParticipantCapabilities getCapabilities() {
+        return capabilities;
+    }
+
+    /**
+     * <p>
+     * The configuration for the allowed capabilities for participants present
+     * over the call.
+     * </p>
+     *
+     * @param capabilities <p>
+     *            The configuration for the allowed capabilities for
+     *            participants present over the call.
+     *            </p>
+     */
+    public void setCapabilities(ParticipantCapabilities capabilities) {
+        this.capabilities = capabilities;
+    }
+
+    /**
+     * <p>
+     * The configuration for the allowed capabilities for participants present
+     * over the call.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param capabilities <p>
+     *            The configuration for the allowed capabilities for
+     *            participants present over the call.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AgentInfo withCapabilities(ParticipantCapabilities capabilities) {
+        this.capabilities = capabilities;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -153,7 +380,15 @@ public class AgentInfo implements Serializable {
         if (getId() != null)
             sb.append("Id: " + getId() + ",");
         if (getConnectedToAgentTimestamp() != null)
-            sb.append("ConnectedToAgentTimestamp: " + getConnectedToAgentTimestamp());
+            sb.append("ConnectedToAgentTimestamp: " + getConnectedToAgentTimestamp() + ",");
+        if (getAgentPauseDurationInSeconds() != null)
+            sb.append("AgentPauseDurationInSeconds: " + getAgentPauseDurationInSeconds() + ",");
+        if (getHierarchyGroups() != null)
+            sb.append("HierarchyGroups: " + getHierarchyGroups() + ",");
+        if (getDeviceInfo() != null)
+            sb.append("DeviceInfo: " + getDeviceInfo() + ",");
+        if (getCapabilities() != null)
+            sb.append("Capabilities: " + getCapabilities());
         sb.append("}");
         return sb.toString();
     }
@@ -168,6 +403,15 @@ public class AgentInfo implements Serializable {
                 * hashCode
                 + ((getConnectedToAgentTimestamp() == null) ? 0 : getConnectedToAgentTimestamp()
                         .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAgentPauseDurationInSeconds() == null) ? 0
+                        : getAgentPauseDurationInSeconds().hashCode());
+        hashCode = prime * hashCode
+                + ((getHierarchyGroups() == null) ? 0 : getHierarchyGroups().hashCode());
+        hashCode = prime * hashCode + ((getDeviceInfo() == null) ? 0 : getDeviceInfo().hashCode());
+        hashCode = prime * hashCode
+                + ((getCapabilities() == null) ? 0 : getCapabilities().hashCode());
         return hashCode;
     }
 
@@ -191,6 +435,28 @@ public class AgentInfo implements Serializable {
             return false;
         if (other.getConnectedToAgentTimestamp() != null
                 && other.getConnectedToAgentTimestamp().equals(this.getConnectedToAgentTimestamp()) == false)
+            return false;
+        if (other.getAgentPauseDurationInSeconds() == null
+                ^ this.getAgentPauseDurationInSeconds() == null)
+            return false;
+        if (other.getAgentPauseDurationInSeconds() != null
+                && other.getAgentPauseDurationInSeconds().equals(
+                        this.getAgentPauseDurationInSeconds()) == false)
+            return false;
+        if (other.getHierarchyGroups() == null ^ this.getHierarchyGroups() == null)
+            return false;
+        if (other.getHierarchyGroups() != null
+                && other.getHierarchyGroups().equals(this.getHierarchyGroups()) == false)
+            return false;
+        if (other.getDeviceInfo() == null ^ this.getDeviceInfo() == null)
+            return false;
+        if (other.getDeviceInfo() != null
+                && other.getDeviceInfo().equals(this.getDeviceInfo()) == false)
+            return false;
+        if (other.getCapabilities() == null ^ this.getCapabilities() == null)
+            return false;
+        if (other.getCapabilities() != null
+                && other.getCapabilities().equals(this.getCapabilities()) == false)
             return false;
         return true;
     }

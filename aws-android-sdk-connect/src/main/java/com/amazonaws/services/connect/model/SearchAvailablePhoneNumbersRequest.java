@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,10 +33,26 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
+     * You must enter <code>InstanceId</code> or <code>TargetArn</code>.
      * </p>
      */
     private String targetArn;
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. You must enter <code>InstanceId</code> or
+     * <code>TargetArn</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     */
+    private String instanceId;
 
     /**
      * <p>
@@ -68,7 +84,7 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      */
     private String phoneNumberType;
 
@@ -108,12 +124,15 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
+     * You must enter <code>InstanceId</code> or <code>TargetArn</code>.
      * </p>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *         traffic distribution groups that phone numbers are claimed to.
+     *         traffic distribution groups that phone number inbound traffic is
+     *         routed through. You must enter <code>InstanceId</code> or
+     *         <code>TargetArn</code>.
      *         </p>
      */
     public String getTargetArn() {
@@ -123,12 +142,15 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
+     * You must enter <code>InstanceId</code> or <code>TargetArn</code>.
      * </p>
      *
      * @param targetArn <p>
      *            The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *            traffic distribution groups that phone numbers are claimed to.
+     *            traffic distribution groups that phone number inbound traffic
+     *            is routed through. You must enter <code>InstanceId</code> or
+     *            <code>TargetArn</code>.
      *            </p>
      */
     public void setTargetArn(String targetArn) {
@@ -138,7 +160,8 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
+     * You must enter <code>InstanceId</code> or <code>TargetArn</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -146,13 +169,99 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
      *
      * @param targetArn <p>
      *            The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *            traffic distribution groups that phone numbers are claimed to.
+     *            traffic distribution groups that phone number inbound traffic
+     *            is routed through. You must enter <code>InstanceId</code> or
+     *            <code>TargetArn</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public SearchAvailablePhoneNumbersRequest withTargetArn(String targetArn) {
         this.targetArn = targetArn;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. You must enter <code>InstanceId</code> or
+     * <code>TargetArn</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @return <p>
+     *         The identifier of the Amazon Connect instance that phone numbers
+     *         are claimed to. You can <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *         >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *         the instance. You must enter <code>InstanceId</code> or
+     *         <code>TargetArn</code>.
+     *         </p>
+     */
+    public String getInstanceId() {
+        return instanceId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. You must enter <code>InstanceId</code> or
+     * <code>TargetArn</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @param instanceId <p>
+     *            The identifier of the Amazon Connect instance that phone
+     *            numbers are claimed to. You can <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance. You must enter <code>InstanceId</code> or
+     *            <code>TargetArn</code>.
+     *            </p>
+     */
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. You must enter <code>InstanceId</code> or
+     * <code>TargetArn</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @param instanceId <p>
+     *            The identifier of the Amazon Connect instance that phone
+     *            numbers are claimed to. You can <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance. You must enter <code>InstanceId</code> or
+     *            <code>TargetArn</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchAvailablePhoneNumbersRequest withInstanceId(String instanceId) {
+        this.instanceId = instanceId;
         return this;
     }
 
@@ -327,7 +436,7 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      *
      * @return <p>
      *         The type of phone number.
@@ -345,7 +454,7 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      *
      * @param phoneNumberType <p>
      *            The type of phone number.
@@ -366,7 +475,7 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      *
      * @param phoneNumberType <p>
      *            The type of phone number.
@@ -387,7 +496,7 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      *
      * @param phoneNumberType <p>
      *            The type of phone number.
@@ -408,7 +517,7 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      *
      * @param phoneNumberType <p>
      *            The type of phone number.
@@ -615,6 +724,8 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
         sb.append("{");
         if (getTargetArn() != null)
             sb.append("TargetArn: " + getTargetArn() + ",");
+        if (getInstanceId() != null)
+            sb.append("InstanceId: " + getInstanceId() + ",");
         if (getPhoneNumberCountryCode() != null)
             sb.append("PhoneNumberCountryCode: " + getPhoneNumberCountryCode() + ",");
         if (getPhoneNumberType() != null)
@@ -635,6 +746,7 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getTargetArn() == null) ? 0 : getTargetArn().hashCode());
+        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
         hashCode = prime
                 * hashCode
                 + ((getPhoneNumberCountryCode() == null) ? 0 : getPhoneNumberCountryCode()
@@ -663,6 +775,11 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
             return false;
         if (other.getTargetArn() != null
                 && other.getTargetArn().equals(this.getTargetArn()) == false)
+            return false;
+        if (other.getInstanceId() == null ^ this.getInstanceId() == null)
+            return false;
+        if (other.getInstanceId() != null
+                && other.getInstanceId().equals(this.getInstanceId()) == false)
             return false;
         if (other.getPhoneNumberCountryCode() == null ^ this.getPhoneNumberCountryCode() == null)
             return false;

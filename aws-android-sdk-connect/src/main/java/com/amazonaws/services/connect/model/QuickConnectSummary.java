@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -49,15 +49,32 @@ public class QuickConnectSummary implements Serializable {
 
     /**
      * <p>
-     * The type of quick connect. In the Amazon Connect console, when you create
-     * a quick connect, you are prompted to assign one of the following types:
-     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * The type of quick connect. In the Amazon Connect admin website, when you
+     * create a quick connect, you are prompted to assign one of the following
+     * types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER, QUEUE, PHONE_NUMBER
      */
     private String quickConnectType;
+
+    /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     */
+    private java.util.Date lastModifiedTime;
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     */
+    private String lastModifiedRegion;
 
     /**
      * <p>
@@ -205,19 +222,19 @@ public class QuickConnectSummary implements Serializable {
 
     /**
      * <p>
-     * The type of quick connect. In the Amazon Connect console, when you create
-     * a quick connect, you are prompted to assign one of the following types:
-     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * The type of quick connect. In the Amazon Connect admin website, when you
+     * create a quick connect, you are prompted to assign one of the following
+     * types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER, QUEUE, PHONE_NUMBER
      *
      * @return <p>
-     *         The type of quick connect. In the Amazon Connect console, when
-     *         you create a quick connect, you are prompted to assign one of the
-     *         following types: Agent (USER), External (PHONE_NUMBER), or Queue
-     *         (QUEUE).
+     *         The type of quick connect. In the Amazon Connect admin website,
+     *         when you create a quick connect, you are prompted to assign one
+     *         of the following types: Agent (USER), External (PHONE_NUMBER), or
+     *         Queue (QUEUE).
      *         </p>
      * @see QuickConnectType
      */
@@ -227,19 +244,19 @@ public class QuickConnectSummary implements Serializable {
 
     /**
      * <p>
-     * The type of quick connect. In the Amazon Connect console, when you create
-     * a quick connect, you are prompted to assign one of the following types:
-     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * The type of quick connect. In the Amazon Connect admin website, when you
+     * create a quick connect, you are prompted to assign one of the following
+     * types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER, QUEUE, PHONE_NUMBER
      *
      * @param quickConnectType <p>
-     *            The type of quick connect. In the Amazon Connect console, when
-     *            you create a quick connect, you are prompted to assign one of
-     *            the following types: Agent (USER), External (PHONE_NUMBER), or
-     *            Queue (QUEUE).
+     *            The type of quick connect. In the Amazon Connect admin
+     *            website, when you create a quick connect, you are prompted to
+     *            assign one of the following types: Agent (USER), External
+     *            (PHONE_NUMBER), or Queue (QUEUE).
      *            </p>
      * @see QuickConnectType
      */
@@ -249,9 +266,9 @@ public class QuickConnectSummary implements Serializable {
 
     /**
      * <p>
-     * The type of quick connect. In the Amazon Connect console, when you create
-     * a quick connect, you are prompted to assign one of the following types:
-     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * The type of quick connect. In the Amazon Connect admin website, when you
+     * create a quick connect, you are prompted to assign one of the following
+     * types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -261,10 +278,10 @@ public class QuickConnectSummary implements Serializable {
      * <b>Allowed Values: </b>USER, QUEUE, PHONE_NUMBER
      *
      * @param quickConnectType <p>
-     *            The type of quick connect. In the Amazon Connect console, when
-     *            you create a quick connect, you are prompted to assign one of
-     *            the following types: Agent (USER), External (PHONE_NUMBER), or
-     *            Queue (QUEUE).
+     *            The type of quick connect. In the Amazon Connect admin
+     *            website, when you create a quick connect, you are prompted to
+     *            assign one of the following types: Agent (USER), External
+     *            (PHONE_NUMBER), or Queue (QUEUE).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -277,19 +294,19 @@ public class QuickConnectSummary implements Serializable {
 
     /**
      * <p>
-     * The type of quick connect. In the Amazon Connect console, when you create
-     * a quick connect, you are prompted to assign one of the following types:
-     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * The type of quick connect. In the Amazon Connect admin website, when you
+     * create a quick connect, you are prompted to assign one of the following
+     * types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER, QUEUE, PHONE_NUMBER
      *
      * @param quickConnectType <p>
-     *            The type of quick connect. In the Amazon Connect console, when
-     *            you create a quick connect, you are prompted to assign one of
-     *            the following types: Agent (USER), External (PHONE_NUMBER), or
-     *            Queue (QUEUE).
+     *            The type of quick connect. In the Amazon Connect admin
+     *            website, when you create a quick connect, you are prompted to
+     *            assign one of the following types: Agent (USER), External
+     *            (PHONE_NUMBER), or Queue (QUEUE).
      *            </p>
      * @see QuickConnectType
      */
@@ -299,9 +316,9 @@ public class QuickConnectSummary implements Serializable {
 
     /**
      * <p>
-     * The type of quick connect. In the Amazon Connect console, when you create
-     * a quick connect, you are prompted to assign one of the following types:
-     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * The type of quick connect. In the Amazon Connect admin website, when you
+     * create a quick connect, you are prompted to assign one of the following
+     * types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -311,10 +328,10 @@ public class QuickConnectSummary implements Serializable {
      * <b>Allowed Values: </b>USER, QUEUE, PHONE_NUMBER
      *
      * @param quickConnectType <p>
-     *            The type of quick connect. In the Amazon Connect console, when
-     *            you create a quick connect, you are prompted to assign one of
-     *            the following types: Agent (USER), External (PHONE_NUMBER), or
-     *            Queue (QUEUE).
+     *            The type of quick connect. In the Amazon Connect admin
+     *            website, when you create a quick connect, you are prompted to
+     *            assign one of the following types: Agent (USER), External
+     *            (PHONE_NUMBER), or Queue (QUEUE).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -322,6 +339,108 @@ public class QuickConnectSummary implements Serializable {
      */
     public QuickConnectSummary withQuickConnectType(QuickConnectType quickConnectType) {
         this.quickConnectType = quickConnectType.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp when this resource was last modified.
+     *         </p>
+     */
+    public java.util.Date getLastModifiedTime() {
+        return lastModifiedTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     *
+     * @param lastModifiedTime <p>
+     *            The timestamp when this resource was last modified.
+     *            </p>
+     */
+    public void setLastModifiedTime(java.util.Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lastModifiedTime <p>
+     *            The timestamp when this resource was last modified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public QuickConnectSummary withLastModifiedTime(java.util.Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     *
+     * @return <p>
+     *         The Amazon Web Services Region where this resource was last
+     *         modified.
+     *         </p>
+     */
+    public String getLastModifiedRegion() {
+        return lastModifiedRegion;
+    }
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     *
+     * @param lastModifiedRegion <p>
+     *            The Amazon Web Services Region where this resource was last
+     *            modified.
+     *            </p>
+     */
+    public void setLastModifiedRegion(String lastModifiedRegion) {
+        this.lastModifiedRegion = lastModifiedRegion;
+    }
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     *
+     * @param lastModifiedRegion <p>
+     *            The Amazon Web Services Region where this resource was last
+     *            modified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public QuickConnectSummary withLastModifiedRegion(String lastModifiedRegion) {
+        this.lastModifiedRegion = lastModifiedRegion;
         return this;
     }
 
@@ -343,7 +462,11 @@ public class QuickConnectSummary implements Serializable {
         if (getName() != null)
             sb.append("Name: " + getName() + ",");
         if (getQuickConnectType() != null)
-            sb.append("QuickConnectType: " + getQuickConnectType());
+            sb.append("QuickConnectType: " + getQuickConnectType() + ",");
+        if (getLastModifiedTime() != null)
+            sb.append("LastModifiedTime: " + getLastModifiedTime() + ",");
+        if (getLastModifiedRegion() != null)
+            sb.append("LastModifiedRegion: " + getLastModifiedRegion());
         sb.append("}");
         return sb.toString();
     }
@@ -358,6 +481,10 @@ public class QuickConnectSummary implements Serializable {
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode
                 + ((getQuickConnectType() == null) ? 0 : getQuickConnectType().hashCode());
+        hashCode = prime * hashCode
+                + ((getLastModifiedTime() == null) ? 0 : getLastModifiedTime().hashCode());
+        hashCode = prime * hashCode
+                + ((getLastModifiedRegion() == null) ? 0 : getLastModifiedRegion().hashCode());
         return hashCode;
     }
 
@@ -388,6 +515,16 @@ public class QuickConnectSummary implements Serializable {
             return false;
         if (other.getQuickConnectType() != null
                 && other.getQuickConnectType().equals(this.getQuickConnectType()) == false)
+            return false;
+        if (other.getLastModifiedTime() == null ^ this.getLastModifiedTime() == null)
+            return false;
+        if (other.getLastModifiedTime() != null
+                && other.getLastModifiedTime().equals(this.getLastModifiedTime()) == false)
+            return false;
+        if (other.getLastModifiedRegion() == null ^ this.getLastModifiedRegion() == null)
+            return false;
+        if (other.getLastModifiedRegion() != null
+                && other.getLastModifiedRegion().equals(this.getLastModifiedRegion()) == false)
             return false;
         return true;
     }

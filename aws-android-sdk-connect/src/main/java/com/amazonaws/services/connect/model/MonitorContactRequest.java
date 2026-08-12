@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ public class MonitorContactRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * Specify which monitoring actions the user is allowed to take. For
      * example, whether the user is allowed to escalate from silent monitoring
-     * to barge.
+     * to barge. AllowedMonitorCapabilities is required if barge is enabled.
      * </p>
      */
     private java.util.List<String> allowedMonitorCapabilities;
@@ -254,13 +254,14 @@ public class MonitorContactRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * Specify which monitoring actions the user is allowed to take. For
      * example, whether the user is allowed to escalate from silent monitoring
-     * to barge.
+     * to barge. AllowedMonitorCapabilities is required if barge is enabled.
      * </p>
      *
      * @return <p>
      *         Specify which monitoring actions the user is allowed to take. For
      *         example, whether the user is allowed to escalate from silent
-     *         monitoring to barge.
+     *         monitoring to barge. AllowedMonitorCapabilities is required if
+     *         barge is enabled.
      *         </p>
      */
     public java.util.List<String> getAllowedMonitorCapabilities() {
@@ -271,13 +272,14 @@ public class MonitorContactRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * Specify which monitoring actions the user is allowed to take. For
      * example, whether the user is allowed to escalate from silent monitoring
-     * to barge.
+     * to barge. AllowedMonitorCapabilities is required if barge is enabled.
      * </p>
      *
      * @param allowedMonitorCapabilities <p>
      *            Specify which monitoring actions the user is allowed to take.
      *            For example, whether the user is allowed to escalate from
-     *            silent monitoring to barge.
+     *            silent monitoring to barge. AllowedMonitorCapabilities is
+     *            required if barge is enabled.
      *            </p>
      */
     public void setAllowedMonitorCapabilities(
@@ -295,7 +297,7 @@ public class MonitorContactRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * Specify which monitoring actions the user is allowed to take. For
      * example, whether the user is allowed to escalate from silent monitoring
-     * to barge.
+     * to barge. AllowedMonitorCapabilities is required if barge is enabled.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -304,7 +306,8 @@ public class MonitorContactRequest extends AmazonWebServiceRequest implements Se
      * @param allowedMonitorCapabilities <p>
      *            Specify which monitoring actions the user is allowed to take.
      *            For example, whether the user is allowed to escalate from
-     *            silent monitoring to barge.
+     *            silent monitoring to barge. AllowedMonitorCapabilities is
+     *            required if barge is enabled.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -325,7 +328,7 @@ public class MonitorContactRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * Specify which monitoring actions the user is allowed to take. For
      * example, whether the user is allowed to escalate from silent monitoring
-     * to barge.
+     * to barge. AllowedMonitorCapabilities is required if barge is enabled.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -334,7 +337,8 @@ public class MonitorContactRequest extends AmazonWebServiceRequest implements Se
      * @param allowedMonitorCapabilities <p>
      *            Specify which monitoring actions the user is allowed to take.
      *            For example, whether the user is allowed to escalate from
-     *            silent monitoring to barge.
+     *            silent monitoring to barge. AllowedMonitorCapabilities is
+     *            required if barge is enabled.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

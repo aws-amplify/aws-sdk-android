@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -79,17 +79,52 @@ public class ListPhoneNumbersSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      */
     private String phoneNumberType;
 
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
      * </p>
      */
     private String targetArn;
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     */
+    private String instanceId;
+
+    /**
+     * <p>
+     * The description of the phone number.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 500<br/>
+     * <b>Pattern: </b>^[\W\S_]*<br/>
+     */
+    private String phoneNumberDescription;
+
+    /**
+     * <p>
+     * The claimed phone number ARN that was previously imported from the
+     * external service, such as Amazon Pinpoint. If it is from Amazon Pinpoint,
+     * it looks like the ARN of the phone number that was imported from Amazon
+     * Pinpoint.
+     * </p>
+     */
+    private String sourcePhoneNumberArn;
 
     /**
      * <p>
@@ -414,7 +449,7 @@ public class ListPhoneNumbersSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      *
      * @return <p>
      *         The type of phone number.
@@ -432,7 +467,7 @@ public class ListPhoneNumbersSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      *
      * @param phoneNumberType <p>
      *            The type of phone number.
@@ -453,7 +488,7 @@ public class ListPhoneNumbersSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      *
      * @param phoneNumberType <p>
      *            The type of phone number.
@@ -474,7 +509,7 @@ public class ListPhoneNumbersSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      *
      * @param phoneNumberType <p>
      *            The type of phone number.
@@ -495,7 +530,7 @@ public class ListPhoneNumbersSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      *
      * @param phoneNumberType <p>
      *            The type of phone number.
@@ -512,12 +547,13 @@ public class ListPhoneNumbersSummary implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
      * </p>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *         traffic distribution groups that phone numbers are claimed to.
+     *         traffic distribution groups that phone number inbound traffic is
+     *         routed through.
      *         </p>
      */
     public String getTargetArn() {
@@ -527,12 +563,13 @@ public class ListPhoneNumbersSummary implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
      * </p>
      *
      * @param targetArn <p>
      *            The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *            traffic distribution groups that phone numbers are claimed to.
+     *            traffic distribution groups that phone number inbound traffic
+     *            is routed through.
      *            </p>
      */
     public void setTargetArn(String targetArn) {
@@ -542,7 +579,7 @@ public class ListPhoneNumbersSummary implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -550,13 +587,212 @@ public class ListPhoneNumbersSummary implements Serializable {
      *
      * @param targetArn <p>
      *            The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *            traffic distribution groups that phone numbers are claimed to.
+     *            traffic distribution groups that phone number inbound traffic
+     *            is routed through.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ListPhoneNumbersSummary withTargetArn(String targetArn) {
         this.targetArn = targetArn;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @return <p>
+     *         The identifier of the Amazon Connect instance that phone numbers
+     *         are claimed to. You can <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *         >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *         the instance.
+     *         </p>
+     */
+    public String getInstanceId() {
+        return instanceId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @param instanceId <p>
+     *            The identifier of the Amazon Connect instance that phone
+     *            numbers are claimed to. You can <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance.
+     *            </p>
+     */
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @param instanceId <p>
+     *            The identifier of the Amazon Connect instance that phone
+     *            numbers are claimed to. You can <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListPhoneNumbersSummary withInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The description of the phone number.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 500<br/>
+     * <b>Pattern: </b>^[\W\S_]*<br/>
+     *
+     * @return <p>
+     *         The description of the phone number.
+     *         </p>
+     */
+    public String getPhoneNumberDescription() {
+        return phoneNumberDescription;
+    }
+
+    /**
+     * <p>
+     * The description of the phone number.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 500<br/>
+     * <b>Pattern: </b>^[\W\S_]*<br/>
+     *
+     * @param phoneNumberDescription <p>
+     *            The description of the phone number.
+     *            </p>
+     */
+    public void setPhoneNumberDescription(String phoneNumberDescription) {
+        this.phoneNumberDescription = phoneNumberDescription;
+    }
+
+    /**
+     * <p>
+     * The description of the phone number.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 500<br/>
+     * <b>Pattern: </b>^[\W\S_]*<br/>
+     *
+     * @param phoneNumberDescription <p>
+     *            The description of the phone number.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListPhoneNumbersSummary withPhoneNumberDescription(String phoneNumberDescription) {
+        this.phoneNumberDescription = phoneNumberDescription;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The claimed phone number ARN that was previously imported from the
+     * external service, such as Amazon Pinpoint. If it is from Amazon Pinpoint,
+     * it looks like the ARN of the phone number that was imported from Amazon
+     * Pinpoint.
+     * </p>
+     *
+     * @return <p>
+     *         The claimed phone number ARN that was previously imported from
+     *         the external service, such as Amazon Pinpoint. If it is from
+     *         Amazon Pinpoint, it looks like the ARN of the phone number that
+     *         was imported from Amazon Pinpoint.
+     *         </p>
+     */
+    public String getSourcePhoneNumberArn() {
+        return sourcePhoneNumberArn;
+    }
+
+    /**
+     * <p>
+     * The claimed phone number ARN that was previously imported from the
+     * external service, such as Amazon Pinpoint. If it is from Amazon Pinpoint,
+     * it looks like the ARN of the phone number that was imported from Amazon
+     * Pinpoint.
+     * </p>
+     *
+     * @param sourcePhoneNumberArn <p>
+     *            The claimed phone number ARN that was previously imported from
+     *            the external service, such as Amazon Pinpoint. If it is from
+     *            Amazon Pinpoint, it looks like the ARN of the phone number
+     *            that was imported from Amazon Pinpoint.
+     *            </p>
+     */
+    public void setSourcePhoneNumberArn(String sourcePhoneNumberArn) {
+        this.sourcePhoneNumberArn = sourcePhoneNumberArn;
+    }
+
+    /**
+     * <p>
+     * The claimed phone number ARN that was previously imported from the
+     * external service, such as Amazon Pinpoint. If it is from Amazon Pinpoint,
+     * it looks like the ARN of the phone number that was imported from Amazon
+     * Pinpoint.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sourcePhoneNumberArn <p>
+     *            The claimed phone number ARN that was previously imported from
+     *            the external service, such as Amazon Pinpoint. If it is from
+     *            Amazon Pinpoint, it looks like the ARN of the phone number
+     *            that was imported from Amazon Pinpoint.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListPhoneNumbersSummary withSourcePhoneNumberArn(String sourcePhoneNumberArn) {
+        this.sourcePhoneNumberArn = sourcePhoneNumberArn;
         return this;
     }
 
@@ -582,7 +818,13 @@ public class ListPhoneNumbersSummary implements Serializable {
         if (getPhoneNumberType() != null)
             sb.append("PhoneNumberType: " + getPhoneNumberType() + ",");
         if (getTargetArn() != null)
-            sb.append("TargetArn: " + getTargetArn());
+            sb.append("TargetArn: " + getTargetArn() + ",");
+        if (getInstanceId() != null)
+            sb.append("InstanceId: " + getInstanceId() + ",");
+        if (getPhoneNumberDescription() != null)
+            sb.append("PhoneNumberDescription: " + getPhoneNumberDescription() + ",");
+        if (getSourcePhoneNumberArn() != null)
+            sb.append("SourcePhoneNumberArn: " + getSourcePhoneNumberArn());
         sb.append("}");
         return sb.toString();
     }
@@ -605,6 +847,13 @@ public class ListPhoneNumbersSummary implements Serializable {
         hashCode = prime * hashCode
                 + ((getPhoneNumberType() == null) ? 0 : getPhoneNumberType().hashCode());
         hashCode = prime * hashCode + ((getTargetArn() == null) ? 0 : getTargetArn().hashCode());
+        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getPhoneNumberDescription() == null) ? 0 : getPhoneNumberDescription()
+                        .hashCode());
+        hashCode = prime * hashCode
+                + ((getSourcePhoneNumberArn() == null) ? 0 : getSourcePhoneNumberArn().hashCode());
         return hashCode;
     }
 
@@ -648,6 +897,21 @@ public class ListPhoneNumbersSummary implements Serializable {
             return false;
         if (other.getTargetArn() != null
                 && other.getTargetArn().equals(this.getTargetArn()) == false)
+            return false;
+        if (other.getInstanceId() == null ^ this.getInstanceId() == null)
+            return false;
+        if (other.getInstanceId() != null
+                && other.getInstanceId().equals(this.getInstanceId()) == false)
+            return false;
+        if (other.getPhoneNumberDescription() == null ^ this.getPhoneNumberDescription() == null)
+            return false;
+        if (other.getPhoneNumberDescription() != null
+                && other.getPhoneNumberDescription().equals(this.getPhoneNumberDescription()) == false)
+            return false;
+        if (other.getSourcePhoneNumberArn() == null ^ this.getSourcePhoneNumberArn() == null)
+            return false;
+        if (other.getSourcePhoneNumberArn() != null
+                && other.getSourcePhoneNumberArn().equals(this.getSourcePhoneNumberArn()) == false)
             return false;
         return true;
     }

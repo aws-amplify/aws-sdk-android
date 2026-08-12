@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -56,6 +56,21 @@ class ListPhoneNumbersSummaryJsonMarshaller {
             String targetArn = listPhoneNumbersSummary.getTargetArn();
             jsonWriter.name("TargetArn");
             jsonWriter.value(targetArn);
+        }
+        if (listPhoneNumbersSummary.getInstanceId() != null) {
+            String instanceId = listPhoneNumbersSummary.getInstanceId();
+            jsonWriter.name("InstanceId");
+            jsonWriter.value(instanceId);
+        }
+        if (listPhoneNumbersSummary.getPhoneNumberDescription() != null) {
+            String phoneNumberDescription = listPhoneNumbersSummary.getPhoneNumberDescription();
+            jsonWriter.name("PhoneNumberDescription");
+            jsonWriter.value(phoneNumberDescription);
+        }
+        if (listPhoneNumbersSummary.getSourcePhoneNumberArn() != null) {
+            String sourcePhoneNumberArn = listPhoneNumbersSummary.getSourcePhoneNumberArn();
+            jsonWriter.name("SourcePhoneNumberArn");
+            jsonWriter.value(sourcePhoneNumberArn);
         }
         jsonWriter.endObject();
     }

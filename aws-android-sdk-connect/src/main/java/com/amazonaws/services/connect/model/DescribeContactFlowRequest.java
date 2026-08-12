@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,6 +27,20 @@ import com.amazonaws.AmazonWebServiceRequest;
  * You can also create and update flows using the <a href=
  * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
  * >Amazon Connect Flow language</a>.
+ * </p>
+ * <p>
+ * Use the <code>$SAVED</code> alias in the request to describe the
+ * <code>SAVED</code> content of a Flow. For example,
+ * <code>arn:aws:.../contact-flow/{id}:$SAVED</code>. Once a contact flow is
+ * published, <code>$SAVED</code> needs to be supplied to view saved content
+ * that has not been published.
+ * </p>
+ * <p>
+ * In the response, <b>Status</b> indicates the flow status as either
+ * <code>SAVED</code> or <code>PUBLISHED</code>. The <code>PUBLISHED</code>
+ * status will initiate validation on the content. <code>SAVED</code> does not
+ * initiate validation of the content. <code>SAVED</code> |
+ * <code>PUBLISHED</code>
  * </p>
  */
 public class DescribeContactFlowRequest extends AmazonWebServiceRequest implements Serializable {

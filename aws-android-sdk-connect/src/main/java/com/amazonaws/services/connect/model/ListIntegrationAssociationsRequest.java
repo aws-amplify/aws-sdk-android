@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -47,7 +47,8 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      */
     private String integrationType;
 
@@ -69,6 +70,13 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
      * <b>Range: </b>1 - 100<br/>
      */
     private Integer maxResults;
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the integration.
+     * </p>
+     */
+    private String integrationArn;
 
     /**
      * <p>
@@ -151,7 +159,8 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @return <p>
      *         The integration type.
@@ -169,7 +178,8 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The integration type.
@@ -190,7 +200,8 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The integration type.
@@ -211,7 +222,8 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The integration type.
@@ -232,7 +244,8 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The integration type.
@@ -358,6 +371,51 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
     }
 
     /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the integration.
+     * </p>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the integration.
+     *         </p>
+     */
+    public String getIntegrationArn() {
+        return integrationArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the integration.
+     * </p>
+     *
+     * @param integrationArn <p>
+     *            The Amazon Resource Name (ARN) of the integration.
+     *            </p>
+     */
+    public void setIntegrationArn(String integrationArn) {
+        this.integrationArn = integrationArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the integration.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param integrationArn <p>
+     *            The Amazon Resource Name (ARN) of the integration.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListIntegrationAssociationsRequest withIntegrationArn(String integrationArn) {
+        this.integrationArn = integrationArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -375,7 +433,9 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken() + ",");
         if (getMaxResults() != null)
-            sb.append("MaxResults: " + getMaxResults());
+            sb.append("MaxResults: " + getMaxResults() + ",");
+        if (getIntegrationArn() != null)
+            sb.append("IntegrationArn: " + getIntegrationArn());
         sb.append("}");
         return sb.toString();
     }
@@ -390,6 +450,8 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
                 + ((getIntegrationType() == null) ? 0 : getIntegrationType().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
+        hashCode = prime * hashCode
+                + ((getIntegrationArn() == null) ? 0 : getIntegrationArn().hashCode());
         return hashCode;
     }
 
@@ -423,6 +485,11 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
             return false;
         if (other.getMaxResults() != null
                 && other.getMaxResults().equals(this.getMaxResults()) == false)
+            return false;
+        if (other.getIntegrationArn() == null ^ this.getIntegrationArn() == null)
+            return false;
+        if (other.getIntegrationArn() != null
+                && other.getIntegrationArn().equals(this.getIntegrationArn()) == false)
             return false;
         return true;
     }

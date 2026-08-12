@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -54,6 +54,17 @@ class ListPhoneNumbersSummaryJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("TargetArn")) {
                 listPhoneNumbersSummary.setTargetArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("InstanceId")) {
+                listPhoneNumbersSummary.setInstanceId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("PhoneNumberDescription")) {
+                listPhoneNumbersSummary.setPhoneNumberDescription(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("SourcePhoneNumberArn")) {
+                listPhoneNumbersSummary.setSourcePhoneNumberArn(StringJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

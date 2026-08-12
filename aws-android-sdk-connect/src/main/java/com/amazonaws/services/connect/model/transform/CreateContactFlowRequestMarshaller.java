@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -84,6 +84,11 @@ public class CreateContactFlowRequestMarshaller implements
                 String content = createContactFlowRequest.getContent();
                 jsonWriter.name("Content");
                 jsonWriter.value(content);
+            }
+            if (createContactFlowRequest.getStatus() != null) {
+                String status = createContactFlowRequest.getStatus();
+                jsonWriter.name("Status");
+                jsonWriter.value(status);
             }
             if (createContactFlowRequest.getTags() != null) {
                 java.util.Map<String, String> tags = createContactFlowRequest.getTags();
