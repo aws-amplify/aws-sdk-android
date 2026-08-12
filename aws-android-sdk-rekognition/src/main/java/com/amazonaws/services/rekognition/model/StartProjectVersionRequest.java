@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,6 +20,11 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
+ * <note>
+ * <p>
+ * This operation applies only to Amazon Rekognition Custom Labels.
+ * </p>
+ * </note>
  * <p>
  * Starts the running of the version of a model. Starting a model takes a while
  * to complete. To check the current state of the model, use
@@ -35,10 +40,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * running model, call <a>StopProjectVersion</a>.
  * </p>
  * </note>
- * <p>
- * For more information, see <i>Running a trained Amazon Rekognition Custom
- * Labels model</i> in the Amazon Rekognition Custom Labels Guide.
- * </p>
  * <p>
  * This operation requires permissions to perform the
  * <code>rekognition:StartProjectVersion</code> action.
@@ -63,11 +64,6 @@ public class StartProjectVersionRequest extends AmazonWebServiceRequest implemen
      * <p>
      * The minimum number of inference units to use. A single inference unit
      * represents 1 hour of processing.
-     * </p>
-     * <p>
-     * For information about the number of transactions per second (TPS) that an
-     * inference unit can support, see <i>Running a trained Amazon Rekognition
-     * Custom Labels model</i> in the Amazon Rekognition Custom Labels Guide.
      * </p>
      * <p>
      * Use a higher number to increase the TPS throughput of your model. You are
@@ -166,11 +162,6 @@ public class StartProjectVersionRequest extends AmazonWebServiceRequest implemen
      * represents 1 hour of processing.
      * </p>
      * <p>
-     * For information about the number of transactions per second (TPS) that an
-     * inference unit can support, see <i>Running a trained Amazon Rekognition
-     * Custom Labels model</i> in the Amazon Rekognition Custom Labels Guide.
-     * </p>
-     * <p>
      * Use a higher number to increase the TPS throughput of your model. You are
      * charged for the number of inference units that you use.
      * </p>
@@ -181,12 +172,6 @@ public class StartProjectVersionRequest extends AmazonWebServiceRequest implemen
      * @return <p>
      *         The minimum number of inference units to use. A single inference
      *         unit represents 1 hour of processing.
-     *         </p>
-     *         <p>
-     *         For information about the number of transactions per second (TPS)
-     *         that an inference unit can support, see <i>Running a trained
-     *         Amazon Rekognition Custom Labels model</i> in the Amazon
-     *         Rekognition Custom Labels Guide.
      *         </p>
      *         <p>
      *         Use a higher number to increase the TPS throughput of your model.
@@ -203,11 +188,6 @@ public class StartProjectVersionRequest extends AmazonWebServiceRequest implemen
      * represents 1 hour of processing.
      * </p>
      * <p>
-     * For information about the number of transactions per second (TPS) that an
-     * inference unit can support, see <i>Running a trained Amazon Rekognition
-     * Custom Labels model</i> in the Amazon Rekognition Custom Labels Guide.
-     * </p>
-     * <p>
      * Use a higher number to increase the TPS throughput of your model. You are
      * charged for the number of inference units that you use.
      * </p>
@@ -218,12 +198,6 @@ public class StartProjectVersionRequest extends AmazonWebServiceRequest implemen
      * @param minInferenceUnits <p>
      *            The minimum number of inference units to use. A single
      *            inference unit represents 1 hour of processing.
-     *            </p>
-     *            <p>
-     *            For information about the number of transactions per second
-     *            (TPS) that an inference unit can support, see <i>Running a
-     *            trained Amazon Rekognition Custom Labels model</i> in the
-     *            Amazon Rekognition Custom Labels Guide.
      *            </p>
      *            <p>
      *            Use a higher number to increase the TPS throughput of your
@@ -241,11 +215,6 @@ public class StartProjectVersionRequest extends AmazonWebServiceRequest implemen
      * represents 1 hour of processing.
      * </p>
      * <p>
-     * For information about the number of transactions per second (TPS) that an
-     * inference unit can support, see <i>Running a trained Amazon Rekognition
-     * Custom Labels model</i> in the Amazon Rekognition Custom Labels Guide.
-     * </p>
-     * <p>
      * Use a higher number to increase the TPS throughput of your model. You are
      * charged for the number of inference units that you use.
      * </p>
@@ -259,12 +228,6 @@ public class StartProjectVersionRequest extends AmazonWebServiceRequest implemen
      * @param minInferenceUnits <p>
      *            The minimum number of inference units to use. A single
      *            inference unit represents 1 hour of processing.
-     *            </p>
-     *            <p>
-     *            For information about the number of transactions per second
-     *            (TPS) that an inference unit can support, see <i>Running a
-     *            trained Amazon Rekognition Custom Labels model</i> in the
-     *            Amazon Rekognition Custom Labels Guide.
      *            </p>
      *            <p>
      *            Use a higher number to increase the TPS throughput of your

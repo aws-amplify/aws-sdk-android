@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,17 +21,31 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a new version of a model and begins training. Models are managed as
- * part of an Amazon Rekognition Custom Labels project. The response from
+ * Creates a new version of Amazon Rekognition project (like a Custom Labels
+ * model or a custom adapter) and begins training. Models and adapters are
+ * managed as part of a Rekognition project. The response from
  * <code>CreateProjectVersion</code> is an Amazon Resource Name (ARN) for the
- * version of the model.
+ * project version.
  * </p>
  * <p>
- * Training uses the training and test datasets associated with the project. For
- * more information, see Creating training and test dataset in the <i>Amazon
- * Rekognition Custom Labels Developer Guide</i>.
+ * The FeatureConfig operation argument allows you to configure specific model
+ * or adapter settings. You can provide a description to the project version by
+ * using the VersionDescription argment. Training can take a while to complete.
+ * You can get the current status by calling <a>DescribeProjectVersions</a>.
+ * Training completed successfully if the value of the <code>Status</code> field
+ * is <code>TRAINING_COMPLETED</code>. Once training has successfully completed,
+ * call <a>DescribeProjectVersions</a> to get the training results and evaluate
+ * the model.
+ * </p>
+ * <p>
+ * This operation requires permissions to perform the
+ * <code>rekognition:CreateProjectVersion</code> action.
  * </p>
  * <note>
+ * <p>
+ * <i>The following applies only to projects with Amazon Rekognition Custom
+ * Labels as the chosen feature:</i>
+ * </p>
  * <p>
  * You can train a model in a project that doesn't have associated datasets by
  * specifying manifest files in the <code>TrainingData</code> and
@@ -49,35 +63,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * project.
  * </p>
  * </note>
- * <p>
- * Training takes a while to complete. You can get the current status by calling
- * <a>DescribeProjectVersions</a>. Training completed successfully if the value
- * of the <code>Status</code> field is <code>TRAINING_COMPLETED</code>.
- * </p>
- * <p>
- * If training fails, see Debugging a failed model training in the <i>Amazon
- * Rekognition Custom Labels</i> developer guide.
- * </p>
- * <p>
- * Once training has successfully completed, call <a>DescribeProjectVersions</a>
- * to get the training results and evaluate the model. For more information, see
- * Improving a trained Amazon Rekognition Custom Labels model in the <i>Amazon
- * Rekognition Custom Labels</i> developers guide.
- * </p>
- * <p>
- * After evaluating the model, you start the model by calling
- * <a>StartProjectVersion</a>.
- * </p>
- * <p>
- * This operation requires permissions to perform the
- * <code>rekognition:CreateProjectVersion</code> action.
- * </p>
+ * <p/>
  */
 public class CreateProjectVersionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The ARN of the Amazon Rekognition Custom Labels project that manages the
-     * model that you want to train.
+     * The ARN of the Amazon Rekognition project that will manage the project
+     * version you want to train.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -90,7 +82,7 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A name for the version of the model. This value must be unique.
+     * A name for the version of the project version. This value must be unique.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -101,27 +93,27 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The Amazon S3 bucket location to store the results of training. The S3
-     * bucket can be in any AWS account as long as the caller has
-     * <code>s3:PutObject</code> permissions on the S3 bucket.
+     * The Amazon S3 bucket location to store the results of training. The
+     * bucket can be any S3 bucket in your AWS account. You need
+     * <code>s3:PutObject</code> permission on the bucket.
      * </p>
      */
     private OutputConfig outputConfig;
 
     /**
      * <p>
-     * Specifies an external manifest that the services uses to train the model.
-     * If you specify <code>TrainingData</code> you must also specify
-     * <code>TestingData</code>. The project must not have any associated
-     * datasets.
+     * Specifies an external manifest that the services uses to train the
+     * project version. If you specify <code>TrainingData</code> you must also
+     * specify <code>TestingData</code>. The project must not have any
+     * associated datasets.
      * </p>
      */
     private TrainingData trainingData;
 
     /**
      * <p>
-     * Specifies an external manifest that the service uses to test the model.
-     * If you specify <code>TestingData</code> you must also specify
+     * Specifies an external manifest that the service uses to test the project
+     * version. If you specify <code>TestingData</code> you must also specify
      * <code>TrainingData</code>. The project must not have any associated
      * datasets.
      * </p>
@@ -130,7 +122,8 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A set of tags (key-value pairs) that you want to attach to the model.
+     * A set of tags (key-value pairs) that you want to attach to the project
+     * version.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -140,10 +133,10 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * The identifier for your AWS Key Management Service key (AWS KMS key). You
      * can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your
      * KMS key, an alias for your KMS key, or an alias ARN. The key is used to
-     * encrypt training and test images copied into the service for model
-     * training. Your source images are unaffected. The key is also used to
-     * encrypt training results and manifest files written to the output Amazon
-     * S3 bucket (<code>OutputConfig</code>).
+     * encrypt training images, test images, and manifest files copied into the
+     * service for the project version. Your source images are unaffected. The
+     * key is also used to encrypt training results and manifest files written
+     * to the output Amazon S3 bucket (<code>OutputConfig</code>).
      * </p>
      * <p>
      * If you choose to use your own KMS key, you need the following permissions
@@ -184,8 +177,28 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The ARN of the Amazon Rekognition Custom Labels project that manages the
-     * model that you want to train.
+     * A description applied to the project version being created.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-_. ()':,;?]+<br/>
+     */
+    private String versionDescription;
+
+    /**
+     * <p>
+     * Feature-specific configuration of the training job. If the job
+     * configuration does not match the feature type associated with the
+     * project, an InvalidParameterException is returned.
+     * </p>
+     */
+    private CustomizationFeatureConfig featureConfig;
+
+    /**
+     * <p>
+     * The ARN of the Amazon Rekognition project that will manage the project
+     * version you want to train.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -195,8 +208,8 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * -Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @return <p>
-     *         The ARN of the Amazon Rekognition Custom Labels project that
-     *         manages the model that you want to train.
+     *         The ARN of the Amazon Rekognition project that will manage the
+     *         project version you want to train.
      *         </p>
      */
     public String getProjectArn() {
@@ -205,8 +218,8 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The ARN of the Amazon Rekognition Custom Labels project that manages the
-     * model that you want to train.
+     * The ARN of the Amazon Rekognition project that will manage the project
+     * version you want to train.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -216,8 +229,8 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * -Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @param projectArn <p>
-     *            The ARN of the Amazon Rekognition Custom Labels project that
-     *            manages the model that you want to train.
+     *            The ARN of the Amazon Rekognition project that will manage the
+     *            project version you want to train.
      *            </p>
      */
     public void setProjectArn(String projectArn) {
@@ -226,8 +239,8 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The ARN of the Amazon Rekognition Custom Labels project that manages the
-     * model that you want to train.
+     * The ARN of the Amazon Rekognition project that will manage the project
+     * version you want to train.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -240,8 +253,8 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * -Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @param projectArn <p>
-     *            The ARN of the Amazon Rekognition Custom Labels project that
-     *            manages the model that you want to train.
+     *            The ARN of the Amazon Rekognition project that will manage the
+     *            project version you want to train.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -253,7 +266,7 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A name for the version of the model. This value must be unique.
+     * A name for the version of the project version. This value must be unique.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -261,7 +274,8 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
      * @return <p>
-     *         A name for the version of the model. This value must be unique.
+     *         A name for the version of the project version. This value must be
+     *         unique.
      *         </p>
      */
     public String getVersionName() {
@@ -270,7 +284,7 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A name for the version of the model. This value must be unique.
+     * A name for the version of the project version. This value must be unique.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -278,8 +292,8 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
      * @param versionName <p>
-     *            A name for the version of the model. This value must be
-     *            unique.
+     *            A name for the version of the project version. This value must
+     *            be unique.
      *            </p>
      */
     public void setVersionName(String versionName) {
@@ -288,7 +302,7 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A name for the version of the model. This value must be unique.
+     * A name for the version of the project version. This value must be unique.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -299,8 +313,8 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
      * @param versionName <p>
-     *            A name for the version of the model. This value must be
-     *            unique.
+     *            A name for the version of the project version. This value must
+     *            be unique.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -312,15 +326,15 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The Amazon S3 bucket location to store the results of training. The S3
-     * bucket can be in any AWS account as long as the caller has
-     * <code>s3:PutObject</code> permissions on the S3 bucket.
+     * The Amazon S3 bucket location to store the results of training. The
+     * bucket can be any S3 bucket in your AWS account. You need
+     * <code>s3:PutObject</code> permission on the bucket.
      * </p>
      *
      * @return <p>
      *         The Amazon S3 bucket location to store the results of training.
-     *         The S3 bucket can be in any AWS account as long as the caller has
-     *         <code>s3:PutObject</code> permissions on the S3 bucket.
+     *         The bucket can be any S3 bucket in your AWS account. You need
+     *         <code>s3:PutObject</code> permission on the bucket.
      *         </p>
      */
     public OutputConfig getOutputConfig() {
@@ -329,16 +343,15 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The Amazon S3 bucket location to store the results of training. The S3
-     * bucket can be in any AWS account as long as the caller has
-     * <code>s3:PutObject</code> permissions on the S3 bucket.
+     * The Amazon S3 bucket location to store the results of training. The
+     * bucket can be any S3 bucket in your AWS account. You need
+     * <code>s3:PutObject</code> permission on the bucket.
      * </p>
      *
      * @param outputConfig <p>
      *            The Amazon S3 bucket location to store the results of
-     *            training. The S3 bucket can be in any AWS account as long as
-     *            the caller has <code>s3:PutObject</code> permissions on the S3
-     *            bucket.
+     *            training. The bucket can be any S3 bucket in your AWS account.
+     *            You need <code>s3:PutObject</code> permission on the bucket.
      *            </p>
      */
     public void setOutputConfig(OutputConfig outputConfig) {
@@ -347,9 +360,9 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The Amazon S3 bucket location to store the results of training. The S3
-     * bucket can be in any AWS account as long as the caller has
-     * <code>s3:PutObject</code> permissions on the S3 bucket.
+     * The Amazon S3 bucket location to store the results of training. The
+     * bucket can be any S3 bucket in your AWS account. You need
+     * <code>s3:PutObject</code> permission on the bucket.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -357,9 +370,8 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      *
      * @param outputConfig <p>
      *            The Amazon S3 bucket location to store the results of
-     *            training. The S3 bucket can be in any AWS account as long as
-     *            the caller has <code>s3:PutObject</code> permissions on the S3
-     *            bucket.
+     *            training. The bucket can be any S3 bucket in your AWS account.
+     *            You need <code>s3:PutObject</code> permission on the bucket.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -371,17 +383,17 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * Specifies an external manifest that the services uses to train the model.
-     * If you specify <code>TrainingData</code> you must also specify
-     * <code>TestingData</code>. The project must not have any associated
-     * datasets.
+     * Specifies an external manifest that the services uses to train the
+     * project version. If you specify <code>TrainingData</code> you must also
+     * specify <code>TestingData</code>. The project must not have any
+     * associated datasets.
      * </p>
      *
      * @return <p>
      *         Specifies an external manifest that the services uses to train
-     *         the model. If you specify <code>TrainingData</code> you must also
-     *         specify <code>TestingData</code>. The project must not have any
-     *         associated datasets.
+     *         the project version. If you specify <code>TrainingData</code> you
+     *         must also specify <code>TestingData</code>. The project must not
+     *         have any associated datasets.
      *         </p>
      */
     public TrainingData getTrainingData() {
@@ -390,17 +402,17 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * Specifies an external manifest that the services uses to train the model.
-     * If you specify <code>TrainingData</code> you must also specify
-     * <code>TestingData</code>. The project must not have any associated
-     * datasets.
+     * Specifies an external manifest that the services uses to train the
+     * project version. If you specify <code>TrainingData</code> you must also
+     * specify <code>TestingData</code>. The project must not have any
+     * associated datasets.
      * </p>
      *
      * @param trainingData <p>
      *            Specifies an external manifest that the services uses to train
-     *            the model. If you specify <code>TrainingData</code> you must
-     *            also specify <code>TestingData</code>. The project must not
-     *            have any associated datasets.
+     *            the project version. If you specify <code>TrainingData</code>
+     *            you must also specify <code>TestingData</code>. The project
+     *            must not have any associated datasets.
      *            </p>
      */
     public void setTrainingData(TrainingData trainingData) {
@@ -409,10 +421,10 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * Specifies an external manifest that the services uses to train the model.
-     * If you specify <code>TrainingData</code> you must also specify
-     * <code>TestingData</code>. The project must not have any associated
-     * datasets.
+     * Specifies an external manifest that the services uses to train the
+     * project version. If you specify <code>TrainingData</code> you must also
+     * specify <code>TestingData</code>. The project must not have any
+     * associated datasets.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -420,9 +432,9 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      *
      * @param trainingData <p>
      *            Specifies an external manifest that the services uses to train
-     *            the model. If you specify <code>TrainingData</code> you must
-     *            also specify <code>TestingData</code>. The project must not
-     *            have any associated datasets.
+     *            the project version. If you specify <code>TrainingData</code>
+     *            you must also specify <code>TestingData</code>. The project
+     *            must not have any associated datasets.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -434,17 +446,17 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * Specifies an external manifest that the service uses to test the model.
-     * If you specify <code>TestingData</code> you must also specify
+     * Specifies an external manifest that the service uses to test the project
+     * version. If you specify <code>TestingData</code> you must also specify
      * <code>TrainingData</code>. The project must not have any associated
      * datasets.
      * </p>
      *
      * @return <p>
      *         Specifies an external manifest that the service uses to test the
-     *         model. If you specify <code>TestingData</code> you must also
-     *         specify <code>TrainingData</code>. The project must not have any
-     *         associated datasets.
+     *         project version. If you specify <code>TestingData</code> you must
+     *         also specify <code>TrainingData</code>. The project must not have
+     *         any associated datasets.
      *         </p>
      */
     public TestingData getTestingData() {
@@ -453,17 +465,17 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * Specifies an external manifest that the service uses to test the model.
-     * If you specify <code>TestingData</code> you must also specify
+     * Specifies an external manifest that the service uses to test the project
+     * version. If you specify <code>TestingData</code> you must also specify
      * <code>TrainingData</code>. The project must not have any associated
      * datasets.
      * </p>
      *
      * @param testingData <p>
      *            Specifies an external manifest that the service uses to test
-     *            the model. If you specify <code>TestingData</code> you must
-     *            also specify <code>TrainingData</code>. The project must not
-     *            have any associated datasets.
+     *            the project version. If you specify <code>TestingData</code>
+     *            you must also specify <code>TrainingData</code>. The project
+     *            must not have any associated datasets.
      *            </p>
      */
     public void setTestingData(TestingData testingData) {
@@ -472,8 +484,8 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * Specifies an external manifest that the service uses to test the model.
-     * If you specify <code>TestingData</code> you must also specify
+     * Specifies an external manifest that the service uses to test the project
+     * version. If you specify <code>TestingData</code> you must also specify
      * <code>TrainingData</code>. The project must not have any associated
      * datasets.
      * </p>
@@ -483,9 +495,9 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      *
      * @param testingData <p>
      *            Specifies an external manifest that the service uses to test
-     *            the model. If you specify <code>TestingData</code> you must
-     *            also specify <code>TrainingData</code>. The project must not
-     *            have any associated datasets.
+     *            the project version. If you specify <code>TestingData</code>
+     *            you must also specify <code>TrainingData</code>. The project
+     *            must not have any associated datasets.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -497,12 +509,13 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A set of tags (key-value pairs) that you want to attach to the model.
+     * A set of tags (key-value pairs) that you want to attach to the project
+     * version.
      * </p>
      *
      * @return <p>
      *         A set of tags (key-value pairs) that you want to attach to the
-     *         model.
+     *         project version.
      *         </p>
      */
     public java.util.Map<String, String> getTags() {
@@ -511,12 +524,13 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A set of tags (key-value pairs) that you want to attach to the model.
+     * A set of tags (key-value pairs) that you want to attach to the project
+     * version.
      * </p>
      *
      * @param tags <p>
      *            A set of tags (key-value pairs) that you want to attach to the
-     *            model.
+     *            project version.
      *            </p>
      */
     public void setTags(java.util.Map<String, String> tags) {
@@ -525,7 +539,8 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A set of tags (key-value pairs) that you want to attach to the model.
+     * A set of tags (key-value pairs) that you want to attach to the project
+     * version.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -533,7 +548,7 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      *
      * @param tags <p>
      *            A set of tags (key-value pairs) that you want to attach to the
-     *            model.
+     *            project version.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -545,7 +560,8 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A set of tags (key-value pairs) that you want to attach to the model.
+     * A set of tags (key-value pairs) that you want to attach to the project
+     * version.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a
@@ -583,10 +599,10 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * The identifier for your AWS Key Management Service key (AWS KMS key). You
      * can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your
      * KMS key, an alias for your KMS key, or an alias ARN. The key is used to
-     * encrypt training and test images copied into the service for model
-     * training. Your source images are unaffected. The key is also used to
-     * encrypt training results and manifest files written to the output Amazon
-     * S3 bucket (<code>OutputConfig</code>).
+     * encrypt training images, test images, and manifest files copied into the
+     * service for the project version. Your source images are unaffected. The
+     * key is also used to encrypt training results and manifest files written
+     * to the output Amazon S3 bucket (<code>OutputConfig</code>).
      * </p>
      * <p>
      * If you choose to use your own KMS key, you need the following permissions
@@ -627,11 +643,11 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      *         The identifier for your AWS Key Management Service key (AWS KMS
      *         key). You can supply the Amazon Resource Name (ARN) of your KMS
      *         key, the ID of your KMS key, an alias for your KMS key, or an
-     *         alias ARN. The key is used to encrypt training and test images
-     *         copied into the service for model training. Your source images
-     *         are unaffected. The key is also used to encrypt training results
-     *         and manifest files written to the output Amazon S3 bucket (
-     *         <code>OutputConfig</code>).
+     *         alias ARN. The key is used to encrypt training images, test
+     *         images, and manifest files copied into the service for the
+     *         project version. Your source images are unaffected. The key is
+     *         also used to encrypt training results and manifest files written
+     *         to the output Amazon S3 bucket (<code>OutputConfig</code>).
      *         </p>
      *         <p>
      *         If you choose to use your own KMS key, you need the following
@@ -674,10 +690,10 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * The identifier for your AWS Key Management Service key (AWS KMS key). You
      * can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your
      * KMS key, an alias for your KMS key, or an alias ARN. The key is used to
-     * encrypt training and test images copied into the service for model
-     * training. Your source images are unaffected. The key is also used to
-     * encrypt training results and manifest files written to the output Amazon
-     * S3 bucket (<code>OutputConfig</code>).
+     * encrypt training images, test images, and manifest files copied into the
+     * service for the project version. Your source images are unaffected. The
+     * key is also used to encrypt training results and manifest files written
+     * to the output Amazon S3 bucket (<code>OutputConfig</code>).
      * </p>
      * <p>
      * If you choose to use your own KMS key, you need the following permissions
@@ -718,11 +734,12 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      *            The identifier for your AWS Key Management Service key (AWS
      *            KMS key). You can supply the Amazon Resource Name (ARN) of
      *            your KMS key, the ID of your KMS key, an alias for your KMS
-     *            key, or an alias ARN. The key is used to encrypt training and
-     *            test images copied into the service for model training. Your
-     *            source images are unaffected. The key is also used to encrypt
-     *            training results and manifest files written to the output
-     *            Amazon S3 bucket (<code>OutputConfig</code>).
+     *            key, or an alias ARN. The key is used to encrypt training
+     *            images, test images, and manifest files copied into the
+     *            service for the project version. Your source images are
+     *            unaffected. The key is also used to encrypt training results
+     *            and manifest files written to the output Amazon S3 bucket (
+     *            <code>OutputConfig</code>).
      *            </p>
      *            <p>
      *            If you choose to use your own KMS key, you need the following
@@ -765,10 +782,10 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * The identifier for your AWS Key Management Service key (AWS KMS key). You
      * can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your
      * KMS key, an alias for your KMS key, or an alias ARN. The key is used to
-     * encrypt training and test images copied into the service for model
-     * training. Your source images are unaffected. The key is also used to
-     * encrypt training results and manifest files written to the output Amazon
-     * S3 bucket (<code>OutputConfig</code>).
+     * encrypt training images, test images, and manifest files copied into the
+     * service for the project version. Your source images are unaffected. The
+     * key is also used to encrypt training results and manifest files written
+     * to the output Amazon S3 bucket (<code>OutputConfig</code>).
      * </p>
      * <p>
      * If you choose to use your own KMS key, you need the following permissions
@@ -812,11 +829,12 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      *            The identifier for your AWS Key Management Service key (AWS
      *            KMS key). You can supply the Amazon Resource Name (ARN) of
      *            your KMS key, the ID of your KMS key, an alias for your KMS
-     *            key, or an alias ARN. The key is used to encrypt training and
-     *            test images copied into the service for model training. Your
-     *            source images are unaffected. The key is also used to encrypt
-     *            training results and manifest files written to the output
-     *            Amazon S3 bucket (<code>OutputConfig</code>).
+     *            key, or an alias ARN. The key is used to encrypt training
+     *            images, test images, and manifest files copied into the
+     *            service for the project version. Your source images are
+     *            unaffected. The key is also used to encrypt training results
+     *            and manifest files written to the output Amazon S3 bucket (
+     *            <code>OutputConfig</code>).
      *            </p>
      *            <p>
      *            If you choose to use your own KMS key, you need the following
@@ -858,6 +876,120 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * <p>
+     * A description applied to the project version being created.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-_. ()':,;?]+<br/>
+     *
+     * @return <p>
+     *         A description applied to the project version being created.
+     *         </p>
+     */
+    public String getVersionDescription() {
+        return versionDescription;
+    }
+
+    /**
+     * <p>
+     * A description applied to the project version being created.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-_. ()':,;?]+<br/>
+     *
+     * @param versionDescription <p>
+     *            A description applied to the project version being created.
+     *            </p>
+     */
+    public void setVersionDescription(String versionDescription) {
+        this.versionDescription = versionDescription;
+    }
+
+    /**
+     * <p>
+     * A description applied to the project version being created.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-_. ()':,;?]+<br/>
+     *
+     * @param versionDescription <p>
+     *            A description applied to the project version being created.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateProjectVersionRequest withVersionDescription(String versionDescription) {
+        this.versionDescription = versionDescription;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Feature-specific configuration of the training job. If the job
+     * configuration does not match the feature type associated with the
+     * project, an InvalidParameterException is returned.
+     * </p>
+     *
+     * @return <p>
+     *         Feature-specific configuration of the training job. If the job
+     *         configuration does not match the feature type associated with the
+     *         project, an InvalidParameterException is returned.
+     *         </p>
+     */
+    public CustomizationFeatureConfig getFeatureConfig() {
+        return featureConfig;
+    }
+
+    /**
+     * <p>
+     * Feature-specific configuration of the training job. If the job
+     * configuration does not match the feature type associated with the
+     * project, an InvalidParameterException is returned.
+     * </p>
+     *
+     * @param featureConfig <p>
+     *            Feature-specific configuration of the training job. If the job
+     *            configuration does not match the feature type associated with
+     *            the project, an InvalidParameterException is returned.
+     *            </p>
+     */
+    public void setFeatureConfig(CustomizationFeatureConfig featureConfig) {
+        this.featureConfig = featureConfig;
+    }
+
+    /**
+     * <p>
+     * Feature-specific configuration of the training job. If the job
+     * configuration does not match the feature type associated with the
+     * project, an InvalidParameterException is returned.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param featureConfig <p>
+     *            Feature-specific configuration of the training job. If the job
+     *            configuration does not match the feature type associated with
+     *            the project, an InvalidParameterException is returned.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateProjectVersionRequest withFeatureConfig(CustomizationFeatureConfig featureConfig) {
+        this.featureConfig = featureConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -881,7 +1013,11 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
         if (getTags() != null)
             sb.append("Tags: " + getTags() + ",");
         if (getKmsKeyId() != null)
-            sb.append("KmsKeyId: " + getKmsKeyId());
+            sb.append("KmsKeyId: " + getKmsKeyId() + ",");
+        if (getVersionDescription() != null)
+            sb.append("VersionDescription: " + getVersionDescription() + ",");
+        if (getFeatureConfig() != null)
+            sb.append("FeatureConfig: " + getFeatureConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -902,6 +1038,10 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
                 + ((getTestingData() == null) ? 0 : getTestingData().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
+        hashCode = prime * hashCode
+                + ((getVersionDescription() == null) ? 0 : getVersionDescription().hashCode());
+        hashCode = prime * hashCode
+                + ((getFeatureConfig() == null) ? 0 : getFeatureConfig().hashCode());
         return hashCode;
     }
 
@@ -948,6 +1088,16 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
         if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null)
             return false;
         if (other.getKmsKeyId() != null && other.getKmsKeyId().equals(this.getKmsKeyId()) == false)
+            return false;
+        if (other.getVersionDescription() == null ^ this.getVersionDescription() == null)
+            return false;
+        if (other.getVersionDescription() != null
+                && other.getVersionDescription().equals(this.getVersionDescription()) == false)
+            return false;
+        if (other.getFeatureConfig() == null ^ this.getFeatureConfig() == null)
+            return false;
+        if (other.getFeatureConfig() != null
+                && other.getFeatureConfig().equals(this.getFeatureConfig()) == false)
             return false;
         return true;
     }

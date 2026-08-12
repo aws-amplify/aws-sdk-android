@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -56,6 +56,17 @@ public class ModerationLabel implements Serializable {
      * </p>
      */
     private String parentName;
+
+    /**
+     * <p>
+     * The level of the moderation label with regard to its taxonomy, from 1 to
+     * 3.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     */
+    private Integer taxonomyLevel;
 
     /**
      * <p>
@@ -250,6 +261,66 @@ public class ModerationLabel implements Serializable {
     }
 
     /**
+     * <p>
+     * The level of the moderation label with regard to its taxonomy, from 1 to
+     * 3.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @return <p>
+     *         The level of the moderation label with regard to its taxonomy,
+     *         from 1 to 3.
+     *         </p>
+     */
+    public Integer getTaxonomyLevel() {
+        return taxonomyLevel;
+    }
+
+    /**
+     * <p>
+     * The level of the moderation label with regard to its taxonomy, from 1 to
+     * 3.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param taxonomyLevel <p>
+     *            The level of the moderation label with regard to its taxonomy,
+     *            from 1 to 3.
+     *            </p>
+     */
+    public void setTaxonomyLevel(Integer taxonomyLevel) {
+        this.taxonomyLevel = taxonomyLevel;
+    }
+
+    /**
+     * <p>
+     * The level of the moderation label with regard to its taxonomy, from 1 to
+     * 3.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param taxonomyLevel <p>
+     *            The level of the moderation label with regard to its taxonomy,
+     *            from 1 to 3.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModerationLabel withTaxonomyLevel(Integer taxonomyLevel) {
+        this.taxonomyLevel = taxonomyLevel;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -265,7 +336,9 @@ public class ModerationLabel implements Serializable {
         if (getName() != null)
             sb.append("Name: " + getName() + ",");
         if (getParentName() != null)
-            sb.append("ParentName: " + getParentName());
+            sb.append("ParentName: " + getParentName() + ",");
+        if (getTaxonomyLevel() != null)
+            sb.append("TaxonomyLevel: " + getTaxonomyLevel());
         sb.append("}");
         return sb.toString();
     }
@@ -278,6 +351,8 @@ public class ModerationLabel implements Serializable {
         hashCode = prime * hashCode + ((getConfidence() == null) ? 0 : getConfidence().hashCode());
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode + ((getParentName() == null) ? 0 : getParentName().hashCode());
+        hashCode = prime * hashCode
+                + ((getTaxonomyLevel() == null) ? 0 : getTaxonomyLevel().hashCode());
         return hashCode;
     }
 
@@ -305,6 +380,11 @@ public class ModerationLabel implements Serializable {
             return false;
         if (other.getParentName() != null
                 && other.getParentName().equals(this.getParentName()) == false)
+            return false;
+        if (other.getTaxonomyLevel() == null ^ this.getTaxonomyLevel() == null)
+            return false;
+        if (other.getTaxonomyLevel() != null
+                && other.getTaxonomyLevel().equals(this.getTaxonomyLevel()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -60,6 +60,27 @@ public class ProjectDescription implements Serializable {
      * </p>
      */
     private java.util.List<DatasetMetadata> datasets;
+
+    /**
+     * <p>
+     * Specifies the project that is being customized.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>CONTENT_MODERATION, CUSTOM_LABELS
+     */
+    private String feature;
+
+    /**
+     * <p>
+     * Indicates whether automatic retraining will be attempted for the versions
+     * of the project. Applies only to adapters.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLED, DISABLED
+     */
+    private String autoUpdate;
 
     /**
      * <p>
@@ -347,6 +368,210 @@ public class ProjectDescription implements Serializable {
     }
 
     /**
+     * <p>
+     * Specifies the project that is being customized.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>CONTENT_MODERATION, CUSTOM_LABELS
+     *
+     * @return <p>
+     *         Specifies the project that is being customized.
+     *         </p>
+     * @see CustomizationFeature
+     */
+    public String getFeature() {
+        return feature;
+    }
+
+    /**
+     * <p>
+     * Specifies the project that is being customized.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>CONTENT_MODERATION, CUSTOM_LABELS
+     *
+     * @param feature <p>
+     *            Specifies the project that is being customized.
+     *            </p>
+     * @see CustomizationFeature
+     */
+    public void setFeature(String feature) {
+        this.feature = feature;
+    }
+
+    /**
+     * <p>
+     * Specifies the project that is being customized.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>CONTENT_MODERATION, CUSTOM_LABELS
+     *
+     * @param feature <p>
+     *            Specifies the project that is being customized.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see CustomizationFeature
+     */
+    public ProjectDescription withFeature(String feature) {
+        this.feature = feature;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies the project that is being customized.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>CONTENT_MODERATION, CUSTOM_LABELS
+     *
+     * @param feature <p>
+     *            Specifies the project that is being customized.
+     *            </p>
+     * @see CustomizationFeature
+     */
+    public void setFeature(CustomizationFeature feature) {
+        this.feature = feature.toString();
+    }
+
+    /**
+     * <p>
+     * Specifies the project that is being customized.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>CONTENT_MODERATION, CUSTOM_LABELS
+     *
+     * @param feature <p>
+     *            Specifies the project that is being customized.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see CustomizationFeature
+     */
+    public ProjectDescription withFeature(CustomizationFeature feature) {
+        this.feature = feature.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Indicates whether automatic retraining will be attempted for the versions
+     * of the project. Applies only to adapters.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLED, DISABLED
+     *
+     * @return <p>
+     *         Indicates whether automatic retraining will be attempted for the
+     *         versions of the project. Applies only to adapters.
+     *         </p>
+     * @see ProjectAutoUpdate
+     */
+    public String getAutoUpdate() {
+        return autoUpdate;
+    }
+
+    /**
+     * <p>
+     * Indicates whether automatic retraining will be attempted for the versions
+     * of the project. Applies only to adapters.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLED, DISABLED
+     *
+     * @param autoUpdate <p>
+     *            Indicates whether automatic retraining will be attempted for
+     *            the versions of the project. Applies only to adapters.
+     *            </p>
+     * @see ProjectAutoUpdate
+     */
+    public void setAutoUpdate(String autoUpdate) {
+        this.autoUpdate = autoUpdate;
+    }
+
+    /**
+     * <p>
+     * Indicates whether automatic retraining will be attempted for the versions
+     * of the project. Applies only to adapters.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLED, DISABLED
+     *
+     * @param autoUpdate <p>
+     *            Indicates whether automatic retraining will be attempted for
+     *            the versions of the project. Applies only to adapters.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ProjectAutoUpdate
+     */
+    public ProjectDescription withAutoUpdate(String autoUpdate) {
+        this.autoUpdate = autoUpdate;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Indicates whether automatic retraining will be attempted for the versions
+     * of the project. Applies only to adapters.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLED, DISABLED
+     *
+     * @param autoUpdate <p>
+     *            Indicates whether automatic retraining will be attempted for
+     *            the versions of the project. Applies only to adapters.
+     *            </p>
+     * @see ProjectAutoUpdate
+     */
+    public void setAutoUpdate(ProjectAutoUpdate autoUpdate) {
+        this.autoUpdate = autoUpdate.toString();
+    }
+
+    /**
+     * <p>
+     * Indicates whether automatic retraining will be attempted for the versions
+     * of the project. Applies only to adapters.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLED, DISABLED
+     *
+     * @param autoUpdate <p>
+     *            Indicates whether automatic retraining will be attempted for
+     *            the versions of the project. Applies only to adapters.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ProjectAutoUpdate
+     */
+    public ProjectDescription withAutoUpdate(ProjectAutoUpdate autoUpdate) {
+        this.autoUpdate = autoUpdate.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -364,7 +589,11 @@ public class ProjectDescription implements Serializable {
         if (getStatus() != null)
             sb.append("Status: " + getStatus() + ",");
         if (getDatasets() != null)
-            sb.append("Datasets: " + getDatasets());
+            sb.append("Datasets: " + getDatasets() + ",");
+        if (getFeature() != null)
+            sb.append("Feature: " + getFeature() + ",");
+        if (getAutoUpdate() != null)
+            sb.append("AutoUpdate: " + getAutoUpdate());
         sb.append("}");
         return sb.toString();
     }
@@ -379,6 +608,8 @@ public class ProjectDescription implements Serializable {
                 + ((getCreationTimestamp() == null) ? 0 : getCreationTimestamp().hashCode());
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         hashCode = prime * hashCode + ((getDatasets() == null) ? 0 : getDatasets().hashCode());
+        hashCode = prime * hashCode + ((getFeature() == null) ? 0 : getFeature().hashCode());
+        hashCode = prime * hashCode + ((getAutoUpdate() == null) ? 0 : getAutoUpdate().hashCode());
         return hashCode;
     }
 
@@ -410,6 +641,15 @@ public class ProjectDescription implements Serializable {
         if (other.getDatasets() == null ^ this.getDatasets() == null)
             return false;
         if (other.getDatasets() != null && other.getDatasets().equals(this.getDatasets()) == false)
+            return false;
+        if (other.getFeature() == null ^ this.getFeature() == null)
+            return false;
+        if (other.getFeature() != null && other.getFeature().equals(this.getFeature()) == false)
+            return false;
+        if (other.getAutoUpdate() == null ^ this.getAutoUpdate() == null)
+            return false;
+        if (other.getAutoUpdate() != null
+                && other.getAutoUpdate().equals(this.getAutoUpdate()) == false)
             return false;
         return true;
     }

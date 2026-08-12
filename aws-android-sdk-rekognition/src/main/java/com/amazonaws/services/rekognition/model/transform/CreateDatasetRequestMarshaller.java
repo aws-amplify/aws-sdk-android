@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -76,6 +76,19 @@ public class CreateDatasetRequestMarshaller implements
                 String projectArn = createDatasetRequest.getProjectArn();
                 jsonWriter.name("ProjectArn");
                 jsonWriter.value(projectArn);
+            }
+            if (createDatasetRequest.getTags() != null) {
+                java.util.Map<String, String> tags = createDatasetRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
+                    String tagsValue = tagsEntry.getValue();
+                    if (tagsValue != null) {
+                        jsonWriter.name(tagsEntry.getKey());
+                        jsonWriter.value(tagsValue);
+                    }
+                }
+                jsonWriter.endObject();
             }
 
             jsonWriter.endObject();

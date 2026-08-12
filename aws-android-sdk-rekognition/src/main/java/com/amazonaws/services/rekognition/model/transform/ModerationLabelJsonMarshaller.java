@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,6 +41,11 @@ class ModerationLabelJsonMarshaller {
             String parentName = moderationLabel.getParentName();
             jsonWriter.name("ParentName");
             jsonWriter.value(parentName);
+        }
+        if (moderationLabel.getTaxonomyLevel() != null) {
+            Integer taxonomyLevel = moderationLabel.getTaxonomyLevel();
+            jsonWriter.name("TaxonomyLevel");
+            jsonWriter.value(taxonomyLevel);
         }
         jsonWriter.endObject();
     }
