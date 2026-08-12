@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,9 +27,16 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Applications using these operations are referred to as producers.
  * </p>
  * <p>
+ * Firehose accumulates and publishes a particular metric for a customer account
+ * in one minute intervals. It is possible that the bursts of incoming
+ * bytes/records ingested to a delivery stream last only for a few seconds. Due
+ * to this, the actual spikes in the traffic might not be fully visible in the
+ * customer's 1 minute CloudWatch metrics.
+ * </p>
+ * <p>
  * For information about service quota, see <a
  * href="https://docs.aws.amazon.com/firehose/latest/dev/limits.html">Amazon
- * Kinesis Data Firehose Quota</a>.
+ * Firehose Quota</a>.
  * </p>
  * <p>
  * Each <a>PutRecordBatch</a> request supports up to 500 records. Each record in
@@ -44,12 +51,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * and so on.
  * </p>
  * <p>
- * Kinesis Data Firehose buffers records before delivering them to the
- * destination. To disambiguate the data blobs at the destination, a common
- * solution is to use delimiters in the data, such as a newline (<code>\n</code>
- * ) or some other character unique within the data. This allows the consumer
- * application to parse individual data items when reading the data from the
- * destination.
+ * Firehose buffers records before delivering them to the destination. To
+ * disambiguate the data blobs at the destination, a common solution is to use
+ * delimiters in the data, such as a newline (<code>\n</code>) or some other
+ * character unique within the data. This allows the consumer application to
+ * parse individual data items when reading the data from the destination.
  * </p>
  * <p>
  * The <a>PutRecordBatch</a> response includes a count of failed records,
@@ -62,9 +68,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * in the request array using the same ordering, from the top to the bottom. The
  * response array always includes the same number of records as the request
  * array. <code>RequestResponses</code> includes both successfully and
- * unsuccessfully processed records. Kinesis Data Firehose tries to process all
- * records in each <a>PutRecordBatch</a> request. A single record failure does
- * not stop the processing of subsequent records.
+ * unsuccessfully processed records. Firehose tries to process all records in
+ * each <a>PutRecordBatch</a> request. A single record failure does not stop the
+ * processing of subsequent records.
  * </p>
  * <p>
  * A successfully processed record includes a <code>RecordId</code> value, which
@@ -84,15 +90,21 @@ import com.amazonaws.AmazonWebServiceRequest;
  * you handle any duplicates at the destination.
  * </p>
  * <p>
- * If <a>PutRecordBatch</a> throws <code>ServiceUnavailableException</code>,
- * back off and retry. If the exception persists, it is possible that the
- * throughput limits have been exceeded for the delivery stream.
+ * If <a>PutRecordBatch</a> throws <code>ServiceUnavailableException</code>, the
+ * API is automatically reinvoked (retried) 3 times. If the exception persists,
+ * it is possible that the throughput limits have been exceeded for the delivery
+ * stream.
  * </p>
  * <p>
- * Data records sent to Kinesis Data Firehose are stored for 24 hours from the
- * time they are added to a delivery stream as it attempts to send the records
- * to the destination. If the destination is unreachable for more than 24 hours,
- * the data is no longer available.
+ * Re-invoking the Put API operations (for example, PutRecord and
+ * PutRecordBatch) can result in data duplicates. For larger data assets, allow
+ * for a longer time out before retrying Put API operations.
+ * </p>
+ * <p>
+ * Data records sent to Firehose are stored for 24 hours from the time they are
+ * added to a delivery stream as it attempts to send the records to the
+ * destination. If the destination is unreachable for more than 24 hours, the
+ * data is no longer available.
  * </p>
  * <important>
  * <p>

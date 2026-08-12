@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,9 +19,9 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Kinesis Data Firehose throws this exception when an attempt to put records or
- * to start or stop delivery stream encryption fails. This happens when the KMS
- * service throws one of the following exception types:
+ * Firehose throws this exception when an attempt to put records or to start or
+ * stop delivery stream encryption fails. This happens when the KMS service
+ * throws one of the following exception types:
  * <code>AccessDeniedException</code>, <code>InvalidStateException</code>,
  * <code>DisabledException</code>, or <code>NotFoundException</code>.
  * </p>
