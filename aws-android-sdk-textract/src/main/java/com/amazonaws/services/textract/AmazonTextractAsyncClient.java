@@ -688,6 +688,356 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
 
     /**
      * <p>
+     * Creates an adapter, which can be fine-tuned for enhanced performance on
+     * user provided documents. Takes an AdapterName and FeatureType. Currently
+     * the only supported feature type is <code>QUERIES</code>. You can also
+     * provide a Description, Tags, and a ClientRequestToken. You can choose
+     * whether or not the adapter should be AutoUpdated with the AutoUpdate
+     * argument. By default, AutoUpdate is set to DISABLED.
+     * </p>
+     * 
+     * @param createAdapterRequest
+     * @return A Java Future object containing the response from the
+     *         CreateAdapter service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws IdempotentParameterMismatchException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateAdapterResult> createAdapterAsync(
+            final CreateAdapterRequest createAdapterRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<CreateAdapterResult>() {
+            public CreateAdapterResult call() throws Exception {
+                return createAdapter(createAdapterRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates an adapter, which can be fine-tuned for enhanced performance on
+     * user provided documents. Takes an AdapterName and FeatureType. Currently
+     * the only supported feature type is <code>QUERIES</code>. You can also
+     * provide a Description, Tags, and a ClientRequestToken. You can choose
+     * whether or not the adapter should be AutoUpdated with the AutoUpdate
+     * argument. By default, AutoUpdate is set to DISABLED.
+     * </p>
+     * 
+     * @param createAdapterRequest
+     * @return A Java Future object containing the response from the
+     *         CreateAdapter service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws IdempotentParameterMismatchException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateAdapterResult> createAdapterAsync(
+            final CreateAdapterRequest createAdapterRequest,
+            final AsyncHandler<CreateAdapterRequest, CreateAdapterResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateAdapterResult>() {
+            public CreateAdapterResult call() throws Exception {
+                CreateAdapterResult result = null;
+                try {
+                    result = createAdapter(createAdapterRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(createAdapterRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates a new version of an adapter. Operates on a provided AdapterId and
+     * a specified dataset provided via the DatasetConfig argument. Requires
+     * that you specify an Amazon S3 bucket with the OutputConfig argument. You
+     * can provide an optional KMSKeyId, an optional ClientRequestToken, and
+     * optional tags.
+     * </p>
+     * 
+     * @param createAdapterVersionRequest
+     * @return A Java Future object containing the response from the
+     *         CreateAdapterVersion service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws IdempotentParameterMismatchException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceNotFoundException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateAdapterVersionResult> createAdapterVersionAsync(
+            final CreateAdapterVersionRequest createAdapterVersionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateAdapterVersionResult>() {
+            public CreateAdapterVersionResult call() throws Exception {
+                return createAdapterVersion(createAdapterVersionRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates a new version of an adapter. Operates on a provided AdapterId and
+     * a specified dataset provided via the DatasetConfig argument. Requires
+     * that you specify an Amazon S3 bucket with the OutputConfig argument. You
+     * can provide an optional KMSKeyId, an optional ClientRequestToken, and
+     * optional tags.
+     * </p>
+     * 
+     * @param createAdapterVersionRequest
+     * @return A Java Future object containing the response from the
+     *         CreateAdapterVersion service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws IdempotentParameterMismatchException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceNotFoundException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateAdapterVersionResult> createAdapterVersionAsync(
+            final CreateAdapterVersionRequest createAdapterVersionRequest,
+            final AsyncHandler<CreateAdapterVersionRequest, CreateAdapterVersionResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateAdapterVersionResult>() {
+            public CreateAdapterVersionResult call() throws Exception {
+                CreateAdapterVersionResult result = null;
+                try {
+                    result = createAdapterVersion(createAdapterVersionRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(createAdapterVersionRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes an Amazon Textract adapter. Takes an AdapterId and deletes the
+     * adapter specified by the ID.
+     * </p>
+     * 
+     * @param deleteAdapterRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteAdapter service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteAdapterResult> deleteAdapterAsync(
+            final DeleteAdapterRequest deleteAdapterRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<DeleteAdapterResult>() {
+            public DeleteAdapterResult call() throws Exception {
+                return deleteAdapter(deleteAdapterRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes an Amazon Textract adapter. Takes an AdapterId and deletes the
+     * adapter specified by the ID.
+     * </p>
+     * 
+     * @param deleteAdapterRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteAdapter service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteAdapterResult> deleteAdapterAsync(
+            final DeleteAdapterRequest deleteAdapterRequest,
+            final AsyncHandler<DeleteAdapterRequest, DeleteAdapterResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteAdapterResult>() {
+            public DeleteAdapterResult call() throws Exception {
+                DeleteAdapterResult result = null;
+                try {
+                    result = deleteAdapter(deleteAdapterRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteAdapterRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes an Amazon Textract adapter version. Requires that you specify
+     * both an AdapterId and a AdapterVersion. Deletes the adapter version
+     * specified by the AdapterId and the AdapterVersion.
+     * </p>
+     * 
+     * @param deleteAdapterVersionRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteAdapterVersion service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteAdapterVersionResult> deleteAdapterVersionAsync(
+            final DeleteAdapterVersionRequest deleteAdapterVersionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteAdapterVersionResult>() {
+            public DeleteAdapterVersionResult call() throws Exception {
+                return deleteAdapterVersion(deleteAdapterVersionRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes an Amazon Textract adapter version. Requires that you specify
+     * both an AdapterId and a AdapterVersion. Deletes the adapter version
+     * specified by the AdapterId and the AdapterVersion.
+     * </p>
+     * 
+     * @param deleteAdapterVersionRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteAdapterVersion service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteAdapterVersionResult> deleteAdapterVersionAsync(
+            final DeleteAdapterVersionRequest deleteAdapterVersionRequest,
+            final AsyncHandler<DeleteAdapterVersionRequest, DeleteAdapterVersionResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteAdapterVersionResult>() {
+            public DeleteAdapterVersionResult call() throws Exception {
+                DeleteAdapterVersionResult result = null;
+                try {
+                    result = deleteAdapterVersion(deleteAdapterVersionRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteAdapterVersionRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Detects text in the input document. Amazon Textract can detect lines of
      * text and the words that make up a line of text. The input document must
      * be in one of the following image formats: JPEG, PNG, PDF, or TIFF.
@@ -804,6 +1154,164 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
                     throw ex;
                 }
                 asyncHandler.onSuccess(detectDocumentTextRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets configuration information for an adapter specified by an AdapterId,
+     * returning information on AdapterName, Description, CreationTime,
+     * AutoUpdate status, and FeatureTypes.
+     * </p>
+     * 
+     * @param getAdapterRequest
+     * @return A Java Future object containing the response from the GetAdapter
+     *         service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetAdapterResult> getAdapterAsync(final GetAdapterRequest getAdapterRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetAdapterResult>() {
+            public GetAdapterResult call() throws Exception {
+                return getAdapter(getAdapterRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets configuration information for an adapter specified by an AdapterId,
+     * returning information on AdapterName, Description, CreationTime,
+     * AutoUpdate status, and FeatureTypes.
+     * </p>
+     * 
+     * @param getAdapterRequest
+     * @return A Java Future object containing the response from the GetAdapter
+     *         service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetAdapterResult> getAdapterAsync(final GetAdapterRequest getAdapterRequest,
+            final AsyncHandler<GetAdapterRequest, GetAdapterResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetAdapterResult>() {
+            public GetAdapterResult call() throws Exception {
+                GetAdapterResult result = null;
+                try {
+                    result = getAdapter(getAdapterRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(getAdapterRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets configuration information for the specified adapter version,
+     * including: AdapterId, AdapterVersion, FeatureTypes, Status,
+     * StatusMessage, DatasetConfig, KMSKeyId, OutputConfig, Tags and
+     * EvaluationMetrics.
+     * </p>
+     * 
+     * @param getAdapterVersionRequest
+     * @return A Java Future object containing the response from the
+     *         GetAdapterVersion service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetAdapterVersionResult> getAdapterVersionAsync(
+            final GetAdapterVersionRequest getAdapterVersionRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<GetAdapterVersionResult>() {
+            public GetAdapterVersionResult call() throws Exception {
+                return getAdapterVersion(getAdapterVersionRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets configuration information for the specified adapter version,
+     * including: AdapterId, AdapterVersion, FeatureTypes, Status,
+     * StatusMessage, DatasetConfig, KMSKeyId, OutputConfig, Tags and
+     * EvaluationMetrics.
+     * </p>
+     * 
+     * @param getAdapterVersionRequest
+     * @return A Java Future object containing the response from the
+     *         GetAdapterVersion service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetAdapterVersionResult> getAdapterVersionAsync(
+            final GetAdapterVersionRequest getAdapterVersionRequest,
+            final AsyncHandler<GetAdapterVersionRequest, GetAdapterVersionResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetAdapterVersionResult>() {
+            public GetAdapterVersionResult call() throws Exception {
+                GetAdapterVersionResult result = null;
+                try {
+                    result = getAdapterVersion(getAdapterVersionRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(getAdapterVersionRequest, result);
                 return result;
             }
         });
@@ -1596,6 +2104,235 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
 
     /**
      * <p>
+     * List all version of an adapter that meet the specified filtration
+     * criteria.
+     * </p>
+     * 
+     * @param listAdapterVersionsRequest
+     * @return A Java Future object containing the response from the
+     *         ListAdapterVersions service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListAdapterVersionsResult> listAdapterVersionsAsync(
+            final ListAdapterVersionsRequest listAdapterVersionsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListAdapterVersionsResult>() {
+            public ListAdapterVersionsResult call() throws Exception {
+                return listAdapterVersions(listAdapterVersionsRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * List all version of an adapter that meet the specified filtration
+     * criteria.
+     * </p>
+     * 
+     * @param listAdapterVersionsRequest
+     * @return A Java Future object containing the response from the
+     *         ListAdapterVersions service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListAdapterVersionsResult> listAdapterVersionsAsync(
+            final ListAdapterVersionsRequest listAdapterVersionsRequest,
+            final AsyncHandler<ListAdapterVersionsRequest, ListAdapterVersionsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListAdapterVersionsResult>() {
+            public ListAdapterVersionsResult call() throws Exception {
+                ListAdapterVersionsResult result = null;
+                try {
+                    result = listAdapterVersions(listAdapterVersionsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listAdapterVersionsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Lists all adapters that match the specified filtration criteria.
+     * </p>
+     * 
+     * @param listAdaptersRequest
+     * @return A Java Future object containing the response from the
+     *         ListAdapters service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListAdaptersResult> listAdaptersAsync(
+            final ListAdaptersRequest listAdaptersRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<ListAdaptersResult>() {
+            public ListAdaptersResult call() throws Exception {
+                return listAdapters(listAdaptersRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Lists all adapters that match the specified filtration criteria.
+     * </p>
+     * 
+     * @param listAdaptersRequest
+     * @return A Java Future object containing the response from the
+     *         ListAdapters service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListAdaptersResult> listAdaptersAsync(
+            final ListAdaptersRequest listAdaptersRequest,
+            final AsyncHandler<ListAdaptersRequest, ListAdaptersResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListAdaptersResult>() {
+            public ListAdaptersResult call() throws Exception {
+                ListAdaptersResult result = null;
+                try {
+                    result = listAdapters(listAdaptersRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listAdaptersRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Lists all tags for an Amazon Textract resource.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return A Java Future object containing the response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         Textract.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListTagsForResourceResult> listTagsForResourceAsync(
+            final ListTagsForResourceRequest listTagsForResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListTagsForResourceResult>() {
+            public ListTagsForResourceResult call() throws Exception {
+                return listTagsForResource(listTagsForResourceRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Lists all tags for an Amazon Textract resource.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return A Java Future object containing the response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         Textract.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListTagsForResourceResult> listTagsForResourceAsync(
+            final ListTagsForResourceRequest listTagsForResourceRequest,
+            final AsyncHandler<ListTagsForResourceRequest, ListTagsForResourceResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListTagsForResourceResult>() {
+            public ListTagsForResourceResult call() throws Exception {
+                ListTagsForResourceResult result = null;
+                try {
+                    result = listTagsForResource(listTagsForResourceRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listTagsForResourceRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Starts the asynchronous analysis of an input document for relationships
      * between detected items such as key-value pairs, tables, and selection
      * elements.
@@ -2175,6 +2912,237 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
                     throw ex;
                 }
                 asyncHandler.onSuccess(startLendingAnalysisRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Adds one or more tags to the specified resource.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @return A Java Future object containing the response from the TagResource
+     *         service method, as returned by Amazon Textract.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws ServiceQuotaExceededException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<TagResourceResult> tagResourceAsync(final TagResourceRequest tagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<TagResourceResult>() {
+            public TagResourceResult call() throws Exception {
+                return tagResource(tagResourceRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Adds one or more tags to the specified resource.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @return A Java Future object containing the response from the TagResource
+     *         service method, as returned by Amazon Textract.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws ServiceQuotaExceededException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<TagResourceResult> tagResourceAsync(final TagResourceRequest tagResourceRequest,
+            final AsyncHandler<TagResourceRequest, TagResourceResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<TagResourceResult>() {
+            public TagResourceResult call() throws Exception {
+                TagResourceResult result = null;
+                try {
+                    result = tagResource(tagResourceRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(tagResourceRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Removes any tags with the specified keys from the specified resource.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @return A Java Future object containing the response from the
+     *         UntagResource service method, as returned by Amazon Textract.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UntagResourceResult> untagResourceAsync(
+            final UntagResourceRequest untagResourceRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<UntagResourceResult>() {
+            public UntagResourceResult call() throws Exception {
+                return untagResource(untagResourceRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Removes any tags with the specified keys from the specified resource.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @return A Java Future object containing the response from the
+     *         UntagResource service method, as returned by Amazon Textract.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UntagResourceResult> untagResourceAsync(
+            final UntagResourceRequest untagResourceRequest,
+            final AsyncHandler<UntagResourceRequest, UntagResourceResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UntagResourceResult>() {
+            public UntagResourceResult call() throws Exception {
+                UntagResourceResult result = null;
+                try {
+                    result = untagResource(untagResourceRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(untagResourceRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Update the configuration for an adapter. FeatureTypes configurations
+     * cannot be updated. At least one new parameter must be specified as an
+     * argument.
+     * </p>
+     * 
+     * @param updateAdapterRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateAdapter service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateAdapterResult> updateAdapterAsync(
+            final UpdateAdapterRequest updateAdapterRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<UpdateAdapterResult>() {
+            public UpdateAdapterResult call() throws Exception {
+                return updateAdapter(updateAdapterRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Update the configuration for an adapter. FeatureTypes configurations
+     * cannot be updated. At least one new parameter must be specified as an
+     * argument.
+     * </p>
+     * 
+     * @param updateAdapterRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateAdapter service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateAdapterResult> updateAdapterAsync(
+            final UpdateAdapterRequest updateAdapterRequest,
+            final AsyncHandler<UpdateAdapterRequest, UpdateAdapterResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UpdateAdapterResult>() {
+            public UpdateAdapterResult call() throws Exception {
+                UpdateAdapterResult result = null;
+                try {
+                    result = updateAdapter(updateAdapterRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateAdapterRequest, result);
                 return result;
             }
         });
