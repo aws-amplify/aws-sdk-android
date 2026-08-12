@@ -24,40 +24,63 @@ import com.amazonaws.kinesisvideo.client.mediasource.CameraMediaSourceConfigurat
 import com.amazonaws.kinesisvideo.producer.StreamInfo;
 
 /**
- * Parcelable wrapper for CameraMediaSourceConfiguration. Allows passing
- * the camera configuration in bundles
+ * Parcelable wrapper for CameraMediaSourceConfiguration. Allows passing the camera configuration in bundles.
  */
 public class AndroidCameraMediaSourceConfiguration extends CameraMediaSourceConfiguration implements Parcelable {
 
-    public static final Parcelable.Creator<AndroidCameraMediaSourceConfiguration> CREATOR
-            = new Parcelable.Creator<AndroidCameraMediaSourceConfiguration>() {
+    /**
+     * Generic concrete builder for this configuration class. It's purpose is to provide type arguments
+     * to the builder defined in CameraMediaSourceConfiguration, and has no new attributes. It uses
+     * recursive generics pattern to be able to preserve the chaining capability of builders.
+     * @param <T> MediaSource type.
+     * @param <S> Builder type.
+     */
+    public static class Builder extends CameraMediaSourceConfiguration.Builder<
+            AndroidCameraMediaSourceConfiguration, AndroidCameraMediaSourceConfiguration.Builder> {
 
-        public AndroidCameraMediaSourceConfiguration createFromParcel(final Parcel in) {
-            return new AndroidCameraMediaSourceConfiguration(readFromParcel(in));
+        /**
+         * Method to build the AndroidCameraMediaSourceConfiguration using this builder.
+         * @return Instance of AndroidCameraMediaSourceConfiguration.
+         */
+        @Override
+        public AndroidCameraMediaSourceConfiguration build() {
+            return new AndroidCameraMediaSourceConfiguration(this);
         }
+    }
 
-        public AndroidCameraMediaSourceConfiguration[] newArray(int size) {
-            return new AndroidCameraMediaSourceConfiguration[size];
-        }
-    };
-
+    /**
+     * Constructor accepting a builder.
+     * @param builder The builder from which the configuration is to be obtained.
+     */
     public AndroidCameraMediaSourceConfiguration(final Builder builder) {
         super(builder);
     }
 
+    /**
+     * Create a new builder for this configuration class.
+     * @return New instace of AndroidCameraMediaSourceConfiguration.Builder.
+     */
     public static AndroidCameraMediaSourceConfiguration.Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Describe the kinds of special objects contained in this Parcelable instance's marshaled
+     * representation.
+     * @return Returns 0 since there are no special objects in the marshaled representation.
+     */
     @Override
     public int describeContents() {
         return 0;
     }
 
+    /**
+     * Flatten this object in to a Parcel.
+     * @param parcel
+     * @param i
+     */
     @Override
-    public void writeToParcel(final Parcel parcel,
-                              final int i) {
-
+    public void writeToParcel(final Parcel parcel, final int i) {
         parcel.writeString(getCameraId());
         parcel.writeString(getOutputFileName());
         parcel.writeString(getEncoderMimeType());
@@ -73,6 +96,7 @@ public class AndroidCameraMediaSourceConfiguration extends CameraMediaSourceConf
         parcel.writeInt(getNalAdaptationFlags().getIntValue());
         parcel.writeString(String.valueOf((getIsAbsoluteTimecode())));
 
+        // Special handling depending on the presense of codec private data.
         if (getCodecPrivateData() == null) {
             parcel.writeInt(0);
         } else {
@@ -81,17 +105,22 @@ public class AndroidCameraMediaSourceConfiguration extends CameraMediaSourceConf
         }
     }
 
+    /**
+     * Helper function to hydrate a builder object from a given parcel.
+     * @param parcel The parcer to be processed.
+     * @return An instance of AndroidCameraMediaSourceConfiguration.Builder.
+     */
     private static AndroidCameraMediaSourceConfiguration.Builder readFromParcel(final Parcel parcel) {
         final AndroidCameraMediaSourceConfiguration.Builder builder =
                 new AndroidCameraMediaSourceConfiguration.Builder()
+                .withCameraFacing(parcel.readInt())
+                .withCameraOrientation(parcel.readInt())
                 .withCameraId(parcel.readString())
                 .withFileOutput(parcel.readString())
                 .withEncodingMimeType(parcel.readString())
                 .withFrameRate(parcel.readInt())
                 .withHorizontalResolution(parcel.readInt())
                 .withVerticalResolution(parcel.readInt())
-                .withCameraFacing(parcel.readInt())
-                .withCameraOrientation(parcel.readInt())
                 .withEncodingBitRate(parcel.readInt())
                 .withRetentionPeriodInHours(parcel.readInt())
                 .withIsEncoderHardwareAccelerated(Boolean.parseBoolean(parcel.readString()))
@@ -99,6 +128,7 @@ public class AndroidCameraMediaSourceConfiguration extends CameraMediaSourceConf
                 .withNalAdaptationFlags(StreamInfo.NalAdaptationFlags.getFlag(parcel.readInt()))
                 .withIsAbsoluteTimecode(Boolean.parseBoolean(parcel.readString()));
 
+        // Special handling depending on the presense of codec private data.
         final int codecPrivateDataSize = parcel.readInt();
         if (codecPrivateDataSize > 0) {
             final byte[] privateData = new byte[codecPrivateDataSize];
@@ -108,4 +138,29 @@ public class AndroidCameraMediaSourceConfiguration extends CameraMediaSourceConf
 
         return builder;
     }
+
+    /**
+     * This field holding an object implementing Parcelable.Creator is neeeded according to Android Parceable contract.
+     */
+    public static final Parcelable.Creator<AndroidCameraMediaSourceConfiguration> CREATOR
+            = new Parcelable.Creator<AndroidCameraMediaSourceConfiguration>() {
+
+        /**
+         * Create a new instance of the Parcelable class, instantiating it from the given Parcel.
+         * @param in The parcel to be deserialized.
+         * @return An instance of AndroidCameraMediaSourceConfiguration.
+         */
+        public AndroidCameraMediaSourceConfiguration createFromParcel(final Parcel in) {
+            return new AndroidCameraMediaSourceConfiguration(readFromParcel(in));
+        }
+
+        /**
+         * Create a new array of the Parcelable class.
+         * @param size Length of the array.
+         * @return An array of AndroidCameraMediaSourceConfiguration of the given length.
+         */
+        public AndroidCameraMediaSourceConfiguration[] newArray(int size) {
+            return new AndroidCameraMediaSourceConfiguration[size];
+        }
+    };
 }
