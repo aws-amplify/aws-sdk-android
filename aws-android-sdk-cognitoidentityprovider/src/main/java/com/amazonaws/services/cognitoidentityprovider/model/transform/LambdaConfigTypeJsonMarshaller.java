@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -76,6 +76,13 @@ class LambdaConfigTypeJsonMarshaller {
             String userMigration = lambdaConfigType.getUserMigration();
             jsonWriter.name("UserMigration");
             jsonWriter.value(userMigration);
+        }
+        if (lambdaConfigType.getPreTokenGenerationConfig() != null) {
+            PreTokenGenerationVersionConfigType preTokenGenerationConfig = lambdaConfigType
+                    .getPreTokenGenerationConfig();
+            jsonWriter.name("PreTokenGenerationConfig");
+            PreTokenGenerationVersionConfigTypeJsonMarshaller.getInstance().marshall(
+                    preTokenGenerationConfig, jsonWriter);
         }
         if (lambdaConfigType.getCustomSMSSender() != null) {
             CustomSMSLambdaVersionConfigType customSMSSender = lambdaConfigType

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -107,10 +107,32 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The username for the user. Must be unique within the user pool. Must be a
-     * UTF-8 string between 1 and 128 characters. After the user is created, the
-     * username can't be changed.
+     * The value that you want to set as the username sign-in attribute. The
+     * following conditions apply to the username parameter.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The username can't be a duplicate of another username in the same user
+     * pool.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can't change the value of a username after you create it.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can only provide a value if usernames are a valid sign-in attribute
+     * for your user pool. If your user pool only supports phone numbers or
+     * email addresses as sign-in attributes, Amazon Cognito automatically
+     * generates a username value. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases"
+     * >Customizing sign-in attributes</a>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -171,20 +193,23 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The user's validation data. This is an array of name-value pairs that
-     * contain user attributes and attribute values that you can use for custom
-     * validation, such as restricting the types of user accounts that can be
-     * registered. For example, you might choose to allow or disallow user
-     * sign-up based on the user's domain.
+     * Temporary user attributes that contribute to the outcomes of your pre
+     * sign-up Lambda trigger. This set of key-value pairs are for custom
+     * validation of information that you collect from your users but don't need
+     * to retain.
      * </p>
      * <p>
-     * To configure custom validation, you must create a Pre Sign-up Lambda
-     * trigger for the user pool as described in the Amazon Cognito Developer
-     * Guide. The Lambda trigger receives the validation data and uses it in the
-     * validation process.
+     * Your Lambda function can analyze this additional data and act on it. Your
+     * function might perform external API operations like logging user
+     * attributes and validation data to Amazon CloudWatch Logs. Validation data
+     * might also affect the response that your function returns to Amazon
+     * Cognito, like automatically confirming the user if they sign up from
+     * within your network.
      * </p>
      * <p>
-     * The user's validation data isn't persisted.
+     * For more information about the pre sign-up Lambda trigger, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     * >Pre sign-up Lambda trigger</a>.
      * </p>
      */
     private java.util.List<AttributeType> validationData;
@@ -374,20 +399,65 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The username for the user. Must be unique within the user pool. Must be a
-     * UTF-8 string between 1 and 128 characters. After the user is created, the
-     * username can't be changed.
+     * The value that you want to set as the username sign-in attribute. The
+     * following conditions apply to the username parameter.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The username can't be a duplicate of another username in the same user
+     * pool.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can't change the value of a username after you create it.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can only provide a value if usernames are a valid sign-in attribute
+     * for your user pool. If your user pool only supports phone numbers or
+     * email addresses as sign-in attributes, Amazon Cognito automatically
+     * generates a username value. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases"
+     * >Customizing sign-in attributes</a>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The username for the user. Must be unique within the user pool.
-     *         Must be a UTF-8 string between 1 and 128 characters. After the
-     *         user is created, the username can't be changed.
+     *         The value that you want to set as the username sign-in attribute.
+     *         The following conditions apply to the username parameter.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         The username can't be a duplicate of another username in the same
+     *         user pool.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         You can't change the value of a username after you create it.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         You can only provide a value if usernames are a valid sign-in
+     *         attribute for your user pool. If your user pool only supports
+     *         phone numbers or email addresses as sign-in attributes, Amazon
+     *         Cognito automatically generates a username value. For more
+     *         information, see <a href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases"
+     *         >Customizing sign-in attributes</a>.
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public String getUsername() {
         return username;
@@ -395,20 +465,66 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The username for the user. Must be unique within the user pool. Must be a
-     * UTF-8 string between 1 and 128 characters. After the user is created, the
-     * username can't be changed.
+     * The value that you want to set as the username sign-in attribute. The
+     * following conditions apply to the username parameter.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The username can't be a duplicate of another username in the same user
+     * pool.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can't change the value of a username after you create it.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can only provide a value if usernames are a valid sign-in attribute
+     * for your user pool. If your user pool only supports phone numbers or
+     * email addresses as sign-in attributes, Amazon Cognito automatically
+     * generates a username value. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases"
+     * >Customizing sign-in attributes</a>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The username for the user. Must be unique within the user
-     *            pool. Must be a UTF-8 string between 1 and 128 characters.
-     *            After the user is created, the username can't be changed.
+     *            The value that you want to set as the username sign-in
+     *            attribute. The following conditions apply to the username
+     *            parameter.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            The username can't be a duplicate of another username in the
+     *            same user pool.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            You can't change the value of a username after you create it.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            You can only provide a value if usernames are a valid sign-in
+     *            attribute for your user pool. If your user pool only supports
+     *            phone numbers or email addresses as sign-in attributes, Amazon
+     *            Cognito automatically generates a username value. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases"
+     *            >Customizing sign-in attributes</a>.
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setUsername(String username) {
         this.username = username;
@@ -416,10 +532,32 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The username for the user. Must be unique within the user pool. Must be a
-     * UTF-8 string between 1 and 128 characters. After the user is created, the
-     * username can't be changed.
+     * The value that you want to set as the username sign-in attribute. The
+     * following conditions apply to the username parameter.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The username can't be a duplicate of another username in the same user
+     * pool.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can't change the value of a username after you create it.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can only provide a value if usernames are a valid sign-in attribute
+     * for your user pool. If your user pool only supports phone numbers or
+     * email addresses as sign-in attributes, Amazon Cognito automatically
+     * generates a username value. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases"
+     * >Customizing sign-in attributes</a>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -429,10 +567,34 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The username for the user. Must be unique within the user
-     *            pool. Must be a UTF-8 string between 1 and 128 characters.
-     *            After the user is created, the username can't be changed.
+     *            The value that you want to set as the username sign-in
+     *            attribute. The following conditions apply to the username
+     *            parameter.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            The username can't be a duplicate of another username in the
+     *            same user pool.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            You can't change the value of a username after you create it.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            You can only provide a value if usernames are a valid sign-in
+     *            attribute for your user pool. If your user pool only supports
+     *            phone numbers or email addresses as sign-in attributes, Amazon
+     *            Cognito automatically generates a username value. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases"
+     *            >Customizing sign-in attributes</a>.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -886,37 +1048,44 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The user's validation data. This is an array of name-value pairs that
-     * contain user attributes and attribute values that you can use for custom
-     * validation, such as restricting the types of user accounts that can be
-     * registered. For example, you might choose to allow or disallow user
-     * sign-up based on the user's domain.
+     * Temporary user attributes that contribute to the outcomes of your pre
+     * sign-up Lambda trigger. This set of key-value pairs are for custom
+     * validation of information that you collect from your users but don't need
+     * to retain.
      * </p>
      * <p>
-     * To configure custom validation, you must create a Pre Sign-up Lambda
-     * trigger for the user pool as described in the Amazon Cognito Developer
-     * Guide. The Lambda trigger receives the validation data and uses it in the
-     * validation process.
+     * Your Lambda function can analyze this additional data and act on it. Your
+     * function might perform external API operations like logging user
+     * attributes and validation data to Amazon CloudWatch Logs. Validation data
+     * might also affect the response that your function returns to Amazon
+     * Cognito, like automatically confirming the user if they sign up from
+     * within your network.
      * </p>
      * <p>
-     * The user's validation data isn't persisted.
+     * For more information about the pre sign-up Lambda trigger, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     * >Pre sign-up Lambda trigger</a>.
      * </p>
      *
      * @return <p>
-     *         The user's validation data. This is an array of name-value pairs
-     *         that contain user attributes and attribute values that you can
-     *         use for custom validation, such as restricting the types of user
-     *         accounts that can be registered. For example, you might choose to
-     *         allow or disallow user sign-up based on the user's domain.
+     *         Temporary user attributes that contribute to the outcomes of your
+     *         pre sign-up Lambda trigger. This set of key-value pairs are for
+     *         custom validation of information that you collect from your users
+     *         but don't need to retain.
      *         </p>
      *         <p>
-     *         To configure custom validation, you must create a Pre Sign-up
-     *         Lambda trigger for the user pool as described in the Amazon
-     *         Cognito Developer Guide. The Lambda trigger receives the
-     *         validation data and uses it in the validation process.
+     *         Your Lambda function can analyze this additional data and act on
+     *         it. Your function might perform external API operations like
+     *         logging user attributes and validation data to Amazon CloudWatch
+     *         Logs. Validation data might also affect the response that your
+     *         function returns to Amazon Cognito, like automatically confirming
+     *         the user if they sign up from within your network.
      *         </p>
      *         <p>
-     *         The user's validation data isn't persisted.
+     *         For more information about the pre sign-up Lambda trigger, see <a
+     *         href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     *         >Pre sign-up Lambda trigger</a>.
      *         </p>
      */
     public java.util.List<AttributeType> getValidationData() {
@@ -925,38 +1094,45 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The user's validation data. This is an array of name-value pairs that
-     * contain user attributes and attribute values that you can use for custom
-     * validation, such as restricting the types of user accounts that can be
-     * registered. For example, you might choose to allow or disallow user
-     * sign-up based on the user's domain.
+     * Temporary user attributes that contribute to the outcomes of your pre
+     * sign-up Lambda trigger. This set of key-value pairs are for custom
+     * validation of information that you collect from your users but don't need
+     * to retain.
      * </p>
      * <p>
-     * To configure custom validation, you must create a Pre Sign-up Lambda
-     * trigger for the user pool as described in the Amazon Cognito Developer
-     * Guide. The Lambda trigger receives the validation data and uses it in the
-     * validation process.
+     * Your Lambda function can analyze this additional data and act on it. Your
+     * function might perform external API operations like logging user
+     * attributes and validation data to Amazon CloudWatch Logs. Validation data
+     * might also affect the response that your function returns to Amazon
+     * Cognito, like automatically confirming the user if they sign up from
+     * within your network.
      * </p>
      * <p>
-     * The user's validation data isn't persisted.
+     * For more information about the pre sign-up Lambda trigger, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     * >Pre sign-up Lambda trigger</a>.
      * </p>
      *
      * @param validationData <p>
-     *            The user's validation data. This is an array of name-value
-     *            pairs that contain user attributes and attribute values that
-     *            you can use for custom validation, such as restricting the
-     *            types of user accounts that can be registered. For example,
-     *            you might choose to allow or disallow user sign-up based on
-     *            the user's domain.
+     *            Temporary user attributes that contribute to the outcomes of
+     *            your pre sign-up Lambda trigger. This set of key-value pairs
+     *            are for custom validation of information that you collect from
+     *            your users but don't need to retain.
      *            </p>
      *            <p>
-     *            To configure custom validation, you must create a Pre Sign-up
-     *            Lambda trigger for the user pool as described in the Amazon
-     *            Cognito Developer Guide. The Lambda trigger receives the
-     *            validation data and uses it in the validation process.
+     *            Your Lambda function can analyze this additional data and act
+     *            on it. Your function might perform external API operations
+     *            like logging user attributes and validation data to Amazon
+     *            CloudWatch Logs. Validation data might also affect the
+     *            response that your function returns to Amazon Cognito, like
+     *            automatically confirming the user if they sign up from within
+     *            your network.
      *            </p>
      *            <p>
-     *            The user's validation data isn't persisted.
+     *            For more information about the pre sign-up Lambda trigger, see
+     *            <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     *            >Pre sign-up Lambda trigger</a>.
      *            </p>
      */
     public void setValidationData(java.util.Collection<AttributeType> validationData) {
@@ -970,41 +1146,48 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The user's validation data. This is an array of name-value pairs that
-     * contain user attributes and attribute values that you can use for custom
-     * validation, such as restricting the types of user accounts that can be
-     * registered. For example, you might choose to allow or disallow user
-     * sign-up based on the user's domain.
+     * Temporary user attributes that contribute to the outcomes of your pre
+     * sign-up Lambda trigger. This set of key-value pairs are for custom
+     * validation of information that you collect from your users but don't need
+     * to retain.
      * </p>
      * <p>
-     * To configure custom validation, you must create a Pre Sign-up Lambda
-     * trigger for the user pool as described in the Amazon Cognito Developer
-     * Guide. The Lambda trigger receives the validation data and uses it in the
-     * validation process.
+     * Your Lambda function can analyze this additional data and act on it. Your
+     * function might perform external API operations like logging user
+     * attributes and validation data to Amazon CloudWatch Logs. Validation data
+     * might also affect the response that your function returns to Amazon
+     * Cognito, like automatically confirming the user if they sign up from
+     * within your network.
      * </p>
      * <p>
-     * The user's validation data isn't persisted.
+     * For more information about the pre sign-up Lambda trigger, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     * >Pre sign-up Lambda trigger</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param validationData <p>
-     *            The user's validation data. This is an array of name-value
-     *            pairs that contain user attributes and attribute values that
-     *            you can use for custom validation, such as restricting the
-     *            types of user accounts that can be registered. For example,
-     *            you might choose to allow or disallow user sign-up based on
-     *            the user's domain.
+     *            Temporary user attributes that contribute to the outcomes of
+     *            your pre sign-up Lambda trigger. This set of key-value pairs
+     *            are for custom validation of information that you collect from
+     *            your users but don't need to retain.
      *            </p>
      *            <p>
-     *            To configure custom validation, you must create a Pre Sign-up
-     *            Lambda trigger for the user pool as described in the Amazon
-     *            Cognito Developer Guide. The Lambda trigger receives the
-     *            validation data and uses it in the validation process.
+     *            Your Lambda function can analyze this additional data and act
+     *            on it. Your function might perform external API operations
+     *            like logging user attributes and validation data to Amazon
+     *            CloudWatch Logs. Validation data might also affect the
+     *            response that your function returns to Amazon Cognito, like
+     *            automatically confirming the user if they sign up from within
+     *            your network.
      *            </p>
      *            <p>
-     *            The user's validation data isn't persisted.
+     *            For more information about the pre sign-up Lambda trigger, see
+     *            <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     *            >Pre sign-up Lambda trigger</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1021,41 +1204,48 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The user's validation data. This is an array of name-value pairs that
-     * contain user attributes and attribute values that you can use for custom
-     * validation, such as restricting the types of user accounts that can be
-     * registered. For example, you might choose to allow or disallow user
-     * sign-up based on the user's domain.
+     * Temporary user attributes that contribute to the outcomes of your pre
+     * sign-up Lambda trigger. This set of key-value pairs are for custom
+     * validation of information that you collect from your users but don't need
+     * to retain.
      * </p>
      * <p>
-     * To configure custom validation, you must create a Pre Sign-up Lambda
-     * trigger for the user pool as described in the Amazon Cognito Developer
-     * Guide. The Lambda trigger receives the validation data and uses it in the
-     * validation process.
+     * Your Lambda function can analyze this additional data and act on it. Your
+     * function might perform external API operations like logging user
+     * attributes and validation data to Amazon CloudWatch Logs. Validation data
+     * might also affect the response that your function returns to Amazon
+     * Cognito, like automatically confirming the user if they sign up from
+     * within your network.
      * </p>
      * <p>
-     * The user's validation data isn't persisted.
+     * For more information about the pre sign-up Lambda trigger, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     * >Pre sign-up Lambda trigger</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param validationData <p>
-     *            The user's validation data. This is an array of name-value
-     *            pairs that contain user attributes and attribute values that
-     *            you can use for custom validation, such as restricting the
-     *            types of user accounts that can be registered. For example,
-     *            you might choose to allow or disallow user sign-up based on
-     *            the user's domain.
+     *            Temporary user attributes that contribute to the outcomes of
+     *            your pre sign-up Lambda trigger. This set of key-value pairs
+     *            are for custom validation of information that you collect from
+     *            your users but don't need to retain.
      *            </p>
      *            <p>
-     *            To configure custom validation, you must create a Pre Sign-up
-     *            Lambda trigger for the user pool as described in the Amazon
-     *            Cognito Developer Guide. The Lambda trigger receives the
-     *            validation data and uses it in the validation process.
+     *            Your Lambda function can analyze this additional data and act
+     *            on it. Your function might perform external API operations
+     *            like logging user attributes and validation data to Amazon
+     *            CloudWatch Logs. Validation data might also affect the
+     *            response that your function returns to Amazon Cognito, like
+     *            automatically confirming the user if they sign up from within
+     *            your network.
      *            </p>
      *            <p>
-     *            The user's validation data isn't persisted.
+     *            For more information about the pre sign-up Lambda trigger, see
+     *            <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     *            >Pre sign-up Lambda trigger</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
