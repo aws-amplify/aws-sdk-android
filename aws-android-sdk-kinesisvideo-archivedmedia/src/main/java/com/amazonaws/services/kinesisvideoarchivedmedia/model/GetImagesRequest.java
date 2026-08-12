@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Retrieves a list of Images corresponding to each timestamp for a given time
+ * Retrieves a list of images corresponding to each timestamp for a given time
  * range, sampling interval, and image format configuration.
  * </p>
  */
@@ -86,16 +86,11 @@ public class GetImagesRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * The time interval in milliseconds (ms) at which the images need to be
-     * generated from the stream, with a default of 3000 ms. The minimum value
-     * that can be provided is 200 ms. If the timestamp range is less than the
-     * sampling interval, the Image from the <code>startTimestamp</code> will be
+     * generated from the stream. The minimum value that can be provided is 200
+     * ms (5 images per second). If the timestamp range is less than the
+     * sampling interval, the image from the <code>startTimestamp</code> will be
      * returned if available.
      * </p>
-     * <note>
-     * <p>
-     * The minimum value of 200 ms is a hard limit.
-     * </p>
-     * </note>
      */
     private Integer samplingInterval;
 
@@ -561,29 +556,19 @@ public class GetImagesRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * The time interval in milliseconds (ms) at which the images need to be
-     * generated from the stream, with a default of 3000 ms. The minimum value
-     * that can be provided is 200 ms. If the timestamp range is less than the
-     * sampling interval, the Image from the <code>startTimestamp</code> will be
+     * generated from the stream. The minimum value that can be provided is 200
+     * ms (5 images per second). If the timestamp range is less than the
+     * sampling interval, the image from the <code>startTimestamp</code> will be
      * returned if available.
      * </p>
-     * <note>
-     * <p>
-     * The minimum value of 200 ms is a hard limit.
-     * </p>
-     * </note>
      *
      * @return <p>
      *         The time interval in milliseconds (ms) at which the images need
-     *         to be generated from the stream, with a default of 3000 ms. The
-     *         minimum value that can be provided is 200 ms. If the timestamp
-     *         range is less than the sampling interval, the Image from the
+     *         to be generated from the stream. The minimum value that can be
+     *         provided is 200 ms (5 images per second). If the timestamp range
+     *         is less than the sampling interval, the image from the
      *         <code>startTimestamp</code> will be returned if available.
      *         </p>
-     *         <note>
-     *         <p>
-     *         The minimum value of 200 ms is a hard limit.
-     *         </p>
-     *         </note>
      */
     public Integer getSamplingInterval() {
         return samplingInterval;
@@ -592,30 +577,20 @@ public class GetImagesRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * The time interval in milliseconds (ms) at which the images need to be
-     * generated from the stream, with a default of 3000 ms. The minimum value
-     * that can be provided is 200 ms. If the timestamp range is less than the
-     * sampling interval, the Image from the <code>startTimestamp</code> will be
+     * generated from the stream. The minimum value that can be provided is 200
+     * ms (5 images per second). If the timestamp range is less than the
+     * sampling interval, the image from the <code>startTimestamp</code> will be
      * returned if available.
      * </p>
-     * <note>
-     * <p>
-     * The minimum value of 200 ms is a hard limit.
-     * </p>
-     * </note>
      *
      * @param samplingInterval <p>
      *            The time interval in milliseconds (ms) at which the images
-     *            need to be generated from the stream, with a default of 3000
-     *            ms. The minimum value that can be provided is 200 ms. If the
-     *            timestamp range is less than the sampling interval, the Image
+     *            need to be generated from the stream. The minimum value that
+     *            can be provided is 200 ms (5 images per second). If the
+     *            timestamp range is less than the sampling interval, the image
      *            from the <code>startTimestamp</code> will be returned if
      *            available.
      *            </p>
-     *            <note>
-     *            <p>
-     *            The minimum value of 200 ms is a hard limit.
-     *            </p>
-     *            </note>
      */
     public void setSamplingInterval(Integer samplingInterval) {
         this.samplingInterval = samplingInterval;
@@ -624,33 +599,23 @@ public class GetImagesRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * The time interval in milliseconds (ms) at which the images need to be
-     * generated from the stream, with a default of 3000 ms. The minimum value
-     * that can be provided is 200 ms. If the timestamp range is less than the
-     * sampling interval, the Image from the <code>startTimestamp</code> will be
+     * generated from the stream. The minimum value that can be provided is 200
+     * ms (5 images per second). If the timestamp range is less than the
+     * sampling interval, the image from the <code>startTimestamp</code> will be
      * returned if available.
      * </p>
-     * <note>
-     * <p>
-     * The minimum value of 200 ms is a hard limit.
-     * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param samplingInterval <p>
      *            The time interval in milliseconds (ms) at which the images
-     *            need to be generated from the stream, with a default of 3000
-     *            ms. The minimum value that can be provided is 200 ms. If the
-     *            timestamp range is less than the sampling interval, the Image
+     *            need to be generated from the stream. The minimum value that
+     *            can be provided is 200 ms (5 images per second). If the
+     *            timestamp range is less than the sampling interval, the image
      *            from the <code>startTimestamp</code> will be returned if
      *            available.
      *            </p>
-     *            <note>
-     *            <p>
-     *            The minimum value of 200 ms is a hard limit.
-     *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
