@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,8 +22,9 @@ import java.io.Serializable;
  * Makes it possible to redact or flag specified personally identifiable
  * information (PII) in your transcript. If you use
  * <code>ContentRedaction</code>, you must also include the sub-parameters:
- * <code>PiiEntityTypes</code>, <code>RedactionOutput</code>, and
- * <code>RedactionType</code>.
+ * <code>RedactionOutput</code> and <code>RedactionType</code>. You can
+ * optionally include <code>PiiEntityTypes</code> to choose which types of PII
+ * you want to redact.
  * </p>
  */
 public class ContentRedaction implements Serializable {
@@ -32,7 +33,8 @@ public class ContentRedaction implements Serializable {
      * Specify the category of information you want to redact; <code>PII</code>
      * (personally identifiable information) is the only valid value. You can
      * use <code>PiiEntityTypes</code> to choose which types of PII you want to
-     * redact.
+     * redact. If you do not include <code>PiiEntityTypes</code> in your
+     * request, all PII is redacted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,7 +65,8 @@ public class ContentRedaction implements Serializable {
      * <p>
      * Specify which types of personally identifiable information (PII) you want
      * to redact in your transcript. You can include as many types as you'd
-     * like, or you can select <code>ALL</code>.
+     * like, or you can select <code>ALL</code>. If you do not include
+     * <code>PiiEntityTypes</code> in your request, all PII is redacted.
      * </p>
      */
     private java.util.List<String> piiEntityTypes;
@@ -73,7 +76,8 @@ public class ContentRedaction implements Serializable {
      * Specify the category of information you want to redact; <code>PII</code>
      * (personally identifiable information) is the only valid value. You can
      * use <code>PiiEntityTypes</code> to choose which types of PII you want to
-     * redact.
+     * redact. If you do not include <code>PiiEntityTypes</code> in your
+     * request, all PII is redacted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -83,7 +87,9 @@ public class ContentRedaction implements Serializable {
      *         Specify the category of information you want to redact;
      *         <code>PII</code> (personally identifiable information) is the
      *         only valid value. You can use <code>PiiEntityTypes</code> to
-     *         choose which types of PII you want to redact.
+     *         choose which types of PII you want to redact. If you do not
+     *         include <code>PiiEntityTypes</code> in your request, all PII is
+     *         redacted.
      *         </p>
      * @see RedactionType
      */
@@ -96,7 +102,8 @@ public class ContentRedaction implements Serializable {
      * Specify the category of information you want to redact; <code>PII</code>
      * (personally identifiable information) is the only valid value. You can
      * use <code>PiiEntityTypes</code> to choose which types of PII you want to
-     * redact.
+     * redact. If you do not include <code>PiiEntityTypes</code> in your
+     * request, all PII is redacted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -106,7 +113,9 @@ public class ContentRedaction implements Serializable {
      *            Specify the category of information you want to redact;
      *            <code>PII</code> (personally identifiable information) is the
      *            only valid value. You can use <code>PiiEntityTypes</code> to
-     *            choose which types of PII you want to redact.
+     *            choose which types of PII you want to redact. If you do not
+     *            include <code>PiiEntityTypes</code> in your request, all PII
+     *            is redacted.
      *            </p>
      * @see RedactionType
      */
@@ -119,7 +128,8 @@ public class ContentRedaction implements Serializable {
      * Specify the category of information you want to redact; <code>PII</code>
      * (personally identifiable information) is the only valid value. You can
      * use <code>PiiEntityTypes</code> to choose which types of PII you want to
-     * redact.
+     * redact. If you do not include <code>PiiEntityTypes</code> in your
+     * request, all PII is redacted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -132,7 +142,9 @@ public class ContentRedaction implements Serializable {
      *            Specify the category of information you want to redact;
      *            <code>PII</code> (personally identifiable information) is the
      *            only valid value. You can use <code>PiiEntityTypes</code> to
-     *            choose which types of PII you want to redact.
+     *            choose which types of PII you want to redact. If you do not
+     *            include <code>PiiEntityTypes</code> in your request, all PII
+     *            is redacted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -148,7 +160,8 @@ public class ContentRedaction implements Serializable {
      * Specify the category of information you want to redact; <code>PII</code>
      * (personally identifiable information) is the only valid value. You can
      * use <code>PiiEntityTypes</code> to choose which types of PII you want to
-     * redact.
+     * redact. If you do not include <code>PiiEntityTypes</code> in your
+     * request, all PII is redacted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -158,7 +171,9 @@ public class ContentRedaction implements Serializable {
      *            Specify the category of information you want to redact;
      *            <code>PII</code> (personally identifiable information) is the
      *            only valid value. You can use <code>PiiEntityTypes</code> to
-     *            choose which types of PII you want to redact.
+     *            choose which types of PII you want to redact. If you do not
+     *            include <code>PiiEntityTypes</code> in your request, all PII
+     *            is redacted.
      *            </p>
      * @see RedactionType
      */
@@ -171,7 +186,8 @@ public class ContentRedaction implements Serializable {
      * Specify the category of information you want to redact; <code>PII</code>
      * (personally identifiable information) is the only valid value. You can
      * use <code>PiiEntityTypes</code> to choose which types of PII you want to
-     * redact.
+     * redact. If you do not include <code>PiiEntityTypes</code> in your
+     * request, all PII is redacted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -184,7 +200,9 @@ public class ContentRedaction implements Serializable {
      *            Specify the category of information you want to redact;
      *            <code>PII</code> (personally identifiable information) is the
      *            only valid value. You can use <code>PiiEntityTypes</code> to
-     *            choose which types of PII you want to redact.
+     *            choose which types of PII you want to redact. If you do not
+     *            include <code>PiiEntityTypes</code> in your request, all PII
+     *            is redacted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -391,13 +409,16 @@ public class ContentRedaction implements Serializable {
      * <p>
      * Specify which types of personally identifiable information (PII) you want
      * to redact in your transcript. You can include as many types as you'd
-     * like, or you can select <code>ALL</code>.
+     * like, or you can select <code>ALL</code>. If you do not include
+     * <code>PiiEntityTypes</code> in your request, all PII is redacted.
      * </p>
      *
      * @return <p>
      *         Specify which types of personally identifiable information (PII)
      *         you want to redact in your transcript. You can include as many
-     *         types as you'd like, or you can select <code>ALL</code>.
+     *         types as you'd like, or you can select <code>ALL</code>. If you
+     *         do not include <code>PiiEntityTypes</code> in your request, all
+     *         PII is redacted.
      *         </p>
      */
     public java.util.List<String> getPiiEntityTypes() {
@@ -408,14 +429,17 @@ public class ContentRedaction implements Serializable {
      * <p>
      * Specify which types of personally identifiable information (PII) you want
      * to redact in your transcript. You can include as many types as you'd
-     * like, or you can select <code>ALL</code>.
+     * like, or you can select <code>ALL</code>. If you do not include
+     * <code>PiiEntityTypes</code> in your request, all PII is redacted.
      * </p>
      *
      * @param piiEntityTypes <p>
      *            Specify which types of personally identifiable information
      *            (PII) you want to redact in your transcript. You can include
      *            as many types as you'd like, or you can select
-     *            <code>ALL</code>.
+     *            <code>ALL</code>. If you do not include
+     *            <code>PiiEntityTypes</code> in your request, all PII is
+     *            redacted.
      *            </p>
      */
     public void setPiiEntityTypes(java.util.Collection<String> piiEntityTypes) {
@@ -431,7 +455,8 @@ public class ContentRedaction implements Serializable {
      * <p>
      * Specify which types of personally identifiable information (PII) you want
      * to redact in your transcript. You can include as many types as you'd
-     * like, or you can select <code>ALL</code>.
+     * like, or you can select <code>ALL</code>. If you do not include
+     * <code>PiiEntityTypes</code> in your request, all PII is redacted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -441,7 +466,9 @@ public class ContentRedaction implements Serializable {
      *            Specify which types of personally identifiable information
      *            (PII) you want to redact in your transcript. You can include
      *            as many types as you'd like, or you can select
-     *            <code>ALL</code>.
+     *            <code>ALL</code>. If you do not include
+     *            <code>PiiEntityTypes</code> in your request, all PII is
+     *            redacted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -460,7 +487,8 @@ public class ContentRedaction implements Serializable {
      * <p>
      * Specify which types of personally identifiable information (PII) you want
      * to redact in your transcript. You can include as many types as you'd
-     * like, or you can select <code>ALL</code>.
+     * like, or you can select <code>ALL</code>. If you do not include
+     * <code>PiiEntityTypes</code> in your request, all PII is redacted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -470,7 +498,9 @@ public class ContentRedaction implements Serializable {
      *            Specify which types of personally identifiable information
      *            (PII) you want to redact in your transcript. You can include
      *            as many types as you'd like, or you can select
-     *            <code>ALL</code>.
+     *            <code>ALL</code>. If you do not include
+     *            <code>PiiEntityTypes</code> in your request, all PII is
+     *            redacted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

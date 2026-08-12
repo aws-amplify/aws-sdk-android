@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,6 +36,13 @@ class CallAnalyticsJobJsonMarshaller {
             String callAnalyticsJobStatus = callAnalyticsJob.getCallAnalyticsJobStatus();
             jsonWriter.name("CallAnalyticsJobStatus");
             jsonWriter.value(callAnalyticsJobStatus);
+        }
+        if (callAnalyticsJob.getCallAnalyticsJobDetails() != null) {
+            CallAnalyticsJobDetails callAnalyticsJobDetails = callAnalyticsJob
+                    .getCallAnalyticsJobDetails();
+            jsonWriter.name("CallAnalyticsJobDetails");
+            CallAnalyticsJobDetailsJsonMarshaller.getInstance().marshall(callAnalyticsJobDetails,
+                    jsonWriter);
         }
         if (callAnalyticsJob.getLanguageCode() != null) {
             String languageCode = callAnalyticsJob.getLanguageCode();
