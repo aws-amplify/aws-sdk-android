@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -64,11 +64,16 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The maximum number of results to return at one time.
+     * The maximum number of results to return per page at one time. This
+     * maximum number cannot exceed 100. The response might contain fewer
+     * results but will never contain more. You can use <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_SearchIndex.html#iot-SearchIndex-request-nextToken"
+     * > <code>nextToken</code> </a> to retrieve the next set of results until
+     * <code>nextToken</code> returns <code>NULL</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 500<br/>
+     * <b>Range: </b>1 - <br/>
      */
     private Integer maxResults;
 
@@ -261,14 +266,24 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The maximum number of results to return at one time.
+     * The maximum number of results to return per page at one time. This
+     * maximum number cannot exceed 100. The response might contain fewer
+     * results but will never contain more. You can use <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_SearchIndex.html#iot-SearchIndex-request-nextToken"
+     * > <code>nextToken</code> </a> to retrieve the next set of results until
+     * <code>nextToken</code> returns <code>NULL</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 500<br/>
+     * <b>Range: </b>1 - <br/>
      *
      * @return <p>
-     *         The maximum number of results to return at one time.
+     *         The maximum number of results to return per page at one time.
+     *         This maximum number cannot exceed 100. The response might contain
+     *         fewer results but will never contain more. You can use <a href=
+     *         "https://docs.aws.amazon.com/iot/latest/apireference/API_SearchIndex.html#iot-SearchIndex-request-nextToken"
+     *         > <code>nextToken</code> </a> to retrieve the next set of results
+     *         until <code>nextToken</code> returns <code>NULL</code>.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -277,14 +292,26 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The maximum number of results to return at one time.
+     * The maximum number of results to return per page at one time. This
+     * maximum number cannot exceed 100. The response might contain fewer
+     * results but will never contain more. You can use <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_SearchIndex.html#iot-SearchIndex-request-nextToken"
+     * > <code>nextToken</code> </a> to retrieve the next set of results until
+     * <code>nextToken</code> returns <code>NULL</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 500<br/>
+     * <b>Range: </b>1 - <br/>
      *
      * @param maxResults <p>
-     *            The maximum number of results to return at one time.
+     *            The maximum number of results to return per page at one time.
+     *            This maximum number cannot exceed 100. The response might
+     *            contain fewer results but will never contain more. You can use
+     *            <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/apireference/API_SearchIndex.html#iot-SearchIndex-request-nextToken"
+     *            > <code>nextToken</code> </a> to retrieve the next set of
+     *            results until <code>nextToken</code> returns <code>NULL</code>
+     *            .
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -293,17 +320,29 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The maximum number of results to return at one time.
+     * The maximum number of results to return per page at one time. This
+     * maximum number cannot exceed 100. The response might contain fewer
+     * results but will never contain more. You can use <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_SearchIndex.html#iot-SearchIndex-request-nextToken"
+     * > <code>nextToken</code> </a> to retrieve the next set of results until
+     * <code>nextToken</code> returns <code>NULL</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 500<br/>
+     * <b>Range: </b>1 - <br/>
      *
      * @param maxResults <p>
-     *            The maximum number of results to return at one time.
+     *            The maximum number of results to return per page at one time.
+     *            This maximum number cannot exceed 100. The response might
+     *            contain fewer results but will never contain more. You can use
+     *            <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/apireference/API_SearchIndex.html#iot-SearchIndex-request-nextToken"
+     *            > <code>nextToken</code> </a> to retrieve the next set of
+     *            results until <code>nextToken</code> returns <code>NULL</code>
+     *            .
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

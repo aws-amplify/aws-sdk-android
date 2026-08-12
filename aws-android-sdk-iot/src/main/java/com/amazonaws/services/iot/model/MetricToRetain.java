@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,6 +36,14 @@ public class MetricToRetain implements Serializable {
      * </p>
      */
     private MetricDimension metricDimension;
+
+    /**
+     * <p>
+     * The value indicates exporting metrics related to the
+     * <code>MetricToRetain </code> when it's true.
+     * </p>
+     */
+    private Boolean exportMetric;
 
     /**
      * <p>
@@ -131,6 +139,72 @@ public class MetricToRetain implements Serializable {
     }
 
     /**
+     * <p>
+     * The value indicates exporting metrics related to the
+     * <code>MetricToRetain </code> when it's true.
+     * </p>
+     *
+     * @return <p>
+     *         The value indicates exporting metrics related to the
+     *         <code>MetricToRetain </code> when it's true.
+     *         </p>
+     */
+    public Boolean isExportMetric() {
+        return exportMetric;
+    }
+
+    /**
+     * <p>
+     * The value indicates exporting metrics related to the
+     * <code>MetricToRetain </code> when it's true.
+     * </p>
+     *
+     * @return <p>
+     *         The value indicates exporting metrics related to the
+     *         <code>MetricToRetain </code> when it's true.
+     *         </p>
+     */
+    public Boolean getExportMetric() {
+        return exportMetric;
+    }
+
+    /**
+     * <p>
+     * The value indicates exporting metrics related to the
+     * <code>MetricToRetain </code> when it's true.
+     * </p>
+     *
+     * @param exportMetric <p>
+     *            The value indicates exporting metrics related to the
+     *            <code>MetricToRetain </code> when it's true.
+     *            </p>
+     */
+    public void setExportMetric(Boolean exportMetric) {
+        this.exportMetric = exportMetric;
+    }
+
+    /**
+     * <p>
+     * The value indicates exporting metrics related to the
+     * <code>MetricToRetain </code> when it's true.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param exportMetric <p>
+     *            The value indicates exporting metrics related to the
+     *            <code>MetricToRetain </code> when it's true.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public MetricToRetain withExportMetric(Boolean exportMetric) {
+        this.exportMetric = exportMetric;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -144,7 +218,9 @@ public class MetricToRetain implements Serializable {
         if (getMetric() != null)
             sb.append("metric: " + getMetric() + ",");
         if (getMetricDimension() != null)
-            sb.append("metricDimension: " + getMetricDimension());
+            sb.append("metricDimension: " + getMetricDimension() + ",");
+        if (getExportMetric() != null)
+            sb.append("exportMetric: " + getExportMetric());
         sb.append("}");
         return sb.toString();
     }
@@ -157,6 +233,8 @@ public class MetricToRetain implements Serializable {
         hashCode = prime * hashCode + ((getMetric() == null) ? 0 : getMetric().hashCode());
         hashCode = prime * hashCode
                 + ((getMetricDimension() == null) ? 0 : getMetricDimension().hashCode());
+        hashCode = prime * hashCode
+                + ((getExportMetric() == null) ? 0 : getExportMetric().hashCode());
         return hashCode;
     }
 
@@ -179,6 +257,11 @@ public class MetricToRetain implements Serializable {
             return false;
         if (other.getMetricDimension() != null
                 && other.getMetricDimension().equals(this.getMetricDimension()) == false)
+            return false;
+        if (other.getExportMetric() == null ^ this.getExportMetric() == null)
+            return false;
+        if (other.getExportMetric() != null
+                && other.getExportMetric().equals(this.getExportMetric()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,12 +19,35 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides additional filters for specific data sources. Named shadow is the
- * only data source that currently supports and requires a filter. To add named
- * shadows to your fleet indexing configuration, set
- * <code>namedShadowIndexingMode</code> to be <code>ON</code> and specify your
- * shadow names in <code>filter</code>.
+ * Provides additional selections for named shadows and geolocation data.
  * </p>
+ * <p>
+ * To add named shadows to your fleet indexing configuration, set
+ * <code>namedShadowIndexingMode</code> to be ON and specify your shadow names
+ * in <code>namedShadowNames</code> filter.
+ * </p>
+ * <p>
+ * To add geolocation data to your fleet indexing configuration:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * If you store geolocation data in a class/unnamed shadow, set
+ * <code>thingIndexingMode</code> to be <code>REGISTRY_AND_SHADOW</code> and
+ * specify your geolocation data in <code>geoLocations</code> filter.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * If you store geolocation data in a named shadow, set
+ * <code>namedShadowIndexingMode</code> to be <code>ON</code>, add the shadow
+ * name in <code>namedShadowNames</code> filter, and specify your geolocation
+ * data in <code>geoLocations</code> filter. For more information, see <a href=
+ * "https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html"
+ * >Managing fleet indexing</a>.
+ * </p>
+ * </li>
+ * </ul>
  */
 public class IndexingFilter implements Serializable {
     /**
@@ -37,6 +60,18 @@ public class IndexingFilter implements Serializable {
      * </p>
      */
     private java.util.List<String> namedShadowNames;
+
+    /**
+     * <p>
+     * The list of geolocation targets that you select to index. The default
+     * maximum number of geolocation targets for indexing is <code>1</code>. To
+     * increase the limit, see <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html#fleet-indexing-limits"
+     * >Amazon Web Services IoT Device Management Quotas</a> in the <i>Amazon
+     * Web Services General Reference</i>.
+     * </p>
+     */
+    private java.util.List<GeoLocationTarget> geoLocations;
 
     /**
      * <p>
@@ -149,6 +184,120 @@ public class IndexingFilter implements Serializable {
     }
 
     /**
+     * <p>
+     * The list of geolocation targets that you select to index. The default
+     * maximum number of geolocation targets for indexing is <code>1</code>. To
+     * increase the limit, see <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html#fleet-indexing-limits"
+     * >Amazon Web Services IoT Device Management Quotas</a> in the <i>Amazon
+     * Web Services General Reference</i>.
+     * </p>
+     *
+     * @return <p>
+     *         The list of geolocation targets that you select to index. The
+     *         default maximum number of geolocation targets for indexing is
+     *         <code>1</code>. To increase the limit, see <a href=
+     *         "https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html#fleet-indexing-limits"
+     *         >Amazon Web Services IoT Device Management Quotas</a> in the
+     *         <i>Amazon Web Services General Reference</i>.
+     *         </p>
+     */
+    public java.util.List<GeoLocationTarget> getGeoLocations() {
+        return geoLocations;
+    }
+
+    /**
+     * <p>
+     * The list of geolocation targets that you select to index. The default
+     * maximum number of geolocation targets for indexing is <code>1</code>. To
+     * increase the limit, see <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html#fleet-indexing-limits"
+     * >Amazon Web Services IoT Device Management Quotas</a> in the <i>Amazon
+     * Web Services General Reference</i>.
+     * </p>
+     *
+     * @param geoLocations <p>
+     *            The list of geolocation targets that you select to index. The
+     *            default maximum number of geolocation targets for indexing is
+     *            <code>1</code>. To increase the limit, see <a href=
+     *            "https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html#fleet-indexing-limits"
+     *            >Amazon Web Services IoT Device Management Quotas</a> in the
+     *            <i>Amazon Web Services General Reference</i>.
+     *            </p>
+     */
+    public void setGeoLocations(java.util.Collection<GeoLocationTarget> geoLocations) {
+        if (geoLocations == null) {
+            this.geoLocations = null;
+            return;
+        }
+
+        this.geoLocations = new java.util.ArrayList<GeoLocationTarget>(geoLocations);
+    }
+
+    /**
+     * <p>
+     * The list of geolocation targets that you select to index. The default
+     * maximum number of geolocation targets for indexing is <code>1</code>. To
+     * increase the limit, see <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html#fleet-indexing-limits"
+     * >Amazon Web Services IoT Device Management Quotas</a> in the <i>Amazon
+     * Web Services General Reference</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param geoLocations <p>
+     *            The list of geolocation targets that you select to index. The
+     *            default maximum number of geolocation targets for indexing is
+     *            <code>1</code>. To increase the limit, see <a href=
+     *            "https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html#fleet-indexing-limits"
+     *            >Amazon Web Services IoT Device Management Quotas</a> in the
+     *            <i>Amazon Web Services General Reference</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public IndexingFilter withGeoLocations(GeoLocationTarget... geoLocations) {
+        if (getGeoLocations() == null) {
+            this.geoLocations = new java.util.ArrayList<GeoLocationTarget>(geoLocations.length);
+        }
+        for (GeoLocationTarget value : geoLocations) {
+            this.geoLocations.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The list of geolocation targets that you select to index. The default
+     * maximum number of geolocation targets for indexing is <code>1</code>. To
+     * increase the limit, see <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html#fleet-indexing-limits"
+     * >Amazon Web Services IoT Device Management Quotas</a> in the <i>Amazon
+     * Web Services General Reference</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param geoLocations <p>
+     *            The list of geolocation targets that you select to index. The
+     *            default maximum number of geolocation targets for indexing is
+     *            <code>1</code>. To increase the limit, see <a href=
+     *            "https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html#fleet-indexing-limits"
+     *            >Amazon Web Services IoT Device Management Quotas</a> in the
+     *            <i>Amazon Web Services General Reference</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public IndexingFilter withGeoLocations(java.util.Collection<GeoLocationTarget> geoLocations) {
+        setGeoLocations(geoLocations);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -160,7 +309,9 @@ public class IndexingFilter implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getNamedShadowNames() != null)
-            sb.append("namedShadowNames: " + getNamedShadowNames());
+            sb.append("namedShadowNames: " + getNamedShadowNames() + ",");
+        if (getGeoLocations() != null)
+            sb.append("geoLocations: " + getGeoLocations());
         sb.append("}");
         return sb.toString();
     }
@@ -172,6 +323,8 @@ public class IndexingFilter implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getNamedShadowNames() == null) ? 0 : getNamedShadowNames().hashCode());
+        hashCode = prime * hashCode
+                + ((getGeoLocations() == null) ? 0 : getGeoLocations().hashCode());
         return hashCode;
     }
 
@@ -190,6 +343,11 @@ public class IndexingFilter implements Serializable {
             return false;
         if (other.getNamedShadowNames() != null
                 && other.getNamedShadowNames().equals(this.getNamedShadowNames()) == false)
+            return false;
+        if (other.getGeoLocations() == null ^ this.getGeoLocations() == null)
+            return false;
+        if (other.getGeoLocations() != null
+                && other.getGeoLocations().equals(this.getGeoLocations()) == false)
             return false;
         return true;
     }
