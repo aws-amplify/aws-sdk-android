@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,19 +22,20 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Associates a <code>SignalingChannel</code> to a stream to store the media.
- * There are two signaling modes that can specified :
+ * There are two signaling modes that you can specify :
  * </p>
  * <ul>
  * <li>
  * <p>
- * If the <code>StorageStatus</code> is disabled, no data will be stored, and
- * the <code>StreamARN</code> parameter will not be needed.
+ * If <code>StorageStatus</code> is enabled, the data will be stored in the
+ * <code>StreamARN</code> provided. In order for WebRTC Ingestion to work, the
+ * stream must have data retention enabled.
  * </p>
  * </li>
  * <li>
  * <p>
- * If the <code>StorageStatus</code> is enabled, the data will be stored in the
- * <code>StreamARN</code> provided.
+ * If <code>StorageStatus</code> is disabled, no data will be stored, and the
+ * <code>StreamARN</code> parameter will not be needed.
  * </p>
  * </li>
  * </ul>
