@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,8 +20,21 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
+ * <note>
  * <p>
- * Sends an event.
+ * The
+ * <code>application/vnd.amazonaws.connect.event.connection.acknowledged</code>
+ * ContentType will no longer be supported starting December 31, 2024. This
+ * event has been migrated to the <a href=
+ * "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html"
+ * >CreateParticipantConnection</a> API using the
+ * <code>ConnectParticipant</code> field.
+ * </p>
+ * </note>
+ * <p>
+ * Sends an event. Message receipts are not supported when there are more than
+ * two active participants in the chat. Using the SendEvent API for message
+ * receipts when a supervisor is barged-in will result in a conflict exception.
  * </p>
  * <note>
  * <p>
@@ -48,7 +61,8 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * application/vnd.amazonaws.connect.event.connection.acknowledged
+     * application/vnd.amazonaws.connect.event.connection.acknowledged (will be
+     * deprecated on December 31, 2024)
      * </p>
      * </li>
      * <li>
@@ -121,7 +135,8 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * application/vnd.amazonaws.connect.event.connection.acknowledged
+     * application/vnd.amazonaws.connect.event.connection.acknowledged (will be
+     * deprecated on December 31, 2024)
      * </p>
      * </li>
      * <li>
@@ -151,6 +166,7 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      *         <li>
      *         <p>
      *         application/vnd.amazonaws.connect.event.connection.acknowledged
+     *         (will be deprecated on December 31, 2024)
      *         </p>
      *         </li>
      *         <li>
@@ -181,7 +197,8 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * application/vnd.amazonaws.connect.event.connection.acknowledged
+     * application/vnd.amazonaws.connect.event.connection.acknowledged (will be
+     * deprecated on December 31, 2024)
      * </p>
      * </li>
      * <li>
@@ -211,7 +228,7 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            application/vnd.amazonaws.connect.event.connection.
-     *            acknowledged
+     *            acknowledged (will be deprecated on December 31, 2024)
      *            </p>
      *            </li>
      *            <li>
@@ -242,7 +259,8 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * application/vnd.amazonaws.connect.event.connection.acknowledged
+     * application/vnd.amazonaws.connect.event.connection.acknowledged (will be
+     * deprecated on December 31, 2024)
      * </p>
      * </li>
      * <li>
@@ -275,7 +293,7 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            application/vnd.amazonaws.connect.event.connection.
-     *            acknowledged
+     *            acknowledged (will be deprecated on December 31, 2024)
      *            </p>
      *            </li>
      *            <li>
